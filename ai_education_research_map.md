@@ -94,13 +94,13 @@ START
 | **P0** | **Decoding the Disciplines (DtD)** | Directly targets disciplinary bottlenecks and tacit expert mental operations; use as the instructional frame, elicitation via CTA | **Low–moderate**: mostly qualitative; two small non-randomized comparisons, none in physics, no transfer | High | High | **Very high** |
 | **P0** | **Cognitive Task Analysis (CTA) / Knowledge Elicitation** | Gives concrete interview/probing methods for extracting expert cognition | **Moderate–high** for training outcomes outside physics; no physics or transfer outcomes | High | Medium–high | **Very high** |
 | **P0** | **Expert–Novice research** | Explains why experts and beginners represent the same problem differently | **High as foundational evidence** for representation differences (a continuum, not two groups); instruction built on them helps immediate problem solving in small physics studies; one far-transfer RCT | **Very high** | High | High |
-| **P0** | **Pedagogical Content Knowledge (PCK)** | Focuses on what teachers need to know about representations, difficulty and learner misconceptions | **Moderate–high** for correlational links to school achievement (strongest in mathematics, mixed in physics); no experiment isolating PCK; no university or transfer outcomes | High | High | High |
-| **P1** | **Conceptual Change + misconception research** | Addresses learners whose existing mental model conflicts with the target model | **High, especially science education** | **Very high** | Medium | High |
+| **P0** | **Pedagogical Content Knowledge (PCK)** | Focuses on what teachers need to know about representations, difficulty and learner misconceptions | **Moderate**: correlational links to school achievement, weak and model-dependent (pooled r = .13 n.s. to .23, 11 studies; strongest in mathematics, mixed in physics); no experiment isolating PCK; no university or transfer outcomes | High | High | High |
+| **P1** | **Conceptual Change + misconception research** | Addresses learners whose existing mental model conflicts with the target model | **High** that intuitive ideas persist and coexist with instruction (physics especially); **moderate** for interventions (refutation text g ≈ 0.4, holding at delay; physics curricula show larger gains that persist, in cohort studies; no university transfer outcomes); theory contested (coherent vs fragmented) | **Very high** | Medium | High |
 | **P1** | **Concept Inventories / diagnostic instruments** | Makes hidden misconceptions measurable; physics is unusually mature here | **High for cohort/course evaluation** with well-validated instruments; weak for individual diagnosis (item answers unstable on retest, mixed models, some gender-biased items) | **Very high** | Low–medium | **Very high** |
-| **P1** | **Cognitive Apprenticeship** | Converts expert cognition into modelling, coaching, scaffolding and fading | **Moderate** | High | High | **Very high** |
+| **P1** | **Cognitive Apprenticeship** | Converts expert cognition into modelling, coaching, scaffolding and fading | **Moderate** as a design framework: components have experimental support (worked examples, self-explanation, computer-based scaffolding g ≈ 0.46); no controlled test of the whole model in physics; fixed-schedule fading no better than none | High | High | **Very high** |
 | **P1** | **Worked Examples + Self-Explanation** | Strong candidate for turning decoded expert operations into teachable interactions | **High** for immediate problem solving by novices (meta-analyses g ≈ 0.5); delayed and transfer effects smaller (g ≈ 0.35); little classroom or delayed physics evidence; reverses as prior knowledge grows | **Very high** | Medium | **Very high** |
-| **P1** | **Intelligent Tutoring Systems (ITS)** | Mature evidence base for individualized step-level instruction and feedback | **High overall, heterogeneous** | **Very high** | Medium–high | **Very high** |
-| **P1** | **Knowledge Tracing / Mastery models** | Provides a computational learner-state layer rather than relying on LLM intuition | **Moderate–high** | High | Medium | **Very high** |
+| **P1** | **Intelligent Tutoring Systems (ITS)** | Mature evidence base for individualized step-level instruction and feedback | **High on tests aligned to the tutor** (median 0.66 SD; 0.73 on local vs 0.13 on standardized tests; step-based ≈ human tutoring); small at scale (≈ 0–0.2 SD); physics: one non-randomized university study, large hour-exam gains on enforced practices, d = 0.25 on an answer-only final | **Very high** | Medium–high | **Very high** |
+| **P1** | **Knowledge Tracing / Mastery models** | Provides a computational learner-state layer rather than relying on LLM intuition | **Moderate–high for predicting performance** within a tutor (simple models match deep ones); for learning, a few small positive classroom studies of KC-model redesign on hand-picked units, one null on units chosen by topic, and no test against a simple mastery rule | High | Medium | **Very high** |
 | **P2** | **Threshold Concepts** | Useful language for transformative/troublesome disciplinary ideas | **Moderate / contested** | High | High | Medium–high |
 | **P2** | **Formative assessment** | Essential feedback loop for checking whether the intervention actually worked | **High as a broad principle** | High | High | High |
 | **P2** | **LLM-based AI tutoring** | Potential delivery/orchestration layer; promising but evidence is newer than classic ITS | **Emerging / moderate** | High | High | N/A — implementation layer |
@@ -283,7 +283,7 @@ A domain expert and an excellent teacher are therefore not interchangeable train
 Graded evidence (see `research/explore-pedagogical-content-knowledge.md`):
 - **Correlational links to achievement gains:** Baumert et al. (2010) in school mathematics; in school physics, Keller et al. (2017) positive and Cauet et al. (2015) null. All immediate or within-year, none at university.
 - **Knowledge of student difficulties:** teachers who could name students' most common wrong answer had much larger gains on those items than teachers who knew only the right answer (Sadler et al. 2013, middle-school physical science, 181 teachers, same-item gains).
-- **No experiment isolates PCK:** too few intervention studies measure it separately (Gonzalez, Lynch & Hill 2022). A systematic review of 217 science-PCK studies found the student-outcome link inconclusive (Park & Chan 2025); a meta-analysis found it positive only under multilevel models (Fukaya et al. 2025).
+- **No experiment isolates PCK:** too few intervention studies measure it separately (Gonzalez, Lynch & Hill 2022). A systematic review of 217 science-PCK studies found the student-outcome link inconclusive (Park & Chan 2025); a meta-analysis found r = .13 (n.s.) under random effects and r = .23 only under a three-level model, with a prediction interval of −.40 to .72 (Fukaya et al. 2025, 11 studies).
 - **Content experts hold it only partly:** university physics TAs and instructors scored 65% and 68% of the maximum when predicting students' most common wrong FCI answers (chance: 40%), and the TAs missed many common difficulties (Maries & Singh 2016).
 - **Transfer:** no study found measures it.
 
@@ -321,13 +321,23 @@ A learner often does not lack information; they possess an **existing model that
 ### Why it matters for physics
 Physics education contains unusually rich evidence on persistent intuitive models—force and motion are the classic example. Telling a learner the correct equation can leave the incorrect underlying model untouched.
 
+### Evidence / limitations
+Graded evidence (see `research/explore-conceptual-change.md`):
+- **Persistence:** naive intuitions survive science education and coexist with the scientific idea for years (Shtulman & Valcarcel 2012). Solving many traditional problems leaves conceptual difficulties intact (Kim & Pak 2002).
+- **Theory contested:** coherent framework theories (Vosniadou & Brewer 1992) against knowledge in pieces (diSessa 1993; diSessa, Gillespie & Esterly 2004). Both imply that whether a learner uses an intuitive idea depends on context.
+- **Refutation text:** g = 0.41 across 44 comparisons (33 studies), stable across test delays up to a month and beyond (k = 2 beyond); post-secondary g = 0.33 (age not a significant moderator); dissertations g = 0.11 (Schroeder & Kucera 2022). Not sufficient on its own (Guzzetti 2000).
+- **Conflict needs commitment:** passively observed demonstrations did not improve end-of-semester explanations; predicting first did, modestly (Crouch et al. 2004). Cognitive conflict alone gives inconsistent results (Limón 2001).
+- **Physics curricula:** elicit–confront–resolve tutorials and interactive engagement give larger conceptual gains whose scores hold for months to years (Pollock 2009; Deslauriers & Wieman 2011, where retention was equally high after traditional lecture), from cohort comparisons, not randomized trials. No university study measures transfer; a high-school bridging-analogies study included near- and far-transfer items with a two-month delay (Clement 1993).
+
 ### AI opportunity
 The tutor should identify a learner’s current model from explanations and predictions, then generate **discriminating cases** that separate the learner’s model from the target model.
+
+Treat a diagnosed misconception as a context-bound hypothesis, not a stable state: confirm it in a second surface context before acting on it, and re-check it after instruction, since a correct answer can coexist with the intuition (Shtulman & Valcarcel 2012). A discriminating case works better when the learner commits to a prediction before seeing the outcome (Crouch et al. 2004; Miller et al. 2013). No study has validated an LLM's misconception diagnosis for an individual learner; the studies found work at item level (Smart, Bos & Bos 2024; Savage & Rebello 2025).
 
 ### Questions to research next
 - Can an LLM reliably infer a misconception from free-form reasoning?
 - Should diagnosis be generative, inventory-based, or hybrid?
-- How do we distinguish a slip/calculation error from a stable conceptual model?
+- Does a misconception label for one learner predict their answers in a second context and on retest, or only on the item it came from?
 - Can the system deliberately choose examples where competing mental models predict different outcomes?
 
 ### Minimum reading if this branch is selected
@@ -385,6 +395,15 @@ CTA/DtD can reveal expert cognition; cognitive apprenticeship provides a plausib
 ### Domain fit
 Broad; particularly natural for complex problem solving, professional practice and STEM.
 
+### Evidence / limitations
+Graded evidence (see `research/explore-cognitive-apprenticeship.md`):
+- **Whole model:** no controlled test in university physics was found; health-sciences use is mostly design and perception work (Lyons et al. 2017).
+- **Components:** modelling via worked examples and articulation via self-explanation (§5.8); computer-based scaffolding in STEM, g = 0.46 over 144 studies, largest at the principles level and for adults (Belland et al. 2017).
+- **Fading:** in computer-based STEM scaffolding, fixed-schedule fading did worse than no fading in a pilot meta-analysis (Belland et al. 2015), and the full meta-analysis found no difference by whether or how scaffolds changed, including performance-adapted change (Belland et al. 2017). In single studies, per-learner fading beat fixed fading on delayed tests in a Geometry Cognitive Tutor (Salden et al. 2010), and adapted instruction beat a yoked non-adapted sequence in an algebra tutor (Kalyuga & Sweller 2005); both are outside physics.
+- **Order:** problem solving before instruction beat instruction first on average (g = 0.36; Sinha & Kapur 2021), when it used contrasting cases or built instruction on students' attempts (Loibl et al. 2017). In university physics, exploring first beat instructing first on conceptual scores in one group's studies (Weaver et al. 2018; Bego et al. 2022, Experiment 1; DeCaro et al. 2023, N = 78), but not when the activity lacked contrasting cases (Bego et al. 2022, Experiment 2). Explicit instruction first won for primary pupils when element interactivity was high (Ashman et al. 2020).
+- **Physics scaffold-then-remove:** conceptual questions before synthesis problems during training improved an unscaffolded, cross-topic exam problem 4 days later (Ding et al. 2011; class-level assignment).
+- **Transfer:** one university-physics study measured transfer, with mixed results across two experiments (Bego et al. 2022); none has a verified delayed transfer test.
+
 ### AI opportunity
 An AI tutor can switch roles dynamically:
 - demonstrate expert reasoning;
@@ -392,12 +411,16 @@ An AI tutor can switch roles dynamically:
 - provide partial scaffolds;
 - request articulation;
 - compare learner reasoning with expert reasoning;
-- fade assistance as competence increases.
+- fade assistance as measured competence increases, per learner, not on a fixed schedule (fixed-schedule fading did worse than no fading in a pilot meta-analysis, Belland et al. 2015; per-learner fading beat fixed fading in single studies outside physics, Salden et al. 2010; the full meta-analysis found no moderation by fading logic, Belland et al. 2017).
+
+Fading needs a per-learner estimate of the targeted skill, so it depends on the explicit learner model (§5.10), not on conversation alone. Whether the tutor models first or lets the learner explore first is a design choice with evidence on both sides; for conceptual goals, exploration with contrasting cases before modelling is the better-supported default beyond early primary school (Sinha & Kapur 2021; Loibl et al. 2017).
 
 ### Questions to research next
 - How should scaffolding be faded automatically?
 - What evidence shows when modelling should stop and productive struggle should begin?
 - Which components have the strongest causal evidence?
+- In university mechanics, does exploring with contrasting cases before expert modelling beat modelling first on **delayed** transfer, and does the answer change with element interactivity (Ashman et al. 2020)?
+- Does adaptive fading beat fixed fading on delayed transfer in physics?
 
 ### Minimum reading if this branch is selected
 Collins, Brown & Newman (1989), **“Cognitive Apprenticeship: Teaching the Crafts of Reading, Writing, and Mathematics.”**
@@ -455,7 +478,11 @@ Classic ITS research separates at least three concerns:
 This separation is extremely important for an LLM system: the language model should not silently collapse all three into one prompt.
 
 ### Evidence
-The evidence base is substantially stronger than for most generative-AI tutoring. Kulik & Fletcher’s meta-analysis of 50 controlled evaluations reported a median effect of **0.66 standard deviations over conventional instruction**, while emphasizing that outcomes depend strongly on assessment alignment and implementation quality. A 2025 systematic review of K–12 AI-driven ITS found generally positive effects, but advantages were smaller when compared with stronger non-intelligent tutoring systems.
+Graded evidence (see `research/explore-intelligent-tutoring-systems.md`):
+- **Aligned tests carry the effect.** Median 0.66 SD over conventional instruction across 50 evaluations, depending "to a great extent" on locally developed vs standardized tests: 0.73 vs 0.13 (Kulik & Fletcher 2016). Step-based ITS are nearly as effective as human tutoring (d = 0.76 vs 0.79; VanLehn 2011). College: g = 0.32–0.37 (Steenbergen-Hu & Cooper 2014).
+- **Small at scale and against strong controls.** K–12 mathematics g = 0.01–0.09, 0.02 on standardized tests (Steenbergen-Hu & Cooper 2013; Kulik & Fletcher 2016 report 0.10 on standardized tests). Cognitive Tutor Algebra at scale: no effect in year 1, about 0.2 SD in year 2 in high schools (Pane et al. 2014). No advantage over individual human tutoring (Ma et al. 2014); smaller effects against non-intelligent tutoring systems (Létourneau et al. 2025).
+- **University physics.** Andes, replacing paper homework at the US Naval Academy (non-randomized): hour exams d = 0.61, concentrated in drawings (1.21) and variable definitions (0.69), with no gain on the answer subscore; answer-only final exam d = 0.25, confined to majors other than engineering and science (VanLehn et al. 2005).
+- **Transfer and delay:** not reported in the syntheses.
 
 ### Domain fit
 Very strong in mathematics/science and procedural domains; also used in reading, medicine, law and other areas.
@@ -463,8 +490,11 @@ Very strong in mathematics/science and procedural domains; also used in reading,
 ### AI opportunity
 Treat decades of ITS work as the **architecture and pedagogy prior** for LLM tutoring rather than starting from chatbot design.
 
+The evidence supports three classical principles for an LLM tutor: step-level feedback checked against an explicit solution representation (VanLehn 2011; VanLehn et al. 2005); an explicit pedagogical policy, which changed learning with content held constant (Chi et al. 2011, college physics); and withholding answers, since an unconstrained GPT-4 tutor lowered unassisted exam scores while a hint-only version did not (Bastani et al. 2025, high school; overlap with §5.12).
+
 ### Questions to research next
-- Which classical ITS design principles remain essential when generation becomes flexible?
+- Does an LLM tutor with step-level checking against an explicit solution model beat the same tutor without it, on a test not aligned to the tutor?
+- Does an ITS in university physics improve correct answers and transfer, not only the practices it enforces?
 - Which student-model variables should be explicit rather than left in conversation context?
 - How should correctness and pedagogical quality be verified independently of the LLM?
 
@@ -488,12 +518,23 @@ Without an explicit student model, an LLM tutor can confuse:
 ### Domain fit
 Best when knowledge can be decomposed into skills/concepts and learner interactions are observable. Harder for open-ended interpretation, research judgment and other poorly discretized expertise.
 
+### Evidence / limitations
+Graded evidence (see `research/explore-knowledge-tracing.md`):
+- **Prediction:** deep KT beat classic BKT (Piech et al. 2015), but extended BKT, IRT variants and well-featured logistic regression match or beat it on moderate-sized data; deep KT led on the largest (Khajah, Lindsey & Mozer 2016; Wilson et al. 2016; Gervet et al. 2020).
+- **Learning:** redesigning a tutor around a data-refined KC model improved learning in several small high-school classroom studies on hand-picked units (d = 0.47 immediate, Liu & Koedinger 2017; Koedinger et al. 2013; Huang et al. 2021), and cutting over-practice saved time (significant in one of six units) without a detected loss (Cen, Koedinger & Junker 2007). Applied to middle-school units chosen by topic, the redesign process gave no difference in learning gains (Lyu et al. 2026). Liu & Koedinger and Cen et al. are high-school geometry; Lyu et al. is middle-school maths. Outcomes are immediate, 2-week or one-month.
+- **Sequencing policies:** of 8 experiments sequencing interdependent content with a learner model, none beat all baselines (Doroudi, Aleven & Brunskill 2019).
+- **State validity:** best-fitting BKT parameters can be implausible (Doroudi & Brunskill 2017), and population-level parameters under-practise slow learners (Doroudi & Brunskill 2019; simulation; N-correct-in-a-row is susceptible too).
+- **Transfer:** no study found tests a KT-driven policy against a simple mastery rule on delayed or transfer outcomes.
+
 ### AI opportunity
 Combine explicit knowledge tracing with qualitative evidence extracted from dialogue. The LLM becomes an **observation and explanation layer**, not the sole state estimator.
 
+Prefer an interpretable model (logistic/PFA-style or constrained BKT) with a KC model checked against learning curves. Infer mastery from several opportunities, never one answer (§5.6). Whether a mastery rule beats a simple heuristic such as N-correct-in-a-row is an experiment to run, not an assumption.
+
 ### Questions to research next
 - What is the correct “knowledge component” for physics: concept, equation, representation, procedure, misconception, or expert mental operation?
-- Can DtD-derived mental operations become knowledge components?
+- Can CTA-elicited operations become knowledge components, i.e. are they observable as steps in student work and do they give smooth learning curves?
+- Does a KT-driven mastery policy beat N-correct-in-a-row on delayed transfer?
 - How should uncertainty and contradictory evidence be represented?
 
 ### Minimum reading if this branch is selected
@@ -600,7 +641,7 @@ https://doi.org/10.1038/s41598-025-97652-6
 ```
 
 ### Important architectural principle
-The **LLM should probably be an interface/reasoning component, not the database of truth, the student model, the pedagogy model and the evaluator simultaneously.** Classical ITS research strongly suggests keeping these concerns conceptually separable even if one foundation model participates in several of them.
+The **LLM should probably be an interface/reasoning component, not the database of truth, the student model, the pedagogy model and the evaluator simultaneously.** Classical ITS research strongly suggests keeping these concerns conceptually separable even if one foundation model participates in several of them. No study compares separated domain, student and pedagogical models against one integrated model; the principle rests on indirect evidence (step checking needs a domain model; pedagogical policy has effects of its own, Chi et al. 2011; generated hints fail quality checks without verification, Pardos & Bhandari 2024).
 
 ---
 
@@ -725,7 +766,7 @@ For the same topic, compare:
 - AI Socratic diagnostic dialogue;
 - hybrid diagnosis.
 
-Measure not only classification accuracy but **instructional utility**: does the diagnosis lead to a better next intervention? Also measure each method's test–retest stability for the same student; 31% of FCI item responses changed on a retest within a week (Lasry et al. 2011).
+Measure not only classification accuracy but **instructional utility**: does the diagnosis lead to a better next intervention? Also measure, for each method, the same student's test–retest stability (31% of FCI item responses changed on a retest within a week; Lasry et al. 2011) and cross-context consistency: whether the same diagnosed idea shows up when the concept is probed in a second surface context (diSessa, Gillespie & Esterly 2004).
 
 ---
 
@@ -736,9 +777,12 @@ Convert decoded operations into several interventions:
 - worked example;
 - self-explanation;
 - guided practice;
-- Socratic questioning.
+- Socratic questioning;
+- refutation (state the likely wrong idea, then refute it);
+- predict-then-observe discriminating cases;
+- problem solving before instruction (contrasting cases, then instruction built on students' attempts).
 
-Randomize or counterbalance where feasible.
+Randomize or counterbalance where feasible. Treat order (explore first vs model first) as a factor, not a fixed default; the evidence is split by learner level and element interactivity (Sinha & Kapur 2021; Ashman et al. 2020).
 
 Measure:
 - immediate performance;
@@ -755,8 +799,11 @@ Transfer should be a primary outcome because expert-like representation is the r
 Only after Phases 1–4 identify useful signals:
 - formalize knowledge components / mental operations;
 - introduce knowledge tracing or another explicit learner model;
+- judge it by a learning experiment against a simple mastery rule (N-correct-in-a-row or a moving average), with delayed transfer as the outcome, not by predictive accuracy;
 - define tutoring policies;
 - then optimize personalization.
+
+Evaluate any adaptive system on a test not written around the system's own tasks, and over more than one term: ITS effects shrink on standardized tests (Kulik & Fletcher 2016) and appeared only in the second year at scale (Pane et al. 2014).
 
 Do not start with a complex adaptive model before validating what should be represented.
 
@@ -797,6 +844,7 @@ Do not start with a complex adaptive model before validating what should be repr
 - Do **not** assume the LLM’s reconstruction of expert reasoning is valid because it sounds plausible.
 - Do **not** assume every bottleneck is a “threshold concept.”
 - Do **not** treat learner correctness as equivalent to understanding.
+- Do **not** assume a misconception is gone because a learner now answers correctly; naive intuitions persist alongside the scientific idea.
 - Do **not** use concept inventories outside their validated purpose without checking validity; most are validated for class-level evaluation, not for diagnosing or grading individual students.
 - Do **not** assume higher predictive accuracy in a student model means better pedagogy.
 - Do **not** assume an unconstrained chatbot inherits the evidence base of intelligent tutoring systems.
@@ -810,7 +858,7 @@ Do not start with a complex adaptive model before validating what should be repr
 1. **DtD is directly aligned with the problem, but its empirical base is less mature than its conceptual fit suggests.** Keep it as the pedagogical framing (bottleneck → model → practice → assess). Its interview step is not evidential without CTA-style validation against performed tasks.
 2. **CTA offers a more mature toolkit for extracting expert cognition.** Combining it with DtD is likely more defensible than using DtD interviewing alone. No physics or transfer evidence yet; start with think-aloud on performed tasks plus retrospective CDM probes.
 3. **Physics is a strategically strong first domain.** It offers classic expert–novice findings, validated misconception instruments, structured problems and objective checks. Expert–novice differences are well replicated but form a continuum; instruction built on them has immediate, not yet delayed-transfer, evidence.
-4. **Classical ITS research should be treated as required prior art.** Meta-analytic evidence for ITS is much stronger than the current evidence for generic LLM tutors.
+4. **Classical ITS research should be treated as required prior art.** Meta-analytic evidence for ITS is much stronger than the current evidence for generic LLM tutors. Its large effects are on tests aligned to the tutor; on standardized tests and at scale they are about 0–0.2 SD.
 5. **Recent AI-tutoring evidence is encouraging but narrow.** Strong results have come from carefully engineered pedagogical systems, not generic “ask an LLM” interactions.
 6. **A learner model should be explicit enough to inspect and test.** Conversational memory alone is a weak scientific foundation for claims of personalization.
 7. **Knowledge of student difficulties is only partly held by content experts.** University physics TAs miss many common difficulties that concept-inventory data reveal, and instructors score no better. Knowing students' common wrong answers predicts gains beyond subject knowledge, though only correlationally. Seed the PCK layer from student data and let teachers review it.
@@ -887,8 +935,45 @@ These are starting anchors, not a complete bibliography.
 - Chopra & Haaland (2026) — AI-led qualitative interviews: https://doi.org/10.65864/ch6grwpore
 - Geiecke & Jaravel — robust AI-led interviews (2024 preprint; forthcoming, _Review of Economic Studies_): https://doi.org/10.2139/ssrn.4974382
 - Wuttke et al. (2025) — AI vs human conversational interviewing: https://doi.org/10.18653/v1/2025.latechclfl-1.17
-- Collins, Brown & Newman (1989) — cognitive apprenticeship
-- Posner et al. (1982) — conceptual change
+- Collins, Brown & Newman (1989; Routledge reissue 2018) — cognitive apprenticeship: https://doi.org/10.4324/9781315044408-14
+- Lyons et al. (2017) — cognitive apprenticeship in health sciences, review: https://doi.org/10.1007/s10459-016-9707-4
+- Belland et al. (2017) — computer-based scaffolding in STEM, meta-analysis: https://doi.org/10.3102/0034654316670999
+- Belland, Walker, Olsen & Leary (2015) — scaffolding pilot meta-analysis: Educational Technology & Society 18(1), 183–197, no DOI (ERIC EJ1062484)
+- van de Pol, Volman & Beishuizen (2010) — scaffolding in teacher–student interaction: https://doi.org/10.1007/s10648-010-9127-6
+- van de Pol et al. (2015) — contingent scaffolding classroom experiment: https://doi.org/10.1007/s11251-015-9351-z
+- Puntambekar & Hübscher (2005) — critique of "scaffolding": https://doi.org/10.1207/s15326985ep4001_1
+- Renkl et al. (2002) — fading worked-example steps: https://doi.org/10.1080/00220970209599510
+- Salden et al. (2010) — adaptive vs fixed fading: https://doi.org/10.1007/s11251-009-9107-8
+- Kalyuga & Sweller (2005) — rapid-test adaptive instruction: https://doi.org/10.1007/BF02504800
+- Kirschner, Sweller & Clark (2006) — against minimal guidance: https://doi.org/10.1207/s15326985ep4102_1
+- Hmelo-Silver, Duncan & Chinn (2007) — reply on scaffolded inquiry: https://doi.org/10.1080/00461520701263368
+- Alfieri et al. (2011) — discovery learning meta-analyses: https://doi.org/10.1037/a0021017
+- Loibl, Roll & Rummel (2017) — when problem solving before instruction works: https://doi.org/10.1007/s10648-016-9379-x
+- Kapur (2008) — productive failure, Grade 11 kinematics: https://doi.org/10.1080/07370000802212669
+- Schwartz et al. (2011) — inventing before being told, Grade 8 physics: https://doi.org/10.1037/a0025140
+- Weaver et al. (2018) — explore-first in university physics: https://doi.org/10.1016/j.cedpsych.2017.12.003
+- Bego, Chastain & DeCaro (2022) — contrasting cases before instruction, university physics: https://doi.org/10.1111/bjep.12555
+- DeCaro et al. (2023) — explore-first randomized lesson, university physics: https://doi.org/10.3389/feduc.2023.1215975
+- DeCaro et al. (2025) — exploration length before instruction, university chemistry: https://doi.org/10.1111/bjep.70007
+- Ashman, Kalyuga & Sweller (2020) — explicit instruction first at high element interactivity: https://doi.org/10.1007/s10648-019-09500-5
+- Ding et al. (2011) — conceptual scaffolding for synthesis problems in mechanics: https://doi.org/10.1103/physrevstper.7.020109
+- Posner et al. (1982) — conceptual change: https://doi.org/10.1002/sce.3730660207
+- Schroeder & Kucera (2022) — meta-analysis of refutation texts: https://doi.org/10.1007/s10648-021-09656-z
+- Guzzetti et al. (1993) — meta-analysis of conceptual change interventions: https://doi.org/10.2307/747886
+- Guzzetti (2000) — synthesis of text-based conceptual change: https://doi.org/10.1080/105735600277971
+- Zengilowski, Schuetze, Nash & Schallert (2021) — critical review of refutation-text research: https://doi.org/10.1080/00461520.2020.1861948
+- Limón (2001) — critique of cognitive conflict: https://doi.org/10.1016/S0959-4752%2800%2900037-2
+- Shtulman & Valcarcel (2012) — naive theories coexist with scientific ones: https://doi.org/10.1016/j.cognition.2012.04.005
+- diSessa (1993) — knowledge in pieces: https://doi.org/10.1080/07370008.1985.9649008
+- diSessa, Gillespie & Esterly (2004) — coherence vs fragmentation for force: https://doi.org/10.1207/s15516709cog2806_1
+- Vosniadou & Brewer (1992) — framework theory, mental models of the Earth: https://doi.org/10.1016/0010-0285%2892%2990018-W
+- Kim & Pak (2002) — problems solved vs conceptual understanding: https://doi.org/10.1119/1.1484151
+- Clement (1993) — bridging analogies in mechanics: https://doi.org/10.1002/tea.3660301007
+- Crouch et al. (2004) — predicting before lecture demonstrations: https://doi.org/10.1119/1.1707018
+- Miller et al. (2013) — observation and recall of demonstrations: https://doi.org/10.1103/PhysRevSTPER.9.020113
+- Pollock (2009) — long-term retention after tutorials, E&M: https://doi.org/10.1103/PhysRevSTPER.5.020110
+- Deslauriers & Wieman (2011) — retention after interactive engagement, quantum: https://doi.org/10.1103/physrevstper.7.010101
+- Smart, Bos & Bos (2024) — LLM answers vs student misconceptions: https://doi.org/10.1007/978-3-031-60609-0_21
 - Hestenes, Wells & Swackhamer (1992) — Force Concept Inventory: https://doi.org/10.1119/1.2343497
 - Lasry et al. (2011) — FCI test–retest reliability of individual responses: https://doi.org/10.1119/1.3602073
 - Traxler et al. (2018) — gender fairness of FCI items: https://doi.org/10.1103/physrevphyseducres.14.010103
@@ -921,8 +1006,32 @@ These are starting anchors, not a complete bibliography.
 - Rey & Fischer (2013) — expertise reversal for instructional explanations: https://doi.org/10.1007/s11251-012-9237-2
 - Sinha & Kapur (2021) — problem solving before instruction, meta-analysis: https://doi.org/10.3102/00346543211019105
 - Chen et al. (2026) — LLM feedback on self-explanations, calculus: https://doi.org/10.1007/978-3-032-29763-1_42
-- Corbett & Anderson — knowledge tracing / cognitive tutors
+- Corbett & Anderson (1995) — knowledge tracing: https://doi.org/10.1007/BF01099821
+- Piech et al. (2015) — deep knowledge tracing: arXiv 1506.05908
+- Khajah, Lindsey & Mozer (2016) — extended BKT matches deep KT: arXiv 1604.02416
+- Gervet et al. (2020) — when deep learning is best for knowledge tracing: https://doi.org/10.5281/zenodo.4143614
+- Pavlik, Cen & Koedinger (2009) — Performance Factors Analysis: https://doi.org/10.3233/978-1-60750-028-5-531
+- Doroudi & Brunskill (2017) — BKT identifiability and semantic degeneracy: https://files.eric.ed.gov/fulltext/ED577166.pdf
+- Doroudi & Brunskill (2019) — equitability of knowledge tracing: https://doi.org/10.1145/3303772.3303838
+- Doroudi, Aleven & Brunskill (2019) — review of RL for instructional sequencing: https://doi.org/10.1007/s40593-019-00187-x
+- Cen, Koedinger & Junker (2007) — over-practice in the Cognitive Tutor (AIED 2007, no DOI): http://pact.cs.cmu.edu/koedinger/pubs/Cen%20&%20Koedinger%20AIED07.pdf
+- Liu & Koedinger (2017) — closing the loop on a KC-model discovery: https://files.eric.ed.gov/fulltext/EJ1155896.pdf
+- Lyu et al. (2026) — data-driven redesign on units chosen by topic: https://doi.org/10.1007/978-3-032-29760-0_12
+- Kulik, Kulik & Bangert-Drowns (1990) — mastery learning meta-analysis: https://doi.org/10.3102/00346543060002265
+- Koedinger, Stamper, McLaughlin & Nixon (2013) — KC-based tutor redesign: https://doi.org/10.1007/978-3-642-39112-5_43
+- Huang et al. (2021) — multi-method data-driven tutor redesign: https://doi.org/10.1145/3448139.3448155
+- Slavin (1987) — mastery learning reconsidered: https://doi.org/10.3102/00346543057002175
 - Kulik & Fletcher (2016) — ITS meta-analysis: https://doi.org/10.3102/0034654315581420
+- VanLehn (2011) — human, step-based and answer-based tutoring compared: https://doi.org/10.1080/00461520.2011.611369
+- Ma, Adesope, Nesbit & Liu (2014) — ITS meta-analysis: https://doi.org/10.1037/a0037123
+- Steenbergen-Hu & Cooper (2013) — ITS in K–12 mathematics, meta-analysis: https://doi.org/10.1037/a0032447
+- Steenbergen-Hu & Cooper (2014) — ITS in college, meta-analysis: https://doi.org/10.1037/a0034752
+- Pane, Griffin, McCaffrey & Karam (2014) — Cognitive Tutor Algebra at scale, cluster RCT: https://doi.org/10.3102/0162373713507480
+- VanLehn et al. (2005) — Andes physics tutor evaluations: https://doi.org/10.3233/irg-2005-15%283%2902
+- VanLehn (2006) — inner and outer loop: https://doi.org/10.3233/irg-2006-16%283%2902
+- Chi, VanLehn, Litman & Jordan (2011) — RL-induced pedagogical policies, physics: https://doi.org/10.3233/jai-2011-014
+- Bastani et al. (2025) — GPT-4 tutoring and unassisted exam performance, field RCT: https://doi.org/10.1073/pnas.2422633122
+- Pardos & Bhandari (2024) — ChatGPT vs human hints: https://doi.org/10.1371/journal.pone.0304013
 - Létourneau et al. (2025) — systematic review of AI-driven K–12 ITS: https://doi.org/10.1038/s41539-025-00320-7
 - Kestin et al. (2025) — AI tutoring RCT in undergraduate physics: https://doi.org/10.1038/s41598-025-97652-6
 - Lovett et al. (2023), _How Learning Works: Eight Research-Based Principles for Smart Teaching_, 2nd ed. — useful umbrella reference, **optional**, not part of the mandatory reading pack.
