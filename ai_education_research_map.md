@@ -98,7 +98,7 @@ START
 | **P1** | **Conceptual Change + misconception research** | Addresses learners whose existing mental model conflicts with the target model | **High, especially science education** | **Very high** | Medium | High |
 | **P1** | **Concept Inventories / diagnostic instruments** | Makes hidden misconceptions measurable; physics is unusually mature here | **High for cohort/course evaluation** with well-validated instruments; weak for individual diagnosis (item answers unstable on retest, mixed models, some gender-biased items) | **Very high** | Low–medium | **Very high** |
 | **P1** | **Cognitive Apprenticeship** | Converts expert cognition into modelling, coaching, scaffolding and fading | **Moderate** | High | High | **Very high** |
-| **P1** | **Worked Examples + Self-Explanation** | Strong candidate for turning decoded expert operations into teachable interactions | **High** | **Very high** | Medium | **Very high** |
+| **P1** | **Worked Examples + Self-Explanation** | Strong candidate for turning decoded expert operations into teachable interactions | **High** for immediate problem solving by novices (meta-analyses g ≈ 0.5); delayed and transfer effects smaller (g ≈ 0.35); little classroom or delayed physics evidence; reverses as prior knowledge grows | **Very high** | Medium | **Very high** |
 | **P1** | **Intelligent Tutoring Systems (ITS)** | Mature evidence base for individualized step-level instruction and feedback | **High overall, heterogeneous** | **Very high** | Medium–high | **Very high** |
 | **P1** | **Knowledge Tracing / Mastery models** | Provides a computational learner-state layer rather than relying on LLM intuition | **Moderate–high** | High | Medium | **Very high** |
 | **P2** | **Threshold Concepts** | Useful language for transformative/troublesome disciplinary ideas | **Moderate / contested** | High | High | Medium–high |
@@ -415,6 +415,14 @@ Decoded expert operations can become **worked reasoning traces**, while the AI a
 ### Domain fit
 Especially strong for mathematics, physics, programming and procedural STEM. Some principles transfer beyond STEM, but the literature is strongest for structured problem solving.
 
+### Evidence / limitations
+Graded evidence (see `research/explore-worked-examples-self-explanation.md`):
+- Worked examples: g = 0.48 in mathematics (Barbieri et al. 2023). Prompted self-explanation: g = 0.55, and g = 0.53 on transfer measures (Bisra et al. 2018); in digital learning environments, g = 0.45 immediate, 0.35 delayed and 0.33 on transfer (Tan et al. 2025).
+- Classroom and delayed-retention evidence is "much more limited" in mathematics (Rittle-Johnson et al. 2017).
+- University physics: prompted self-explanation of worked examples improved immediate multi-concept problem solving (Badeau et al. 2017) and far transfer (Nokes-Malach et al. 2013), both randomized. The only delayed physics measure found a marginal or small advantage (Hausmann & VanLehn 2010).
+- Learner-generated explanations beat provided ones (g = 0.35, k = 6; Bisra et al. 2018). Instructional explanations added to examples give minimal benefit (Wittwer & Renkl 2010). One physics in-vivo study favoured generation over content (Hausmann & VanLehn 2010).
+- Boundary conditions: expertise reversal (Kalyuga et al. 2001; Chen, Kalyuga & Sweller 2015). Mathematics studies whose example conditions included self-explanation prompts showed smaller worked-example effects, a between-study moderator (Barbieri et al. 2023). Prompts must target the intended outcome (Rittle-Johnson & Loehr 2017).
+
 ### AI opportunity
 Very high and comparatively easy to test experimentally:
 - expert worked example;
@@ -423,6 +431,8 @@ Very high and comparatively easy to test experimentally:
 - AI diagnosis of explanation;
 - progressively faded solution;
 - transfer problem.
+
+Decoded operations should reach the learner as prompts to generate or apply them, not only as added text: provided explanations add little to worked examples (Wittwer & Renkl 2010). In physics, self-explanations that state the principle, how it is set up and how its conditions of application are met predicted post-test scores (r = 0.30–0.50; Gjerde et al. 2022). The one controlled study of LLM feedback on self-explanations (calculus; 92 adults online; one session) found no post-test difference between conditions (Chen et al. 2026).
 
 ### Questions to research next
 - Does LLM-generated self-explanation feedback improve transfer or merely fluency?
@@ -699,7 +709,7 @@ Measure:
 - **Topic:** selecting and combining conservation principles in first-year university mechanics.
 - **K0:** code existing exam errors first. Stop if fewer than 30% are principle selection or representation (the Phase 1 kill criterion).
 - **Stage A:** 12 experts, within-expert. Order: ordinary explanation → non-directed think-aloud → retrospective probes, AI-led on one problem set and human-led on the other (counterbalanced, time-capped). Operations are coded blind to interviewer and validated against the trace, with decoys. "Absent" is judged against expert explanations plus textbook and lecture notes. Operations are also tagged if they already appear in published physics problem-solving frameworks (Heller & Reif 1984; Dufresne et al. 1992; Docktor et al. 2015), so that "new" is not confused with "absent from this course". The decoding-interview arm is deferred.
-- **Stage B:** a two-arm RCT, about 370 students. The control is worked examples built from the experts' ordinary explanations. The treatment adds validated operations from the AI-assisted pipeline, length- and time-matched and delivered statically. The primary outcome is delayed transfer, scored for correctness only; SESOI d = 0.30. An arm × pretest interaction is prespecified as exploratory (expertise reversal).
+- **Stage B:** a two-arm RCT, about 370 students. The control is worked examples built from the experts' ordinary explanations. The treatment adds validated operations from the AI-assisted pipeline, length- and time-matched and delivered statically. Each added operation is carried by at least one self-explanation prompt that asks the student to state or apply it, with a model answer shown after; both arms have the same number of prompts. Operations given only as text would test the delivery format, not the operations (Wittwer & Renkl 2010; Hausmann & VanLehn 2010). The primary outcome is delayed transfer, scored for correctness only; SESOI d = 0.30. An arm × pretest interaction is prespecified as exploratory (expertise reversal).
 
 **Kill criteria:**
 - **K1 (gate to Stage B):** at least 3 performed, shared operations absent from ordinary material, at least 2 of them added by AI probes, and the AI-minus-human contradicted rate (95% CI upper bound) no more than 15 points. If only the AI-added condition fails, Stage B tests trace-based CTA instead.
@@ -893,6 +903,24 @@ These are starting anchors, not a complete bibliography.
 - Savage & Rebello (2025) — GPT-4o coding of open-ended EMCS answers: https://doi.org/10.1119/perc.2025.pr.Savage
 - Lichtenberger et al. (2024) — cluster RCT of formative assessment in kinematics: https://doi.org/10.1007/s11092-024-09445-6
 - Chi et al. (1989) — self-explanation: https://doi.org/10.1207/s15516709cog1302_1
+- Tan et al. (2025) — three-level meta-analysis of self-explanation in digital environments: https://doi.org/10.1007/s10648-025-10001-x
+- Barbieri et al. (2023) — meta-analysis of worked examples in mathematics: https://doi.org/10.1007/s10648-023-09745-1
+- Bisra et al. (2018) — meta-analysis of self-explanation: https://doi.org/10.1007/s10648-018-9434-x
+- Rittle-Johnson, Loehr & Durkin (2017) — self-explanation meta-analysis, mathematics: https://doi.org/10.1007/s11858-017-0834-z
+- Rittle-Johnson & Loehr (2017) — constraints on self-explanation prompts: https://doi.org/10.3758/s13423-016-1079-5
+- Wittwer & Renkl (2010) — instructional explanations in example-based learning: https://doi.org/10.1007/s10648-010-9136-5
+- Atkinson, Renkl & Merrill (2003) — fading plus self-explanation prompts: https://doi.org/10.1037/0022-0663.95.4.774
+- Kissane et al. (2008) — fading in a workplace classroom: https://doi.org/10.1080/01443410802322069
+- van Gog & Kester (2012) — worked examples, delayed retention: https://doi.org/10.1111/cogs.12002
+- Hausmann & VanLehn (2010) — generation vs content in physics self-explanation: https://doi.org/10.3233/jai-2010-010
+- Badeau et al. (2017) — self-explanation and analogical comparison, physics synthesis problems: https://doi.org/10.1103/physrevphyseducres.13.020112
+- Gjerde et al. (2022) — quality of self-explanations in introductory mechanics: https://doi.org/10.1103/physrevphyseducres.18.010136
+- Heckler (2010) — prompted force diagrams lowered novice performance: https://doi.org/10.1080/09500690903199556
+- Kalyuga et al. (2001) — expertise reversal with worked examples: https://doi.org/10.1037/0022-0663.93.3.579
+- Chen, Kalyuga & Sweller (2015) — element interactivity and the worked-example effect: https://doi.org/10.1037/edu0000018
+- Rey & Fischer (2013) — expertise reversal for instructional explanations: https://doi.org/10.1007/s11251-012-9237-2
+- Sinha & Kapur (2021) — problem solving before instruction, meta-analysis: https://doi.org/10.3102/00346543211019105
+- Chen et al. (2026) — LLM feedback on self-explanations, calculus: https://doi.org/10.1007/978-3-032-29763-1_42
 - Corbett & Anderson — knowledge tracing / cognitive tutors
 - Kulik & Fletcher (2016) — ITS meta-analysis: https://doi.org/10.3102/0034654315581420
 - Létourneau et al. (2025) — systematic review of AI-driven K–12 ITS: https://doi.org/10.1038/s41539-025-00320-7

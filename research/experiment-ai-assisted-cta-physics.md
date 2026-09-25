@@ -79,7 +79,7 @@ The thresholds are judgment calls. They are fixed before data collection, not de
 
 **Conditions.** Both arms get the same four worked examples with self-explanation prompts, delivered as a **static** module with no LLM tutor, so that §5.12 delivery effects cannot confound the result. The two arms are matched for word count (±10%) and allotted time (2 × 40 min).
 - **Control (strong):** worked examples built from the experts' *ordinary explanations* in Stage A, edited by the same instructional designer. This is the expert-authored baseline of Feldon et al. (2010), not a lecture baseline.
-- **Treatment:** the same examples, plus the performed, shared operations recovered by the **AI-assisted pipeline** that are absent from the ordinary explanations. They are written into the steps and self-explanation prompts. The control arm's extra words go into elaborating steps already present.
+- **Treatment:** the same examples, plus the performed, shared operations recovered by the **AI-assisted pipeline** that are absent from the ordinary explanations. Each added operation is carried by at least one self-explanation prompt that asks the student to state or apply it, with a model answer shown after; operations given only as text would test the delivery format, not the operations (see `explore-worked-examples-self-explanation.md`). Both arms have the same number of prompts; the control arm's prompts and extra words go into elaborating steps already present.
 
 **Measures.**
 - **Covariate:** a topic pretest and the student's prior midterm score.

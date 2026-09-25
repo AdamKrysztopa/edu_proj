@@ -14,7 +14,7 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [ ] Conceptual Change + misconceptions
 - [x] **Concept Inventories**: `explore` → **no rating change, scoped to cohort-level use**. Strong class-level validity; weak for individual diagnosis (31% of FCI responses change on retest, mixed models, gender-biased items). PCK-layer seeding and Stage B EMCS use are cohort-level, so defensible; Phase 3 adds test–retest stability; EMCS drops Q16, Q22, Q23. [note](research/explore-concept-inventories.md)
 - [ ] Cognitive Apprenticeship
-- [ ] Worked Examples + Self-Explanation
+- [x] **Worked Examples + Self-Explanation**: `explore` → **no rating change, scoped**. High for immediate novice problem solving (g ≈ 0.5); delayed and transfer effects smaller (g ≈ 0.35); reverses with prior knowledge. Forced Stage B change: each added operation is carried by a self-explanation prompt, equal prompt counts in both arms. [note](research/explore-worked-examples-self-explanation.md)
 - [ ] Intelligent Tutoring Systems
 - [ ] Knowledge Tracing / Mastery models
 
