@@ -93,7 +93,7 @@ START
 |---|---|---|---|---|---|---|
 | **P0** | **Decoding the Disciplines (DtD)** | Directly targets disciplinary bottlenecks and tacit expert mental operations; use as the instructional frame, elicitation via CTA | **Low–moderate**: mostly qualitative; two small non-randomized comparisons, none in physics, no transfer | High | High | **Very high** |
 | **P0** | **Cognitive Task Analysis (CTA) / Knowledge Elicitation** | Gives concrete interview/probing methods for extracting expert cognition | **Moderate–high** for training outcomes outside physics; no physics or transfer outcomes | High | Medium–high | **Very high** |
-| **P0** | **Expert–Novice research** | Explains why experts and beginners represent the same problem differently | **High as foundational evidence** | **Very high** | High | High |
+| **P0** | **Expert–Novice research** | Explains why experts and beginners represent the same problem differently | **High as foundational evidence** for representation differences (a continuum, not two groups); instruction built on them helps immediate problem solving in small physics studies; one far-transfer RCT | **Very high** | High | High |
 | **P0** | **Pedagogical Content Knowledge (PCK)** | Focuses on what teachers need to know about representations, difficulty and learner misconceptions | **Moderate–high** | High | High | High |
 | **P1** | **Conceptual Change + misconception research** | Addresses learners whose existing mental model conflicts with the target model | **High, especially science education** | **Very high** | Medium | High |
 | **P1** | **Concept Inventories / diagnostic instruments** | Makes hidden misconceptions measurable; physics is unusually mature here | **High for well-validated instruments** | **Very high** | Low–medium | **Very high** |
@@ -237,6 +237,14 @@ Exceptional. Physics is one of the canonical research domains for expert–novic
 ### Non-STEM fit
 Strong conceptually, with large literatures in medicine, chess, history, writing and professional judgment, although the exact expert structures are discipline-specific.
 
+### Evidence / limitations
+Graded evidence (see `research/explore-expert-novice.md`):
+- The representation difference replicates in physics (Chi et al. 1981; Hardiman et al. 1989; de Jong & Ferguson-Hessler 1986). Novices who categorize by principle also solve better, but the link is correlational.
+- Expertise is a continuum: calculus-based introductory and graduate students overlap widely on categorization (Mason & Singh 2011). Categorization is a proxy, not a measure.
+- Principle-first instruction helps novices on immediate outcomes (Heller & Reif 1984; Dufresne et al. 1992; Docktor et al. 2015, high school), consistent with a science meta-analysis favouring attention to knowledge structure plus guidelines and feedback (Taconis et al. 2001).
+- Transfer: one randomized university-physics study found far-transfer gains from self-explanation and analogical comparison (Nokes-Malach et al. 2013). No study shows delayed transfer.
+- In most studies experts solve exercises that are routine for them (Docktor & Mestre 2014).
+
 ### AI opportunity
 Use paired expert/novice solutions to detect differences in:
 - problem representation;
@@ -251,6 +259,7 @@ Use paired expert/novice solutions to detect differences in:
 - Can we automatically infer where a novice representation diverges from an expert representation?
 - Is the important unit a “concept,” a procedural skill, a decision rule, or a representation transformation?
 - How transferable are expert representations across superficially different problems?
+- Does teaching an expert representation help strong novices as much as weak ones (expertise reversal)?
 
 ### Minimum reading if this branch is selected
 Chi, Feltovich & Glaser (1981), **“Categorization and Representation of Physics Problems by Experts and Novices.”**  
@@ -670,8 +679,8 @@ Measure:
 **Minimal first design** (see `research/experiment-ai-assisted-cta-physics.md`; reviewed by `methods-critic`):
 - **Topic:** selecting and combining conservation principles in first-year university mechanics.
 - **K0:** code existing exam errors first. Stop if fewer than 30% are principle selection or representation (the Phase 1 kill criterion).
-- **Stage A:** 12 experts, within-expert. Order: ordinary explanation → non-directed think-aloud → retrospective probes, AI-led on one problem set and human-led on the other (counterbalanced, time-capped). Operations are coded blind to interviewer and validated against the trace, with decoys. "Absent" is judged against expert explanations plus textbook and lecture notes. The decoding-interview arm is deferred.
-- **Stage B:** a two-arm RCT, about 370 students. The control is worked examples built from the experts' ordinary explanations. The treatment adds validated operations from the AI-assisted pipeline, length- and time-matched and delivered statically. The primary outcome is delayed transfer, scored for correctness only; SESOI d = 0.30.
+- **Stage A:** 12 experts, within-expert. Order: ordinary explanation → non-directed think-aloud → retrospective probes, AI-led on one problem set and human-led on the other (counterbalanced, time-capped). Operations are coded blind to interviewer and validated against the trace, with decoys. "Absent" is judged against expert explanations plus textbook and lecture notes. Operations are also tagged if they already appear in published physics problem-solving frameworks (Heller & Reif 1984; Dufresne et al. 1992; Docktor et al. 2015), so that "new" is not confused with "absent from this course". The decoding-interview arm is deferred.
+- **Stage B:** a two-arm RCT, about 370 students. The control is worked examples built from the experts' ordinary explanations. The treatment adds validated operations from the AI-assisted pipeline, length- and time-matched and delivered statically. The primary outcome is delayed transfer, scored for correctness only; SESOI d = 0.30. An arm × pretest interaction is prespecified as exploratory (expertise reversal).
 
 **Kill criteria:**
 - **K1 (gate to Stage B):** at least 3 performed, shared operations absent from ordinary material, at least 2 of them added by AI probes, and the AI-minus-human contradicted rate (95% CI upper bound) no more than 15 points. If only the AI-added condition fails, Stage B tests trace-based CTA instead.
@@ -770,7 +779,7 @@ Do not start with a complex adaptive model before validating what should be repr
 
 1. **DtD is directly aligned with the problem, but its empirical base is less mature than its conceptual fit suggests.** Keep it as the pedagogical framing (bottleneck → model → practice → assess). Its interview step is not evidential without CTA-style validation against performed tasks.
 2. **CTA offers a more mature toolkit for extracting expert cognition.** Combining it with DtD is likely more defensible than using DtD interviewing alone. No physics or transfer evidence yet; start with think-aloud on performed tasks plus retrospective CDM probes.
-3. **Physics is a strategically strong first domain.** It offers classic expert–novice findings, validated misconception instruments, structured problems and objective checks.
+3. **Physics is a strategically strong first domain.** It offers classic expert–novice findings, validated misconception instruments, structured problems and objective checks. Expert–novice differences are well replicated but form a continuum; instruction built on them has immediate, not yet delayed-transfer, evidence.
 4. **Classical ITS research should be treated as required prior art.** Meta-analytic evidence for ITS is much stronger than the current evidence for generic LLM tutors.
 5. **Recent AI-tutoring evidence is encouraging but narrow.** Strong results have come from carefully engineered pedagogical systems, not generic “ask an LLM” interactions.
 6. **A learner model should be explicit enough to inspect and test.** Conversational memory alone is a weak scientific foundation for claims of personalization.
@@ -807,6 +816,18 @@ These are starting anchors, not a complete bibliography.
 - Tofel-Grehl & Feldon (2013) — meta-analysis of CTA-based training: https://doi.org/10.1177/1555343412474821
 - Shulman (1986) — PCK: https://doi.org/10.3102/0013189X015002004
 - Chi, Feltovich & Glaser (1981) — expert/novice physics: https://doi.org/10.1207/s15516709cog0502_2
+- Hardiman, Dufresne & Mestre (1989) — expert/novice similarity judgments in physics: https://doi.org/10.3758/bf03197085
+- de Jong & Ferguson-Hessler (1986) — knowledge organization of good and poor physics solvers: https://doi.org/10.1037/0022-0663.78.4.279
+- Mason & Singh (2011) — categorization across introductory and graduate students: https://doi.org/10.1103/physrevstper.7.020110
+- Heller & Reif (1984) — prescriptive model for describing physics problems: https://doi.org/10.1207/s1532690xci0102_2
+- Mestre et al. (1993) — hierarchical-analysis training for beginning physics students: https://doi.org/10.1002/tea.3660300306
+- Leonard, Dufresne & Mestre (1996) — written qualitative problem-solving strategies: https://doi.org/10.1119/1.18409
+- Docktor, Mestre & Ross (2012) — principle-linked feedback on categorization: https://doi.org/10.1103/physrevstper.8.020102
+- Taconis, Ferguson-Hessler & Broekkamp (2001) — meta-analysis of science problem-solving instruction: https://doi.org/10.1002/tea.1013
+- Nokes-Malach et al. (2013) — self-explanation and analogical comparison, far transfer in physics: https://doi.org/10.1007/s10212-012-0164-z
+- Docktor & Mestre (2014) — synthesis of physics education research: https://doi.org/10.1103/PhysRevSTPER.10.020119
+- Singh, Maries, Heller & Heller (2023) — physics problem-solving research, handbook chapter: https://doi.org/10.1063/9780735425477_017
+- Kalyuga (2007) — expertise reversal effect: https://doi.org/10.1007/s10648-007-9054-3
 - Crandall, Klein & Hoffman (2006) — _Working Minds: A Practitioner’s Guide to Cognitive Task Analysis_: https://doi.org/10.7551/mitpress/7304.001.0001
 - Hoffman, Crandall & Shadbolt (1998) — Critical Decision Method: https://doi.org/10.1518/001872098779480442
 - Klein, Calderwood & MacGregor (1989) — Critical Decision Method, original: https://doi.org/10.1109/21.31053
