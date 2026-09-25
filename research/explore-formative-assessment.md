@@ -131,7 +131,7 @@ Held against §11: the strong numbers are for feedback and quizzing on immediate
    > - Does delaying feedback on physics homework improve transfer, as it did in engineering (Mullet et al. 2014)?
    > - Which feedback content (principle, condition check, worked step) best carries a decoded expert operation to the learner?
    >
-   > ### Minimum reading if this branch is selected
+   > ### Deep-dive reading if this branch is selected
    > Wisniewski, Zierer & Hattie (2020), **"The Power of Feedback Revisited."** https://doi.org/10.3389/fpsyg.2019.03087
 
 3. **§9 Phase 4.** After "Randomize or counterbalance where feasible. …", add:

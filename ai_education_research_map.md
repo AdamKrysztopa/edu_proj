@@ -157,7 +157,7 @@ Extremely high. AI could act as a **structured interviewer of experts**, repeate
 - Can multiple experts be compared to distinguish shared disciplinary knowledge from idiosyncratic technique?
 - Which DtD steps are necessary for measurable learning gains?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 **David Pace, _The Decoding the Disciplines Paradigm: Seven Steps to Increased Student Learning_ (2017).**  
 This is the **one mandatory book** in the entire map.
 
@@ -217,7 +217,7 @@ This could produce a structured **expert reasoning graph** rather than a transcr
 - What is the minimum expert sample needed to identify stable shared mental operations?
 - Can multimodal traces—writing, diagrams, equations, gaze, screen actions—improve elicitation?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Clark, Feldon, van Merriënboer, Yates & Early (2008), **“Cognitive Task Analysis”**.  
 Optional practical reference only if needed later: Crandall, Klein & Hoffman, _Working Minds_ (2006).
 
@@ -261,7 +261,7 @@ Use paired expert/novice solutions to detect differences in:
 - How transferable are expert representations across superficially different problems?
 - Does teaching an expert representation help strong novices as much as weak ones (expertise reversal)?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Chi, Feltovich & Glaser (1981), **“Categorization and Representation of Physics Problems by Experts and Novices.”**  
 https://doi.org/10.1207/s15516709cog0502_2
 
@@ -307,7 +307,7 @@ Seed the misconception, misleading-cue and diagnostic-question entries from stud
 - Can student interaction logs grow the PCK layer over time?
 - Do teacher-contributed representations and explanation variants improve learning beyond difficulty knowledge taken from student data?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Shulman (1986), **“Those Who Understand: Knowledge Growth in Teaching.”**  
 It is short and remains the canonical starting point.
 
@@ -340,7 +340,7 @@ Treat a diagnosed misconception as a context-bound hypothesis, not a stable stat
 - Does a misconception label for one learner predict their answers in a second context and on retest, or only on the item it came from?
 - Can the system deliberately choose examples where competing mental models predict different outcomes?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Posner, Strike, Hewson & Gertzog (1982), **“Accommodation of a Scientific Conception: Toward a Theory of Conceptual Change.”**
 
 ---
@@ -378,7 +378,7 @@ Do **not** assume an individual concept-inventory score is a complete learner mo
 - Does diagnosis-targeted instruction beat untargeted instruction of equal time, and does it improve transfer?
 - Can open-ended AI dialogue outperform multiple-choice diagnostics without losing reliability?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Hestenes, Wells & Swackhamer (1992), **“Force Concept Inventory.”**  
 https://doi.org/10.1119/1.2343497
 
@@ -422,7 +422,7 @@ Fading needs a per-learner estimate of the targeted skill, so it depends on the 
 - In university mechanics, does exploring with contrasting cases before expert modelling beat modelling first on **delayed** transfer, and does the answer change with element interactivity (Ashman et al. 2020)?
 - Does adaptive fading beat fixed fading on delayed transfer in physics?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Collins, Brown & Newman (1989), **“Cognitive Apprenticeship: Teaching the Crafts of Reading, Writing, and Mathematics.”**
 
 ---
@@ -462,7 +462,7 @@ Decoded operations should reach the learner as prompts to generate or apply them
 - When should the tutor show a worked example vs force retrieval/problem solving?
 - Can decoded expert reasoning provide better examples than textbook solution steps?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Chi et al. (1989), **“Self-Explanations: How Students Study and Use Examples in Learning to Solve Problems.”**
 
 ---
@@ -498,7 +498,7 @@ The evidence supports three classical principles for an LLM tutor: step-level fe
 - Which student-model variables should be explicit rather than left in conversation context?
 - How should correctness and pedagogical quality be verified independently of the LLM?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Kulik & Fletcher (2016), **“Effectiveness of Intelligent Tutoring Systems: A Meta-Analytic Review.”**  
 https://doi.org/10.3102/0034654315581420
 
@@ -537,7 +537,7 @@ Prefer an interpretable model (logistic/PFA-style or constrained BKT) with a KC 
 - Does a KT-driven mastery policy beat N-correct-in-a-row on delayed transfer?
 - How should uncertainty and contradictory evidence be represented?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Corbett & Anderson (1995 / original APT work), **Knowledge Tracing: Modeling the Acquisition of Procedural Knowledge.**
 
 ---
@@ -568,7 +568,7 @@ Use AI to propose candidate threshold concepts from expert interviews and learne
 - Can candidate thresholds be identified from longitudinal learning data?
 - Are threshold concepts stable across instructors and curricula?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Meyer & Land (2003/2005), **Threshold Concepts and Troublesome Knowledge.**  
 Also read one critique before adopting the construct operationally.
 
@@ -604,7 +604,7 @@ In the studies that worked, the sequence, the correct solutions, the common mist
 - With the pedagogical design held fixed, does an LLM tutor beat a non-generative implementation of the same design (static or rule-based hints) on an unassisted, delayed test?
 - How can a tutor get students to use it for explanation rather than solutions, given low engagement at scale (Oreopoulos & Low 2026)?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Kestin et al. (2025), **“AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting.”**  
 https://doi.org/10.1038/s41598-025-97652-6
 
@@ -640,7 +640,7 @@ The tutor's feedback policy has better evidence than most of its other choices:
 - Does delaying feedback on physics homework improve transfer, as it did in engineering (Mullet et al. 2014)?
 - Which feedback content (principle, condition check, worked step) best carries a decoded expert operation to the learner?
 
-### Minimum reading if this branch is selected
+### Deep-dive reading if this branch is selected
 Wisniewski, Zierer & Hattie (2020), **"The Power of Feedback Revisited."** https://doi.org/10.3389/fpsyg.2019.03087
 
 ---
@@ -724,9 +724,11 @@ Strong opportunities for tutoring and feedback, but “expert solution traces”
 
 ---
 
-# 8. Minimum reading pack — deliberately small
+# 8. Reading
 
-**Do not read everything above before starting.** The initial pack is intentionally limited to **one book + five papers**.
+**Minimum:** [`research/minimum-reading.md`](research/minimum-reading.md), a short synthesis of every branch note and the experiment design. Read it first.
+
+**Deep dive:** the sources below, for first-hand reading when a branch is taken further. Limited to **one book + five papers**.
 
 ### One book
 1. **David Pace (2017), _The Decoding the Disciplines Paradigm: Seven Steps to Increased Student Learning_.**  
