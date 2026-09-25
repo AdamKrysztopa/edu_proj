@@ -94,7 +94,7 @@ START
 | **P0** | **Decoding the Disciplines (DtD)** | Directly targets disciplinary bottlenecks and tacit expert mental operations; use as the instructional frame, elicitation via CTA | **Low–moderate**: mostly qualitative; two small non-randomized comparisons, none in physics, no transfer | High | High | **Very high** |
 | **P0** | **Cognitive Task Analysis (CTA) / Knowledge Elicitation** | Gives concrete interview/probing methods for extracting expert cognition | **Moderate–high** for training outcomes outside physics; no physics or transfer outcomes | High | Medium–high | **Very high** |
 | **P0** | **Expert–Novice research** | Explains why experts and beginners represent the same problem differently | **High as foundational evidence** for representation differences (a continuum, not two groups); instruction built on them helps immediate problem solving in small physics studies; one far-transfer RCT | **Very high** | High | High |
-| **P0** | **Pedagogical Content Knowledge (PCK)** | Focuses on what teachers need to know about representations, difficulty and learner misconceptions | **Moderate–high** | High | High | High |
+| **P0** | **Pedagogical Content Knowledge (PCK)** | Focuses on what teachers need to know about representations, difficulty and learner misconceptions | **Moderate–high** for correlational links to school achievement (strongest in mathematics, mixed in physics); no experiment isolating PCK; no university or transfer outcomes | High | High | High |
 | **P1** | **Conceptual Change + misconception research** | Addresses learners whose existing mental model conflicts with the target model | **High, especially science education** | **Very high** | Medium | High |
 | **P1** | **Concept Inventories / diagnostic instruments** | Makes hidden misconceptions measurable; physics is unusually mature here | **High for well-validated instruments** | **Very high** | Low–medium | **Very high** |
 | **P1** | **Cognitive Apprenticeship** | Converts expert cognition into modelling, coaching, scaffolding and fading | **Moderate** | High | High | **Very high** |
@@ -279,6 +279,14 @@ DtD asks experts to expose hidden reasoning. PCK asks a complementary question:
 
 A domain expert and an excellent teacher are therefore not interchangeable training sources.
 
+### Evidence / limitations
+Graded evidence (see `research/explore-pedagogical-content-knowledge.md`):
+- **Correlational links to achievement gains:** Baumert et al. (2010) in school mathematics; in school physics, Keller et al. (2017) positive and Cauet et al. (2015) null. All immediate or within-year, none at university.
+- **Knowledge of student difficulties:** teachers who could name students' most common wrong answer had much larger gains on those items than teachers who knew only the right answer (Sadler et al. 2013, middle-school physical science, 181 teachers, same-item gains).
+- **No experiment isolates PCK:** too few intervention studies measure it separately (Gonzalez, Lynch & Hill 2022). A systematic review of 217 science-PCK studies found the student-outcome link inconclusive (Park & Chan 2025); a meta-analysis found it positive only under multilevel models (Fukaya et al. 2025).
+- **Content experts hold it only partly:** university physics TAs and instructors scored 65% and 68% of the maximum when predicting students' most common wrong FCI answers (chance: 40%), and the TAs missed many common difficulties (Maries & Singh 2016).
+- **Transfer:** no study found measures it.
+
 ### Domain fit
 Very broad. Especially developed in teacher education and science/mathematics education, but applicable to essentially any discipline.
 
@@ -291,10 +299,13 @@ Create a **PCK layer** separate from the raw domain knowledge base:
 - explanation variants;
 - diagnostic questions.
 
+Seed the misconception, misleading-cue and diagnostic-question entries from student response data (concept-inventory distractors, coded exam errors), not from expert or teacher prediction: TAs miss many common difficulties, and experienced instructors scored no better (Maries & Singh 2016). Teachers review these entries and contribute representations, analogies and explanation variants, the part student data cannot supply.
+
 ### Questions to research next
 - Should the system learn separately from domain experts and experienced teachers?
 - How can PCK be represented computationally?
 - Can student interaction logs grow the PCK layer over time?
+- Do teacher-contributed representations and explanation variants improve learning beyond difficulty knowledge taken from student data?
 
 ### Minimum reading if this branch is selected
 Shulman (1986), **“Those Who Understand: Knowledge Growth in Teaching.”**  
@@ -536,7 +547,7 @@ https://doi.org/10.1038/s41598-025-97652-6
                                │
                    ┌───────────▼───────────┐
                    │  EXPERT ELICITATION  │
-                   │ DtD + CTA + PCK      │
+                   │ DtD + CTA            │
                    └───────────┬───────────┘
                                │
                    ┌───────────▼────────────┐
@@ -547,8 +558,8 @@ https://doi.org/10.1038/s41598-025-97652-6
                                │
         ┌──────────────────────▼──────────────────────┐
         │              LEARNER DIAGNOSIS             │
-        │ misconceptions + dialogue + assessment +   │
-        │ knowledge tracing                           │
+        │ PCK layer (student data) + dialogue +      │
+        │ assessment + knowledge tracing             │
         └──────────────────────┬──────────────────────┘
                                │
                    ┌───────────▼────────────┐
@@ -772,6 +783,7 @@ Do not start with a complex adaptive model before validating what should be repr
 - Do **not** assume higher predictive accuracy in a student model means better pedagogy.
 - Do **not** assume an unconstrained chatbot inherits the evidence base of intelligent tutoring systems.
 - Do **not** evaluate only immediate post-test performance; include retention and transfer.
+- Do **not** assume experts or instructors know which difficulties are common; check against student response data.
 
 ---
 
@@ -783,6 +795,7 @@ Do not start with a complex adaptive model before validating what should be repr
 4. **Classical ITS research should be treated as required prior art.** Meta-analytic evidence for ITS is much stronger than the current evidence for generic LLM tutors.
 5. **Recent AI-tutoring evidence is encouraging but narrow.** Strong results have come from carefully engineered pedagogical systems, not generic “ask an LLM” interactions.
 6. **A learner model should be explicit enough to inspect and test.** Conversational memory alone is a weak scientific foundation for claims of personalization.
+7. **Knowledge of student difficulties is only partly held by content experts.** University physics TAs miss many common difficulties that concept-inventory data reveal, and instructors score no better. Knowing students' common wrong answers predicts gains beyond subject knowledge, though only correlationally. Seed the PCK layer from student data and let teachers review it.
 
 ---
 
@@ -815,6 +828,17 @@ These are starting anchors, not a complete bibliography.
 - Feldon et al. (2010) — CTA-derived vs expert-authored instruction, undergraduate biology: https://doi.org/10.1002/tea.20382
 - Tofel-Grehl & Feldon (2013) — meta-analysis of CTA-based training: https://doi.org/10.1177/1555343412474821
 - Shulman (1986) — PCK: https://doi.org/10.3102/0013189X015002004
+- Baumert et al. (2010) — teachers' PCK and student progress in mathematics (COACTIV): https://doi.org/10.3102/0002831209345157
+- Sadler, Sonnert & Coyle (2013) — teacher knowledge of student misconceptions and learning gains: https://doi.org/10.3102/0002831213477680
+- Keller et al. (2017) — physics teachers' PCK and student outcomes: https://doi.org/10.1002/tea.21378
+- Cauet et al. (2015) — physics teachers' CK and PCK, null for learning gains: https://doi.org/10.24452/sjer.37.3.4963
+- She et al. (2025) — science teachers' PCK and student achievement: https://doi.org/10.3102/00028312241278627
+- Maries & Singh (2016) — TAs' and instructors' knowledge of common FCI difficulties: https://doi.org/10.1103/physrevphyseducres.12.010131
+- Nathan & Petrosino (2003) — expert blind spot: https://doi.org/10.3102/00028312040004905
+- Park & Chan (2025) — systematic review of science-teacher PCK: https://doi.org/10.3102/00346543251394404
+- Fukaya et al. (2025) — meta-analysis of PCK correlates: https://doi.org/10.1016/j.tate.2024.104881
+- Carlson et al. (2019) — Refined Consensus Model of PCK: https://doi.org/10.1007/978-981-13-5898-2_2
+- Gonzalez, Lynch & Hill (2022) — meta-analysis of STEM teacher-PD experiments: https://doi.org/10.26300/d9kc-4264
 - Chi, Feltovich & Glaser (1981) — expert/novice physics: https://doi.org/10.1207/s15516709cog0502_2
 - Hardiman, Dufresne & Mestre (1989) — expert/novice similarity judgments in physics: https://doi.org/10.3758/bf03197085
 - de Jong & Ferguson-Hessler (1986) — knowledge organization of good and poor physics solvers: https://doi.org/10.1037/0022-0663.78.4.279

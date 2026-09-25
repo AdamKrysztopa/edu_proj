@@ -8,7 +8,7 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [x] **Decoding the Disciplines**: `falsify` → **narrow**. Kept as the instructional frame; elicitation (step 2) moves to CTA; evidence rating Low–moderate. [note](research/falsify-decoding-the-disciplines.md)
 - [x] **Cognitive Task Analysis**: `explore` → **no rating change, scoped**. Moderate–high for training outcomes outside physics; no physics or transfer data. Provisional physics method: think-aloud while solving, then retrospective CDM probes; §14 DOI for Crandall et al. (2006) corrected. [note](research/explore-cognitive-task-analysis.md)
 - [x] **Expert–Novice research**: `explore` → **no rating change, scoped**. Representation differences replicate but form a continuum; principle-first instruction helps immediate problem solving in small physics studies; one far-transfer RCT (Nokes-Malach et al. 2013), no delayed transfer. Adds a published-framework tag to Stage A and an exploratory arm × pretest interaction to Stage B. [note](research/explore-expert-novice.md)
-- [ ] **Pedagogical Content Knowledge**: `explore`
+- [x] **Pedagogical Content Knowledge**: `explore` → **no rating change, scoped; PCK layer re-sourced**. Correlational links to school achievement only (mixed in physics), no experiment isolating PCK, no university or transfer outcomes. Physics TAs and instructors miss many common FCI difficulties, so misconception entries are seeded from student response data and teachers review them; §6 moves PCK from expert elicitation to learner diagnosis. [note](research/explore-pedagogical-content-knowledge.md)
 
 ### P1
 - [ ] Conceptual Change + misconceptions
@@ -43,6 +43,8 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [ ] **Phase 5**: adaptive system
 
 ## Open evidence gaps that would change a verdict
+- [ ] Full text of Fukaya et al. (2025): the pooled PCK–achievement r (open access, blocked to scripts). With Park & Chan (2025) it could move PCK to **Moderate**
+- [ ] A controlled university-physics study of expert-representation instruction with **delayed** transfer
 - [ ] A controlled comparison of the decoding interview against CTA (would move DtD back to **keep**)
 - [ ] A CTA-derived instruction study in physics or university STEM with a **transfer** outcome
 - [ ] A test of the provisional physics elicitation method: think-aloud while solving, then retrospective CDM probes
