@@ -91,7 +91,7 @@ START
 
 | Priority | Research family | Why it matters to this project | Evidence strength* | STEM fit | Humanities / social sciences fit | AI readiness |
 |---|---|---|---|---|---|---|
-| **P0** | **Decoding the Disciplines (DtD)** | Directly targets disciplinary bottlenecks and tacit expert mental operations | **Moderate / developing** | High | High | **Very high** |
+| **P0** | **Decoding the Disciplines (DtD)** | Directly targets disciplinary bottlenecks and tacit expert mental operations; use as the instructional frame, elicitation via CTA | **Low–moderate**: mostly qualitative; two small non-randomized comparisons, none in physics, no transfer | High | High | **Very high** |
 | **P0** | **Cognitive Task Analysis (CTA) / Knowledge Elicitation** | Gives concrete interview/probing methods for extracting expert cognition | **Moderate–high** | High | Medium–high | **Very high** |
 | **P0** | **Expert–Novice research** | Explains why experts and beginners represent the same problem differently | **High as foundational evidence** | **Very high** | High | High |
 | **P0** | **Pedagogical Content Knowledge (PCK)** | Focuses on what teachers need to know about representations, difficulty and learner misconceptions | **Moderate–high** | High | High | High |
@@ -111,7 +111,7 @@ START
 
 # 5. Method cards
 
-## 5.1 Decoding the Disciplines (DtD) — **start here**
+## 5.1 Decoding the Disciplines (DtD) — **start here as framing; elicitation narrowed to CTA**
 
 ### What it is
 A seven-step pedagogical framework developed around identifying **learning bottlenecks** and making the usually tacit mental operations of disciplinary experts explicit. Indiana University describes it specifically as a way of identifying bottlenecks and “decoding tacit disciplinary knowledge.”
@@ -130,10 +130,22 @@ Canonical cycle:
 It is almost a direct formulation of the project problem: **experts often do not know what they are failing to say because the reasoning has become automatic.**
 
 ### Where it has been used
-Published work spans humanities and STEM/professional disciplines, including history, biology, astronomy/geoscience, psychology, structural mechanics, business/finance and computer science. A 2022 systematic review included 33 studies and found positive evidence for making expert habits of mind explicit, while also emphasizing that the literature was still largely qualitative and geographically concentrated.
+Published work spans humanities and STEM/professional disciplines, including history, biology, astronomy/geoscience, psychology, structural mechanics, business/finance and computer science. A 2022 systematic review of 33 studies reported positive themes for making expert habits of mind explicit. It is a thematic synthesis with no pooled effect estimate, and it notes the literature was still largely qualitative and geographically concentrated.
 
 ### Evidence / limitations
 **Promising, but do not treat DtD itself as strongly experimentally validated.** The 2022 review found mainly qualitative/case-study evidence, limited saturation of the literature, little direct investigation of students’ own mental blockages, and uncertainty about whether all seven steps are necessary.
+
+Graded evidence (see `research/falsify-decoding-the-disciplines.md`):
+- no RCT;
+- two small non-randomized comparisons: introductory psychology (Pinnow 2016, N = 91) and business analytics (Lee-Post 2019);
+- both measure immediate outcomes only;
+- no physics study with a controlled outcome;
+- no retention or transfer outcomes anywhere.
+
+The decoding interview has never been compared with another elicitation method.
+
+### Scope after falsification
+Keep DtD steps 1 (bottleneck, selected from student data), 3–4 (model, practice and feedback) and 6 (assess) as the instructional frame. For step 2, use CTA (§5.2: CDM probes plus think-aloud on performed tasks) instead of the decoding interview. The decoding interview remains only as one arm of the §9 Phase 2 comparison.
 
 ### AI opportunity
 Extremely high. AI could act as a **structured interviewer of experts**, repeatedly asking for cues, intermediate judgments, counterfactuals, hidden prerequisites and “what would a novice miss here?” It could then turn the interview into candidate mental operations for human validation.
@@ -732,7 +744,7 @@ Do not start with a complex adaptive model before validating what should be repr
 
 # 12. Evidence notes that should shape the project
 
-1. **DtD is directly aligned with the problem, but its empirical base is less mature than its conceptual fit suggests.** Its strongest role at this stage is as an elicitation/pedagogical hypothesis generator.
+1. **DtD is directly aligned with the problem, but its empirical base is less mature than its conceptual fit suggests.** Keep it as the pedagogical framing (bottleneck → model → practice → assess). Its interview step is not evidential without CTA-style validation against performed tasks.
 2. **CTA offers a more mature toolkit for extracting expert cognition.** Combining it with DtD is likely more defensible than using DtD interviewing alone.
 3. **Physics is a strategically strong first domain.** It offers classic expert–novice findings, validated misconception instruments, structured problems and objective checks.
 4. **Classical ITS research should be treated as required prior art.** Meta-analytic evidence for ITS is much stronger than the current evidence for generic LLM tutors.
@@ -766,6 +778,9 @@ These are starting anchors, not a complete bibliography.
 - Indiana University — Decoding the Disciplines: https://citl.indiana.edu/teaching-resources/course-design/decoding-disciplines/index.html
 - Mohamed & Bayat (2022) — systematic review of DtD: https://doi.org/10.20853/36-1-4517
 - Pace (2017) — _The Decoding the Disciplines Paradigm: Seven Steps to Increased Student Learning_
+- Pinnow (2016) — DtD two-group comparison, introductory psychology: https://doi.org/10.1177/1475725716637484
+- Feldon et al. (2010) — CTA-derived vs expert-authored instruction, undergraduate biology: https://doi.org/10.1002/tea.20382
+- Tofel-Grehl & Feldon (2013) — meta-analysis of CTA-based training: https://doi.org/10.1177/1555343412474821
 - Shulman (1986) — PCK: https://doi.org/10.3102/0013189X015002004
 - Chi, Feltovich & Glaser (1981) — expert/novice physics: https://doi.org/10.1207/s15516709cog0502_2
 - Crandall, Klein & Hoffman (2006) — _Working Minds: A Practitioner’s Guide to Cognitive Task Analysis_: https://doi.org/10.7551/mitpress/7301.001.0001
@@ -784,7 +799,7 @@ These are starting anchors, not a complete bibliography.
 
 ## Current recommendation
 
-**Research first:** DtD → CTA → Expert–Novice → PCK.  
+**Research first:** DtD (bottleneck framing) + CTA (elicitation) → Expert–Novice → PCK.  
 **Then connect learner diagnosis:** conceptual change / concept inventories.  
 **Then connect instructional mechanisms:** cognitive apprenticeship + worked examples/self-explanation.  
 **Only then formalize the AI system:** explicit student model / knowledge tracing + ITS architecture + LLM interaction layer.
