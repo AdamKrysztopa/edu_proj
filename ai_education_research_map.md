@@ -1,0 +1,792 @@
+# Research Map: AI-Supported Learning That Makes Expert Knowledge Explicit
+
+**Status:** starting map, not a final architecture  
+**Primary use:** paste this file into a new research session and use it to decide what to investigate, validate, combine, or reject.  
+**Project context:** an AI-supported educational system, initially relevant to university-level physics/STEM but intended to remain transferable across disciplines and potentially compatible with commercial learning-content partners.
+
+---
+
+## 1. Research question
+
+> **How can an AI-supported learning system discover what experts fail to explain because it has become tacit or automatic, diagnose what a learner is actually missing, and turn that gap into effective instruction?**
+
+This map deliberately separates three problems that are often conflated:
+
+1. **Expert elicitation:** what does the expert know/do that they no longer verbalize?
+2. **Learner diagnosis:** what exactly is blocking this learner?
+3. **Instructional response:** what intervention should follow, and how should an AI system adapt it?
+
+A good system will probably need methods from all three layers rather than one pedagogical framework alone.
+
+---
+
+## 2. Working hypothesis
+
+The most promising starting point is not “build an LLM tutor.” It is:
+
+**Decoding the Disciplines + Cognitive Task Analysis / Knowledge Elicitation + learner-state diagnosis + evidence-based tutoring.**
+
+The proposed research path is therefore:
+
+**hidden expert knowledge → explicit mental operations → learner bottleneck diagnosis → targeted modelling/practice/feedback → learner-state update → adaptation**
+
+This is the main hypothesis to test, not an assumption to preserve.
+
+---
+
+## 3. Decision tree for future research
+
+```text
+START
+ |
+ |-- A. Are we trying to discover what the expert is omitting?
+ |      |
+ |      |-- Yes -> Decoding the Disciplines
+ |      |          + Cognitive Task Analysis / Knowledge Elicitation
+ |      |          + Expert–Novice research
+ |      |          + Pedagogical Content Knowledge
+ |      |
+ |      `-- No -> go to B
+ |
+ |-- B. Is the learner blocked by a concept or mental model?
+ |      |
+ |      |-- Yes -> Conceptual Change
+ |      |          + Concept Inventories / misconception diagnostics
+ |      |          + Threshold Concepts (explore cautiously)
+ |      |
+ |      `-- No -> go to C
+ |
+ |-- C. Is the learner blocked by a procedure, strategy, or judgment process?
+ |      |
+ |      |-- Yes -> Cognitive Task Analysis
+ |      |          + Cognitive Apprenticeship
+ |      |          + Worked Examples / Self-Explanation
+ |      |
+ |      `-- No -> go to D
+ |
+ |-- D. Do we need to estimate what this individual learner currently knows?
+ |      |
+ |      |-- Yes -> Formative / diagnostic assessment
+ |      |          + Knowledge Tracing
+ |      |          + Mastery Learning
+ |      |
+ |      `-- No -> go to E
+ |
+ |-- E. Do we need scalable individualized instruction?
+ |      |
+ |      |-- Yes -> Intelligent Tutoring Systems
+ |      |          + LLM-based tutoring
+ |      |          + pedagogically constrained generation
+ |      |
+ |      `-- No -> traditional instructional design may be sufficient
+ |
+ `-- F. At every branch:
+        validate learning outcomes, transfer, misconceptions,
+        robustness across disciplines, and teacher/student acceptance.
+```
+
+---
+
+## 4. Priority map
+
+| Priority | Research family | Why it matters to this project | Evidence strength* | STEM fit | Humanities / social sciences fit | AI readiness |
+|---|---|---|---|---|---|---|
+| **P0** | **Decoding the Disciplines (DtD)** | Directly targets disciplinary bottlenecks and tacit expert mental operations | **Moderate / developing** | High | High | **Very high** |
+| **P0** | **Cognitive Task Analysis (CTA) / Knowledge Elicitation** | Gives concrete interview/probing methods for extracting expert cognition | **Moderate–high** | High | Medium–high | **Very high** |
+| **P0** | **Expert–Novice research** | Explains why experts and beginners represent the same problem differently | **High as foundational evidence** | **Very high** | High | High |
+| **P0** | **Pedagogical Content Knowledge (PCK)** | Focuses on what teachers need to know about representations, difficulty and learner misconceptions | **Moderate–high** | High | High | High |
+| **P1** | **Conceptual Change + misconception research** | Addresses learners whose existing mental model conflicts with the target model | **High, especially science education** | **Very high** | Medium | High |
+| **P1** | **Concept Inventories / diagnostic instruments** | Makes hidden misconceptions measurable; physics is unusually mature here | **High for well-validated instruments** | **Very high** | Low–medium | **Very high** |
+| **P1** | **Cognitive Apprenticeship** | Converts expert cognition into modelling, coaching, scaffolding and fading | **Moderate** | High | High | **Very high** |
+| **P1** | **Worked Examples + Self-Explanation** | Strong candidate for turning decoded expert operations into teachable interactions | **High** | **Very high** | Medium | **Very high** |
+| **P1** | **Intelligent Tutoring Systems (ITS)** | Mature evidence base for individualized step-level instruction and feedback | **High overall, heterogeneous** | **Very high** | Medium–high | **Very high** |
+| **P1** | **Knowledge Tracing / Mastery models** | Provides a computational learner-state layer rather than relying on LLM intuition | **Moderate–high** | High | Medium | **Very high** |
+| **P2** | **Threshold Concepts** | Useful language for transformative/troublesome disciplinary ideas | **Moderate / contested** | High | High | Medium–high |
+| **P2** | **Formative assessment** | Essential feedback loop for checking whether the intervention actually worked | **High as a broad principle** | High | High | High |
+| **P2** | **LLM-based AI tutoring** | Potential delivery/orchestration layer; promising but evidence is newer than classic ITS | **Emerging / moderate** | High | High | N/A — implementation layer |
+
+\*Evidence strength here is a **research-prioritization judgment**, not a formal GRADE score. It distinguishes mature replicated literatures from frameworks supported mainly by qualitative studies, case studies, or newer trials.
+
+---
+
+# 5. Method cards
+
+## 5.1 Decoding the Disciplines (DtD) — **start here**
+
+### What it is
+A seven-step pedagogical framework developed around identifying **learning bottlenecks** and making the usually tacit mental operations of disciplinary experts explicit. Indiana University describes it specifically as a way of identifying bottlenecks and “decoding tacit disciplinary knowledge.”
+
+Canonical cycle:
+
+1. define a bottleneck;
+2. uncover the expert mental task;
+3. model it;
+4. give practice and feedback;
+5. address motivation/resistance;
+6. assess mastery;
+7. share what was learned.
+
+### Why it is unusually relevant
+It is almost a direct formulation of the project problem: **experts often do not know what they are failing to say because the reasoning has become automatic.**
+
+### Where it has been used
+Published work spans humanities and STEM/professional disciplines, including history, biology, astronomy/geoscience, psychology, structural mechanics, business/finance and computer science. A 2022 systematic review included 33 studies and found positive evidence for making expert habits of mind explicit, while also emphasizing that the literature was still largely qualitative and geographically concentrated.
+
+### Evidence / limitations
+**Promising, but do not treat DtD itself as strongly experimentally validated.** The 2022 review found mainly qualitative/case-study evidence, limited saturation of the literature, little direct investigation of students’ own mental blockages, and uncertainty about whether all seven steps are necessary.
+
+### AI opportunity
+Extremely high. AI could act as a **structured interviewer of experts**, repeatedly asking for cues, intermediate judgments, counterfactuals, hidden prerequisites and “what would a novice miss here?” It could then turn the interview into candidate mental operations for human validation.
+
+### Questions to research next
+- Can an LLM conduct a valid DtD interview, or does it merely produce plausible-sounding reconstructions?
+- How much better is AI-assisted elicitation than a trained human interviewer or expert self-report?
+- Can expert operations be validated by observing actual problem solving rather than relying only on retrospective explanation?
+- Can multiple experts be compared to distinguish shared disciplinary knowledge from idiosyncratic technique?
+- Which DtD steps are necessary for measurable learning gains?
+
+### Minimum reading if this branch is selected
+**David Pace, _The Decoding the Disciplines Paradigm: Seven Steps to Increased Student Learning_ (2017).**  
+This is the **one mandatory book** in the entire map.
+
+Start with the official Indiana University overview before reading the book.
+
+Sources:  
+- Indiana University CITL: https://citl.indiana.edu/teaching-resources/course-design/decoding-disciplines/index.html  
+- Mohamed & Bayat (2022), systematic review: https://doi.org/10.20853/36-1-4517
+
+---
+
+## 5.2 Cognitive Task Analysis (CTA) / Knowledge Elicitation — **likely the strongest complement to DtD**
+
+### What it is
+A family of methods designed to elicit the **cognitive processes, cues, decisions, knowledge structures and strategies** underlying expert performance. Methods include structured interviews, observation, think-aloud protocols and the **Critical Decision Method (CDM)**.
+
+### Relationship to DtD
+DtD gives the educational framing: *find the bottleneck and reveal disciplinary thinking.*  
+CTA provides a richer toolbox for the difficult middle step: *how exactly do we extract expert cognition without accepting shallow self-report?*
+
+### Domain fit
+Originally especially strong in complex professional domains—aviation, military, medicine, engineering, emergency response and other judgment-heavy work—but conceptually applicable to academic reasoning as well.
+
+### Evidence / limitations
+CTA is much more mature as an elicitation family than DtD, although there is no single standardized CTA procedure. The key problem is that expert verbalization is incomplete and can be distorted by retrospective reconstruction; therefore interviews should ideally be combined with task performance and artifacts.
+
+### AI opportunity
+Very high. An AI interviewer can dynamically probe:
+- cues noticed;
+- alternatives rejected;
+- expectations;
+- anomalies;
+- mental simulations;
+- prerequisite knowledge;
+- confidence;
+- counterfactuals (“what would change your decision?”).
+
+This could produce a structured **expert reasoning graph** rather than a transcript.
+
+### Questions to research next
+- Which CTA method best maps onto university physics problem solving?
+- Can CDM-style probes be adapted from high-stakes professional decisions to conceptual/mathematical reasoning?
+- What is the minimum expert sample needed to identify stable shared mental operations?
+- Can multimodal traces—writing, diagrams, equations, gaze, screen actions—improve elicitation?
+
+### Minimum reading if this branch is selected
+Clark, Feldon, van Merriënboer, Yates & Early (2008), **“Cognitive Task Analysis”**.  
+Optional practical reference only if needed later: Crandall, Klein & Hoffman, _Working Minds_ (2006).
+
+---
+
+## 5.3 Expert–Novice Differences — **foundational mechanism**
+
+### What it is
+Research comparing how experts and novices perceive, categorize and solve problems. A classic result in physics is that novices tend to group problems by **surface features**, while experts organize them according to **deep physical principles**.
+
+### Why it matters
+This may explain *why* expert explanations omit important steps. The missing item is not always a fact—it may be an entire **representation of the problem** that the expert constructs automatically.
+
+### STEM fit
+Exceptional. Physics is one of the canonical research domains for expert–novice studies.
+
+### Non-STEM fit
+Strong conceptually, with large literatures in medicine, chess, history, writing and professional judgment, although the exact expert structures are discipline-specific.
+
+### AI opportunity
+Use paired expert/novice solutions to detect differences in:
+- problem representation;
+- decomposition;
+- cue selection;
+- principle selection;
+- abstraction level;
+- checking/verification;
+- error recovery.
+
+### Questions to research next
+- Can we automatically infer where a novice representation diverges from an expert representation?
+- Is the important unit a “concept,” a procedural skill, a decision rule, or a representation transformation?
+- How transferable are expert representations across superficially different problems?
+
+### Minimum reading if this branch is selected
+Chi, Feltovich & Glaser (1981), **“Categorization and Representation of Physics Problems by Experts and Novices.”**  
+https://doi.org/10.1207/s15516709cog0502_2
+
+---
+
+## 5.4 Pedagogical Content Knowledge (PCK) — **teacher-side model**
+
+### What it is
+Shulman’s concept that knowing a subject is not the same as knowing **how that subject becomes learnable**. PCK includes useful representations, analogies, examples and explanations, plus knowledge of what makes specific topics difficult and which preconceptions learners commonly bring.
+
+### Why it matters
+DtD asks experts to expose hidden reasoning. PCK asks a complementary question:
+
+> **What does an effective teacher know about how learners misunderstand this particular content?**
+
+A domain expert and an excellent teacher are therefore not interchangeable training sources.
+
+### Domain fit
+Very broad. Especially developed in teacher education and science/mathematics education, but applicable to essentially any discipline.
+
+### AI opportunity
+Create a **PCK layer** separate from the raw domain knowledge base:
+- common misconceptions;
+- good/bad analogies;
+- prerequisite gaps;
+- typical misleading cues;
+- explanation variants;
+- diagnostic questions.
+
+### Questions to research next
+- Should the system learn separately from domain experts and experienced teachers?
+- How can PCK be represented computationally?
+- Can student interaction logs grow the PCK layer over time?
+
+### Minimum reading if this branch is selected
+Shulman (1986), **“Those Who Understand: Knowledge Growth in Teaching.”**  
+It is short and remains the canonical starting point.
+
+---
+
+## 5.5 Conceptual Change + Misconceptions — **learner mental-model branch**
+
+### What it is
+A learner often does not lack information; they possess an **existing model that explains the world differently**. Learning then requires restructuring rather than adding a missing fact.
+
+### Why it matters for physics
+Physics education contains unusually rich evidence on persistent intuitive models—force and motion are the classic example. Telling a learner the correct equation can leave the incorrect underlying model untouched.
+
+### AI opportunity
+The tutor should identify a learner’s current model from explanations and predictions, then generate **discriminating cases** that separate the learner’s model from the target model.
+
+### Questions to research next
+- Can an LLM reliably infer a misconception from free-form reasoning?
+- Should diagnosis be generative, inventory-based, or hybrid?
+- How do we distinguish a slip/calculation error from a stable conceptual model?
+- Can the system deliberately choose examples where competing mental models predict different outcomes?
+
+### Minimum reading if this branch is selected
+Posner, Strike, Hewson & Gertzog (1982), **“Accommodation of a Scientific Conception: Toward a Theory of Conceptual Change.”**
+
+---
+
+## 5.6 Concept Inventories — **high-value physics branch**
+
+### What they are
+Validated diagnostic instruments designed around core concepts and common incorrect alternatives. The **Force Concept Inventory (FCI)** is the canonical physics example.
+
+### Why they matter
+They offer something extremely useful for AI research: **known misconception structures and distractors grounded in education research**, rather than diagnoses invented by an LLM.
+
+### Domain fit
+Very strong in physics and several STEM fields; much weaker as a generic tool across disciplines.
+
+### AI opportunity
+Use concept inventories as:
+- seed labels for misconception models;
+- benchmark datasets for diagnostic dialogues;
+- sources of contrastive questions;
+- external validation for an AI’s inferred learner state.
+
+Do **not** assume an individual concept-inventory score is a complete learner model; these instruments are generally designed for specific assessment purposes and have construct limitations.
+
+### Questions to research next
+- Which physics concept inventories are available for mechanics, E&M, quantum, thermodynamics, mathematics methods, etc.?
+- Which are validated for individual diagnosis vs cohort/course evaluation?
+- Can open-ended AI dialogue outperform multiple-choice diagnostics without losing reliability?
+
+### Minimum reading if this branch is selected
+Hestenes, Wells & Swackhamer (1992), **“Force Concept Inventory.”**  
+https://doi.org/10.1119/1.2343497
+
+---
+
+## 5.7 Cognitive Apprenticeship — **bridge from elicitation to teaching**
+
+### What it is
+An instructional model aimed at making otherwise invisible cognitive and metacognitive processes visible. Common components include **modelling, coaching, scaffolding, articulation, reflection and exploration**, with support gradually faded.
+
+### Why it matters
+CTA/DtD can reveal expert cognition; cognitive apprenticeship provides a plausible way to **teach that cognition explicitly** rather than simply displaying the final answer.
+
+### Domain fit
+Broad; particularly natural for complex problem solving, professional practice and STEM.
+
+### AI opportunity
+An AI tutor can switch roles dynamically:
+- demonstrate expert reasoning;
+- coach the learner;
+- provide partial scaffolds;
+- request articulation;
+- compare learner reasoning with expert reasoning;
+- fade assistance as competence increases.
+
+### Questions to research next
+- How should scaffolding be faded automatically?
+- What evidence shows when modelling should stop and productive struggle should begin?
+- Which components have the strongest causal evidence?
+
+### Minimum reading if this branch is selected
+Collins, Brown & Newman (1989), **“Cognitive Apprenticeship: Teaching the Crafts of Reading, Writing, and Mathematics.”**
+
+---
+
+## 5.8 Worked Examples + Self-Explanation — **strong implementation candidate**
+
+### What it is
+Worked examples reduce unnecessary search during early skill acquisition. Self-explanation prompts learners to explain **why each step follows**, helping them extract principles rather than memorize solutions.
+
+### Why it matters
+Decoded expert operations can become **worked reasoning traces**, while the AI asks the learner to explain transitions rather than passively consume them.
+
+### Domain fit
+Especially strong for mathematics, physics, programming and procedural STEM. Some principles transfer beyond STEM, but the literature is strongest for structured problem solving.
+
+### AI opportunity
+Very high and comparatively easy to test experimentally:
+- expert worked example;
+- omitted step / completion problem;
+- self-explanation prompt;
+- AI diagnosis of explanation;
+- progressively faded solution;
+- transfer problem.
+
+### Questions to research next
+- Does LLM-generated self-explanation feedback improve transfer or merely fluency?
+- When should the tutor show a worked example vs force retrieval/problem solving?
+- Can decoded expert reasoning provide better examples than textbook solution steps?
+
+### Minimum reading if this branch is selected
+Chi et al. (1989), **“Self-Explanations: How Students Study and Use Examples in Learning to Solve Problems.”**
+
+---
+
+## 5.9 Intelligent Tutoring Systems (ITS) — **mature system-level foundation**
+
+### What it is
+Classic ITS research separates at least three concerns:
+- **domain model** — what is being taught;
+- **student model** — what the learner knows/does;
+- **tutoring/pedagogical model** — what intervention to choose next.
+
+This separation is extremely important for an LLM system: the language model should not silently collapse all three into one prompt.
+
+### Evidence
+The evidence base is substantially stronger than for most generative-AI tutoring. Kulik & Fletcher’s meta-analysis of 50 controlled evaluations reported a median effect of **0.66 standard deviations over conventional instruction**, while emphasizing that outcomes depend strongly on assessment alignment and implementation quality. A 2025 systematic review of K–12 AI-driven ITS found generally positive effects, but advantages were smaller when compared with stronger non-intelligent tutoring systems.
+
+### Domain fit
+Very strong in mathematics/science and procedural domains; also used in reading, medicine, law and other areas.
+
+### AI opportunity
+Treat decades of ITS work as the **architecture and pedagogy prior** for LLM tutoring rather than starting from chatbot design.
+
+### Questions to research next
+- Which classical ITS design principles remain essential when generation becomes flexible?
+- Which student-model variables should be explicit rather than left in conversation context?
+- How should correctness and pedagogical quality be verified independently of the LLM?
+
+### Minimum reading if this branch is selected
+Kulik & Fletcher (2016), **“Effectiveness of Intelligent Tutoring Systems: A Meta-Analytic Review.”**  
+https://doi.org/10.3102/0034654315581420
+
+---
+
+## 5.10 Knowledge Tracing + Mastery Models — **computational learner-state branch**
+
+### What it is
+Knowledge Tracing estimates a learner’s evolving mastery of skills from interaction history. Classical Bayesian Knowledge Tracing models latent mastery using interpretable parameters; newer approaches add richer predictive models.
+
+### Why it matters
+Without an explicit student model, an LLM tutor can confuse:
+- fluent language with understanding;
+- one correct answer with mastery;
+- short conversation context with stable knowledge state.
+
+### Domain fit
+Best when knowledge can be decomposed into skills/concepts and learner interactions are observable. Harder for open-ended interpretation, research judgment and other poorly discretized expertise.
+
+### AI opportunity
+Combine explicit knowledge tracing with qualitative evidence extracted from dialogue. The LLM becomes an **observation and explanation layer**, not the sole state estimator.
+
+### Questions to research next
+- What is the correct “knowledge component” for physics: concept, equation, representation, procedure, misconception, or expert mental operation?
+- Can DtD-derived mental operations become knowledge components?
+- How should uncertainty and contradictory evidence be represented?
+
+### Minimum reading if this branch is selected
+Corbett & Anderson (1995 / original APT work), **Knowledge Tracing: Modeling the Acquisition of Procedural Knowledge.**
+
+---
+
+## 5.11 Threshold Concepts — **useful, but do not overcommit early**
+
+### What it is
+A threshold concept is proposed to act like a conceptual portal: after grasping it, the learner sees the discipline differently. The literature emphasizes properties such as transformative, integrative and troublesome.
+
+### Why it could help
+It provides a language for identifying **high-leverage conceptual transitions** rather than treating every course topic as equally important.
+
+### Why it is P2 rather than P0
+There are substantial methodological questions about how threshold concepts are reliably identified and whether the defining properties can be operationalized without circular reasoning. It is better treated as a **hypothesis-generation framework** than as the main diagnostic engine.
+
+### AI opportunity
+Use AI to propose candidate threshold concepts from expert interviews and learner data, but require empirical validation.
+
+### Questions to research next
+- Does “threshold concept” add predictive value beyond bottlenecks, misconceptions and prerequisite graphs?
+- Can candidate thresholds be identified from longitudinal learning data?
+- Are threshold concepts stable across instructors and curricula?
+
+### Minimum reading if this branch is selected
+Meyer & Land (2003/2005), **Threshold Concepts and Troublesome Knowledge.**  
+Also read one critique before adopting the construct operationally.
+
+---
+
+## 5.12 LLM-Based Tutoring — **delivery layer, not the theory of learning**
+
+### Current evidence signal
+The field is promising but much younger than ITS. A 2025 randomized controlled trial in an undergraduate physics course reported substantially higher learning gains in less time with a carefully designed AI tutor than with the study’s in-class active-learning condition. Crucially, the tutor was **deliberately engineered around evidence-based pedagogical practices**; the result should not be generalized to arbitrary chatbots.
+
+Recent systematic reviews also identify risks: over-reliance, technical unreliability, assessment problems, privacy, and lack of rigorous long-term evidence.
+
+### Design implication
+Do not ask “Which LLM should tutor students?” first. Ask:
+
+1. What learner state is represented?
+2. What bottleneck was diagnosed?
+3. What evidence supports the chosen intervention?
+4. What knowledge sources constrain factual content?
+5. What does the model do when uncertain?
+6. How do we measure transfer rather than immediate correctness?
+
+### Questions to research next
+- Can LLMs conduct expert elicitation as well as tutoring?
+- Can a single model safely separate interviewer, diagnostician and tutor roles?
+- What should be deterministic/rule-based vs generative?
+- How much value comes from the LLM itself versus the instructional design wrapped around it?
+
+### Minimum reading if this branch is selected
+Kestin et al. (2025), **“AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting.”**  
+https://doi.org/10.1038/s41598-025-97652-6
+
+---
+
+# 6. Proposed combined research architecture — **hypothesis to test**
+
+```text
+                  ┌──────────────────────────┐
+                  │   DOMAIN / CURRICULUM    │
+                  │ concepts, tasks, sources │
+                  └────────────┬─────────────┘
+                               │
+                   ┌───────────▼───────────┐
+                   │  EXPERT ELICITATION  │
+                   │ DtD + CTA + PCK      │
+                   └───────────┬───────────┘
+                               │
+                   ┌───────────▼────────────┐
+                   │ EXPERT REASONING MODEL │
+                   │ operations, cues,      │
+                   │ representations, traps │
+                   └───────────┬────────────┘
+                               │
+        ┌──────────────────────▼──────────────────────┐
+        │              LEARNER DIAGNOSIS             │
+        │ misconceptions + dialogue + assessment +   │
+        │ knowledge tracing                           │
+        └──────────────────────┬──────────────────────┘
+                               │
+                   ┌───────────▼────────────┐
+                   │ PEDAGOGICAL DECISION   │
+                   │ model / practice /     │
+                   │ scaffold / challenge   │
+                   └───────────┬────────────┘
+                               │
+                   ┌───────────▼────────────┐
+                   │  AI TUTOR INTERACTION  │
+                   │ constrained generation │
+                   └───────────┬────────────┘
+                               │
+                   ┌───────────▼────────────┐
+                   │ ASSESS + UPDATE MODEL  │
+                   │ mastery + transfer     │
+                   └───────────┬────────────┘
+                               │
+                               └──────► repeat
+```
+
+### Important architectural principle
+The **LLM should probably be an interface/reasoning component, not the database of truth, the student model, the pedagogy model and the evaluator simultaneously.** Classical ITS research strongly suggests keeping these concerns conceptually separable even if one foundation model participates in several of them.
+
+---
+
+# 7. Applicability by discipline
+
+## Physics / mathematics / engineering
+**Best research environment for an initial prototype.** Reasons:
+- strong expert–novice literature;
+- structured problem solving;
+- existing misconception research and concept inventories;
+- objectively checkable intermediate states in many tasks;
+- mature worked-example and ITS literature;
+- recent LLM-tutoring experiments in physics.
+
+This makes physics unusually suitable for determining whether AI-assisted decoding works before attempting less structured domains.
+
+## Natural sciences beyond physics
+Likely high applicability. Conceptual bottlenecks, representations, scale, causal models and procedural reasoning make DtD/CTA natural fits.
+
+## Computer science
+Likely high applicability, especially algorithms, debugging and code reasoning. Fine-grained procedural traces are available, but “correct output” must not be confused with expert reasoning.
+
+## Medicine / professional judgment
+CTA has exceptional relevance because experts use tacit cues and decisions. Safety and evaluation requirements are much higher.
+
+## Humanities / history / law
+DtD and PCK remain highly relevant because expert reading, source evaluation, argumentation and interpretation contain tacit disciplinary moves. Knowledge tracing and fixed skill decomposition may be less natural and require different representations.
+
+## Languages / writing
+Strong opportunities for tutoring and feedback, but “expert solution traces” are less deterministic. Rubrics, exemplars and discourse-level representations may matter more than concept inventories.
+
+---
+
+# 8. Minimum reading pack — deliberately small
+
+**Do not read everything above before starting.** The initial pack is intentionally limited to **one book + five papers**.
+
+### One book
+1. **David Pace (2017), _The Decoding the Disciplines Paradigm: Seven Steps to Increased Student Learning_.**  
+   Purpose: understand the core framework that directly motivates the project.
+
+### Five papers
+2. **Shulman (1986), “Those Who Understand: Knowledge Growth in Teaching.”**  
+   Purpose: distinguish domain expertise from knowledge of how learners understand/misunderstand content.
+
+3. **Chi, Feltovich & Glaser (1981), “Categorization and Representation of Physics Problems by Experts and Novices.”**  
+   Purpose: foundational evidence for the expert–novice representation gap in physics.
+
+4. **Clark et al. (2008), “Cognitive Task Analysis.”**  
+   Purpose: methods for eliciting hidden expert cognition.
+
+5. **Kulik & Fletcher (2016), “Effectiveness of Intelligent Tutoring Systems: A Meta-Analytic Review.”**  
+   Purpose: avoid reinventing decades of tutoring-system research.
+
+6. **Kestin et al. (2025), “AI tutoring outperforms in-class active learning...”**  
+   Purpose: current empirical signal for carefully designed LLM/AI tutoring in university physics.
+
+### Optional seventh item only if misconception diagnosis becomes central
+7. **Hestenes, Wells & Swackhamer (1992), “Force Concept Inventory.”**
+
+---
+
+# 9. Research sequence — recommended order
+
+## Phase 1 — validate the premise
+**Question:** Is “hidden expert cognition” actually a major source of the learning bottlenecks we care about?
+
+Explore:
+- DtD;
+- expert–novice differences;
+- PCK;
+- CTA.
+
+Deliverable: a taxonomy of candidate hidden knowledge:
+- omitted prerequisite;
+- perceptual cue;
+- representation choice;
+- decomposition strategy;
+- decision criterion;
+- conceptual model;
+- error-checking routine;
+- metacognitive judgment;
+- disciplinary norm / epistemic standard.
+
+**Kill criterion:** if bottlenecks are explained mostly by ordinary prerequisite knowledge or practice quantity, do not over-engineer expert elicitation.
+
+---
+
+## Phase 2 — build an expert-elicitation experiment
+Take **one narrow physics topic** and compare:
+
+1. ordinary expert explanation;
+2. human-led DtD/CTA interview;
+3. AI-led DtD/CTA interview;
+4. expert solving problems with think-aloud / artifact capture.
+
+Measure:
+- number of distinct actionable mental operations recovered;
+- agreement across experts;
+- expert rating of importance;
+- whether novices actually benefit from the recovered operations.
+
+**Key research question:** Does AI uncover useful expert knowledge that ordinary teaching materials omit?
+
+---
+
+## Phase 3 — diagnose learner bottlenecks
+For the same topic, compare:
+- conventional test;
+- concept-inventory style items;
+- open-ended explanation;
+- AI Socratic diagnostic dialogue;
+- hybrid diagnosis.
+
+Measure not only classification accuracy but **instructional utility**: does the diagnosis lead to a better next intervention?
+
+---
+
+## Phase 4 — intervention experiment
+Convert decoded operations into several interventions:
+- direct explanation;
+- expert modelling;
+- worked example;
+- self-explanation;
+- guided practice;
+- Socratic questioning.
+
+Randomize or counterbalance where feasible.
+
+Measure:
+- immediate performance;
+- delayed retention;
+- **transfer to structurally similar but superficially different problems**;
+- misconception persistence;
+- time on task.
+
+Transfer should be a primary outcome because expert-like representation is the real target.
+
+---
+
+## Phase 5 — adaptive system
+Only after Phases 1–4 identify useful signals:
+- formalize knowledge components / mental operations;
+- introduce knowledge tracing or another explicit learner model;
+- define tutoring policies;
+- then optimize personalization.
+
+Do not start with a complex adaptive model before validating what should be represented.
+
+---
+
+# 10. Research questions with highest expected value
+
+### RQ1 — Expert elicitation
+**Can an AI interviewer recover tacit expert mental operations that are absent from ordinary lectures, textbooks and expert self-explanations?**
+
+### RQ2 — Validity
+**Are the recovered operations reproducible across multiple experts and observable in actual expert task performance?**
+
+### RQ3 — Learner diagnosis
+**Can AI distinguish missing knowledge, misconception, representation error, procedural error and metacognitive failure?**
+
+### RQ4 — Instructional causality
+**Does teaching the decoded operation improve transfer, or merely performance on the original problem?**
+
+### RQ5 — Personalization
+**Does an explicit learner model outperform an LLM that adapts only from conversational context?**
+
+### RQ6 — Cross-disciplinary generalization
+**Which parts of the pipeline are domain-general and which require discipline-specific models/instruments?**
+
+### RQ7 — Teacher augmentation
+**Does the system improve teachers’ own PCK by exposing recurrent learner bottlenecks?**
+
+### RQ8 — AI role separation
+**Should expert interviewer, learner diagnostician, tutor and evaluator be separate agents/models/policies?**
+
+---
+
+# 11. What not to assume
+
+- Do **not** assume every learning difficulty is a hidden expert step.
+- Do **not** assume an expert can accurately verbalize their own cognition.
+- Do **not** assume the LLM’s reconstruction of expert reasoning is valid because it sounds plausible.
+- Do **not** assume every bottleneck is a “threshold concept.”
+- Do **not** treat learner correctness as equivalent to understanding.
+- Do **not** use concept inventories outside their validated purpose without checking validity.
+- Do **not** assume higher predictive accuracy in a student model means better pedagogy.
+- Do **not** assume an unconstrained chatbot inherits the evidence base of intelligent tutoring systems.
+- Do **not** evaluate only immediate post-test performance; include retention and transfer.
+
+---
+
+# 12. Evidence notes that should shape the project
+
+1. **DtD is directly aligned with the problem, but its empirical base is less mature than its conceptual fit suggests.** Its strongest role at this stage is as an elicitation/pedagogical hypothesis generator.
+2. **CTA offers a more mature toolkit for extracting expert cognition.** Combining it with DtD is likely more defensible than using DtD interviewing alone.
+3. **Physics is a strategically strong first domain.** It offers classic expert–novice findings, validated misconception instruments, structured problems and objective checks.
+4. **Classical ITS research should be treated as required prior art.** Meta-analytic evidence for ITS is much stronger than the current evidence for generic LLM tutors.
+5. **Recent AI-tutoring evidence is encouraging but narrow.** Strong results have come from carefully engineered pedagogical systems, not generic “ask an LLM” interactions.
+6. **A learner model should be explicit enough to inspect and test.** Conversational memory alone is a weak scientific foundation for claims of personalization.
+
+---
+
+# 13. How to use this file in the next research session
+
+Paste this file and give the research agent one of the following instructions:
+
+### Explore one branch
+> Using the attached Research Map as the current project state, deeply investigate **[METHOD]**. Focus on empirical evidence, criticisms, domain applicability, operational methods, and how it could integrate with the proposed AI system. Update the map only where evidence justifies a change. Do not expand unrelated branches.
+
+### Compare methods
+> Using the attached Research Map, compare **[METHOD A]** and **[METHOD B]** specifically for eliciting hidden expert reasoning in university physics. Identify overlap, differences, evidence quality, implementation requirements, and a minimal experiment that could discriminate between them.
+
+### Eliminate a branch
+> Attempt to falsify the usefulness of **[METHOD]** for this project. Search for critiques, null findings, validity problems, and more suitable alternatives. Recommend **keep / narrow / park / reject**, with evidence.
+
+### Design the first experiment
+> Using the Research Map as constraints, design the smallest scientifically defensible experiment testing whether AI-assisted DtD/CTA elicits expert knowledge that improves novice learning in one physics topic. Prioritize measurable transfer and avoid unnecessary system complexity.
+
+---
+
+# 14. Source anchors
+
+These are starting anchors, not a complete bibliography.
+
+- Indiana University — Decoding the Disciplines: https://citl.indiana.edu/teaching-resources/course-design/decoding-disciplines/index.html
+- Mohamed & Bayat (2022) — systematic review of DtD: https://doi.org/10.20853/36-1-4517
+- Pace (2017) — _The Decoding the Disciplines Paradigm: Seven Steps to Increased Student Learning_
+- Shulman (1986) — PCK: https://doi.org/10.3102/0013189X015002004
+- Chi, Feltovich & Glaser (1981) — expert/novice physics: https://doi.org/10.1207/s15516709cog0502_2
+- Crandall, Klein & Hoffman (2006) — _Working Minds: A Practitioner’s Guide to Cognitive Task Analysis_: https://doi.org/10.7551/mitpress/7301.001.0001
+- Hoffman, Crandall & Shadbolt (1998) — Critical Decision Method: https://doi.org/10.1518/001872098779480442
+- Collins, Brown & Newman (1989) — cognitive apprenticeship
+- Posner et al. (1982) — conceptual change
+- Hestenes, Wells & Swackhamer (1992) — Force Concept Inventory: https://doi.org/10.1119/1.2343497
+- Chi et al. (1989) — self-explanation: https://doi.org/10.1207/s15516709cog1302_1
+- Corbett & Anderson — knowledge tracing / cognitive tutors
+- Kulik & Fletcher (2016) — ITS meta-analysis: https://doi.org/10.3102/0034654315581420
+- Létourneau et al. (2025) — systematic review of AI-driven K–12 ITS: https://doi.org/10.1038/s41539-025-00320-7
+- Kestin et al. (2025) — AI tutoring RCT in undergraduate physics: https://doi.org/10.1038/s41598-025-97652-6
+- Lovett et al. (2023), _How Learning Works: Eight Research-Based Principles for Smart Teaching_, 2nd ed. — useful umbrella reference, **optional**, not part of the mandatory reading pack.
+
+---
+
+## Current recommendation
+
+**Research first:** DtD → CTA → Expert–Novice → PCK.  
+**Then connect learner diagnosis:** conceptual change / concept inventories.  
+**Then connect instructional mechanisms:** cognitive apprenticeship + worked examples/self-explanation.  
+**Only then formalize the AI system:** explicit student model / knowledge tracing + ITS architecture + LLM interaction layer.
+
+The first prototype should be a **research instrument for expert elicitation and learner diagnosis**, not yet a complete tutoring platform.

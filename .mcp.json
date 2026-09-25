@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "openalex": {
+      "type": "http",
+      "url": "https://mcp.openalex.org/mcp"
+    },
+    "zotero": {
+      "command": "zotero-mcp",
+      "env": { "ZOTERO_LOCAL": "true" }
+    }
+  }
+}
