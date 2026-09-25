@@ -92,7 +92,7 @@ START
 | Priority | Research family | Why it matters to this project | Evidence strength* | STEM fit | Humanities / social sciences fit | AI readiness |
 |---|---|---|---|---|---|---|
 | **P0** | **Decoding the Disciplines (DtD)** | Directly targets disciplinary bottlenecks and tacit expert mental operations; use as the instructional frame, elicitation via CTA | **Low–moderate**: mostly qualitative; two small non-randomized comparisons, none in physics, no transfer | High | High | **Very high** |
-| **P0** | **Cognitive Task Analysis (CTA) / Knowledge Elicitation** | Gives concrete interview/probing methods for extracting expert cognition | **Moderate–high** | High | Medium–high | **Very high** |
+| **P0** | **Cognitive Task Analysis (CTA) / Knowledge Elicitation** | Gives concrete interview/probing methods for extracting expert cognition | **Moderate–high** for training outcomes outside physics; no physics or transfer outcomes | High | Medium–high | **Very high** |
 | **P0** | **Expert–Novice research** | Explains why experts and beginners represent the same problem differently | **High as foundational evidence** | **Very high** | High | High |
 | **P0** | **Pedagogical Content Knowledge (PCK)** | Focuses on what teachers need to know about representations, difficulty and learner misconceptions | **Moderate–high** | High | High | High |
 | **P1** | **Conceptual Change + misconception research** | Addresses learners whose existing mental model conflicts with the target model | **High, especially science education** | **Very high** | Medium | High |
@@ -184,8 +184,22 @@ Originally especially strong in complex professional domains—aviation, militar
 ### Evidence / limitations
 CTA is much more mature as an elicitation family than DtD, although there is no single standardized CTA procedure. The key problem is that expert verbalization is incomplete and can be distorted by retrospective reconstruction; therefore interviews should ideally be combined with task performance and artifacts.
 
+Graded evidence (see `research/explore-cognitive-task-analysis.md`):
+- **Meta-analyses of CTA-based training:** g = 0.871 across training domains (Tofel-Grehl & Feldon 2013); surgery SMD 1.36 for knowledge and 2.06 for technical performance (Edwards et al. 2021). All are outside physics and measure immediate or in-course performance, with high heterogeneity.
+- **Closest university-STEM study:** Feldon et al. (2010), in which CTA-derived instruction beat an award-winning instructor's in an undergraduate biology course, on withdrawal and lab-report quality.
+- **Expert omission:** experts teaching a procedure omitted about 70% of knowledge and decision steps (Sullivan et al. 2014, surgery, 3 experts).
+- **Method choice:** there are over 100 CTA methods, and CTA is "more craft than technology" with no validated basis for choosing one (Yates & Feldon 2011).
+- **Transfer:** no study found measures it.
+
+### Provisional method for physics
+1. The expert solves the problem while thinking aloud, without prompts. Written and diagram work is captured alongside. Non-directed think-aloud does not change performance; being asked to describe or explain does (Fox, Ericsson & Best 2011).
+2. After the task, CDM-style multi-pass probes over the recorded trace. CDM was built for recalling real incidents (Klein, Calderwood & MacGregor 1989), and physics solving can be observed directly instead.
+3. Compare across experts.
+
+This is a hypothesis, not a validated protocol.
+
 ### AI opportunity
-Very high. An AI interviewer can dynamically probe:
+Very high, but unevaluated: no study of LLM-conducted CTA was found. AI probes should run after the task, over the recorded trace, never during solving. Probes of the describe/explain kind are reactive when used mid-task. An AI interviewer can dynamically probe:
 - cues noticed;
 - alternatives rejected;
 - expectations;
@@ -745,7 +759,7 @@ Do not start with a complex adaptive model before validating what should be repr
 # 12. Evidence notes that should shape the project
 
 1. **DtD is directly aligned with the problem, but its empirical base is less mature than its conceptual fit suggests.** Keep it as the pedagogical framing (bottleneck → model → practice → assess). Its interview step is not evidential without CTA-style validation against performed tasks.
-2. **CTA offers a more mature toolkit for extracting expert cognition.** Combining it with DtD is likely more defensible than using DtD interviewing alone.
+2. **CTA offers a more mature toolkit for extracting expert cognition.** Combining it with DtD is likely more defensible than using DtD interviewing alone. No physics or transfer evidence yet; start with think-aloud on performed tasks plus retrospective CDM probes.
 3. **Physics is a strategically strong first domain.** It offers classic expert–novice findings, validated misconception instruments, structured problems and objective checks.
 4. **Classical ITS research should be treated as required prior art.** Meta-analytic evidence for ITS is much stronger than the current evidence for generic LLM tutors.
 5. **Recent AI-tutoring evidence is encouraging but narrow.** Strong results have come from carefully engineered pedagogical systems, not generic “ask an LLM” interactions.
@@ -783,8 +797,12 @@ These are starting anchors, not a complete bibliography.
 - Tofel-Grehl & Feldon (2013) — meta-analysis of CTA-based training: https://doi.org/10.1177/1555343412474821
 - Shulman (1986) — PCK: https://doi.org/10.3102/0013189X015002004
 - Chi, Feltovich & Glaser (1981) — expert/novice physics: https://doi.org/10.1207/s15516709cog0502_2
-- Crandall, Klein & Hoffman (2006) — _Working Minds: A Practitioner’s Guide to Cognitive Task Analysis_: https://doi.org/10.7551/mitpress/7301.001.0001
+- Crandall, Klein & Hoffman (2006) — _Working Minds: A Practitioner’s Guide to Cognitive Task Analysis_: https://doi.org/10.7551/mitpress/7304.001.0001
 - Hoffman, Crandall & Shadbolt (1998) — Critical Decision Method: https://doi.org/10.1518/001872098779480442
+- Klein, Calderwood & MacGregor (1989) — Critical Decision Method, original: https://doi.org/10.1109/21.31053
+- Fox, Ericsson & Best (2011) — reactivity of verbal reports, meta-analysis: https://doi.org/10.1037/a0021663
+- Sullivan et al. (2014) — expert omissions revealed by CTA: https://doi.org/10.1097/acm.0000000000000224
+- Yates & Feldon (2011) — CTA method taxonomy: https://doi.org/10.1080/1463922x.2010.505269
 - Collins, Brown & Newman (1989) — cognitive apprenticeship
 - Posner et al. (1982) — conceptual change
 - Hestenes, Wells & Swackhamer (1992) — Force Concept Inventory: https://doi.org/10.1119/1.2343497
