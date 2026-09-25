@@ -54,6 +54,7 @@ The decoding interview (§5.1) is **not** an arm. It is deferred to a follow-up 
   - *reported only*: named in a probe, with no corroboration in the trace;
   - *contradicted*: the trace shows the expert doing something else.
 - **Shared** means an operation is present in at least 3 of the 12 experts.
+- Each operation is also tagged if it already appears in a published physics problem-solving framework (Heller & Reif 1984; Dufresne et al. 1992; Docktor et al. 2015), so that "new" is not confused with "absent from this course". The tag does not change K1; Stage B reports how many added operations carry it.
 
 **Outcomes.**
 1. Per expert and interviewer: the number of *performed, shared* operations that are absent from the ordinary explanations.
@@ -77,9 +78,10 @@ The thresholds are judgment calls. They are fixed before data collection, not de
 
 **Participants.** First-year students in the university mechanics course, randomized individually and stratified by pretest, in a graded-for-completion online module run before the topic's exam.
 
-**Conditions.** Both arms get the same four worked examples with self-explanation prompts, delivered as a **static** module with no LLM tutor, so that §5.12 delivery effects cannot confound the result. The two arms are matched for word count (±10%) and allotted time (2 × 40 min).
+**Conditions.** Both arms get the same four worked examples with self-explanation prompts, delivered as a **static** module with no LLM tutor, so that §5.12 delivery effects cannot confound the result. The two arms are matched for word count (±10%, prompts and model answers included) and allotted time (2 × 40 min).
 - **Control (strong):** worked examples built from the experts' *ordinary explanations* in Stage A, edited by the same instructional designer. This is the expert-authored baseline of Feldon et al. (2010), not a lecture baseline.
-- **Treatment:** the same examples, plus the performed, shared operations recovered by the **AI-assisted pipeline** that are absent from the ordinary explanations. Each added operation is carried by at least one self-explanation prompt that asks the student to state or apply it, with a model answer shown after; operations given only as text would test the delivery format, not the operations (see `explore-worked-examples-self-explanation.md`). Both arms have the same number of prompts; the control arm's prompts and extra words go into elaborating steps already present.
+- **Treatment:** the same examples, plus the performed, shared operations recovered by the **AI-assisted pipeline** that are absent from the ordinary explanations. Each added operation is performed in a worked step and carried by a self-explanation prompt in at least two of the four examples, asking the student to justify that step or apply the operation to the next, faded step; operations given only as text would test the delivery format, not the operations (see `explore-worked-examples-self-explanation.md`). The answer is submitted and locked before a model answer is shown; a blank answer does not count as answered.
+- **Prompts in both arms.** Both arms have the same number of prompts, drawn in the same proportions from one fixed list of stems (which principle this step uses and why its conditions hold; apply it to the next step; what check confirms the result), with model answers of equal length. Prompts on steps present in both arms are identical. Only the prompts carrying added operations differ; in the control, the same stems go to steps already present. Prompts are piloted on non-participants until median time per prompt differs by no more than 10% between arms.
 
 **Measures.**
 - **Covariate:** a topic pretest and the student's prior midterm score.
@@ -93,19 +95,21 @@ The thresholds are judgment calls. They are fixed before data collection, not de
   - immediate and delayed performance on near problems;
   - the same selected EMCS items at pretest and delayed test, excluding Q16, Q22 and Q23, which had item–total correlations below 0.20 and lowered α in the largest analysis (Wu, Li & Rebello 2025), analysed at arm level and labelled exploratory. The full test has α ≈ 0.75 in calculus-based courses (Singh & Rosengrant 2003), but no validation exists for item subsets;
   - a Chi-style problem-categorization task, given *after* the transfer test so it cannot prime it;
-  - logged time on task and self-explanation prompts answered;
+  - logged time on task per arm and prompts answered. A random 10% of answers per arm are scored, by a coder who did not write the materials, for whether they attempt the targeted step. If median logged time in the treatment exceeds the control by more than 10%, the claim is restated as "operations plus extra time";
   - at the delayed test, "did you see the other version?".
 
 **Analysis and power.**
 - ANCOVA on delayed transfer, pre-registered.
 - **Smallest effect size of interest (SESOI): d = 0.30.** This is a pre-registered judgment of the smallest effect worth the elicitation cost, not an estimate of the likely effect.
+- **Expected effect: probably below the SESOI.** Prompted self-explanation against no prompts gives g = 0.35 on delayed tests and 0.33 on transfer (Tan et al. 2025, https://doi.org/10.1007/s10648-025-10001-x). Both arms here are prompted, so the contrast is the added operations alone, and the closest physics test of teaching expert decisions found no direct effect (Jeong et al. 2024). Stage B is therefore built to rule out d ≥ 0.30 (K2), not to detect a small effect: at the planned N, power for a true d = 0.15 is about 0.3. Barbieri et al.'s (2023) negative moderator compares examples with and without prompts across studies; both arms here have prompts, so it does not bias the contrast.
+- **Exploratory: arm × pretest** (continuous pretest; expertise reversal, Kalyuga 2007, https://doi.org/10.1007/s10648-007-9054-3). Reported with its CI. It is not powered and cannot overturn K2.
 - For α = .05 two-sided, power .80, a conservative pretest r = .4 (no source for this population) and 20% attrition: **≈ 183 per arm, ≈ 370 randomized.**
 - A single course of 200 students gives a minimum detectable effect (MDE) of about d = 0.41. If enrolment is below 370, pool two semesters or two sites; do not proceed underpowered.
-- **Compliance** is fixed in advance: at least 60 of the 80 minutes logged, and at least 75% of self-explanation prompts answered. The intention-to-treat (ITT) estimate is primary. A complier estimate (CACE) is secondary.
+- **Compliance** is fixed in advance: at least 60 of the 80 minutes logged, and at least 75% of self-explanation prompts answered. The intention-to-treat (ITT) estimate is primary. A per-protocol estimate among compliers in both arms is a secondary sensitivity analysis (both arms can take partial doses, so a CACE is not cleanly identified).
 
-**K2: Stage B kill criterion.** Applies only if at least 70% of students in each arm meet the compliance threshold. Otherwise the run counts as a failed dose, not a null.
-- **Kill:** the upper bound of the 90% ITT CI for delayed transfer is below d = 0.30 (observed d ≲ 0.12 at the planned N). Stop using elicited operations as instructional content for this topic, and record this in the map as a null on RQ4.
-- **Inconclusive** (observed d between about 0.12 and 0.21): run one replication semester, then decide once on the pooled estimate.
+**K2: Stage B kill criterion.** Applies only if at least 70% of students in each arm meet the compliance threshold. Otherwise the run counts as a failed dose, not a null. One re-run with re-piloted prompts is allowed; a second compliance failure is a kill (the material cannot be delivered at this dose in a static module).
+- **Kill:** the upper bound of the 90% ITT CI for delayed transfer is below d = 0.30 (observed d ≲ 0.12 at the planned N). Stop using elicited operations as instructional content for this topic, and record this in the map on RQ4 as "effect below the SESOI d = 0.30", not as a null.
+- **Inconclusive** (observed d between about 0.12 and 0.21): run one replication semester and decide once on the pooled estimate: kill if the pooled 90% upper bound is below 0.30, otherwise report a positive effect.
 
 **Ethics.**
 - The control arm is ordinary, good-quality expert material, so it is no weaker than current teaching.
@@ -134,6 +138,7 @@ The thresholds are judgment calls. They are fixed before data collection, not de
 | Source | Design | N | Domain | Outcome type | Finding |
 |---|---|---|---|---|---|
 | Dufresne et al. (1992), https://doi.org/10.1207/s15327809jls0203_3 | Three laboratory experiments | Not in abstract | **Physics novices** (population not checked; closed access) | Similarity judgments; problem solving (immediate) | Constraining novices to expert-like, hierarchical, principle-first analyses made their similarity judgments more expert-like and improved problem solving. |
+| Heller & Reif (1984), https://doi.org/10.1207/s1532690xci0102_2 | Controlled lab experiments with a prescriptive model | N not verified | **University physics** (mechanics) | Immediate solution quality | Students guided through a model procedure for describing problems in physics terms produced better descriptions and solutions than groups following alternative or partial models (see `explore-expert-novice.md`). |
 | Docktor et al. (2015), https://doi.org/10.1103/PhysRevSTPER.11.020106 | Quasi-experiment, 3 schools, class-level assignment | 84 students | **High-school physics** (not university) | Post-instruction tests | Conceptual Problem Solving classes outscored controls by 10–20% on problem-solving and conceptual tests, significant at some schools only. On problem categorization, all groups chose the superficially similar problem more often than the one sharing a principle. |
 | Chi, Feltovich & Glaser (1981), https://doi.org/10.1207/s15516709cog0502_2 | Lab studies, expert–novice | Small | **Physics** | Categorization | Novices sort by surface features, experts by principle. Basis for the topic choice and the mechanism check. |
 | Singh & Rosengrant (2003), https://doi.org/10.1119/1.1571832 | Instrument development: 25 items plus interviews | Intro physics students | **Physics** | Conceptual understanding | EMCS, a test of energy and momentum concepts; α ≈ 0.75 (calculus-based), 0.68 (algebra-based). Secondary, exploratory. |
@@ -153,6 +158,7 @@ None of these tests an AI interviewer against **observed task performance**, and
 - **The learning effect may be small.** Large commissioned K–12 RCTs average 0.06 SD on standardized achievement (Lortie-Forgues & Inglis 2019). The closest physics test of teaching expert decision models (instructor-built, not CTA-elicited) found no direct effect (Jeong et al. 2024, https://doi.org/10.1007/s10639-024-12962-y; quasi-experimental, N = 390, small dose; see `explore-cognitive-task-analysis.md`). In Docktor et al. (2015), a 9-item categorization test (each item: pick which of two problems is solved like a model problem) showed no significant advantage for Conceptual Problem Solving (2 schools, n = 54; +2% and +11%), and all groups still favoured surface matches. The authors attribute this to test difficulty, so the Chi-style mechanism check here may be insensitive. Stage B can therefore come back inconclusive even at N ≈ 370. K2 is stated so that a clear null still ends the branch.
 - **"Explicitness" confound.** The treatment adds principle-focused content. Principle-first scaffolds have helped novices in two physics studies (Dufresne et al. 1992; Docktor et al. 2015, high school), so a positive Stage B shows that the *elicited* operations help relative to ordinary expert material. It does not show that they beat a *published* strategy template. A third arm with a published template (Docktor-style CPS, or the expert decisions of Burkholder et al. 2020, https://doi.org/10.1103/physrevphyseducres.16.010123) would answer that at about 1.5× N. It is left out as not the smallest test of the stated question; see Open questions.
 - **AI-interviewer evidence is off-domain.** All of it comes from opinion and economic interviews, with outcomes of richness and ratings (Chopra & Haaland; Geiecke & Jaravel; Wuttke et al.). None comes from expert cognition or from validation against *task* performance. It justifies trying the arm, not expecting it to work.
+- **Known strategies.** If every added operation carries the published-framework tag, a positive Stage B shows that recovering known strategies this course omits helps; it shows nothing new about elicitation.
 - **Stage A is small.** With 12 experts the AI–human difference is only estimated. Blinding coders to the interviewer is partial.
 - **Transfer is a researcher-written test.** Independent authors and a principles-only specification reduce the alignment problem, but this is not a standardized measure.
 
@@ -176,6 +182,18 @@ The minor issues were also addressed:
 - Power is recomputed with r = .4, giving N ≈ 370.
 - Ethics lines were added.
 - The categorization task moves after the transfer test.
+
+### Re-review after the P1 branches
+
+Stage B changed after `explore-worked-examples-self-explanation.md` (operations carried by self-explanation prompts), `explore-concept-inventories.md` (EMCS items excluded) and `explore-expert-novice.md` (framework tag, arm × pretest). Verdict: no fatal flaw, five major issues; would run with them fixed. All were applied above:
+
+1. **Prompt type differed between arms.** Both arms now draw from one fixed list of stems in the same proportions; only the steps they attach to differ.
+2. **Model answers could turn prompts back into provided explanations.** The operation is performed in a worked step, the prompt asks to justify or apply it, answers are locked before the model answer, blanks do not count, and a 10% sample is scored for attempting the targeted step.
+3. **Time and compliance would diverge.** Prompts are piloted to within 10% median time, logged time is a manipulation check, and a compliance failure allows one re-run only.
+4. **No expected effect stated; K2 recorded a kill as a null.** The expected effect is stated as likely below the SESOI, Stage B is named a futility test at d = 0.30, the kill is recorded as "below the SESOI", and the pooled rule is stated.
+5. **Framework tag and arm × pretest were missing from this note.** Both added, with scope limits.
+
+Minor: dose raised to prompts in at least two of four examples; prompts and model answers count toward the word match; CACE relabelled per-protocol; a "known strategies" caveat added under Against; Heller & Reif (1984) added to the precedents. Still open: list the selected EMCS items in the pre-registration before any data are collected.
 
 ## Implications for the map
 
