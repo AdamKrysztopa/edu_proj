@@ -91,7 +91,7 @@ The thresholds are judgment calls. They are fixed before data collection, not de
 - **Secondary:**
   - a score on the published problem-solving rubric of Docktor et al. (2016), https://doi.org/10.1103/physrevphyseducres.12.010130, which is *not* blind to arm;
   - immediate and delayed performance on near problems;
-  - the same selected EMCS items at pretest and delayed test, analysed at arm level and labelled exploratory. The full test has α ≈ 0.75 in calculus-based courses (Singh & Rosengrant 2003), but no validation exists for item subsets;
+  - the same selected EMCS items at pretest and delayed test, excluding Q16, Q22 and Q23, which had item–total correlations below 0.20 and lowered α in the largest analysis (Wu, Li & Rebello 2025), analysed at arm level and labelled exploratory. The full test has α ≈ 0.75 in calculus-based courses (Singh & Rosengrant 2003), but no validation exists for item subsets;
   - a Chi-style problem-categorization task, given *after* the transfer test so it cannot prime it;
   - logged time on task and self-explanation prompts answered;
   - at the delayed test, "did you see the other version?".
@@ -192,4 +192,4 @@ The minor issues were also addressed:
 These are only the ones that would change the design:
 - Is the course enrolment at one site at least 370 per offering? If not, Stage B needs two semesters or two sites, and that decides feasibility.
 - Should Stage B add a published-strategy arm? That would turn the claim from "better than ordinary expert material" into "better than the best known material" at about 1.5× N.
-- Does an item-level validation of EMCS for this population exist? If not, EMCS is dropped to an exploratory measure.
+- Does an item-level validation of EMCS for this population exist? Partly: item-level evidence from one university flags three items, and no item subset is validated, so EMCS stays exploratory (see `explore-concept-inventories.md`).

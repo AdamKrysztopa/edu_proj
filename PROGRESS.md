@@ -12,7 +12,7 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 
 ### P1
 - [ ] Conceptual Change + misconceptions
-- [ ] Concept Inventories
+- [x] **Concept Inventories**: `explore` → **no rating change, scoped to cohort-level use**. Strong class-level validity; weak for individual diagnosis (31% of FCI responses change on retest, mixed models, gender-biased items). PCK-layer seeding and Stage B EMCS use are cohort-level, so defensible; Phase 3 adds test–retest stability; EMCS drops Q16, Q22, Q23. [note](research/explore-concept-inventories.md)
 - [ ] Cognitive Apprenticeship
 - [ ] Worked Examples + Self-Explanation
 - [ ] Intelligent Tutoring Systems

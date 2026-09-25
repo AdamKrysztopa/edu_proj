@@ -96,7 +96,7 @@ START
 | **P0** | **Expert–Novice research** | Explains why experts and beginners represent the same problem differently | **High as foundational evidence** for representation differences (a continuum, not two groups); instruction built on them helps immediate problem solving in small physics studies; one far-transfer RCT | **Very high** | High | High |
 | **P0** | **Pedagogical Content Knowledge (PCK)** | Focuses on what teachers need to know about representations, difficulty and learner misconceptions | **Moderate–high** for correlational links to school achievement (strongest in mathematics, mixed in physics); no experiment isolating PCK; no university or transfer outcomes | High | High | High |
 | **P1** | **Conceptual Change + misconception research** | Addresses learners whose existing mental model conflicts with the target model | **High, especially science education** | **Very high** | Medium | High |
-| **P1** | **Concept Inventories / diagnostic instruments** | Makes hidden misconceptions measurable; physics is unusually mature here | **High for well-validated instruments** | **Very high** | Low–medium | **Very high** |
+| **P1** | **Concept Inventories / diagnostic instruments** | Makes hidden misconceptions measurable; physics is unusually mature here | **High for cohort/course evaluation** with well-validated instruments; weak for individual diagnosis (item answers unstable on retest, mixed models, some gender-biased items) | **Very high** | Low–medium | **Very high** |
 | **P1** | **Cognitive Apprenticeship** | Converts expert cognition into modelling, coaching, scaffolding and fading | **Moderate** | High | High | **Very high** |
 | **P1** | **Worked Examples + Self-Explanation** | Strong candidate for turning decoded expert operations into teachable interactions | **High** | **Very high** | Medium | **Very high** |
 | **P1** | **Intelligent Tutoring Systems (ITS)** | Mature evidence base for individualized step-level instruction and feedback | **High overall, heterogeneous** | **Very high** | Medium–high | **Very high** |
@@ -299,7 +299,7 @@ Create a **PCK layer** separate from the raw domain knowledge base:
 - explanation variants;
 - diagnostic questions.
 
-Seed the misconception, misleading-cue and diagnostic-question entries from student response data (concept-inventory distractors, coded exam errors), not from expert or teacher prediction: TAs miss many common difficulties, and experienced instructors scored no better (Maries & Singh 2016). Teachers review these entries and contribute representations, analogies and explanation variants, the part student data cannot supply.
+Seed the misconception, misleading-cue and diagnostic-question entries from student response data (cohort-level concept-inventory distractor frequencies, plus coded open-ended answers and exam errors, since distractors miss some student ideas), not from expert or teacher prediction: TAs miss many common difficulties, and experienced instructors scored no better (Maries & Singh 2016). Teachers review these entries and contribute representations, analogies and explanation variants, the part student data cannot supply.
 
 ### Questions to research next
 - Should the system learn separately from domain experts and experienced teachers?
@@ -346,18 +346,26 @@ They offer something extremely useful for AI research: **known misconception str
 ### Domain fit
 Very strong in physics and several STEM fields; much weaker as a generic tool across disciplines.
 
+### Evidence / limitations
+Graded evidence (see `research/explore-concept-inventories.md`):
+- **Validated for class-level use.** FCI, FMCE, CSEM, BEMA, TUG-K and EMCS have class-level validity evidence, and published best-practice guidance says they assess instruction, not individual mastery (Madsen, McKagan & Sayre 2017). The FCI total score is reliable (test–retest r = 0.89) and its factor structure replicates at scale (Eaton & Willoughby 2018).
+- **Weak for individual diagnosis.** 31% of FCI responses changed on a retest within a week, although total scores correlated at r = 0.89 (Lasry et al. 2011; one college, N = 100). Students hold mixed, context-dependent models (Bao & Redish 2006). Six FCI items are biased against women and two in their favour (Traxler et al. 2018). EMCS α is 0.68–0.76 (Singh & Rosengrant 2003; Wu, Li & Rebello 2025), below the 0.80 usually cited for comparing individuals (Lasry et al. 2011).
+- **Distractors miss student ideas.** Open-ended versions reveal categories that are not among the choices (Rebello & Zollman 2004; Savage & Rebello 2025).
+- **Diagnosis helps only when it drives a response.** In a cluster RCT, concept questions and a diagnostic test without feedback did not significantly beat traditional teaching, while a formative-assessment package built on the diagnosis did (d ≈ 0.4 at 3 months; Lichtenberger et al. 2024, upper-secondary kinematics). No study measures transfer.
+
 ### AI opportunity
 Use concept inventories as:
 - seed labels for misconception models;
 - benchmark datasets for diagnostic dialogues;
 - sources of contrastive questions;
-- external validation for an AI’s inferred learner state.
+- external validation for an AI’s inferred learner state **at class level**, or for one student only when several items probe the same concept (single item answers are unstable on retest).
 
 Do **not** assume an individual concept-inventory score is a complete learner model; these instruments are generally designed for specific assessment purposes and have construct limitations.
 
 ### Questions to research next
 - Which physics concept inventories are available for mechanics, E&M, quantum, thermodynamics, mathematics methods, etc.?
-- Which are validated for individual diagnosis vs cohort/course evaluation?
+- How many items per concept are needed before a misconception score is stable for one student on retest?
+- Does diagnosis-targeted instruction beat untargeted instruction of equal time, and does it improve transfer?
 - Can open-ended AI dialogue outperform multiple-choice diagnostics without losing reliability?
 
 ### Minimum reading if this branch is selected
@@ -707,7 +715,7 @@ For the same topic, compare:
 - AI Socratic diagnostic dialogue;
 - hybrid diagnosis.
 
-Measure not only classification accuracy but **instructional utility**: does the diagnosis lead to a better next intervention?
+Measure not only classification accuracy but **instructional utility**: does the diagnosis lead to a better next intervention? Also measure each method's test–retest stability for the same student; 31% of FCI item responses changed on a retest within a week (Lasry et al. 2011).
 
 ---
 
@@ -779,7 +787,7 @@ Do not start with a complex adaptive model before validating what should be repr
 - Do **not** assume the LLM’s reconstruction of expert reasoning is valid because it sounds plausible.
 - Do **not** assume every bottleneck is a “threshold concept.”
 - Do **not** treat learner correctness as equivalent to understanding.
-- Do **not** use concept inventories outside their validated purpose without checking validity.
+- Do **not** use concept inventories outside their validated purpose without checking validity; most are validated for class-level evaluation, not for diagnosing or grading individual students.
 - Do **not** assume higher predictive accuracy in a student model means better pedagogy.
 - Do **not** assume an unconstrained chatbot inherits the evidence base of intelligent tutoring systems.
 - Do **not** evaluate only immediate post-test performance; include retention and transfer.
@@ -872,6 +880,18 @@ These are starting anchors, not a complete bibliography.
 - Collins, Brown & Newman (1989) — cognitive apprenticeship
 - Posner et al. (1982) — conceptual change
 - Hestenes, Wells & Swackhamer (1992) — Force Concept Inventory: https://doi.org/10.1119/1.2343497
+- Lasry et al. (2011) — FCI test–retest reliability of individual responses: https://doi.org/10.1119/1.3602073
+- Traxler et al. (2018) — gender fairness of FCI items: https://doi.org/10.1103/physrevphyseducres.14.010103
+- Eaton & Willoughby (2018) — confirmatory factor analysis of the FCI: https://doi.org/10.1103/physrevphyseducres.14.010124
+- Stewart et al. (2018) — multidimensional IRT of the FCI: https://doi.org/10.1103/physrevphyseducres.14.010137
+- Bao & Redish (2006) — model analysis, mixed model states: https://doi.org/10.1103/physrevstper.2.010103
+- Rebello & Zollman (2004) — open-ended vs multiple-choice FCI items: https://doi.org/10.1119/1.1629091
+- Madsen, McKagan & Sayre (2017) — best practices for administering concept inventories: https://doi.org/10.1119/1.5011826
+- Nissen et al. (2018) — normalized gain vs Cohen's d: https://doi.org/10.1103/physrevphyseducres.14.010115
+- Hake (1998) — interactive engagement vs traditional courses: https://doi.org/10.1119/1.18809
+- Wu, Li & Rebello (2025) — EMCS item analysis: https://doi.org/10.1103/kvph-l899
+- Savage & Rebello (2025) — GPT-4o coding of open-ended EMCS answers: https://doi.org/10.1119/perc.2025.pr.Savage
+- Lichtenberger et al. (2024) — cluster RCT of formative assessment in kinematics: https://doi.org/10.1007/s11092-024-09445-6
 - Chi et al. (1989) — self-explanation: https://doi.org/10.1207/s15516709cog1302_1
 - Corbett & Anderson — knowledge tracing / cognitive tutors
 - Kulik & Fletcher (2016) — ITS meta-analysis: https://doi.org/10.3102/0034654315581420
