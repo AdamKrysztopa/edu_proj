@@ -23,9 +23,9 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [x] **Knowledge Tracing / Mastery models**: `explore` → **no rating change, scoped to prediction**. Simple models match deep KT; learning evidence is a few small KC-redesign studies on hand-picked units plus one null; no test against a simple mastery rule. Phase 5 must judge a learner model by a learning experiment against N-correct-in-a-row with delayed transfer. [note](research/explore-knowledge-tracing.md)
 
 ### P2
-- [ ] Threshold Concepts
-- [ ] Formative assessment
-- [ ] LLM-based AI tutoring
+- [x] **Threshold Concepts**: `explore` → **downgraded to Low / contested** (user decision, as for PCK). Definitions criticised as not empirically isolable; no agreement statistic for identifying threshold concepts; physics papers relabel known PER difficulties; small immediate-outcome studies test teaching a concept, not the label. [note](research/explore-threshold-concepts.md)
+- [x] **Formative assessment**: `explore` → **rating split**. High for feedback and quizzing as practices (feedback d = 0.48, over a third of effects negative; quizzing g = 0.50); low–moderate for packaged formative assessment (d ≈ 0.2–0.3; the quoted 0.4–0.7 has no source). New §5.13 card; Phase 4 holds feedback constant across arms. [note](research/explore-formative-assessment.md)
+- [x] **LLM-based AI tutoring**: `explore` → **no rating change, scoped**. Kestin et al. (2025) is large but immediate and bundles AI with self-pacing and pre-structured steps; with the AI removed at test, effects elsewhere are ≈ 0.1–0.4 SD, null in preregistered lab RCTs, or harmful without guardrails; syntheses weak, one retracted. Phase 5 compares any LLM tutor with the same design without generation; §11 adds "do not measure learning while the AI is available". [note](research/explore-llm-tutoring.md)
 
 ### Experiment design
 - [x] `/branch experiment`: gated two-stage design (K0 exam-error check → Stage A, 12 experts, AI vs human probes validated against the trace → K1 → Stage B, RCT with about 370 students on delayed transfer → K2). `methods-critic`: no fatal flaw; the six major fixes are applied. [note](research/experiment-ai-assisted-cta-physics.md)

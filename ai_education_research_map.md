@@ -101,9 +101,9 @@ START
 | **P1** | **Worked Examples + Self-Explanation** | Strong candidate for turning decoded expert operations into teachable interactions | **High** for immediate problem solving by novices (meta-analyses g ≈ 0.5); delayed and transfer effects smaller (g ≈ 0.35); little classroom or delayed physics evidence; reverses as prior knowledge grows | **Very high** | Medium | **Very high** |
 | **P1** | **Intelligent Tutoring Systems (ITS)** | Mature evidence base for individualized step-level instruction and feedback | **High on tests aligned to the tutor** (median 0.66 SD; 0.73 on local vs 0.13 on standardized tests; step-based ≈ human tutoring); small at scale (≈ 0–0.2 SD); physics: one non-randomized university study, large hour-exam gains on enforced practices, d = 0.25 on an answer-only final | **Very high** | Medium–high | **Very high** |
 | **P1** | **Knowledge Tracing / Mastery models** | Provides a computational learner-state layer rather than relying on LLM intuition | **Moderate–high for predicting performance** within a tutor (simple models match deep ones); for learning, a few small positive classroom studies of KC-model redesign on hand-picked units, one null on units chosen by topic, and no test against a simple mastery rule | High | Medium | **Very high** |
-| **P2** | **Threshold Concepts** | Useful language for transformative/troublesome disciplinary ideas | **Moderate / contested** | High | High | Medium–high |
-| **P2** | **Formative assessment** | Essential feedback loop for checking whether the intervention actually worked | **High as a broad principle** | High | High | High |
-| **P2** | **LLM-based AI tutoring** | Potential delivery/orchestration layer; promising but evidence is newer than classic ITS | **Emerging / moderate** | High | High | N/A — implementation layer |
+| **P2** | **Threshold Concepts** | Useful language for transformative/troublesome disciplinary ideas | **Low / contested**: definitions criticised as not empirically isolable; no reliability data for identification; small immediate-outcome studies test teaching the concept, not the "threshold" label | High | High | Medium–high |
+| **P2** | **Formative assessment** | Essential feedback loop for checking whether the intervention actually worked | **High for feedback and quizzing as practices** (feedback d ≈ 0.48, over a third of feedback effects negative; classroom quizzing g ≈ 0.5); **low–moderate for formative assessment as a packaged intervention** (rigorous school estimates d ≈ 0.2–0.3; the quoted 0.4–0.7 has no source); little causal university evidence | High | High | High |
+| **P2** | **LLM-based AI tutoring** | Potential delivery/orchestration layer; promising but evidence is newer than classic ITS | **Emerging / moderate**: one university-physics crossover RCT with a large immediate effect (AI bundled with self-pacing and pre-structured steps); elsewhere ≈ 0.1–0.4 SD on unassisted tests, nulls in lab RCTs, harm without guardrails; meta-analyses (g ≈ 0.6) rest on weak primary studies; no transfer evidence | High | High | N/A — implementation layer |
 
 \*Evidence strength here is a **research-prioritization judgment**, not a formal GRADE score. It distinguishes mature replicated literatures from frameworks supported mainly by qualitative studies, case studies, or newer trials.
 
@@ -553,11 +553,18 @@ It provides a language for identifying **high-leverage conceptual transitions** 
 ### Why it is P2 rather than P0
 There are substantial methodological questions about how threshold concepts are reliably identified and whether the defining properties can be operationalized without circular reasoning. It is better treated as a **hypothesis-generation framework** than as the main diagnostic engine.
 
+### Evidence / limitations
+Graded evidence (see `research/explore-threshold-concepts.md`):
+- **Definitions:** critiques argue threshold concepts are defined so that they cannot be isolated empirically (Rowbottom 2007; Salwén 2021), and that being "threshold" depends on the learner (Rowbottom 2007).
+- **Identification:** no settled method. Participants disagree about which concepts are thresholds (Barradell 2013), and results depend on who is asked and how (Quinlan et al. 2013). No inter-rater (e.g. kappa) or cross-institution agreement statistic was found; Delphi studies report percentage agreement and between-round stability, which reflect convergence toward consensus, not reliability.
+- **Physics:** the physics papers found (Harrison & Serbanescu 2017; Serbanescu 2017) reframe difficulties already established by physics education research (Newton's first law; measurement uncertainty, the latter already proposed by Wilson et al. 2010) as threshold concepts, and find them "too many to count".
+- **Interventions:** a few small, immediate-outcome studies show that teaching a hard concept helps (Aptyka et al. 2025, Grade 10 biology; Ma et al. 2025, N = 30, clinical medicine). None compares a "threshold" concept with a comparable non-threshold one, and none measures transfer.
+
 ### AI opportunity
-Use AI to propose candidate threshold concepts from expert interviews and learner data, but require empirical validation.
+Use AI to propose candidate threshold concepts from expert interviews and learner data, but require empirical validation. Treat an AI-proposed threshold concept as a candidate bottleneck and test it with the same instruments as any other (§5.5, §5.6, Phase 3). "Threshold" status adds value only if crossing it predicts later performance on integrated problems beyond what prerequisite mastery predicts.
 
 ### Questions to research next
-- Does “threshold concept” add predictive value beyond bottlenecks, misconceptions and prerequisite graphs?
+- Does mastering a candidate threshold concept predict later performance on integrated problems better than mastering an equally difficult non-threshold concept, controlling for prerequisite knowledge?
 - Can candidate thresholds be identified from longitudinal learning data?
 - Are threshold concepts stable across instructors and curricula?
 
@@ -570,9 +577,13 @@ Also read one critique before adopting the construct operationally.
 ## 5.12 LLM-Based Tutoring — **delivery layer, not the theory of learning**
 
 ### Current evidence signal
-The field is promising but much younger than ITS. A 2025 randomized controlled trial in an undergraduate physics course reported substantially higher learning gains in less time with a carefully designed AI tutor than with the study’s in-class active-learning condition. Crucially, the tutor was **deliberately engineered around evidence-based pedagogical practices**; the result should not be generalized to arbitrary chatbots.
-
-Recent systematic reviews also identify risks: over-reliance, technical unreliability, assessment problems, privacy, and lack of rigorous long-term evidence.
+Graded evidence (see `research/explore-llm-tutoring.md`):
+- **University physics:** one crossover RCT (194 eligible students, randomized by peer-instruction group; 142 AI vs 174 in-class post-test observations) found higher immediate post-test scores than in-class active learning: a standardized regression coefficient of 0.63, and 0.73–1.3 SD from a quantile regression that corrects for the ceiling. The median time on task was 49 min, against an assumed 60 min in class (Kestin et al. 2025). The AI condition also changed pacing, setting and delivery, used pre-written solutions and a platform that stepped students through each part, and was tested in the same session.
+- **Unassisted outcomes elsewhere:** 0.23–0.27 SD in university lab RCTs (Fischer et al. 2025; Contractor & Reyes 2026, preprint, gain held at one week); no overall effect in two preregistered lab RCTs (Lehmann et al. 2024); about 0.06–0.08 SD per school year for a coaching tutor at scale (Oreopoulos & Low 2026); 0.24 SD in English (0.31 SD overall) in an individually randomized after-school trial with differential attrition (De Simone et al. 2025) and d = 0.36 in an 11-school trial analysed without clustering (Henkel et al. 2024), both with added learning time.
+- **Harm without guardrails:** an unconstrained GPT-4 raised practice scores but lowered the unassisted exam (Bastani et al. 2025); ChatGPT raised essay scores without knowledge gain or transfer (Fan et al. 2025).
+- **Use pattern matters:** asking for explanations helps; asking for solutions lowered understanding in one study (Lehmann et al. 2024) and left gains that did not persist in another (Contractor & Reyes 2026); explanations help most after an own attempt (Kumar et al. 2025).
+- **Syntheses are weak:** pooled g ≈ 0.6 (Liu et al. 2025; Wu et al. 2026; Strohmaier et al. 2026, preprint), but in an audit of primary studies from one such meta-analysis (Deng et al. 2025), only a small minority described the treatment precisely, described the control's activities and used a valid learning outcome (Weidlich et al. 2025); one meta-analysis has been retracted (Wang & Fan 2025).
+- **Transfer and delay:** one one-week unaided test (preprint) and a few end-of-intervention outcomes; the one transfer measure was null; no university-physics study.
 
 ### Design implication
 Do not ask “Which LLM should tutor students?” first. Ask:
@@ -584,15 +595,53 @@ Do not ask “Which LLM should tutor students?” first. Ask:
 5. What does the model do when uncertain?
 6. How do we measure transfer rather than immediate correctness?
 
+In the studies that worked, the sequence, the correct solutions, the common mistakes and the rule against giving answers were largely fixed in advance (Bastani et al. 2025; in Kestin et al. 2025 the sequence and solutions, with a softer answer rule), and the LLM generated the dialogue around them. Measure learning with the AI removed; practice or assisted performance can rise while learning falls.
+
 ### Questions to research next
 - Can LLMs conduct expert elicitation as well as tutoring?
 - Can a single model safely separate interviewer, diagnostician and tutor roles?
 - What should be deterministic/rule-based vs generative?
-- How much value comes from the LLM itself versus the instructional design wrapped around it?
+- With the pedagogical design held fixed, does an LLM tutor beat a non-generative implementation of the same design (static or rule-based hints) on an unassisted, delayed test?
+- How can a tutor get students to use it for explanation rather than solutions, given low engagement at scale (Oreopoulos & Low 2026)?
 
 ### Minimum reading if this branch is selected
 Kestin et al. (2025), **“AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting.”**  
 https://doi.org/10.1038/s41598-025-97652-6
+
+---
+
+## 5.13 Formative Assessment + Feedback — **the loop that checks whether instruction worked**
+
+### What it is
+Gathering evidence of what a learner currently understands during instruction and using it to adjust the next step, for the teacher, the tutor or the learner. Feedback is the learner-facing part; low-stakes quizzing and in-class concept questions are common vehicles.
+
+### Why it matters
+Diagnosis only helps when it drives a response (§5.6, Lichtenberger et al. 2024). This card is about what that response should look like.
+
+### Evidence / limitations
+Graded evidence (see `research/explore-formative-assessment.md`):
+- **Packaged formative assessment is smaller than its reputation.** The quoted 0.4–0.7 SD has no quantitative source (Bennett 2011). Rigorous school estimates are d = 0.20 (Kingston & Nash 2011; science 0.09), 0.26 (Klute et al. 2017) and 0.29 (Lee et al. 2020), with contested methods (Briggs et al. 2012).
+- **Feedback works when it carries information.** d = 0.48 overall; reinforcement 0.24, corrective 0.46, high-information 0.99 (Wisniewski et al. 2020). On computers, elaborated feedback 0.49 vs right/wrong 0.05 (Van der Kleij et al. 2015). In university physics, elaborated feedback helped most for low-prior-knowledge students (Heckler & Mikula 2016). More than a third of feedback interventions lowered performance (Kluger & DeNisi 1996).
+- **Timing is not a lever by itself.** Immediate vs delayed: g = 0.03 across 51 computer-based studies, few with delays of a day or more (Kandemir et al. 2026). Delayed homework feedback improved exam performance on new problems in one small university engineering course, in two experiments (Mullet et al. 2014).
+- **Low-stakes quizzing helps in classrooms** (g = 0.50, 222 studies; Yang et al. 2021), but transfer is weak once publication bias is corrected (Pan & Rickard 2018) and may not reach related items (Wooldridge et al. 2014).
+- **University physics:** Peer Instruction improves conceptual scores in cohort comparisons (Crouch & Mazur 2001; Lasry et al. 2008); discussion improves answers to new isomorphic questions (Smith et al. 2009, genetics). Causal higher-education evidence is limited (Morris et al. 2021).
+- **Transfer:** one small university classroom study with new exam problems (Mullet et al. 2014, engineering); immediate near transfer to isomorphic questions in genetics (Smith et al. 2009); no delayed-transfer study in physics.
+
+### AI opportunity
+The tutor's feedback policy has better evidence than most of its other choices:
+- elaborated, task- and process-level feedback that explains why, not right/wrong alone and not praise or comments about the person;
+- more explanation for learners with low prior knowledge, less for strong ones (Heckler & Mikula 2016; cf. expertise reversal, §5.8);
+- an attempt before any feedback, with answers withheld until then (§5.9, Bastani et al. 2025);
+- timing chosen by design and tested, not assumed to be "as fast as possible";
+- quizzes with varied items, not only repeats of practised ones, and judged on transfer.
+
+### Questions to research next
+- Does elaborated feedback from an LLM tutor improve delayed transfer in physics, or only the next answer?
+- Does delaying feedback on physics homework improve transfer, as it did in engineering (Mullet et al. 2014)?
+- Which feedback content (principle, condition check, worked step) best carries a decoded expert operation to the learner?
+
+### Minimum reading if this branch is selected
+Wisniewski, Zierer & Hattie (2020), **"The Power of Feedback Revisited."** https://doi.org/10.3389/fpsyg.2019.03087
 
 ---
 
@@ -782,7 +831,7 @@ Convert decoded operations into several interventions:
 - predict-then-observe discriminating cases;
 - problem solving before instruction (contrasting cases, then instruction built on students' attempts).
 
-Randomize or counterbalance where feasible. Treat order (explore first vs model first) as a factor, not a fixed default; the evidence is split by learner level and element interactivity (Sinha & Kapur 2021; Ashman et al. 2020).
+Randomize or counterbalance where feasible. Treat order (explore first vs model first) as a factor, not a fixed default; the evidence is split by learner level and element interactivity (Sinha & Kapur 2021; Ashman et al. 2020). Hold feedback constant across arms (elaborated, same timing) and report it; average effects of computer-based feedback range from 0.05 (right/wrong) to 0.49 (elaborated) across studies (Van der Kleij et al. 2015), so arms that differ in feedback would confound the comparison.
 
 Measure:
 - immediate performance;
@@ -800,6 +849,7 @@ Only after Phases 1–4 identify useful signals:
 - formalize knowledge components / mental operations;
 - introduce knowledge tracing or another explicit learner model;
 - judge it by a learning experiment against a simple mastery rule (N-correct-in-a-row or a moving average), with delayed transfer as the outcome, not by predictive accuracy;
+- if an LLM delivers the tutoring, compare it with the same design delivered without generation (static or rule-based), on an unassisted, delayed test, and report uptake; LLM effects shrink or vanish once the AI is removed at test, pacing is matched or students must choose to use it (Bastani et al. 2025; Lehmann et al. 2024; Oreopoulos & Low 2026).
 - define tutoring policies;
 - then optimize personalization.
 
@@ -848,7 +898,9 @@ Do not start with a complex adaptive model before validating what should be repr
 - Do **not** use concept inventories outside their validated purpose without checking validity; most are validated for class-level evaluation, not for diagnosing or grading individual students.
 - Do **not** assume higher predictive accuracy in a student model means better pedagogy.
 - Do **not** assume an unconstrained chatbot inherits the evidence base of intelligent tutoring systems.
+- Do **not** measure learning while the AI is still available; assisted or practice performance can rise while unassisted performance falls.
 - Do **not** evaluate only immediate post-test performance; include retention and transfer.
+- Do **not** assume more or faster feedback is better; over a third of feedback interventions lowered performance, and in computer-based studies immediate vs delayed feedback makes no difference on average (few used delays of a day or more).
 - Do **not** assume experts or instructors know which difficulties are common; check against student response data.
 
 ---
@@ -859,7 +911,7 @@ Do not start with a complex adaptive model before validating what should be repr
 2. **CTA offers a more mature toolkit for extracting expert cognition.** Combining it with DtD is likely more defensible than using DtD interviewing alone. No physics or transfer evidence yet; start with think-aloud on performed tasks plus retrospective CDM probes.
 3. **Physics is a strategically strong first domain.** It offers classic expert–novice findings, validated misconception instruments, structured problems and objective checks. Expert–novice differences are well replicated but form a continuum; instruction built on them has immediate, not yet delayed-transfer, evidence.
 4. **Classical ITS research should be treated as required prior art.** Meta-analytic evidence for ITS is much stronger than the current evidence for generic LLM tutors. Its large effects are on tests aligned to the tutor; on standardized tests and at scale they are about 0–0.2 SD.
-5. **Recent AI-tutoring evidence is encouraging but narrow.** Strong results have come from carefully engineered pedagogical systems, not generic “ask an LLM” interactions.
+5. **Recent AI-tutoring evidence is encouraging but narrow.** Strong results have come from carefully engineered pedagogical systems, not generic “ask an LLM” interactions. The large result (Kestin et al. 2025) is immediate and bundles the AI with self-pacing and pre-structured steps; at scale and with the AI removed at test, effects are small or null, and syntheses of ChatGPT studies rest on weak designs.
 6. **A learner model should be explicit enough to inspect and test.** Conversational memory alone is a weak scientific foundation for claims of personalization.
 7. **Knowledge of student difficulties is only partly held by content experts.** University physics TAs miss many common difficulties that concept-inventory data reveal, and instructors score no better. Knowing students' common wrong answers predicts gains beyond subject knowledge, though only correlationally. Seed the PCK layer from student data and let teachers review it.
 
@@ -1021,6 +1073,25 @@ These are starting anchors, not a complete bibliography.
 - Koedinger, Stamper, McLaughlin & Nixon (2013) — KC-based tutor redesign: https://doi.org/10.1007/978-3-642-39112-5_43
 - Huang et al. (2021) — multi-method data-driven tutor redesign: https://doi.org/10.1145/3448139.3448155
 - Slavin (1987) — mastery learning reconsidered: https://doi.org/10.3102/00346543057002175
+- Black & Wiliam (1998) — assessment and classroom learning: https://doi.org/10.1080/0969595980050102
+- Bennett (2011) — formative assessment, a critical review: https://doi.org/10.1080/0969594X.2010.513678
+- Kingston & Nash (2011) — formative assessment meta-analysis: https://doi.org/10.1111/j.1745-3992.2011.00220.x
+- Briggs et al. (2012) — critique of the Kingston & Nash meta-analysis: https://doi.org/10.1111/j.1745-3992.2012.00251.x
+- Klute et al. (2017) — formative assessment in elementary grades, REL Central (ERIC ED572929)
+- Lee et al. (2020) — formative assessment in US K–12, systematic review: https://doi.org/10.1080/08957347.2020.1732383
+- Adesope, Trevisan & Sundararajan (2017) — practice-test meta-analysis: https://doi.org/10.3102/0034654316689306
+- Kluger & DeNisi (1996) — feedback intervention meta-analysis: https://doi.org/10.1037/0033-2909.119.2.254
+- Hattie & Timperley (2007) — the power of feedback: https://doi.org/10.3102/003465430298487
+- Wisniewski, Zierer & Hattie (2020) — feedback meta-analysis: https://doi.org/10.3389/fpsyg.2019.03087
+- Van der Kleij, Feskens & Eggen (2015) — computer-based feedback meta-analysis: https://doi.org/10.3102/0034654314564881
+- Heckler & Mikula (2016) — feedback complexity in physics practice: https://doi.org/10.1103/PhysRevPhysEducRes.12.010134
+- Kandemir et al. (2026) — feedback timing meta-analysis: https://doi.org/10.1007/s10648-026-10117-8
+- Mullet et al. (2014) — delayed feedback and transfer in engineering: https://doi.org/10.1016/j.jarmac.2014.05.001
+- Yang et al. (2021) — classroom quizzing meta-analysis: https://doi.org/10.1037/bul0000309
+- Pan & Rickard (2018) — transfer of test-enhanced learning: https://doi.org/10.1037/bul0000151
+- Crouch & Mazur (2001) — Peer Instruction, ten years: https://doi.org/10.1119/1.1374249
+- Smith et al. (2009) — peer discussion and isomorphic questions: https://doi.org/10.1126/science.1165919
+- Morris, Perry & Wardle (2021) — feedback in higher education, systematic review: https://doi.org/10.1002/rev3.3292
 - Kulik & Fletcher (2016) — ITS meta-analysis: https://doi.org/10.3102/0034654315581420
 - VanLehn (2011) — human, step-based and answer-based tutoring compared: https://doi.org/10.1080/00461520.2011.611369
 - Ma, Adesope, Nesbit & Liu (2014) — ITS meta-analysis: https://doi.org/10.1037/a0037123
@@ -1033,7 +1104,31 @@ These are starting anchors, not a complete bibliography.
 - Bastani et al. (2025) — GPT-4 tutoring and unassisted exam performance, field RCT: https://doi.org/10.1073/pnas.2422633122
 - Pardos & Bhandari (2024) — ChatGPT vs human hints: https://doi.org/10.1371/journal.pone.0304013
 - Létourneau et al. (2025) — systematic review of AI-driven K–12 ITS: https://doi.org/10.1038/s41539-025-00320-7
+- Lehmann, Cornelius & Sting (2024) — LLM use and learning in programming, lab RCTs: arXiv 2409.09047
+- Contractor & Reyes (2026) — generative AI access and unaided learning, randomized: arXiv 2607.08849
+- Fischer, Rau & Rilke (2025) — AI tutor access and timing, lab RCT: https://docs.iza.org/dp18338.pdf
+- Kumar, Rothschild, Goldstein & Hofman (2025) — LLM explanations in math learning: https://doi.org/10.1007/978-3-031-98459-4_5
+- Fan et al. (2025) — "metacognitive laziness", ChatGPT in writing: https://doi.org/10.1111/bjet.13544
+- Stadler, Bannert & Sailer (2024) — LLM vs web search in scientific inquiry: https://doi.org/10.1016/j.chb.2024.108386
+- Melumad & Yun (2025) — LLM syntheses vs web search and depth of learning: https://doi.org/10.1093/pnasnexus/pgaf316
+- Darvishi et al. (2024) — AI assistance and student agency: https://doi.org/10.1016/j.compedu.2023.104967
+- Oreopoulos & Low (2026) — Khanmigo two-year cluster RCT: https://doi.org/10.26300/kner-hv33
+- Henkel et al. (2024) — AI math tutor in Ghana: https://doi.org/10.1007/978-3-031-64315-6_34
+- De Simone et al. (2025) — GPT-4 after-school programme in Nigeria: https://doi.org/10.1596/1813-9450-11125
+- Nie et al. (2025) — offering GPT-4 in a massive coding course: https://doi.org/10.1145/3698205.3733960
+- Wang et al. (2025) — Tutor CoPilot RCT: https://doi.org/10.26300/81nh-8262
+- Deng et al. (2025) — ChatGPT meta-analysis: https://doi.org/10.1016/j.compedu.2024.105224
+- Weidlich, Gašević, Drachsler & Kirschner (2025) — critique of ChatGPT efficacy studies: https://doi.org/10.1111/jcal.70105
 - Kestin et al. (2025) — AI tutoring RCT in undergraduate physics: https://doi.org/10.1038/s41598-025-97652-6
+- Meyer & Land (2005) — threshold concepts and troublesome knowledge (2): https://doi.org/10.1007/s10734-004-6779-5
+- Meyer & Land (2006) — *Overcoming Barriers to Student Understanding*: https://doi.org/10.4324/9780203966273
+- Rowbottom (2007) — demystifying threshold concepts: https://doi.org/10.1111/j.1467-9752.2007.00554.x
+- Salwén (2021) — threshold concepts, obstacles or scientific dead ends?: https://doi.org/10.1080/13562517.2019.1632828
+- Barradell (2013) — identifying threshold concepts, methods review: https://doi.org/10.1007/s10734-012-9542-3
+- Quinlan et al. (2013) — methodological challenges in threshold-concept research: https://doi.org/10.1007/s10734-013-9623-y
+- Nicola-Richmond et al. (2018) — measuring threshold crossing, synthesis: https://doi.org/10.1080/07294360.2017.1339181
+- Aptyka, Fiedler & Großschedl (2025) — threshold-concept instruction in evolution: https://doi.org/10.1002/sce.21977
+- Ma et al. (2025) — threshold concepts in clinical simulation, randomized: https://doi.org/10.3389/fmed.2025.1690297
 - Lovett et al. (2023), _How Learning Works: Eight Research-Based Principles for Smart Teaching_, 2nd ed. — useful umbrella reference, **optional**, not part of the mandatory reading pack.
 
 ---
