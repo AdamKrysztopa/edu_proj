@@ -1,0 +1,195 @@
+# Experiment: AI-assisted CTA elicitation → novice transfer, one physics topic
+
+**Question:** What is the smallest defensible study showing that AI-assisted CTA elicits expert knowledge that improves novice transfer in one university physics topic?
+
+**Verdict:** a gated two-stage design. Stage A is a within-expert elicitation study with 12 physicists, comparing ordinary explanation, think-aloud trace alone, AI-led probes and human-led probes. Stage B runs only if the Stage A gate passes: a two-arm individually randomized trial with about 370 first-year students and **delayed transfer** as the primary outcome. No rating on the map changes; this adds a design to §9 Phase 2. The `methods-critic` review found no fatal flaw and six major threats; the fixes are applied below (see "Review").
+
+**§9 kill criteria:** none met yet. Phase 1 has no bottleneck data. The design therefore starts with a small Phase 1 check (K0 below) that can stop the study before any expert is recruited.
+
+Baseline allowed to move:
+- **§9 Phase 2** lists four elicitation arms and four measures, including "whether novices actually benefit from the recovered operations".
+- **§10 RQ1** (can an AI interviewer recover tacit operations absent from ordinary materials), **RQ2** (reproducible across experts, observable in performance) and **RQ4** (does teaching the operation improve transfer).
+- **§5.2 "Provisional method for physics":** think-aloud while solving, then retrospective CDM-style probes over the trace, then comparison across experts. AI probes run after the task, never during it.
+- **§11**: no fluency-only or immediate-only evidence; expert verbalization and LLM reconstructions are not trusted without validation.
+
+Search: OpenAlex REST API (the `openalex` MCP server is not loaded in this session), Unpaywall and publisher full text for effect sizes. Zotero's local API responded but holds no items on physics education, think-aloud, worked examples, CTA or AI interviewing.
+
+## Design
+
+### Topic
+Introductory university mechanics: **selecting and combining conservation principles** (energy, momentum, and energy plus momentum in multi-stage problems such as collisions followed by motion). Reasons:
+- principle selection is the canonical expert–novice difference in physics (Chi, Feltovich & Glaser 1981);
+- instruction that targets it has precedents to compare against (Dufresne et al. 1992; Docktor et al. 2015);
+- a misconception instrument exists for the topic (EMCS; Singh & Rosengrant 2003).
+
+### K0: Phase 1 check (before Stage A)
+Take about 100 existing exam solutions to the course's conservation-law problems, anonymized and used with ethics approval for secondary analysis. Code each error as one of: prerequisite or maths; principle selection or representation; other. Two coders; report κ.
+**Stop** if fewer than 30% of errors are principle selection or representation. That meets the §9 Phase 1 kill criterion for this topic ("bottlenecks explained mostly by ordinary prerequisite knowledge"). Choose another topic or stop.
+The problems with the highest selection/representation error rates become the DtD step-1 bottleneck.
+
+### Stage A: elicitation (within-expert)
+
+**Participants.** 12 physicists who have taught or examined the course topic, plus 2 pilot experts used only to build the codebook. Twelve lies in the 9–17 range at which code saturation was reached in homogeneous interview samples (Hennink & Kaiser 2022, outside physics). Saturation is checked with the Guest, Namey & Chen (2020) run-length method. Recruitment extends to 16 if the last 3 experts still add more than 5% new operations.
+
+**Session order per expert** (fixed, so that the baseline is not contaminated):
+1. **Ordinary explanation** (§9 arm 1). Before anything else, the expert writes a worked explanation of two bottleneck problems "for a first-year student".
+2. **Think-aloud solving** (§9 arm 4). Non-directed think-aloud instructions only, on four new problems (sets A and B, two each), with the written and diagram work captured on a tablet. No probing, because describe/explain prompts during the task are reactive (Fox, Ericsson & Best 2011).
+3. **Retrospective CDM-style probes** over the transcript and captured work: set A by one interviewer and set B by the other (§9 arms 2 and 3). The AI interviewer is an LLM running a fixed probe script. The human is a trained interviewer running the same script. Probes cover cues noticed, alternatives rejected, checks, anomalies and "what would a novice miss here?". Both see the same transcript and scans, and both get a hard cap of 20 minutes per problem set, so that the AI cannot win by simply asking more.
+   - Interviewer × problem set × order is counterbalanced: 4 sequences × 3 experts. Session order is a term in the estimate, because the second probe session is primed by the first.
+   - The model, prompt and temperature are frozen and logged. Both interviewers follow the same rule for unscripted follow-ups: at most one follow-up per scripted probe, restating the expert's own words. With one human interviewer, the claim is scoped to "vs this interviewer".
+
+The decoding interview (§5.1) is **not** an arm. It is deferred to a follow-up comparison (PROGRESS.md "open evidence gaps").
+
+**Coding.**
+- Unit: a *mental operation*, meaning a cue, decision, representation choice, check or heuristic that a novice could be taught.
+- Before coding, interviewer turns are removed and expert utterances segmented, so that coders cannot tell from question style which interviewer ran a session. Blinding will not be complete (expert replies may echo the question) and is checked: coders guess the condition for 20 sessions, and the guess rate is reported.
+- Two coders double-code 25% of sessions before single-coding the rest, with a target of ≥ 0.70 on each agreement statistic:
+  - Krippendorff's α for identifying and segmenting operations;
+  - κ for the status tags below;
+  - κ for matching operations across experts ("is this the same operation?").
+- The ordinary-material baseline is the experts' explanations **plus** the course textbook chapter and lecture notes. An operation counts as *absent* only if coders judge that it applies to the explained problems and appears in none of these.
+- Each operation is tagged by **source** (explanation / trace-only / AI probe / human probe) and by **status**:
+  - *trace-only*: extracted from the think-aloud and written work by a coder who has not seen the probe transcripts;
+  - *probe-added, performed*: named first in a probe, then corroborated in the trace by a third coder. That coder is blind to interviewer. Their list is mixed with decoy operations taken from other experts and other problems, and the false-corroboration rate on the decoys is reported;
+  - *reported only*: named in a probe, with no corroboration in the trace;
+  - *contradicted*: the trace shows the expert doing something else.
+- **Shared** means an operation is present in at least 3 of the 12 experts.
+
+**Outcomes.**
+1. Per expert and interviewer: the number of *performed, shared* operations that are absent from the ordinary explanations.
+2. The *contradicted* and *reported-only* rates among probe-elicited operations, per interviewer. This is the §11 check for plausible-but-false reconstruction.
+3. Importance ratings, given one week later by *other* experts who are blind to each operation's source.
+
+With 12 experts, the AI–human difference is **estimated** (paired means with 95% CI), not tested. Stage A is an estimation and gating study.
+
+**K1: Stage A gate (pre-registered).**
+- (a) The AI-assisted pipeline (trace plus AI probes) yields **at least 3** performed, shared operations that are absent from the ordinary material.
+- (b) **At least 2** of those are *probe-added by the AI*, not trace-only.
+- (c) The upper bound of the 95% CI for the AI-minus-human contradicted rate is **no more than 15 percentage points**.
+
+Outcomes:
+- If (a) or (c) fails, RQ1 is answered negatively for this topic and Stage B does not run.
+- If only (b) fails, Stage B may still run. Its claim is then restated as "trace-based CTA", and the AI question counts as a null.
+
+The thresholds are judgment calls. They are fixed before data collection, not derived from literature.
+
+### Stage B: learning (two-arm RCT)
+
+**Participants.** First-year students in the university mechanics course, randomized individually and stratified by pretest, in a graded-for-completion online module run before the topic's exam.
+
+**Conditions.** Both arms get the same four worked examples with self-explanation prompts, delivered as a **static** module with no LLM tutor, so that §5.12 delivery effects cannot confound the result. The two arms are matched for word count (±10%) and allotted time (2 × 40 min).
+- **Control (strong):** worked examples built from the experts' *ordinary explanations* in Stage A, edited by the same instructional designer. This is the expert-authored baseline of Feldon et al. (2010), not a lecture baseline.
+- **Treatment:** the same examples, plus the performed, shared operations recovered by the **AI-assisted pipeline** that are absent from the ordinary explanations. They are written into the steps and self-explanation prompts. The control arm's extra words go into elaborating steps already present.
+
+**Measures.**
+- **Covariate:** a topic pretest and the student's prior midterm score.
+- **Primary: delayed transfer, 2–3 weeks after the module.** Problems that share the principle structure of the training problems but differ in surface context, plus problems that need the same principles in a new combination.
+  - Written by two physics instructors who took no part in Stage A or the materials. They work from a specification of target principles only, never from the operations list, which guards against assessment alignment (§5.9, Kulik & Fletcher 2016).
+  - **Scored for correctness only:** the correct principle set, correct equations and correct answer. The rubric does not reward write-up steps that the treatment teaches, which also keeps scorers blind to arm.
+  - Items are piloted on non-participants, targeting 30–70% correct, and reliability is reported.
+  - The delayed test is a credited course activity. The missing-data rule (multiple imputation under missing at random, plus a worst-case bound) is fixed in advance.
+- **Secondary:**
+  - a score on the published problem-solving rubric of Docktor et al. (2016), https://doi.org/10.1103/physrevphyseducres.12.010130, which is *not* blind to arm;
+  - immediate and delayed performance on near problems;
+  - the same selected EMCS items at pretest and delayed test, analysed at arm level and labelled exploratory. The full test has α ≈ 0.75 in calculus-based courses (Singh & Rosengrant 2003), but no validation exists for item subsets;
+  - a Chi-style problem-categorization task, given *after* the transfer test so it cannot prime it;
+  - logged time on task and self-explanation prompts answered;
+  - at the delayed test, "did you see the other version?".
+
+**Analysis and power.**
+- ANCOVA on delayed transfer, pre-registered.
+- **Smallest effect size of interest (SESOI): d = 0.30.** This is a pre-registered judgment of the smallest effect worth the elicitation cost, not an estimate of the likely effect.
+- For α = .05 two-sided, power .80, a conservative pretest r = .4 (no source for this population) and 20% attrition: **≈ 183 per arm, ≈ 370 randomized.**
+- A single course of 200 students gives a minimum detectable effect (MDE) of about d = 0.41. If enrolment is below 370, pool two semesters or two sites; do not proceed underpowered.
+- **Compliance** is fixed in advance: at least 60 of the 80 minutes logged, and at least 75% of self-explanation prompts answered. The intention-to-treat (ITT) estimate is primary. A complier estimate (CACE) is secondary.
+
+**K2: Stage B kill criterion.** Applies only if at least 70% of students in each arm meet the compliance threshold. Otherwise the run counts as a failed dose, not a null.
+- **Kill:** the upper bound of the 90% ITT CI for delayed transfer is below d = 0.30 (observed d ≲ 0.12 at the planned N). Stop using elicited operations as instructional content for this topic, and record this in the map as a null on RQ4.
+- **Inconclusive** (observed d between about 0.12 and 0.21): run one replication semester, then decide once on the pooled estimate.
+
+**Ethics.**
+- The control arm is ordinary, good-quality expert material, so it is no weaker than current teaching.
+- After the delayed test, every student gets the treatment materials before the exam.
+- The module is earned by completion, not score. Research consent is separate from credit: non-consenters do the same module and their data are not used. The instructor does not learn who consented.
+- K0 uses anonymized exam scripts under ethics approval for secondary use.
+- Students' and experts' consent, pseudonymized data and recording consent for experts.
+- Transcripts sent to an LLM provider need a data-processing agreement or a locally hosted model.
+
+## Evidence
+
+### Anchors for design choices
+
+| Source | Design | N | Domain | Outcome type | Used for |
+|---|---|---|---|---|---|
+| Hennink & Kaiser (2022), https://doi.org/10.1016/j.socscimed.2021.114523 | Systematic review of 23 empirical and modelling tests of saturation | 23 studies | Qualitative health and social research; **outside physics and education** | Saturation, not learning | Code saturation was reached at 9–17 interviews in homogeneous samples with narrow aims; "meaning" saturation needed more. Sets expert N = 12, extendable to 16. |
+| Guest, Namey & Chen (2020), https://doi.org/10.1371/journal.pone.0232076 | Methods paper, validated by bootstrapping 3 datasets | 3 datasets | Qualitative interviews; **outside physics** | Saturation | Stopping rule (base size, run length, new-information threshold). |
+| Fox, Ericsson & Best (2011), https://doi.org/10.1037/a0021663 | Meta-analysis | 94 studies | Lab cognitive tasks; **outside physics** | Reactivity of concurrent reports | Non-directed think-aloud leaves accuracy unchanged but adds time. Describe/explain prompts change (improve) performance, so there is no probing during solving. Retrospective probing was not tested. |
+| Lortie-Forgues & Inglis (2019), https://doi.org/10.3102/0013189X19832850 | Review of RCT effect sizes | 141 RCTs, 1,222,024 students | K–12; **not university, not physics** | Standardized achievement | Mean effect 0.06 SD, mean CI width 0.30 SD. Reason not to power for a large effect. |
+| Kraft (2020), https://doi.org/10.3102/0013189X20912798 | Methodological review with empirical benchmarks | 747 RCTs, 1,942 effect sizes | Pre-K–12; **not university, not physics** | Standardized achievement only | Cohen's benchmarks are miscalibrated for field education effects, and cost should be weighed. Consistent with a cost-based SESOI; on Kraft's schema d = 0.30 is already "large". |
+| Kestin et al. (2025), https://doi.org/10.1038/s41598-025-97652-6 | Crossover RCT, randomized by 2–3-student peer group | 194 | **University physics** | Immediate post-test | Effect 0.63 SD (0.73–1.3 by quantile regression) for a pedagogy-engineered AI tutor over in-class active learning. Immediate only, and a different manipulation: an upper reference, not a power anchor. |
+| Feldon et al. (2010), https://doi.org/10.1002/tea.20382 | Controlled, double-blind comparison | 314 | Undergraduate biology; **outside physics** | Withdrawal, lab-report quality (in-course) | Precedent for a CTA-derived vs expert-authored instruction contrast; the control arm here copies it. |
+
+### Physics precedents for teaching principle selection
+
+| Source | Design | N | Domain | Outcome type | Finding |
+|---|---|---|---|---|---|
+| Dufresne et al. (1992), https://doi.org/10.1207/s15327809jls0203_3 | Three laboratory experiments | Not in abstract | **Physics novices** (population not checked; closed access) | Similarity judgments; problem solving (immediate) | Constraining novices to expert-like, hierarchical, principle-first analyses made their similarity judgments more expert-like and improved problem solving. |
+| Docktor et al. (2015), https://doi.org/10.1103/PhysRevSTPER.11.020106 | Quasi-experiment, 3 schools, class-level assignment | 84 students | **High-school physics** (not university) | End-of-unit tests | Conceptual Problem Solving classes outscored controls by 10–20% on problem-solving and conceptual tests, significant at some schools only. On problem categorization, all groups chose the superficially similar problem more often than the one sharing a principle. |
+| Chi, Feltovich & Glaser (1981), https://doi.org/10.1207/s15516709cog0502_2 | Lab studies, expert–novice | Small | **Physics** | Categorization | Novices sort by surface features, experts by principle. Basis for the topic choice and the mechanism check. |
+| Singh & Rosengrant (2003), https://doi.org/10.1119/1.1571832 | Instrument development: 25 items plus interviews | Intro physics students | **Physics** | Conceptual understanding | EMCS, a test of energy and momentum concepts; α ≈ 0.75 (calculus-based), 0.68 (algebra-based). Secondary, exploratory. |
+
+### AI-led interviewing (for §9 arm 3)
+
+| Source | Design | N | Domain | Outcome type | Finding |
+|---|---|---|---|---|---|
+| Chopra & Haaland (2026), https://doi.org/10.65864/ch6grwpore | Working paper (CESifo); multiple interview studies | Not in abstract | Economics respondents; **not experts, not physics** | Interview quality metrics; prediction of behaviour at 6 months | AI-led interviews were thematically richer than other at-scale qualitative methods, mainly because of dynamic probing, and predicted behaviour six months later. |
+| Geiecke & Jaravel (2026), https://doi.org/10.2139/ssrn.4974382 | Methods paper with comparison to human experts; DOI is the 2024 SSRN preprint, forthcoming in *Review of Economic Studies* per the 2026 replication package (https://doi.org/10.5281/zenodo.21702419) | Not in abstract | Economics and policy; **not physics** | Quality ratings | AI-led interviews received high ratings across decision-factor, political-view, mental-state and mental-model applications. |
+| Wuttke et al. (2025), https://doi.org/10.18653/v1/2025.latechclfl-1.17 | Small randomized comparison, AI vs human interviewer | Small (students) | Political opinion; **not physics** | Guideline adherence, response quality | Data quality was comparable. Error rates were similar, but the kinds of errors differed. |
+
+None of these tests an AI interviewer against **observed task performance**, and none elicits expert problem-solving cognition. They support only feasibility and interview quality. That is why Stage A validates operations against the think-aloud trace rather than against interview richness.
+
+## Against
+
+- **The learning effect may be small.** Large commissioned K–12 RCTs average 0.06 SD on standardized achievement (Lortie-Forgues & Inglis 2019). The closest physics test of teaching expert decision models (instructor-built, not CTA-elicited) found no direct effect (Jeong et al. 2024, https://doi.org/10.1007/s10639-024-12962-y; quasi-experimental, N = 390, small dose; see `explore-cognitive-task-analysis.md`). In Docktor et al. (2015), a three-problem categorization test showed no significant advantage for Conceptual Problem Solving (2 schools, n = 54; +2% and +11%), and all groups still favoured surface matches. The authors attribute this to test difficulty, so the Chi-style mechanism check here may be insensitive. Stage B can therefore come back inconclusive even at N ≈ 370. K2 is stated so that a clear null still ends the branch.
+- **"Explicitness" confound.** The treatment adds principle-focused content. Principle-first scaffolds have helped novices in two physics studies (Dufresne et al. 1992; Docktor et al. 2015, high school), so a positive Stage B shows that the *elicited* operations help relative to ordinary expert material. It does not show that they beat a *published* strategy template. A third arm with a published template (Docktor-style CPS, or the expert decisions of Burkholder et al. 2020, https://doi.org/10.1103/physrevphyseducres.16.010123) would answer that at about 1.5× N. It is left out as not the smallest test of the stated question; see Open questions.
+- **AI-interviewer evidence is off-domain.** All of it comes from opinion and economic interviews, with outcomes of richness and ratings (Chopra & Haaland; Geiecke & Jaravel; Wuttke et al.). None comes from expert cognition or from validation against *task* performance. It justifies trying the arm, not expecting it to work.
+- **Stage A is small.** With 12 experts the AI–human difference is only estimated. Blinding coders to the interviewer is partial.
+- **Transfer is a researcher-written test.** Independent authors and a principles-only specification reduce the alignment problem, but this is not a standardized measure.
+
+## Review (`methods-critic`)
+
+Verdict before fixes: no fatal flaw, six major threats, would not run as designed; with fixes 1–6, would run. All 14 issues were applied above:
+
+1. **Rubric rewarded the taught write-up.** The primary score is now correctness only, and the rubric score is secondary.
+2. **K1 could pass without the AI contributing.** Added K1(b): at least 2 AI-probe-added operations, otherwise the claim is restated as trace-based CTA.
+3. **Circular "performed" check.** Added decoy operations and a reported false-corroboration rate; the coder is blind to interviewer.
+4. **No reliability check on "shared" or on the status tags.** Agreement statistics are now given for segmentation (α), the status tags (κ) and cross-expert matching (κ).
+5. **Baseline was narrow and uneven.** The baseline now includes the textbook and lecture notes, and an operation must apply to the explained problems to count as absent.
+6. **Dose and contamination could produce a false null.** Added a compliance threshold and a CACE estimate, made K2 conditional on at least 70% compliance, added a contamination question and made the delayed test credited, with a pre-set missing-data rule.
+
+The minor issues were also addressed:
+- EMCS is now given at pretest and delayed test and labelled exploratory.
+- The K1 contradicted-rate gate uses the CI bound.
+- K2 has a defined inconclusive zone.
+- The interviewer settings are frozen, both follow the same follow-up rule, and session order is a term in the estimate.
+- The transfer items are piloted against a floor effect.
+- Power is recomputed with r = .4, giving N ≈ 370.
+- Ethics lines were added.
+- The categorization task moves after the transfer test.
+
+## Implications for the map
+
+1. **§9 Phase 2.** Under "Measure", add a "Minimal first design" paragraph:
+   - K0 check on exam errors; Stage A with 12 experts, blind operation coding and validation against the trace; K1 gate; Stage B, a two-arm RCT on delayed transfer with SESOI d = 0.30 and about 370 students; K2 with its compliance condition and inconclusive zone.
+   - Note that the decoding interview arm is deferred.
+   - Link this note.
+2. **§9 Phase 2.** Add a **kill criterion** line matching K1 and K2 (Phase 2 has none today).
+3. **§14.** Add: Hennink & Kaiser (2022); Guest, Namey & Chen (2020); Lortie-Forgues & Inglis (2019); Kraft (2020); Dufresne et al. (1992); Docktor et al. (2015); Docktor et al. (2016); Singh & Rosengrant (2003); Chopra & Haaland (2026); Geiecke & Jaravel (2026); Wuttke et al. (2025).
+4. **No change** to any §4 rating, to §5.1 or to §5.2. The design uses the §5.2 provisional method unchanged.
+
+## Open questions
+
+These are only the ones that would change the design:
+- Is the course enrolment at one site at least 370 per offering? If not, Stage B needs two semesters or two sites, and that decides feasibility.
+- Should Stage B add a published-strategy arm? That would turn the claim from "better than ordinary expert material" into "better than the best known material" at about 1.5× N.
+- Does an item-level validation of EMCS for this population exist? If not, EMCS is dropped to an exploratory measure.

@@ -667,6 +667,16 @@ Measure:
 
 **Key research question:** Does AI uncover useful expert knowledge that ordinary teaching materials omit?
 
+**Minimal first design** (see `research/experiment-ai-assisted-cta-physics.md`; reviewed by `methods-critic`):
+- **Topic:** selecting and combining conservation principles in first-year university mechanics.
+- **K0:** code existing exam errors first. Stop if fewer than 30% are principle selection or representation (the Phase 1 kill criterion).
+- **Stage A:** 12 experts, within-expert. Order: ordinary explanation → non-directed think-aloud → retrospective probes, AI-led on one problem set and human-led on the other (counterbalanced, time-capped). Operations are coded blind to interviewer and validated against the trace, with decoys. "Absent" is judged against expert explanations plus textbook and lecture notes. The decoding-interview arm is deferred.
+- **Stage B:** a two-arm RCT, about 370 students. The control is worked examples built from the experts' ordinary explanations. The treatment adds validated operations from the AI-assisted pipeline, length- and time-matched and delivered statically. The primary outcome is delayed transfer, scored for correctness only; SESOI d = 0.30.
+
+**Kill criteria:**
+- **K1 (gate to Stage B):** at least 3 performed, shared operations absent from ordinary material, at least 2 of them added by AI probes, and the AI-minus-human contradicted rate (95% CI upper bound) no more than 15 points. If only the AI-added condition fails, Stage B tests trace-based CTA instead.
+- **K2 (after Stage B):** with compliance of at least 70%, an upper bound of the 90% CI for delayed transfer below d = 0.30 stops the use of elicited operations as instruction for this topic.
+
 ---
 
 ## Phase 3 — diagnose learner bottlenecks
@@ -803,6 +813,17 @@ These are starting anchors, not a complete bibliography.
 - Fox, Ericsson & Best (2011) — reactivity of verbal reports, meta-analysis: https://doi.org/10.1037/a0021663
 - Sullivan et al. (2014) — expert omissions revealed by CTA: https://doi.org/10.1097/acm.0000000000000224
 - Yates & Feldon (2011) — CTA method taxonomy: https://doi.org/10.1080/1463922x.2010.505269
+- Hennink & Kaiser (2022) — sample sizes for saturation, systematic review: https://doi.org/10.1016/j.socscimed.2021.114523
+- Guest, Namey & Chen (2020) — assessing thematic saturation: https://doi.org/10.1371/journal.pone.0232076
+- Lortie-Forgues & Inglis (2019) — effect sizes of large educational RCTs: https://doi.org/10.3102/0013189X19832850
+- Kraft (2020) — interpreting effect sizes of education interventions: https://doi.org/10.3102/0013189X20912798
+- Dufresne et al. (1992) — expert-like problem analyses for physics novices: https://doi.org/10.1207/s15327809jls0203_3
+- Docktor et al. (2015) — Conceptual Problem Solving in high-school physics: https://doi.org/10.1103/PhysRevSTPER.11.020106
+- Docktor et al. (2016) — physics problem-solving rubric: https://doi.org/10.1103/physrevphyseducres.12.010130
+- Singh & Rosengrant (2003) — energy and momentum concepts test (EMCS): https://doi.org/10.1119/1.1571832
+- Chopra & Haaland (2026) — AI-led qualitative interviews: https://doi.org/10.65864/ch6grwpore
+- Geiecke & Jaravel — robust AI-led interviews (2024 preprint; forthcoming, _Review of Economic Studies_): https://doi.org/10.2139/ssrn.4974382
+- Wuttke et al. (2025) — AI vs human conversational interviewing: https://doi.org/10.18653/v1/2025.latechclfl-1.17
 - Collins, Brown & Newman (1989) — cognitive apprenticeship
 - Posner et al. (1982) — conceptual change
 - Hestenes, Wells & Swackhamer (1992) — Force Concept Inventory: https://doi.org/10.1119/1.2343497

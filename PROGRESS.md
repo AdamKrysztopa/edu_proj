@@ -24,7 +24,7 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [ ] LLM-based AI tutoring
 
 ### Experiment design
-- [ ] `/branch experiment`: Phase 2 elicitation study, reviewed by `methods-critic`
+- [x] `/branch experiment`: gated two-stage design (K0 exam-error check → Stage A, 12 experts, AI vs human probes validated against the trace → K1 → Stage B, RCT with about 370 students on delayed transfer → K2). `methods-critic`: no fatal flaw; the six major fixes are applied. [note](research/experiment-ai-assisted-cta-physics.md)
 
 ## Minimum reading pack (§8)
 - [ ] Pace (2017), _The Decoding the Disciplines Paradigm_. **Read first:** controlled outcome data here could flip the DtD verdict back to keep.
