@@ -24,7 +24,7 @@
 - Served over HTTPS (a locally trusted certificate, e.g. `mkcert`) when the tablet connects over the network: browsers grant microphone access only on HTTPS or `localhost`.
 - Frontend: static HTML and plain JavaScript, no build step. Canvas with pointer events for drawing; `MediaRecorder` for audio (webm/opus).
 - Claude via the official `anthropic` Python SDK; structured output via `output_config.format` / `messages.parse` with Pydantic models.
-- Transcription behind a `Transcriber` interface. Default: OpenAI `whisper-1` with `verbose_json` segment timestamps and a physics vocabulary prompt. The model ID is pinned in config and logged. Segment timestamps are a hard requirement for any replacement.
+- Transcription behind a `Transcriber` interface. Default: ElevenLabs `scribe_v2` with a physics key-term list and word timestamps, grouped into segments at sentence ends and pauses over 0.8 s. OpenAI `whisper-1` (segment timestamps, vocabulary prompt) is kept for a pilot comparison on the same audio; the one with fewer physics-term errors is frozen. The model ID is part of the frozen configuration. Timestamps are a hard requirement for any replacement.
 
 ```
 instrument/
@@ -112,7 +112,7 @@ Measured: whether the session ran without intervention, AI turn latency (target 
 
 ## 9. Ethics and data
 
-The consent form names both processors: OpenAI receives audio, Anthropic receives transcripts and canvas images. Both need a data-processing agreement and retention settings acceptable to the ethics board before any real session. Pseudonymous IDs only; `sessions/` is git-ignored.
+The consent form names the processors: the frozen transcriber's provider (ElevenLabs, or OpenAI if whisper wins the pilot comparison) receives audio, Anthropic receives transcripts and canvas images. Each needs a data-processing agreement and retention settings acceptable to the ethics board before any real session; pilot consent names both audio providers. Pseudonymous IDs only; `sessions/` is git-ignored.
 
 ## 10. Changes to the experiment design
 
