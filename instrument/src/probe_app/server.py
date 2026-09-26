@@ -5,7 +5,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Callable, Literal
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import Body, FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -49,6 +49,10 @@ class StemBody(BaseModel):
     stem_id: str
 
 
+class StreamBody(BaseModel):
+    stream: str
+
+
 class AnchorBody(BaseModel):
     problem_id: str
     kind: Literal["segments", "canvas", "none"]
@@ -72,7 +76,7 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
             sessions[sid] = Session.load(root, sid, deps, clock)
         return sessions[sid]
 
-    def act(sid: str, fn: Callable[[Session], object], view: str = "console") -> dict:
+    def act(sid: str, fn: Callable[[Session], object], view: str | None = "console") -> dict:
         session = get(sid)
         with locks[sid]:
             before = session.state.model_copy(deep=True)
@@ -85,6 +89,8 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
                 if isinstance(e, (ValueError, KeyError, ConfigMismatch)):
                     raise HTTPException(400, str(e))
                 raise
+        if view is None:
+            return {"ok": True}
         return session.console_view() if view == "console" else session.expert_view()
 
     @app.get("/")
@@ -106,11 +112,22 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
 
     @app.get("/api/sessions/{sid}/console-view")
     def console_view(sid: str):
-        return get(sid).console_view()
+        return act(sid, lambda s: s.enforce_cap())
 
     @app.get("/api/sessions/{sid}/expert-view")
     def expert_view(sid: str):
-        return get(sid).expert_view()
+        return act(sid, lambda s: s.enforce_cap(), view="expert")
+
+    @app.post("/api/sessions/{sid}/recording/start")
+    def recording_start(sid: str, body: StreamBody):
+        parts = []
+        act(sid, lambda s: parts.append(s.recording_start(body.stream)), view=None)
+        return {"part": parts[0]}
+
+    @app.post("/api/sessions/{sid}/recording/chunk")
+    def recording_chunk(sid: str, stream: str, part: int, seq: int,
+                        data: bytes = Body(..., media_type="application/octet-stream")):
+        return act(sid, lambda s: s.recording_chunk(stream, part, seq, data), view=None)
 
     @app.get("/api/sessions/{sid}/snapshot/{pid}")
     def snapshot(sid: str, pid: str):
@@ -130,9 +147,10 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
         return act(sid, lambda s: s.keep_talking())
 
     @app.post("/api/sessions/{sid}/think-aloud/{pid}/end")
-    def think_end(sid: str, pid: str, audio: UploadFile = File(...), snapshot: UploadFile = File(...),
-                  strokes: str = Form("[]")):
-        a, p, st = audio.file.read(), snapshot.file.read(), json.loads(strokes)
+    def think_end(sid: str, pid: str, snapshot: UploadFile = File(...), strokes: str = Form("[]"),
+                  audio: UploadFile | None = File(None)):
+        a = audio.file.read() if audio is not None else None
+        p, st = snapshot.file.read(), json.loads(strokes)
         return act(sid, lambda s: s.end_think_aloud(pid, a, p, st), view="expert")
 
     @app.post("/api/sessions/{sid}/segments/{seg_id}")
@@ -160,10 +178,9 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
     def probe_end(sid: str):
         return act(sid, lambda s: s.end_probe())
 
-    @app.post("/api/sessions/{sid}/probe/{set_id}/audio")
-    def probe_audio(sid: str, set_id: str, audio: UploadFile = File(...)):
-        a = audio.file.read()
-        return act(sid, lambda s: s.upload_human_probe(set_id, a), view="expert")
+    @app.post("/api/sessions/{sid}/probe/finalize")
+    def probe_finalize(sid: str):
+        return act(sid, lambda s: s.finalize_human_probe())
 
     @app.post("/api/sessions/{sid}/human/marker")
     def marker(sid: str, body: MarkerBody):

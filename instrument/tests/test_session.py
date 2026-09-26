@@ -126,7 +126,7 @@ def test_human_arm_markers_upload_and_finish(tmp_path):
         s.answer_ai_text(0, "x")
     s.end_probe()
     assert s.state.phase == "probe_uploading"
-    s.upload_human_probe("A", b"audio")
+    s.finalize_human_probe(b"audio")
     assert [x.speaker for x in s.state.dialogue["A"]] == ["interviewer", "expert"]
     assert s.state.dialogue["A"][0].stem_id == "cues"
     assert s.state.phase == "trace_review" and s.state.probes_done == ["A"]
@@ -183,3 +183,64 @@ def test_data_session_refuses_uncommitted_instrument_changes(tmp_path, monkeypat
     pilot = Session.create(tmp_path, deps, expert_id="E02", cell=1, arms={"A": "ai", "B": "human"},
                            set_order=["A", "B"], pilot=True)
     assert pilot.manifest["git_dirty"] is True
+
+
+def test_think_aloud_audio_streams_in_parts_across_a_reload(tmp_path):
+    clock = FakeClock(10.0)
+    s = new_session(tmp_path, transcripts=[seg("before reload", 0.0), seg("after reload", 1.0)], clock=clock)
+    pid = s.start_think_aloud()
+    clock.advance(0.5)
+    part = s.recording_start(f"think_{pid}")
+    s.recording_chunk(f"think_{pid}", part, 0, b"aa")
+    s.recording_chunk(f"think_{pid}", part, 0, b"aa")
+    s.recording_chunk(f"think_{pid}", part, 1, b"bb")
+    clock.advance(30)
+    part2 = s.recording_start(f"think_{pid}")
+    s.recording_chunk(f"think_{pid}", part2, 0, b"cc")
+    s.end_think_aloud(pid, None, PNG, [])
+    assert s.store.path(f"audio/think_{pid}.part1.webm").read_bytes() == b"aabb"
+    assert [(x.text, x.start) for x in s.state.segments] == [("before reload", 10.5), ("after reload", 41.5)]
+
+
+def test_out_of_order_chunk_is_refused(tmp_path):
+    s = new_session(tmp_path)
+    pid = s.start_think_aloud()
+    part = s.recording_start(f"think_{pid}")
+    with pytest.raises(ValueError, match="before chunk 0"):
+        s.recording_chunk(f"think_{pid}", part, 1, b"x")
+
+
+def test_human_arm_uses_one_clock_despite_recorder_lag_and_pause(tmp_path):
+    clock = FakeClock()
+    s = new_session(tmp_path, arms={"A": "human", "B": "ai"}, clock=clock,
+                    transcripts=[seg("A1"), seg("A2"), seg("B1"), seg("B2"),
+                                 [RawSegment(start=99.1, end=101.0, text="What did you look at first?"),
+                                  RawSegment(start=409.5, end=412.0, text="The masses.")]])
+    through_think_aloud(s)
+    s.start_probe()
+    clock.advance(0.6)
+    part = s.recording_start("probe_A")
+    s.recording_chunk("probe_A", part, 0, b"audio")
+    clock.advance(99.4); s.human_marker("interviewer"); s.human_stem("A1", "cues")
+    clock.advance(10); s.pause(); clock.advance(300); s.resume()
+    clock.advance(0); s.human_marker("expert")
+    s.end_probe()
+    s.finalize_human_probe()
+    assert [(x.speaker, x.stem_id) for x in s.state.dialogue["A"]] == [("interviewer", "cues"), ("expert", None)]
+
+
+def test_cap_ends_both_arms_on_the_clock(tmp_path):
+    clock = FakeClock()
+    s = new_session(tmp_path, arms={"A": "human", "B": "ai"}, clock=clock,
+                    interviewer=[FakeResponse(turn_payload(problem_id="B1"))],
+                    transcripts=[seg("A1"), seg("A2"), seg("B1"), seg("B2")])
+    through_think_aloud(s)
+    s.start_probe()
+    clock.advance(1199)
+    assert not s.enforce_cap()
+    clock.advance(1)
+    assert s.enforce_cap() and s.state.phase == "probe_uploading"
+    s.finalize_human_probe()
+    s.start_probe()
+    clock.advance(1200)
+    assert s.enforce_cap() and s.state.phase == "done"

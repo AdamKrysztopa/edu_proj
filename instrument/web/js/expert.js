@@ -1,6 +1,6 @@
 const $ = (id) => document.getElementById(id);
 let sid = new URLSearchParams(location.search).get("session") || "";
-let stream = null, recorder = null, chunks = [], recStart = 0, strokes = [];
+let mic = null, live = null, answerRec = null, answerChunks = [], recStart = 0, strokes = [];
 let view = null, lastKey = "", busy = false, pending = null;
 
 async function api(path, opts = {}) {
@@ -13,18 +13,60 @@ function show(id) {
   for (const s of document.querySelectorAll("main > section")) s.hidden = s.id !== id;
 }
 
-function startRecording() {
-  chunks = [];
-  recorder = new MediaRecorder(stream, { mimeType: "audio/webm;codecs=opus" });
-  recorder.ondataavailable = (e) => chunks.push(e.data);
-  recorder.start(1000);
-  recStart = performance.now();
+const MIME = "audio/webm;codecs=opus";
+
+async function sendChunk(rec, seq, blob) {
+  const url = `/api/sessions/${sid}/recording/chunk?stream=${rec.stream}&part=${rec.part}&seq=${seq}`;
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    try {
+      const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: blob });
+      if (r.ok) return;
+      if (r.status < 500) { $("status").textContent = `Audio chunk refused (${r.status}). Tell the researcher.`; return; }
+    } catch (err) { /* network: retry */ }
+    $("status").textContent = "Audio upload retrying…";
+    await new Promise((res) => setTimeout(res, 1000 * attempt));
+  }
+  $("status").textContent = "Audio upload failed. Tell the researcher.";
 }
 
-function stopRecording() {
+async function startStream(streamName) {
+  const r = await fetch(`/api/sessions/${sid}/recording/start`, {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ stream: streamName }) });
+  if (!r.ok) { $("status").textContent = `Could not start recording (${r.status}).`; return; }
+  const rec = { stream: streamName, part: (await r.json()).part, seq: 0, uploads: Promise.resolve() };
+  rec.recorder = new MediaRecorder(mic, { mimeType: MIME });
+  rec.recorder.ondataavailable = (e) => {
+    if (!e.data.size) return;
+    const seq = rec.seq++;
+    rec.uploads = rec.uploads.then(() => sendChunk(rec, seq, e.data));
+  };
+  rec.recorder.start(1000);
+  recStart = performance.now();
+  live = rec;
+}
+
+function stopStream() {
+  const rec = live;
+  live = null;
+  if (!rec) return Promise.resolve();
   return new Promise((resolve) => {
-    recorder.onstop = () => resolve(new Blob(chunks, { type: "audio/webm" }));
-    recorder.stop();
+    rec.recorder.onstop = () => resolve(rec.uploads);
+    rec.recorder.stop();
+  });
+}
+
+function startAnswer() {
+  answerChunks = [];
+  answerRec = new MediaRecorder(mic, { mimeType: MIME });
+  answerRec.ondataavailable = (e) => answerChunks.push(e.data);
+  answerRec.start();
+}
+
+function stopAnswer() {
+  return new Promise((resolve) => {
+    answerRec.onstop = () => resolve(new Blob(answerChunks, { type: "audio/webm" }));
+    answerRec.stop();
+    answerRec = null;
   });
 }
 
@@ -75,7 +117,7 @@ $("status").addEventListener("click", () => { if (pending) send(pending.path, pe
 
 $("joinBtn").onclick = async () => {
   sid = sid || $("sid").value.trim();
-  stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  mic = await navigator.mediaDevices.getUserMedia({ audio: true });
   show("waiting");
   poll();
 };
@@ -83,10 +125,9 @@ $("joinBtn").onclick = async () => {
 $("doneBtn").onclick = async () => {
   if (busy) return;
   busy = true; $("doneBtn").disabled = true;
-  const audio = await stopRecording();
+  await stopStream();
   const snapshot = await new Promise((r) => pad.toBlob(r, "image/png"));
   const form = new FormData();
-  form.append("audio", audio, "think.webm");
   form.append("snapshot", snapshot, "snapshot.png");
   form.append("strokes", JSON.stringify(strokes));
   await send(`/think-aloud/${view.current_problem}/end`, form, "Saving…");
@@ -94,9 +135,9 @@ $("doneBtn").onclick = async () => {
 };
 
 $("talkBtn").onclick = async () => {
-  if (recorder && recorder.state === "recording") {
+  if (answerRec) {
     $("talkBtn").disabled = true;
-    const audio = await stopRecording();
+    const audio = await stopAnswer();
     const form = new FormData();
     form.append("audio", audio, "answer.webm");
     form.append("turn_index", String(view.expected_answer_index));
@@ -104,7 +145,7 @@ $("talkBtn").onclick = async () => {
     $("talkBtn").textContent = "Start answer";
     $("talkBtn").disabled = false;
   } else {
-    startRecording();
+    startAnswer();
     $("talkBtn").textContent = "Finish answer";
   }
 };
@@ -116,12 +157,10 @@ function renderAnchor(anchor, textId, imgId) {
   if (anchor && anchor.kind === "canvas") $(imgId).src = anchor.image_url;
 }
 
-async function uploadHumanProbe(setId) {
+async function finishHumanProbe() {
   busy = true;
-  const audio = await stopRecording();
-  const form = new FormData();
-  form.append("audio", audio, "probe.webm");
-  await send(`/probe/${setId}/audio`, form, "Saving…");
+  await stopStream();
+  await send("/probe/finalize", undefined, "Saving…");
   busy = false;
 }
 
@@ -131,7 +170,7 @@ function render(s) {
   lastKey = key;
   view = s;
   if (s.phase === "think_aloud") {
-    if (entering) { resetPad(); $("problemText").textContent = s.problem_text; startRecording(); }
+    if (entering) { resetPad(); $("problemText").textContent = s.problem_text; startStream(`think_${s.current_problem}`); }
     show("thinkaloud");
   } else if (s.phase === "probe" && s.arm === "ai") {
     show("probe");
@@ -139,11 +178,11 @@ function render(s) {
     $("talkBtn").hidden = s.question === null;
     renderAnchor(s.anchor_view, "anchorText", "anchorImg");
   } else if (s.phase === "probe" && s.arm === "human") {
-    if (entering) startRecording();
+    if (entering) startStream(`probe_${s.current_set}`);
     show("human");
     renderAnchor(s.anchor_view, "humanText", "humanImg");
   } else if (s.phase === "probe_uploading") {
-    if (!busy && recorder && recorder.state === "recording") uploadHumanProbe(s.current_set);
+    if (entering && !busy) finishHumanProbe();
   } else if (s.phase === "done") {
     show("done");
   } else {

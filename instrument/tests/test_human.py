@@ -28,3 +28,9 @@ def test_tick_before_speech_attaches_to_that_interviewer_turn():
     turns = turns_from_markers(raw, markers, ticks)
     assert [(x.speaker, x.stem_id) for x in turns] == [("interviewer", "cues"), ("expert", None),
                                                        ("interviewer", "checks")]
+
+
+def test_speaker_is_decided_by_segment_midpoint_not_start():
+    raw = [RawSegment(start=99.7, end=102.0, text="Why did you split it there?")]
+    markers = [{"speaker": "expert", "t": 50.0}, {"speaker": "interviewer", "t": 100.0}]
+    assert turns_from_markers(raw, markers, [])[0].speaker == "interviewer"

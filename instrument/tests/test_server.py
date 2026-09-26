@@ -104,3 +104,29 @@ def test_unexpected_exception_rolls_back_in_memory_state(tmp_path):
     assert r.status_code == 500
     view = c.get(f"/api/sessions/{sid}/expert-view").json()
     assert view["expected_answer_index"] == 1 and view["question"]
+
+
+def test_streamed_think_aloud_and_polling_enforces_cap(tmp_path):
+    from fakes import FakeClock
+    clock = FakeClock()
+    deps = Deps(FakeTranscriber([seg("A1"), seg("A2"), seg("B1"), seg("B2")]),
+                FakeAnthropic(interviewer=[FakeResponse(turn_payload())]))
+    c = TestClient(create_app(tmp_path, deps, clock))
+    sid = c.post("/api/sessions", json={"expert_id": "E01", "cell": 1, "set_order": ["A", "B"],
+                                        "arms": {"A": "human", "B": "ai"}, "pilot": True}).json()["session_id"]
+    for pid in ("A1", "A2", "B1", "B2"):
+        c.post(f"/api/sessions/{sid}/think-aloud/start")
+        part = c.post(f"/api/sessions/{sid}/recording/start", json={"stream": f"think_{pid}"}).json()["part"]
+        for seq in (0, 1, 1):
+            r = c.post(f"/api/sessions/{sid}/recording/chunk", params={"stream": f"think_{pid}", "part": part, "seq": seq},
+                       content=b"xx", headers={"Content-Type": "application/octet-stream"})
+            assert r.status_code == 200
+        r = c.post(f"/api/sessions/{sid}/think-aloud/{pid}/end",
+                   files={"snapshot": ("s.png", PNG, "image/png")}, data={"strokes": "[]"})
+        assert r.status_code == 200, r.text
+    assert (tmp_path / sid / "audio" / "think_A1.part1.webm").read_bytes() == b"xxxx"
+    c.post(f"/api/sessions/{sid}/probe/start")
+    clock.advance(1200)
+    assert c.get(f"/api/sessions/{sid}/expert-view").json()["phase"] == "probe_uploading"
+    assert c.post(f"/api/sessions/{sid}/probe/finalize").status_code == 200
+    assert c.get(f"/api/sessions/{sid}/console-view").json()["state"]["phase"] == "trace_review"

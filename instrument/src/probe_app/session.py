@@ -15,7 +15,7 @@ from probe_app.llm import Guard, InterviewerLLM
 from probe_app.models import STEMS, Anchor, DialogueTurn, Segment
 from probe_app.storage import SessionStore
 from probe_app.trace import build_segments, correct_segment
-from probe_app.transcribe import TranscriptionFailed, transcribe_with_retry
+from probe_app.transcribe import RawSegment, TranscriptionFailed, transcribe_with_retry
 
 
 class PhaseError(Exception):
@@ -62,6 +62,7 @@ class SessionState(BaseModel):
     anchor: Anchor | None = None
     anchor_problem: str | None = None
     markers: dict[str, list[dict]] = {}
+    recordings: dict[str, list[dict]] = {}
     ticks: dict[str, list[dict]] = {}
     paused: bool = False
     error: str | None = None
@@ -128,6 +129,58 @@ class Session:
     def _arm(self) -> str | None:
         return self.state.arms[self.state.current_set] if self.state.current_set else None
 
+    # recordings: the tablet streams 1 s chunks; each (re)start of its recorder opens a new part on the server clock
+
+    def _current_stream(self) -> str | None:
+        st = self.state
+        if st.phase == "think_aloud":
+            return f"think_{st.current_problem}"
+        if st.phase in ("probe", "probe_uploading") and self._arm() == "human":
+            return f"probe_{st.current_set}"
+        return None
+
+    def _require_stream(self, stream: str) -> list[dict]:
+        if stream != self._current_stream():
+            raise PhaseError(f"recording '{stream}' is not open; the session is in '{self.state.phase}'")
+        return self.state.recordings.setdefault(stream, [])
+
+    def recording_start(self, stream: str) -> int:
+        parts = self._require_stream(stream)
+        parts.append({"part": len(parts) + 1, "start": self._now(), "chunks": 0})
+        self.store.log("recording_started", stream=stream, part=len(parts))
+        self.save()
+        return len(parts)
+
+    def recording_chunk(self, stream: str, part: int, seq: int, data: bytes) -> None:
+        parts = self._require_stream(stream)
+        if not 1 <= part <= len(parts):
+            raise ValueError(f"unknown part {part} of {stream}")
+        entry = parts[part - 1]
+        if seq < entry["chunks"]:
+            return
+        if seq > entry["chunks"]:
+            raise ValueError(f"chunk {seq} of {stream} part {part} arrived before chunk {entry['chunks']}")
+        with self.store.path(f"audio/{stream}.part{part}.webm").open("ab") as f:
+            f.write(data)
+        entry["chunks"] += 1
+        self.save()
+
+    def _store_single_part(self, stream: str, audio: bytes, start: float) -> None:
+        self.store.path(f"audio/{stream}.part1.webm").write_bytes(audio)
+        self.state.recordings[stream] = [{"part": 1, "start": start, "chunks": 1}]
+
+    def _transcribe_stream(self, stream: str) -> list[RawSegment]:
+        merged: list[RawSegment] = []
+        for entry in self.state.recordings.get(stream, []):
+            path = self.store.path(f"audio/{stream}.part{entry['part']}.webm")
+            if not path.exists():
+                continue
+            raw = transcribe_with_retry(self.deps.transcriber, path)
+            self.store.write_json(f"transcripts/{stream}.part{entry['part']}.raw.json", [r.model_dump() for r in raw])
+            merged += [r.model_copy(update={"start": r.start + entry["start"], "end": r.end + entry["start"]})
+                       for r in raw]
+        return merged
+
     # think-aloud
 
     def start_think_aloud(self) -> str:
@@ -142,19 +195,18 @@ class Session:
         self._require("think_aloud")
         self.store.log("keep_talking", problem_id=self.state.current_problem)
 
-    def end_think_aloud(self, problem_id: str, audio: bytes, snapshot_png: bytes, strokes: list) -> None:
+    def end_think_aloud(self, problem_id: str, audio: bytes | None, snapshot_png: bytes, strokes: list) -> None:
         self._require("think_aloud")
         if problem_id != self.state.current_problem:
             raise PhaseError(f"current problem is {self.state.current_problem}, not {problem_id}")
-        audio_path = self.store.path(f"audio/think_{problem_id}.webm")
-        audio_path.write_bytes(audio)
+        stream = f"think_{problem_id}"
+        if audio is not None:
+            self._store_single_part(stream, audio, self.state.recording_start)
         self.snapshot_path(problem_id).write_bytes(snapshot_png)
         self.store.write_json(f"canvas/strokes_{problem_id}.json", strokes)
         self.store.log("think_aloud_ended", problem_id=problem_id, n_strokes=len(strokes))
         try:
-            raw = transcribe_with_retry(self.deps.transcriber, audio_path)
-            self.store.write_json(f"transcripts/think_{problem_id}.raw.json", [r.model_dump() for r in raw])
-            self.state.segments += build_segments(problem_id, self.state.recording_start, raw)
+            self.state.segments += build_segments(problem_id, 0.0, self._transcribe_stream(stream))
         except TranscriptionFailed as e:
             self.state.untranscribed.append(problem_id)
             self.state.error = f"Transcription failed for {problem_id}: {e}. Type the transcript in the console."
@@ -293,7 +345,7 @@ class Session:
         set_id = self._require_human_probe()
         if speaker not in ("interviewer", "expert"):
             raise ValueError("speaker must be 'interviewer' or 'expert'")
-        mark = {"speaker": speaker, "t": self.elapsed()}
+        mark = {"speaker": speaker, "t": self.elapsed(), "mono": self._now()}
         self.state.markers[set_id].append(mark)
         self.store.log("turn_marker", set_id=set_id, **mark)
         self.save()
@@ -302,7 +354,7 @@ class Session:
         set_id = self._require_human_probe()
         if problem_id not in self.state.sets[set_id] or stem_id not in STEMS:
             raise ValueError(f"unknown problem or stem: {problem_id}/{stem_id}")
-        tick = {"problem_id": problem_id, "stem_id": stem_id, "t": self.elapsed()}
+        tick = {"problem_id": problem_id, "stem_id": stem_id, "t": self.elapsed(), "mono": self._now()}
         self.state.ticks[set_id].append(tick)
         self.store.log("stem_ticked", set_id=set_id, **tick)
         self.save()
@@ -327,21 +379,32 @@ class Session:
             self.state.phase = "probe_uploading"
         self.save()
 
-    def upload_human_probe(self, set_id: str, audio: bytes) -> None:
+    def finalize_human_probe(self, audio: bytes | None = None) -> None:
         self._require("probe_uploading")
-        if set_id != self.state.current_set:
-            raise PhaseError(f"current set is {self.state.current_set}, not {set_id}")
-        path = self.store.path(f"audio/probe_{set_id}.webm")
-        path.write_bytes(audio)
+        st = self.state
+        set_id, stream = st.current_set, f"probe_{st.current_set}"
+        if audio is not None:
+            self._store_single_part(stream, audio, st.timer.started)
         try:
-            raw = transcribe_with_retry(self.deps.transcriber, path)
-            self.store.write_json(f"transcripts/probe_{set_id}.raw.json", [r.model_dump() for r in raw])
-            self.state.dialogue[set_id] = turns_from_markers(raw, self.state.markers[set_id], self.state.ticks[set_id])
+            raw = self._transcribe_stream(stream)
+            markers = [{"speaker": m["speaker"], "t": m["mono"]} for m in st.markers[set_id]]
+            ticks = [{**t, "t": t["mono"]} for t in st.ticks[set_id]]
+            turns = turns_from_markers(raw, markers, ticks)
+            for turn in turns:
+                turn.t -= st.timer.started
+            st.dialogue[set_id] = turns
         except TranscriptionFailed as e:
-            self.state.error = f"Probe audio for set {set_id} could not be transcribed; it is saved as {path.name}."
+            st.error = f"Probe audio for set {set_id} could not be transcribed; it is saved under audio/{stream}.part*.webm."
             self.store.log("transcription_failed", set_id=set_id, error=str(e))
         self._finish_probe()
         self.save()
+
+    def enforce_cap(self) -> bool:
+        if self.state.phase != "probe" or self.state.paused or self.elapsed() < self.manifest["cap_s"]:
+            return False
+        self.store.log("cap_reached", set_id=self.state.current_set, elapsed=self.elapsed())
+        self.end_probe()
+        return True
 
     def _finish_probe(self) -> None:
         st = self.state

@@ -3,12 +3,15 @@ from probe_app.transcribe import RawSegment
 
 
 def turns_from_markers(raw: list[RawSegment], markers: list[dict], ticks: list[dict]) -> list[DialogueTurn]:
+    """Markers, ticks and segments must share one clock. A segment belongs to whoever held the floor at its midpoint."""
     marks = sorted(markers, key=lambda m: m["t"])
     turns: list[DialogueTurn] = []
+    midpoints: list[float] = []
     for seg in raw:
+        mid = (seg.start + seg.end) / 2
         speaker = "interviewer"
         for m in marks:
-            if m["t"] > seg.start:
+            if m["t"] > mid:
                 break
             speaker = m["speaker"]
         if turns and turns[-1].speaker == speaker:
@@ -16,10 +19,11 @@ def turns_from_markers(raw: list[RawSegment], markers: list[dict], ticks: list[d
         else:
             turns.append(DialogueTurn(speaker=speaker, text=seg.text, t=seg.start,
                                       source="human" if speaker == "interviewer" else "transcribed"))
+            midpoints.append(mid)
     interviewer_marks = [m["t"] for m in marks if m["speaker"] == "interviewer"]
     for tick in sorted(ticks, key=lambda x: x["t"]):
         since = max((t for t in interviewer_marks if t <= tick["t"]), default=float("-inf"))
-        target = next((x for x in turns if x.speaker == "interviewer" and x.t >= since), None)
+        target = next((x for x, mid in zip(turns, midpoints) if x.speaker == "interviewer" and mid >= since), None)
         if target is not None and target.stem_id is None:
             target.stem_id, target.problem_id = tick["stem_id"], tick["problem_id"]
     return turns
