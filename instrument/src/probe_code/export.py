@@ -1,0 +1,72 @@
+import csv
+import random
+import re
+import shutil
+from pathlib import Path
+
+from probe_code.loader import LoadedSession
+
+SENTENCE_END = re.compile(r"(?<=[.!?])\s+")
+
+
+def split_units(text: str) -> list[str]:
+    return [u.strip() for u in SENTENCE_END.split(text) if u.strip()]
+
+
+def write_csv(path: Path, rows: list[dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="") as f:
+        if not rows:
+            return
+        writer = csv.DictWriter(f, fieldnames=list(rows[0]))
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def read_csv(path: Path) -> list[dict]:
+    with Path(path).open(newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def _blind_id(rng: random.Random) -> str:
+    return f"S{rng.getrandbits(32):08x}"
+
+
+def export_blind(sessions: list[LoadedSession], out_dir: Path, seed: int) -> None:
+    rng = random.Random(seed)
+    blocks = []
+    for s in sessions:
+        for set_id, turns in s.state.dialogue.items():
+            blind = _blind_id(rng)
+            block = []
+            for index, turn in enumerate(turns):
+                if turn.speaker != "expert":
+                    continue
+                for unit in split_units(turn.text):
+                    unit_id = f"U{rng.getrandbits(48):012x}"
+                    block.append((
+                        {"unit_id": unit_id, "blind_session": blind,
+                         "problem_ids": ";".join(s.state.sets[set_id]), "text": unit},
+                        {"unit_id": unit_id, "blind_session": blind, "session_id": s.session_id,
+                         "expert_id": s.manifest["expert_id"], "set_id": set_id, "arm": s.state.arms[set_id],
+                         "turn_index": index, "pilot": s.manifest.get("pilot", False)}))
+            blocks.append(block)
+    rng.shuffle(blocks)
+    write_csv(out_dir / "coder_units.csv", [c for block in blocks for c, _ in block])
+    write_csv(out_dir / "key_units.csv", [k for block in blocks for _, k in block])
+
+
+def export_trace(sessions: list[LoadedSession], out_dir: Path, seed: int) -> None:
+    rng = random.Random(seed)
+    rows, key = [], []
+    (out_dir / "snapshots").mkdir(parents=True, exist_ok=True)
+    for s in sessions:
+        blind = _blind_id(rng)
+        key.append({"blind_session": blind, "session_id": s.session_id, "expert_id": s.manifest["expert_id"]})
+        for seg in s.state.segments:
+            rows.append({"blind_session": blind, "problem_id": seg.problem_id, "segment_id": seg.id,
+                         "start": seg.start, "end": seg.end, "text": seg.text})
+        for snap in (s.dir / "canvas" / "snapshots").glob("*.png"):
+            shutil.copy(snap, out_dir / "snapshots" / f"{blind}_{snap.name}")
+    write_csv(out_dir / "trace_units.csv", rows)
+    write_csv(out_dir / "key_trace.csv", key)
