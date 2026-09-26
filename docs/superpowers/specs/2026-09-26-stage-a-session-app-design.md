@@ -20,7 +20,8 @@
 
 ## 1. Stack and layout
 
-- Python 3.12, `uv`, FastAPI + uvicorn, WebSocket for live session state.
+- Python 3.12, `uv`, FastAPI + uvicorn. Both screens poll session state once a second; on a LAN this is simpler than a WebSocket and loses nothing.
+- Served over HTTPS (a locally trusted certificate, e.g. `mkcert`) when the tablet connects over the network: browsers grant microphone access only on HTTPS or `localhost`.
 - Frontend: static HTML and plain JavaScript, no build step. Canvas with pointer events for drawing; `MediaRecorder` for audio (webm/opus).
 - Claude via the official `anthropic` Python SDK; structured output via `output_config.format` / `messages.parse` with Pydantic models.
 - Transcription behind a `Transcriber` interface. Default: OpenAI `whisper-1` with `verbose_json` segment timestamps and a physics vocabulary prompt. The model ID is pinned in config and logged. Segment timestamps are a hard requirement for any replacement.
@@ -55,19 +56,20 @@ sessions/               one directory per session; git-ignored (personal data)
 The LLM words each question and chooses stem order and anchors. Each turn it returns:
 
 ```
-InterviewerTurn { utterance, stem_id, problem_id, anchor: {segment_ids[] | canvas_region}, is_followup, quoted_span? }
+InterviewerTurn { utterance, stem_id, problem_id, anchor: {kind: segments | canvas | none, segment_ids[]}, is_followup, quoted_span | null, end_session }
 ```
 
 Code checks the turn before the expert sees it:
-- **Stems.** `stem_id` ∈ {cues, alternatives, checks, anomalies, novice_miss}. The probe session ends when every stem has been used at least once per problem, or at the cap.
-- **Follow-ups.** At most one per stem use. A follow-up must carry `quoted_span`, which must occur verbatim in the expert's transcript.
+- **Stems.** `stem_id` ∈ {cues, alternatives, checks, anomalies, novice_miss}. Every stem must be used at least once per problem. The model may end the session (`end_session`) only once that coverage is complete; otherwise the cap ends it and the missing coverage is logged. A canvas anchor highlights the whole snapshot of that problem.
+- **Follow-ups.** At most one, immediately after the stem question it belongs to. A follow-up must carry `quoted_span`, which must occur in the expert's words (think-aloud or answers so far), compared after lower-casing and removing punctuation.
+- **Rejections.** A turn that breaks the contract or is flagged by the guard is regenerated once, with the reason given to the model; a second rejection falls back to the next unused stem, shown bare.
 - **Leading-question guard.** A second call (`claude-haiku-4-5`, temperature 0) returns whether the utterance names a physics operation, quantity relation or strategy the expert has not said. Flagged turns are regenerated once; a second flag falls back to the bare stem text.
-- **Cap.** At 18 minutes a mid-conversation system message tells the model to close; at 20 minutes code ends the probe session.
+- **Cap.** From 18 minutes each request tells the model to close; at 20 minutes code ends the probe session. Each turn is a single stateless request (trace, then the dialogue so far), so nothing depends on carrying the model's earlier thinking between turns.
 - **Rejected or failed turns** are never shown to the expert; they are logged with the reason.
 
 **Model and frozen configuration.** Interviewer: `claude-opus-5`, adaptive thinking, fixed `effort` (set during piloting, then frozen). Current Opus models reject `temperature`, so the frozen configuration is model ID + effort + SHA-256 of the system prompt, stem file and guard prompt, recorded in the session manifest. Outputs are not reproducible by re-running; every request and response is logged in full so the session is reproducible from the log. Server-side model fallbacks are **not** enabled, because they would substitute another model silently; a refusal is logged and the turn falls back to the bare stem.
 
-**Context sent per turn.** Frozen system prompt; stems; problem statements; transcript segments with IDs and timestamps; the final canvas PNG per problem; the probe dialogue so far.
+**Context sent per turn.** Frozen system prompt; problem statements; transcript segments with IDs and timestamps; the final canvas PNG per problem (this static part is prompt-cached); then the probe dialogue so far, time remaining and unused stems.
 
 ## 4. Storage
 
@@ -96,7 +98,7 @@ Measured: whether the session ran without intervention, AI turn latency (target 
 
 ## 7. Errors
 
-- Transcription failure: retry twice; then the researcher types the segment in the console (logged).
+- Transcription failure: retry twice; then the researcher types the segment or answer in the console (logged). A failed answer is not passed to the interviewer until it has been typed. An answer that transcribes to nothing (silence) is passed on as empty.
 - API failure or refusal: retry with backoff; then the next unused stem is shown bare (logged).
 - Tablet disconnect: state lives on the server; the expert view resumes where it stopped. The cap timer runs unless the researcher pauses, and pauses are logged.
 
