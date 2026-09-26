@@ -202,12 +202,35 @@ def test_think_aloud_audio_streams_in_parts_across_a_reload(tmp_path):
     assert [(x.text, x.start) for x in s.state.segments] == [("before reload", 10.5), ("after reload", 41.5)]
 
 
-def test_out_of_order_chunk_is_refused(tmp_path):
+def test_chunk_gap_is_recorded_once_and_reported_on_the_console(tmp_path):
     s = new_session(tmp_path)
     pid = s.start_think_aloud()
-    part = s.recording_start(f"think_{pid}")
-    with pytest.raises(ValueError, match="before chunk 0"):
-        s.recording_chunk(f"think_{pid}", part, 1, b"x")
+    stream = f"think_{pid}"
+    part = s.recording_start(stream)
+    assert s.recording_chunk(stream, part, 1, b"x") is True
+    assert s.recording_chunk(stream, part, 2, b"y") is True
+    assert s.state.recordings[stream][0]["gap_at"] == 0
+    assert "gap" in s.console_view()["state"]["error"]
+    assert not s.store.path(f"audio/{stream}.part{part}.webm").exists()
+    assert [e["type"] for e in s.store.events()].count("chunk_refused") == 1
+
+
+@pytest.mark.parametrize("audio, transcript", [(None, []), (b"silence", [[]])])
+def test_think_aloud_without_speech_waits_for_typing(tmp_path, audio, transcript):
+    s = new_session(tmp_path, transcripts=transcript)
+    pid = s.start_think_aloud()
+    s.end_think_aloud(pid, audio, PNG, [])
+    assert pid in s.state.untranscribed and pid in s.state.error
+
+
+def test_human_probe_without_speech_sets_error(tmp_path):
+    s = new_session(tmp_path, arms={"A": "human", "B": "ai"},
+                    transcripts=[seg("A1"), seg("A2"), seg("B1"), seg("B2")])
+    through_think_aloud(s)
+    s.start_probe()
+    s.end_probe()
+    s.finalize_human_probe()
+    assert "set A" in s.state.error
 
 
 def test_human_arm_uses_one_clock_despite_recorder_lag_and_pause(tmp_path):

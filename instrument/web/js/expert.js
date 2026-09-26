@@ -17,23 +17,37 @@ const MIME = "audio/webm;codecs=opus";
 
 async function sendChunk(rec, seq, blob) {
   const url = `/api/sessions/${sid}/recording/chunk?stream=${rec.stream}&part=${rec.part}&seq=${seq}`;
-  for (let attempt = 1; attempt <= 5; attempt++) {
+  // Never give up on a network or 5xx error: a missing chunk loses audio until a new part starts.
+  for (let attempt = 1; ; attempt++) {
     try {
       const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: blob });
-      if (r.ok) return;
-      if (r.status < 500) { $("status").textContent = `Audio chunk refused (${r.status}). Tell the researcher.`; return; }
+      if (r.ok) {
+        if (attempt > 1) $("status").textContent = "";
+        if ((await r.json()).gap) restartStream(rec);
+        return;
+      }
+      if (r.status < 500 && r.status !== 408 && r.status !== 429) {
+        $("status").textContent = `Audio chunk refused (${r.status}). Tell the researcher.`;
+        return;
+      }
     } catch (err) { /* network: retry */ }
     $("status").textContent = "Audio upload retrying…";
-    await new Promise((res) => setTimeout(res, 1000 * attempt));
+    await sleep(1000 * Math.min(attempt, 5));
   }
-  $("status").textContent = "Audio upload failed. Tell the researcher.";
 }
 
-async function startStream(streamName) {
+const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+
+// Bumped by every stop and every fresh start, so a restart that resolves late cannot claim `live`.
+let epoch = 0;
+
+async function startStream(streamName, t0 = null, mine = ++epoch) {
   const r = await fetch(`/api/sessions/${sid}/recording/start`, {
     method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ stream: streamName }) });
-  if (!r.ok) { $("status").textContent = `Could not start recording (${r.status}).`; return; }
+  if (mine !== epoch) return;
+  if (!r.ok) { $("status").textContent = `Could not start recording (${r.status}). Tell the researcher.`; return; }
   const rec = { stream: streamName, part: (await r.json()).part, seq: 0, uploads: Promise.resolve() };
+  if (mine !== epoch) return;
   rec.recorder = new MediaRecorder(mic, { mimeType: MIME });
   rec.recorder.ondataavailable = (e) => {
     if (!e.data.size) return;
@@ -41,11 +55,29 @@ async function startStream(streamName) {
     rec.uploads = rec.uploads.then(() => sendChunk(rec, seq, e.data));
   };
   rec.recorder.start(1000);
-  recStart = performance.now();
+  recStart = t0 ?? performance.now();
   live = rec;
 }
 
+// A new part carries its own server start time, so audio after a gap stays aligned; strokes keep recStart.
+async function restartStream(rec) {
+  if (live !== rec) return;
+  live = null;
+  rec.recorder.ondataavailable = null;
+  rec.recorder.stop();
+  const t0 = recStart, mine = epoch;
+  for (let attempt = 1; mine === epoch; attempt++) {
+    try {
+      await startStream(rec.stream, t0, mine);
+      return;
+    } catch (err) { /* network: retry */ }
+    $("status").textContent = "Audio restarting… Tell the researcher if this stays.";
+    await sleep(1000 * Math.min(attempt, 5));
+  }
+}
+
 function stopStream() {
+  epoch++;
   const rec = live;
   live = null;
   if (!rec) return Promise.resolve();

@@ -27,7 +27,9 @@ def ai_rejection_counts(session_dir: Path) -> dict:
     events = [json.loads(line) for line in path.read_text().splitlines()] if path.exists() else []
     probes = [e["turn"]["source"] for e in events if e["type"] == "probe"]
     reasons = [e["reason"] for e in events if e["type"] == "turn_rejected"]
+    failures = [e["reason"] for e in events if e["type"] == "interviewer_failed"]
     return {"accepted": probes.count("ai"), "fallback": probes.count("ai_fallback"),
             "rejected_leading": sum(r.startswith("leading") for r in reasons),
             "rejected_contract": sum(r.startswith("contract") for r in reasons),
-            "interviewer_failed": sum(e["type"] == "interviewer_failed" for e in events)}
+            "interviewer_refused": sum(r.startswith("LLMRefused") for r in failures),
+            "interviewer_unavailable": sum(r.startswith("LLMUnavailable") for r in failures)}

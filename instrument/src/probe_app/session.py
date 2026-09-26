@@ -151,19 +151,26 @@ class Session:
         self.save()
         return len(parts)
 
-    def recording_chunk(self, stream: str, part: int, seq: int, data: bytes) -> None:
+    def recording_chunk(self, stream: str, part: int, seq: int, data: bytes) -> bool:
         parts = self._require_stream(stream)
         if not 1 <= part <= len(parts):
             raise ValueError(f"unknown part {part} of {stream}")
         entry = parts[part - 1]
         if seq < entry["chunks"]:
-            return
+            return False
         if seq > entry["chunks"]:
-            raise ValueError(f"chunk {seq} of {stream} part {part} arrived before chunk {entry['chunks']}")
+            if "gap_at" not in entry:
+                entry["gap_at"] = entry["chunks"]
+                self.state.error = (f"Audio gap in {stream} part {part} from chunk {entry['chunks']}; "
+                                    "the tablet starts a new part.")
+                self.store.log("chunk_refused", stream=stream, part=part, seq=seq, expected=entry["chunks"])
+                self.save()
+            return True
         with self.store.path(f"audio/{stream}.part{part}.webm").open("ab") as f:
             f.write(data)
         entry["chunks"] += 1
         self.save()
+        return False
 
     def _store_single_part(self, stream: str, audio: bytes, start: float) -> None:
         self.store.path(f"audio/{stream}.part1.webm").write_bytes(audio)
@@ -206,7 +213,10 @@ class Session:
         self.store.write_json(f"canvas/strokes_{problem_id}.json", strokes)
         self.store.log("think_aloud_ended", problem_id=problem_id, n_strokes=len(strokes))
         try:
-            self.state.segments += build_segments(problem_id, 0.0, self._transcribe_stream(stream))
+            segments = build_segments(problem_id, 0.0, self._transcribe_stream(stream))
+            if not segments:
+                raise TranscriptionFailed("no speech was recorded")
+            self.state.segments += segments
         except TranscriptionFailed as e:
             self.state.untranscribed.append(problem_id)
             self.state.error = f"Transcription failed for {problem_id}: {e}. Type the transcript in the console."
@@ -390,11 +400,13 @@ class Session:
             markers = [{"speaker": m["speaker"], "t": m["mono"]} for m in st.markers[set_id]]
             ticks = [{**t, "t": t["mono"]} for t in st.ticks[set_id]]
             turns = turns_from_markers(raw, markers, ticks)
+            if not turns:
+                raise TranscriptionFailed("no speech was recorded")
             for turn in turns:
                 turn.t -= st.timer.started
             st.dialogue[set_id] = turns
         except TranscriptionFailed as e:
-            st.error = f"Probe audio for set {set_id} could not be transcribed; it is saved under audio/{stream}.part*.webm."
+            st.error = f"Probe audio for set {set_id} could not be transcribed ({e}); any audio is saved under audio/{stream}.part*.webm."
             self.store.log("transcription_failed", set_id=set_id, error=str(e))
         self._finish_probe()
         self.save()

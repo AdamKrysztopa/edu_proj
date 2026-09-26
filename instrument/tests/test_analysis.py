@@ -62,7 +62,9 @@ def test_ai_rejection_counts(tmp_path):
     events = [{"type": "probe", "turn": {"source": "ai"}}, {"type": "probe", "turn": {"source": "ai_fallback"}},
               {"type": "turn_rejected", "reason": "leading: it introduces 'units'"},
               {"type": "turn_rejected", "reason": "contract: bad anchor"},
-              {"type": "interviewer_failed", "reason": "LLMRefused('interviewer refused')"}]
+              {"type": "interviewer_failed", "reason": "LLMRefused('interviewer refused')"},
+              {"type": "interviewer_failed", "reason": "LLMUnavailable('timeout')"},
+              {"type": "interviewer_failed", "reason": "LLMUnavailable('timeout')"}]
     (d / "events.jsonl").write_text("\n".join(json.dumps(e) for e in events))
     assert ai_rejection_counts(d) == {"accepted": 1, "fallback": 1, "rejected_leading": 1, "rejected_contract": 1,
-                                     "interviewer_failed": 1}
+                                     "interviewer_refused": 1, "interviewer_unavailable": 2}

@@ -12,7 +12,7 @@
    `uv run probe-app serve --host 0.0.0.0 --ssl-certfile <ip>.pem --ssl-keyfile <ip>-key.pem`.
    In person on the laptop itself: `uv run probe-app serve` and use `http://127.0.0.1:8000`.
 4. A physicist checks the four problems in `problems/problems.json`.
-5. `/preflight pilot` (`/preflight data` before a data session): tests, both transcribers on a synthesised phrase, a live simulated session with its `interviewer_failed` rate (see "Refusals" below), and a `validity-reviewer` pass over instrument changes since the last real session.
+5. `/preflight pilot` (`/preflight data` before a data session): tests, both transcribers on a synthesised phrase, a live simulated session with its `interviewer_refused` rate (see "Refusals" below), and a `validity-reviewer` pass over instrument changes since the last real session.
 6. Dry run with a colleague on the real tablet and microphone: the automated browser check replaced the microphone with a synthetic stream.
 
 ## Session (about 75 minutes)
@@ -28,14 +28,14 @@
 
 - The session ran end to end using only the console controls (note every workaround).
 - AI latency: median gap between `expert_answer` and the next `probe` event (target under 6 s).
-- `probe-code guard-audit` flag rates for both arms, and the rejection summary it prints (`rejected_leading`, `rejected_contract`, `interviewer_failed`, `fallback`).
+- `probe-code guard-audit` flag rates for both arms, and the rejection summary it prints (`rejected_leading`, `rejected_contract`, `interviewer_refused`, `interviewer_unavailable`, `fallback`).
 - Transcription errors on physics terms in 5 minutes of audio checked by hand, for both transcribers on the same files: `uv run probe-app transcribe sessions/<id>/audio/think_A1.webm --model scribe_v2` and `--model whisper-1`. Freeze the one with fewer physics-term errors.
 - **Success criterion 3:** at least one operation in the think-aloud trace absent from the expert's ordinary explanation. If none, revise the probe script before recruiting.
 - Debrief answers.
 
 ## Refusals
 
-Claude Opus 5 runs a `reasoning_extraction` safety classifier. It refused every attempt to have Opus 5 role-play the expert (which is why the simulator uses Sonnet 5). A refused interviewer turn becomes a bare stem (`ai_fallback`), which weakens the AI arm. If `interviewer_failed` exceeds about 1 in 10 turns in the pilot, raise it before freezing: the options are rewording the interviewer prompt, a different interviewer model, or an explicit fallback model, and each changes the frozen configuration.
+Claude Opus 5 runs a `reasoning_extraction` safety classifier. It refused every attempt to have Opus 5 role-play the expert (which is why the simulator uses Sonnet 5). A refused interviewer turn becomes a bare stem (`ai_fallback`), which weakens the AI arm. If `interviewer_refused` exceeds about 1 in 10 turns in the pilot, raise it before freezing: the options are rewording the interviewer prompt, a different interviewer model, or an explicit fallback model, and each changes the frozen configuration.
 
 ## After the pilots
 

@@ -23,7 +23,7 @@ Now: the instrument is built; next are 1–2 pilot physicists per `instrument/pi
 
 ## Tests
 
-`uv run --directory instrument pytest -q` (89 tests, about 2 s); a PostToolUse hook runs it after edits under `instrument/`.
+`uv run --directory instrument pytest -q` (93 tests, about 2 s); a PostToolUse hook runs it after edits under `instrument/`.
 The fakes never refuse, so live transcribers and interviewer refusals are checked only by `/preflight`, never by the tests.
 
 ## Agents

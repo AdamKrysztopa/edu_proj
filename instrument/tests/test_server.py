@@ -120,7 +120,7 @@ def test_streamed_think_aloud_and_polling_enforces_cap(tmp_path):
         for seq in (0, 1, 1):
             r = c.post(f"/api/sessions/{sid}/recording/chunk", params={"stream": f"think_{pid}", "part": part, "seq": seq},
                        content=b"xx", headers={"Content-Type": "application/octet-stream"})
-            assert r.status_code == 200
+            assert r.status_code == 200 and r.json()["gap"] is False
         r = c.post(f"/api/sessions/{sid}/think-aloud/{pid}/end",
                    files={"snapshot": ("s.png", PNG, "image/png")}, data={"strokes": "[]"})
         assert r.status_code == 200, r.text

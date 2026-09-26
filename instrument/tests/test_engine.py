@@ -76,10 +76,15 @@ def test_guard_flag_twice_falls_back_to_bare_stem(tmp_path):
     assert types(store).count("turn_rejected") == 2
 
 
-def test_refusal_and_outage_fall_back(tmp_path):
-    for exc in (LLMRefused("r"), LLMUnavailable("u")):
-        engine, _, _ = make(tmp_path / type(exc).__name__, ScriptedLLM([exc]))
+def test_refusal_and_repeated_outage_fall_back(tmp_path):
+    for name, items in (("refused", [LLMRefused("r")]), ("down", [LLMUnavailable("u")] * 2)):
+        engine, _, _ = make(tmp_path / name, ScriptedLLM(items))
         assert engine.next_turn([], 0.0).source == "ai_fallback"
+
+
+def test_single_outage_is_retried_before_falling_back(tmp_path):
+    engine, _, _ = make(tmp_path, ScriptedLLM([LLMUnavailable("u"), t()]))
+    assert engine.next_turn([], 0.0).source == "ai"
 
 
 def test_cap_ends_session(tmp_path):

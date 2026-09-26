@@ -55,10 +55,12 @@ if [ -z "$sdir" ]; then
 else
   phase=$(jq -r .phase "$sdir/state.json")
   counts=$(py "import json; from probe_code.guard_audit import ai_rejection_counts; print(json.dumps(ai_rejection_counts('$sdir')))")
-  read -r turns failures <<<"$(jq -r '"\(.accepted + .fallback) \(.interviewer_failed)"' <<<"$counts")"
+  read -r turns refused fallback <<<"$(jq -r '"\(.accepted + .fallback) \(.interviewer_refused) \(.fallback)"' <<<"$counts")"
   if [ "$phase" != done ]; then report FAIL "simulation: stopped in phase '$phase' ($sdir)"
-  elif [ "$turns" -eq 0 ] || [ $((failures * 10)) -gt "$turns" ]; then
-    report WARN "simulation: interviewer_failed $failures of $turns AI turns, above the protocol's 1 in 10 ($counts)"
+  elif [ "$turns" -eq 0 ] || [ $((refused * 10)) -gt "$turns" ]; then
+    report WARN "simulation: interviewer_refused $refused of $turns AI turns, above the protocol's 1 in 10 ($counts)"
+  elif [ $((fallback * 10)) -gt "$turns" ]; then
+    report WARN "simulation: $fallback of $turns AI turns fell back to a bare stem, above 1 in 10 ($counts)"
   else report PASS "simulation: completed; $counts"
   fi
 fi

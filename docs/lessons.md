@@ -101,3 +101,21 @@ A queue padded with those is a queue nobody drains.
   goes to coders.
 - **Candidate home:** a test that parses the codebook's cardinality rule against `_labels`'
   input, or a step in the pilot protocol's "After the pilots" before two coders try `v0.md`.
+
+### Preflight passed two silent audio-loss paths that only a code review found
+
+- **What happened:** `/preflight pilot` printed PASS on every check (89 tests, both live
+  transcribers, a live simulated session with 0 interviewer failures). The `validity-reviewer`
+  pass in the same preflight then found two ways to lose think-aloud audio with no console error.
+  First, `Session._transcribe_stream` (`instrument/src/probe_app/session.py:172`) returns `[]`
+  when a stream has no parts, so the problem never enters `untranscribed` and gets probed on an
+  empty trace. Second, `sendChunk` (`instrument/web/js/expert.js:18`) gives up after 5 retries or
+  any 4xx, and `recording_chunk` (`session.py:154`) then rejects every later chunk in that stream.
+  The simulator and fakes hand audio over whole, so they never drop a chunk or skip
+  `startStream`.
+- **Generalises to:** every failure path in the recording transport (missing stream, dropped or
+  refused chunk, out-of-order chunk) needs a test where the fake injects that failure and asserts
+  the console sees it, because a simulator that delivers audio whole reports a green gate over
+  data loss.
+- **Candidate home:** fault-injecting fakes in `instrument/tests` for the chunk endpoint and the
+  empty-stream case, or a `preflight.sh` check that runs a simulated session with a dropped chunk.

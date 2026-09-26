@@ -127,7 +127,9 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
     @app.post("/api/sessions/{sid}/recording/chunk")
     def recording_chunk(sid: str, stream: str, part: int, seq: int,
                         data: bytes = Body(..., media_type="application/octet-stream")):
-        return act(sid, lambda s: s.recording_chunk(stream, part, seq, data), view=None)
+        gap = []
+        act(sid, lambda s: gap.append(s.recording_chunk(stream, part, seq, data)), view=None)
+        return {"ok": True, "gap": gap[0]}
 
     @app.get("/api/sessions/{sid}/snapshot/{pid}")
     def snapshot(sid: str, pid: str):

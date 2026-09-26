@@ -49,7 +49,8 @@ def main(session_dir: str) -> None:
             print(f"accepted {sources.get('ai', 0)}, bare-stem fallback {sources.get('ai_fallback', 0)}; "
                   f"rejected leading {sum(r.startswith('leading') for r in reasons)}, "
                   f"contract {sum(r.startswith('contract') for r in reasons)}; "
-                  f"interviewer failures {sum(e['type'] == 'interviewer_failed' for e in set_events)}, "
+                  f"interviewer refused {sum(e['type'] == 'interviewer_failed' and e['reason'].startswith('LLMRefused') for e in set_events)}, "
+                  f"unavailable {sum(e['type'] == 'interviewer_failed' and e['reason'].startswith('LLMUnavailable') for e in set_events)}, "
                   f"guard failures {sum(e['type'] == 'guard_failed' for e in set_events)}; "
                   f"cap reached: {any(e['type'] == 'cap_reached' for e in set_events)}")
             gaps, last = [], None
@@ -67,10 +68,13 @@ def main(session_dir: str) -> None:
         else:
             parts = state.get("recordings", {}).get(f"probe_{set_id}", [])
             print(f"markers {len(state['markers'].get(set_id, []))}, stem ticks {len(state['ticks'].get(set_id, []))}, "
-                  f"audio parts {len(parts)} (a part beyond the first means the tablet reloaded)")
+                  f"audio parts {len(parts)} (a part beyond the first means the tablet reloaded or hit a gap)")
 
     failures = [e for e in events if e["type"] == "transcription_failed"]
     print(f"\ntranscription failures: {len(failures)}; error now: {state.get('error') or 'none'}")
+    gaps = [f"{stream} part {p['part']} from chunk {p['gap_at']}"
+            for stream, parts in state.get("recordings", {}).items() for p in parts if "gap_at" in p]
+    print(f"audio gaps (audio lost until the next part): {', '.join(gaps) or 'none'}")
 
 
 if __name__ == "__main__":

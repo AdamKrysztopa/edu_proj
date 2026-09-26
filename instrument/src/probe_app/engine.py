@@ -44,7 +44,9 @@ class ProbeEngine:
                 turn = self.llm.next_turn(request)
             except (LLMRefused, LLMUnavailable) as e:
                 self.store.log("interviewer_failed", set_id=set_id, attempt=attempt, reason=repr(e))
-                break
+                if isinstance(e, LLMRefused):
+                    break
+                continue
             try:
                 check_turn(turn, self.contract, self.ctx.segments, expert_text)
             except ContractViolation as e:
