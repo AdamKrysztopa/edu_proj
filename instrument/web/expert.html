@@ -1,1 +1,38 @@
-<!doctype html><title>expert</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics session</title>
+<link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+<main>
+  <section id="join">
+    <p>Enter the session code the researcher gives you.</p>
+    <div class="row"><input id="sid" aria-label="Session code"><button id="joinBtn" class="primary">Join and allow microphone</button></div>
+  </section>
+  <section id="waiting" hidden><p>Waiting for the researcher.</p></section>
+  <section id="thinkaloud" hidden>
+    <p class="problem" id="problemText"></p>
+    <p class="hint">Solve the problem and say everything you are thinking, including anything that feels obvious.</p>
+    <canvas id="pad" width="1600" height="1000"></canvas>
+    <div class="row"><button id="doneBtn" class="primary">Done with this problem</button></div>
+  </section>
+  <section id="probe" hidden>
+    <p class="question" id="question"></p>
+    <blockquote id="anchorText" hidden></blockquote>
+    <img id="anchorImg" class="anchor" alt="Your written work" hidden>
+    <div class="row"><button id="talkBtn" class="primary">Start answer</button></div>
+  </section>
+  <section id="human" hidden>
+    <p>Your interviewer will ask you questions now.</p>
+    <blockquote id="humanText" hidden></blockquote>
+    <img id="humanImg" class="anchor" alt="Your written work" hidden>
+  </section>
+  <section id="done" hidden><p>Thank you. The session is complete.</p></section>
+  <p id="status" role="status"></p>
+</main>
+<script type="module" src="/static/js/expert.js"></script>
+</body>
+</html>
