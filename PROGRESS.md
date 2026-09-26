@@ -60,6 +60,7 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 ## Infrastructure
 - [x] `/branch` and `/elicit` skills, `citation-verifier` and `methods-critic` agents, DOI hook
 - [x] `/session-report` skill, `validity-reviewer` agent, hooks guarding `.env` and the frozen prompts
+- [x] Lessons loop: queue `docs/lessons.md`, archive `docs/LESSONS-ARCHIVE.md`, `lessons` and `implement-ll` skills, SessionStart hook, checker `scripts/lessons_graph.py`. Capture is step 9 of `/branch`; the drain runs before `probe-app freeze` (`instrument/pilot-protocol.md`)
 - [x] Zotero local API responding
 - [x] `openalex` MCP server loaded
 - [x] `zotero` MCP server loaded

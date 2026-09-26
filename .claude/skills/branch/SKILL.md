@@ -35,6 +35,7 @@ If the mode or method is missing or not in §4, ask once and stop.
    - **Open questions** — only ones that would change the verdict
 7. Launch the `citation-verifier` agent on the new file. Fix or drop anything it flags before going on.
 8. Edit the map with only the proposed changes that survived verification. Never touch branches unrelated to M. Commit with the verdict as the subject line.
+9. Before closing the branch, record each mistake caught during it (a citation the verifier flagged, a claim a source falsified) with the `lessons` skill. The branch isn't done while one is uncaptured.
 
 ## Stop conditions
 

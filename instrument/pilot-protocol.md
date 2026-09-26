@@ -41,4 +41,4 @@ Claude Opus 5 runs a `reasoning_extraction` safety classifier. It refused every 
 
 1. Fill `codebook/v0.md` from the pilot transcripts; two coders try it on one pilot session.
 2. Adjust `INTERVIEWER_EFFORT` and the prompts if the pilots require it.
-3. `uv run probe-app freeze`, commit `prereg.json` together with the prompts, and list the hashes in the pre-registration. From then on, any prompt edit makes the app refuse data sessions.
+3. Drain `docs/lessons.md` with the `implement-ll` skill. After the freeze, prompt fixes cost a new pre-registration. Then `uv run probe-app freeze`, commit `prereg.json` together with the prompts, and list the hashes in the pre-registration. From then on, any prompt edit makes the app refuse data sessions.

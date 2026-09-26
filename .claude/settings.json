@@ -34,6 +34,17 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "$comment": "Injects the applied lessons archive into every session. A process improvement you have to remember to apply is one that decays, so nothing in this loop depends on anyone opening a file.",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/session_start_lessons.py\""
+          }
+        ]
+      }
     ]
   }
 }
