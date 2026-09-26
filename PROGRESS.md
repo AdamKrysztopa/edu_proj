@@ -64,9 +64,9 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [x] Zotero local API responding
 - [x] `openalex` MCP server loaded
 - [x] `zotero` MCP server loaded
-- [ ] Hook denying Edit/Write under `sessions/` and `instrument/sessions/`: nothing protects recorded session data yet
+- [x] `guard-session-data.sh`: denies file-tool writes to `sessions/` and `instrument/sessions/`, and asks before Bash `rm`/`mv`/`sed -i`/redirects into them or `git clean -x`
 - [ ] Hook running `uv run pytest -q` after edits to `instrument/` (the full suite takes about 2 s)
-- [ ] `/preflight` skill as a single go/no-go gate before a data session: clean tree, prompt hashes match `prereg.json`, tests pass, `validity-reviewer` run since the last freeze
+- [x] `/preflight pilot|data`: clean tree, `prereg.json` match (data), tests, live transcriber and simulated session, `validity-reviewer` since the last real session; step 5 of the pilot protocol
 - [ ] Project `CLAUDE.md`: the two stages, off-limits paths, how to run the tests, when to use each agent
 - [ ] `codebook-stress-tester` agent: applies `instrument/codebook/v0.md` to simulated exports and reports codes that overlap, go unused or are applied with low confidence; before pilots only, never as a coder of record
 - [x] Add `.claude/worktrees/` to `.gitignore`

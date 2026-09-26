@@ -12,7 +12,7 @@
    `uv run probe-app serve --host 0.0.0.0 --ssl-certfile <ip>.pem --ssl-keyfile <ip>-key.pem`.
    In person on the laptop itself: `uv run probe-app serve` and use `http://127.0.0.1:8000`.
 4. A physicist checks the four problems in `problems/problems.json`.
-5. `uv run probe-app simulate` once; confirm the simulated session completes and check `interviewer_failed` in its events (see "Refusals" below).
+5. `/preflight pilot` (`/preflight data` before a data session): tests, both transcribers on a synthesised phrase, a live simulated session with its `interviewer_failed` rate (see "Refusals" below), and a `validity-reviewer` pass over instrument changes since the last real session.
 6. Dry run with a colleague on the real tablet and microphone: the automated browser check replaced the microphone with a synthetic stream.
 
 ## Session (about 75 minutes)
