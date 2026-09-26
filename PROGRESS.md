@@ -29,6 +29,7 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 
 ### Experiment design
 - [x] `/branch experiment`: gated two-stage design (K0 exam-error check → Stage A, 12 experts, AI vs human probes validated against the trace → K1 → Stage B, RCT with about 370 students on delayed transfer → K2). `methods-critic`: no fatal flaw; the six major fixes are applied. [note](research/experiment-ai-assisted-cta-physics.md)
+- [x] Stage A instrument built: session app and coding pipeline in `instrument/` ([spec](docs/superpowers/specs/2026-09-26-stage-a-session-app-design.md)). Next: pilot on 1–2 physicists (`instrument/pilot-protocol.md`), then freeze.
 
 ## Reading (§8)
 - [x] **Minimum:** [research/minimum-reading.md](research/minimum-reading.md), a synthesis of all branch notes and the experiment
