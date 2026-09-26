@@ -79,3 +79,9 @@ def git_commit() -> str:
     out = subprocess.run(["git", "rev-parse", "HEAD"], cwd=INSTRUMENT_DIR,
                          capture_output=True, text=True)
     return out.stdout.strip() or "unknown"
+
+
+def git_dirty() -> bool:
+    out = subprocess.run(["git", "status", "--porcelain", "--", "."], cwd=INSTRUMENT_DIR,
+                         capture_output=True, text=True)
+    return bool(out.stdout.strip())

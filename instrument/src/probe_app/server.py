@@ -8,7 +8,7 @@ from typing import Callable, Literal
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from probe_app.config import INSTRUMENT_DIR, ConfigMismatch
 from probe_app.models import Anchor
@@ -19,7 +19,7 @@ SAFE_ID = re.compile(r"^[A-Za-z0-9_-]+$")
 
 
 class CreateBody(BaseModel):
-    expert_id: str
+    expert_id: str = Field(pattern=SAFE_ID.pattern)
     cell: int
     set_order: list[str]
     arms: dict[str, Literal["ai", "human"]]
@@ -75,12 +75,16 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
     def act(sid: str, fn: Callable[[Session], object], view: str = "console") -> dict:
         session = get(sid)
         with locks[sid]:
+            before = session.state.model_copy(deep=True)
             try:
                 fn(session)
-            except (PhaseError, DuplicateSubmission) as e:
-                raise HTTPException(409, str(e))
-            except (ValueError, KeyError) as e:
-                raise HTTPException(400, str(e))
+            except Exception as e:
+                session.state = before
+                if isinstance(e, (PhaseError, DuplicateSubmission)):
+                    raise HTTPException(409, str(e))
+                if isinstance(e, (ValueError, KeyError, ConfigMismatch)):
+                    raise HTTPException(400, str(e))
+                raise
         return session.console_view() if view == "console" else session.expert_view()
 
     @app.get("/")

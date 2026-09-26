@@ -130,3 +130,56 @@ def test_human_arm_markers_upload_and_finish(tmp_path):
     assert [x.speaker for x in s.state.dialogue["A"]] == ["interviewer", "expert"]
     assert s.state.dialogue["A"][0].stem_id == "cues"
     assert s.state.phase == "trace_review" and s.state.probes_done == ["A"]
+
+
+def test_trace_of_a_probed_set_is_locked(tmp_path):
+    s = new_session(tmp_path, interviewer=[FakeResponse(turn_payload()), FakeResponse(turn_payload(end_session=False, stem_id="checks"))],
+                    transcripts=[seg("A1"), seg("A2"), seg("B1"), seg("B2")])
+    through_think_aloud(s)
+    s.start_probe()
+    s.end_probe()
+    assert s.state.phase == "trace_review"
+    with pytest.raises(PhaseError, match="locked"):
+        s.correct_segment("A1-s001", "changed after the probe")
+    with pytest.raises(PhaseError, match="locked"):
+        s.add_segment("A2", "added after the probe")
+    s.correct_segment("B1-s001", "set B is not probed yet")
+
+
+def test_probe_waits_for_failed_transcripts_of_its_set(tmp_path):
+    s = new_session(tmp_path, interviewer=[FakeResponse(turn_payload())],
+                    transcripts=[RuntimeError("x")] * 3 + [seg("A2")] + [RuntimeError("y")] * 3 + [seg("B2")])
+    through_think_aloud(s)
+    assert s.state.untranscribed == ["A1", "B1"]
+    with pytest.raises(PhaseError, match="A1"):
+        s.start_probe()
+    s.add_segment("A1", "typed")
+    assert s.state.untranscribed == ["B1"]
+    assert s.start_probe() == "A"
+
+
+def test_prompt_edited_after_creation_blocks_the_probe(tmp_path, monkeypatch):
+    s = new_session(tmp_path, interviewer=[FakeResponse(turn_payload())],
+                    transcripts=[seg("A1"), seg("A2"), seg("B1"), seg("B2")])
+    through_think_aloud(s)
+    from probe_app import config
+    real = config.current_config()
+    monkeypatch.setattr("probe_app.session.current_config",
+                        lambda: config.FrozenConfig(**{**real.__dict__, "system_prompt_sha256": "edited"}))
+    with pytest.raises(ConfigMismatch, match="system_prompt_sha256"):
+        s.start_probe()
+
+
+def test_data_session_refuses_uncommitted_instrument_changes(tmp_path, monkeypatch):
+    from probe_app import config
+    prereg = tmp_path / "prereg.json"
+    config.freeze(config.current_config(), prereg)
+    monkeypatch.setattr("probe_app.session.PREREG_PATH", prereg)
+    monkeypatch.setattr("probe_app.session.git_dirty", lambda: True)
+    deps = Deps(FakeTranscriber([]), FakeAnthropic())
+    with pytest.raises(ConfigMismatch, match="uncommitted"):
+        Session.create(tmp_path, deps, expert_id="E01", cell=1, arms={"A": "ai", "B": "human"},
+                       set_order=["A", "B"], pilot=False)
+    pilot = Session.create(tmp_path, deps, expert_id="E02", cell=1, arms={"A": "ai", "B": "human"},
+                           set_order=["A", "B"], pilot=True)
+    assert pilot.manifest["git_dirty"] is True

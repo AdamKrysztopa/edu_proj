@@ -75,3 +75,32 @@ def test_data_session_without_prereg_is_400(client, monkeypatch, tmp_path):
     r = client.post("/api/sessions", json={"expert_id": "E01", "cell": 1, "set_order": ["A", "B"],
                                            "arms": {"A": "ai", "B": "human"}, "pilot": False})
     assert r.status_code == 400 and "freeze" in r.text
+
+
+def test_expert_id_with_path_characters_is_rejected(client, tmp_path):
+    for bad in ("../escape", "a/b", ""):
+        r = client.post("/api/sessions", json={"expert_id": bad, "cell": 1, "set_order": ["A", "B"],
+                                               "arms": {"A": "ai", "B": "human"}, "pilot": True})
+        assert r.status_code in (400, 422), bad
+    assert not (tmp_path.parent / "escape").exists()
+
+
+class Boom:
+    model = "fake"
+
+    def transcribe(self, path):
+        raise TypeError("unexpected SDK change")
+
+
+def test_unexpected_exception_rolls_back_in_memory_state(tmp_path):
+    from fakes import FakeTranscriber
+    deps = Deps(FakeTranscriber([seg("A1"), seg("A2"), seg("B1"), seg("B2")]),
+                FakeAnthropic(interviewer=[FakeResponse(turn_payload()), TypeError("sdk changed")]))
+    c = TestClient(create_app(tmp_path, deps), raise_server_exceptions=False)
+    sid = create(c)
+    think_all(c, sid)
+    c.post(f"/api/sessions/{sid}/probe/start")
+    r = c.post(f"/api/sessions/{sid}/probe/answer-text", json={"turn_index": 1, "text": "hello"})
+    assert r.status_code == 500
+    view = c.get(f"/api/sessions/{sid}/expert-view").json()
+    assert view["expected_answer_index"] == 1 and view["question"]

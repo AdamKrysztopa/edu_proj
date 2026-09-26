@@ -1,10 +1,12 @@
+import re
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel
 
-from probe_app.config import (CAP_S, PREREG_PATH, WRAP_S, check_preregistered, current_config, git_commit,
+from probe_app.config import (CAP_S, PREREG_PATH, WRAP_S, ConfigMismatch, check_preregistered, current_config, git_commit,
+                              git_dirty,
                               load_problems, load_prompt, load_stems)
 from probe_app.contract import ContractState, uncovered
 from probe_app.engine import ProbeContext, ProbeEngine
@@ -51,6 +53,7 @@ class SessionState(BaseModel):
     current_set: str | None = None
     recording_start: float | None = None
     think_aloud_done: list[str] = []
+    untranscribed: list[str] = []
     probes_done: list[str] = []
     segments: list[Segment] = []
     dialogue: dict[str, list[DialogueTurn]] = {}
@@ -78,17 +81,22 @@ class Session:
     @classmethod
     def create(cls, root: Path, deps: Deps, *, expert_id: str, cell: int, arms: dict[str, str],
                set_order: list[str], pilot: bool, simulated: bool = False, clock=None) -> "Session":
+        if not re.fullmatch(r"[A-Za-z0-9_-]+", expert_id):
+            raise ValueError("expert_id may contain only letters, digits, '-' and '_'")
         problems = load_problems()
         if sorted(set_order) != sorted(problems["sets"]) or set(arms) != set(set_order):
             raise ValueError(f"set_order and arms must cover exactly the sets {sorted(problems['sets'])}")
         if not set(arms.values()) <= {"ai", "human"}:
             raise ValueError("arms must be 'ai' or 'human'")
         cfg = current_config()
+        dirty = git_dirty()
         if not pilot:
             check_preregistered(cfg, PREREG_PATH)
+            if dirty:
+                raise ConfigMismatch("instrument/ has uncommitted changes: commit them before a data session")
         manifest = {"expert_id": expert_id, "cell": cell, "arms": arms, "set_order": set_order,
                     "pilot": pilot, "simulated": simulated, "cap_s": CAP_S, "wrap_s": WRAP_S,
-                    "config": asdict(cfg), "transcriber": deps.transcriber.model, "git_commit": git_commit()}
+                    "config": asdict(cfg), "transcriber": deps.transcriber.model, "git_commit": git_commit(), "git_dirty": dirty}
         store = SessionStore.create(root, manifest, clock)
         state = SessionState(sets={s: problems["sets"][s] for s in set_order}, set_order=set_order, arms=arms)
         session = cls(store, state, deps)
@@ -148,6 +156,7 @@ class Session:
             self.store.write_json(f"transcripts/think_{problem_id}.raw.json", [r.model_dump() for r in raw])
             self.state.segments += build_segments(problem_id, self.state.recording_start, raw)
         except TranscriptionFailed as e:
+            self.state.untranscribed.append(problem_id)
             self.state.error = f"Transcription failed for {problem_id}: {e}. Type the transcript in the console."
             self.store.log("transcription_failed", problem_id=problem_id, error=str(e))
         self.state.think_aloud_done.append(problem_id)
@@ -156,8 +165,17 @@ class Session:
         self.state.phase = "ready" if remaining else "trace_review"
         self.save()
 
+    def _require_unlocked(self, problem_id: str) -> None:
+        probed = set(self.state.probes_done) | ({self.state.current_set} if self.state.current_set else set())
+        if any(problem_id in self.state.sets[s] for s in probed):
+            raise PhaseError(f"the trace of {problem_id} is locked: its probe set has already run")
+
     def correct_segment(self, segment_id: str, text: str) -> None:
         self._require("ready", "trace_review")
+        owner = next((s.problem_id for s in self.state.segments if s.id == segment_id), None)
+        if owner is None:
+            raise KeyError(f"no segment {segment_id}")
+        self._require_unlocked(owner)
         self.state.segments, diff = correct_segment(self.state.segments, segment_id, text)
         self.store.log("segment_corrected", **diff)
         self.save()
@@ -166,16 +184,27 @@ class Session:
         self._require("ready", "trace_review")
         if problem_id not in self.state.think_aloud_done:
             raise PhaseError(f"{problem_id} has no think-aloud yet")
+        self._require_unlocked(problem_id)
         n = sum(1 for s in self.state.segments if s.id.startswith(f"{problem_id}-m")) + 1
         segment = Segment(id=f"{problem_id}-m{n:03d}", problem_id=problem_id, start=0.0, end=0.0, text=text)
         self.state.segments.append(segment)
-        self.state.error = None
+        if problem_id in self.state.untranscribed:
+            self.state.untranscribed.remove(problem_id)
+        if not self.state.untranscribed:
+            self.state.error = None
         self.store.log("segment_added", **segment.model_dump())
         self.save()
 
     # probe
 
+    def _check_config(self) -> None:
+        frozen, now = self.manifest["config"], asdict(current_config())
+        drift = sorted(k for k in now if frozen.get(k) != now[k])
+        if drift:
+            raise ConfigMismatch(f"configuration changed since this session was created: {drift}")
+
     def _engine(self, set_id: str) -> ProbeEngine:
+        self._check_config()
         client = self.deps.anthropic_client
         llm = InterviewerLLM(client, self.store.log_llm, load_prompt("interviewer_system.md"))
         guard = Guard(client, self.store.log_llm, load_prompt("guard_system.md"))
@@ -192,6 +221,10 @@ class Session:
         self._require("trace_review")
         st = self.state
         set_id = next(s for s in st.set_order if s not in st.probes_done)
+        missing = [p for p in st.sets[set_id] if p in st.untranscribed]
+        if missing:
+            raise PhaseError(f"type the transcript for {missing} before probing set {set_id}")
+        self._check_config()
         st.phase, st.current_set = "probe", set_id
         st.timer = ProbeTimer(started=self._now())
         st.contract[set_id] = ContractState(problems=st.sets[set_id])
