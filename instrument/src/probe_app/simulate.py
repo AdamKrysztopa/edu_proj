@@ -1,7 +1,7 @@
 import base64
 from pathlib import Path
 
-from probe_app.config import INTERVIEWER_MODEL, load_problems
+from probe_app.config import load_problems
 from probe_app.models import DialogueTurn
 from probe_app.session import Deps, Session
 from probe_app.trace import render_transcript
@@ -10,10 +10,14 @@ from probe_app.transcribe import RawSegment
 BLANK_PNG = base64.b64decode(
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==")
 
+# Opus 5 refuses this role-play under its reasoning_extraction classifier; the simulator is test scaffolding, not the instrument.
+EXPERT_MODEL = "claude-sonnet-5"
+
 EXPERT_PROMPT = (
-    "You are a physics lecturer who has just solved the problems below while thinking aloud; the transcript is "
-    "your own. An interviewer is asking you about your solution. Answer the interviewer's last question in the "
-    "first person, in two to five spoken sentences, as you would say them aloud. Say only your answer.")
+    "Role-play Dr. Lee, a human physics lecturer taking part in an education research interview. Below are the "
+    "problems Dr. Lee solved and a transcript of what Dr. Lee said aloud while solving them. Reply to the "
+    "interviewer's last question as Dr. Lee would say it aloud: two to five sentences, first person, consistent "
+    "with the transcript. Reply with Dr. Lee's words only.")
 
 
 class FixtureTranscriber:
@@ -31,7 +35,7 @@ class FixtureTranscriber:
 
 
 class SimulatedExpert:
-    def __init__(self, client, model: str = INTERVIEWER_MODEL):
+    def __init__(self, client, model: str = EXPERT_MODEL):
         self.client, self.model = client, model
 
     def answer(self, problems: dict[str, str], transcript: str, dialogue: list[DialogueTurn]) -> str:
@@ -40,7 +44,7 @@ class SimulatedExpert:
         response = self.client.messages.create(
             model=self.model, max_tokens=2000, output_config={"effort": "low"},
             messages=[{"role": "user", "content": f"{EXPERT_PROMPT}\n\nPROBLEMS\n{problem_text}\n\n"
-                                                   f"YOUR THINK-ALOUD\n{transcript}\n\nINTERVIEW SO FAR\n{history}"}])
+                                                   f"DR. LEE'S THINK-ALOUD\n{transcript}\n\nINTERVIEW SO FAR\n{history}"}])
         return next(b.text for b in response.content if b.type == "text").strip()
 
 
