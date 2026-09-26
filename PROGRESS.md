@@ -59,8 +59,15 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 
 ## Infrastructure
 - [x] `/branch` and `/elicit` skills, `citation-verifier` and `methods-critic` agents, DOI hook
+- [x] `/session-report` skill, `validity-reviewer` agent, hooks guarding `.env` and the frozen prompts
 - [x] Zotero local API responding
-- [ ] `openalex` MCP server loaded (runs so far used the OpenAlex REST API)
-- [ ] `zotero` MCP server loaded
+- [x] `openalex` MCP server loaded
+- [x] `zotero` MCP server loaded
+- [ ] Hook denying Edit/Write under `sessions/` and `instrument/sessions/`: nothing protects recorded session data yet
+- [ ] Hook running `uv run pytest -q` after edits to `instrument/` (the full suite takes about 2 s)
+- [ ] `/preflight` skill as a single go/no-go gate before a data session: clean tree, prompt hashes match `prereg.json`, tests pass, `validity-reviewer` run since the last freeze
+- [ ] Project `CLAUDE.md`: the two stages, off-limits paths, how to run the tests, when to use each agent
+- [ ] `codebook-stress-tester` agent: applies `instrument/codebook/v0.md` to simulated exports and reports codes that overlap, go unused or are applied with low confidence; before pilots only, never as a coder of record
+- [x] Add `.claude/worktrees/` to `.gitignore`
 - [ ] Zotero library seeded with this project's reading (currently no items in this area)
 - [ ] DOI hook also checks that the resolved title matches the cited work. It only checks resolution now, so the Crandall et al. (2006) DOI in §14 passed while pointing to the wrong book (now corrected).
