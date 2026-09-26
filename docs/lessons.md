@@ -119,3 +119,31 @@ A queue padded with those is a queue nobody drains.
   data loss.
 - **Candidate home:** fault-injecting fakes in `instrument/tests` for the chunk endpoint and the
   empty-stream case, or a `preflight.sh` check that runs a simulated session with a dropped chunk.
+
+### A spec requirement dropped in the plan passed four task reviews
+
+- **What happened:** the model-choice spec (`docs/superpowers/specs/2026-09-26-model-choice-design.md`,
+  "Frozen configuration") freezes "the optional `effort`/`temperature` of the interviewer and guard".
+  The plan froze only `interviewer_effort` and `guard_temperature`. Each task reviewer checked the
+  diff against its task brief, which is cut from the plan, so all four approved. The whole-branch
+  `validity-reviewer` caught it by reading the spec. Then `interviewer.temperature` or
+  `guard.effort` could change after `probe-app freeze` without tripping prereg.
+- **Generalises to:** when a plan is written from a spec, every enumerated spec field is traced to
+  a plan line before execution, because task-scoped reviews verify against the plan and cannot
+  see what it left out.
+- **Candidate home:** a spec-to-plan trace step in the planning workflow (writing-plans self-review),
+  or freezing a whole role object instead of chosen fields so the omission cannot recur.
+
+### A constructor change broke a CLI command the suite never ran
+
+- **What happened:** `Guard` changed from taking an Anthropic client to taking a backend
+  (commit 3871d71); `instrument/src/probe_code/cli.py` still built `Guard(anthropic.Anthropic(), ...)`
+  behind a lazy import inside the `guard-audit` branch, so `probe-code guard-audit` raised
+  `AttributeError: 'Anthropic' object has no attribute 'complete'` on its first check. All 112
+  tests passed: no test ran that command, and the lazy import hid the call site from anything but
+  a full read. Caught by the whole-branch review, not by tests or any task review.
+- **Generalises to:** every CLI subcommand that builds a live dependency gets a smoke test that
+  runs it end to end with that dependency's factory patched, so a change to the dependency's
+  signature fails the suite instead of the first real run.
+- **Candidate home:** a test-coverage rule for `instrument/` CLIs (one smoke test per subcommand),
+  or a validity-reviewer checklist item to grep every construction site when a class signature changes.

@@ -1,6 +1,7 @@
 import base64
 from pathlib import Path
 
+from probe_app.backends import Part
 from probe_app.config import load_problems
 from probe_app.models import DialogueTurn
 from probe_app.session import Deps, Session
@@ -9,9 +10,6 @@ from probe_app.transcribe import RawSegment
 
 BLANK_PNG = base64.b64decode(
     "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==")
-
-# Opus 5 refuses this role-play under its reasoning_extraction classifier; the simulator is test scaffolding, not the instrument.
-EXPERT_MODEL = "claude-sonnet-5"
 
 EXPERT_PROMPT = (
     "Role-play Dr. Lee, a human physics lecturer taking part in an education research interview. Below are the "
@@ -35,17 +33,15 @@ class FixtureTranscriber:
 
 
 class SimulatedExpert:
-    def __init__(self, client, model: str = EXPERT_MODEL):
-        self.client, self.model = client, model
+    def __init__(self, backend):
+        self.backend = backend
 
     def answer(self, problems: dict[str, str], transcript: str, dialogue: list[DialogueTurn]) -> str:
         history = "\n".join(f"{d.speaker.upper()}: {d.text}" for d in dialogue)
         problem_text = "\n".join(f"{p}: {t}" for p, t in problems.items())
-        response = self.client.messages.create(
-            model=self.model, max_tokens=2000, output_config={"effort": "low"},
-            messages=[{"role": "user", "content": f"{EXPERT_PROMPT}\n\nPROBLEMS\n{problem_text}\n\n"
-                                                   f"DR. LEE'S THINK-ALOUD\n{transcript}\n\nINTERVIEW SO FAR\n{history}"}])
-        return next(b.text for b in response.content if b.type == "text").strip()
+        prompt = (f"{EXPERT_PROMPT}\n\nPROBLEMS\n{problem_text}\n\n"
+                  f"DR. LEE'S THINK-ALOUD\n{transcript}\n\nINTERVIEW SO FAR\n{history}")
+        return self.backend.complete("simulated_expert", "", [Part(text=prompt)], None, 2000, lambda r: None).strip()
 
 
 def run_simulation(root: Path, deps: Deps, expert, set_order: list[str], max_turns: int = 60) -> str:

@@ -64,7 +64,29 @@ def test_ai_rejection_counts(tmp_path):
               {"type": "turn_rejected", "reason": "contract: bad anchor"},
               {"type": "interviewer_failed", "reason": "LLMRefused('interviewer refused')"},
               {"type": "interviewer_failed", "reason": "LLMUnavailable('timeout')"},
-              {"type": "interviewer_failed", "reason": "LLMUnavailable('timeout')"}]
+              {"type": "interviewer_failed", "reason": "LLMUnavailable('timeout')"},
+              {"type": "guard_failed", "set_id": "A", "attempt": 0, "reason": "LLMUnavailable('timeout')"}]
     (d / "events.jsonl").write_text("\n".join(json.dumps(e) for e in events))
     assert ai_rejection_counts(d) == {"accepted": 1, "fallback": 1, "rejected_leading": 1, "rejected_contract": 1,
-                                     "interviewer_refused": 1, "interviewer_unavailable": 2}
+                                     "interviewer_refused": 1, "interviewer_unavailable": 2,
+                                     "guard_failed": 1}
+
+
+def test_guard_audit_cli_runs_the_configured_guard(tmp_path, monkeypatch, capsys):
+    from fakes import TEST_MODELS, FakeAnthropic
+    from probe_app.backends import AnthropicBackend
+    from probe_code import cli
+
+    built = []
+
+    def fake_make_backend(name, role, env=None):
+        built.append((name, role))
+        return AnthropicBackend(FakeAnthropic(), TEST_MODELS.guard)
+
+    monkeypatch.setattr(cli, "load_dotenv", lambda *a, **k: None)
+    monkeypatch.setattr(cli, "make_backend", fake_make_backend)
+    out = tmp_path / "out"
+    cli.main(["guard-audit", str(make_session(tmp_path, "E01")), "--out", str(out)])
+    assert built == [("guard", TEST_MODELS.guard)]
+    assert len(read_csv(out / "guard_audit.csv")) == 2
+    assert "ai: 0/1 questions flagged" in capsys.readouterr().out

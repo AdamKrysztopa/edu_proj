@@ -1,7 +1,10 @@
+import json
+
 import pytest
 
-from fakes import FakeAnthropic, FakeClock, FakeResponse, FakeTranscriber, turn_payload
-from probe_app.config import ConfigMismatch
+from fakes import TEST_MODELS, FakeAnthropic, FakeClock, FakeOpenAI, FakeResponse, FakeTranscriber, fake_backends, turn_payload
+from probe_app.backends import AnthropicBackend, Backends, OpenAICompatBackend
+from probe_app.config import ConfigMismatch, RoleModel
 from probe_app.models import Anchor
 from probe_app.session import Deps, DuplicateSubmission, PhaseError, Session
 from probe_app.transcribe import RawSegment
@@ -14,7 +17,7 @@ def seg(text, start=0.0):
 
 
 def new_session(tmp_path, interviewer=(), transcripts=(), arms=None, clock=None):
-    deps = Deps(FakeTranscriber(list(transcripts)), FakeAnthropic(interviewer=list(interviewer)))
+    deps = Deps(FakeTranscriber(list(transcripts)), fake_backends(FakeAnthropic(interviewer=list(interviewer))))
     return Session.create(tmp_path, deps, expert_id="E01", cell=1, arms=arms or {"A": "ai", "B": "human"},
                           set_order=["A", "B"], pilot=True, clock=clock or FakeClock())
 
@@ -36,7 +39,7 @@ def test_think_aloud_order_and_trace(tmp_path):
 
 def test_data_session_refuses_without_prereg(tmp_path, monkeypatch):
     monkeypatch.setattr("probe_app.session.PREREG_PATH", tmp_path / "none.json")
-    deps = Deps(FakeTranscriber([]), FakeAnthropic())
+    deps = Deps(FakeTranscriber([]), fake_backends(FakeAnthropic()))
     with pytest.raises(ConfigMismatch):
         Session.create(tmp_path, deps, expert_id="E01", cell=1, arms={"A": "ai", "B": "human"},
                        set_order=["A", "B"], pilot=False)
@@ -176,7 +179,7 @@ def test_data_session_refuses_uncommitted_instrument_changes(tmp_path, monkeypat
     config.freeze(config.current_config(), prereg)
     monkeypatch.setattr("probe_app.session.PREREG_PATH", prereg)
     monkeypatch.setattr("probe_app.session.git_dirty", lambda: True)
-    deps = Deps(FakeTranscriber([]), FakeAnthropic())
+    deps = Deps(FakeTranscriber([]), fake_backends(FakeAnthropic()))
     with pytest.raises(ConfigMismatch, match="uncommitted"):
         Session.create(tmp_path, deps, expert_id="E01", cell=1, arms={"A": "ai", "B": "human"},
                        set_order=["A", "B"], pilot=False)
@@ -267,3 +270,55 @@ def test_cap_ends_both_arms_on_the_clock(tmp_path):
     s.start_probe()
     clock.advance(1200)
     assert s.enforce_cap() and s.state.phase == "done"
+
+
+def _other_backends():
+    client = FakeAnthropic()
+    return Backends(interviewer=AnthropicBackend(client, RoleModel(provider="anthropic", model="claude-other")),
+                    guard=AnthropicBackend(client, TEST_MODELS.guard))
+
+
+def test_session_refused_when_backends_differ_from_models_json(tmp_path):
+    root = tmp_path / "sessions"
+    deps = Deps(FakeTranscriber([]), _other_backends())
+    with pytest.raises(ConfigMismatch, match=r"\(interviewer\): restart probe-app serve"):
+        Session.create(root, deps, expert_id="E01", cell=1, arms={"A": "ai", "B": "human"},
+                       set_order=["A", "B"], pilot=True)
+    assert not root.exists()
+
+
+def test_session_refused_when_transcriber_differs_from_models_json(tmp_path):
+    transcriber = FakeTranscriber([])
+    transcriber.model = "whisper-1"
+    with pytest.raises(ConfigMismatch, match=r"\(transcriber\)"):
+        Session.create(tmp_path, Deps(transcriber, fake_backends(FakeAnthropic())), expert_id="E01", cell=1,
+                       arms={"A": "ai", "B": "human"}, set_order=["A", "B"], pilot=True)
+
+
+def test_models_json_edit_mid_session_stops_the_next_probe(tmp_path, test_models_file):
+    s = new_session(tmp_path)
+    s._check_config()
+    edited = json.loads(test_models_file.read_text())
+    edited["guard"]["model"] = "claude-other"
+    test_models_file.write_text(json.dumps(edited))
+    with pytest.raises(ConfigMismatch):
+        s._check_config()
+
+
+def test_resumed_session_refused_when_server_backends_differ_from_models_json(tmp_path):
+    s = new_session(tmp_path)
+    resumed = Session.load(tmp_path, s.store.session_id, Deps(FakeTranscriber([]), _other_backends()))
+    with pytest.raises(ConfigMismatch, match="restart probe-app serve"):
+        resumed._check_config()
+
+
+@pytest.mark.parametrize("route, refusal", [(None, "route"), (["openai"], "freeze")])
+def test_data_session_on_openrouter_needs_a_route(tmp_path, monkeypatch, test_models_file, route, refusal):
+    monkeypatch.setattr("probe_app.session.PREREG_PATH", tmp_path / "none.json")
+    role = RoleModel(provider="openrouter", model="openai/x", route=route)
+    test_models_file.write_text(TEST_MODELS.model_copy(update={"interviewer": role}).model_dump_json())
+    backends = Backends(interviewer=OpenAICompatBackend(FakeOpenAI([]), role),
+                        guard=AnthropicBackend(FakeAnthropic(), TEST_MODELS.guard))
+    with pytest.raises(ConfigMismatch, match=refusal):
+        Session.create(tmp_path / "sessions", Deps(FakeTranscriber([]), backends), expert_id="E01", cell=1,
+                       arms={"A": "ai", "B": "human"}, set_order=["A", "B"], pilot=False)

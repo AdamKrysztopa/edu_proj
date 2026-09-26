@@ -5,7 +5,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from probe_app.config import INSTRUMENT_DIR, PREREG_PATH, TRANSCRIBER_MODEL, current_config, freeze
+from probe_app.config import INSTRUMENT_DIR, PREREG_PATH, current_config, freeze, load_models
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -21,7 +21,7 @@ def main(argv: list[str] | None = None) -> None:
     sub.add_parser("hashes", help="print the current frozen configuration")
     tr = sub.add_parser("transcribe", help="transcribe one audio file, to compare transcribers in the pilot")
     tr.add_argument("audio", type=Path)
-    tr.add_argument("--model", default=TRANSCRIBER_MODEL, help="scribe_v2 or whisper-1")
+    tr.add_argument("--model", default=None, help="default: models.json transcriber; scribe_v2 or whisper-1")
     sub.add_parser("freeze", help="write the current configuration to prereg.json")
     sim = sub.add_parser("simulate", help="run a simulated AI-arm session against the real APIs")
     sim.add_argument("--root", type=Path, default=INSTRUMENT_DIR.parent / "sessions")
@@ -40,24 +40,25 @@ def main(argv: list[str] | None = None) -> None:
         freeze(current_config(), PREREG_PATH)
         print(f"wrote {PREREG_PATH}")
     elif args.cmd == "serve":
-        import anthropic
         import uvicorn
 
+        from probe_app.backends import make_backends
         from probe_app.server import create_app
         from probe_app.session import Deps
         from probe_app.transcribe import make_transcriber
 
-        app = create_app(args.root, Deps(make_transcriber(), anthropic.Anthropic()))
+        backends = make_backends(load_models())
+        app = create_app(args.root, Deps(make_transcriber(), backends))
         uvicorn.run(app, host=args.host, port=args.port,
                     ssl_certfile=args.ssl_certfile, ssl_keyfile=args.ssl_keyfile)
     elif args.cmd == "simulate":
-        import anthropic
-
+        from probe_app.backends import make_backend, make_backends
         from probe_app.session import Deps
         from probe_app.simulate import FixtureTranscriber, SimulatedExpert, run_simulation
 
-        client = anthropic.Anthropic()
+        models = load_models()
+        expert = SimulatedExpert(make_backend("simulated expert", models.simulated_expert))
         fixture = json.loads((INSTRUMENT_DIR / "problems" / "simulated_think_aloud.json").read_text())
-        sid = run_simulation(args.root, Deps(FixtureTranscriber(fixture), client), SimulatedExpert(client),
+        sid = run_simulation(args.root, Deps(FixtureTranscriber(fixture), make_backends(models)), expert,
                              args.set_order.split(","))
         print(f"simulated session: {args.root / sid}")

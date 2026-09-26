@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from fakes import FakeAnthropic, FakeResponse, FakeTranscriber, turn_payload
+from fakes import FakeAnthropic, FakeResponse, FakeTranscriber, fake_backends, turn_payload
 from probe_app.server import create_app
 from probe_app.session import Deps
 from probe_app.transcribe import RawSegment
@@ -16,7 +16,7 @@ def seg(text):
 @pytest.fixture
 def client(tmp_path):
     deps = Deps(FakeTranscriber([seg("A1"), seg("A2"), seg("B1"), seg("B2"), seg("They stick.")]),
-                FakeAnthropic(interviewer=[FakeResponse(turn_payload()), FakeResponse(turn_payload(stem_id="checks"))]))
+                fake_backends(FakeAnthropic(interviewer=[FakeResponse(turn_payload()), FakeResponse(turn_payload(stem_id="checks"))])))
     return TestClient(create_app(tmp_path, deps))
 
 
@@ -95,7 +95,7 @@ class Boom:
 def test_unexpected_exception_rolls_back_in_memory_state(tmp_path):
     from fakes import FakeTranscriber
     deps = Deps(FakeTranscriber([seg("A1"), seg("A2"), seg("B1"), seg("B2")]),
-                FakeAnthropic(interviewer=[FakeResponse(turn_payload()), TypeError("sdk changed")]))
+                fake_backends(FakeAnthropic(interviewer=[FakeResponse(turn_payload()), TypeError("sdk changed")])))
     c = TestClient(create_app(tmp_path, deps), raise_server_exceptions=False)
     sid = create(c)
     think_all(c, sid)
@@ -110,7 +110,7 @@ def test_streamed_think_aloud_and_polling_enforces_cap(tmp_path):
     from fakes import FakeClock
     clock = FakeClock()
     deps = Deps(FakeTranscriber([seg("A1"), seg("A2"), seg("B1"), seg("B2")]),
-                FakeAnthropic(interviewer=[FakeResponse(turn_payload())]))
+                fake_backends(FakeAnthropic(interviewer=[FakeResponse(turn_payload())])))
     c = TestClient(create_app(tmp_path, deps, clock))
     sid = c.post("/api/sessions", json={"expert_id": "E01", "cell": 1, "set_order": ["A", "B"],
                                         "arms": {"A": "human", "B": "ai"}, "pilot": True}).json()["session_id"]

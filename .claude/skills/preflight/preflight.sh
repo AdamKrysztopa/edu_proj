@@ -35,7 +35,7 @@ fi
 if command -v say >/dev/null; then
   wav="$work/phrase.wav"
   say --data-format=LEI16@16000 -o "$wav" "The total momentum is conserved in the inelastic collision."
-  models=$(py 'from probe_app.config import TRANSCRIBER_MODEL; print(TRANSCRIBER_MODEL)')
+  models=$(py 'from probe_app.config import load_models; print(load_models().transcriber.model)')
   [ "$mode" = pilot ] && models="scribe_v2 whisper-1"
   for m in $models; do
     out=$(uv run --quiet --directory "$inst" probe-app transcribe "$wav" --model "$m" 2>&1)

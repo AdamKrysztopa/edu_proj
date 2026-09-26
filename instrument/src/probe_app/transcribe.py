@@ -4,7 +4,7 @@ from typing import Protocol
 
 from pydantic import BaseModel
 
-from probe_app.config import TRANSCRIBER_MODEL
+from probe_app.config import load_models
 
 PHYSICS_KEYTERMS = [
     "momentum", "kinetic energy", "potential energy", "conservation of energy", "conservation of momentum",
@@ -101,7 +101,8 @@ def transcribe_with_retry(t: Transcriber, audio_path: Path, attempts: int = 3) -
     raise TranscriptionFailed(str(last)) from last
 
 
-def make_transcriber(model: str = TRANSCRIBER_MODEL, client=None) -> Transcriber:
+def make_transcriber(model: str | None = None, client=None) -> Transcriber:
+    model = model or load_models().transcriber.model
     if model.startswith("scribe"):
         return ScribeTranscriber(model, client)
     return OpenAITranscriber(model, client)

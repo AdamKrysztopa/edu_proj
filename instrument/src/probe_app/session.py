@@ -5,9 +5,9 @@ from typing import Literal
 
 from pydantic import BaseModel
 
+from probe_app.backends import Backends
 from probe_app.config import (CAP_S, PREREG_PATH, WRAP_S, ConfigMismatch, check_preregistered, current_config, git_commit,
-                              git_dirty,
-                              load_problems, load_prompt, load_stems)
+                              git_dirty, load_models, load_problems, load_prompt, load_stems)
 from probe_app.contract import ContractState, uncovered
 from probe_app.engine import ProbeContext, ProbeEngine
 from probe_app.human import turns_from_markers
@@ -29,7 +29,16 @@ class DuplicateSubmission(Exception):
 @dataclass
 class Deps:
     transcriber: object
-    anthropic_client: object
+    backends: Backends
+
+
+def check_deps_match_models(deps: Deps, simulated: bool) -> None:
+    models = load_models()
+    stale = [role for role in ("interviewer", "guard") if getattr(deps.backends, role).role != getattr(models, role)]
+    if not simulated and deps.transcriber.model != models.transcriber.model:
+        stale.append("transcriber")
+    if stale:
+        raise ConfigMismatch(f"models.json changed since the server started ({', '.join(stale)}): restart probe-app serve")
 
 
 class ProbeTimer(BaseModel):
@@ -90,8 +99,15 @@ class Session:
         if not set(arms.values()) <= {"ai", "human"}:
             raise ValueError("arms must be 'ai' or 'human'")
         cfg = current_config()
+        check_deps_match_models(deps, simulated)
         dirty = git_dirty()
         if not pilot:
+            models = load_models()
+            unrouted = [r for r in ("interviewer", "guard")
+                        if getattr(models, r).provider == "openrouter" and not getattr(models, r).route]
+            if unrouted:
+                raise ConfigMismatch(f"{', '.join(unrouted)} on openrouter without a route: pin the upstream "
+                                     "in models.json before a data session")
             check_preregistered(cfg, PREREG_PATH)
             if dirty:
                 raise ConfigMismatch("instrument/ has uncommitted changes: commit them before a data session")
@@ -264,12 +280,12 @@ class Session:
         drift = sorted(k for k in now if frozen.get(k) != now[k])
         if drift:
             raise ConfigMismatch(f"configuration changed since this session was created: {drift}")
+        check_deps_match_models(self.deps, self.manifest["simulated"])
 
     def _engine(self, set_id: str) -> ProbeEngine:
         self._check_config()
-        client = self.deps.anthropic_client
-        llm = InterviewerLLM(client, self.store.log_llm, load_prompt("interviewer_system.md"))
-        guard = Guard(client, self.store.log_llm, load_prompt("guard_system.md"))
+        llm = InterviewerLLM(self.deps.backends.interviewer, self.store.log_llm, load_prompt("interviewer_system.md"))
+        guard = Guard(self.deps.backends.guard, self.store.log_llm, load_prompt("guard_system.md"))
         pids = self.state.sets[set_id]
         snapshots = {p: self.snapshot_path(p).read_bytes() for p in pids if self.snapshot_path(p).exists()}
         ctx = ProbeContext(set_id=set_id,

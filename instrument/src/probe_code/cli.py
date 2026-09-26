@@ -4,7 +4,9 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from probe_app.config import INSTRUMENT_DIR, load_problems, load_prompt
+from probe_app.backends import make_backend
+from probe_app.config import INSTRUMENT_DIR, load_models, load_problems, load_prompt
+from probe_app.llm import Guard
 from probe_code.agreement import alpha_nominal, cohen_kappa, decoy_false_rate, guess_rate
 from probe_code.corroboration import corroboration_sheet
 from probe_code.export import export_blind, export_trace, read_csv, write_csv
@@ -55,10 +57,6 @@ def main(argv: list[str] | None = None) -> None:
         elif args.cmd == "export-trace":
             export_trace(sessions, args.out, args.seed)
         else:
-            import anthropic
-
-            from probe_app.llm import Guard
-
             args.out.mkdir(parents=True, exist_ok=True)
             log_path = args.out / "guard_audit_llm.jsonl"
 
@@ -66,7 +64,7 @@ def main(argv: list[str] | None = None) -> None:
                 with log_path.open("a") as f:
                     f.write(json.dumps(record) + "\n")
 
-            guard = Guard(anthropic.Anthropic(), log, load_prompt("guard_system.md"))
+            guard = Guard(make_backend("guard", load_models().guard), log, load_prompt("guard_system.md"))
             statements = {k: v["statement"] for k, v in load_problems()["problems"].items()}
             rows = guard_audit(sessions, guard, statements)
             write_csv(args.out / "guard_audit.csv", rows)

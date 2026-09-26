@@ -17,7 +17,8 @@ def main(session_dir: str) -> None:
     print(f"# {d.name}  expert={manifest['expert_id']} cell={manifest['cell']} phase={state['phase']}"
           f"{'  [' + ', '.join(flags) + ']' if flags else ''}")
     cfg = manifest["config"]
-    print(f"config: {cfg['interviewer_model']} effort={cfg['interviewer_effort']} guard={cfg['guard_model']} "
+    print(f"config: interviewer {cfg.get('interviewer_provider', 'anthropic')}:{cfg['interviewer_model']} "
+          f"effort={cfg['interviewer_effort']} guard {cfg.get('guard_provider', 'anthropic')}:{cfg['guard_model']} "
           f"transcriber={cfg['transcriber_model']} commit={manifest['git_commit'][:7]}")
 
     print("\n## Think-aloud")

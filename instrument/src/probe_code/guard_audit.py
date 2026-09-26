@@ -32,4 +32,5 @@ def ai_rejection_counts(session_dir: Path) -> dict:
             "rejected_leading": sum(r.startswith("leading") for r in reasons),
             "rejected_contract": sum(r.startswith("contract") for r in reasons),
             "interviewer_refused": sum(r.startswith("LLMRefused") for r in failures),
-            "interviewer_unavailable": sum(r.startswith("LLMUnavailable") for r in failures)}
+            "interviewer_unavailable": sum(r.startswith("LLMUnavailable") for r in failures),
+            "guard_failed": sum(e["type"] == "guard_failed" for e in events)}

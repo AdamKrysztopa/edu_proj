@@ -1,3 +1,4 @@
+import json
 import shutil
 from pathlib import Path
 
@@ -13,11 +14,60 @@ def prompts(tmp_path: Path) -> Path:
     return d
 
 
-def test_current_config_hashes_prompt_files(prompts):
-    cfg = config.current_config(prompts)
-    assert cfg.interviewer_model == "claude-opus-5"
-    assert cfg.guard_model == "claude-haiku-4-5"
+MODELS = {
+    "interviewer": {"provider": "anthropic", "model": "claude-opus-5", "effort": "medium"},
+    "guard": {"provider": "anthropic", "model": "claude-haiku-4-5", "temperature": 0},
+    "simulated_expert": {"provider": "anthropic", "model": "claude-sonnet-5", "effort": "low"},
+    "transcriber": {"model": "scribe_v2"},
+}
+
+
+@pytest.fixture
+def models(tmp_path: Path) -> Path:
+    p = tmp_path / "models.json"
+    p.write_text(json.dumps(MODELS))
+    return p
+
+
+def test_current_config_hashes_prompt_files(prompts, models):
+    cfg = config.current_config(prompts, models)
+    assert (cfg.interviewer_provider, cfg.interviewer_model, cfg.interviewer_effort) == ("anthropic", "claude-opus-5", "medium")
+    assert (cfg.guard_provider, cfg.guard_model, cfg.guard_temperature) == ("anthropic", "claude-haiku-4-5", 0)
+    assert cfg.transcriber_model == "scribe_v2"
     assert cfg.system_prompt_sha256 == config.sha256_file(prompts / "interviewer_system.md")
+
+
+def test_committed_models_file_is_valid():
+    config.load_models(config.INSTRUMENT_DIR / "models.json")
+
+
+@pytest.mark.parametrize("bad", [
+    {**MODELS, "interviewer": {"provider": "gemini", "model": "x"}},
+    {k: v for k, v in MODELS.items() if k != "guard"},
+    {**MODELS, "narrator": {"provider": "openai", "model": "x"}},
+    {**MODELS, "interviewer": {"provider": "openai", "model": "x", "route": ["openai"]}},
+    {**MODELS, "interviewer": {"provider": "openrouter", "model": "openai/x", "route": []}},
+    {**MODELS, "interviewer": {"provider": "openai", "model": "x", "effort": "low", "temperature": 0}},
+])
+def test_invalid_models_file_is_refused(tmp_path, bad):
+    p = tmp_path / "models.json"
+    p.write_text(json.dumps(bad))
+    with pytest.raises(config.ConfigMismatch, match="models.json"):
+        config.load_models(p)
+
+
+def test_route_is_accepted_for_openrouter(tmp_path):
+    p = tmp_path / "models.json"
+    p.write_text(json.dumps({**MODELS, "guard": {"provider": "openrouter", "model": "openai/x", "route": ["openai"]}}))
+    assert config.current_config(models_path=p).guard_route == ["openai"]
+
+
+def test_changing_the_interviewer_breaks_the_preregistration(prompts, models, tmp_path):
+    prereg = tmp_path / "prereg.json"
+    config.freeze(config.current_config(prompts, models), prereg)
+    models.write_text(json.dumps({**MODELS, "interviewer": {"provider": "openrouter", "model": "openai/some-model"}}))
+    with pytest.raises(config.ConfigMismatch, match="interviewer_provider"):
+        config.check_preregistered(config.current_config(prompts, models), prereg)
 
 
 def test_hash_changes_when_prompt_changes(prompts):
@@ -51,3 +101,27 @@ def test_loaders():
     problems = config.load_problems()
     assert problems["sets"]["A"] == ["A1", "A2"]
     assert "statement" in problems["problems"]["B2"]
+
+
+OPENROUTER = {"provider": "openrouter", "model": "openai/x"}
+
+
+@pytest.mark.parametrize("role, base, edit, frozen", [
+    ("interviewer", {}, {"temperature": 0.7}, "interviewer_temperature"),
+    ("guard", {}, {"effort": "high"}, "guard_effort"),
+    ("interviewer", OPENROUTER, {"route": ["openai"]}, "interviewer_route"),
+])
+def test_editing_any_frozen_role_setting_breaks_the_preregistration(prompts, models, tmp_path, role, base, edit, frozen):
+    prereg = tmp_path / "prereg.json"
+    models.write_text(json.dumps({**MODELS, role: {**MODELS[role], **base}}))
+    config.freeze(config.current_config(prompts, models), prereg)
+    models.write_text(json.dumps({**MODELS, role: {**MODELS[role], **base, **edit}}))
+    with pytest.raises(config.ConfigMismatch, match=frozen):
+        config.check_preregistered(config.current_config(prompts, models), prereg)
+
+
+def test_every_interviewer_and_guard_setting_is_frozen():
+    frozen = set(config.FrozenConfig.__dataclass_fields__)
+    missing = [f"{role}_{name}" for role in ("interviewer", "guard") for name in config.RoleModel.model_fields
+               if f"{role}_{name}" not in frozen]
+    assert missing == []

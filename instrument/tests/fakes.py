@@ -1,3 +1,12 @@
+import json as _json
+from pathlib import Path
+from types import SimpleNamespace
+
+from probe_app.backends import AnthropicBackend, Backends
+from probe_app.config import Models
+from probe_app.transcribe import RawSegment
+
+
 class FakeClock:
     def __init__(self, t: float = 0.0):
         self.t = t
@@ -9,13 +18,16 @@ class FakeClock:
         self.t += dt
 
 
-from pathlib import Path
-
-from probe_app.transcribe import RawSegment
+TEST_MODELS = Models.model_validate({
+    "interviewer": {"provider": "anthropic", "model": "claude-opus-5", "effort": "medium"},
+    "guard": {"provider": "anthropic", "model": "claude-haiku-4-5", "temperature": 0},
+    "simulated_expert": {"provider": "anthropic", "model": "claude-sonnet-5", "effort": "low"},
+    "transcriber": {"model": "scribe_v2"},
+})
 
 
 class FakeTranscriber:
-    model = "fake"
+    model = TEST_MODELS.transcriber.model
 
     def __init__(self, results: list):
         self.results = list(results)
@@ -29,10 +41,25 @@ class FakeTranscriber:
         return item
 
 
-import json as _json
-from types import SimpleNamespace
+def openai_response(content: str | None, finish_reason: str = "stop", refusal: str | None = None):
+    message = SimpleNamespace(content=content, refusal=refusal)
+    response = SimpleNamespace(choices=[SimpleNamespace(message=message, finish_reason=finish_reason)])
+    response.model_dump = lambda mode="json": {"choices": [{"content": content, "refusal": refusal,
+                                                            "finish_reason": finish_reason}]}
+    return response
 
-from probe_app.config import GUARD_MODEL
+
+class FakeOpenAI:
+    def __init__(self, responses: list):
+        self.responses, self.calls = list(responses), []
+        self.chat = SimpleNamespace(completions=self)
+
+    def create(self, **kwargs):
+        self.calls.append(kwargs)
+        item = self.responses.pop(0)
+        if isinstance(item, Exception):
+            raise item
+        return item
 
 
 class FakeResponse:
@@ -52,7 +79,7 @@ class FakeAnthropic:
 
     def create(self, **kwargs):
         self.calls.append(kwargs)
-        role = "guard" if kwargs["model"] == GUARD_MODEL else "interviewer"
+        role = "guard" if kwargs["model"] == TEST_MODELS.guard.model else "interviewer"
         queue = self.queues[role]
         if not queue and role == "guard":
             return FakeResponse({"flagged": False, "introduced": ""})
@@ -60,6 +87,11 @@ class FakeAnthropic:
         if isinstance(item, Exception):
             raise item
         return item
+
+
+def fake_backends(client) -> Backends:
+    return Backends(interviewer=AnthropicBackend(client, TEST_MODELS.interviewer),
+                    guard=AnthropicBackend(client, TEST_MODELS.guard))
 
 
 def turn_payload(**overrides) -> dict:

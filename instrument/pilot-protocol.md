@@ -6,8 +6,8 @@
 
 ## Before the session
 
-1. Ethics: pilot consent form names ElevenLabs and OpenAI (audio) and Anthropic (transcripts, written-work images) as processors; data-processing terms and retention settings confirmed for all three accounts. Stage A consent names only the transcriber that is frozen.
-2. Keys in `instrument/.env` (`ANTHROPIC_API_KEY`, `ELEVEN_LABS_API_KEY`, `OPENAI_API_KEY`); never committed.
+1. Ethics: the pilot consent form names as processors the providers of the interviewer and guard in `instrument/models.json`, both transcribers compared in the pilot (ElevenLabs for `scribe_v2`, OpenAI for `whisper-1`), and, for a role on `openrouter`, OpenRouter and the upstream provider(s) in its `route`; each provider's data-processing terms and retention are confirmed. Stage A consent names only the providers in the frozen `models.json`.
+2. Keys in `instrument/.env` (`ANTHROPIC_API_KEY`, `ELEVEN_LABS_API_KEY`, `OPENAI_API_KEY`, and `OPENROUTER_API_KEY` if a role uses `openrouter`); never committed.
 3. Tablet over the network needs HTTPS: `mkcert -install && mkcert <laptop-LAN-IP>`, install the mkcert root CA on the tablet, then
    `uv run probe-app serve --host 0.0.0.0 --ssl-certfile <ip>.pem --ssl-keyfile <ip>-key.pem`.
    In person on the laptop itself: `uv run probe-app serve` and use `http://127.0.0.1:8000`.
@@ -28,17 +28,17 @@
 
 - The session ran end to end using only the console controls (note every workaround).
 - AI latency: median gap between `expert_answer` and the next `probe` event (target under 6 s).
-- `probe-code guard-audit` flag rates for both arms, and the rejection summary it prints (`rejected_leading`, `rejected_contract`, `interviewer_refused`, `interviewer_unavailable`, `fallback`).
+- `probe-code guard-audit` flag rates for both arms, and the rejection summary it prints (`rejected_leading`, `rejected_contract`, `interviewer_refused`, `interviewer_unavailable`, `fallback`, `guard_failed`).
 - Transcription errors on physics terms in 5 minutes of audio checked by hand, for both transcribers on the same files: `uv run probe-app transcribe sessions/<id>/audio/think_A1.webm --model scribe_v2` and `--model whisper-1`. Freeze the one with fewer physics-term errors.
 - **Success criterion 3:** at least one operation in the think-aloud trace absent from the expert's ordinary explanation. If none, revise the probe script before recruiting.
 - Debrief answers.
 
 ## Refusals
 
-Claude Opus 5 runs a `reasoning_extraction` safety classifier. It refused every attempt to have Opus 5 role-play the expert (which is why the simulator uses Sonnet 5). A refused interviewer turn becomes a bare stem (`ai_fallback`), which weakens the AI arm. If `interviewer_refused` exceeds about 1 in 10 turns in the pilot, raise it before freezing: the options are rewording the interviewer prompt, a different interviewer model, or an explicit fallback model, and each changes the frozen configuration.
+Claude Opus 5 runs a `reasoning_extraction` safety classifier. It refused every attempt to have Opus 5 role-play the expert (which is why the simulator uses Sonnet 5). A refused interviewer turn becomes a bare stem (`ai_fallback`), which weakens the AI arm. If `interviewer_refused` exceeds about 1 in 10 turns in the pilot, raise it before freezing: the options are rewording the interviewer prompt, a different interviewer model or provider in `models.json`, or an explicit fallback model, and each changes the frozen configuration.
 
 ## After the pilots
 
 1. Fill `codebook/v0.md` from the pilot transcripts; two coders try it on one pilot session.
-2. Adjust `INTERVIEWER_EFFORT` and the prompts if the pilots require it.
+2. Adjust `interviewer.effort` in `models.json` and the prompts if the pilots require it.
 3. Drain `docs/lessons.md` with the `implement-ll` skill. After the freeze, prompt fixes cost a new pre-registration. Then `uv run probe-app freeze`, commit `prereg.json` together with the prompts, and list the hashes in the pre-registration. From then on, any prompt edit makes the app refuse data sessions.
