@@ -87,3 +87,17 @@ A queue padded with those is a queue nobody drains.
   when the tool first creates it, not when someone first tries to commit around it.
 - **Candidate home:** likely the same fix as the bytecode entry above; a PreToolUse hook that
   refuses `git add -A` while an untracked directory contains `.git`.
+
+### Codebook allows several codes per unit; the agreement tools read one
+
+- **What happened:** `instrument/codebook/v0.md` says a unit may carry zero, one or several
+  operations, but `probe-code alpha`/`kappa` read one label per `unit_id`
+  (`instrument/src/probe_code/cli.py`, `_labels`). It was caught by the `codebook-stress-tester`
+  agent's dry run on `SIM-2980899a` before any coder had used the codebook. The same run also
+  found that trace units are undefined, that "Omitted prerequisite" can't be coded from a unit
+  alone, and that the Include/Exclude cells are empty.
+- **Generalises to:** a codebook's unit and label structure is fixed together with the agreement
+  statistic that will consume it, and a dry export plus coding pass is run before the codebook
+  goes to coders.
+- **Candidate home:** a test that parses the codebook's cardinality rule against `_labels`'
+  input, or a step in the pilot protocol's "After the pilots" before two coders try `v0.md`.

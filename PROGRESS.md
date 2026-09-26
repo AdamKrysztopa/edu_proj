@@ -65,10 +65,10 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [x] `openalex` MCP server loaded
 - [x] `zotero` MCP server loaded
 - [x] `guard-session-data.sh`: denies file-tool writes to `sessions/` and `instrument/sessions/`, and asks before Bash `rm`/`mv`/`sed -i`/redirects into them or `git clean -x`
-- [ ] Hook running `uv run pytest -q` after edits to `instrument/` (the full suite takes about 2 s)
+- [x] `run-instrument-tests.sh`: reruns the instrument suite after edits under `instrument/{src,tests,web,prompts,problems}` and blocks on failure
 - [x] `/preflight pilot|data`: clean tree, `prereg.json` match (data), tests, live transcriber and simulated session, `validity-reviewer` since the last real session; step 5 of the pilot protocol
-- [ ] Project `CLAUDE.md`: the two stages, off-limits paths, how to run the tests, when to use each agent
-- [ ] `codebook-stress-tester` agent: applies `instrument/codebook/v0.md` to simulated exports and reports codes that overlap, go unused or are applied with low confidence; before pilots only, never as a coder of record
+- [x] Project `CLAUDE.md`: the experiment's gates and stages, off-limits paths, tests, when to use each agent and skill, definition of done
+- [x] `codebook-stress-tester` agent: applies `instrument/codebook/v0.md` to simulated exports and reports codes that overlap, go unused or are applied with low confidence; before pilots only, never as a coder of record
 - [x] Add `.claude/worktrees/` to `.gitignore`
 - [ ] Zotero library seeded with this project's reading (currently no items in this area)
 - [ ] DOI hook also checks that the resolved title matches the cited work. It only checks resolution now, so the Crandall et al. (2006) DOI in §14 passed while pointing to the wrong book (now corrected).

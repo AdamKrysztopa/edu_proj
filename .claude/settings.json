@@ -11,6 +11,17 @@
             "statusMessage": "Checking DOIs"
           }
         ]
+      },
+      {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/run-instrument-tests.sh",
+            "timeout": 60,
+            "statusMessage": "Running instrument tests"
+          }
+        ]
       }
     ],
     "PreToolUse": [
