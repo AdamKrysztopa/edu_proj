@@ -147,3 +147,9 @@ A queue padded with those is a queue nobody drains.
   signature fails the suite instead of the first real run.
 - **Candidate home:** a test-coverage rule for `instrument/` CLIs (one smoke test per subcommand),
   or a validity-reviewer checklist item to grep every construction site when a class signature changes.
+
+### The frozen config hashes the prompt files but not the code that also speaks to the model
+
+- **What happened:** `FrozenConfig` and `check_preregistered` (`instrument/src/probe_app/config.py:62-111`) hash `instrument/prompts/*` and read `models.json`, but not the per-turn message template, wrap-up and rejection text (`llm.py` `_parts`, `engine.py` rejection strings), the output schemas (`llm.py:9-37`), the guard's user template or the contract rules (`contract.py`). A committed edit to any of them after `probe-app freeze` changes what the interviewer is told and still passes the check, so decision 0001's `frozen-config-refuses-data-session` holds in letter only. Caught by a design-patterns review fork noting it as out of its lens and confirmed by reading `config.py`; no test, `/preflight` or `validity-reviewer` pass had flagged it.
+- **Generalises to:** A freeze must cover everything that reaches the model or decides what reaches the participant, whether it lives in a prompt file or in code, so define the frozen set by that data flow, not by which directory holds the prompts.
+- **Candidate home:** `FrozenConfig` (a hash over the prompt-building and contract source files, or the git tree hash of `instrument/src/probe_app`), plus a line in `validity-reviewer`'s checklist; decide at the drain before `probe-app freeze`.

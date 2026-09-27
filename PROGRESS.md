@@ -32,6 +32,17 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [x] `/branch experiment`: gated two-stage design (Stage A, 12 experts, AI vs human probes validated against the trace → K1 → K0 pretest-error check → Stage B, RCT with about 370 students on delayed transfer → K2). `methods-critic`: no fatal flaw; the six major fixes are applied. K0 moved to pretest items before Stage B (no exam scripts); re-reviewed, five major fixes applied. Early K0 added: the same items as a quiz before the Stage A data sessions. [note](research/experiment-ai-assisted-cta-physics.md)
 - [ ] Add the two ordinary-explanation problems (E_A, E_B) to `instrument/problems/problems.json`, checked by the physicist with the other four, before the pilot.
 - [x] Stage A instrument built: session app and coding pipeline in `instrument/` ([spec](docs/superpowers/specs/2026-09-26-stage-a-session-app-design.md)). Next: pilot on 1–2 physicists (`instrument/pilot-protocol.md`), then freeze.
+- [ ] Before the first pilot: fallback-rate and rejection-rate thresholds set from the simulated-session baseline (decision 0004).
+- [ ] Before the first pilot: console-only routes refuse non-loopback clients, and session IDs use the full uuid4 (decision 0005; `docs/security-review-2026-09-27.md`).
+- [ ] Encrypted backup of `sessions/` after every session; it is the only copy of the data.
+- [ ] Before `probe-app freeze` (decisions 0003, 0004; reviews in `docs/*-review-2026-09-27.md`):
+  - [ ] `FrozenConfig` hashes the model-facing code (`llm.py`, `engine.py`, `contract.py`, `models.py`).
+  - [ ] Guard calibrated on about 60 labelled probe questions; sensitivity and specificity pre-registered.
+  - [ ] Freeze rule computed by `probe-code` from the session logs.
+  - [ ] Audio-stream invariant tests (including the silent skip at `session.py:200`), then the recording module extraction.
+  - [ ] One test tying each output schema to its Pydantic model; `extra="forbid"` on `GuardVerdict`.
+  - [ ] One `make_guard()`/interviewer factory used by both the app and `probe-code`.
+  - [ ] A smoke test per CLI subcommand.
 
 ## Reading (§8)
 - [x] **Minimum:** [research/minimum-reading.md](research/minimum-reading.md), a synthesis of all branch notes and the experiment
