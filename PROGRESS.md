@@ -4,7 +4,8 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 
 ## Todo (you)
 - [x] Download Fukaya et al. (2025): saved to `research/pdf/` (git-ignored). PCK–achievement r = .13 n.s. to .23 by model, 11 studies; PCK lowered to **Moderate**.
-- [ ] Provide K0 data: past first-year mechanics exam scripts or error data (anonymized) for the conservation-principles topic.
+- [ ] Confirm the Stage B course's pretest can carry 2 open-response conservation problems after the topic's lectures (K0 data; no past exam scripts are available).
+- [ ] Name the course offering for early K0 (ungraded quiz with the 2 K0 items, before the Stage A data sessions) and confirm its ethics cover a research quiz.
 
 ## Method branches (§4, §5)
 
@@ -28,7 +29,8 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [x] **LLM-based AI tutoring**: `explore` → **no rating change, scoped**. Kestin et al. (2025) is large but immediate and bundles AI with self-pacing and pre-structured steps; with the AI removed at test, effects elsewhere are ≈ 0.1–0.4 SD, null in preregistered lab RCTs, or harmful without guardrails; syntheses weak, one retracted. Phase 5 compares any LLM tutor with the same design without generation; §11 adds "do not measure learning while the AI is available". [note](research/explore-llm-tutoring.md)
 
 ### Experiment design
-- [x] `/branch experiment`: gated two-stage design (K0 exam-error check → Stage A, 12 experts, AI vs human probes validated against the trace → K1 → Stage B, RCT with about 370 students on delayed transfer → K2). `methods-critic`: no fatal flaw; the six major fixes are applied. [note](research/experiment-ai-assisted-cta-physics.md)
+- [x] `/branch experiment`: gated two-stage design (Stage A, 12 experts, AI vs human probes validated against the trace → K1 → K0 pretest-error check → Stage B, RCT with about 370 students on delayed transfer → K2). `methods-critic`: no fatal flaw; the six major fixes are applied. K0 moved to pretest items before Stage B (no exam scripts); re-reviewed, five major fixes applied. Early K0 added: the same items as a quiz before the Stage A data sessions. [note](research/experiment-ai-assisted-cta-physics.md)
+- [ ] Add the two ordinary-explanation problems (E_A, E_B) to `instrument/problems/problems.json`, checked by the physicist with the other four, before the pilot.
 - [x] Stage A instrument built: session app and coding pipeline in `instrument/` ([spec](docs/superpowers/specs/2026-09-26-stage-a-session-app-design.md)). Next: pilot on 1–2 physicists (`instrument/pilot-protocol.md`), then freeze.
 
 ## Reading (§8)

@@ -2,9 +2,9 @@
 
 **Question:** What is the smallest defensible study showing that AI-assisted CTA elicits expert knowledge that improves novice transfer in one university physics topic?
 
-**Verdict:** a gated two-stage design. Stage A is a within-expert elicitation study with 12 physicists, comparing ordinary explanation, think-aloud trace alone, AI-led probes and human-led probes. Stage B runs only if the Stage A gate passes: a two-arm individually randomized trial with about 370 first-year students and **delayed transfer** as the primary outcome. No rating on the map changes; this adds a design to §9 Phase 2. The `methods-critic` review found no fatal flaw and six major threats; the fixes are applied below (see "Review").
+**Verdict:** a gated two-stage design. Stage A runs only if early K0, a student-error check on an earlier offering, does not stop the study; it is a within-expert elicitation study with 12 physicists, comparing ordinary explanation, think-aloud trace alone, AI-led probes and human-led probes. Stage B runs only if the Stage A gate (K1) and the pretest-error check (K0) pass: a two-arm individually randomized trial with about 370 first-year students and **delayed transfer** as the primary outcome. No rating on the map changes; this adds a design to §9 Phase 2. The `methods-critic` review found no fatal flaw and six major threats; the fixes are applied below (see "Review").
 
-**§9 kill criteria:** none met yet. Phase 1 has no bottleneck data. The design therefore starts with a small Phase 1 check (K0 below) that can stop the study before any expert is recruited.
+**§9 kill criteria:** none met yet. Phase 1 has no bottleneck data, and no past exam scripts are available. The design therefore includes a small Phase 1 check (K0 below) run twice on new items: early K0, on an earlier offering, can stop the study before experts are recruited; K0 on the Stage B cohort's pretest can stop Stage B.
 
 Baseline allowed to move:
 - **§9 Phase 2** lists four elicitation arms and four measures, including "whether novices actually benefit from the recovered operations".
@@ -18,21 +18,36 @@ Search: OpenAlex REST API (the `openalex` MCP server is not loaded in this sessi
 
 ### Topic
 Introductory university mechanics: **selecting and combining conservation principles** (energy, momentum, and energy plus momentum in multi-stage problems such as collisions followed by motion). Reasons:
-- principle selection is the canonical expert–novice difference in physics (Chi, Feltovich & Glaser 1981);
+- principle-based versus surface-based problem representation is a classic expert–novice difference in physics (Chi, Feltovich & Glaser 1981);
 - instruction that targets it has precedents to compare against (Dufresne et al. 1992; Docktor et al. 2015);
 - a misconception instrument exists for the topic (EMCS; Singh & Rosengrant 2003).
 
-### K0: Phase 1 check (before Stage A)
-Take about 100 existing exam solutions to the course's conservation-law problems, anonymized and used with ethics approval for secondary analysis. Code each error as one of: prerequisite or maths; principle selection or representation; other. Two coders; report κ.
-**Stop** if fewer than 30% of errors are principle selection or representation. That meets the §9 Phase 1 kill criterion for this topic ("bottlenecks explained mostly by ordinary prerequisite knowledge"). Choose another topic or stop.
-The problems with the highest selection/representation error rates become the DtD step-1 bottleneck.
+### K0: Phase 1 check (before Stage B)
+No past exam scripts are available, so K0 uses new data from the Stage B cohort.
+- **Items.** The topic pretest carries 2 open-response problems (about 15 minutes) with the same principle structure as the Stage A problems (collision followed by energy conservation) and different surface features. No K0 item repeats, or is isomorphic to (same principle sequence and same unknown), a delayed-test item; the delayed-test authors receive the K0 items to check this.
+- **Timing.** The pretest is given after the course's lectures and problem sets on energy and momentum conservation, at least 7 days before the module opens, and carries completion credit. It precedes randomization, so coders cannot know a student's arm, and both arms sit the same items.
+- **Unit and sample.** Consenting students are sampled at random and one randomly chosen K0 item is coded per student, until 100 solutions containing an error are coded. The unit is the first substantive error (the earliest step that departs from a correct solution), one code per solution: prerequisite or maths; principle selection or representation; other. Blank and correct solutions are counted and reported but are not in the denominator.
+- **Coding.** Codebook with anchor examples, sampling rule, unit and decision rule are pre-registered with Stage B before the pretest is given, citing the early-K0 record unchanged; all Stage B materials, prompts and the delayed test are frozen at that point, and K0 results cannot change them. Two coders, neither the instructional designer nor the PI, double-code all 100 solutions. Target κ ≥ 0.70; below that, they retrain and recode once. K0 is decided on the adjudicated codes.
+
+**Stop** Stage B if fewer than 30% of errors are principle selection or representation, judged on the point estimate and reported with its Wilson 95% CI (about ±9 pp at n = 100). That meets the §9 Phase 1 kill criterion for this topic ("bottlenecks explained mostly by ordinary prerequisite knowledge"). The 30% threshold is a judgment carried over from the exam-script design and not calibrated for a pretest, so the pretest's full error profile is reported next to it. Stage A's results still stand as RQ1 evidence; no RQ4 claim is made for this topic. Stage B reports which K0 error codes each added operation addresses.
+
+**Early K0 (before the Stage A data sessions).** The same 2 items run as a quiz in an earlier offering, in a different cohort from Stage B, at the same point relative to the topic's lectures and under that cohort's own research consent; non-consenters' scripts are not kept.
+- **Registration.** The 2 items, codebook with anchors, unit, sampling and decision rule are registered before the quiz. The Stage B pre-registration cites that record unchanged. Any later change to an item or code is a logged deviation, and early K0 is not recoded under it.
+- **Effort.** The quiz carries the pretest's completion credit where the course allows it. A solution enters the denominator if it contains at least one step beyond restating the givens (an equation or a diagram with quantities); one that stops after that point is coded at its first substantive error. Attempt and attendance rates are reported.
+- **Leakage.** Scripts are collected and no item-specific solutions are released; feedback is given on the topic only. Stage B records whether each student sat early K0; those students are left out of the pretest K0 sample and flagged in the covariate analysis.
+- **Decision.** **Stop before recruiting the 12 experts** if fewer than 30% of errors are principle selection or representation. Early K0 can stop the study only if it reaches 100 errored solutions; with fewer it is reported as inconclusive and Stage A proceeds on the literature premise. A new topic needs its own early K0 on its own items before experts are recruited. A pass does not replace K0: the pretest check runs on the analysed cohort and alone decides Stage B. If the two checks fall on opposite sides of 30%, both are reported with their Wilson CIs and attempt rates, and the difference is discussed as a cohort or effort effect.
+- **Use in Stage B.** Early-K0 codes may choose the four worked-example problems and which steps carry prompts, applied identically to both arms. They do not add, drop or rank operations: the treatment carries every operation that passed K1. The mapping from operations to early-K0 error codes is registered with the Stage B freeze; the report of which K0 error codes each operation addresses uses the pretest codes and is checked against that mapping.
+
+The 1–2 pilots may run before early K0, since they only build the Stage A operation codebook and use no data-session experts.
+
+Until K0 runs, the topic rests on indirect evidence: experts categorize and represent mechanics problems by principle and novices by surface features (Chi, Feltovich & Glaser 1981), though a larger replication found wide overlap between calculus-based first-year and graduate students (Mason & Singh 2011, https://doi.org/10.1103/PhysRevSTPER.7.020110). No cited study measures how often first-year errors on conservation problems are principle selection; K0 does. Early K0 keeps the stop before experts are recruited. Without it, Stage A would run on this premise alone; K1 tests elicitation, which does not depend on student errors, so that risks only expert time on a topic Stage B may drop. The Stage A problems are standard multi-stage conservation problems checked by a physicist, not selected by error rate; K0 confirms the bottleneck on items of the same structure before Stage B. The two ordinary-explanation problems (E_A, E_B) are listed with the four think-aloud problems and checked with them, since the "absent" judgment depends on which problems were explained.
 
 ### Stage A: elicitation (within-expert)
 
 **Participants.** 12 physicists who have taught or examined the course topic, plus 2 pilot experts used only to build the codebook. Twelve lies in the 9–17 range at which code saturation was reached in homogeneous interview samples (Hennink & Kaiser 2022, outside physics). Saturation is checked with the Guest, Namey & Chen (2020) run-length method. Recruitment extends to 16 if the last 3 experts still add more than 5% new operations.
 
 **Session order per expert** (fixed, so that the baseline is not contaminated):
-1. **Ordinary explanation** (§9 arm 1). Before anything else, the expert writes a worked explanation of two bottleneck problems "for a first-year student".
+1. **Ordinary explanation** (§9 arm 1). Before anything else, the expert writes a worked explanation of two problems, one from each problem set and not used later, "for a first-year student".
 2. **Think-aloud solving** (§9 arm 4). Non-directed think-aloud instructions only, on four new problems (sets A and B, two each), with the written and diagram work captured on a tablet. No probing, because describe/explain prompts during the task are reactive (Fox, Ericsson & Best 2011).
 3. **Retrospective CDM-style probes** over the transcript and captured work: set A by one interviewer and set B by the other (§9 arms 2 and 3). The AI interviewer is an LLM running a fixed probe script. The human is a trained interviewer running the same script. Probes cover cues noticed, alternatives rejected, checks, anomalies and "what would a novice miss here?". Both see the same transcript and scans, and both get a hard cap of 20 minutes per problem set, so that the AI cannot win by simply asking more.
    - Interviewer × problem set × order is counterbalanced: 4 sequences × 3 experts. Session order is a term in the estimate, because the second probe session is primed by the first.
@@ -76,7 +91,7 @@ The thresholds are judgment calls. They are fixed before data collection, not de
 
 ### Stage B: learning (two-arm RCT)
 
-**Participants.** First-year students in the university mechanics course, randomized individually and stratified by pretest, in a graded-for-completion online module run before the topic's exam.
+**Participants.** First-year students in the university mechanics course, randomized individually and stratified on the pretest's closed-response score (or the midterm score; the open-response K0 items are scored afterwards and enter the analysis as covariates only), in a graded-for-completion online module run before the topic's exam.
 
 **Conditions.** Both arms get the same four worked examples with self-explanation prompts, delivered as a **static** module with no LLM tutor, so that §5.12 delivery effects cannot confound the result. The two arms are matched for word count (±10%, prompts and model answers included) and allotted time (2 × 40 min).
 - **Control (strong):** worked examples built from the experts' *ordinary explanations* in Stage A, edited by the same instructional designer. This is the expert-authored baseline of Feldon et al. (2010), not a lecture baseline.
@@ -84,7 +99,7 @@ The thresholds are judgment calls. They are fixed before data collection, not de
 - **Prompts in both arms.** Both arms have the same number of prompts, drawn in the same proportions from one fixed list of stems (which principle this step uses and why its conditions hold; apply it to the next step; what check confirms the result), with model answers of equal length. Prompts on steps present in both arms are identical. Only the prompts carrying added operations differ; in the control, the same stems go to steps already present. Prompts are piloted on non-participants until median time per prompt differs by no more than 10% between arms.
 
 **Measures.**
-- **Covariate:** a topic pretest and the student's prior midterm score.
+- **Covariate:** a topic pretest (including the K0 open-response problems) and the student's prior midterm score.
 - **Primary: delayed transfer, 2–3 weeks after the module.** Problems that share the principle structure of the training problems but differ in surface context, plus problems that need the same principles in a new combination.
   - Written by two physics instructors who took no part in Stage A or the materials. They work from a specification of target principles only, never from the operations list, which guards against assessment alignment (§5.9, Kulik & Fletcher 2016).
   - **Scored for correctness only:** the correct principle set, correct equations and correct answer. The rubric does not reward write-up steps that the treatment teaches, which also keeps scorers blind to arm.
@@ -115,7 +130,7 @@ The thresholds are judgment calls. They are fixed before data collection, not de
 - The control arm is ordinary, good-quality expert material, so it is no weaker than current teaching.
 - After the delayed test, every student gets the treatment materials before the exam.
 - The module is earned by completion, not score. Research consent is separate from credit: non-consenters do the same module and their data are not used. The instructor does not learn who consented.
-- K0 uses anonymized exam scripts under ethics approval for secondary use.
+- K0 codes pretest responses under the Stage B research consent, which is collected before the pretest; non-consenters' pretests are not coded. The consent rate is reported, and K0 describes consenters, who are also the analysed population. If K0 stops Stage B, the module runs as ordinary teaching with the control materials, no research data beyond K0 are analysed, and consenters are told.
 - Students' and experts' consent, pseudonymized data and recording consent for experts.
 - Transcripts sent to an LLM provider need a data-processing agreement or a locally hosted model.
 
@@ -195,13 +210,35 @@ Stage B changed after `explore-worked-examples-self-explanation.md` (operations 
 
 Minor: dose raised to prompts in at least two of four examples; prompts and model answers count toward the word match; CACE relabelled per-protocol; a "known strategies" caveat added under Against; Heller & Reif (1984) added to the precedents. Still open: list the selected EMCS items in the pre-registration before any data are collected.
 
+### Re-review after the K0 amendment
+
+No past exam scripts will be available, so K0 moved from exam scripts before Stage A to open-response pretest items before Stage B. Verdict: no fatal flaw, five major issues; would run with them fixed. All were applied above:
+
+1. **Pretest timing was unspecified**, so errors from not yet knowing the principle could fail K0. The pretest now follows the course's lectures on the topic and carries completion credit; the uncalibrated threshold is reported with the full error profile.
+2. **The 30% had no unit or denominator.** One code per solution on the first substantive error; blank and correct solutions are outside the denominator.
+3. **K0 now follows the sunk cost.** Codebook, sampling and decision rule are pre-registered, Stage B materials frozen before the pretest, coders independent of the designer and PI, κ ≥ 0.70.
+4. **Stratifying on open-response items would not fit the one-week window.** Randomization stratifies on the closed-response score or midterm.
+5. **K0 could test different problems from Stage A's.** K0 items share Stage A's principle structure, and map §5.1 now says the bottleneck is set from the literature and confirmed by K0.
+
+Minor: clustered sampling replaced by one item per student with a Wilson CI; pretest length and delayed-test overlap fixed; consent timing and the fallback if K0 stops; the ordinary-explanation problems named; the premise citation narrowed (also flagged by `citation-verifier`).
+
+### Review of early K0
+
+Early K0 runs the K0 items as a quiz in an earlier offering, so that student data can again stop the study before experts are recruited. Verdict: no fatal flaw, three major issues; would run with them fixed. All were applied above:
+
+1. **An ungraded quiz is weak ground for a stop.** Completion credit where allowed, a defined attempt threshold, attempt and attendance rates reported, and no stop below 100 errored solutions.
+2. **Items were not frozen across the two checks.** Items and codebook are registered before the quiz; the Stage B pre-registration cites that record, and later changes are logged deviations.
+3. **Items could leak to the Stage B cohort.** Different cohorts, scripts collected, no item solutions released, early-K0 sitters excluded from the pretest K0 sample.
+
+Minor: early-K0 codes may shape examples and prompt placement only, never which operations the treatment carries; a new topic needs its own early K0; disagreement between the checks is reported; stale lines on what K0 can stop corrected.
+
 ## Implications for the map
 
 1. **§9 Phase 2.** Under "Measure", add a "Minimal first design" paragraph:
-   - K0 check on exam errors; Stage A with 12 experts, blind operation coding and validation against the trace; K1 gate; Stage B, a two-arm RCT on delayed transfer with SESOI d = 0.30 and about 370 students; K2 with its compliance condition and inconclusive zone.
+   - early K0 on quiz errors in an earlier offering; Stage A with 12 experts, blind operation coding and validation against the trace; K1 gate; K0 check on pretest errors; Stage B, a two-arm RCT on delayed transfer with SESOI d = 0.30 and about 370 students; K2 with its compliance condition and inconclusive zone.
    - Note that the decoding interview arm is deferred.
    - Link this note.
-2. **§9 Phase 2.** Add a **kill criterion** line matching K1 and K2 (Phase 2 has none today).
+2. **§9 Phase 2.** Add a **kill criterion** line matching K1, K0 and K2 (Phase 2 has none today).
 3. **§14.** Add: Hennink & Kaiser (2022); Guest, Namey & Chen (2020); Lortie-Forgues & Inglis (2019); Kraft (2020); Dufresne et al. (1992); Docktor et al. (2015); Docktor et al. (2016); Singh & Rosengrant (2003); Chopra & Haaland (2026); Geiecke & Jaravel (2026); Wuttke et al. (2025).
 4. **No change** to any §4 rating, to §5.1 or to §5.2. The design uses the §5.2 provisional method unchanged.
 
@@ -211,3 +248,4 @@ These are only the ones that would change the design:
 - Is the course enrolment at one site at least 370 per offering? If not, Stage B needs two semesters or two sites, and that decides feasibility.
 - Should Stage B add a published-strategy arm? That would turn the claim from "better than ordinary expert material" into "better than the best known material" at about 1.5× N.
 - Does an item-level validation of EMCS for this population exist? Partly: item-level evidence from one university flags three items, and no item subset is validated, so EMCS stays exploratory (see `explore-concept-inventories.md`).
+- Which course offering runs early K0, and does its ethics approval cover a research quiz? Without one, Stage A runs on the literature premise alone.

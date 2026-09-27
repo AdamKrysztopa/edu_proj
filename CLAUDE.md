@@ -6,9 +6,9 @@ Research on eliciting the hidden reasoning of expert physicists and testing whet
 ## The experiment
 
 Design: `research/experiment-ai-assisted-cta-physics.md`. Each gate can stop the study.
-- **K0**: code about 100 past exam errors; stop if under 30% are principle selection or representation. Waiting on exam data from the user.
 - **Stage A** (within-expert, 12 physicists): ordinary explanation, think-aloud solving, then retrospective probes by an AI and a human interviewer on counterbalanced problem sets. Operations are coded blind and corroborated against the trace. Instrument: `instrument/` (`probe-app` session app, `probe-code` coding pipeline).
 - **K1**: at least 3 new shared operations, at least 2 of them AI-probe-added, and the AI-minus-human contradicted-rate CI bound at most 15 pp.
+- **K0**: no past exam scripts exist, so about 100 errors are coded on open-response conservation problems in the Stage B pretest; stop Stage B if under 30% are principle selection or representation. Early K0 runs the same items as a quiz in an earlier offering and can stop the study before the 12 experts.
 - **Stage B**: two-arm RCT, about 370 first-year students, delayed transfer; a futility test at d = 0.30.
 - **K2**: kill if the effect is below that SESOI, valid only with at least 70% compliance per arm.
 
