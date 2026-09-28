@@ -312,6 +312,43 @@ def test_build_gold_ledger_refuses_a_quote_that_does_not_locate(tmp_path):
                                  root=FIXTURES, today=DAY, domain="d")
 
 
+def test_build_gold_ledger_routes_candidates_by_domain_across_a_shared_file(tmp_path):
+    """A gold_candidates.json spanning two E-PLANT domains: each domain's candidate must be
+    located against its own domain's manifest/root, and a candidate from the other domain must
+    be skipped rather than raising (its spans' URLs are not even in this domain's corpus)."""
+    candidates = tmp_path / "candidates.json"
+    candidates.write_text(json.dumps({"candidates": [
+        {"target_id": "a1", "domain": "domain-a",
+         "assertion": "Leftovers must reach 74 degrees C.",
+         "spans": [{"url": "https://real-a.test/leftovers",
+                   "quote": "core temperature of 74 degrees C is reached throughout"},
+                  {"url": "https://real-b.test/leftovers-2",
+                   "quote": "core temperature of at least 74 degrees C when reheated for eating"}]},
+        {"target_id": "b1", "domain": "domain-b",
+         "assertion": "The north pier crack is 2mm wide.",
+         "spans": [{"url": "https://real-c.test/bridge",
+                   "quote": "crack width of 2 millimetres near the north pier"},
+                  {"url": "https://real-d.test/bridge-2",
+                   "quote": "crack width of 2 millimetres near the north pier"}]},
+    ]}))
+    verified = tmp_path / "verified.json"
+    verified.write_text(json.dumps({"verified_target_ids": ["a1", "b1"]}))
+
+    gold_a = eplant.build_gold_ledger(candidates, verified, manifest_path=FIXTURES / "manifest.json",
+                                      root=FIXTURES, today=DAY, domain="domain-a")
+    assert [c.assertion for c in gold_a.claims] == ["Leftovers must reach 74 degrees C."]
+
+    gold_b = eplant.build_gold_ledger(candidates, verified, manifest_path=FIXTURES / "manifest_b.json",
+                                      root=FIXTURES, today=DAY, domain="domain-b")
+    assert [c.assertion for c in gold_b.claims] == ["The north pier crack is 2mm wide."]
+
+    combined = Ledger(purpose="gold", claims=gold_a.claims + gold_b.claims)
+    assert len(combined.claims) == 2
+    assert {c.assertion for c in combined.claims} == {
+        "Leftovers must reach 74 degrees C.", "The north pier crack is 2mm wide.",
+    }
+
+
 def test_gold_ledger_is_never_a_synthetic_or_weak_criterion():
     gold = eplant.build_gold_ledger(
         FIXTURES / "gold_candidates.json", FIXTURES / "gold_verified_t01_only.json",

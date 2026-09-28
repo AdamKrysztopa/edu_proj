@@ -394,6 +394,8 @@ def build_gold_ledger(candidates_path: str | Path, verified_path: str | Path, *,
 
     claims = []
     for cand in candidates:
+        if cand.get("domain", domain) != domain:
+            continue
         if cand["target_id"] not in verified_ids:
             continue
         spans = cand["spans"]
@@ -703,9 +705,14 @@ def _cmd_score(args: argparse.Namespace) -> int:
         domain_scores.append(score_domain(target_set, ledger=ledger, sidecar=sidecar,
                                           baseline_answers=baseline_answers,
                                           conflict_pairs=conflict_pairs))
-    gold = build_gold_ledger(args.gold_candidates, args.gold_verified,
-                             manifest_path=args.corpus[0], root=args.root[0],
-                             today=datetime.now(UTC).date(), domain=domain_scores[0].domain)
+    today = datetime.now(UTC).date()
+    gold_claims: list = []
+    for corpus_path, root_path, domain_score in zip(args.corpus, args.root, domain_scores, strict=True):
+        domain_gold = build_gold_ledger(args.gold_candidates, args.gold_verified,
+                                        manifest_path=corpus_path, root=root_path,
+                                        today=today, domain=domain_score.domain)
+        gold_claims.extend(domain_gold.claims)
+    gold = Ledger(purpose="gold", claims=tuple(gold_claims))
     results = score_eplant(domain_scores, gold, alpha=args.alpha)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)

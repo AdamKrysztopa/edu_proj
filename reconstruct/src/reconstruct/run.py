@@ -591,6 +591,7 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
         incomplete_reasons.append(f"run failed: {e!r}")
 
     ledger_claims = list(claims_by_id_real.values()) + unknown_placeholders
+    ledger_contradictions = list({x.claims: x for x in reversed(ledger_contradictions)}.values())[::-1]
     ledger = Ledger(purpose="reconstruction", claims=tuple(ledger_claims),
                     contradictions=tuple(ledger_contradictions), areas=tuple(ledger_areas),
                     assignments=tuple(ledger_assignments))

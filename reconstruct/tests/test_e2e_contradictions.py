@@ -170,3 +170,60 @@ def test_cross_verify_refutes_corroborates_and_ignores_duplicate_spans(tmp_path)
     assert len(claim_e.evidence) == 1
     cross_check_claim_ids = {c["claim_id"] for c in sidecar["cross_checks"]}
     assert claim_e.claim_id not in cross_check_claim_ids
+
+
+def test_bidirectional_refute_dedupes_to_one_ledger_contradiction(tmp_path):
+    """A refutes B's span AND B refutes A's span (both directions of the same cross-check):
+    `Contradiction.claims` sorts the pair on construction, so the pre-ledger dedupe-by-claims
+    (`run.py`, just before the `Ledger(...)` call) must collapse the two records into one."""
+    out = tmp_path / "run"
+    pages = {
+        BENCH_URL: _page(GENUINE_A, tag="bench"),
+        FIELD_URL: _page(GENUINE_B, tag="field"),
+    }
+
+    planner = ScriptedBackend(role="planner", family="anthropic")
+    planner.script("plan", "", {"areas": [
+        {"name": "Refutes Area", "queries": ["torque limit"]},
+    ]})
+    planner.script_search("torque limit", search_result(
+        "torque limit", [(BENCH_URL, "t"), (FIELD_URL, "t")], TODAY))
+
+    CLAIM_A = "The safe torque limit for the coupling bolt is forty newton metres."
+    CLAIM_B = "The safe torque limit for the coupling bolt is eighty newton metres."
+
+    extractor = ScriptedBackend(role="extractor", family="anthropic")
+    extractor.script("extract", "Bench technicians must torque",
+                     {"claims": [_claim(CLAIM_A, GENUINE_A, "Refutes Area")]})
+    extractor.script("extract", "Field crews are instructed",
+                     {"claims": [_claim(CLAIM_B, GENUINE_B, "Refutes Area")]})
+
+    verifier = ScriptedBackend(role="verifier", family="openai")
+
+    def _a_response(text):
+        return _supports(GENUINE_A) if "Bench technicians must torque" in text else _refutes(GENUINE_B)
+
+    def _b_response(text):
+        return _supports(GENUINE_B) if "Field crews are instructed" in text else _refutes(GENUINE_A)
+
+    verifier.script("verify", CLAIM_A, _a_response)
+    verifier.script("verify", CLAIM_B, _b_response)
+    script_default_decoys(extractor, verifier)
+
+    models = make_models(planner=planner, extractor=extractor, verifier=verifier, out=out)
+    run_dir = Path(reconstruct(domain="maintenance", task="t", models=models, http=http_client(pages),
+                                out=out, today=TODAY, max_results=5))
+
+    ledger = Ledger.from_json((run_dir / "ledger.json").read_text())
+    sidecar = read_json(run_dir / "sidecar.json")
+    assert sidecar["complete"] is True, sidecar["incomplete_reasons"]
+
+    def claim_id_for(fragment):
+        matches = [c.claim_id for c in ledger.claims if fragment in c.assertion]
+        assert len(matches) == 1, f"expected exactly one claim matching {fragment!r}, got {matches}"
+        return matches[0]
+
+    cid_a, cid_b = claim_id_for("forty newton metres"), claim_id_for("eighty newton metres")
+    matching = [c for c in ledger.contradictions if set(c.claims) == {cid_a, cid_b}]
+    assert len(matching) == 1
+    assert sidecar["stats"]["n_contradictions_ledger"] == 1
