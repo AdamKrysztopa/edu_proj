@@ -1,0 +1,21 @@
+{
+  "candidates": [
+    {
+      "target_id": "t01",
+      "domain": "Home storage and reheating of leftover food",
+      "assertion": "Reheated leftovers must reach a core temperature of at least 74 degrees C.",
+      "spans": [
+        {"url": "https://real-a.test/leftovers", "quote": "core temperature of 74 degrees C is reached throughout"},
+        {"url": "https://real-b.test/leftovers-2", "quote": "core temperature of at least 74 degrees C when reheated for eating"}
+      ]
+    },
+    {
+      "target_id": "t02",
+      "domain": "Home storage and reheating of leftover food",
+      "assertion": "Only one verified span; this candidate must never survive verification.",
+      "spans": [
+        {"url": "https://real-a.test/leftovers", "quote": "core temperature of 74 degrees C is reached throughout"}
+      ]
+    }
+  ]
+}
