@@ -36,7 +36,7 @@ rules:
     verification: deterministic
     verified_by: pytest-archon#test_slot_unknown_only_when_fully_examined_and_verified
   - id: independence-before-corroboration
-    statement: Fetched documents are clustered by union-find (shared registrable domain, shingle containment at least 0.5, or a shared verbatim run of at least 25 words overlapping an evidence span) before any claim is counted as corroborated; a syndicated copy on another domain collapses to the same independence key and counts once.
+    statement: Fetched documents are clustered by union-find on domain-grouping key or shingle containment at least 0.5 alone (no verbatim-run rule) before any claim is counted as corroborated; a shared verbatim run of at least 25 words between spans in two different clusters is not a clustering link but collapses those spans to one corroboration count, so a syndicated copy that only shares a quoted passage still counts once without merging the documents themselves into one independence key.
     scope: ["reconstruct/src/reconstruct/evidence.py"]
     severity: blocking
     verification: deterministic

@@ -157,7 +157,7 @@ Other disagreements:
 - Of the 4 "scope" disagreements, 1 is informative: `c-107ffd1f52495e14`/`c-dcb6e18a5bd4c866`, where DPC answers within 8 weeks and the ICO within 8 weeks extendable to 14, a real jurisdiction difference. Two pair unrelated claims (`c-27af33c5674fc109`/`c-2fa57f35f4df9222`, `c-38cfa9c10f9c0da1`/`c-6154d9c9cb8eb883`).
 - The "terminology" pair (`c-6154d9c9cb8eb883` EDPB / `c-d2de2485aa413a04` CNPD: consult the DPA when risks cannot be mitigated) is a missed corroboration.
 
-So across both runs the contradiction stage returned 1 false positive, 1 useful scope pair and a set of missed corroborations out of 89 calls.
+So across both runs the contradiction stage returned 1 false positive, 1 useful scope pair and a set of missed corroborations out of 90 calls.
 
 **Atomicity (the runner's finding 3): partly confirmed; the rate is overstated.** A crude heuristic (≥ 3 commas, ≥ 2 semicolons, or "N key steps") flags 13% of (b) claims and 12% of (a) claims, so (b) is not worse than (a). Many flagged (b) claims are disjunctive legal triggers that should stay one claim. `c-16af9326fa272d7d` "Automated decision-making about an individual's access to products, services, opportunities, or benefits requires a DPIA" is one norm, and splitting its "or" list would change its meaning. Genuine bundles are conjunctive content lists: `c-1d5f876623c86b1a` "A DPIA process should include seven key steps…" and "A DPIA submission to the ICO must include descriptions of roles…, purposes…, measures…, DPO contact…". Extract-prompt fix: split conjunctive "must include A, B, C" lists into one claim per element; keep disjunctive condition lists whole.
 
@@ -189,7 +189,7 @@ In law, and/or is the decision.
 - The report's per-area "N1 exclusions" section: always "none" for World A, which cannot trigger an exclusion. Remove it from the N2a report.
 - The report's full summary-statistics dump (19 rows, float noise such as 0.11428571428571428): replace it with the headline plus labels.
 
-- **The separate contradiction stage** (`contradict.md`, `CONTRADICT_SCHEMA`, the `contradiction` role, run.py:441-477). Across both runs, 89 calls produced 0 correct genuine contradictions, 1 false positive in the ledger (run b), and mostly "compatible" pairs that were really missed corroborations. The cross-cluster re-verification pass (Q7) asks the same pairs a sharper question, whether span B supports claim A. Its REFUTES verdicts already feed `n_contradictions`, which is defined as "claims in a detected contradiction **or with refuting evidence**". One pass then yields both corroboration and contradiction.
+- **The separate contradiction stage** (`contradict.md`, `CONTRADICT_SCHEMA`, the `contradiction` role, run.py:441-477). Across both runs, 90 calls produced 0 correct genuine contradictions, 1 false positive in the ledger (run b), and mostly "compatible" pairs that were really missed corroborations. The cross-cluster re-verification pass (Q7) asks the same pairs a sharper question, whether span B supports claim A. Its REFUTES verdicts already feed `n_contradictions`, which is defined as "claims in a detected contradiction **or with refuting evidence**". One pass then yields both corroboration and contradiction.
 
 Keep the `Backend` Protocol (the fakes and `CorpusSearchBackend` justify it) and the one-line `build_*` wrappers (they enforce the single-constructor rule cheaply).
 

@@ -1,6 +1,6 @@
 # N2 final adversarial review (pipeline and procedure, pre-rerun)
 
-Reviewer: final adversarial reviewer, 2026-09-28, branch `n2`. Pipeline code reviewed at tag `n2-freeze-2` (`0f39ed9`). `reconstruct/` is unchanged from that tag to HEAD `da197c5`. Nothing under `.private/` was opened. E-PLANT and E-ABST are unscored, so this review covers the code, the harnesses, the procedure and the E-LIVE artefacts, not gate outcomes. Every defect below was confirmed by reading the code, and where marked, by running it. Agreement between subagents was not treated as evidence.
+Reviewer: final adversarial reviewer, 2026-09-28, branch `n2`. Pipeline code reviewed at tag `n2-freeze-2` (`0f39ed9`). `reconstruct/src/` and `reconstruct/tests/` are unchanged from that tag to HEAD `da197c5` (the run artefacts under `reconstruct/runs/` did change — the v3 runs were added). Nothing under `.private/` was opened. E-PLANT and E-ABST are unscored, so this review covers the code, the harnesses, the procedure and the E-LIVE artefacts, not gate outcomes. Every defect below was confirmed by reading the code, and where marked, by running it. Agreement between subagents was not treated as evidence.
 
 ## Verdict
 
@@ -155,7 +155,7 @@ Then rerun at `n2-freeze-3`.
 - `_verdict_from_result(allow_refutes)` is always True, and False would skip the quote check.
 - The provider indirection has one provider: `KEY_ENV`, `RoleConfig.provider`, and `_default_client` ignoring `provider`.
 - There are three `wilson_ci` copies with different n = 0 results.
-- The `--models` default is cwd-relative (`eplant.py:730`).
+- The `--models` default is cwd-relative (`eplant.py:876`).
 - Web mode never snapshots raw bytes, yet `verify_run`'s docstring says it "re-extracts".
 - `verify_run` covers cross-verify evidence, but does not rehash snapshots against their filenames or check the Source-to-snapshot binding.
 

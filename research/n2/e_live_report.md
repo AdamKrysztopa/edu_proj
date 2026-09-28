@@ -110,7 +110,7 @@ The one ledger contradiction recorded across both v1 runs, and it is a **false p
 - `c-592a2fadc6f4283c`: "A data controller must consult the Supervisory Authority when a DPIA indicates that processing would result in high risk to data protection rights and mitigating measures cannot eliminate the residual risks." — span from `dataprotection.ie` (Art. 36 prior-consultation duty), verdict supports.
 - `c-a8d67e2f019b7cce`: "A Data Protection Impact Assessment must be conducted when a type of processing is likely to result in a high risk to the rights and freedoms of individuals." — span from `ico.org.uk`, quoting Art. 35(1), verdict supports.
 
-These are **sequential obligations** (first do the DPIA under Art. 35(1); *then*, if it shows unmitigated high risk, consult the authority under Art. 36), not contradictory ones. The contradiction guard checked only that both quotes were verbatim, not whether the pair-classifier's "contradictory" label was semantically correct — so a mis-kinded pair reached the ledger as the run's only "contradiction." Across both v1 runs the separate contradiction stage produced 89 calls, 0 correct genuine contradictions, this 1 false positive, and mostly "compatible" pairs that were actually missed corroboration.
+These are **sequential obligations** (first do the DPIA under Art. 35(1); *then*, if it shows unmitigated high risk, consult the authority under Art. 36), not contradictory ones. The contradiction guard checked only that both quotes were verbatim, not whether the pair-classifier's "contradictory" label was semantically correct — so a mis-kinded pair reached the ledger as the run's only "contradiction." Across both v1 runs the separate contradiction stage produced 90 calls, 0 correct genuine contradictions, this 1 false positive, and mostly "compatible" pairs that were actually missed corroboration.
 
 ### 4.4 UNKNOWN correctly returned
 
@@ -165,7 +165,7 @@ Incomplete reasons:
 | 1 | HTTP error pages (403/429/404, bot walls, empty shells) counted as sources | `fetch` rejects non-2xx and near-empty/bot-wall text | `080b109` |
 | 2 | Curated PDFs (standards, guides, WP248) rejected outright; only SEO/blog HTML survived | PDF text extraction via `pypdf` | `080b109` |
 | 3 | Corroboration structurally zero (370→370, 259→259, 0 merges); paraphrase-based merge never fires | Cross-cluster re-verification pass generates corroboration/contradiction directly | `080b109` |
-| 4 | Independence over-merged in GDPR (≥25-word shared-quotation rule unions whole documents transitively; 4 clusters, largest 55%) | Span-level (not whole-document) independence keys; host-level keys for multi-institution domains (europa.eu etc.) | `080b109` |
+| 4 | Independence over-merged in GDPR (≥25-word shared-quotation rule unions whole documents transitively; 4 clusters, largest 55%) | Removed the whole-document ≥25-word verbatim-run rule from clustering (`independence_clusters` now unions only on domain-grouping key or ≥0.5 shingle containment; `Source.independence_key` stays document-level, not span-level); host-level keys for multi-institution domains (europa.eu etc.); a separate `span_duplicates` check (still ≥25 words) now collapses matching spans across clusters for corroboration counting only, not document clustering | `080b109` |
 | 5 | Verifier passes generalisation/scope drift (~20% PLC) and and/or swaps (GDPR); decoys measured off-condition (no ±300-char context) | New verifier schema flags (added content / scope difference / quantifier-modality-connective difference); decoys use the real verify payload, strengthening-only mutations, Wilson CI | `080b109` |
 | 6 | Ledger contradiction guard checks only verbatim-quote presence, not classification correctness → false positive (Art. 35 vs Art. 36) | Pairwise contradiction classifier removed; contradictions now come from cross-cluster REFUTES verdicts | `080b109` |
 | 7 | Coverage rule too lenient (1 supported claim = "covered"); `procedure_step`/`strategy` claims (39% of PLC claims) never probed | New "thin" slot status (single-cluster support); `procedure_step` added to probe set | `080b109` |
@@ -184,7 +184,7 @@ Incomplete reasons:
 
 ## 9. E-LIVE verdict
 
-**Pass as a sanity gate, with the fix cycle working as intended — but incomplete.** Be precise about what "pass" means here:
+**Not yet passed: v1 showed the provenance core works; v2 exposed defects now fixed; v3 at the current freeze is pending.** Be precise about what that means:
 
 - v1 showed the provenance core genuinely works: every claim traces through an exact, re-sliceable span to a hashed snapshot and an independent-family verifier verdict (§4.1), across two structurally different domains. That is the thing E-LIVE exists to check, and it holds.
 - v1 also surfaced real, serious defects (source-quality contamination, dead corroboration, over-merged independence, a verifier blind to scope/subject drift, a false contradiction) that would have made any N3-adjacent output misleading. All of them got concrete, targeted fixes in `080b109`, checked against the review's own evidence (§7).
