@@ -23,6 +23,14 @@ N2's registered purpose (`REORIENTATION.md` §22): build a gated reconstruction 
 - **UNKNOWN/unsupported states can be represented.** UNKNOWN is written only for a searched, uncovered slot (`test_e2e_slots.py`); 14/35 GDPR (area × probe) slots returned UNKNOWN in v1, plausibly real signal — normative legal text carries no failure-mode/cue content (§4.4).
 - **Live execution exposed real defects, and they were fixed.** v1 found: HTTP error pages counted as sources, curated PDFs rejected, corroboration structurally dead (0 merges on 370 and 259 extractions), independence over-merging (GDPR collapsed to 4 clusters), verifier scope drift (~20% on PLC), and one false "genuine" contradiction (Art. 35 vs Art. 36 misread as conflicting) — fixed in `080b109` (`e_live_report.md` §7). v2 exposed two more: failed verify/cross-verify/decoy calls silently vanishing behind `complete: true` (140/366 GDPR claims left "pending"), and a `UnicodeEncodeError` PDF crash that aborted an entire fetch phase (0 claims) — fixed in `0f39ed9` (§5, §7 rows 10–11). Harness scoring defects D1–D8 were found and fixed separately (`883b52a`).
 
+## Not demonstrated
+
+- Statistically validated reconstruction quality.
+- Final robustness against planted evidence (E-PLANT gated arm sealed and unscored).
+- Final abstention performance (E-ABST pipeline arm descriptive only).
+- Generalisation across arbitrary domains (two live domains, one run each).
+- Prediction of hidden human knowledge (that is N3's question, RQ-B).
+
 ## Limitations discovered (recorded, not fixed)
 
 `final_adversarial_review.md` R1–R10: decoy validity is self-certified (R2); cross-verify can count a verbatim copy as independent (R3); scope-flagged REFUTES still become N1 Contradictions (R4); extraction truncation drops whole documents at 8192 tokens (R5); `complete`/`n3_input` ignore `failed_calls_by_task` (R6); retrieval/baseline asymmetry favours the baseline, which sees URLs (R7); host tables and prompts carry E-LIVE domain residue (R8). None of these block the engineering milestone; they are inputs to N3 hardening.
