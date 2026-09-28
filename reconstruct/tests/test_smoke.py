@@ -26,6 +26,11 @@ URL_B = "https://smoke-beta.example/notes"
 
 QUOTE_A = "A pressure relief valve opens automatically once system pressure exceeds its set point."
 
+# fetch() rejects near-empty pages (MUST 1: visible text < 500 chars); padding keeps these fixture
+# pages realistic in length without changing the sentence each test actually locates or asserts on.
+_PAD_A = " ".join(f"padsmokea{i}" for i in range(80))
+_PAD_B = " ".join(f"padsmokeb{i}" for i in range(80))
+
 
 @dataclass
 class FakeBackend:
@@ -69,9 +74,11 @@ def run_dir(tmp_path):
     out = tmp_path / "run"
     pages = {
         URL_A: httpx.Response(200, headers={"content-type": "text/html"},
-                              content=(f"<html><body><p>{QUOTE_A}</p></body></html>").encode()),
+                              content=(f"<html><body><p>{QUOTE_A}</p><p>{_PAD_A}</p>"
+                                       "</body></html>").encode()),
         URL_B: httpx.Response(200, headers={"content-type": "text/html"},
-                              content=b"<html><body><p>Nothing relevant on this page.</p></body></html>"),
+                              content=(f"<html><body><p>Nothing relevant on this page.</p>"
+                                       f"<p>{_PAD_B}</p></body></html>").encode()),
     }
 
     def handler(request: httpx.Request) -> httpx.Response:

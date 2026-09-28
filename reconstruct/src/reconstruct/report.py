@@ -1,9 +1,34 @@
 """Markdown rendering of a run: plain and inspectable, not a narrative answer. Reads only the
-ledger and the sidecar it is handed — no filesystem access, no model or network calls."""
+ledger and the sidecar it is handed — no filesystem access, no model or network calls.
+
+MUST-FIX 7: a rejected claim shows its located span, verdict and drift flags (never "(no located
+evidence)" for a claim that has a span); every claim line carries claim_id/knowledge_type/label
+so a reader can cross-reference sidecar.json without grep; the raw per-run stats dump and the
+"N1 exclusions" section (always empty for World A, REMOVE) are gone, replaced by a compact
+headline: sources by fetch outcome, clusters, supported claims by source kind/tier, corroboration
+distribution, slots by status (including `thin`), decoy per-type rates with a Wilson 95% CI, and
+cost.
+"""
 from __future__ import annotations
 
+from reconstruct.evidence import wilson_ci
 from residual.ledger import Ledger
 from residual.vocab import EpistemicLabel
+
+_SLOT_STATUS_ORDER = ("covered", "thin", "unknown", "unverified", "unexamined")
+
+
+def _extraction_by_claim_id(sidecar: dict) -> dict[str, dict]:
+    """The most recently updated extraction record naming this claim_id — good enough for a
+    rejected/synthetic claim's single located extraction; a merged claim shows its first
+    member's verify record, which is the same for every member after MUST 2's rule anyway when
+    the verdict is what mattered (they may differ before the rule is applied, but the ledger's
+    own claim.evidence is the source of truth for a supported claim's own display)."""
+    by_claim: dict[str, dict] = {}
+    for e in sidecar["extractions"]:
+        if e["claim_id"]:
+            by_claim.setdefault(e["claim_id"], e)
+    return by_claim
 
 
 def _headline(sidecar: dict) -> str:
@@ -23,93 +48,142 @@ def _headline(sidecar: dict) -> str:
     return line
 
 
-def _stats_table(sidecar: dict) -> str:
+def _fetch_table(sidecar: dict) -> str:
+    reasons: dict[str, int] = {}
+    for f in sidecar["fetch_failures"]:
+        reasons[f["reason"]] = reasons.get(f["reason"], 0) + 1
     stats = sidecar["stats"]
-    rows = "\n".join(f"| {k} | {v} |" for k, v in sorted(stats.items()) if k != "label_counts")
-    labels = "\n".join(f"| {k} | {v} |" for k, v in sorted(stats["label_counts"].items()))
-    return (f"## Summary statistics\n\n| metric | value |\n| --- | --- |\n{rows}\n\n"
-            f"### Claims by epistemic label\n\n| label | n |\n| --- | --- |\n{labels}\n")
+    lines = ["## Sources and clusters\n",
+             "| metric | value |", "| --- | --- |",
+             f"| sources fetched | {stats['n_sources_fetched']} |",
+             f"| fetch failures | {stats['n_fetch_failures']} |",
+             f"| independent clusters | {stats['n_independent_clusters']} |",
+             f"| largest cluster share | {stats['largest_cluster_share']:.0%} |"]
+    if reasons:
+        lines.append("\n**Fetch failures by reason**\n")
+        lines += ["| reason | n |", "| --- | --- |"]
+        lines += [f"| {reason} | {n} |" for reason, n in sorted(reasons.items(), key=lambda kv: -kv[1])]
+    return "\n".join(lines) + "\n"
+
+
+def _supported_by_kind_tier(ledger: Ledger, sidecar: dict) -> str:
+    counts: dict[tuple[str, str], int] = {}
+    corroboration_dist: dict[int, int] = {}
+    for c in ledger.claims:
+        if not c.supporting:
+            continue
+        corroboration_dist[c.corroboration] = corroboration_dist.get(c.corroboration, 0) + 1
+        for e in c.supporting:
+            tier = sidecar["sources"].get(e.source.source_id, {}).get("tier", "?")
+            key = (e.source.kind.value, tier)
+            counts[key] = counts.get(key, 0) + 1
+    lines = ["## Supported claims by source kind/tier\n"]
+    if counts:
+        lines += ["| kind | tier | n supporting-evidence items |", "| --- | --- | --- |"]
+        for (kind, tier), n in sorted(counts.items()):
+            lines.append(f"| {kind} | {tier} | {n} |")
+    else:
+        lines.append("- none")
+    lines.append("\n### Corroboration distribution (supported claims)\n")
+    if corroboration_dist:
+        lines += ["| corroboration | n claims |", "| --- | --- |"]
+        for k, n in sorted(corroboration_dist.items()):
+            lines.append(f"| {k} | {n} |")
+    else:
+        lines.append("- none")
+    return "\n".join(lines) + "\n"
+
+
+def _slots_table(sidecar: dict) -> str:
+    counts: dict[str, int] = {}
+    for s in sidecar["slots"]:
+        counts[s["status"]] = counts.get(s["status"], 0) + 1
+    lines = ["## Slots by status\n", "| status | n |", "| --- | --- |"]
+    for status in _SLOT_STATUS_ORDER:
+        if counts.get(status):
+            lines.append(f"| {status} | {counts[status]} |")
+    return "\n".join(lines) + "\n"
+
+
+def _decoy_table(sidecar: dict) -> str:
+    by_type = sidecar["stats"].get("decoy_by_type", {})
+    invalid_total = sum(1 for d in sidecar["decoys"] if not d.get("valid", True))
+    lines = ["## Decoy false-accept rate by mutation type (Wilson 95% CI)\n",
+             "| mutation | attempted | valid | false accepts | rate | 95% CI |",
+             "| --- | --- | --- | --- | --- | --- |"]
+    for mutation in sorted(by_type):
+        t = by_type[mutation]
+        valid, false_accept = t["valid"], t["false_accept"]
+        rate = (false_accept / valid) if valid else 0.0
+        lo, hi = wilson_ci(false_accept, valid)
+        lines.append(f"| {mutation} | {t['attempted']} | {valid} | {false_accept} | "
+                     f"{rate:.0%} | [{lo:.0%}, {hi:.0%}] |")
+    if invalid_total:
+        lines.append(f"\n{invalid_total} decoy(s) excluded as invalid (no real change, or no rationale).")
+    return "\n".join(lines) + "\n"
+
+
+def _claim_line(c, sidecar: dict) -> str:
+    extraction = _extraction_by_claim_id(sidecar).get(c.claim_id)
+    header = f"`{c.claim_id}` [{c.knowledge_type.value}] ({c.label.value}) — {c.assertion}"
+    if c.supporting:
+        ev = c.supporting[0]
+        return (f"- {header}\n  > {ev.selector.exact}\n"
+               f"  ({ev.source.kind.value}, {ev.source.identifier}, published "
+               f"{ev.source.published}, independence {ev.source.independence_key}, "
+               f"corroboration {c.corroboration})")
+    if c.evidence and c.evidence[0].selector.exact:
+        # Located but not (or no longer) counted as supporting: show the span, verdict and the
+        # three drift flags the verifier recorded — never "(no located evidence)" for a claim
+        # that has one (MUST-FIX 7; report.py:55 used to mislabel this a fabrication).
+        ev = c.evidence[0]
+        v = ev.verification
+        flag_bits = []
+        if extraction:
+            for flag_key, label in (("verify_adds_content", "adds_content"),
+                                    ("verify_subject_or_scope_differs", "scope_differs"),
+                                    ("verify_quantifier_modality_or_connective_differs", "connective_differs")):
+                if extraction.get(flag_key):
+                    flag_bits.append(label)
+        flags_note = f" [{', '.join(flag_bits)}]" if flag_bits else ""
+        return (f"- {header}\n  > {ev.selector.exact}\n"
+               f"  (verdict {v.verdict.value}{flags_note}, {ev.source.identifier})")
+    return f"- {header} (no located evidence)"
 
 
 def _area_section(ledger: Ledger, sidecar: dict, area) -> str:
     lines = [f"## Area: {area.name}\n"]
     claims = ledger.in_area(area.area_id)
     supported = [c for c in claims if c.label != EpistemicLabel.UNKNOWN and c.supporting]
-    synthetic = [c for c in claims if c.label == EpistemicLabel.SYNTHETIC_EXTRAPOLATION]
+    rejected = [c for c in claims if c.label != EpistemicLabel.UNKNOWN and not c.supporting]
     unknown = [c for c in claims if c.label == EpistemicLabel.UNKNOWN]
 
     lines.append("### Supported claims\n")
-    if supported:
-        for c in supported:
-            ev = c.supporting[0]
-            lines.append(f"- {c.assertion}\n  > {ev.selector.exact}\n"
-                         f"  ({ev.source.kind.value}, {ev.source.identifier}, published "
-                         f"{ev.source.published}, independence {ev.source.independence_key}, "
-                         f"corroboration {c.corroboration})")
-    else:
-        lines.append("- none")
+    lines.append("\n".join(_claim_line(c, sidecar) for c in supported) if supported else "- none")
 
-    lines.append("\n### Synthetic / pending claims\n")
-    if synthetic:
-        for c in synthetic:
-            lines.append(f"- {c.assertion} ({'pending' if c.pending else 'no located evidence'})")
-    else:
-        lines.append("- none")
+    lines.append("\n### Synthetic / rejected claims\n")
+    lines.append("\n".join(_claim_line(c, sidecar) for c in rejected) if rejected else "- none")
 
-    lines.append("\n### UNKNOWN / unverified / unexamined slots\n")
+    lines.append("\n### UNKNOWN / thin / unverified / unexamined slots\n")
     slots = [s for s in sidecar["slots"] if s["area_id"] == area.area_id]
-    for s in slots:
-        if s["status"] != "covered":
+    non_covered = [s for s in slots if s["status"] != "covered"]
+    if non_covered:
+        for s in non_covered:
             lines.append(f"- {s['probe']}: {s['status']}")
-    if not any(s["status"] != "covered" for s in slots):
-        lines.append("- none")
-
-    lines.append("\n### Contradictions and disagreements\n")
-    area_claim_ids = {c.claim_id for c in claims}
-    contradictions = [x for x in sidecar["contradictions"] if set(x["claims"]) & area_claim_ids]
-    if contradictions:
-        for x in contradictions:
-            lines.append(f"- {x['kind']}: {x['claims']} (in ledger: {x['recorded_in_ledger']})")
     else:
-        lines.append("- none")
-
-    lines.append("\n### N1 exclusions\n")
-    excluded_any = False
-    for c in claims:
-        for ev, reason in c.excluded:
-            excluded_any = True
-            lines.append(f"- {c.assertion}: {reason}")
-    if not excluded_any:
         lines.append("- none")
 
     if unknown:
         lines.append("\n### Unknown placeholders\n")
         for c in unknown:
-            lines.append(f"- {c.assertion}")
+            lines.append(f"- `{c.claim_id}` [{c.knowledge_type.value}] — {c.assertion}")
 
-    return "\n".join(lines) + "\n"
-
-
-def _sources_section(sidecar: dict) -> str:
-    n_sources = len(sidecar["sources"])
-    n_supporting = len({s["independence_key"] for s in sidecar["sources"].values()})
-    lines = [f"## Sources\n\n{n_sources} sources retrieved; {n_supporting} independence clusters.\n"]
-    if sidecar["fetch_failures"]:
-        lines.append("\n### Fetch failures\n")
-        for f in sidecar["fetch_failures"]:
-            lines.append(f"- {f['url']}: {f['reason']}")
-    unlocated = [e for e in sidecar["extractions"] if not e["located"] and e["reject_reason"] is None]
-    lines.append(f"\n### Unlocated quotes (fabrication rate: {sidecar['stats']['unlocated_rate']:.0%})\n")
-    for e in unlocated:
-        lines.append(f"- {e['quote'][:80]!r} ({e['source_id']})")
-    if not unlocated:
-        lines.append("- none")
     return "\n".join(lines) + "\n"
 
 
 def render_report(*, ledger: Ledger, sidecar: dict) -> str:
-    parts = [_headline(sidecar), _stats_table(sidecar)]
+    parts = [_headline(sidecar), _fetch_table(sidecar), _supported_by_kind_tier(ledger, sidecar),
+             _slots_table(sidecar), _decoy_table(sidecar)]
     for area in ledger.areas:
         parts.append(_area_section(ledger, sidecar, area))
-    parts.append(_sources_section(sidecar))
     return "\n".join(parts)

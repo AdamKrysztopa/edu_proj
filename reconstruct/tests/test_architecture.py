@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MODULES = sorted((ROOT / "src" / "reconstruct").rglob("*.py"))
 FORBIDDEN = {"instrument", "probe_app", "probe_code"}
 ALLOWED = (set(sys.stdlib_module_names) |
-           {"pydantic", "httpx", "openai", "tldextract", "residual", "reconstruct"})
+           {"pydantic", "httpx", "openai", "tldextract", "residual", "reconstruct", "pypdf"})
 _CONSTRUCTOR_RE = re.compile(r"\b(Evidence|Selector|Verification)\(")
 
 

@@ -103,7 +103,10 @@ class CallLog:
 
     def append(self, *, task: str, role: str, model_id: str, family: str, served_model: str,
                system: str, user: str, schema: dict, input_tokens: int, output_tokens: int,
-               cost: float | None = None) -> None:
+               cost: float | None = None, outcome: str = "ok") -> None:
+        """Every billed call is logged here, whatever its outcome — a refusal, a length
+        truncation or malformed JSON still spent tokens and money, so it must still count
+        against the budget and appear in calls.jsonl, not vanish silently (defect 3)."""
         spec_sha256 = hashlib.sha256(
             "\x1f".join([system, user, json.dumps(schema, sort_keys=True)]).encode()
         ).hexdigest()
@@ -117,6 +120,7 @@ class CallLog:
             "input_tokens": input_tokens,
             "output_tokens": output_tokens,
             "cost": cost,
+            "outcome": outcome,
             "utc": datetime.now(UTC).isoformat(),
         }
         self.path.parent.mkdir(parents=True, exist_ok=True)
@@ -128,7 +132,10 @@ class CallLog:
 def _extract_json_object(task: str, text: str | None) -> dict:
     if text is None:
         raise LLMUnavailable(f"{task} returned no text")
-    data = json.loads(text)
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as e:
+        raise LLMUnavailable(f"{task} returned malformed JSON: {e}") from e
     if not isinstance(data, dict):
         raise LLMUnavailable(f"{task} did not return a JSON object")
     return data
@@ -157,21 +164,38 @@ class OpenRouterBackend:
             response = self.client.chat.completions.create(**params)
         except openai.APIError as e:
             raise LLMUnavailable(repr(e)) from e
+
+        usage = getattr(response, "usage", None)
+        input_tokens = getattr(usage, "prompt_tokens", 0) or 0
+        output_tokens = getattr(usage, "completion_tokens", 0) or 0
+        cost = getattr(usage, "cost", None)
+        served_model = getattr(response, "model", None) or self.model_id
+
+        def log(outcome: str) -> None:
+            self.log.append(task=task, role=self.role, model_id=self.model_id, family=self.family,
+                             served_model=served_model, system=system, user=user, schema=schema,
+                             input_tokens=input_tokens, output_tokens=output_tokens, cost=cost,
+                             outcome=outcome)
+
         if not response.choices:
+            log("no_choices")
             raise LLMUnavailable(f"{task} returned no choices")
         choice = response.choices[0]
         if getattr(choice.message, "refusal", None) or choice.finish_reason == "content_filter":
+            log("refusal")
             raise LLMRefused(f"{task} refused")
         if choice.finish_reason == "length":
+            log("truncated")
             raise LLMUnavailable(f"{task} output truncated")
-        data = _extract_json_object(task, choice.message.content)
-        served_model = response.model
-        self.log.append(task=task, role=self.role, model_id=self.model_id, family=self.family,
-                         served_model=served_model, system=system, user=user, schema=schema,
-                         input_tokens=response.usage.prompt_tokens, output_tokens=response.usage.completion_tokens,
-                         cost=getattr(response.usage, "cost", None))
+        try:
+            data = _extract_json_object(task, choice.message.content)
+        except LLMUnavailable:
+            log("malformed_json")
+            raise
         if served_model != self.model_id:
+            log("served_mismatch")
             raise ServedModelMismatch(f"{task}: requested {self.model_id!r}, served {served_model!r}")
+        log("ok")
         return data
 
     def search(self, query: str, *, max_results: int) -> SearchResult:

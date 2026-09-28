@@ -31,6 +31,8 @@ TORQUE_CLAIMS = [
      "failure_mode", "performance"),
     ("Fasteners are torqued to a specified value so that the clamped joint resists vibration without yielding the bolt material.",
      "rationale", "performance"),
+    ("First the fastener is cleaned, then a calibrated wrench is applied in three even passes to the final torque value.",
+     "procedure_step", "performance"),
 ]
 
 

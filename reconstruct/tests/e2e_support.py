@@ -147,15 +147,19 @@ def script_default_decoys(extractor: ScriptedBackend, verifier: ScriptedBackend,
     call — hits NoScriptedResponse, which is a test-fixture gap, not a defect under test.
 
     Registers a catch-all "decoy" response on `extractor` (decoy: models["extractor"] per the
-    role table) and a decoy-specific "insufficient" response on `verifier`. The verifier entry
-    is inserted ahead of every other scripted response (regardless of when this is called)
-    because a decoy's verify call plausibly also carries the real span it was paired with (A6):
-    without priority, a real-claim script already registered for that span could shadow the
-    decoy's own response, or (called the other way around) a generically-matched decoy entry
-    could shadow a real claim's response. The marker text is unique to the mutation and never
-    appears in any fixture page, so it can only ever match a genuine decoy call.
+    role table, now also carrying a `rationale` so `evidence.decoy_is_valid` accepts it — MUST-FIX
+    4's validity check excludes a decoy that has none) and a decoy-specific "insufficient"
+    response on `verifier`. The verifier entry is inserted ahead of every other scripted response
+    (regardless of when this is called) because a decoy's verify call plausibly also carries the
+    real span it was paired with (A6): without priority, a real-claim script already registered
+    for that span could shadow the decoy's own response, or (called the other way around) a
+    generically-matched decoy entry could shadow a real claim's response. The marker text is
+    unique to the mutation and never appears in any fixture page, so it can only ever match a
+    genuine decoy call. A6/MUST-FIX 4 samples up to 10 decoys per mutation type (not just one), so
+    this same catch-all may be hit once per sampled claim in a run with several located claims.
     """
-    extractor.script("decoy", "", {"mutated_claim": mutated_claim, "mutation": mutation})
+    extractor.script("decoy", "", {"mutated_claim": mutated_claim, "mutation": mutation,
+                                    "rationale": "synthetically mutated by the test harness"})
     marker = mutated_claim[:26]
     verifier.scripts.setdefault("verify", []).insert(
         0, (marker, {"verdict": "insufficient", "supporting_quote": ""}))

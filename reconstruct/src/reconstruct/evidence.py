@@ -37,15 +37,32 @@ _EXTRACT = TLDExtract(suffix_list_urls=(), include_psl_private_domains=True)
 # --- normalisation ------------------------------------------------------------------------
 
 _ZERO_WIDTH_AND_SOFT_HYPHEN = "­​‌‍﻿"
-_CHAR_MAP = {"‘": "'", "’": "'", "“": '"', "”": '"',
-             "–": "-", "—": "-"}
+_CHAR_MAP = {
+    # quotes: every curly/guillemet/prime variant -> the one straight ASCII form (SHOULD 4)
+    "‘": "'", "’": "'", "“": '"', "”": '"',
+    "‚": "'", "„": '"',              # single/double low-9 quotes
+    "‹": "'", "›": "'", "«": '"', "»": '"',  # guillemets
+    "′": "'",                        # prime (NFKC above already decomposes double prime "″"
+                                      # into two of these, so both collapse to "''", not '"')
+    # dashes
+    "–": "-", "—": "-",
+    # bullets, checkboxes and table-cell pipes: collapsed to a space (whitespace-collapse below
+    # absorbs the rest), so a bulleted/tabular line matches the same quote with or without its
+    # list marker or cell separator on either side of the comparison (SHOULD 4/5: E-LIVE lost 10
+    # of 33 unlocated quotes to `|` alone).
+    "|": " ", "•": " ", "▪": " ", "‣": " ", "◦": " ", "·": " ",
+    "☐": " ", "☑": " ", "☒": " ", "■": " ", "□": " ", "●": " ", "○": " ",
+}
 _WHITESPACE_RE = re.compile(r"\s+")
 
 
 def normalise(text: str) -> str:
-    """NFKC; drop soft hyphens/zero-width chars; curly quotes -> straight; en/em dash ->
-    hyphen; collapse all whitespace (including newlines) to a single space. No case folding,
-    no fuzzy matching — this is the one text form every span offset is measured against."""
+    """NFKC; drop soft hyphens/zero-width chars; every quote style -> straight quotes; en/em
+    dash -> hyphen; bullet/checkbox list markers and table-cell `|` separators -> a space;
+    collapse all whitespace (including newlines) to a single space. No case folding, no fuzzy
+    matching — this is the one text form every span offset is measured against. The same
+    mapping runs on both the document (haystack) and the quote, so a page that renders a bullet
+    list one way and a quote that renders it another way still compare exactly (SHOULD 4)."""
     text = unicodedata.normalize("NFKC", text)
     for ch in _ZERO_WIDTH_AND_SOFT_HYPHEN:
         text = text.replace(ch, "")
@@ -93,6 +110,7 @@ def injection_flag(span_text: str) -> bool:
 PROBES: tuple[KnowledgeType, ...] = (
     KnowledgeType.CONCEPT, KnowledgeType.DECISION, KnowledgeType.CUE, KnowledgeType.CHECK,
     KnowledgeType.FAILURE_MODE, KnowledgeType.NORM, KnowledgeType.RATIONALE,
+    KnowledgeType.PROCEDURE_STEP,
 )
 
 TEMPLATES: dict[KnowledgeType, str] = {
@@ -104,6 +122,7 @@ TEMPLATES: dict[KnowledgeType, str] = {
     KnowledgeType.FAILURE_MODE: "How does work in {area} typically go wrong, and what are the signs?",
     KnowledgeType.NORM: "What counts as acceptable or sufficient work in {area}?",
     KnowledgeType.RATIONALE: "Why is {area} done the way it is?",
+    KnowledgeType.PROCEDURE_STEP: "What steps make up {area}, and in what order?",
 }
 
 
@@ -151,7 +170,7 @@ def registrable_domain(url: str) -> str:
     return result.top_domain_under_public_suffix if result.suffix else host
 
 
-# --- host-rule table for Source kind/voice/boundary (A9) -----------------------------------
+# --- host-rule table for Source kind/voice/boundary (A9, SHOULD 6) -------------------------
 
 @dataclass(frozen=True)
 class SourceClassification:
@@ -160,12 +179,57 @@ class SourceClassification:
     voice: Voice
     voice_rule: str
     boundary: bool
+    tier: str
+    """"curated" for STUDY/STANDARD and regulator guidance, "open" otherwise (SHOULD 6)."""
+
+
+def _host_or_subdomain(host: str, known: frozenset[str]) -> bool:
+    return host in known or any(host.endswith("." + h) for h in known)
+
+
+_FORUM_HOSTS = frozenset({"stackoverflow.com", "serverfault.com", "superuser.com", "askubuntu.com",
+                          "reddit.com", "news.ycombinator.com", "eng-tips.com", "plctalk.net"})
 
 
 def _is_forum_host(host: str) -> bool:
-    forum_hosts = {"stackoverflow.com", "serverfault.com", "superuser.com", "askubuntu.com",
-                   "reddit.com", "news.ycombinator.com"}
-    return host in forum_hosts or host.endswith(".stackexchange.com") or host.endswith(".reddit.com")
+    return (_host_or_subdomain(host, _FORUM_HOSTS) or host.endswith(".stackexchange.com")
+            or host.startswith("forums."))
+
+
+# Academic publishers, preprint servers and full-text mirrors -> STUDY.
+_ACADEMIC_PUBLISHER_HOSTS = frozenset({
+    "mdpi.com", "springer.com", "link.springer.com", "sciencedirect.com", "dl.acm.org",
+    "arxiv.org", "doi.org", "ncbi.nlm.nih.gov", "pubmed.ncbi.nlm.nih.gov",
+})
+
+
+def _is_academic_publisher_host(host: str) -> bool:
+    return _host_or_subdomain(host, _ACADEMIC_PUBLISHER_HOSTS)
+
+
+# Legislation and official gazettes -> STANDARD, rule "legislation".
+_LEGISLATION_HOSTS = frozenset({"legislation.gov.uk", "eur-lex.europa.eu"})
+
+
+def _is_legislation_host(host: str) -> bool:
+    return _host_or_subdomain(host, _LEGISLATION_HOSTS) or "gazette" in host
+
+
+# Data-protection and workplace-safety regulators -> PROCEDURE_DOCUMENT, rule "regulator-guidance".
+_REGULATOR_HOSTS = frozenset({"ico.org.uk", "edpb.europa.eu", "cnil.fr", "dataprotection.ie",
+                              "cnpd.public.lu", "osha.gov", "nist.gov"})
+
+
+def _is_regulator_host(host: str) -> bool:
+    return _host_or_subdomain(host, _REGULATOR_HOSTS)
+
+
+# Standards bodies -> STANDARD, rule "standard-body".
+_STANDARDS_BODY_HOSTS = frozenset({"iso.org", "ietf.org", "w3.org", "iec.ch", "isa.org", "ieee.org"})
+
+
+def _is_standards_body_host(host: str) -> bool:
+    return _host_or_subdomain(host, _STANDARDS_BODY_HOSTS)
 
 
 _KIND_RULES: tuple[tuple[str, callable, SourceKind], ...] = (
@@ -174,9 +238,18 @@ _KIND_RULES: tuple[tuple[str, callable, SourceKind], ...] = (
      SourceKind.DOCUMENTATION),
     ("docs-github", lambda h: h == "github.com" or h.endswith(".github.io"), SourceKind.DOCUMENTATION),
     ("docs-wikipedia", lambda h: h.endswith("wikipedia.org"), SourceKind.DOCUMENTATION),
-    ("standard-body", lambda h: h.endswith("iso.org") or h.endswith("ietf.org")
-     or h.endswith("w3.org"), SourceKind.STANDARD),
+    ("academic-publisher", _is_academic_publisher_host, SourceKind.STUDY),
+    ("legislation", _is_legislation_host, SourceKind.STANDARD),
+    ("regulator-guidance", _is_regulator_host, SourceKind.PROCEDURE_DOCUMENT),
+    ("standard-body", _is_standards_body_host, SourceKind.STANDARD),
 )
+
+_CURATED_KINDS = frozenset({SourceKind.STUDY, SourceKind.STANDARD})
+_CURATED_RULES = frozenset({"regulator-guidance"})
+
+
+def _tier_for(kind: SourceKind, rule_name: str) -> str:
+    return "curated" if kind in _CURATED_KINDS or rule_name in _CURATED_RULES else "open"
 
 
 def classify_source(url: str) -> SourceClassification:
@@ -186,14 +259,15 @@ def classify_source(url: str) -> SourceClassification:
             break
     else:
         rule_name, kind = "default-documentation", SourceKind.DOCUMENTATION
+    tier = _tier_for(kind, rule_name)
     if kind is SourceKind.FORUM_POST:
         return SourceClassification(kind=kind, kind_rule=rule_name, voice=Voice.MIXED,
-                                     voice_rule="forum-mixed-boundary", boundary=True)
+                                     voice_rule="forum-mixed-boundary", boundary=True, tier=tier)
     return SourceClassification(kind=kind, kind_rule=rule_name, voice=Voice.EXPERT,
-                                 voice_rule="default-unassessed", boundary=False)
+                                 voice_rule="default-unassessed", boundary=False, tier=tier)
 
 
-# --- independence clustering (A7) -----------------------------------------------------------
+# --- independence clustering (A7, SHOULD 5) --------------------------------------------------
 
 @dataclass(frozen=True)
 class IndependenceDoc:
@@ -218,31 +292,33 @@ def _containment(a: frozenset[str], b: frozenset[str]) -> float:
     return len(a & b) / min(len(a), len(b))
 
 
-def _word_ranges(text: str) -> list[tuple[int, int]]:
-    ranges = []
-    pos = 0
-    for w in text.split(" "):
-        ranges.append((pos, pos + len(w)))
-        pos += len(w) + 1
-    return ranges
+# Registrable domains that host many *independent* organisations, papers or authors, where "same
+# domain" would wrongly cluster all of them (SHOULD 5b, runner (b) finding 2: europa.eu merged
+# EDPB/EDPS/the Commission; a curated corpus would merge every MDPI/Springer/arXiv paper). These
+# group by the full host instead of the registrable domain. `github.io`/`blogspot.com` are already
+# host-granular through tldextract's private-suffix list; they are listed here too so the table is
+# the single place this policy is documented, not split across two mechanisms.
+_MULTI_ORG_DOMAINS = frozenset({
+    "europa.eu", "mdpi.com", "springer.com", "sciencedirect.com", "acm.org", "arxiv.org",
+    "studylib.net", "exa.ai", "medium.com", "substack.com", "github.io", "blogspot.com",
+})
+# A platform host that puts every author at one host, not one subdomain (unlike substack.com):
+# group by host + first path segment, e.g. "medium.com/@jane" != "medium.com/@joe".
+_AUTHOR_PATH_DOMAINS = frozenset({"medium.com"})
 
 
-def _overlaps(a: tuple[int, int], b: tuple[int, int]) -> bool:
-    return a[0] < b[1] and b[0] < a[1]
-
-
-def _shared_run_links_spans(a: IndependenceDoc, b: IndependenceDoc, min_words: int = 25) -> bool:
-    words_a, words_b = a.text.split(" "), b.text.split(" ")
-    ranges_a, ranges_b = _word_ranges(a.text), _word_ranges(b.text)
-    sm = difflib.SequenceMatcher(None, words_a, words_b, autojunk=False)
-    for block in sm.get_matching_blocks():
-        if block.size < min_words:
-            continue
-        range_a = (ranges_a[block.a][0], ranges_a[block.a + block.size - 1][1])
-        range_b = (ranges_b[block.b][0], ranges_b[block.b + block.size - 1][1])
-        if any(_overlaps(range_a, s) for s in a.spans) or any(_overlaps(range_b, s) for s in b.spans):
-            return True
-    return False
+def domain_grouping_key(url: str) -> str:
+    """The independence union-find's "same domain" key (A7). The registrable domain, except for
+    `_MULTI_ORG_DOMAINS`, where it is the full host, or (medium.com) the host plus author path."""
+    domain = registrable_domain(url)
+    if domain not in _MULTI_ORG_DOMAINS:
+        return domain
+    parts = urlsplit(url)
+    host = parts.netloc.rsplit("@", 1)[-1].split(":", 1)[0].casefold()
+    if domain not in _AUTHOR_PATH_DOMAINS:
+        return host
+    segment = parts.path.strip("/").split("/", 1)[0]
+    return f"{host}/{segment}" if segment else host
 
 
 @dataclass(frozen=True)
@@ -252,8 +328,11 @@ class IndependenceResult:
 
 
 def independence_clusters(docs: Sequence[IndependenceDoc]) -> IndependenceResult:
-    """Union-find over fetched docs (A7): same registrable domain, 5-shingle containment
-    >= 0.5, or a >=25-word verbatim run overlapping an evidence span in either doc."""
+    """Union-find over fetched docs (A7): same domain-grouping key (`domain_grouping_key`, SHOULD
+    5b), or 5-shingle containment >= 0.5. The old third rule — a shared >=25-word verbatim run —
+    no longer unions whole documents (SHOULD 5a, runner (b) finding 2: it merged 11 documents that
+    only shared one quoted passage). A verbatim-shared *span* still matters, but only for
+    corroboration counting, through `span_duplicates` below, not for document clustering."""
     parent = {d.source_id: d.source_id for d in docs}
 
     def find(x: str) -> str:
@@ -271,17 +350,15 @@ def independence_clusters(docs: Sequence[IndependenceDoc]) -> IndependenceResult
             hi, lo = max(rx, ry), min(rx, ry)
             parent[hi] = lo
 
-    domains = {d.source_id: registrable_domain(d.url) for d in docs}
+    domains = {d.source_id: domain_grouping_key(d.url) for d in docs}
     shingle_sets = {d.source_id: _shingles(d.text) for d in docs}
 
     for i, a in enumerate(docs):
         for b in docs[i + 1:]:
             if domains[a.source_id] == domains[b.source_id]:
-                union(a.source_id, b.source_id, "same registrable domain")
+                union(a.source_id, b.source_id, "same domain-grouping key")
             elif _containment(shingle_sets[a.source_id], shingle_sets[b.source_id]) >= 0.5:
                 union(a.source_id, b.source_id, "5-shingle containment >= 0.5")
-            elif _shared_run_links_spans(a, b):
-                union(a.source_id, b.source_id, "shared >=25-word run overlapping an evidence span")
 
     clusters: dict[str, list[str]] = {}
     for d in docs:
@@ -311,6 +388,41 @@ def largest_cluster_share(key_by_source: Mapping[str, str]) -> float:
     for key in key_by_source.values():
         counts[key] = counts.get(key, 0) + 1
     return max(counts.values()) / len(key_by_source)
+
+
+def span_duplicates(spans: Sequence[tuple[str, str, str]], min_words: int = 25) -> dict[str, str]:
+    """SHOULD 5a: a span-level replacement for the old whole-document shared-run rule. `spans`:
+    (span_id, independence_key, span_exact_text) tuples, one per located Evidence. Two spans from
+    DIFFERENT independence clusters that share a run of >= `min_words` words are the same quoted
+    passage (e.g. two regulators both quoting GDPR Art. 35 verbatim) — a corroboration count
+    should credit that passage once, not once per document that happens to quote it. Returns
+    {span_id: canonical_span_id}: every span maps to itself unless it duplicates an
+    earlier-clustered span, in which case it maps to that group's smallest span_id."""
+    parent = {sid: sid for sid, _, _ in spans}
+
+    def find(x: str) -> str:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(x: str, y: str) -> None:
+        rx, ry = find(x), find(y)
+        if rx != ry:
+            hi, lo = max(rx, ry), min(rx, ry)
+            parent[hi] = lo
+
+    for i, (sid_a, key_a, text_a) in enumerate(spans):
+        words_a = text_a.split(" ")
+        for sid_b, key_b, text_b in spans[i + 1:]:
+            if key_a == key_b:
+                continue
+            words_b = text_b.split(" ")
+            sm = difflib.SequenceMatcher(None, words_a, words_b, autojunk=False)
+            if any(block.size >= min_words for block in sm.get_matching_blocks()):
+                union(sid_a, sid_b)
+
+    return {sid: find(sid) for sid, _, _ in spans}
 
 
 # --- builders: only this module constructs Evidence / Selector / Verification ---------------
@@ -365,9 +477,10 @@ def build_unknown_placeholder(*, area_name: str, probe: KnowledgeType, scope: Sc
                         knowledge_type=probe, scope=scope, generation=None, searches=searches)
 
 
-def build_contradiction(claim_a: str, claim_b: str, *, detected_by: Agent, spec_sha256: str) -> Contradiction:
-    return Contradiction(claims=(claim_a, claim_b), detected_by=detected_by,
-                          method=f"pair-classify:{spec_sha256}")
+def build_contradiction(claim_a: str, claim_b: str, *, detected_by: Agent, method: str) -> Contradiction:
+    """`method` is a caller-formatted, self-describing string (e.g. "cross-verify:<spec sha256>",
+    SHOULD 2) — this builder no longer assumes one particular detection method."""
+    return Contradiction(claims=(claim_a, claim_b), detected_by=detected_by, method=method)
 
 
 # --- merge of identical assertions (A10) -----------------------------------------------------
@@ -397,34 +510,30 @@ class MergedAssertion:
     conflict: str | None
 
 
-def _majority(members: Sequence[Extraction], *, key) -> tuple[str, str | None]:
-    counts: dict[str, int] = {}
-    for m in members:
-        counts[key(m)] = counts.get(key(m), 0) + 1
-    best = max(counts.values())
-    tied = sorted(v for v, c in counts.items() if c == best)
-    conflict = ",".join(tied) if len(tied) > 1 else None
-    return tied[0], conflict
-
-
 def merge_extractions(extractions: Sequence[Extraction]) -> list[MergedAssertion]:
+    """Identical (casefold-equal) assertions merge into one record. The merged record's area,
+    knowledge_type and question are taken from the member with the smallest source_id — first-
+    seen, deterministic, no majority vote or tie-break machinery (REMOVE: `_majority` fired on
+    0 of 629 extractions across both E-LIVE domains). Any disagreement among members is still
+    recorded on `conflict`, whether or not it happens to be a tie."""
     groups: dict[str, list[Extraction]] = {}
     for e in extractions:
         groups.setdefault(e.assertion.casefold(), []).append(e)
     merged = []
     for key in sorted(groups):
         members = tuple(sorted(groups[key], key=lambda e: e.extraction_id))
-        area_name, area_conflict = _majority(members, key=lambda e: e.area_name)
-        kt_value, kt_conflict = _majority(members, key=lambda e: e.knowledge_type.value)
-        question_value, _ = _majority(members, key=lambda e: e.question.value)
+        primary = min(members, key=lambda e: e.source_id)
+        area_names = sorted({m.area_name for m in members})
+        kt_values = sorted({m.knowledge_type.value for m in members})
         parts = []
-        if area_conflict:
-            parts.append(f"area tie: {area_conflict}")
-        if kt_conflict:
-            parts.append(f"knowledge_type tie: {kt_conflict}")
-        merged.append(MergedAssertion(assertion=members[0].assertion, area_name=area_name,
-                                       knowledge_type=KnowledgeType(kt_value),
-                                       question=Question(question_value), members=members,
+        if len(area_names) > 1:
+            parts.append(f"area disagreement: {', '.join(area_names)} (kept {primary.area_name!r})")
+        if len(kt_values) > 1:
+            parts.append(f"knowledge_type disagreement: {', '.join(kt_values)} "
+                         f"(kept {primary.knowledge_type.value!r})")
+        merged.append(MergedAssertion(assertion=members[0].assertion, area_name=primary.area_name,
+                                       knowledge_type=primary.knowledge_type,
+                                       question=primary.question, members=members,
                                        conflict="; ".join(parts) or None))
     return merged
 
@@ -436,12 +545,18 @@ def build_claim(merged: MergedAssertion, *, evidence: tuple[Evidence, ...],
                         scope=scope, evidence=evidence, generation=generation, searches=searches)
 
 
-# --- slot status (A2) ------------------------------------------------------------------------
+# --- slot status (A2, SHOULD 3) ----------------------------------------------------------------
 
-def slot_status(*, has_criterion_claim: bool, docs_fetched_and_extracted: bool,
+def slot_status(*, n_criterion_clusters: int, docs_fetched_and_extracted: bool,
                  area_lost_to_truncation: bool, verifier_ran_on_all_located: bool) -> str:
-    if has_criterion_claim:
+    """`n_criterion_clusters` is the number of distinct independence clusters contributing
+    supporting evidence (any CRITERION_LABELS-worthy claim) to this slot. covered needs >= 2
+    clusters; exactly one is `thin` — a real finding (single-source support), never folded into
+    UNKNOWN or silently treated the same as 2+ clusters (SHOULD 3)."""
+    if n_criterion_clusters >= 2:
         return "covered"
+    if n_criterion_clusters == 1:
+        return "thin"
     if docs_fetched_and_extracted and not area_lost_to_truncation and verifier_ran_on_all_located:
         return "unknown"
     if docs_fetched_and_extracted:
@@ -449,18 +564,51 @@ def slot_status(*, has_criterion_claim: bool, docs_fetched_and_extracted: bool,
     return "unexamined"
 
 
-# --- decoys (A6) ------------------------------------------------------------------------------
+# --- decoys (A6, MUST-FIX 4) -------------------------------------------------------------------
 
-def decoy_sample_size(n_located: int) -> int:
-    if n_located <= 0:
-        return 0
-    target = max(5, math.ceil(0.2 * n_located))
-    return min(target, 20, n_located)
+DECOY_MUTATIONS: tuple[str, ...] = ("number", "negation", "scope")
+"""Target 10 decoys per type (cap 30 total), not one pooled sample capped at 20: the E-LIVE
+review found the pooled 20-cap protocol under-measured every mutation type at once (5/5 scope,
+1/13 negation, 1/2 number)."""
+
+DECOYS_PER_TYPE = 10
 
 
-def select_decoy_sample(claim_ids: Sequence[str]) -> list[str]:
-    n = decoy_sample_size(len(claim_ids))
-    return sorted(claim_ids)[:n]
+def select_decoy_sample(claim_ids: Sequence[str], *, per_type: int = DECOYS_PER_TYPE
+                         ) -> dict[str, list[str]]:
+    """Deterministically partitions claim ids across the three mutation types, round-robin over
+    the sorted id list, each type capped at `per_type` (10) and never exceeding what is
+    available — "10 per type where enough located claims exist"."""
+    ids = sorted(set(claim_ids))
+    out: dict[str, list[str]] = {m: [] for m in DECOY_MUTATIONS}
+    for i, cid in enumerate(ids):
+        mutation = DECOY_MUTATIONS[i % len(DECOY_MUTATIONS)]
+        if len(out[mutation]) < per_type:
+            out[mutation].append(cid)
+        if all(len(v) >= per_type for v in out.values()):
+            break
+    return out
+
+
+def decoy_is_valid(original_assertion: str, mutated_claim: str, rationale: str) -> bool:
+    """A6's validity check: the mutated claim must actually differ from the original, and the
+    decoy prompt must return a one-line rationale for why the span no longer entails it. An
+    invalid decoy is excluded from the false-accept rate but still counted (run.py records it)."""
+    return (bool(rationale.strip())
+            and mutated_claim.strip().casefold() != original_assertion.strip().casefold())
+
+
+def wilson_ci(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    """Wilson score interval for k successes out of n trials (report.py's per-type decoy rates)."""
+    if n <= 0:
+        return (0.0, 0.0)
+    p = k / n
+    denom = 1 + z * z / n
+    centre = p + z * z / (2 * n)
+    spread = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n))
+    lo = (centre - spread) / denom
+    hi = (centre + spread) / denom
+    return (max(0.0, lo), min(1.0, hi))
 
 
 # --- contradiction candidates (A8) -------------------------------------------------------------
@@ -485,32 +633,6 @@ def jaccard(a: frozenset[str], b: frozenset[str]) -> float:
     if not a and not b:
         return 0.0
     return len(a & b) / len(a | b)
-
-
-def contradiction_candidates(claims: Sequence[tuple[str, str, str]], k: int = 10) -> list[tuple[str, str]]:
-    """`claims`: (claim_id, independence_key, text) tuples already restricted to one area and to
-    claims with a located span. Returns up to k pairs from different independence clusters,
-    ranked by content-word Jaccard, highest first."""
-    words = {cid: content_words(text) for cid, _, text in claims}
-    scored = []
-    for i, (cid_a, key_a, _) in enumerate(claims):
-        for cid_b, key_b, _ in claims[i + 1:]:
-            if key_a == key_b:
-                continue
-            score = jaccard(words[cid_a], words[cid_b])
-            pair = tuple(sorted((cid_a, cid_b)))
-            scored.append((score, pair))
-    scored.sort(key=lambda item: (-item[0], item[1]))
-    seen: set[tuple[str, str]] = set()
-    out = []
-    for _, pair in scored:
-        if pair in seen:
-            continue
-        seen.add(pair)
-        out.append(pair)
-        if len(out) >= k:
-            break
-    return out
 
 
 # --- spec hashing --------------------------------------------------------------------------

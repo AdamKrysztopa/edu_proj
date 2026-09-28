@@ -1,5 +1,7 @@
 from datetime import date
 
+import pytest
+
 from reconstruct.evidence import (
     Extraction,
     IndependenceDoc,
@@ -10,9 +12,9 @@ from reconstruct.evidence import (
     build_unknown_placeholder,
     canonical_url,
     classify_source,
-    contradiction_candidates,
     context_window,
-    decoy_sample_size,
+    decoy_is_valid,
+    domain_grouping_key,
     independence_clusters,
     injection_flag,
     is_question_or_template,
@@ -28,7 +30,9 @@ from reconstruct.evidence import (
     registrable_domain,
     select_decoy_sample,
     slot_status,
+    span_duplicates,
     spec_sha256,
+    wilson_ci,
     word_count,
 )
 from residual.claims import Scope
@@ -90,6 +94,33 @@ def test_locate_matches_across_normalised_whitespace_differences():
     doc = normalise("Line one continues\nacross a line break in the source page today.")
     span = locate("Line one continues across a line break in the source page today.", doc)
     assert span is not None
+
+
+# --- normalise: bullets, checkboxes, table pipes, quote variants (SHOULD 4) ---------------------
+
+def test_normalise_maps_extra_quote_and_dash_styles_to_the_same_straight_forms():
+    assert normalise("‚Hello’s”") == normalise("‘Hello's”")
+    assert normalise("‹quoted›") == normalise("'quoted'")
+    assert normalise("«quoted»") == normalise('"quoted"')
+    assert normalise("5′ tall") == normalise("5' tall")
+
+
+@pytest.mark.parametrize("glyph", ["|", "•", "▪", "‣", "◦", "·",
+                                    "☐", "☑", "☒", "■", "□",
+                                    "●", "○"])
+def test_normalise_maps_bullets_checkboxes_and_pipes_to_a_space(glyph):
+    assert normalise(f"first item{glyph}second item") == "first item second item"
+
+
+def test_normalise_glyph_mapping_is_consistent_on_both_sides_of_locate():
+    # A page rendering a checklist with "|" table-cell pipes; the extractor's quote uses a plain
+    # bullet instead. Both sides pass through the same _CHAR_MAP, so they still compare exactly
+    # (SHOULD 4/5: E-LIVE lost 10 of 33 unlocated quotes to exactly this kind of glyph mismatch).
+    doc = normalise("Checklist: | Confirm power is isolated | Confirm the circuit is tagged out |")
+    quote = "• Confirm power is isolated • Confirm the circuit is tagged out"
+    span = locate(quote, doc)
+    assert span is not None
+    assert doc[span[0]:span[1]] == normalise(quote)
 
 
 def test_quote_in_span_checks_normalised_substring():
@@ -171,12 +202,73 @@ def test_default_host_gets_documentation_expert_no_boundary():
     assert c.boundary is False
     assert c.voice_rule == "default-unassessed"
     assert c.kind_rule == "default-documentation"
+    assert c.tier == "open"
 
 
 def test_a_web_page_is_never_classified_human_record():
     from residual.vocab import HUMAN_RECORD_KINDS
     for url in ["https://stackoverflow.com/q/1", "https://example.org/x", "https://docs.example.readthedocs.io/x"]:
         assert classify_source(url).kind not in HUMAN_RECORD_KINDS
+
+
+# --- classify_source host rules -> kinds (SHOULD 6) --------------------------------------------
+
+@pytest.mark.parametrize("url", [
+    "https://www.mdpi.com/1234", "https://link.springer.com/article/x", "https://www.sciencedirect.com/y",
+    "https://dl.acm.org/doi/z", "https://arxiv.org/abs/2401.00001", "https://doi.org/10.1/x",
+    "https://www.ncbi.nlm.nih.gov/pmc/articles/1",
+])
+def test_academic_publisher_hosts_are_study_and_curated(url):
+    c = classify_source(url)
+    assert c.kind is SourceKind.STUDY
+    assert c.kind_rule == "academic-publisher"
+    assert c.tier == "curated"
+
+
+@pytest.mark.parametrize("url", ["https://www.legislation.gov.uk/ukpga/2018/12", "https://eur-lex.europa.eu/x"])
+def test_legislation_hosts_are_standard_and_curated(url):
+    c = classify_source(url)
+    assert c.kind is SourceKind.STANDARD
+    assert c.kind_rule == "legislation"
+    assert c.tier == "curated"
+
+
+@pytest.mark.parametrize("url", [
+    "https://ico.org.uk/guidance/x", "https://edpb.europa.eu/guidance", "https://www.cnil.fr/x",
+    "https://www.dataprotection.ie/x", "https://cnpd.public.lu/x", "https://www.osha.gov/x",
+    "https://www.nist.gov/x",
+])
+def test_regulator_hosts_are_procedure_document_and_curated(url):
+    c = classify_source(url)
+    assert c.kind is SourceKind.PROCEDURE_DOCUMENT
+    assert c.kind_rule == "regulator-guidance"
+    assert c.tier == "curated"
+
+
+@pytest.mark.parametrize("url", ["https://www.iso.org/standard/1", "https://iec.ch/x",
+                                  "https://www.isa.org/x", "https://www.ieee.org/x"])
+def test_standards_body_hosts_are_standard_and_curated(url):
+    c = classify_source(url)
+    assert c.kind is SourceKind.STANDARD
+    assert c.kind_rule == "standard-body"
+    assert c.tier == "curated"
+
+
+@pytest.mark.parametrize("url", ["https://www.eng-tips.com/x", "https://www.plctalk.net/x",
+                                  "https://forums.example.com/x"])
+def test_additional_forum_hosts_are_forum_post_mixed_boundary_open_tier(url):
+    c = classify_source(url)
+    assert c.kind is SourceKind.FORUM_POST
+    assert c.voice is Voice.MIXED
+    assert c.boundary is True
+    assert c.tier == "open"  # forums are not a curated tier even though they get a special rule
+
+
+def test_vendor_or_other_hosts_default_to_documentation_open_tier():
+    c = classify_source("https://acme-vendor.example/product-manual")
+    assert c.kind is SourceKind.DOCUMENTATION
+    assert c.kind_rule == "default-documentation"
+    assert c.tier == "open"
 
 
 # --- independence clustering (A7) -----------------------------------------------------------
@@ -212,9 +304,12 @@ def test_syndicated_copy_on_another_domain_clusters_by_shingle_containment():
     assert result.reason_by_source["s2"] == "5-shingle containment >= 0.5"
 
 
-def test_shared_run_only_links_when_it_overlaps_an_evidence_span():
-    # The shared run must be long enough to trigger the run-rule (>=25 words) but a small enough
-    # share of each document's shingles that it does NOT also trigger 5-shingle containment.
+def test_a_shared_25_word_run_no_longer_unions_whole_documents():
+    # SHOULD 5a (runner (b) finding 2): the E-LIVE run merged 11 documents into one cluster
+    # because each pair shared one quoted passage (Art. 35). A shared >=25-word run, even one
+    # that overlaps an evidence span in both docs, must NOT cluster the documents any more —
+    # only 5-shingle containment or the same domain-grouping key may. This rewrites the old
+    # "shared run only links when it overlaps a span" test, which asserted the opposite.
     run = " ".join(f"tok{i}" for i in range(30))
     padding_a = " ".join(f"alfa{i}" for i in range(200))
     padding_b = " ".join(f"beto{i}" for i in range(200))
@@ -227,14 +322,72 @@ def test_shared_run_only_links_when_it_overlaps_an_evidence_span():
         IndependenceDoc(source_id="s2", url="https://beta-site.org/1", text=text_b),
     ]
     result = independence_clusters(docs_with_span)
-    assert result.key_by_source["s1"] == result.key_by_source["s2"]
+    assert result.key_by_source["s1"] != result.key_by_source["s2"]
 
-    docs_without_span = [
-        IndependenceDoc(source_id="s1", url="https://alpha-site.com/1", text=text_a),
-        IndependenceDoc(source_id="s2", url="https://beta-site.org/1", text=text_b),
+
+# --- span_duplicates (SHOULD 5a) --------------------------------------------------------------
+
+def test_span_duplicates_maps_a_verbatim_shared_quote_across_clusters_to_one_canonical_key():
+    shared = " ".join(f"tok{i}" for i in range(30))  # >= 25 words
+    spans = [
+        ("sp-b", "ind-2", shared),
+        ("sp-a", "ind-1", shared),  # same text, different cluster: a duplicate of sp-b
     ]
-    result2 = independence_clusters(docs_without_span)
-    assert result2.key_by_source["s1"] != result2.key_by_source["s2"]
+    result = span_duplicates(spans)
+    assert result["sp-a"] == result["sp-b"] == "sp-a"  # smallest span_id wins
+
+
+def test_span_duplicates_does_not_merge_spans_in_the_same_cluster():
+    shared = " ".join(f"tok{i}" for i in range(30))
+    spans = [("sp-a", "ind-1", shared), ("sp-b", "ind-1", shared)]
+    result = span_duplicates(spans)
+    assert result["sp-a"] == "sp-a"
+    assert result["sp-b"] == "sp-b"
+
+
+def test_span_duplicates_leaves_unrelated_spans_mapped_to_themselves():
+    spans = [("sp-a", "ind-1", "the pump loses prime under high suction lift today"),
+             ("sp-b", "ind-2", "impellers wear faster once cavitation has begun")]
+    result = span_duplicates(spans)
+    assert result == {"sp-a": "sp-a", "sp-b": "sp-b"}
+
+
+# --- domain_grouping_key (SHOULD 5b) -----------------------------------------------------------
+
+def test_domain_grouping_key_is_the_registrable_domain_for_ordinary_hosts():
+    assert domain_grouping_key("https://example.org/a") == "example.org"
+    assert domain_grouping_key("https://blog.example.org/a") == "example.org"
+
+
+def test_domain_grouping_key_uses_full_host_for_europa_eu_agencies():
+    edpb = domain_grouping_key("https://edpb.europa.eu/x")
+    eurlex = domain_grouping_key("https://eur-lex.europa.eu/y")
+    assert edpb != eurlex
+    assert edpb == "edpb.europa.eu"
+    # the registrable domain is still the same, single "europa.eu" for both (unaffected)
+    assert registrable_domain("https://edpb.europa.eu/x") == registrable_domain("https://eur-lex.europa.eu/y")
+
+
+def test_domain_grouping_key_uses_full_host_for_publisher_aggregator_hosts():
+    assert domain_grouping_key("https://www.mdpi.com/a") == "www.mdpi.com"
+    assert domain_grouping_key("https://link.springer.com/b") == "link.springer.com"
+    assert domain_grouping_key("https://dl.acm.org/c") != domain_grouping_key("https://other.acm.org/d")
+
+
+def test_domain_grouping_key_uses_author_path_for_medium():
+    jane = domain_grouping_key("https://medium.com/@jane/a-post")
+    joe = domain_grouping_key("https://medium.com/@joe/other-post")
+    assert jane != joe
+    assert jane == "medium.com/@jane"
+
+
+def test_edpb_and_eurlex_no_longer_cluster_by_domain_alone():
+    docs = [
+        IndependenceDoc(source_id="s1", url="https://edpb.europa.eu/x", text=normalise("EDPB guidance text.")),
+        IndependenceDoc(source_id="s2", url="https://eur-lex.europa.eu/y", text=normalise("Statute text here.")),
+    ]
+    result = independence_clusters(docs)
+    assert result.key_by_source["s1"] != result.key_by_source["s2"]
 
 
 def test_largest_cluster_share():
@@ -273,7 +426,7 @@ def test_merge_keeps_paraphrases_separate():
     assert len(merged) == 2
 
 
-def test_merge_area_conflict_recorded_on_tie():
+def test_merge_area_disagreement_kept_deterministically_by_smallest_source_id():
     extractions = [
         Extraction(source_id="s1", assertion="Same claim here.", quote="q1",
                    area_name="Area A", knowledge_type=KnowledgeType.CONCEPT, question=Question.DOMAIN),
@@ -282,79 +435,108 @@ def test_merge_area_conflict_recorded_on_tie():
     ]
     merged = merge_extractions(extractions)
     assert len(merged) == 1
-    assert merged[0].area_name == "Area A"  # smallest id wins the tie
-    assert "area tie" in merged[0].conflict
+    assert merged[0].area_name == "Area A"  # smallest source_id wins, no majority vote
+    assert "area disagreement" in merged[0].conflict
 
 
-def test_merge_area_majority_wins_over_minority():
+def test_merge_smallest_source_id_wins_even_against_a_majority():
+    """No majority vote (REMOVE): two members naming "Area A" against one naming "Area B" does
+    not privilege "Area A" as a majority — it wins here only because s1 is the smallest id, and
+    the disagreement is still recorded."""
+    extractions = [
+        Extraction(source_id="s2", assertion="Same claim here.", quote="q1",
+                   area_name="Area A", knowledge_type=KnowledgeType.CONCEPT, question=Question.DOMAIN),
+        Extraction(source_id="s3", assertion="Same claim here.", quote="q2",
+                   area_name="Area A", knowledge_type=KnowledgeType.CONCEPT, question=Question.DOMAIN),
+        Extraction(source_id="s1", assertion="Same claim here.", quote="q3",
+                   area_name="Area B", knowledge_type=KnowledgeType.CONCEPT, question=Question.DOMAIN),
+    ]
+    merged = merge_extractions(extractions)
+    assert merged[0].area_name == "Area B"  # s1 is smallest, despite being the minority naming
+    assert "area disagreement" in merged[0].conflict
+
+
+def test_merge_no_conflict_recorded_when_members_agree():
     extractions = [
         Extraction(source_id="s1", assertion="Same claim here.", quote="q1",
                    area_name="Area A", knowledge_type=KnowledgeType.CONCEPT, question=Question.DOMAIN),
         Extraction(source_id="s2", assertion="Same claim here.", quote="q2",
                    area_name="Area A", knowledge_type=KnowledgeType.CONCEPT, question=Question.DOMAIN),
-        Extraction(source_id="s3", assertion="Same claim here.", quote="q3",
-                   area_name="Area B", knowledge_type=KnowledgeType.CONCEPT, question=Question.DOMAIN),
     ]
     merged = merge_extractions(extractions)
     assert merged[0].area_name == "Area A"
     assert merged[0].conflict is None
 
 
-# --- slot status (A2) ------------------------------------------------------------------------
+# --- slot status (A2, SHOULD 3) ----------------------------------------------------------------
 
-def test_slot_covered_when_criterion_claim_present():
-    assert slot_status(has_criterion_claim=True, docs_fetched_and_extracted=False,
+def test_slot_covered_needs_at_least_two_independence_clusters():
+    assert slot_status(n_criterion_clusters=2, docs_fetched_and_extracted=False,
                         area_lost_to_truncation=True, verifier_ran_on_all_located=False) == "covered"
 
 
+def test_slot_thin_when_exactly_one_independence_cluster():
+    assert slot_status(n_criterion_clusters=1, docs_fetched_and_extracted=False,
+                        area_lost_to_truncation=True, verifier_ran_on_all_located=False) == "thin"
+
+
 def test_slot_unknown_only_when_fully_examined_and_verified():
-    assert slot_status(has_criterion_claim=False, docs_fetched_and_extracted=True,
+    assert slot_status(n_criterion_clusters=0, docs_fetched_and_extracted=True,
                         area_lost_to_truncation=False, verifier_ran_on_all_located=True) == "unknown"
 
 
 def test_slot_unverified_when_examined_but_not_fully_verified():
-    assert slot_status(has_criterion_claim=False, docs_fetched_and_extracted=True,
+    assert slot_status(n_criterion_clusters=0, docs_fetched_and_extracted=True,
                         area_lost_to_truncation=False, verifier_ran_on_all_located=False) == "unverified"
-    assert slot_status(has_criterion_claim=False, docs_fetched_and_extracted=True,
+    assert slot_status(n_criterion_clusters=0, docs_fetched_and_extracted=True,
                         area_lost_to_truncation=True, verifier_ran_on_all_located=True) == "unverified"
 
 
 def test_slot_unexamined_when_nothing_fetched():
-    assert slot_status(has_criterion_claim=False, docs_fetched_and_extracted=False,
+    assert slot_status(n_criterion_clusters=0, docs_fetched_and_extracted=False,
                         area_lost_to_truncation=False, verifier_ran_on_all_located=False) == "unexamined"
 
 
-# --- decoys (A6) ------------------------------------------------------------------------------
+# --- decoys (A6, MUST-FIX 4) -------------------------------------------------------------------
 
-def test_decoy_sample_size_floor_of_five():
-    assert decoy_sample_size(10) == 5   # 20% of 10 is 2, floor is 5
-
-
-def test_decoy_sample_size_capped_at_twenty():
-    assert decoy_sample_size(1000) == 20
-
-
-def test_decoy_sample_size_never_exceeds_available_claims():
-    assert decoy_sample_size(3) == 3
+def test_select_decoy_sample_targets_ten_per_type_round_robin():
+    ids = [f"c{i}" for i in range(30)]
+    sample = select_decoy_sample(ids)
+    assert set(sample) == {"number", "negation", "scope"}
+    assert all(len(v) == 10 for v in sample.values())
+    assert sorted(sum(sample.values(), [])) == sorted(ids)
 
 
-def test_select_decoy_sample_is_deterministic():
+def test_select_decoy_sample_never_exceeds_available_claims():
     ids = ["c3", "c1", "c2", "c4", "c5"]
-    assert select_decoy_sample(ids) == sorted(ids)[:5]
+    sample = select_decoy_sample(ids)
+    assert sum(len(v) for v in sample.values()) == 5
+    assert sorted(sum(sample.values(), [])) == sorted(ids)
 
 
-# --- contradiction candidates (A8) ------------------------------------------------------------
+def test_select_decoy_sample_caps_each_type_at_ten_when_more_are_available():
+    ids = [f"c{i:02d}" for i in range(100)]
+    sample = select_decoy_sample(ids)
+    assert all(len(v) <= 10 for v in sample.values())
+    assert sum(len(v) for v in sample.values()) == 30
 
-def test_contradiction_candidates_excludes_same_independence_cluster():
-    claims = [("c1", "ind-1", "the pump loses prime under high suction lift"),
-              ("c2", "ind-1", "the pump loses prime under high suction lift too")]
-    assert contradiction_candidates(claims) == []
+
+def test_decoy_is_valid_requires_a_rationale_and_an_actual_change():
+    assert decoy_is_valid("Cavitation ruins the impeller.",
+                          "Cavitation always ruins every impeller.", "broadened to 'always'/'every'")
+    assert not decoy_is_valid("Cavitation ruins the impeller.", "Cavitation ruins the impeller.",
+                              "broadened scope")
+    assert not decoy_is_valid("Cavitation ruins the impeller.",
+                              "Cavitation always ruins every impeller.", "")
 
 
-def test_contradiction_candidates_ranks_by_jaccard_and_caps_at_k():
-    claims = [(f"c{i}", f"ind-{i}", "pump cavitation suction lift impeller wear damage") for i in range(25)]
-    pairs = contradiction_candidates(claims, k=10)
-    assert len(pairs) == 10
+def test_wilson_ci_of_zero_of_zero_is_zero_zero():
+    assert wilson_ci(0, 0) == (0.0, 0.0)
+
+
+def test_wilson_ci_bounds_lie_in_unit_interval_and_contain_the_point_estimate_direction():
+    lo, hi = wilson_ci(3, 10)
+    assert 0.0 <= lo <= 3 / 10 <= hi <= 1.0
 
 
 def test_jaccard_of_disjoint_sets_is_zero():

@@ -2,6 +2,5 @@
   "planner": {"provider": "openrouter", "model": "anthropic/claude-haiku-4.5", "family": "anthropic"},
   "extractor": {"provider": "openrouter", "model": "anthropic/claude-haiku-4.5", "family": "anthropic"},
   "baseline": {"provider": "openrouter", "model": "anthropic/claude-haiku-4.5", "family": "anthropic"},
-  "verifier": {"provider": "openrouter", "model": "openai/gpt-5.4-mini", "family": "openai"},
-  "contradiction": {"provider": "openrouter", "model": "openai/gpt-5.4-mini", "family": "openai"}
+  "verifier": {"provider": "openrouter", "model": "openai/gpt-5.4-mini", "family": "openai"}
 }

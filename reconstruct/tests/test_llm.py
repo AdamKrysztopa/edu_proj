@@ -90,6 +90,44 @@ def test_backend_rejects_non_object_json(tmp_path):
         backend.complete_json("plan", "sys", "usr", {"type": "object"})
 
 
+def test_backend_malformed_json_is_llm_unavailable_not_a_crash(tmp_path):
+    """defect 2 (llm.py:131): a JSONDecodeError from json.loads must become LLMUnavailable,
+    never propagate raw and kill the run."""
+    response = ns(choices=[ns(message=ns(content="not json at all {", refusal=None), finish_reason="stop")],
+                  model="anthropic/claude-sonnet-5", usage=ns(prompt_tokens=1, completion_tokens=1))
+    backend = make_backend(FakeOpenAIClient(response), tmp_path=tmp_path)
+    with pytest.raises(LLMUnavailable):
+        backend.complete_json("plan", "sys", "usr", {"type": "object"})
+
+
+def test_backend_logs_every_billed_outcome_with_its_cost(tmp_path):
+    """defect 3 (llm.py:160-167): refusals, truncations and malformed JSON must still be logged
+    (with their cost, so the budget accounts for them), not raised before log.append runs."""
+    log = CallLog(tmp_path / "calls.jsonl")
+
+    refusal = ns(choices=[ns(message=ns(content=None, refusal="policy"), finish_reason="stop")],
+                 model="anthropic/claude-sonnet-5", usage=ns(prompt_tokens=1, completion_tokens=0, cost=0.01))
+    backend = make_backend(FakeOpenAIClient(refusal), log=log)
+    with pytest.raises(LLMRefused):
+        backend.complete_json("plan", "sys", "usr", {"type": "object"})
+
+    truncated = ns(choices=[ns(message=ns(content="{", refusal=None), finish_reason="length")],
+                   model="anthropic/claude-sonnet-5", usage=ns(prompt_tokens=1, completion_tokens=1, cost=0.02))
+    backend2 = make_backend(FakeOpenAIClient(truncated), log=log)
+    with pytest.raises(LLMUnavailable):
+        backend2.complete_json("plan", "sys", "usr", {"type": "object"})
+
+    malformed = ns(choices=[ns(message=ns(content="{not json", refusal=None), finish_reason="stop")],
+                   model="anthropic/claude-sonnet-5", usage=ns(prompt_tokens=1, completion_tokens=1, cost=0.03))
+    backend3 = make_backend(FakeOpenAIClient(malformed), log=log)
+    with pytest.raises(LLMUnavailable):
+        backend3.complete_json("plan", "sys", "usr", {"type": "object"})
+
+    lines = [json.loads(line) for line in (tmp_path / "calls.jsonl").read_text().splitlines()]
+    assert [line["outcome"] for line in lines] == ["refusal", "truncated", "malformed_json"]
+    assert log.total_cost == pytest.approx(0.06), "every billed outcome's cost must count against the budget"
+
+
 def test_backend_served_model_mismatch_logs_then_raises(tmp_path):
     response = ns(choices=[ns(message=ns(content="{}", refusal=None), finish_reason="stop")],
                   model="anthropic/claude-sonnet-4-6", usage=ns(prompt_tokens=1, completion_tokens=1))
@@ -127,7 +165,7 @@ def test_call_log_line_shape(tmp_path):
     assert len(lines) == 1
     record = json.loads(lines[0])
     assert set(record) == {"task", "role", "model", "family", "served_model", "spec_sha256",
-                            "input_tokens", "output_tokens", "cost", "utc"}
+                            "input_tokens", "output_tokens", "cost", "outcome", "utc"}
     assert record["task"] == "extract"
     assert record["role"] == "extractor"
     assert record["model"] == "anthropic/claude-sonnet-5"
@@ -136,6 +174,7 @@ def test_call_log_line_shape(tmp_path):
     assert record["input_tokens"] == 7
     assert record["output_tokens"] == 3
     assert record["cost"] == 0.0005
+    assert record["outcome"] == "ok"
     datetime.fromisoformat(record["utc"])
 
 
@@ -303,7 +342,7 @@ def test_committed_models_json_loads(tmp_path):
     models = load_models(path, log=CallLog(tmp_path / "calls.jsonl"),
                           env={"OPENROUTER_API_KEY": "or-key"},
                           client_factory=lambda provider, key: SimpleNamespace())
-    assert set(models) == {"planner", "extractor", "baseline", "verifier", "contradiction"}
+    assert set(models) == {"planner", "extractor", "baseline", "verifier"}
     assert models["planner"].agent.family == "anthropic"
     assert models["verifier"].agent.family == "openai"
     assert models["verifier"].agent.family != models["planner"].agent.family

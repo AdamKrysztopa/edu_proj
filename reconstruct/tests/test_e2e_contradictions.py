@@ -1,7 +1,10 @@
-"""Item 11: contradiction candidates are same-area pairs of located claims from different
-independence clusters (A8). Only a "genuine" verdict with both quotes verbatim in their spans
-becomes an N1 Contradiction; "scope"/"temporal" verdicts, and a "genuine" verdict whose quote is
-not actually in the span, must never reach the ledger even though the model called it genuine.
+"""SHOULD 2: the cross-cluster re-verification pass replaces the pairwise contradiction stage.
+For each supported claim, the top same-area located spans from OTHER independence clusters are
+re-verified against the claim's own assertion with the SAME verifier: a REFUTES verdict adds a
+refuting Evidence and records an N1 Contradiction; a SUPPORTS verdict adds a corroborating
+Evidence (corroboration grows); a verbatim-duplicate span (A's `span_duplicates`) is filtered out
+before it is ever offered as a candidate, so it adds no extra corroboration and is never even
+sent to the verifier.
 """
 from __future__ import annotations
 
@@ -11,103 +14,159 @@ from reconstruct.run import reconstruct
 from residual.ledger import Ledger
 
 from e2e_support import (
-    TODAY, ScriptedBackend, http_client, make_models, page_from_fixture, read_json,
-    script_default_decoys, search_result,
+    TODAY, Page, ScriptedBackend, http_client, make_models, read_json, script_default_decoys,
+    search_result,
 )
 
-LABNOTES_URL = "https://labnotes.example/entry"
-FIELDREPORT_URL = "https://fieldreport.example/entry"
+# --- Refutes Area: two claims from different clusters that genuinely disagree -------------------
+GENUINE_A = ("Bench technicians must torque the coupling bolt to no more than forty newton "
+             "metres before releasing the unit for testing.")
+GENUINE_B = ("Field crews are instructed never to exceed eighty newton metres when tightening "
+             "that same coupling bolt out in the yard.")
 
-# Deliberately dissimilar phrasing between the A/B pair of each fact (different sentence
-# structure and vocabulary, not just a swapped number): the two pages must land in DIFFERENT
-# independence clusters (A7), and near-identical templated sentences across the whole page
-# push the 5-shingle containment over the 0.5 merge threshold regardless of area.
-GENUINE_A = "Bench technicians must torque the coupling bolt to no more than forty newton metres before releasing the unit for testing."
-GENUINE_B = "Field crews are instructed never to exceed eighty newton metres when tightening that same coupling bolt out in the yard."
-SCOPE_A = "The pump receives its preventive maintenance visit every week without regard to how many hours it has actually run."
-SCOPE_B = "Out in the field, however, nobody touches the pump for maintenance until it has logged five hundred hours of continuous operation."
-BADQUOTE_A = "Feeler gauges are used to confirm the impeller sits three tenths of a millimetre clear of the housing wall."
-BADQUOTE_B = "A different inspection method calls for six tenths of a millimetre of clearance around the impeller, measured with digital calipers instead."
-UNRELATED_QUOTE = "The bench itself was resurfaced last spring and now has a bright yellow safety stripe painted along its front edge."
+# --- Corroborate Area: two claims from different clusters that genuinely agree ------------------
+PM_A = ("The pump receives a scheduled preventive maintenance visit every calendar month "
+        "regardless of how many hours it has run.")
+PM_B = ("Out in the field, technicians perform preventive maintenance on the pump on a fixed "
+        "monthly schedule, never tied to operating hours.")
+
+# --- Duplicate Span Area: two different clusters quoting the identical >=25-word passage --------
+SHARED_QUOTE = ("All maintenance personnel must isolate electrical power at the source disconnect "
+                "and confirm a zero energy state with a calibrated meter before opening any "
+                "control panel enclosure for inspection.")
+
+BENCH_URL = "https://bench-notes.example/entry"
+FIELD_URL = "https://field-report.example/entry"
+PLANT_URL = "https://plant-log.example/pm"
+HANDBOOK_URL = "https://site-handbook.example/pm"
+STANDARD_X_URL = "https://standard-x.example/rule"
+STANDARD_Y_URL = "https://standard-y.example/rule"
 
 
-def _claim(assertion, quote, area):
+def _filler(tag: str) -> str:
+    """Comfortably over 500 chars of padding so the page clears the fetch layer's near-empty-page
+    floor. Every token is tag-prefixed nonsense, not a shared template with `tag` substituted in a
+    few places — a templated filler would give every page near-identical 5-word shingles and
+    wrongly cluster all of them together by containment (the E-LIVE "SEO template" failure mode
+    this test exists to guard against), regardless of their real, distinct content."""
+    return " ".join(f"{tag}pad{i}" for i in range(60))
+
+
+def _page(*paragraphs: str, tag: str = "generic") -> Page:
+    body = ("<!doctype html><html><body>" + "".join(f"<p>{p}</p>" for p in paragraphs)
+           + f"<p>{_filler(tag)}</p></body></html>")
+    return Page(body=body)
+
+
+def _claim(assertion: str, quote: str, area: str) -> dict:
     return {"assertion": assertion, "quote": quote, "area": area,
             "knowledge_type": "concept", "question": "domain"}
 
 
-def test_contradiction_kinds_are_filtered_before_the_ledger(tmp_path):
+def _supports(quote: str) -> dict:
+    return {"verdict": "supports", "supporting_quote": quote, "adds_content": False,
+            "subject_or_scope_differs": False, "quantifier_modality_or_connective_differs": False}
+
+
+def _refutes(quote: str) -> dict:
+    return {"verdict": "refutes", "supporting_quote": quote, "adds_content": False,
+            "subject_or_scope_differs": False, "quantifier_modality_or_connective_differs": False}
+
+
+def test_cross_verify_refutes_corroborates_and_ignores_duplicate_spans(tmp_path):
     out = tmp_path / "run"
-    pages = {LABNOTES_URL: page_from_fixture("contradictions_labnotes.html"),
-              FIELDREPORT_URL: page_from_fixture("contradictions_fieldreport.html")}
+    pages = {
+        BENCH_URL: _page(GENUINE_A, tag="bench"),
+        FIELD_URL: _page(GENUINE_B, tag="field"),
+        PLANT_URL: _page(PM_A, tag="plant"),
+        HANDBOOK_URL: _page(PM_B, tag="handbook"),
+        STANDARD_X_URL: _page(SHARED_QUOTE, "STANDARDX-ONLY-FILLER-MARKER unrelated to anything else here.",
+                              tag="standardx"),
+        STANDARD_Y_URL: _page(SHARED_QUOTE, "STANDARDY-ONLY-FILLER-MARKER covering a wholly different topic.",
+                              tag="standardy"),
+    }
 
     planner = ScriptedBackend(role="planner", family="anthropic")
     planner.script("plan", "", {"areas": [
-        {"name": "Genuine Area", "queries": ["torque limit"]},
-        {"name": "Scope Area", "queries": ["pump maintenance schedule"]},
-        {"name": "Bad Quote Area", "queries": ["impeller clearance"]},
+        {"name": "Refutes Area", "queries": ["torque limit"]},
+        {"name": "Corroborate Area", "queries": ["pump pm schedule"]},
+        {"name": "Duplicate Span Area", "queries": ["lockout tagout rule"]},
     ]})
     planner.script_search("torque limit", search_result(
-        "torque limit", [(LABNOTES_URL, "t"), (FIELDREPORT_URL, "t")], TODAY))
-    planner.script_search("pump maintenance schedule", search_result(
-        "pump maintenance schedule", [(LABNOTES_URL, "t"), (FIELDREPORT_URL, "t")], TODAY))
-    planner.script_search("impeller clearance", search_result(
-        "impeller clearance", [(LABNOTES_URL, "t"), (FIELDREPORT_URL, "t")], TODAY))
+        "torque limit", [(BENCH_URL, "t"), (FIELD_URL, "t")], TODAY))
+    planner.script_search("pump pm schedule", search_result(
+        "pump pm schedule", [(PLANT_URL, "t"), (HANDBOOK_URL, "t")], TODAY))
+    planner.script_search("lockout tagout rule", search_result(
+        "lockout tagout rule", [(STANDARD_X_URL, "t"), (STANDARD_Y_URL, "t")], TODAY))
+
+    CLAIM_A = "The safe torque limit for the coupling bolt is forty newton metres."
+    CLAIM_B = "The safe torque limit for the coupling bolt is eighty newton metres."
+    CLAIM_C = "Pump preventive maintenance follows a fixed monthly schedule."
+    CLAIM_D = "The pump receives monthly preventive maintenance regardless of hours run."
+    CLAIM_E = "Personnel must isolate power and confirm zero energy before opening a control panel."
+    CLAIM_F = "Before opening a control panel, power must be isolated and zero energy confirmed."
 
     extractor = ScriptedBackend(role="extractor", family="anthropic")
-    extractor.script("extract", "Field crews are instructed", {"claims": [
-        _claim("The safe torque limit for the coupling bolt is eighty newton metres.", GENUINE_B, "Genuine Area"),
-        _claim("Pump preventive maintenance runs after five hundred operating hours.", SCOPE_B, "Scope Area"),
-        _claim("Impeller clearance is set to six tenths of a millimetre.", BADQUOTE_B, "Bad Quote Area"),
-    ]})
-    extractor.script("extract", "Bench technicians must torque", {"claims": [
-        _claim("The safe torque limit for the coupling bolt is forty newton metres.", GENUINE_A, "Genuine Area"),
-        _claim("Pump preventive maintenance runs on a fixed weekly schedule.", SCOPE_A, "Scope Area"),
-        _claim("Impeller clearance is set to three tenths of a millimetre.", BADQUOTE_A, "Bad Quote Area"),
-    ]})
+    extractor.script("extract", "Bench technicians must torque",
+                     {"claims": [_claim(CLAIM_A, GENUINE_A, "Refutes Area")]})
+    extractor.script("extract", "Field crews are instructed",
+                     {"claims": [_claim(CLAIM_B, GENUINE_B, "Refutes Area")]})
+    extractor.script("extract", "scheduled preventive maintenance visit",
+                     {"claims": [_claim(CLAIM_C, PM_A, "Corroborate Area")]})
+    extractor.script("extract", "technicians perform preventive maintenance",
+                     {"claims": [_claim(CLAIM_D, PM_B, "Corroborate Area")]})
+    extractor.script("extract", "STANDARDX-ONLY-FILLER-MARKER",
+                     {"claims": [_claim(CLAIM_E, SHARED_QUOTE, "Duplicate Span Area")]})
+    extractor.script("extract", "STANDARDY-ONLY-FILLER-MARKER",
+                     {"claims": [_claim(CLAIM_F, SHARED_QUOTE, "Duplicate Span Area")]})
 
-    # distinctive fragments, not quote[:N] — GENUINE_A/B (and the other pairs) share a long
-    # identical prefix, so a plain prefix match would let the first-registered entry steal the
-    # second call.
     verifier = ScriptedBackend(role="verifier", family="openai")
-    for fragment, quote in [("forty newton metres", GENUINE_A), ("eighty newton metres", GENUINE_B),
-                              ("fixed weekly schedule", SCOPE_A), ("five hundred operating hours", SCOPE_B),
-                              ("three tenths of a millimetre", BADQUOTE_A), ("six tenths of a millimetre", BADQUOTE_B)]:
-        verifier.script("verify", fragment, {"verdict": "supports", "supporting_quote": quote})
+
+    def _a_response(text):
+        return _supports(GENUINE_A) if "Bench technicians must torque" in text else _refutes(GENUINE_B)
+
+    def _b_response(text):
+        return _supports(GENUINE_B) if "Field crews are instructed" in text else _refutes(GENUINE_A)
+
+    def _c_response(text):
+        return _supports(PM_A) if "every calendar month" in text else _supports(PM_B)
+
+    def _d_response(text):
+        return _supports(PM_B) if "never tied to operating hours" in text else _supports(PM_A)
+
+    verifier.script("verify", CLAIM_A, _a_response)
+    verifier.script("verify", CLAIM_B, _b_response)
+    verifier.script("verify", CLAIM_C, _c_response)
+    verifier.script("verify", CLAIM_D, _d_response)
+    verifier.script("verify", CLAIM_E, _supports(SHARED_QUOTE))
+    verifier.script("verify", CLAIM_F, _supports(SHARED_QUOTE))
     script_default_decoys(extractor, verifier)
 
-    contradiction = ScriptedBackend(role="contradiction", family="openai")
-    contradiction.script("contradict", "coupling bolt",
-                          {"kind": "genuine", "quote_a": GENUINE_A, "quote_b": GENUINE_B})
-    contradiction.script("contradict", "Pump preventive maintenance runs",
-                          {"kind": "scope", "quote_a": SCOPE_A, "quote_b": SCOPE_B})
-    contradiction.script("contradict", "Impeller clearance is set to",
-                          {"kind": "genuine", "quote_a": UNRELATED_QUOTE, "quote_b": BADQUOTE_B})
-
-    models = make_models(planner=planner, extractor=extractor, verifier=verifier,
-                          contradiction=contradiction, out=out)
+    models = make_models(planner=planner, extractor=extractor, verifier=verifier, out=out)
     run_dir = Path(reconstruct(domain="maintenance", task="t", models=models, http=http_client(pages),
                                 out=out, today=TODAY, max_results=5))
 
     ledger = Ledger.from_json((run_dir / "ledger.json").read_text())
     sidecar = read_json(run_dir / "sidecar.json")
+    assert sidecar["complete"] is True, sidecar["incomplete_reasons"]
 
     def claim_id_for(fragment):
         matches = [c.claim_id for c in ledger.claims if fragment in c.assertion]
         assert len(matches) == 1, f"expected exactly one claim matching {fragment!r}, got {matches}"
         return matches[0]
 
-    genuine_pair = {claim_id_for("forty newton metres"), claim_id_for("eighty newton metres")}
-    scope_pair = {claim_id_for("fixed weekly schedule"), claim_id_for("five hundred operating hours")}
-    badquote_pair = {claim_id_for("three tenths of a millimetre"), claim_id_for("six tenths of a millimetre")}
-
+    # --- REFUTES cross-check -> N1 Contradiction --------------------------------------------
+    cid_a, cid_b = claim_id_for("forty newton metres"), claim_id_for("eighty newton metres")
     ledger_pairs = [set(x.claims) for x in ledger.contradictions]
-    assert genuine_pair in ledger_pairs, "a genuine verdict with both quotes verbatim in span must reach the ledger"
-    assert scope_pair not in ledger_pairs, "a scope verdict must never reach the ledger"
-    assert badquote_pair not in ledger_pairs, "a genuine verdict whose quote is not in the span must not reach the ledger"
-    assert len(ledger.contradictions) == 1
+    assert {cid_a, cid_b} in ledger_pairs
 
-    sidecar_kinds = {(frozenset(x["claims"]), x["kind"]): x["recorded_in_ledger"]
-                      for x in sidecar["contradictions"]}
-    scope_entries = [v for (pair, kind), v in sidecar_kinds.items() if kind == "scope"]
-    assert scope_entries and all(v is False for v in scope_entries)
+    # --- SUPPORTS cross-check from another cluster -> corroboration grows to 2 ----------------
+    claim_c = ledger.by_id[claim_id_for("fixed monthly schedule")]
+    assert claim_c.corroboration == 2
+
+    # --- verbatim-duplicate span -> no extra corroboration, never even sent to the verifier ----
+    claim_e = ledger.by_id[claim_id_for("confirm zero energy before opening")]
+    assert claim_e.corroboration == 1
+    assert len(claim_e.evidence) == 1
+    cross_check_claim_ids = {c["claim_id"] for c in sidecar["cross_checks"]}
+    assert claim_e.claim_id not in cross_check_claim_ids

@@ -681,10 +681,12 @@ def _cmd_run(args: argparse.Namespace) -> int:
     corpus_models = build_corpus_models(models, args.corpus)
     client = corpus_client(args.corpus, args.root)
     blocklist = Path(args.blocklist).read_text().splitlines() if args.blocklist else []
+    manifest_sha256 = hashlib.sha256(Path(args.corpus).read_bytes()).hexdigest()
     run_dir = reconstruct(target_set.domain, target_set.task, models=corpus_models, http=client,
                           out=out, today=datetime.now(UTC).date(), areas=args.areas,
                           blocklist=[b.strip() for b in blocklist if b.strip()],
-                          max_results=args.max_results, max_doc_chars=args.max_doc_chars)
+                          max_results=args.max_results, max_doc_chars=args.max_doc_chars,
+                          search_corpus=f"corpus:{manifest_sha256}")
     print(run_dir)
     return 0
 

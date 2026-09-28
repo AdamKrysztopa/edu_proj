@@ -80,10 +80,11 @@ def test_non_html_and_blocklisted_urls_are_fetch_failures_not_sources(tmp_path):
     pdf_url = "https://pdf-host.example/manual.pdf"
     blocked_url = "https://blocked.example/held-out"
 
+    padding = " ".join(f"riggingpad{i}" for i in range(80))  # clears fetch()'s 500-char near-empty floor
     pages = {
         good_url: Page(body="<!doctype html><html><body><p>"
                               "The rated load of the sling must never exceed its certified working limit."
-                              "</p></body></html>"),
+                              f"</p><p>{padding}</p></body></html>"),
         pdf_url: Page(body=b"%PDF-1.4 fake binary content", content_type="application/pdf"),
         blocked_url: Page(body="<!doctype html><html><body><p>This must never be fetched or used.</p></body></html>"),
     }
@@ -123,3 +124,53 @@ def test_non_html_and_blocklisted_urls_are_fetch_failures_not_sources(tmp_path):
     assert "pdf" in failure_urls[pdf_url].lower() or "content type" in failure_urls[pdf_url].lower()
     assert blocked_url in failure_urls, sidecar["fetch_failures"]
     assert "block" in failure_urls[blocked_url].lower()
+
+
+# --- defect 13: a failing URL cited by more than one search is fetched, and recorded, once --------
+
+def test_a_repeatedly_cited_failing_url_is_recorded_as_one_fetch_failure(tmp_path):
+    out = tmp_path / "run"
+    good_url = "https://goodpage2.example/notes"
+    dead_url = "https://dead-host.example/manual.pdf"  # cited by both areas below
+
+    padding = " ".join(f"gearboxpad{i}" for i in range(80))
+    pages = {
+        good_url: Page(body="<!doctype html><html><body><p>"
+                              "The gearbox oil must be changed every two thousand operating hours."
+                              f"</p><p>{padding}</p></body></html>"),
+        dead_url: Page(body=b"%PDF-1.4 fake binary content", content_type="application/pdf"),
+    }
+
+    planner = ScriptedBackend(role="planner", family="anthropic")
+    planner.script("plan", "", {"areas": [
+        {"name": "Gearbox", "queries": ["gearbox oil change interval"]},
+        {"name": "Manuals", "queries": ["gearbox service manual"]},
+    ]})
+    planner.script_search("gearbox oil change interval", search_result(
+        "gearbox oil change interval", [(good_url, "t"), (dead_url, "t")], TODAY))
+    planner.script_search("gearbox service manual", search_result(
+        "gearbox service manual", [(dead_url, "t")], TODAY))
+
+    extractor = ScriptedBackend(role="extractor", family="anthropic")
+    extractor.script("extract", "gearbox oil", {"claims": [
+        {"assertion": "Gearbox oil is changed every two thousand operating hours.",
+         "quote": "The gearbox oil must be changed every two thousand operating hours.",
+         "area": "Gearbox", "knowledge_type": "concept", "question": "domain"}]})
+
+    verifier = ScriptedBackend(role="verifier", family="openai")
+    verifier.script("verify", "", {"verdict": "supports",
+                                     "supporting_quote": "The gearbox oil must be changed every two thousand operating hours."})
+    script_default_decoys(extractor, verifier)
+
+    contradiction = ScriptedBackend(role="contradiction", family="openai")
+    models = make_models(planner=planner, extractor=extractor, verifier=verifier,
+                          contradiction=contradiction, out=out)
+
+    run_dir = Path(reconstruct(domain="machinery", task="t", models=models, http=http_client(pages),
+                                out=out, today=TODAY, max_results=5))
+
+    sidecar = read_json(run_dir / "sidecar.json")
+    dead_failures = [f for f in sidecar["fetch_failures"] if f["url"] == dead_url]
+    assert len(dead_failures) == 1, (
+        f"a URL cited by two searches must be fetched (and recorded as failed) once, not once per "
+        f"citing search: {sidecar['fetch_failures']}")
