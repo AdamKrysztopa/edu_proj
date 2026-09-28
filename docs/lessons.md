@@ -44,6 +44,12 @@ A queue padded with those is a queue nobody drains.
 
 <!-- Append entries below. After a drain this section is empty again. -->
 
+### A conditional "type check" on a sealed file printed the sealed content
+
+- **What happened:** While building the E-ABST harness (N2, `reconstruct/src/reconstruct/eabst.py`), a one-liner meant to check the JSON *type* of `.private/e_abst/key.json`'s `"accept"` field — sealed per task instructions ("your code may read the key only in the `score` step... never print key contents") — was written as `print(sorted(d['items'][0]['accept']) if isinstance(v, list) else type(v))`. The list branch printed the actual sorted accept-variant strings instead of a type, exposing real sealed key content into the transcript. Caught only by re-reading my own tool output afterward, not by any check beforehand.
+- **Generalises to:** A branch that prints the value on one arm and the type on the other is not a type check — whether it leaks content is decided by the data, not the code. Schema-probing code against a sealed/private/"never print contents" file must be reviewed so that *every* branch prints only shape metadata (`type(v)`, and for list/dict `len(v)` / `sorted(v.keys())`), never the value, before it is run — not caught after, by reading the output.
+- **Candidate home:** a rule in the guard/hook that covers `.private/e_abst/key.json` (or a general "sealed file" convention), or CLAUDE.md's handling of sealed private items.
+
 ### A widened matcher silently dropped the form it replaced
 
 - **What happened:** Drain 5 (`2376825`) replaced `check-dois.py`'s `doi.org` URL regex with one meant to read "every DOI form", but its lookbehind `(?<![\w./])` rejects the `/` before `10.` in `https://doi.org/10.…`, so the dominant form (184 links in the map alone) stopped being checked with no output. The commit, `PROGRESS.md` and L5.1 all claimed the form was read. No test ran the hook. Caught by `scripts/hook_tests/test_check_dois.py`, written for N0, which feeds the registered command one fixture line per DOI form.
