@@ -15,7 +15,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-DOI = re.compile(r'(?<![\w./])(10\.\d{4,9}/[^\s\]\[<>"`\']+)')
+DOI = re.compile(r'(?:(?<=doi\.org/)|(?<![\w./]))(10\.\d{4,9}/[^\s\]\[<>"`\']+)')
 CACHE = Path(os.environ.get("CLAUDE_PROJECT_DIR", ".")) / ".claude/hooks/.doi-verified"
 STOP = {"about", "after", "their", "there", "these", "those", "which", "while", "within", "without",
         "between", "through", "under", "using", "study", "studies", "effects", "effect", "review"}

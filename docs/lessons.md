@@ -43,3 +43,9 @@ A queue padded with those is a queue nobody drains.
 ## Open
 
 <!-- Append entries below. After a drain this section is empty again. -->
+
+### A widened matcher silently dropped the form it replaced
+
+- **What happened:** Drain 5 (`2376825`) replaced `check-dois.py`'s `doi.org` URL regex with one meant to read "every DOI form", but its lookbehind `(?<![\w./])` rejects the `/` before `10.` in `https://doi.org/10.…`, so the dominant form (184 links in the map alone) stopped being checked with no output. The commit, `PROGRESS.md` and L5.1 all claimed the form was read. No test ran the hook. Caught by `scripts/hook_tests/test_check_dois.py`, written for N0, which feeds the registered command one fixture line per DOI form.
+- **Generalises to:** When a check's matcher is rewritten to cover more cases, a test must show it still matches each case the old matcher covered, because a regression in a checker reads as a clean pass.
+- **Candidate home:** `implement-ll` / L5.1 — every change to a hook ships with a fixture per input form it claims to read.
