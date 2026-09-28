@@ -633,7 +633,8 @@ Neither experts nor learners are needed to test whether the gap map predicts hel
 | E-OSS departures and minimum post-departure activity | E-OSS | to set by power calculation (tens of departures, not 3–5) |
 | "Dominate" for a change to H2 (OSS only) | N3 | to set |
 | E-HOLD "far below" (post- versus pre-*T* recall drop) | E-HOLD | to set |
-| "A handful" of ad-hoc fields | N1 | to set |
+| "A handful" of ad-hoc fields | N1 | **≤ 2 new field types** across the three domains together, where a field type is a new field, model or closed-vocabulary member (owner, 2026-09-28) |
+| When the area partition is frozen | N1, N3 | **With the N3 pre-registration**, still before gold: it needs a task's scope decomposition (§11 step 1). N1 freezes the schema and the gap-map feature set (owner, 2026-09-28) |
 | False-answer margin versus the raw model | N2, E-ABST | to set |
 | Known-truth tolerance and numeric "stable" for the unseen estimate | N5 | to set |
 | LLM-matcher adoption κ | §18 | ≥ 0.70 and not below the human–human κ lower CI bound |
