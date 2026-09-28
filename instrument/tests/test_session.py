@@ -322,3 +322,14 @@ def test_data_session_on_openrouter_needs_a_route(tmp_path, monkeypatch, test_mo
     with pytest.raises(ConfigMismatch, match=refusal):
         Session.create(tmp_path / "sessions", Deps(FakeTranscriber([]), backends), expert_id="E01", cell=1,
                        arms={"A": "ai", "B": "human"}, set_order=["A", "B"], pilot=False)
+
+
+def test_human_arm_actions_stop_when_the_frozen_config_changes(tmp_path):
+    s = new_session(tmp_path, arms={"A": "human", "B": "ai"}, transcripts=[seg("A1"), seg("A2"), seg("B1"), seg("B2")])
+    through_think_aloud(s)
+    s.start_probe()
+    s.manifest["config"]["guard_prompt_sha256"] = "0" * 64
+    with pytest.raises(ConfigMismatch):
+        s.human_marker("interviewer")
+    with pytest.raises(ConfigMismatch):
+        s.human_stem("A1", "cues")

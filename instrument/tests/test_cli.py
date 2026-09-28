@@ -26,3 +26,10 @@ def test_serve_stops_before_starting_without_a_key(monkeypatch):
     monkeypatch.setattr(uvicorn, "run", lambda *a, **k: pytest.fail("server started without a key"))
     with pytest.raises(ValueError, match="_API_KEY"):
         cli.main(["serve"])
+
+
+def test_tablet_origin_follows_the_bind_address():
+    assert cli.tablet_origin("127.0.0.1", 8000, tls=False) is None
+    assert cli.tablet_origin("10.1.2.3", 8000, tls=True) == "https://10.1.2.3:8000"
+    lan = cli.tablet_origin("0.0.0.0", 8443, tls=True)
+    assert lan is None or (lan.startswith("https://") and lan.endswith(":8443") and "0.0.0.0" not in lan)

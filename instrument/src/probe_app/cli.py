@@ -5,11 +5,26 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from probe_app.backup import KEY_ENV, backup, restore
 from probe_app.config import INSTRUMENT_DIR, PREREG_PATH, current_config, freeze, load_models
 
 
+def tablet_origin(host: str, port: int, tls: bool) -> str | None:
+    """The address the expert's tablet must use; None when the console's own origin works (loopback)."""
+    if host in ("127.0.0.1", "localhost", "::1"):
+        return None
+    if host in ("0.0.0.0", "::"):
+        import socket
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            try:
+                s.connect(("192.0.2.1", 9))  # UDP connect sends nothing; it only picks the outgoing interface
+                host = s.getsockname()[0]
+            except OSError:
+                return None
+    return f"{'https' if tls else 'http'}://{host}:{port}"
+
+
 def main(argv: list[str] | None = None) -> None:
-    load_dotenv(INSTRUMENT_DIR / ".env")
     parser = argparse.ArgumentParser(prog="probe-app")
     sub = parser.add_subparsers(dest="cmd", required=True)
     serve = sub.add_parser("serve", help="run the session app")
@@ -26,9 +41,26 @@ def main(argv: list[str] | None = None) -> None:
     sim = sub.add_parser("simulate", help="run a simulated AI-arm session against the real APIs")
     sim.add_argument("--root", type=Path, default=INSTRUMENT_DIR.parent / "sessions")
     sim.add_argument("--set-order", default="A,B")
+    bk = sub.add_parser("backup", help="write an encrypted, verified copy of session directories to --dest")
+    bk.add_argument("sessions", nargs="*", help="session IDs under --root (default: every session)")
+    bk.add_argument("--root", type=Path, default=INSTRUMENT_DIR.parent / "sessions")
+    bk.add_argument("--dest", type=Path, required=True)
+    bk.add_argument("--key-env", default=KEY_ENV, help="environment variable holding the passphrase")
+    rs = sub.add_parser("restore", help="decrypt a backup into --out and check every file against its manifest")
+    rs.add_argument("archive", type=Path)
+    rs.add_argument("--out", type=Path, required=True)
+    rs.add_argument("--key-env", default=KEY_ENV, help="environment variable holding the passphrase")
     args = parser.parse_args(argv)
+    if args.cmd not in ("backup", "restore"):
+        # The backup passphrase must come from the shell, never from a file in the repository.
+        load_dotenv(INSTRUMENT_DIR / ".env")
 
-    if args.cmd == "hashes":
+    if args.cmd == "backup":
+        for out, n in backup(args.root, args.dest, args.sessions, args.key_env):
+            print(f"{out.name}: {n} files, decrypted and verified -> {out}")
+    elif args.cmd == "restore":
+        print(f"restored and verified: {restore(args.archive, args.out, args.key_env)}")
+    elif args.cmd == "hashes":
         print(json.dumps(asdict(current_config()), indent=2))
     elif args.cmd == "transcribe":
         from probe_app.trace import build_segments, render_transcript
@@ -48,7 +80,10 @@ def main(argv: list[str] | None = None) -> None:
         from probe_app.transcribe import make_transcriber
 
         backends = make_backends(load_models())
-        app = create_app(args.root, Deps(make_transcriber(), backends))
+        origin = tablet_origin(args.host, args.port, tls=bool(args.ssl_certfile))
+        app = create_app(args.root, Deps(make_transcriber(), backends), expert_origin=origin)
+        if origin:
+            print(f"Tablet: {origin}/expert (the certificate must cover this address)")
         uvicorn.run(app, host=args.host, port=args.port,
                     ssl_certfile=args.ssl_certfile, ssl_keyfile=args.ssl_keyfile)
     elif args.cmd == "simulate":

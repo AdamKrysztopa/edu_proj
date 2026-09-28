@@ -2,10 +2,49 @@
 
 Tracks work against [`ai_education_research_map.md`](ai_education_research_map.md), which remains the single source of state. Each ticked branch links to its note in `research/`.
 
-## Todo (you)
-- [x] Download Fukaya et al. (2025): saved to `research/pdf/` (git-ignored). PCK–achievement r = .13 n.s. to .23 by model, 11 studies; PCK lowered to **Moderate**.
+**Visual PoC brief:** [What we plan to build, need and learn](docs/poc-explained.html) — one offline HTML document with embedded SVG diagrams. It explains the proposed route; it does not mark the planning or validation steps complete. Optional reading.
+
+## Current priority — implement the chosen route (§9)
+
+**The planning deliverable is complete:** [research/roadmap.md](research/roadmap.md) chooses the route, works one physics case, defines the first version and sets milestones M1–M8, each with a continue/change/stop decision. Supporting notes: [comparison](research/route-comparison.md) (step 1) and [decision-critical gaps](research/decision-gaps.md) (step 2). The route is justified by the evidence available; its effectiveness is untested, and assumptions A1–A10 name the milestone that tests each.
+
+**Next:** M1 (bottleneck check, early K0) and M2 (elicitation tool and pilot) in parallel. M1 needs a course offering; M2 needs 1–2 pilot physicists.
+
+The full scope remains expert elicitation → learner diagnosis → instructional response → assessment and adaptation. Physics conservation problems are the first case, not the boundary of the project.
+
+## Roadmap — all steps
+
+**Current step: 7 and 8, in parallel. Everything that needs no participants is built; both now wait on people (course, ethics, physicists).** Steps 1–6 worked out the route; steps 7 onward are the roadmap's milestones (M1–M8 in `research/roadmap.md`), in execution order.
+
+**Size:** S = small task; M = several focused tasks; L = substantial work; XL = participant study with external scheduling. These are rough effort categories, not calendar estimates.
+
+**Priority:** P0 = essential; P1 = follows core validation; P2 = conditional extension. Dependencies refer to numbered steps in this table. Research-family priorities in the branch inventory below are separate from execution priorities.
+
+| Name | What introduces / what does? | Size | Priority | Blocked by |
+|---|---|---|---|---|
+| **1. Consolidate existing research — done** ([comparison](research/route-comparison.md)) | All 13 research families compared by role, evidence, limits and overlap; they reduce to five independent choices. | M | P0 | — |
+| **2. Resolve decision-critical gaps — done** ([gaps](research/decision-gaps.md)) | Six targeted searches; none settles a gap; three give first-version defaults. | M | P0 | 1 |
+| **3–6. Route, physics case, first version, roadmap — done** ([roadmap](research/roadmap.md)) | Selected approach; hypothetical worked case with the hidden-knowledge taxonomy; first-version scope and reuse; milestones, cohorts and assumptions register. Reviewed by `methods-critic` and `citation-verifier`. | M | P0 | 1–2 |
+| **7. M1 — Bottleneck check (early K0) — kit built; waiting on course, physicist check and registration** | Registered K0 items plus component items and a second form; two-coder coding; K0 decision on form 1. Tests A1, A5, A10. | L | P0 | Course offering and ethics (logistics below) |
+| **8. M2 — Elicitation tool and pilot — tool built and verified; waiting on 3–5 simulated sessions, preflight and pilot physicists** | The pre-pilot instrument items below; `/preflight pilot`; 1–2 physicists; codebook checked. | M–L | P0 | Pilot physicists |
+| **9. M3 — Module v0** | Module format and validator, static player, logging, mastery rule; provisional conservation module and its matched ordinary version; usability with 5–8 students. Tests A4. | L | P0 | 7 not stopped; 8 |
+| **10. M4 — Validated operations (Stage A)** | Freeze, pre-register, 12 experts; K1. Tests A2, A3. | XL | P0 | 7 not stopped; 8 |
+| **11. M5 — Feasibility run** | Both module versions in one section; compliance, time match, delayed-test logistics. | L | P0 | 9; its own offering |
+| **12. M6 — Learning and transfer (Stage B)** | Registered two-arm RCT; pretest K0, then K2. Tests A1, A9. | XL | P0 | 10 with K1 passed; 11 |
+| **13. M7 — Offline learner-model check** | Knowledge tracing fitted to logs against the three-in-a-row rule. Tests A7. | S | P1 | Logs from 11 or 12 |
+| **14. M8 — Live generation arm** | Static vs live LLM feedback on the same prompts, delayed unassisted test. Tests A6. | L | P1 | 12 with K2 passed |
+| **15. Refine the approach** | Continue, change or stop components from M1–M8; update requirements. | M–L | P0 | 12 |
+| **16. Later experiments** | Powered order experiment (A8); Phase 3 diagnosis comparison; per-student routing if M1's form agreement supports it. | L–XL | P1 | 15 |
+| **17. Polish the frontend** | Navigation, presentation and usability of the established workflow. | L | P1 | 15 supports continuing |
+| **18. Extend beyond the initial case** | A second topic, other disciplines, teacher-facing uses; adaptive personalization only with useful signals. | XL | P2 | A supported initial approach |
+
+**Reading is not a blocker:** the short summary is the entire minimum; every book, paper and branch note is optional reading for the user.
+
+### Course logistics — needed for M1 and M6
+
 - [ ] Confirm the Stage B course's pretest can carry 2 open-response conservation problems after the topic's lectures (K0 data; no past exam scripts are available).
-- [ ] Name the course offering for early K0 (ungraded quiz with the 2 K0 items, before the Stage A data sessions) and confirm its ethics cover a research quiz.
+- [ ] Name the course offering for early K0 and confirm its ethics cover a research quiz. Credit follows the experiment protocol and the course's rules.
+- [ ] Allocate distinct offerings to early K0 (M1), the feasibility run (M5) and Stage B (M6), and freeze the lecture notes that serve as Stage A's baseline (roadmap, "Cohorts").
 
 ## Method branches (§4, §5)
 
@@ -28,40 +67,51 @@ Tracks work against [`ai_education_research_map.md`](ai_education_research_map.m
 - [x] **Formative assessment**: `explore` → **rating split**. High for feedback and quizzing as practices (feedback d = 0.48, over a third of effects negative; quizzing g = 0.50); low–moderate for packaged formative assessment (d ≈ 0.2–0.3; the quoted 0.4–0.7 has no source). New §5.13 card; Phase 4 holds feedback constant across arms. [note](research/explore-formative-assessment.md)
 - [x] **LLM-based AI tutoring**: `explore` → **no rating change, scoped**. Kestin et al. (2025) is large but immediate and bundles AI with self-pacing and pre-structured steps; with the AI removed at test, effects elsewhere are ≈ 0.1–0.4 SD, null in preregistered lab RCTs, or harmful without guardrails; syntheses weak, one retracted. Phase 5 compares any LLM tutor with the same design without generation; §11 adds "do not measure learning while the AI is available". [note](research/explore-llm-tutoring.md)
 
-### Experiment design
-- [x] `/branch experiment`: gated two-stage design (Stage A, 12 experts, AI vs human probes validated against the trace → K1 → K0 pretest-error check → Stage B, RCT with about 370 students on delayed transfer → K2). `methods-critic`: no fatal flaw; the six major fixes are applied. K0 moved to pretest items before Stage B (no exam scripts); re-reviewed, five major fixes applied. Early K0 added: the same items as a quiz before the Stage A data sessions. [note](research/experiment-ai-assisted-cta-physics.md)
-- [ ] Add the two ordinary-explanation problems (E_A, E_B) to `instrument/problems/problems.json`, checked by the physicist with the other four, before the pilot.
-- [x] Stage A instrument built: session app and coding pipeline in `instrument/` ([spec](docs/superpowers/specs/2026-09-26-stage-a-session-app-design.md)). Next: pilot on 1–2 physicists (`instrument/pilot-protocol.md`), then freeze.
-- [ ] Before the first pilot: fallback-rate and rejection-rate thresholds set from the simulated-session baseline (decision 0004).
-- [ ] Before the first pilot: console-only routes refuse non-loopback clients, and session IDs use the full uuid4 (decision 0005; `docs/security-review-2026-09-27.md`).
-- [ ] Encrypted backup of `sessions/` after every session; it is the only copy of the data.
-- [ ] Before `probe-app freeze` (decisions 0003, 0004; reviews in `docs/*-review-2026-09-27.md`):
-  - [ ] `FrozenConfig` hashes the model-facing code (`llm.py`, `engine.py`, `contract.py`, `models.py`).
-  - [ ] Guard calibrated on about 60 labelled probe questions; sensitivity and specificity pre-registered.
-  - [ ] Freeze rule computed by `probe-code` from the session logs.
-  - [ ] Audio-stream invariant tests (including the silent skip at `session.py:200`), then the recording module extraction.
-  - [ ] One test tying each output schema to its Pydantic model; `extra="forbid"` on `GuardVerdict`.
-  - [ ] One `make_guard()`/interviewer factory used by both the app and `probe-code`.
-  - [ ] A smoke test per CLI subcommand.
+### Instrument and study — M1 kit, M2 build, later gates
+
+Stage A is M4 and Stage B is M6 in the roadmap. Stage A addresses Phase 2; Stage B addresses one Phase 4 comparison.
+
+**M1 kit — built (2026-09-28), waiting on the course:**
+- [x] Items (Form 1 = registered K0 pair, Form 2, components), answer key, K0 codebook and pre-registration draft in `instrument/k0/`; `probe-code k0-sample`, `k0`, `k0-kappa`, `form-agreement` enforce the registered rule and the plan. Reviewed by `methods-critic` (majors fixed); physics checked by Codex (all answers confirmed).
+- [ ] A physicist checks the items and their timing; the user completes the *to confirm* fields in `instrument/k0/prereg-early-k0.md` (course offering, ethics, coders, seed) and registers it before the quiz.
+
+**M2 build — done (2026-09-28):**
+- [x] HTTPS tablet setup verified end to end in the browser: console create → tablet link (now the LAN address, carrying the session code) → join with microphone → think-aloud → audio stored; LAN access to console routes refused. Two defects found and fixed: the console linked the tablet to 127.0.0.1, and a refused microphone failed silently.
+- [x] `FrozenConfig` hashes the model-facing code, `problems.json`, `human-script.md` and the expert page (decision 0004, rule 1).
+- [x] Codebook v0: trace and probe units, per-code multi-label agreement (`--multi`), Include/Exclude cells filled; stress-tested.
+- [x] Every CLI subcommand smoke-tested; `UNRUN` is empty.
+- [x] E_A and E_B drafted as a paper handout (`instrument/problems/explanation-problems.md`), kept out of `problems.json` so the guard's non-leading vocabulary does not grow.
+- [x] Freeze baseline and computed freeze rule (`probe-code freeze-baseline`, `docs/freeze-baseline.md`); proposed thresholds from the simulated baseline.
+- [x] Decision 0005: console routes loopback-only, full uuid4 session IDs.
+- [x] Encrypted backup and restore of sessions (`probe-app backup`/`restore`, passphrase from `PROBE_BACKUP_PASSPHRASE`).
+- [x] Leading-probe rule applied identically in both arms: `human-script.md` states the guard's rule verbatim; `guard-audit` (refuses config drift) and blind `export-leading` cover both arms.
+- [ ] Before the pilot: 3–5 more simulated sessions (`probe-app simulate`), then recompute the baseline thresholds (`docs/freeze-baseline.md`); `/preflight pilot`; a physicist checks A1–B2 and E_A/E_B.
+
+**Before `probe-app freeze` (gate for M4; decisions 0003, 0004):**
+- [ ] Guard calibrated on about 60 labelled probe questions; sensitivity and specificity pre-registered.
+- [ ] Pre-register a threshold for coders' arm-guess rate on the leading export (arm style is still recognisable).
+- [ ] Speech before the first I/E marker in the human arm is attributed to the interviewer; mark or exclude it, and say in the analysis plan what happens to leading human turns and their answers.
+- [ ] Audio-stream invariant tests, then the recording module extraction.
+- [ ] One test tying each output schema to its Pydantic model; `extra="forbid"` on `GuardVerdict`.
+- [ ] One `make_guard()`/interviewer factory used by both the app and `probe-code`.
+- [x] `/branch experiment`: gated two-stage design; `methods-critic` reviews applied. [note](research/experiment-ai-assisted-cta-physics.md)
+- [x] Stage A instrument built ([spec](docs/superpowers/specs/2026-09-26-stage-a-session-app-design.md)).
 
 ## Reading (§8)
-- [x] **Minimum:** [research/minimum-reading.md](research/minimum-reading.md), a synthesis of all branch notes and the experiment
 
-### Deep dive
-- [ ] Pace (2017), _The Decoding the Disciplines Paradigm_. **Read first:** controlled outcome data here could flip the DtD verdict back to keep.
-- [ ] Shulman (1986), PCK
-- [ ] Chi, Feltovich & Glaser (1981), expert–novice physics
-- [ ] Clark et al. (2008), Cognitive Task Analysis
-- [ ] Kulik & Fletcher (2016), ITS meta-analysis
-- [ ] Kestin et al. (2025), AI tutoring RCT in physics
-- [ ] _(optional)_ Hestenes, Wells & Swackhamer (1992), Force Concept Inventory
+**Entire minimum:** [research/minimum-reading.md](research/minimum-reading.md). The synthesis is available; this does not assert that the user has read it.
+
+**All further reading is optional**, including Pace, Shulman, Chi et al., Clark et al., Kulik & Fletcher, Kestin et al., the FCI paper and every branch note. The optional source selection remains in map §8. There is no extra reading checklist to complete before continuing.
 
 ## Research phases (§9)
-- [ ] **Phase 1**: validate the premise; taxonomy of hidden knowledge. Kill criterion not yet testable.
-- [ ] **Phase 2**: expert-elicitation experiment (ordinary explanation vs human-led vs AI-led DtD/CTA vs think-aloud)
-- [ ] **Phase 3**: learner-bottleneck diagnosis
-- [ ] **Phase 4**: intervention experiment with transfer as the primary outcome
-- [ ] **Phase 5**: adaptive system
+
+These track the map's research questions; they are not extra prerequisites before implementation. Follow the numbered roadmap above for execution.
+
+- [ ] **Phase 1** (roadmap 7, M1): validate the premise. Taxonomy drafted in the roadmap's step 4; learner evidence not collected, so the kill criterion has not been evaluated.
+- [ ] **Phase 2** (roadmap 8 and 10): expert-elicitation experiment (ordinary explanation vs human-led vs AI-led DtD/CTA vs think-aloud)
+- [ ] **Phase 3** (roadmap 16): learner-bottleneck diagnosis; cohort-level diagnosis is used until then
+- [ ] **Phase 4** (roadmap 9, 11–12): intervention experiment with transfer as the primary outcome
+- [ ] **Phase 5** (roadmap 13–14, 18): adaptive system
 
 ## Open evidence gaps that would change a verdict
 - [x] Full text of Fukaya et al. (2025): weak, model-dependent PCK–achievement link; PCK lowered to **Moderate** (a controlled study of difficulty-knowledge causing gains would restore Moderate–high)

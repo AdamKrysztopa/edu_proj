@@ -16,6 +16,7 @@ Try to break the design. Check at least the following:
 - **Instruments.** Is any concept inventory used for its validated purpose (individual diagnosis vs cohort evaluation)?
 - **Power.** Is the expected effect size stated, with its source, and is N justified? Flag an N that could only detect d ≥ 0.8.
 - **Kill criterion.** Is there a pre-stated result that would stop the branch?
+- **Registered constraints.** When the design or plan reuses a registered or previously reviewed study (e.g. `research/experiment-ai-assisted-cta-physics.md`), list that study's registered rules (arm matching, gates and their failure branches, instruments, sampling units, delays) and trace each into the new plan. Any rule dropped, re-scoped or overridden by an addition → major; an arm contrast that now differs in more than the manipulated factor → fatal.
 - **Ethics and practice.** Consent, handling of student data, risk to the learning of students in a weaker condition.
 
 Output: a ranked list, most serious first. Each issue gets a severity (`fatal` / `major` / `minor`), the specific threat, and the **smallest** change that fixes it. Then one line: would you run this study as designed, yes or no. Don't redesign the study; fix it.

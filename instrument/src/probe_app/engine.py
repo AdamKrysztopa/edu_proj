@@ -1,3 +1,4 @@
+from collections.abc import Callable
 from dataclasses import dataclass
 
 from probe_app.contract import (ContractState, ContractViolation, check_turn, next_fallback,
@@ -17,9 +18,17 @@ class ProbeContext:
 
 class ProbeEngine:
     def __init__(self, llm, guard, stems: dict[str, str], ctx: ProbeContext, store,
-                 contract: ContractState, cap_s: float, wrap_s: float):
+                 contract: ContractState, cap_s: float, wrap_s: float, elapsed: Callable[[], float] | None = None):
         self.llm, self.guard, self.stems, self.ctx = llm, guard, stems, ctx
         self.store, self.contract, self.cap_s, self.wrap_s = store, contract, cap_s, wrap_s
+        self.elapsed = elapsed
+
+    def _past_cap(self, turn: InterviewerTurn, source: str) -> bool:
+        if self.elapsed is None or self.elapsed() < self.cap_s:
+            return False
+        self.store.log("cap_reached", set_id=self.ctx.set_id, uncovered=uncovered(self.contract),
+                       source=source, discarded=turn.model_dump())
+        return True
 
     def _expert_text(self, dialogue: list[DialogueTurn]) -> str:
         return "\n".join([s.text for s in self.ctx.segments] +
@@ -67,6 +76,8 @@ class ProbeEngine:
                 self.store.log("turn_rejected", set_id=set_id, attempt=attempt, reason=rejection,
                                turn=turn.model_dump())
                 continue
+            if self._past_cap(turn, "ai"):
+                return None
             record(turn, self.contract)
             return self._emit(turn, "ai", elapsed_s)
         return self._fallback(elapsed_s)
@@ -80,6 +91,8 @@ class ProbeEngine:
         turn = InterviewerTurn(utterance=self.stems[stem_id], stem_id=stem_id, problem_id=problem_id,
                                anchor=Anchor(kind="none", segment_ids=[]), is_followup=False,
                                quoted_span=None, end_session=False)
+        if self._past_cap(turn, "ai_fallback"):
+            return None
         record(turn, self.contract)
         return self._emit(turn, "ai_fallback", elapsed_s)
 

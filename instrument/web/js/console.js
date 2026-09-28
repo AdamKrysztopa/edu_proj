@@ -48,7 +48,7 @@ function render() {
   const st = view.state;
   const arm = st.current_set ? st.arms[st.current_set] : null;
   $("title").textContent = `Session ${view.session_id}${view.manifest.pilot ? " (pilot)" : ""}`;
-  const link = `${location.origin}/expert?session=${view.session_id}`;
+  const link = `${view.expert_origin || location.origin}/expert?session=${view.session_id}`;
   $("expertLink").textContent = link; $("expertLink").href = link;
   $("phase").textContent = `${st.phase}${st.current_problem ? " · " + st.current_problem : ""}${st.current_set ? " · set " + st.current_set + " (" + arm + ")" : ""}${st.paused ? " · PAUSED" : ""}`;
   $("clock").textContent = st.current_set ? `elapsed ${fmt(view.elapsed)} · remaining ${fmt(Math.max(0, view.remaining))}` : "";

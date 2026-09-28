@@ -1,6 +1,6 @@
 .claude/settings.local.json
 .DS_Store
-.claude/hooks/.doi-ok
+.claude/hooks/.doi-verified
 research/pdf/
 sessions/
 instrument/.env
@@ -14,3 +14,5 @@ __pycache__/
 notebooklm/
 .arch-crew/drift-queue.jsonl
 .arch-crew/last-notified
+*.pem
+.playwright-mcp/

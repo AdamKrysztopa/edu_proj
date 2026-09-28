@@ -34,7 +34,7 @@ If the mode or method is missing or not in §4, ask once and stop.
    - **Implications for the map** — the exact edits proposed, section by section
    - **Open questions** — only ones that would change the verdict
 7. Launch the `citation-verifier` agent on the new file. Fix or drop anything it flags before going on.
-8. Edit the map with only the proposed changes that survived verification. Never touch branches unrelated to M. Commit with the verdict as the subject line.
+8. Edit the map with only the proposed changes that survived verification. Never touch branches unrelated to M. Then check that `PROGRESS.md`'s NEXT item and `CLAUDE.md`'s current priority still match the map's §9 current priority: finished preparation (a built instrument, a designed study) does not advance a research phase. If the branch changed a requirement that several entry points repeat (the minimum reading, a gate, a priority), grep the map, `PROGRESS.md`, `CLAUDE.md` and `research/minimum-reading.md` for the old wording and fix every copy. Commit with the verdict as the subject line.
 9. Before closing the branch, record each mistake caught during it (a citation the verifier flagged, a claim a source falsified) with the `lessons` skill. The branch isn't done while one is uncaptured.
 
 ## Stop conditions

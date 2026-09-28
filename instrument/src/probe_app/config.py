@@ -16,6 +16,25 @@ MODELS_PATH = INSTRUMENT_DIR / "models.json"
 CAP_S = 1200.0
 WRAP_S = 1080.0
 
+# Everything that builds what the interviewer or guard is sent, decides what reaches the expert,
+# or turns a probe into arm data (decision 0004).
+MODEL_FACING_FILES = (
+    "src/probe_app/backends.py",
+    "src/probe_app/config.py",
+    "src/probe_app/contract.py",
+    "src/probe_app/engine.py",
+    "src/probe_app/human.py",
+    "src/probe_app/llm.py",
+    "src/probe_app/models.py",
+    "src/probe_app/session.py",
+    "src/probe_app/trace.py",
+    "src/probe_app/transcribe.py",
+    "problems/problems.json",
+    "human-script.md",
+    "web/expert.html",
+    "web/js/expert.js",
+)
+
 
 class ConfigMismatch(Exception):
     pass
@@ -75,13 +94,15 @@ class FrozenConfig:
     system_prompt_sha256: str
     stems_sha256: str
     guard_prompt_sha256: str
+    model_facing_sha256: dict[str, str]
 
 
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def current_config(prompts_dir: Path = PROMPTS_DIR, models_path: Path | None = None) -> FrozenConfig:
+def current_config(prompts_dir: Path = PROMPTS_DIR, models_path: Path | None = None,
+                   instrument_dir: Path = INSTRUMENT_DIR) -> FrozenConfig:
     m = load_models(models_path)
     return FrozenConfig(
         interviewer_provider=m.interviewer.provider,
@@ -98,6 +119,7 @@ def current_config(prompts_dir: Path = PROMPTS_DIR, models_path: Path | None = N
         system_prompt_sha256=sha256_file(prompts_dir / "interviewer_system.md"),
         stems_sha256=sha256_file(prompts_dir / "stems.json"),
         guard_prompt_sha256=sha256_file(prompts_dir / "guard_system.md"),
+        model_facing_sha256={rel: sha256_file(instrument_dir / rel) for rel in MODEL_FACING_FILES},
     )
 
 
@@ -105,8 +127,15 @@ def check_preregistered(cfg: FrozenConfig, prereg_path: Path = PREREG_PATH) -> N
     if not prereg_path.exists():
         raise ConfigMismatch(f"{prereg_path} is missing: run `probe-app freeze` before data sessions")
     registered = json.loads(prereg_path.read_text())
-    diffs = {k: {"registered": registered.get(k), "current": v}
-             for k, v in asdict(cfg).items() if registered.get(k) != v}
+    diffs = {}
+    for k, v in asdict(cfg).items():
+        r = registered.get(k)
+        if r == v:
+            continue
+        if isinstance(r, dict) and isinstance(v, dict):
+            diffs[k] = {"changed": sorted(f for f in r.keys() | v.keys() if r.get(f) != v.get(f))}
+        else:
+            diffs[k] = {"registered": r, "current": v}
     if diffs:
         raise ConfigMismatch(f"frozen config differs from pre-registration: {diffs}")
 

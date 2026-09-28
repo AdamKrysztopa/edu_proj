@@ -1,8 +1,11 @@
 # Research Map: AI-Supported Learning That Makes Expert Knowledge Explicit
 
-**Status:** starting map, not a final architecture  
+**Status:** research map; literature explored, empirical premise validation still open
+
 **Primary use:** paste this file into a new research session and use it to decide what to investigate, validate, combine, or reject.  
 **Project context:** an AI-supported educational system, initially relevant to university-level physics/STEM but intended to remain transferable across disciplines and potentially compatible with commercial learning-content partners.
+
+**Scope alignment (2026-09-27):** the research question, three layers and five-phase sequence below remain the project plan. The reading change is limited to §8: the short synthesis is the minimum; all other reading is optional. The conservation-topic experiment and its existing session app are preparation for one branch, not a replacement for the map. Literature reviews and working software do not establish the premise. **Route chosen (2026-09-28): `research/roadmap.md`** (§9). The current priority is implementing it milestone by milestone, starting with the early K0 bottleneck check and the elicitation pilot. Empirical studies belong in that roadmap; completing them all is not a prerequisite for starting implementation. The detailed study's numerical gates apply to that topic and design, not to the entire research programme.
 
 ---
 
@@ -98,7 +101,7 @@ START
 | **P1** | **Conceptual Change + misconception research** | Addresses learners whose existing mental model conflicts with the target model | **High** that intuitive ideas persist and coexist with instruction (physics especially); **moderate** for interventions (refutation text g ≈ 0.4, holding at delay; physics curricula show larger gains that persist, in cohort studies; no university transfer outcomes); theory contested (coherent vs fragmented) | **Very high** | Medium | High |
 | **P1** | **Concept Inventories / diagnostic instruments** | Makes hidden misconceptions measurable; physics is unusually mature here | **High for cohort/course evaluation** with well-validated instruments; weak for individual diagnosis (item answers unstable on retest, mixed models, some gender-biased items) | **Very high** | Low–medium | **Very high** |
 | **P1** | **Cognitive Apprenticeship** | Converts expert cognition into modelling, coaching, scaffolding and fading | **Moderate** as a design framework: components have experimental support (worked examples, self-explanation, computer-based scaffolding g ≈ 0.46); no controlled test of the whole model in physics; fixed-schedule fading no better than none | High | High | **Very high** |
-| **P1** | **Worked Examples + Self-Explanation** | Strong candidate for turning decoded expert operations into teachable interactions | **High** for immediate problem solving by novices (meta-analyses g ≈ 0.5); delayed and transfer effects smaller (g ≈ 0.35); little classroom or delayed physics evidence; reverses as prior knowledge grows | **Very high** | Medium | **Very high** |
+| **P1** | **Worked Examples + Self-Explanation** | Strong candidate for turning decoded expert operations into teachable interactions | **High** for immediate problem solving by novices (meta-analyses g ≈ 0.5); delayed effects smaller (g ≈ 0.35), transfer g ≈ 0.33–0.53 across meta-analyses; little classroom or delayed physics evidence; reverses as prior knowledge grows | **Very high** | Medium | **Very high** |
 | **P1** | **Intelligent Tutoring Systems (ITS)** | Mature evidence base for individualized step-level instruction and feedback | **High on tests aligned to the tutor** (median 0.66 SD; 0.73 on local vs 0.13 on standardized tests; step-based ≈ human tutoring); small at scale (≈ 0–0.2 SD); physics: one non-randomized university study, large hour-exam gains on enforced practices, d = 0.25 on an answer-only final | **Very high** | Medium–high | **Very high** |
 | **P1** | **Knowledge Tracing / Mastery models** | Provides a computational learner-state layer rather than relying on LLM intuition | **Moderate–high for predicting performance** within a tutor (simple models match deep ones); for learning, a few small positive classroom studies of KC-model redesign on hand-picked units, one null on units chosen by topic, and no test against a simple mastery rule | High | Medium | **Very high** |
 | **P2** | **Threshold Concepts** | Useful language for transformative/troublesome disciplinary ideas | **Low / contested**: definitions criticised as not empirically isolable; no reliability data for identification; small immediate-outcome studies test teaching the concept, not the "threshold" label | High | High | Medium–high |
@@ -159,9 +162,9 @@ Extremely high. AI could act as a **structured interviewer of experts**, repeate
 
 ### Deep-dive reading if this branch is selected
 **David Pace, _The Decoding the Disciplines Paradigm: Seven Steps to Increased Student Learning_ (2017).**  
-This is the **one mandatory book** in the entire map.
+This is **optional deeper reading**, like every book and paper in this map. The only minimum reading is the short synthesis in §8.
 
-Start with the official Indiana University overview before reading the book.
+If exploring this source, the official Indiana University overview is a shorter entry point.
 
 Sources:  
 - Indiana University CITL: https://citl.indiana.edu/teaching-resources/course-design/decoding-disciplines/index.html  
@@ -413,7 +416,7 @@ An AI tutor can switch roles dynamically:
 - compare learner reasoning with expert reasoning;
 - fade assistance as measured competence increases, per learner, not on a fixed schedule (fixed-schedule fading did worse than no fading in a pilot meta-analysis, Belland et al. 2015; per-learner fading beat fixed fading in single studies outside physics, Salden et al. 2010; the full meta-analysis found no moderation by fading logic, Belland et al. 2017).
 
-Fading needs a per-learner estimate of the targeted skill, so it depends on the explicit learner model (§5.10), not on conversation alone. Whether the tutor models first or lets the learner explore first is a design choice with evidence on both sides; for conceptual goals, exploration with contrasting cases before modelling is the better-supported default beyond early primary school (Sinha & Kapur 2021; Loibl et al. 2017).
+Fading needs a per-learner estimate of the targeted skill, so it depends on the explicit learner model (§5.10), not on conversation alone. Whether the tutor models first or lets the learner explore first is a design choice with evidence on both sides; for conceptual goals, exploration with contrasting cases before modelling is the better-supported default beyond early primary school (Sinha & Kapur 2021; Loibl et al. 2017). For multi-principle problem solving by novices on high element-interactivity material, studies of guidance level favour worked examples over problem solving (Chen, Kalyuga & Sweller 2015, 2016, school mathematics); no mechanics study tests order, so the first version defaults to worked examples first and tests order as a factor (`research/decision-gaps.md` §6).
 
 ### Questions to research next
 - How should scaffolding be faded automatically?
@@ -726,9 +729,9 @@ Strong opportunities for tutoring and feedback, but “expert solution traces”
 
 # 8. Reading
 
-**Minimum:** [`research/minimum-reading.md`](research/minimum-reading.md), a short synthesis of every branch note and the experiment design. Read it first.
+**Minimum — one short summary only:** [`research/minimum-reading.md`](research/minimum-reading.md), a short orientation to the question, findings and next step. No book, paper or branch note is required in addition.
 
-**Deep dive:** the sources below, for first-hand reading when a branch is taken further. Limited to **one book + five papers**.
+**Optional extras:** all sources below, all method-card deep dives, all branch notes and the source anchors in §14. Read any of them when useful; they are not a completion checklist or a prerequisite for starting. The original **one book + five papers** pack is retained as an optional selection.
 
 ### One book
 1. **David Pace (2017), _The Decoding the Disciplines Paradigm: Seven Steps to Increased Student Learning_.**  
@@ -756,6 +759,23 @@ Strong opportunities for tutoring and feedback, but “expert solution traces”
 ---
 
 # 9. Research sequence — recommended order
+
+## Work out the route, then implement
+
+**User clarification (2026-09-27): the immediate goal is to work out the approach and roadmap, then implement it.** Research informs that choice. Completing all empirical studies is not a prerequisite for implementation. All 13 research families already have initial notes; the immediate missing deliverable is a synthesis that selects a coherent route through them.
+
+The planning deliverable is one actionable roadmap:
+
+1. **Compare the approaches.** Use the existing notes to assess all 13 families: role, relevant evidence, limits and overlap. Investigate only gaps that could change the choice.
+2. **Recommend a route.** Explain what to use, combine, reject or defer across expert elicitation, learner diagnosis, instruction and evaluation. Distinguish the first physics use case from longer-term generalization and adaptation.
+3. **Make the route concrete.** Walk through one hypothetical physics example from expert operation to learner evidence, intervention and assessment. Define the smallest useful first version and what it leaves out.
+4. **Sequence implementation and validation.** State what to build first, what existing work to reuse, dependencies, and how each milestone will be evaluated. Attach unresolved assumptions to specific tests and continue/change/stop decisions. Put studies requiring software after the relevant implementation milestone.
+
+**Ready to implement** means the chosen approach, initial scope, build sequence and validation plan are explicit and justified by the evidence available. It does not mean the approach has already been proven effective. The Phases 1–5 below guide validation and later expansion; they are not five completed studies required before any implementation.
+
+**Done 2026-09-28:** steps 1–4 are in `research/route-comparison.md`, `research/decision-gaps.md` and `research/roadmap.md`, reviewed by `methods-critic` and `citation-verifier`. Implementation proceeds by the roadmap's milestones M1–M8.
+
+**Boundary that held until then:** finish this roadmap before resuming implementation or frontend polish. Then implement the smallest useful version, evaluate it and refine it. Frontend work follows the selected workflow and its actual usability needs. The existing instrument and Stage A/B protocol are reusable candidates, not the roadmap by default. Their study-specific validity gates still apply if those studies are run.
 
 ## Phase 1 — validate the premise
 **Question:** Is “hidden expert cognition” actually a major source of the learning bottlenecks we care about?
@@ -797,7 +817,7 @@ Measure:
 
 **Key research question:** Does AI uncover useful expert knowledge that ordinary teaching materials omit?
 
-**Minimal first design** (see `research/experiment-ai-assisted-cta-physics.md`; reviewed by `methods-critic`):
+**Prepared candidate design** (see `research/experiment-ai-assisted-cta-physics.md`; reviewed by `methods-critic`): this specifies one possible study, not the next required task or the whole programme. Stage A serves Phase 2; Stage B is one Phase 4 intervention comparison. Neither supplies Phase 3's comparison of learner-diagnosis methods. Return first to the Phase 1 deliverable and evidence check; instrument work follows the needs of the selected study. The original comparisons above remain research questions, including methods deferred from this design.
 - **Topic:** selecting and combining conservation principles in first-year university mechanics.
 - **K0 (before Stage B):** no past exam scripts are available, so errors are coded on 2 open-response problems in the Stage B pretest, with the same principle structure as the Stage A problems and given after the topic's lectures (the first error in each of 100 solutions, two coders, pre-registered with Stage B materials frozen). Stop Stage B if fewer than 30% are principle selection or representation (the Phase 1 kill criterion). The same items run first as a quiz in an earlier cohort (early K0, registered before the quiz, at least 100 errored solutions), which can stop the study before experts are recruited; the pretest check alone decides Stage B.
 - **Stage A:** 12 experts, within-expert. Order: ordinary explanation → non-directed think-aloud → retrospective probes, AI-led on one problem set and human-led on the other (counterbalanced, time-capped). Operations are coded blind to interviewer and validated against the trace, with decoys. "Absent" is judged against expert explanations plus textbook and lecture notes. Operations are also tagged if they already appear in published physics problem-solving frameworks (Heller & Reif 1984; Dufresne et al. 1992; Docktor et al. 2015), so that "new" is not confused with "absent from this course". The decoding-interview arm is deferred.
@@ -1131,11 +1151,13 @@ These are starting anchors, not a complete bibliography.
 - Nicola-Richmond et al. (2018) — measuring threshold crossing, synthesis: https://doi.org/10.1080/07294360.2017.1339181
 - Aptyka, Fiedler & Großschedl (2025) — threshold-concept instruction in evolution: https://doi.org/10.1002/sce.21977
 - Ma et al. (2025) — threshold concepts in clinical simulation, randomized: https://doi.org/10.3389/fmed.2025.1690297
-- Lovett et al. (2023), _How Learning Works: Eight Research-Based Principles for Smart Teaching_, 2nd ed. — useful umbrella reference, **optional**, not part of the mandatory reading pack.
+- Lovett et al. (2023), _How Learning Works: Eight Research-Based Principles for Smart Teaching_, 2nd ed. — useful umbrella reference, **optional**, like all books and papers here; the minimum is only the §8 synthesis.
 
 ---
 
 ## Current recommendation
+
+**Next:** implement `research/roadmap.md`. Its route: coded student errors locate the bottleneck; trace-based CTA recovers the operations; a static module of worked examples with self-explanation prompts and pre-authored, error-keyed feedback teaches them; unassisted delayed transfer judges them. LLMs work behind the scenes; diagnosis is cohort-level; adaptation waits. M1 (early K0) and M2 (elicitation pilot) run first. The premise remains unvalidated until M1.
 
 **Research first:** DtD (bottleneck framing) + CTA (elicitation) → Expert–Novice → PCK.  
 **Then connect learner diagnosis:** conceptual change / concept inventories.  

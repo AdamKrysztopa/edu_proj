@@ -1,4 +1,5 @@
 import json
+import re
 
 import pytest
 
@@ -9,7 +10,7 @@ from probe_app.storage import SessionStore
 
 def test_create_writes_manifest_and_dirs(tmp_path):
     store = SessionStore.create(tmp_path, {"expert_id": "E01"})
-    assert store.session_id.startswith("E01-")
+    assert re.fullmatch(r"E01-[0-9a-f]{32}", store.session_id)
     assert store.manifest == {"expert_id": "E01"}
     for d in ("audio", "canvas/snapshots", "transcripts", "llm"):
         assert (store.dir / d).is_dir()

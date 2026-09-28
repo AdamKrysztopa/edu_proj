@@ -26,7 +26,7 @@ class SessionStore:
 
     @classmethod
     def create(cls, root: Path, manifest: dict, clock: Clock | None = None) -> "SessionStore":
-        session_id = f"{manifest['expert_id']}-{uuid.uuid4().hex[:8]}"
+        session_id = f"{manifest['expert_id']}-{uuid.uuid4().hex}"
         store = cls(root, session_id, clock)
         store.dir.mkdir(parents=True, exist_ok=False)
         for sub in SUBDIRS:

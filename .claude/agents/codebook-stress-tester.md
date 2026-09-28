@@ -29,6 +29,7 @@ Your codings go in the report and nowhere else. Never write them to a CSV or any
 1. **Overlaps.** Each pair of codes that plausibly both fit one unit: the pair, the `unit_id` or `segment_id` and quoted text, and the words in each definition that let both in.
 2. **Never applied.** Each unused code, and why: the simulated data cannot show it (say what real data would), or the definition cannot be applied to a unit's text alone.
 3. **Low confidence.** Each doubtful unit: quote, candidate codes, the definition wording that caused the doubt.
-4. **Wording fixes.** Concrete replacement text for Definition/Include/Exclude cells, each tied to an item above.
+4. **Cardinality.** Whether the codebook's labels-per-unit rule matches what `probe-code alpha`/`kappa` consume (`_labels` in `instrument/src/probe_code/cli.py` reads one label per `unit_id`). A mismatch is blocking: coders cannot be scored.
+5. **Wording fixes.** Concrete replacement text for Definition/Include/Exclude cells, each tied to an item above.
 
 End with counts: units coded, units with 0 / 1 / 2+ operations, per-code frequency. Simulated experts are Sonnet role-play, so say which findings may not survive real data.

@@ -149,7 +149,17 @@ $("status").addEventListener("click", () => { if (pending) send(pending.path, pe
 
 $("joinBtn").onclick = async () => {
   sid = sid || $("sid").value.trim();
-  mic = await navigator.mediaDevices.getUserMedia({ audio: true });
+  // Over plain http on the LAN, mediaDevices does not exist at all.
+  if (!navigator.mediaDevices) {
+    $("status").textContent = "The microphone needs a secure page. Open the https:// address the researcher gave you.";
+    return;
+  }
+  try {
+    mic = await navigator.mediaDevices.getUserMedia({ audio: true });
+  } catch (err) {
+    $("status").textContent = `Microphone not available (${err.name}). Allow microphone access for this page, then press Join again.`;
+    return;
+  }
   show("waiting");
   poll();
 };

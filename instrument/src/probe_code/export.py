@@ -4,9 +4,11 @@ import re
 import shutil
 from pathlib import Path
 
+from probe_code.guard_audit import interviewer_questions
 from probe_code.loader import LoadedSession
 
 SENTENCE_END = re.compile(r"(?<=[.!?])\s+")
+FILLER = re.compile(r"\b(?:u+m+|u+h+|e+r+m*|h+m+|m+h*m+)\b[,.]?\s*", re.IGNORECASE)
 
 
 def split_units(text: str) -> list[str]:
@@ -57,7 +59,7 @@ def export_blind(sessions: list[LoadedSession], out_dir: Path, seed: int) -> Non
 
 
 def export_trace(sessions: list[LoadedSession], out_dir: Path, seed: int) -> None:
-    rng = random.Random(seed)
+    rng = random.Random(f"trace:{seed}")
     rows, key = [], []
     (out_dir / "snapshots").mkdir(parents=True, exist_ok=True)
     for s in sessions:
@@ -70,3 +72,24 @@ def export_trace(sessions: list[LoadedSession], out_dir: Path, seed: int) -> Non
             shutil.copy(snap, out_dir / "snapshots" / f"{blind}_{snap.name}")
     write_csv(out_dir / "trace_units.csv", rows)
     write_csv(out_dir / "key_trace.csv", key)
+
+
+def export_leading(sessions: list[LoadedSession], out_dir: Path, seed: int, statements: dict[str, str]) -> None:
+    """Bare-stem fallbacks go to the key only, preset non-leading, so the AI arm's denominator keeps them."""
+    rng = random.Random(f"leading:{seed}")
+    items, key = [], []
+    for s in sessions:
+        for set_id, index, turn, problem_text, said in interviewer_questions(s, statements):
+            item_id = f"Q{rng.getrandbits(48):012x}"
+            fallback = turn.source == "ai_fallback"
+            key.append({"item_id": item_id, "session_id": s.session_id, "expert_id": s.manifest["expert_id"],
+                        "set_id": set_id, "arm": s.state.arms[set_id], "source": turn.source, "turn_index": index,
+                        "pilot": s.manifest.get("pilot", False), "preset_leading": "0" if fallback else ""})
+            if not fallback:
+                items.append({"item_id": item_id, "problems": problem_text, "expert_said": said,
+                              "question": FILLER.sub("", turn.text).strip(), "leading": "", "introduced": "",
+                              "arm_guess": ""})
+    rng.shuffle(items)
+    rng.shuffle(key)
+    write_csv(out_dir / "leading_items.csv", items)
+    write_csv(out_dir / "key_leading.csv", key)

@@ -59,3 +59,12 @@ def test_trace_export_has_no_probe_material(tmp_path):
     assert "Energy first." in text and "stick" not in text and "SECRET" not in text
     blind = read_csv(out / "key_trace.csv")[0]["blind_session"]
     assert (out / "snapshots" / f"{blind}_A1.png").read_bytes() == PNG
+
+
+def test_trace_and_probe_exports_never_share_a_blind_id(tmp_path):
+    sessions = [load_session(make_session(tmp_path, "E01"))]
+    export_blind(sessions, tmp_path / "blind", seed=0)
+    export_trace(sessions, tmp_path / "trace", seed=0)
+    probe_ids = {r["blind_session"] for r in read_csv(tmp_path / "blind" / "coder_units.csv")}
+    trace_ids = {r["blind_session"] for r in read_csv(tmp_path / "trace" / "trace_units.csv")}
+    assert not probe_ids & trace_ids

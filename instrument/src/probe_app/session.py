@@ -293,7 +293,7 @@ class Session:
                            segments=[s for s in self.state.segments if s.problem_id in pids],
                            snapshots=snapshots)
         return ProbeEngine(llm, guard, self.stems, ctx, self.store, self.state.contract[set_id],
-                           cap_s=self.manifest["cap_s"], wrap_s=self.manifest["wrap_s"])
+                           cap_s=self.manifest["cap_s"], wrap_s=self.manifest["wrap_s"], elapsed=self.elapsed)
 
     def start_probe(self) -> str:
         self._require("trace_review")
@@ -369,6 +369,7 @@ class Session:
 
     def human_marker(self, speaker: str) -> None:
         set_id = self._require_human_probe()
+        self._check_config()
         if speaker not in ("interviewer", "expert"):
             raise ValueError("speaker must be 'interviewer' or 'expert'")
         mark = {"speaker": speaker, "t": self.elapsed(), "mono": self._now()}
@@ -378,6 +379,7 @@ class Session:
 
     def human_stem(self, problem_id: str, stem_id: str) -> None:
         set_id = self._require_human_probe()
+        self._check_config()
         if problem_id not in self.state.sets[set_id] or stem_id not in STEMS:
             raise ValueError(f"unknown problem or stem: {problem_id}/{stem_id}")
         tick = {"problem_id": problem_id, "stem_id": stem_id, "t": self.elapsed(), "mono": self._now()}

@@ -1,4 +1,5 @@
 import json
+import re
 import shutil
 from pathlib import Path
 
@@ -125,3 +126,31 @@ def test_every_interviewer_and_guard_setting_is_frozen():
     missing = [f"{role}_{name}" for role in ("interviewer", "guard") for name in config.RoleModel.model_fields
                if f"{role}_{name}" not in frozen]
     assert missing == []
+
+
+@pytest.fixture
+def instrument_copy(tmp_path: Path) -> Path:
+    d = tmp_path / "instrument"
+    for rel in config.MODEL_FACING_FILES:
+        (d / rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(config.INSTRUMENT_DIR / rel, d / rel)
+    return d
+
+
+def test_model_facing_files_include_the_interviewer_and_guard_code():
+    required = {f"src/probe_app/{m}.py" for m in ("llm", "engine", "contract", "models")}
+    assert required <= set(config.MODEL_FACING_FILES)
+    assert all((config.INSTRUMENT_DIR / rel).is_file() for rel in config.MODEL_FACING_FILES)
+
+
+@pytest.mark.parametrize("rel", ["src/probe_app/llm.py", "src/probe_app/engine.py", "src/probe_app/contract.py",
+                                 "src/probe_app/models.py", "src/probe_app/human.py",
+                                 "problems/problems.json"])
+def test_editing_model_facing_code_breaks_the_preregistration(prompts, instrument_copy, tmp_path, rel):
+    prereg = tmp_path / "prereg.json"
+    config.freeze(config.current_config(prompts, instrument_dir=instrument_copy), prereg)
+    config.check_preregistered(config.current_config(prompts, instrument_dir=instrument_copy), prereg)
+    target = instrument_copy / rel
+    target.write_bytes(target.read_bytes() + b"\n")
+    with pytest.raises(config.ConfigMismatch, match=re.escape(rel)):
+        config.check_preregistered(config.current_config(prompts, instrument_dir=instrument_copy), prereg)

@@ -5,7 +5,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Callable, Literal
 
-from fastapi import Body, FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import Body, Depends, FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -16,6 +16,15 @@ from probe_app.session import Deps, DuplicateSubmission, PhaseError, Session
 
 WEB_DIR = INSTRUMENT_DIR / "web"
 SAFE_ID = re.compile(r"^[A-Za-z0-9_-]+$")
+LOOPBACK = {"127.0.0.1", "::1"}
+
+
+def loopback_only(request: Request) -> None:
+    if request.client is None or request.client.host not in LOOPBACK:
+        raise HTTPException(403, "the console answers only on the laptop itself (decision 0005)")
+
+
+CONSOLE = [Depends(loopback_only)]
 
 
 class CreateBody(BaseModel):
@@ -59,7 +68,7 @@ class AnchorBody(BaseModel):
     segment_ids: list[str] = []
 
 
-def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
+def create_app(root: Path, deps: Deps, clock=None, expert_origin: str | None = None) -> FastAPI:
     root = Path(root)
     root.mkdir(parents=True, exist_ok=True)
     app = FastAPI(title="Stage A session app")
@@ -93,7 +102,7 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
             return {"ok": True}
         return session.console_view() if view == "console" else session.expert_view()
 
-    @app.get("/")
+    @app.get("/", dependencies=CONSOLE)
     def console_page():
         return FileResponse(WEB_DIR / "console.html")
 
@@ -101,7 +110,7 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
     def expert_page():
         return FileResponse(WEB_DIR / "expert.html")
 
-    @app.post("/api/sessions")
+    @app.post("/api/sessions", dependencies=CONSOLE)
     def create(body: CreateBody):
         try:
             session = Session.create(root, deps, clock=clock, **body.model_dump())
@@ -110,9 +119,9 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
         sessions[session.store.session_id] = session
         return {"session_id": session.store.session_id}
 
-    @app.get("/api/sessions/{sid}/console-view")
+    @app.get("/api/sessions/{sid}/console-view", dependencies=CONSOLE)
     def console_view(sid: str):
-        return act(sid, lambda s: s.enforce_cap())
+        return {**act(sid, lambda s: s.enforce_cap()), "expert_origin": expert_origin}
 
     @app.get("/api/sessions/{sid}/expert-view")
     def expert_view(sid: str):
@@ -140,11 +149,11 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
             raise HTTPException(404, f"no snapshot for {pid}")
         return FileResponse(path, media_type="image/png")
 
-    @app.post("/api/sessions/{sid}/think-aloud/start")
+    @app.post("/api/sessions/{sid}/think-aloud/start", dependencies=CONSOLE)
     def think_start(sid: str):
         return act(sid, lambda s: s.start_think_aloud())
 
-    @app.post("/api/sessions/{sid}/keep-talking")
+    @app.post("/api/sessions/{sid}/keep-talking", dependencies=CONSOLE)
     def keep_talking(sid: str):
         return act(sid, lambda s: s.keep_talking())
 
@@ -155,15 +164,15 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
         p, st = snapshot.file.read(), json.loads(strokes)
         return act(sid, lambda s: s.end_think_aloud(pid, a, p, st), view="expert")
 
-    @app.post("/api/sessions/{sid}/segments/{seg_id}")
+    @app.post("/api/sessions/{sid}/segments/{seg_id}", dependencies=CONSOLE)
     def correct(sid: str, seg_id: str, body: TextBody):
         return act(sid, lambda s: s.correct_segment(seg_id, body.text))
 
-    @app.post("/api/sessions/{sid}/segments")
+    @app.post("/api/sessions/{sid}/segments", dependencies=CONSOLE)
     def add_segment(sid: str, body: SegmentBody):
         return act(sid, lambda s: s.add_segment(body.problem_id, body.text))
 
-    @app.post("/api/sessions/{sid}/probe/start")
+    @app.post("/api/sessions/{sid}/probe/start", dependencies=CONSOLE)
     def probe_start(sid: str):
         return act(sid, lambda s: s.start_probe())
 
@@ -172,11 +181,11 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
         a = audio.file.read()
         return act(sid, lambda s: s.answer_ai_audio(turn_index, a), view="expert")
 
-    @app.post("/api/sessions/{sid}/probe/answer-text")
+    @app.post("/api/sessions/{sid}/probe/answer-text", dependencies=CONSOLE)
     def answer_text(sid: str, body: AnswerTextBody):
         return act(sid, lambda s: s.answer_ai_text(body.turn_index, body.text))
 
-    @app.post("/api/sessions/{sid}/probe/end")
+    @app.post("/api/sessions/{sid}/probe/end", dependencies=CONSOLE)
     def probe_end(sid: str):
         return act(sid, lambda s: s.end_probe())
 
@@ -184,24 +193,24 @@ def create_app(root: Path, deps: Deps, clock=None) -> FastAPI:
     def probe_finalize(sid: str):
         return act(sid, lambda s: s.finalize_human_probe())
 
-    @app.post("/api/sessions/{sid}/human/marker")
+    @app.post("/api/sessions/{sid}/human/marker", dependencies=CONSOLE)
     def marker(sid: str, body: MarkerBody):
         return act(sid, lambda s: s.human_marker(body.speaker))
 
-    @app.post("/api/sessions/{sid}/human/stem")
+    @app.post("/api/sessions/{sid}/human/stem", dependencies=CONSOLE)
     def stem(sid: str, body: StemBody):
         return act(sid, lambda s: s.human_stem(body.problem_id, body.stem_id))
 
-    @app.post("/api/sessions/{sid}/human/anchor")
+    @app.post("/api/sessions/{sid}/human/anchor", dependencies=CONSOLE)
     def anchor(sid: str, body: AnchorBody):
         a = Anchor(kind=body.kind, segment_ids=body.segment_ids)
         return act(sid, lambda s: s.push_anchor(body.problem_id, a))
 
-    @app.post("/api/sessions/{sid}/pause")
+    @app.post("/api/sessions/{sid}/pause", dependencies=CONSOLE)
     def pause(sid: str):
         return act(sid, lambda s: s.pause())
 
-    @app.post("/api/sessions/{sid}/resume")
+    @app.post("/api/sessions/{sid}/resume", dependencies=CONSOLE)
     def resume(sid: str):
         return act(sid, lambda s: s.resume())
 

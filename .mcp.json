@@ -6,7 +6,17 @@
     },
     "zotero": {
       "command": "zotero-mcp",
-      "env": { "ZOTERO_LOCAL": "true" }
+      "env": {
+        "ZOTERO_LOCAL": "true"
+      }
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "env": {}
     }
   }
 }
