@@ -66,3 +66,7 @@ This section adds to the plan above; it does not rewrite it. Full detail: [`n2a-
 - **Gap-map features deferred to N3.** Stage 7 (`AreaFeatures` generation) was not built as an N2 deliverable; N2 populates the N1 ledger and sidecar that N3's `area_features()` will read.
 - **Rerun-≥3 stability deferred.** Stage 8's "rerun ≥ 3 times, report stability" was not run in N2; a single run per experiment condition is scored, and multi-run instability is carried as an open risk into N3.
 - **E-LIVE added as a sanity gate.** Not in the original plan: a two-domain live-web run (PLC fault diagnosis, GDPR DPIA), reviewed before E-PLANT/E-ABST were trusted, that found and drove fixes for the defects above (error pages as sources, PDF rejection bias, dead corroboration, over-merged independence, verifier scope drift, the false contradiction). See [`../../research/n2/e_live_report.md`](../../research/n2/e_live_report.md).
+
+## Closeout (2026-09-28): engineering PoC complete, research validation deferred
+
+The gate above is unreached this round and stays INCONCLUSIVE, unchanged: the E-PLANT validity floor was not met and E-PLANT/E-ABST's gated arms and E-LIVE v3 were not run (budget). Those protocols stay pre-registered, unchanged, as future research validation. Separately, this plan's engineering deliverable — the pipeline built and run end to end on real sources — is treated as complete, and N3 proceeds on that basis rather than waiting on the deferred validation. Full record: [`../../research/n2/closeout.md`](../../research/n2/closeout.md).
