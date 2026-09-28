@@ -3,6 +3,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from probe_app.config import current_config
+from probe_app.human import unmarked_words
 from probe_code.loader import LoadedSession
 
 
@@ -12,7 +13,8 @@ def config_drift(session: LoadedSession) -> list[str]:
 
 
 def interviewer_questions(session: LoadedSession, statements: dict[str, str]):
-    """Each interviewer turn with the problem text and expert words the live guard would have been given."""
+    """Each interviewer turn, and each unmarked human-arm turn (it may hold a question), with the problem text and
+    expert words the live guard would have been given."""
     for set_id, turns in session.state.dialogue.items():
         pids = session.state.sets[set_id]
         problem_text = "\n".join(f"{p}: {statements[p]}" for p in pids)
@@ -20,8 +22,17 @@ def interviewer_questions(session: LoadedSession, statements: dict[str, str]):
         for index, turn in enumerate(turns):
             if turn.speaker == "expert":
                 said.append(turn.text)
-                continue
-            yield set_id, index, turn, problem_text, "\n".join(said)
+            else:
+                yield set_id, index, turn, problem_text, "\n".join(said)
+
+
+def question_source(turn) -> str:
+    return "unmarked" if turn.speaker == "unmarked" else turn.source
+
+
+def unmarked_speech(session: LoadedSession) -> dict[str, int]:
+    """Words per set spoken before the first I/E marker; they reach no coder sheet."""
+    return {set_id: unmarked_words(turns) for set_id, turns in session.state.dialogue.items()}
 
 
 def guard_audit(sessions: list[LoadedSession], guard, statements: dict[str, str]) -> list[dict]:
@@ -30,18 +41,22 @@ def guard_audit(sessions: list[LoadedSession], guard, statements: dict[str, str]
         for set_id, index, turn, problem_text, said in interviewer_questions(s, statements):
             verdict = guard.check(turn.text, problem_text, said)
             rows.append({"session_id": s.session_id, "set_id": set_id, "arm": s.state.arms[set_id],
-                         "source": turn.source, "turn_index": index, "flagged": verdict.flagged,
+                         "source": question_source(turn), "turn_index": index, "flagged": verdict.flagged,
                          "introduced": verdict.introduced})
     return rows
 
 
 def leading_by_arm(labels: dict[str, str], key: list[dict]) -> dict[str, dict[str, int]]:
     out: dict[str, dict[str, int]] = {}
+    """Unmarked turns are never shown to coders; they are counted apart for a worst-case reading."""
     for row in key:
+        counts = out.setdefault(row["arm"], {"leading": 0, "coded": 0, "unmarked": 0})
+        if row.get("source") == "unmarked":
+            counts["unmarked"] += 1
+            continue
         label = labels.get(row["item_id"]) or row.get("preset_leading", "")
         if not label:
             continue
-        counts = out.setdefault(row["arm"], {"leading": 0, "coded": 0})
         counts["coded"] += 1
         counts["leading"] += label.strip().lower() in {"1", "true", "y", "yes"}
     return out

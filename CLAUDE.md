@@ -31,7 +31,7 @@ The instrument is built. Stage A is roadmap M4 and Stage B is M6; the pilot and 
 
 ## Tests
 
-`uv run --directory instrument pytest -q` (246 tests, about 6 s); a PostToolUse hook runs it after edits under `instrument/`.
+`uv run --directory instrument pytest -q` (306 tests, about 7 s); a PostToolUse hook runs it after edits under `instrument/`.
 The fakes never refuse, so live transcribers and interviewer refusals are checked only by `/preflight`, never by the tests.
 
 ## Agents

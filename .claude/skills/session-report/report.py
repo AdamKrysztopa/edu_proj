@@ -70,12 +70,17 @@ def main(session_dir: str) -> None:
             parts = state.get("recordings", {}).get(f"probe_{set_id}", [])
             print(f"markers {len(state['markers'].get(set_id, []))}, stem ticks {len(state['ticks'].get(set_id, []))}, "
                   f"audio parts {len(parts)} (a part beyond the first means the tablet reloaded or hit a gap)")
+            unmarked = sum(len(t["text"].split()) for t in dialogue if t["speaker"] == "unmarked")
+            print(f"speech before the first I/E marker (speaker unknown, off the coder sheets): {unmarked} words")
 
     failures = [e for e in events if e["type"] == "transcription_failed"]
     print(f"\ntranscription failures: {len(failures)}; error now: {state.get('error') or 'none'}")
     gaps = [f"{stream} part {p['part']} from chunk {p['gap_at']}"
             for stream, parts in state.get("recordings", {}).items() for p in parts if "gap_at" in p]
     print(f"audio gaps (audio lost until the next part): {', '.join(gaps) or 'none'}")
+    holes = [f"{stream} {p['hole_s']} s after part {p['part']}"
+             for stream, parts in state.get("recordings", {}).items() for p in parts if "hole_s" in p]
+    print(f"audio holes (unsent chunks lost on a reload): {', '.join(holes) or 'none'}")
 
 
 if __name__ == "__main__":

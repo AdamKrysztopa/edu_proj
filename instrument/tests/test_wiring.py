@@ -3,14 +3,16 @@ from dataclasses import asdict
 
 import pytest
 
-from fakes import FakeAnthropic
+from fakes import FakeAnthropic, FakeResponse, turn_payload
+from probe_app import llm, session as session_module
 from probe_app.backends import AnthropicBackend
-from probe_app.config import MODEL_FACING_FILES, current_config
+from probe_app.config import MODEL_FACING_FILES, current_config, load_prompt
 from probe_code import cli
 from probe_code.export import read_csv
 from test_baseline import answer, probe, write_events
 from test_export import make_session
 from test_llm import TEST_MODELS
+from test_session import new_session, seg, through_think_aloud
 
 
 @pytest.fixture(autouse=True)
@@ -39,6 +41,38 @@ def test_guard_audit_runs_on_a_session_with_the_current_config(tmp_path):
     path = _with_current_config(make_session(tmp_path, "E01"))
     cli.main(["guard-audit", str(path), "--out", str(tmp_path / "out")])
     assert len(read_csv(tmp_path / "out" / "guard_audit.csv")) == 2
+
+
+def test_factories_load_their_frozen_prompts():
+    backend = AnthropicBackend(FakeAnthropic(), TEST_MODELS.guard)
+    assert llm.make_guard(backend, print).system_prompt == load_prompt("guard_system.md")
+    assert llm.make_interviewer(backend, print).system_prompt == load_prompt("interviewer_system.md")
+
+
+def _spy(monkeypatch, module, name):
+    calls, real = [], getattr(llm, name)
+    monkeypatch.setattr(module, name, lambda backend, log: calls.append(backend) or real(backend, log))
+    return calls
+
+
+def test_guard_audit_builds_the_live_guard(tmp_path, monkeypatch):
+    client = FakeAnthropic()
+    monkeypatch.setattr(cli, "make_backend", lambda name, role, env=None: AnthropicBackend(client, role))
+    built = _spy(monkeypatch, cli, "make_guard")
+    path = _with_current_config(make_session(tmp_path, "E01"))
+    cli.main(["guard-audit", str(path), "--out", str(tmp_path / "out")])
+    assert len(built) == 1 and built[0].role == cli.load_models().guard
+    assert client.calls and all(c["system"] == load_prompt("guard_system.md") for c in client.calls)
+
+
+def test_session_builds_interviewer_and_guard_with_the_factories(tmp_path, monkeypatch):
+    guards, interviewers = (_spy(monkeypatch, session_module, "make_guard"),
+                            _spy(monkeypatch, session_module, "make_interviewer"))
+    s = new_session(tmp_path, interviewer=[FakeResponse(turn_payload())],
+                    transcripts=[seg("A1"), seg("A2"), seg("B1"), seg("B2")])
+    through_think_aloud(s)
+    s.start_probe()
+    assert guards == [s.deps.backends.guard] and interviewers == [s.deps.backends.interviewer]
 
 
 def test_export_leading_writes_items_and_key(tmp_path):

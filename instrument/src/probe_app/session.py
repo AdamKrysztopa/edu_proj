@@ -7,15 +7,19 @@ from pydantic import BaseModel
 
 from probe_app.backends import Backends
 from probe_app.config import (CAP_S, PREREG_PATH, WRAP_S, ConfigMismatch, check_preregistered, current_config, git_commit,
-                              git_dirty, load_models, load_problems, load_prompt, load_stems)
+                              git_dirty, load_models, load_problems, load_stems)
 from probe_app.contract import ContractState, uncovered
 from probe_app.engine import ProbeContext, ProbeEngine
-from probe_app.human import turns_from_markers
-from probe_app.llm import Guard, InterviewerLLM
+from probe_app.human import turns_from_markers, unmarked_warning, unmarked_words
+from probe_app.llm import make_guard, make_interviewer
 from probe_app.models import STEMS, Anchor, DialogueTurn, Segment
 from probe_app.storage import SessionStore
 from probe_app.trace import build_segments, correct_segment
 from probe_app.transcribe import RawSegment, TranscriptionFailed, transcribe_with_retry
+
+
+CHUNK_S = 1.0  # MediaRecorder timeslice in web/js/expert.js
+HOLE_S = 2.0
 
 
 class PhaseError(Exception):
@@ -162,7 +166,16 @@ class Session:
 
     def recording_start(self, stream: str) -> int:
         parts = self._require_stream(stream)
-        parts.append({"part": len(parts) + 1, "start": self._now(), "chunks": 0})
+        now = self._now()
+        if parts:
+            prev = parts[-1]
+            hole = now - prev["start"] - prev["chunks"] * CHUNK_S
+            if hole > HOLE_S:
+                prev["hole_s"] = round(hole, 1)
+                self.state.error = (f"Audio hole in {stream}: {prev['hole_s']} s after part {prev['part']} "
+                                    "never arrived (tablet reloaded?).")
+                self.store.log("audio_hole", stream=stream, part=prev["part"], hole_s=prev["hole_s"])
+        parts.append({"part": len(parts) + 1, "start": now, "chunks": 0})
         self.store.log("recording_started", stream=stream, part=len(parts))
         self.save()
         return len(parts)
@@ -189,20 +202,36 @@ class Session:
         return False
 
     def _store_single_part(self, stream: str, audio: bytes, start: float) -> None:
+        if any(e["chunks"] for e in self.state.recordings.get(stream, [])):
+            raise ValueError(f"{stream} was already streamed; a whole-audio upload would replace it")
         self.store.path(f"audio/{stream}.part1.webm").write_bytes(audio)
         self.state.recordings[stream] = [{"part": 1, "start": start, "chunks": 1}]
 
     def _transcribe_stream(self, stream: str) -> list[RawSegment]:
         merged: list[RawSegment] = []
+        missing: list[str] = []
         for entry in self.state.recordings.get(stream, []):
             path = self.store.path(f"audio/{stream}.part{entry['part']}.webm")
             if not path.exists():
+                if entry["chunks"]:
+                    missing.append(path.name)
                 continue
             raw = transcribe_with_retry(self.deps.transcriber, path)
             self.store.write_json(f"transcripts/{stream}.part{entry['part']}.raw.json", [r.model_dump() for r in raw])
             merged += [r.model_copy(update={"start": r.start + entry["start"], "end": r.end + entry["start"]})
                        for r in raw]
+        if missing:
+            raise TranscriptionFailed(f"audio file {', '.join(missing)} is missing")
         return merged
+
+    def _stream_holes(self, stream: str) -> list[str]:
+        holes = []
+        for e in self.state.recordings.get(stream, []):
+            if "gap_at" in e:
+                holes.append(f"part {e['part']} from chunk {e['gap_at']}")
+            if "hole_s" in e:
+                holes.append(f"{e['hole_s']} s after part {e['part']}")
+        return holes
 
     # think-aloud
 
@@ -233,6 +262,12 @@ class Session:
             if not segments:
                 raise TranscriptionFailed("no speech was recorded")
             self.state.segments += segments
+            holes = self._stream_holes(stream)
+            if holes:
+                self.state.untranscribed.append(problem_id)
+                self.state.error = (f"Audio missing in {stream} ({'; '.join(holes)}): add what the expert said "
+                                    f"there as a segment of {problem_id}, or accept the gap, before probing.")
+                self.store.log("audio_incomplete", problem_id=problem_id, holes=holes)
         except TranscriptionFailed as e:
             self.state.untranscribed.append(problem_id)
             self.state.error = f"Transcription failed for {problem_id}: {e}. Type the transcript in the console."
@@ -273,6 +308,19 @@ class Session:
         self.store.log("segment_added", **segment.model_dump())
         self.save()
 
+    def acknowledge_incomplete_audio(self, problem_id: str, note: str) -> None:
+        self._require("ready", "trace_review")
+        self._require_unlocked(problem_id)
+        transcribed = any(s.problem_id == problem_id for s in self.state.segments)
+        if problem_id not in self.state.untranscribed or not transcribed \
+                or not self._stream_holes(f"think_{problem_id}"):
+            raise PhaseError(f"{problem_id} has no transcribed audio with a gap to accept: type the transcript")
+        self.state.untranscribed.remove(problem_id)
+        if not self.state.untranscribed:
+            self.state.error = None
+        self.store.log("audio_incomplete_acknowledged", problem_id=problem_id, note=note)
+        self.save()
+
     # probe
 
     def _check_config(self) -> None:
@@ -284,8 +332,8 @@ class Session:
 
     def _engine(self, set_id: str) -> ProbeEngine:
         self._check_config()
-        llm = InterviewerLLM(self.deps.backends.interviewer, self.store.log_llm, load_prompt("interviewer_system.md"))
-        guard = Guard(self.deps.backends.guard, self.store.log_llm, load_prompt("guard_system.md"))
+        llm = make_interviewer(self.deps.backends.interviewer, self.store.log_llm)
+        guard = make_guard(self.deps.backends.guard, self.store.log_llm)
         pids = self.state.sets[set_id]
         snapshots = {p: self.snapshot_path(p).read_bytes() for p in pids if self.snapshot_path(p).exists()}
         ctx = ProbeContext(set_id=set_id,
@@ -301,7 +349,7 @@ class Session:
         set_id = next(s for s in st.set_order if s not in st.probes_done)
         missing = [p for p in st.sets[set_id] if p in st.untranscribed]
         if missing:
-            raise PhaseError(f"type the transcript for {missing} before probing set {set_id}")
+            raise PhaseError(f"type the transcript for {missing} (or accept its audio gap) before probing set {set_id}")
         self._check_config()
         st.phase, st.current_set = "probe", set_id
         st.timer = ProbeTimer(started=self._now())
@@ -423,6 +471,18 @@ class Session:
             for turn in turns:
                 turn.t -= st.timer.started
             st.dialogue[set_id] = turns
+            problems = []
+            warning = unmarked_warning(turns)
+            if warning:
+                problems.append(f"Probe set {set_id}: {warning}.")
+                self.store.log("unmarked_speech", set_id=set_id, words=unmarked_words(turns), warning=warning)
+            holes = self._stream_holes(stream)
+            if holes:
+                problems.append(f"Audio missing in {stream} ({'; '.join(holes)}): the dialogue of set {set_id} "
+                                "is incomplete there.")
+                self.store.log("audio_incomplete", set_id=set_id, holes=holes)
+            if problems:
+                st.error = " ".join(problems)
         except TranscriptionFailed as e:
             st.error = f"Probe audio for set {set_id} could not be transcribed ({e}); any audio is saved under audio/{stream}.part*.webm."
             self.store.log("transcription_failed", set_id=set_id, error=str(e))

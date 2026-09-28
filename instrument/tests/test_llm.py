@@ -7,8 +7,9 @@ import pytest
 from fakes import FakeAnthropic, FakeOpenAI, FakeResponse, TEST_MODELS, openai_response, turn_payload
 from probe_app.backends import AnthropicBackend, OpenAICompatBackend
 from probe_app.config import RoleModel
-from probe_app.llm import Guard, InterviewerLLM, LLMRefused, LLMUnavailable, TurnRequest
-from probe_app.models import DialogueTurn
+from probe_app.llm import (GUARD_SCHEMA, INTERVIEWER_TURN_SCHEMA, Guard, InterviewerLLM, LLMRefused, LLMUnavailable,
+                           TurnRequest)
+from probe_app.models import DialogueTurn, GuardVerdict, InterviewerTurn
 
 PNG = bytes.fromhex("89504e470d0a1a0a")
 
@@ -110,3 +111,33 @@ def test_guard_over_openai_prose_is_unavailable():
     guard, _ = openai_guard(openai_response("The question looks fine to me."))
     with pytest.raises(LLMUnavailable, match="validation"):
         guard.check("Did you check units?", "A1: ...", "I used energy.")
+
+
+def _strict_shape(schema: dict) -> dict:
+    defs = schema.get("$defs", {})
+
+    def norm(node):
+        if isinstance(node, list):
+            return [norm(x) for x in node]
+        if not isinstance(node, dict):
+            return node
+        if "$ref" in node:
+            return norm(defs[node["$ref"].rsplit("/", 1)[1]])
+        out = {k: norm(v) for k, v in node.items() if k not in ("$defs", "title", "description", "default")}
+        if "required" in out:
+            out["required"] = sorted(out["required"])
+        return out
+
+    return norm(schema)
+
+
+@pytest.mark.parametrize("schema,model", [(INTERVIEWER_TURN_SCHEMA, InterviewerTurn), (GUARD_SCHEMA, GuardVerdict)],
+                         ids=["interviewer", "guard"])
+def test_output_schema_matches_its_model(schema, model):
+    assert _strict_shape(schema) == _strict_shape(model.model_json_schema())
+
+
+def test_guard_output_with_an_extra_field_is_unavailable():
+    guard, _ = openai_guard(openai_response('{"flagged": false, "introduced": "", "reason": "fine"}'))
+    with pytest.raises(LLMUnavailable):
+        guard.check("What did you notice?", "A1: ...", "I used energy.")

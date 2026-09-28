@@ -8,14 +8,14 @@ from dotenv import load_dotenv
 from probe_app.backends import make_backend
 from dataclasses import asdict
 
-from probe_app.config import INSTRUMENT_DIR, current_config, load_models, load_problems, load_prompt
-from probe_app.llm import Guard
+from probe_app.config import INSTRUMENT_DIR, current_config, load_models, load_problems
+from probe_app.llm import make_guard
 from probe_code.agreement import (alpha_masi, alpha_nominal, cohen_kappa, decoy_false_rate, guess_rate,
                                   per_code_kappa)
 from probe_code.corroboration import corroboration_sheet
-from probe_code import k0
+from probe_code import calibration, k0
 from probe_code.baseline import freeze_decision, pooled_metrics, session_metrics
-from probe_code.export import export_blind, export_leading, export_trace, read_csv, write_csv
+from probe_code.export import export_blind, export_leading, export_trace, read_csv, write_csv, write_unmarked_key
 from probe_code.guard_audit import ai_rejection_counts, config_drift, guard_audit, leading_by_arm
 from probe_code.loader import load_session
 
@@ -106,6 +106,20 @@ def main(argv: list[str] | None = None) -> None:
     c.add_argument("key", type=Path, help="key_leading.csv")
     c = sub.add_parser("freeze-baseline", help="decision 0004 metrics, pooled, and the freeze rule's outcome")
     c.add_argument("sessions", nargs="+", type=Path)
+    c = sub.add_parser("guard-calibration-sheet", help="blind labelling sheet for the guard calibration items")
+    c.add_argument("items", type=Path)
+    c.add_argument("--out", type=Path, required=True)
+    c.add_argument("--seed", type=int, required=True)
+    c = sub.add_parser("guard-calibrate", help="run the live guard over the calibration items")
+    c.add_argument("items", type=Path)
+    c.add_argument("--out", type=Path, required=True)
+    c = sub.add_parser("calibration-report", help="guard sensitivity/specificity against adjudicated human labels")
+    c.add_argument("items", type=Path)
+    c.add_argument("labeller_a", type=Path)
+    c.add_argument("labeller_b", type=Path)
+    c.add_argument("adjudicated", type=Path)
+    c.add_argument("verdicts", type=Path)
+    c.add_argument("--min-class", type=int, default=calibration.MIN_CLASS)
     c = sub.add_parser("k0-sample", help="random coding order and one item per student")
     c.add_argument("roster", type=Path, help="student_id")
     c.add_argument("--items", required=True, help="comma-separated item ids")
@@ -129,6 +143,8 @@ def main(argv: list[str] | None = None) -> None:
     if args.cmd in ("export-blind", "export-trace", "guard-audit", "export-leading"):
         sessions = [load_session(s, args.allow_simulated) for s in args.sessions]
         statements = {k: v["statement"] for k, v in load_problems()["problems"].items()}
+        if args.cmd != "export-trace":
+            write_unmarked_key(sessions, args.out)
         if args.cmd == "export-blind":
             export_blind(sessions, args.out, args.seed)
         elif args.cmd == "export-trace":
@@ -148,19 +164,38 @@ def main(argv: list[str] | None = None) -> None:
                 with log_path.open("a") as f:
                     f.write(json.dumps(record) + "\n")
 
-            guard = Guard(make_backend("guard", load_models().guard), log, load_prompt("guard_system.md"))
+            guard = make_guard(make_backend("guard", load_models().guard), log)
             rows = guard_audit(sessions, guard, statements)
             write_csv(args.out / "guard_audit.csv", rows)
             for arm in ("ai", "human"):
-                arm_rows = [r for r in rows if r["arm"] == arm]
+                arm_rows = [r for r in rows if r["arm"] == arm and r["source"] != "unmarked"]
                 if arm_rows:
                     print(f"{arm}: {sum(r['flagged'] for r in arm_rows)}/{len(arm_rows)} questions flagged")
+            unmarked = [r for r in rows if r["source"] == "unmarked"]
+            if unmarked:
+                print(f"unmarked speech (speaker unknown): {sum(r['flagged'] for r in unmarked)}/{len(unmarked)} flagged")
             for s in sessions:
                 print(s.session_id, ai_rejection_counts(s.dir))
+    elif args.cmd == "guard-calibration-sheet":
+        write_csv(args.out, calibration.labelling_sheet(read_csv(args.items), args.seed))
+    elif args.cmd == "guard-calibrate":
+        log_path = args.out.with_suffix(".llm.jsonl")
+
+        def log(record: dict) -> None:
+            with log_path.open("a") as f:
+                f.write(json.dumps(record) + "\n")
+
+        guard = make_guard(make_backend("guard", load_models().guard), log)
+        write_csv(args.out, calibration.run_guard(read_csv(args.items), guard))
+    elif args.cmd == "calibration-report":
+        r = calibration.report(read_csv(args.items), read_csv(args.labeller_a), read_csv(args.labeller_b),
+                               read_csv(args.adjudicated), read_csv(args.verdicts), args.min_class)
+        print(json.dumps(asdict(r), indent=2))
     elif args.cmd == "leading-rates":
         labels = {r["item_id"]: r["leading"] for r in read_csv(args.labels)}
         for arm, c in sorted(leading_by_arm(labels, read_csv(args.key)).items()):
-            print(f"{arm}: {c['leading']}/{c['coded']} leading")
+            print(f"{arm}: {c['leading']}/{c['coded']} leading"
+                  + (f"; {c['unmarked']} unmarked turns not coded" if c["unmarked"] else ""))
     elif args.cmd == "freeze-baseline":
         for s in args.sessions:
             m = json.loads((s / "manifest.json").read_text())

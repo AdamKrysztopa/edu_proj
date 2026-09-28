@@ -6,8 +6,9 @@ from probe_app.config import INSTRUMENT_DIR, current_config, load_problems, load
 from probe_app.llm import Guard
 from probe_app.models import DialogueTurn, GuardVerdict
 from probe_app.session import Deps, Session, SessionState
-from probe_code.export import export_leading, read_csv
-from probe_code.guard_audit import config_drift, guard_audit, leading_by_arm
+from probe_code import cli
+from probe_code.export import export_blind, export_leading, read_csv
+from probe_code.guard_audit import config_drift, guard_audit, leading_by_arm, unmarked_speech
 from probe_code.loader import load_session
 from test_export import make_session
 from test_session import new_session, seg, through_think_aloud
@@ -58,7 +59,7 @@ def test_audit_gives_the_guard_the_inputs_it_had_live(tmp_path, monkeypatch):
             live.append(args)
             return super().check(*args)
 
-    monkeypatch.setattr("probe_app.session.Guard", LiveGuard)
+    monkeypatch.setattr("probe_app.llm.Guard", LiveGuard)
     s = new_session(tmp_path, interviewer=[FakeResponse(turn_payload()), FakeResponse(turn_payload(stem_id="checks"))],
                     transcripts=[seg("A1 talk"), seg("A2 talk"), seg("B1 talk"), seg("B2 talk"), seg("They stick.")])
     through_think_aloud(s)
@@ -100,6 +101,45 @@ def test_leading_export_hides_arm_and_carries_the_guard_context(tmp_path):
     assert ("SECRET AI QUESTION", ai["problems"], ai["expert_said"]) in audit.calls
 
 
+def _with_unmarked_speech(path):
+    state = SessionState.model_validate_json((path / "state.json").read_text())
+    state.dialogue["B"].insert(0, DialogueTurn(speaker="unmarked", text="UNMARKED WORDS here", t=0,
+                                               source="transcribed"))
+    (path / "state.json").write_text(state.model_dump_json())
+    return path
+
+
+def test_unmarked_speech_stays_off_coder_sheets_but_in_the_key_and_the_audit(tmp_path):
+    session = load_session(_with_unmarked_speech(make_session(tmp_path, "E01")))
+    export_blind([session], tmp_path / "blind", seed=1)
+    export_leading([session], tmp_path / "leading", seed=1, statements=_statements())
+    coder_sheets = (tmp_path / "blind" / "coder_units.csv").read_text() + (
+        tmp_path / "leading" / "leading_items.csv").read_text()
+    assert "UNMARKED" not in coder_sheets
+    items = read_csv(tmp_path / "leading" / "leading_items.csv")
+    key = read_csv(tmp_path / "leading" / "key_leading.csv")
+    unmarked = [r for r in key if r["source"] == "unmarked"]
+    assert len(items) == 2 and len(key) == 3 and len(unmarked) == 1
+    assert unmarked[0]["arm"] == "human" and unmarked[0]["preset_leading"] == ""
+    assert leading_by_arm({r["item_id"]: "1" for r in items}, key) == {
+        "ai": {"leading": 1, "coded": 1, "unmarked": 0}, "human": {"leading": 1, "coded": 1, "unmarked": 1}}
+    audit = Recorder()
+    rows = guard_audit([session], audit, _statements())
+    assert [r["source"] for r in rows if r["arm"] == "human"] == ["unmarked", "human"]
+    assert audit.calls[1][0] == "UNMARKED WORDS here"
+
+
+def test_unmarked_speech_is_counted_per_set_in_a_key_file_not_on_stdout(tmp_path, monkeypatch, capsys):
+    path = _with_unmarked_speech(make_session(tmp_path, "E01"))
+    assert unmarked_speech(load_session(path)) == {"A": 0, "B": 3}
+    monkeypatch.setattr(cli, "load_dotenv", lambda *a, **k: None)
+    cli.main(["export-leading", str(path), str(make_session(tmp_path, "E02")), "--out", str(tmp_path / "out")])
+    assert "words" not in capsys.readouterr().out
+    rows = read_csv(tmp_path / "out" / "key_unmarked.csv")
+    assert {(r["session_id"], r["set_id"], r["arm"], r["words"]) for r in rows} == {
+        ("E01", "A", "ai", "0"), ("E01", "B", "human", "3"), ("E02", "A", "ai", "0"), ("E02", "B", "human", "0")}
+
+
 def test_audit_refuses_a_session_whose_frozen_config_has_changed(tmp_path, monkeypatch):
     path = make_session(tmp_path, "E01")
     manifest = json.loads((path / "manifest.json").read_text())
@@ -115,7 +155,8 @@ def test_leading_by_arm_unblinds_coder_labels(tmp_path):
     key = [{"item_id": "i1", "arm": "ai", "preset_leading": ""}, {"item_id": "i2", "arm": "ai", "preset_leading": ""},
            {"item_id": "i3", "arm": "human", "preset_leading": ""}, {"item_id": "i4", "arm": "ai", "preset_leading": "0"}]
     labels = {"i1": "1", "i2": "0", "i3": "yes"}
-    assert leading_by_arm(labels, key) == {"ai": {"leading": 1, "coded": 3}, "human": {"leading": 1, "coded": 1}}
+    assert leading_by_arm(labels, key) == {"ai": {"leading": 1, "coded": 3, "unmarked": 0},
+                                           "human": {"leading": 1, "coded": 1, "unmarked": 0}}
 
 
 class SlowAnthropic(FakeAnthropic):

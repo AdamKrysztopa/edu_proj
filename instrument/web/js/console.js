@@ -41,6 +41,7 @@ $("typedBtn").onclick = () => {
   call("/probe/answer-text", { turn_index: idx, text: $("typedAnswer").value }).then(() => { $("typedAnswer").value = ""; });
 };
 $("addBtn").onclick = () => call("/segments", { problem_id: $("addPid").value, text: $("addText").value });
+$("ackBtn").onclick = () => call(`/think-aloud/${$("addPid").value}/acknowledge-audio`, { text: $("addText").value });
 
 function fmt(s) { const m = Math.floor(s / 60), r = Math.floor(s % 60); return `${m}:${String(r).padStart(2, "0")}`; }
 
@@ -71,7 +72,7 @@ function render() {
     const p = document.createElement("p");
     p.textContent = d.speaker === "interviewer"
       ? `Q [${d.problem_id || "?"}/${d.stem_id || "?"}${d.is_followup ? " follow-up" : ""}, ${d.source}]: ${d.text}`
-      : `A: ${d.text}`;
+      : d.speaker === "unmarked" ? `Before the first I/E marker (excluded): ${d.text}` : `A: ${d.text}`;
     return p;
   }));
   if (!document.activeElement || document.activeElement.tagName !== "TD") {

@@ -65,6 +65,17 @@ with the whole chain as its evidence. Answering an oscillation with a third rule
 
 <!-- Newest drain first. Append a new `## YYYY-MM-DD — drain N` section above the previous one. -->
 
+## 2026-09-28 — drain 4
+
+| id | rule | home | commit | edges |
+|------|------|------|--------|-------|
+| L4.1 | Never measure or compare anything with a classifier on items it already filtered: sample upstream of it, never use it as the outcome for the arm it gates, and assign item IDs after shuffling. | `instrument/tests/test_calibration.py` | 8f4d110 | — |
+| L4.2 | Material of unknown status is decided twice: it may be kept off blinded coder sheets, but it stays in the key and audit denominators under its own source. | `.claude/agents/validity-reviewer.md` | 8f4d110 | refines L3.2 |
+| L4.3 | Every read of stored audio has a test injecting a storage failure (a file or bytes missing after acknowledgement) as well as the transport failures. | `instrument/tests/test_streams.py` | 8f4d110 | refines L1.6 |
+
+**Fitness check — which of this cycle's defects would a rule already in the archive have caught?** One, and it was applied too narrowly: L1.6 listed transport failures only, so a missing part file passed two validity reviews; L4.3 widens it and puts it in the invariant tests. The other two are new classes.
+
+
 ## 2026-09-28 — drain 3
 
 | id | rule | home | commit | edges |

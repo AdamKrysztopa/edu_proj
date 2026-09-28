@@ -4,6 +4,7 @@ from typing import Callable
 from pydantic import ValidationError
 
 from probe_app.backends import LLMRefused, LLMUnavailable, Part
+from probe_app.config import load_prompt
 from probe_app.models import STEMS, DialogueTurn, GuardVerdict, InterviewerTurn
 
 INTERVIEWER_TURN_SCHEMA = {
@@ -102,3 +103,12 @@ class Guard:
             return GuardVerdict.model_validate_json(text)
         except ValidationError as e:
             raise LLMUnavailable(f"guard output failed validation: {e}") from e
+
+
+def make_interviewer(backend, log: Callable[[dict], object]) -> InterviewerLLM:
+    return InterviewerLLM(backend, log, load_prompt("interviewer_system.md"))
+
+
+def make_guard(backend, log: Callable[[dict], object]) -> Guard:
+    """The one construction of the guard, so `probe-code guard-audit` runs the guard the sessions ran."""
+    return Guard(backend, log, load_prompt("guard_system.md"))

@@ -32,7 +32,7 @@ class InterviewerTurn(BaseModel):
 
 
 class DialogueTurn(BaseModel):
-    speaker: Literal["interviewer", "expert"]
+    speaker: Literal["interviewer", "expert", "unmarked"]
     text: str
     t: float
     stem_id: StemId | None = None
@@ -43,5 +43,6 @@ class DialogueTurn(BaseModel):
 
 
 class GuardVerdict(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     flagged: bool
     introduced: str

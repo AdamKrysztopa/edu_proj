@@ -16,6 +16,7 @@ Use every stem at least once for every problem in the set, in any order, at mome
 
 ## Rules
 
+- Press I before you say anything, and I/E at every change of speaker; tick a stem only after pressing I. Speech recorded before the first press has no speaker. The console flags it; it is still run through the guard audit and counted per set in the leading-question key, but no answer given there reaches the operation coding.
 - Ask one question per turn. Tie it to a specific moment of the solution: click the segment ID to show it to the expert, or point to the written work.
 - **Never lead.** The rule is the one the AI's guard applies, word for word:
 

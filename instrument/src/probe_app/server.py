@@ -172,6 +172,10 @@ def create_app(root: Path, deps: Deps, clock=None, expert_origin: str | None = N
     def add_segment(sid: str, body: SegmentBody):
         return act(sid, lambda s: s.add_segment(body.problem_id, body.text))
 
+    @app.post("/api/sessions/{sid}/think-aloud/{pid}/acknowledge-audio", dependencies=CONSOLE)
+    def acknowledge_audio(sid: str, pid: str, body: TextBody):
+        return act(sid, lambda s: s.acknowledge_incomplete_audio(pid, body.text))
+
     @app.post("/api/sessions/{sid}/probe/start", dependencies=CONSOLE)
     def probe_start(sid: str):
         return act(sid, lambda s: s.start_probe())

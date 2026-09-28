@@ -153,6 +153,7 @@ CONSOLE_ROUTES = [("get", "/"), ("post", "/api/sessions"), ("get", "/api/session
                   ("post", "/api/sessions/{sid}/think-aloud/start"), ("post", "/api/sessions/{sid}/keep-talking"),
                   ("post", "/api/sessions/{sid}/segments/{seg_id}"), ("post", "/api/sessions/{sid}/segments"),
                   ("post", "/api/sessions/{sid}/probe/start"), ("post", "/api/sessions/{sid}/probe/answer-text"),
+                  ("post", "/api/sessions/{sid}/think-aloud/{pid}/acknowledge-audio"),
                   ("post", "/api/sessions/{sid}/probe/end"), ("post", "/api/sessions/{sid}/human/marker"),
                   ("post", "/api/sessions/{sid}/human/stem"), ("post", "/api/sessions/{sid}/human/anchor"),
                   ("post", "/api/sessions/{sid}/pause"), ("post", "/api/sessions/{sid}/resume")]
@@ -171,7 +172,7 @@ def test_every_route_is_either_expert_or_loopback_only(app):
 @pytest.mark.parametrize("method, path", CONSOLE_ROUTES)
 def test_console_route_refuses_a_network_client(client, tablet, method, path):
     sid = create(client)
-    url = path.format(sid=sid, seg_id="A1-s001")
+    url = path.format(sid=sid, seg_id="A1-s001", pid="A1")
     r = tablet.get(url) if method == "get" else tablet.post(url, json={})
     assert r.status_code == 403
 

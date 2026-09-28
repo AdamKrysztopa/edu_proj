@@ -139,6 +139,7 @@ def instrument_copy(tmp_path: Path) -> Path:
 
 def test_model_facing_files_include_the_interviewer_and_guard_code():
     required = {f"src/probe_app/{m}.py" for m in ("llm", "engine", "contract", "models")}
+    required |= {"src/probe_code/guard_audit.py", "src/probe_code/export.py"}
     assert required <= set(config.MODEL_FACING_FILES)
     assert all((config.INSTRUMENT_DIR / rel).is_file() for rel in config.MODEL_FACING_FILES)
 

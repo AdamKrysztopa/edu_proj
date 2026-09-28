@@ -88,12 +88,14 @@ Stage A is M4 and Stage B is M6 in the roadmap. Stage A addresses Phase 2; Stage
 - [ ] Before the pilot: 3–5 more simulated sessions (`probe-app simulate`), then recompute the baseline thresholds (`docs/freeze-baseline.md`); `/preflight pilot`; a physicist checks A1–B2 and E_A/E_B.
 
 **Before `probe-app freeze` (gate for M4; decisions 0003, 0004):**
-- [ ] Guard calibrated on about 60 labelled probe questions; sensitivity and specificity pre-registered.
-- [ ] Pre-register a threshold for coders' arm-guess rate on the leading export (arm style is still recognisable).
-- [ ] Speech before the first I/E marker in the human arm is attributed to the interviewer; mark or exclude it, and say in the analysis plan what happens to leading human turns and their answers.
-- [ ] Audio-stream invariant tests, then the recording module extraction.
-- [ ] One test tying each output schema to its Pydantic model; `extra="forbid"` on `GuardVerdict`.
-- [ ] One `make_guard()`/interviewer factory used by both the app and `probe-code`.
+- [x] Guard calibration built: `probe-code guard-calibration-sheet`, `guard-calibrate`, `calibration-report`; 60 items in `instrument/calibration/items.csv` (all 9 guard-rejected candidates, 21 accepted, 30 authored leading variants); protocol and decision rule in `docs/guard-calibration.md` (reviewed by `methods-critic`, fatal and majors fixed).
+- [ ] Two labellers label the 60 items (not the item author, the PI, or any Stage A coder); adjudicate; run the guard; register the report with the guard prompt hash.
+- [x] Stage A pre-registration additions drafted (`docs/stage-a-prereg-additions.md`): separate leading-content coders, two-sided arm-guess rule, unmarked-speech handling, leading human questions; K1 decided on the registered analysis alone.
+- [x] Human-arm speech before the first I/E marker is marked `unmarked`, kept off coder sheets, counted in the leading key and guard audit, and warned on the console.
+- [x] Stream-invariant tests (decision 0003); missing part files, chunk gaps and reload holes now hold the problem or warn the console; console "Accept audio gap" action (wiring checked in the browser; the success path is covered only by unit tests until a dry run with real speech).
+- [x] Output schemas tied to their Pydantic models; `extra="forbid"` on `GuardVerdict`; one `make_guard()`/`make_interviewer()` used by the app and `probe-code`.
+- [ ] Recording module extraction (decision 0003: after the pilots, under the invariant tests). Known leftovers: a failed save can duplicate a chunk; truncated part files are not detected; the pilot checks the tablet's real chunk rate.
+- [ ] After the last change to a frozen file and before the pilot: 3 simulated sessions on that configuration (the baseline sessions are now a superseded configuration; the thresholds were fixed in advance and stand).
 - [x] `/branch experiment`: gated two-stage design; `methods-critic` reviews applied. [note](research/experiment-ai-assisted-cta-physics.md)
 - [x] Stage A instrument built ([spec](docs/superpowers/specs/2026-09-26-stage-a-session-app-design.md)).
 

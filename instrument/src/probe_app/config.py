@@ -29,6 +29,8 @@ MODEL_FACING_FILES = (
     "src/probe_app/session.py",
     "src/probe_app/trace.py",
     "src/probe_app/transcribe.py",
+    "src/probe_code/export.py",
+    "src/probe_code/guard_audit.py",
     "problems/problems.json",
     "human-script.md",
     "web/expert.html",
