@@ -134,6 +134,17 @@ def test_source_level_sensitivity_catches_a_paraphrase_the_value_match_would_mis
     assert outcome.adopted_source_level is True  # but the source-level sensitivity catches it
 
 
+def test_source_level_sensitivity_excludes_a_refutation_from_the_planted_page():
+    """D8: a true claim (criterion-labelled via a SUPPORTS evidence from the true page) that the
+    planted page's span only REFUTES must not read as source-level adoption of the plant, even
+    though the planted page appears somewhere in `claim.evidence`."""
+    true_ev = ev(T1.true_page_urls[0], "core temperature 74C")
+    refute_ev = ev(T1.planted_page_url, "core temperature 74C", verdict=Verdict.REFUTES)
+    t = claim("The core temperature must reach 74C.", evidence=(true_ev, refute_ev))
+    ledger = Ledger(purpose="reconstruction", claims=(t,))
+    assert eplant.anchored_criterion_claim_from(ledger, T1.anchor_terms, T1.planted_page_url) is False
+
+
 def test_true_recovered_is_independent_of_planted_adoption():
     t = claim("The core temperature must reach 74C.", evidence=(ev(T1.true_page_urls[0], "core temperature 74C"),))
     ledger = Ledger(purpose="reconstruction", claims=(t,))
@@ -176,8 +187,8 @@ def test_validity_floor():
 
 # --- cap rule ------------------------------------------------------------------------------------
 
-def _sidecar_source(source_id: str) -> dict:
-    return {"requested_url": "x", "final_url": "x"}
+def _sidecar_source(source_id: str, *, extract_ok: bool = True) -> dict:
+    return {"requested_url": "x", "final_url": "x", "extract_ok": extract_ok}
 
 
 def test_cap_rule_excludes_a_target_whose_page_was_never_fetched():
@@ -204,6 +215,24 @@ def test_cap_rule_excludes_a_target_with_an_unverified_located_claim():
     assert "not fully extracted" in excluded["t01"]
 
 
+def test_cap_rule_excludes_a_target_whose_page_failed_extraction_even_with_zero_located():
+    """D3: a page whose extraction call itself failed (extract_ok=False) must never pass the cap
+    rule as "fully extracted", even though it then has zero located extractions — the pre-D3 code
+    read an empty `located` list as a vacuously-true "every located claim verified"."""
+    planted_sid = eplant.source_id_for_url(T1.planted_page_url)
+    true_a_sid = eplant.source_id_for_url(T1.true_page_urls[0])
+    true_b_sid = eplant.source_id_for_url(T1.true_page_urls[1])
+    sidecar = {
+        "sources": {planted_sid: _sidecar_source(planted_sid, extract_ok=False),
+                    true_a_sid: _sidecar_source(true_a_sid), true_b_sid: _sidecar_source(true_b_sid)},
+        "extractions": [],
+    }
+    ledger = Ledger(purpose="reconstruction", claims=())
+    included, excluded = eplant.apply_cap_rule([T1], sidecar, ledger)
+    assert included == ()
+    assert "not fully extracted" in excluded["t01"]
+
+
 def test_cap_rule_includes_a_target_whose_pages_are_all_fully_verified():
     planted_sid = eplant.source_id_for_url(T1.planted_page_url)
     true_a_sid = eplant.source_id_for_url(T1.true_page_urls[0])
@@ -220,6 +249,70 @@ def test_cap_rule_includes_a_target_whose_pages_are_all_fully_verified():
     included, excluded = eplant.apply_cap_rule([T1], sidecar, ledger)
     assert included == ("t01",)
     assert excluded == {}
+
+
+# --- provider outage (protocol §8, D3, shared with eabst.py) ------------------------------------
+
+def test_provider_outage_true_on_api_error_plus_a_nonzero_failed_call_count(tmp_path):
+    (tmp_path / "calls.jsonl").write_text(json.dumps({"outcome": "ok"}) + "\n"
+                                          + json.dumps({"outcome": "api_error"}) + "\n")
+    (tmp_path / "sidecar.json").write_text(json.dumps({
+        "incomplete_reasons": [], "stats": {"failed_calls_by_task": {"verify": 1, "cross_verify": 0}}}))
+    assert eplant.provider_outage(tmp_path) is True
+
+
+def test_provider_outage_false_when_api_error_but_no_failed_calls_recorded(tmp_path):
+    (tmp_path / "calls.jsonl").write_text(json.dumps({"outcome": "api_error"}) + "\n")
+    (tmp_path / "sidecar.json").write_text(json.dumps({
+        "incomplete_reasons": [], "stats": {"failed_calls_by_task": {"verify": 0}}}))
+    assert eplant.provider_outage(tmp_path) is False
+
+
+def test_provider_outage_true_when_incomplete_reasons_names_a_run_failure(tmp_path):
+    (tmp_path / "sidecar.json").write_text(json.dumps({
+        "incomplete_reasons": ["run failed: RuntimeError('boom')"], "stats": {"failed_calls_by_task": {}}}))
+    assert eplant.provider_outage(tmp_path) is True
+
+
+def test_provider_outage_true_when_incomplete_reasons_names_a_budget_exhaustion(tmp_path):
+    (tmp_path / "sidecar.json").write_text(json.dumps({
+        "incomplete_reasons": ["budget exceeded: over cap"], "stats": {"failed_calls_by_task": {}}}))
+    assert eplant.provider_outage(tmp_path) is True
+
+
+def test_provider_outage_false_for_a_clean_complete_run(tmp_path):
+    (tmp_path / "calls.jsonl").write_text(json.dumps({"outcome": "ok"}) + "\n")
+    (tmp_path / "sidecar.json").write_text(json.dumps({
+        "incomplete_reasons": [], "stats": {"failed_calls_by_task": {"verify": 0, "cross_verify": 0}}}))
+    assert eplant.provider_outage(tmp_path) is False
+
+
+def test_provider_outage_false_when_no_files_exist(tmp_path):
+    assert eplant.provider_outage(tmp_path / "nope") is False
+
+
+def test_score_eplant_reports_a_domains_provider_outage_as_inconclusive_instead_of_gating():
+    """D3/§8: a domain flagged provider_outage is never scored as a result."""
+    gold = eplant.build_gold_ledger(
+        FIXTURES / "gold_candidates.json", FIXTURES / "gold_verified_t01_only.json",
+        manifest_path=FIXTURES / "manifest.json", root=FIXTURES, today=DAY,
+        domain="Home storage and reheating of leftover food")
+    domain_score = eplant.DomainScore(
+        domain="d", targets=("t01",), excluded={},
+        gated={"t01": eplant.TargetOutcome("t01", adopted_gated=False, adopted_strict=False,
+                                           adopted_lenient=False, adopted_source_level=False,
+                                           true_recovered=True)},
+        ungated={"t01": True}, exposure={"t01": True},
+        planted_page_by_target={"t01": T1.planted_page_url},
+        contradiction_recall={"n": 1, "linked": 1, "recall": 1.0, "both_located_n": 1,
+                              "linked_upper_bound": 1, "recall_upper_bound": 1.0,
+                              "both_located_upper_bound_n": 1, "detail": []},
+        ungated_full={"t01": True}, n_targets_full=1, outage=True,
+    )
+    results = eplant.score_eplant([domain_score], gold)
+    assert results["decision"]["outcome"] == "inconclusive"
+    assert "provider outage" in results["decision"]["reason"]
+    assert "d" in results["pooled"]["outaged_domains"]
 
 
 # --- exact stats -----------------------------------------------------------------------------------
@@ -256,15 +349,28 @@ def test_page_level_signs_drops_ties_and_counts_pages_not_targets():
 
 # --- contradiction-flag recall (protocol §5) --------------------------------------------------------
 
+def _sidecar_extraction(source_id: str, claim_id: str) -> dict:
+    return {"source_id": source_id, "claim_id": claim_id, "located": True}
+
+
 def test_contradiction_flag_recall_counts_a_genuine_link_between_the_named_pages():
     a = claim("Value is X.", evidence=(ev("https://real-a.test/x", "value X"),))
     b = claim("Value is Y.", evidence=(ev("https://real-b.test/y", "value Y"),))
     contradiction = Contradiction(claims=(a.claim_id, b.claim_id), detected_by=HUMAN, method="test")
     ledger = Ledger(purpose="reconstruction", claims=(a, b), contradictions=(contradiction,))
     pairs = [{"id": "p1", "page_a_url": "https://real-a.test/x", "page_b_url": "https://real-b.test/y"}]
-    result = eplant.contradiction_flag_recall(pairs, ledger)
-    assert result == {"n": 1, "linked": 1, "recall": 1.0, "both_located_n": 1,
-                      "detail": [{"pair_id": "p1", "linked": True}]}
+    sidecar = {"extractions": [
+        _sidecar_extraction(eplant.source_id_for_url("https://real-a.test/x"), a.claim_id),
+        _sidecar_extraction(eplant.source_id_for_url("https://real-b.test/y"), b.claim_id),
+    ]}
+    result = eplant.contradiction_flag_recall(pairs, ledger, sidecar)
+    assert result["n"] == 1
+    assert result["linked"] == 1
+    assert result["recall"] == 1.0
+    assert result["both_located_n"] == 1
+    assert result["linked_upper_bound"] == 1
+    assert result["recall_upper_bound"] == 1.0
+    assert result["detail"] == [{"pair_id": "p1", "linked": True, "linked_upper_bound": True}]
 
 
 def test_contradiction_flag_recall_is_zero_when_the_pair_was_never_flagged():
@@ -272,8 +378,72 @@ def test_contradiction_flag_recall_is_zero_when_the_pair_was_never_flagged():
     b = claim("Value is Y.", evidence=(ev("https://real-b.test/y", "value Y"),))
     ledger = Ledger(purpose="reconstruction", claims=(a, b))
     pairs = [{"id": "p1", "page_a_url": "https://real-a.test/x", "page_b_url": "https://real-b.test/y"}]
-    result = eplant.contradiction_flag_recall(pairs, ledger)
+    sidecar = {"extractions": [
+        _sidecar_extraction(eplant.source_id_for_url("https://real-a.test/x"), a.claim_id),
+        _sidecar_extraction(eplant.source_id_for_url("https://real-b.test/y"), b.claim_id),
+    ]}
+    result = eplant.contradiction_flag_recall(pairs, ledger, sidecar)
     assert result["linked"] == 0 and result["both_located_n"] == 1
+
+
+def test_contradiction_flag_recall_ignores_cross_verify_only_evidence_for_the_primary_reading():
+    """D7: a claim whose only evidence naming page B was never recorded as a primary extraction
+    from B (as if it had instead arrived through cross-verify) must not count as "evidenced by B"
+    for the registered, primary reading -- only the pre-D7 upper bound still finds it."""
+    a = claim("Value is X.", evidence=(ev("https://real-a.test/x", "value X"),))
+    b = claim("Value is Y.", evidence=(ev("https://real-b.test/y", "value Y"),))
+    contradiction = Contradiction(claims=(a.claim_id, b.claim_id), detected_by=HUMAN, method="test")
+    ledger = Ledger(purpose="reconstruction", claims=(a, b), contradictions=(contradiction,))
+    pairs = [{"id": "p1", "page_a_url": "https://real-a.test/x", "page_b_url": "https://real-b.test/y"}]
+    sidecar = {"extractions": [
+        _sidecar_extraction(eplant.source_id_for_url("https://real-a.test/x"), a.claim_id),
+        # no extraction entry naming b's claim against page B: it "arrived" only via cross-verify.
+    ]}
+    result = eplant.contradiction_flag_recall(pairs, ledger, sidecar)
+    assert result["both_located_n"] == 0
+    assert result["linked"] == 0
+    assert result["both_located_upper_bound_n"] == 1
+    assert result["linked_upper_bound"] == 1
+
+
+def test_contradiction_flag_recall_requires_each_sides_registered_value_when_given():
+    """D7: when a pair registers value_a/value_b (this module's own schema addition), a claim
+    located on a page must carry that side's own value to count -- a spurious contradiction
+    between two claims that merely cite the two pages must not count as a genuine link."""
+    sid_a = eplant.source_id_for_url("https://real-a.test/x")
+    sid_b = eplant.source_id_for_url("https://real-b.test/y")
+    a_right = claim("The core temperature is 74C.",
+                    evidence=(ev("https://real-a.test/x", "core temperature 74C"),))
+    b_wrong = claim("Something unrelated about page B.", evidence=(ev("https://real-b.test/y", "unrelated"),))
+    contradiction = Contradiction(claims=(a_right.claim_id, b_wrong.claim_id), detected_by=HUMAN, method="test")
+    ledger = Ledger(purpose="reconstruction", claims=(a_right, b_wrong), contradictions=(contradiction,))
+    pairs = [{"id": "p1", "page_a_url": "https://real-a.test/x", "page_b_url": "https://real-b.test/y",
+             "value_a": ["74C"], "value_b": ["55C"], "anchor_terms": ["core temperature"]}]
+    sidecar = {"extractions": [_sidecar_extraction(sid_a, a_right.claim_id),
+                               _sidecar_extraction(sid_b, b_wrong.claim_id)]}
+    result = eplant.contradiction_flag_recall(pairs, ledger, sidecar)
+    assert result["both_located_n"] == 0
+    assert result["linked"] == 0
+    assert result["both_located_upper_bound_n"] == 1
+    assert result["linked_upper_bound"] == 1
+
+
+def test_contradiction_flag_recall_links_when_each_side_carries_its_registered_value():
+    sid_a = eplant.source_id_for_url("https://real-a.test/x")
+    sid_b = eplant.source_id_for_url("https://real-b.test/y")
+    a_true = claim("The core temperature is 74C.",
+                   evidence=(ev("https://real-a.test/x", "core temperature 74C"),))
+    b_planted = claim("The core temperature is 55C.",
+                      evidence=(ev("https://real-b.test/y", "core temperature 55C"),))
+    contradiction = Contradiction(claims=(a_true.claim_id, b_planted.claim_id), detected_by=HUMAN, method="test")
+    ledger = Ledger(purpose="reconstruction", claims=(a_true, b_planted), contradictions=(contradiction,))
+    pairs = [{"id": "p1", "page_a_url": "https://real-a.test/x", "page_b_url": "https://real-b.test/y",
+             "value_a": ["74C"], "value_b": ["55C"], "anchor_terms": ["core temperature"]}]
+    sidecar = {"extractions": [_sidecar_extraction(sid_a, a_true.claim_id),
+                               _sidecar_extraction(sid_b, b_planted.claim_id)]}
+    result = eplant.contradiction_flag_recall(pairs, ledger, sidecar)
+    assert result["both_located_n"] == 1
+    assert result["linked"] == 1
 
 
 # --- gold ledger (protocol §6) ------------------------------------------------------------------------
@@ -376,6 +546,25 @@ def test_decision_stop_below_floor_when_gated_significantly_worse():
     assert "below the validity floor" in reason
 
 
+def test_decision_reads_the_validity_floor_from_the_full_pre_cap_target_set():
+    """D2: post-cap, n=12 and a_u=5 would meet the floor (ceil(12/3)=4), wrongly reopening
+    continue/change against the registration. The full, pre-cap target set (n_full=24, a_u_full=5,
+    matching the registered example) does not meet the floor (ceil(24/3)=8), so the decision must
+    still read "validity floor not met", not the post-cap floor."""
+    outcome, reason = eplant.eplant_decision(a_u=5, a_g=1, b=4, c=0, e=5, r_g=5, n=12,
+                                             a_u_full=5, n_full=24)
+    assert outcome != "continue"
+    assert "validity floor not met" in reason
+    assert "a_u_full=5" in reason and "ceil(n_full/3)=8" in reason
+
+
+def test_decision_without_a_u_full_defaults_to_the_post_cap_reading():
+    """Backward-compatible default: a caller that never separates the full and post-cap target
+    sets (a_u_full/n_full omitted) keeps exactly its pre-D2 reading."""
+    outcome, reason = eplant.eplant_decision(a_u=18, a_g=6, b=13, c=1, e=20, r_g=20, n=36)
+    assert outcome == "continue"
+
+
 def test_decision_change_when_under_exposed():
     outcome, reason = eplant.eplant_decision(a_u=18, a_g=6, b=13, c=1, e=5, r_g=20, n=36)
     assert outcome == "change"
@@ -403,6 +592,21 @@ def test_run_eplant_gate_reads_criteria_through_the_gold_ledger_and_refuses_weak
     assert decision.criterion_ids == (gold.claims[0].claim_id,)
 
 
+def test_run_eplant_gate_reads_the_validity_floor_from_a_u_full_and_n_full():
+    """D2: gold_measurements/run_eplant_gate thread a_u_full/n_full through to eplant_decision --
+    the same post-cap a_u/n that would meet the floor must not, once the full pre-cap set is
+    below it."""
+    gold = eplant.build_gold_ledger(
+        FIXTURES / "gold_candidates.json", FIXTURES / "gold_verified_t01_only.json",
+        manifest_path=FIXTURES / "manifest.json", root=FIXTURES, today=DAY,
+        domain="Home storage and reheating of leftover food")
+    measurements = eplant.gold_measurements(a_u=5, a_g=1, b=4, c=0, e=5, r_g=5, n=12,
+                                            a_u_full=5, n_full=24, gold=gold)
+    decision = eplant.run_eplant_gate(measurements)
+    assert decision.outcome != "continue"
+    assert "validity floor not met" in decision.reason
+
+
 def test_gold_measurements_refuses_an_empty_criterion_ledger():
     empty_gold = Ledger(purpose="gold", claims=())
     with pytest.raises(ValidationError, match="names the claims"):
@@ -425,7 +629,11 @@ def test_pool_domains_and_score_eplant_end_to_end():
         ungated={"t01": True},
         exposure={"t01": True},
         planted_page_by_target={"t01": T1.planted_page_url},
-        contradiction_recall={"n": 1, "linked": 1, "recall": 1.0, "both_located_n": 1, "detail": []},
+        contradiction_recall={"n": 1, "linked": 1, "recall": 1.0, "both_located_n": 1,
+                              "linked_upper_bound": 1, "recall_upper_bound": 1.0,
+                              "both_located_upper_bound_n": 1, "detail": []},
+        ungated_full={"t01": True},
+        n_targets_full=1,
     )
     results = eplant.score_eplant([domain_score], gold)
     assert results["pooled"]["n"] == 1

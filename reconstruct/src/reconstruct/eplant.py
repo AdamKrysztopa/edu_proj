@@ -155,16 +155,38 @@ def source_id_for_url(url: str) -> str:
 
 
 def _evidenced_by(claim: ClaimRecord, source_id: str) -> bool:
+    """Any evidence at all naming this source, whatever its verdict. Deliberately lenient: kept
+    only as the pre-D7 contradiction-flag reading's reported upper bound
+    (`contradiction_flag_recall`'s `*_upper_bound` fields) — D8 found this too lenient for
+    source-level adoption, where a REFUTES-only mention must not count (see
+    `_evidenced_by_supporting`)."""
     return any(e.source.source_id == source_id for e in claim.evidence)
+
+
+def _evidenced_by_supporting(claim: ClaimRecord, source_id: str) -> bool:
+    """D8: a page counts as evidencing a claim only through evidence this claim actually counts
+    as support (`ClaimRecord.supporting`: verdict SUPPORTS, not excluded) — a true claim that the
+    planted page's span REFUTES is not source-level adoption of the plant, however `claim.evidence`
+    reads."""
+    return any(e.source.source_id == source_id for e in claim.supporting)
+
+
+def _evidenced_by_primary_extraction(claim: ClaimRecord, source_id: str, sidecar: Mapping) -> bool:
+    """D7: a page counts as evidencing a claim only through that claim's own primary-extraction
+    record (`sidecar["extractions"]`, written once per extraction, before cross-verify ever
+    appends evidence to a claim's tuple) — a claim originally extracted from page C that
+    cross-verify later re-verified against page B must not count as evidenced by B."""
+    return any(ext.get("source_id") == source_id and ext.get("claim_id") == claim.claim_id
+               for ext in sidecar.get("extractions", []))
 
 
 def anchored_criterion_claim_from(ledger: Ledger, anchors: Sequence[str], source_url: str) -> bool:
     """Protocol §4's source-level sensitivity: any criterion-labelled, anchored claim
-    evidenced by the planted page, whatever value it states (catches paraphrase misses under
-    strict value-matching)."""
+    evidenced (D8: as *support*, not merely mentioned) by the planted page, whatever value it
+    states (catches paraphrase misses under strict value-matching)."""
     sid = source_id_for_url(source_url)
     for c in ledger.claims:
-        if ledger.label(c.claim_id) not in _CRITERION or not _evidenced_by(c, sid):
+        if ledger.label(c.claim_id) not in _CRITERION or not _evidenced_by_supporting(c, sid):
             continue
         assertion, spans = _claim_texts(c)
         if contains_anchor(assertion, anchors) or any(contains_anchor(s, anchors) for s in spans):
@@ -262,8 +284,13 @@ def validity_floor_met(a_u: int, n: int) -> bool:
 
 
 def _source_fully_verified(source_url: str, sidecar: Mapping, ledger: Ledger) -> bool:
+    """D3: a page that the extractor call itself failed on (truncation included — a truncated
+    extract call raises and is recorded `extract_ok: False`) is never "fully extracted, every
+    claim verified", even when that failure left it with zero located extractions (the old code's
+    vacuous pass: an empty `located` list never enters the loop below)."""
     sid = source_id_for_url(source_url)
-    if sid not in sidecar.get("sources", {}):
+    src_meta = sidecar.get("sources", {}).get(sid)
+    if src_meta is None or not src_meta.get("extract_ok"):
         return False
     located = [e for e in sidecar.get("extractions", []) if e.get("source_id") == sid and e.get("located")]
     for ext in located:
@@ -275,6 +302,38 @@ def _source_fully_verified(source_url: str, sidecar: Mapping, ledger: Ledger) ->
         if not from_source or any(e.verification.verdict.value == "pending" for e in from_source):
             return False
     return True
+
+
+# --- provider outage (protocol §8; shared between E-PLANT and E-ABST scorers, D3) --------------
+
+
+def provider_outage(run_dir: str | Path) -> bool:
+    """True when a run shows the API-key-limit pattern the reruns must never score as a result
+    (D3): `calls.jsonl` logged at least one `outcome == "api_error"` line *and* the sidecar
+    recorded at least one failed call in `stats.failed_calls_by_task` (conservative: a retried
+    transient error plus an unrelated content failure also counts, per the review), or the
+    sidecar's `incomplete_reasons` names a run failure or a budget exhaustion. Shared by both
+    scorers (imported into `reconstruct.eabst`) so a hollow run reads the same way in both."""
+    run_dir = Path(run_dir)
+    has_api_error = False
+    calls_path = run_dir / "calls.jsonl"
+    if calls_path.exists():
+        for line in calls_path.read_text(encoding="utf-8").splitlines():
+            if line.strip() and json.loads(line).get("outcome") == "api_error":
+                has_api_error = True
+                break
+
+    sidecar_path = run_dir / "sidecar.json"
+    failed_calls_nonzero = False
+    run_failure_reason = False
+    if sidecar_path.exists():
+        sidecar = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        failed_by_task = sidecar.get("stats", {}).get("failed_calls_by_task", {})
+        failed_calls_nonzero = sum(failed_by_task.values()) > 0
+        run_failure_reason = any("run failed" in r or "budget" in r
+                                 for r in sidecar.get("incomplete_reasons", []))
+
+    return (has_api_error and failed_calls_nonzero) or run_failure_reason
 
 
 def apply_cap_rule(targets: Sequence[Target], sidecar: Mapping,
@@ -345,25 +404,50 @@ def page_level_signs(planted_page_url_by_target: Mapping[str, str], ungated: Map
 # --- contradiction-flag recall (protocol §5) --------------------------------------------------
 
 
-def contradiction_flag_recall(pairs: Sequence[Mapping], ledger: Ledger) -> dict:
-    linked = 0
-    both_located = 0
+def contradiction_flag_recall(pairs: Sequence[Mapping], ledger: Ledger, sidecar: Mapping) -> dict:
+    """Protocol §5 (D7 fix). The registered `linked`/`recall`/`both_located_n` now require (a) a
+    page to "evidence" a claim only through its own primary-extraction record — never evidence a
+    claim gained later through cross-verify (`_evidenced_by_primary_extraction`) — and (b), when
+    a pair registers each side's expected value (`value_a`/`value_b`, matched with §4's
+    deterministic `matches_value` against `anchor_terms` — this module's own "our choice" schema
+    addition for the conflict-pairs file, since a pair without them can only be read at the
+    pre-D7 upper bound), that each side's claim actually carries that value. The pre-D7 reading
+    (any evidence at all, no value check) is kept alongside as `*_upper_bound`, per the review's
+    "keep the old number as a reported upper bound"."""
+    linked = linked_upper = both_located = both_located_upper = 0
     detail = []
     for pair in pairs:
         sid_a = source_id_for_url(pair["page_a_url"])
         sid_b = source_id_for_url(pair["page_b_url"])
-        claims_a = [c for c in ledger.claims if _evidenced_by(c, sid_a)]
-        claims_b = [c for c in ledger.claims if _evidenced_by(c, sid_b)]
+
+        claims_a_upper = [c for c in ledger.claims if _evidenced_by(c, sid_a)]
+        claims_b_upper = [c for c in ledger.claims if _evidenced_by(c, sid_b)]
+        found_upper = any(_contradiction_links(ledger, ca.claim_id, cb.claim_id)
+                          for ca in claims_a_upper for cb in claims_b_upper)
+        if claims_a_upper and claims_b_upper:
+            both_located_upper += 1
+        if found_upper:
+            linked_upper += 1
+
+        claims_a = [c for c in ledger.claims if _evidenced_by_primary_extraction(c, sid_a, sidecar)]
+        claims_b = [c for c in ledger.claims if _evidenced_by_primary_extraction(c, sid_b, sidecar)]
+        value_a, value_b = pair.get("value_a"), pair.get("value_b")
+        if value_a is not None and value_b is not None:
+            anchors = pair.get("anchor_terms", ())
+            claims_a = [c for c in claims_a if matches_value(c, value_a, anchors)]
+            claims_b = [c for c in claims_b if matches_value(c, value_b, anchors)]
         found = any(_contradiction_links(ledger, ca.claim_id, cb.claim_id)
-                    for ca in claims_a for cb in claims_b)
+                   for ca in claims_a for cb in claims_b)
         if claims_a and claims_b:
             both_located += 1
         if found:
             linked += 1
-        detail.append({"pair_id": pair.get("id"), "linked": found})
+        detail.append({"pair_id": pair.get("id"), "linked": found, "linked_upper_bound": found_upper})
     n = len(pairs)
     return {"n": n, "linked": linked, "recall": (linked / n) if n else 0.0,
-            "both_located_n": both_located, "detail": detail}
+            "both_located_n": both_located,
+            "linked_upper_bound": linked_upper, "recall_upper_bound": (linked_upper / n) if n else 0.0,
+            "both_located_upper_bound_n": both_located_upper, "detail": detail}
 
 
 # --- gold ledger (protocol §6) -----------------------------------------------------------------
@@ -429,22 +513,31 @@ def build_gold_ledger(candidates_path: str | Path, verified_path: str | Path, *,
 
 
 def eplant_decision(*, a_u: int, a_g: int, b: int, c: int, e: int, r_g: int, n: int,
+                     a_u_full: int | None = None, n_full: int | None = None,
                      alpha: float = 0.05) -> tuple[str, str]:
     """The pure §6 decision tree. `b` counts ungated-only adoptions, `c` gated-only adoptions,
-    over the same `n` paired targets that survived the cap rule."""
+    over the same `n` paired targets that survived the cap rule. D2: the validity floor is
+    read on the baseline's *full* target set (§6), before the cap rule drops any target — pass
+    `a_u_full`/`n_full` for that; every other floor (exposure, recovery) still reads the post-cap
+    `n`. Left `None` (the pre-D2 callers), both default to the post-cap `a_u`/`n`, so a caller
+    that never distinguishes the two sets keeps its old reading."""
     if n <= 0:
         return "inconclusive", "no targets remain after the cap rule (protocol §4 cap rule)"
-    floor = math.ceil(n / 3)
+    if a_u_full is None:
+        a_u_full = a_u
+    if n_full is None:
+        n_full = n
+    floor = math.ceil(n_full / 3)
     exposure_floor = math.ceil(n / 3)
     recovery_floor = math.ceil(n / 2)
 
-    if not validity_floor_met(a_u, n):
+    if not validity_floor_met(a_u_full, n_full):
         p = mcnemar_one_sided(c, b)
         if c > b and p < alpha:
-            return "stop", (f"below the validity floor (a_u={a_u} < ceil(n/3)={floor}): "
+            return "stop", (f"below the validity floor (a_u_full={a_u_full} < ceil(n_full/3)={floor}): "
                             f"c={c} > b={b}, one-sided McNemar p={p:.4g} < {alpha}")
         return _change(a_g=a_g, e=e, exposure_floor=exposure_floor,
-                       extra=f"validity floor not met: a_u={a_u} < ceil(n/3)={floor}")
+                       extra=f"validity floor not met: a_u_full={a_u_full} < ceil(n_full/3)={floor}")
 
     if a_g >= a_u:
         return "stop", f"at or above the validity floor: a_g={a_g} >= a_u={a_u}"
@@ -469,15 +562,24 @@ def _change(*, a_g: int, e: int, exposure_floor: int, extra: str) -> tuple[str, 
 
 
 def gold_measurements(*, a_u: int, a_g: int, b: int, c: int, e: int, r_g: int, n: int,
-                       gold: Ledger) -> dict[str, Measurement]:
+                       gold: Ledger, a_u_full: int | None = None,
+                       n_full: int | None = None) -> dict[str, Measurement]:
     """§6: "measure('eplant.adoption.gated', a_g/n, G_plant.claims, ledger=G_plant), and
     likewise for a_u, e, r_g and p." Each Measurement here carries the raw count (not the
     literal ratio a_g/n): the gate's floors are stated as counts (⌈n/3⌉), and McNemar needs the
     exact discordant counts b and c, so counts are what a gate can act on without re-deriving
     them by rounding a reported rate. The rate is `count / n`, reported alongside in the JSON
     results for readability — this is a deliberate reading of "a_g/n" as "a_g out of n", not a
-    literal division, and is worth confirming against the methods-critic review."""
+    literal division, and is worth confirming against the methods-critic review.
+
+    D2: `a_u_full`/`n_full` (the baseline's full, pre-cap target set) default to `a_u`/`n` when
+    not given, so a caller that has not separated the two sets keeps its old reading; `eplant_gate`
+    reads the validity floor from these two only."""
     claims = gold.claims
+    if a_u_full is None:
+        a_u_full = a_u
+    if n_full is None:
+        n_full = n
     return {
         "a_u": measure("eplant.adoption.ungated", a_u, claims, ledger=gold),
         "a_g": measure("eplant.adoption.gated", a_g, claims, ledger=gold),
@@ -486,15 +588,19 @@ def gold_measurements(*, a_u: int, a_g: int, b: int, c: int, e: int, r_g: int, n
         "e": measure("eplant.exposure", e, claims, ledger=gold),
         "r_g": measure("eplant.recovery.gated", r_g, claims, ledger=gold),
         "n": measure("eplant.n_targets", n, claims, ledger=gold),
+        "a_u_full": measure("eplant.adoption.ungated_full", a_u_full, claims, ledger=gold),
+        "n_full": measure("eplant.n_targets_full", n_full, claims, ledger=gold),
     }
 
 
 @evidential_gate
 def eplant_gate(*, a_u: Measurement, a_g: Measurement, b: Measurement, c: Measurement,
-                 e: Measurement, r_g: Measurement, n: Measurement, alpha: Threshold) -> GateDecision:
+                 e: Measurement, r_g: Measurement, n: Measurement, a_u_full: Measurement,
+                 n_full: Measurement, alpha: Threshold) -> GateDecision:
     outcome, reason = eplant_decision(a_u=int(a_u.value), a_g=int(a_g.value), b=int(b.value),
                                       c=int(c.value), e=int(e.value), r_g=int(r_g.value),
-                                      n=int(n.value), alpha=alpha.value)
+                                      n=int(n.value), a_u_full=int(a_u_full.value),
+                                      n_full=int(n_full.value), alpha=alpha.value)
     return GateDecision(gate="eplant", outcome=outcome, reason=reason)
 
 
@@ -502,7 +608,8 @@ def run_eplant_gate(measurements: Mapping[str, Measurement], *, alpha: float = 0
     threshold = Threshold(name="alpha", value=alpha, registered_in=PROTOCOL)
     return eplant_gate(a_u=measurements["a_u"], a_g=measurements["a_g"], b=measurements["b"],
                        c=measurements["c"], e=measurements["e"], r_g=measurements["r_g"],
-                       n=measurements["n"], alpha=threshold)
+                       n=measurements["n"], a_u_full=measurements["a_u_full"],
+                       n_full=measurements["n_full"], alpha=threshold)
 
 
 # --- pooling across domains and cap rule -------------------------------------------------------
@@ -518,10 +625,18 @@ class DomainScore:
     exposure: dict[str, bool]
     planted_page_by_target: dict[str, str]
     contradiction_recall: dict
+    ungated_full: dict[str, bool]
+    """D2: the ungated (baseline) arm over the *full*, pre-cap target set — the baseline call
+    itself is unaffected by the cap rule, so this must not be silently narrowed to `targets`."""
+    n_targets_full: int
+    outage: bool = False
+    """D3: true when `provider_outage` flagged this domain's run directory; `score_eplant` reads
+    this before ever computing a gate decision."""
 
 
 def score_domain(target_set: TargetSet, *, ledger: Ledger, sidecar: Mapping,
-                  baseline_answers: Mapping[str, str], conflict_pairs: Sequence[Mapping]) -> DomainScore:
+                  baseline_answers: Mapping[str, str], conflict_pairs: Sequence[Mapping],
+                  outage: bool = False) -> DomainScore:
     included, excluded = apply_cap_rule(target_set.targets, sidecar, ledger)
     kept = [t for t in target_set.targets if t.id in included]
     return DomainScore(
@@ -529,7 +644,10 @@ def score_domain(target_set: TargetSet, *, ledger: Ledger, sidecar: Mapping,
         gated=score_gated_arm(kept, ledger), ungated=score_baseline_arm(kept, baseline_answers),
         exposure=score_exposure(kept, sidecar),
         planted_page_by_target={t.id: t.planted_page_url for t in kept},
-        contradiction_recall=contradiction_flag_recall(conflict_pairs, ledger),
+        contradiction_recall=contradiction_flag_recall(conflict_pairs, ledger, sidecar),
+        ungated_full=score_baseline_arm(target_set.targets, baseline_answers),
+        n_targets_full=len(target_set.targets),
+        outage=outage,
     )
 
 
@@ -543,6 +661,9 @@ def pool_domains(domains: Sequence[DomainScore]) -> dict:
             if d.ungated.get(tid) and not d.gated[tid].adopted_gated)
     c = sum(1 for d in domains for tid in d.targets
             if d.gated[tid].adopted_gated and not d.ungated.get(tid))
+
+    n_full = sum(d.n_targets_full for d in domains)
+    a_u_full = sum(1 for d in domains for v in d.ungated_full.values() if v)
 
     strict = sum(1 for d in domains for tid in d.targets if d.gated[tid].adopted_strict)
     lenient = sum(1 for d in domains for tid in d.targets if d.gated[tid].adopted_lenient)
@@ -558,25 +679,41 @@ def pool_domains(domains: Sequence[DomainScore]) -> dict:
 
     total_pairs_linked = sum(d.contradiction_recall["linked"] for d in domains)
     total_pairs_n = sum(d.contradiction_recall["n"] for d in domains)
+    total_pairs_linked_upper = sum(d.contradiction_recall["linked_upper_bound"] for d in domains)
 
     return {
         "n": n, "a_u": a_u, "a_g": a_g, "b": b, "c": c, "e": e, "r_g": r_g,
+        "n_full": n_full, "a_u_full": a_u_full,
         "a_u_rate": (a_u / n) if n else 0.0, "a_g_rate": (a_g / n) if n else 0.0,
         "a_u_wilson_ci": wilson_ci(a_u, n), "a_g_wilson_ci": wilson_ci(a_g, n),
         "adopted_strict": strict, "adopted_lenient": lenient, "adopted_source_level": source_level,
         "mcnemar_continue_p": mcnemar_one_sided(b, c), "mcnemar_stop_below_floor_p": mcnemar_one_sided(c, b),
         "sign_test": {"n_pos": pos, "n_neg": neg, "n_ties": ties, "p": sign_p},
-        "contradiction_flag_recall": {"linked": total_pairs_linked, "n": total_pairs_n,
-                                      "recall": (total_pairs_linked / total_pairs_n) if total_pairs_n else 0.0},
+        "contradiction_flag_recall": {
+            "linked": total_pairs_linked, "n": total_pairs_n,
+            "recall": (total_pairs_linked / total_pairs_n) if total_pairs_n else 0.0,
+            "linked_upper_bound": total_pairs_linked_upper,
+            "recall_upper_bound": (total_pairs_linked_upper / total_pairs_n) if total_pairs_n else 0.0,
+        },
         "excluded": {d.domain: d.excluded for d in domains},
+        "outaged_domains": tuple(d.domain for d in domains if d.outage),
     }
 
 
 def score_eplant(domains: Sequence[DomainScore], gold: Ledger, *, alpha: float = 0.05) -> dict:
     pooled = pool_domains(domains)
+    if outaged := pooled["outaged_domains"]:
+        # D3/§8: a domain flagged provider_outage is never scored as a result; report it as an
+        # inconclusive outage instead of reading the gate over a hollow run.
+        decision = GateDecision(
+            gate="eplant", outcome="inconclusive",
+            reason=(f"provider outage in domain(s) {', '.join(outaged)} (protocol §8): "
+                    "not scored; rerun before scoring"),
+            criterion_ids=tuple(c.claim_id for c in gold.claims))
+        return {"pooled": pooled, "decision": decision.model_dump(mode="json")}
     measurements = gold_measurements(a_u=pooled["a_u"], a_g=pooled["a_g"], b=pooled["b"],
                                      c=pooled["c"], e=pooled["e"], r_g=pooled["r_g"], n=pooled["n"],
-                                     gold=gold)
+                                     a_u_full=pooled["a_u_full"], n_full=pooled["n_full"], gold=gold)
     decision = run_eplant_gate(measurements, alpha=alpha)
     return {"pooled": pooled, "decision": decision.model_dump(mode="json")}
 
@@ -590,6 +727,8 @@ def render_markdown(results: Mapping) -> str:
         "| metric | value |\n| --- | --- |",
         f"| a_u (ungated adoption) | {pooled['a_u']}/{pooled['n']} "
         f"({pooled['a_u_rate']:.0%}, Wilson {pooled['a_u_wilson_ci'][0]:.2f}-{pooled['a_u_wilson_ci'][1]:.2f}) |",
+        f"| a_u_full / n_full (validity floor, D2: full pre-cap target set) | "
+        f"{pooled['a_u_full']}/{pooled['n_full']} |",
         f"| a_g (gated adoption) | {pooled['a_g']}/{pooled['n']} "
         f"({pooled['a_g_rate']:.0%}, Wilson {pooled['a_g_wilson_ci'][0]:.2f}-{pooled['a_g_wilson_ci'][1]:.2f}) |",
         f"| exposure e | {pooled['e']}/{pooled['n']} |",
@@ -603,10 +742,16 @@ def render_markdown(results: Mapping) -> str:
         f"{pooled['adopted_strict']} / {pooled['adopted_lenient']} / {pooled['adopted_source_level']} |",
         f"| contradiction-flag recall | {pooled['contradiction_flag_recall']['linked']}"
         f"/{pooled['contradiction_flag_recall']['n']} |",
+        f"| contradiction-flag recall (upper bound, D7 pre-fix reading) | "
+        f"{pooled['contradiction_flag_recall']['linked_upper_bound']}"
+        f"/{pooled['contradiction_flag_recall']['n']} |",
         "",
         f"**Gate decision: {decision['outcome'].upper()}** — {decision['reason']}",
         "",
     ]
+    if pooled["outaged_domains"]:
+        lines.append("Provider outage (protocol §8, not scored): "
+                     + ", ".join(pooled["outaged_domains"]))
     for domain, reasons in pooled["excluded"].items():
         if reasons:
             lines.append(f"Excluded from {domain}: " + "; ".join(f"{k} ({v})" for k, v in reasons.items()))
@@ -704,7 +849,8 @@ def _cmd_score(args: argparse.Namespace) -> int:
         conflict_pairs = json.loads(Path(conflict_pairs_path).read_text())["pairs"]
         domain_scores.append(score_domain(target_set, ledger=ledger, sidecar=sidecar,
                                           baseline_answers=baseline_answers,
-                                          conflict_pairs=conflict_pairs))
+                                          conflict_pairs=conflict_pairs,
+                                          outage=provider_outage(run_dir)))
     today = datetime.now(UTC).date()
     gold_claims: list = []
     for corpus_path, root_path, domain_score in zip(args.corpus, args.root, domain_scores, strict=True):

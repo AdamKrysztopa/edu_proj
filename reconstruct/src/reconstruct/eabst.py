@@ -56,6 +56,7 @@ from typing import Callable, Literal, Mapping, Sequence
 import httpx
 
 from reconstruct import evidence
+from reconstruct.eplant import provider_outage
 from reconstruct.evidence import LocatedSpan, content_words, normalise
 from reconstruct.llm import (
     Budget,
@@ -89,7 +90,9 @@ KNOWN_UNRELATED_HITS: tuple[str, ...] = (
 )
 
 PIPELINE_DOMAIN = "informant-video repository by AdamKrysztopa"
-PIPELINE_BLOCKLIST: tuple[str, ...] = ("github.com/AdamKrysztopa/*",)
+PIPELINE_BLOCKLIST: tuple[str, ...] = ("github.com/AdamKrysztopa/",)
+"""D5: `run.py`'s `_is_blocklisted` matches by plain substring (`p.casefold() in url.casefold()`,
+or a host suffix) — a trailing `*` is never in a real URL, so the pre-D5 entry blocked nothing."""
 PIPELINE_MAX_RESULTS = 3
 PIPELINE_MAX_DOC_CHARS = 20_000
 PIPELINE_PER_ITEM_MAX_USD = 0.25
@@ -226,6 +229,17 @@ def write_exposure_report(report: ExposureReport, out: str | Path) -> None:
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, sort_keys=True, indent=1) + "\n", encoding="utf-8")
+
+
+def term_print_lines(terms: Sequence[TermResult], *, n_registered: int) -> list[str]:
+    """D6: §7 says the script "never displays the key" -- only the `n_registered` public,
+    code-constant `EXPOSURE_TERMS` print their own text; every term after them came from
+    `--terms-file` (identifiers derived from the sealed key), so it prints only its index."""
+    lines = []
+    for i, t in enumerate(terms):
+        label = t.term if i < n_registered else f"term {i - n_registered + 1}"
+        lines.append(f"{label}: {'HIT' if t.hit else 'NO-HIT'}")
+    return lines
 
 
 # --- run-status bookkeeping (both arms; "sealed until every unit has finished") ---------------
@@ -449,6 +463,10 @@ def build_frame(items: Sequence[Item], out_dir: Path) -> Frame:
     for item in items:
         pipeline_dir = out_dir / item.id / "pipeline"
         reasons = mechanical_exclusion_reasons(pipeline_dir)
+        if provider_outage(pipeline_dir):
+            # D3/§8: a provider-outage unit is not scored as a result -- excluded and counted,
+            # same as a mechanically-contaminated item.
+            reasons = [*reasons, "provider outage (protocol §8): excluded and counted; rerun before scoring"]
         if reasons:
             excluded[item.id] = reasons
             continue
@@ -645,13 +663,21 @@ def unit_labels_all(coding_map: Mapping, coded: Mapping[str, CodedUnit],
 
 
 def item_arm_labels(items: Sequence[Item], coding_map: Mapping, labels: Mapping[str, UnitLabel],
-                     excluded_ids: set[str]) -> dict[str, dict[str, UnitLabel]]:
+                     excluded_ids: set[str], *, include_synthetic: bool = False
+                     ) -> dict[str, dict[str, UnitLabel]]:
     """§7 Scoring, per included item and arm: `classify_item_arm` over that item+arm's non-audit
     units. An item with no units in an arm (the baseline abstained, or nothing pipeline-side
-    overlapped or was audited) has no statement in that arm, i.e. abstain."""
+    overlapped or was audited) has no statement in that arm, i.e. abstain.
+
+    D1: §7 says synthetic claims (and, generally, anything not criterion-labelled) "are not
+    answers" for the registered FAR — a unit whose `meta["label"]` is `"synthetic"` (or any label
+    other than `None`/`"criterion"`) is skipped here by default. Pass `include_synthetic=True` to
+    get the separate, explicitly non-gating "synthetic-counted" sensitivity FAR instead."""
     per_item: dict[str, dict[str, list[UnitLabel]]] = {}
     for unit_id, meta in coding_map["units"].items():
         if meta.get("is_audit") or unit_id not in labels:
+            continue
+        if not include_synthetic and meta.get("label") not in (None, "criterion"):
             continue
         per_item.setdefault(meta["item_id"], {}).setdefault(meta["arm"], []).append(labels[unit_id])
     out: dict[str, dict[str, UnitLabel]] = {}
@@ -870,13 +896,17 @@ def decide(*, far_raw_value: float, far_pipe_value: float, n_included: int, kapp
 # --- zero-extraction / capped counter (§7 Inconclusive) ------------------------------------------
 
 def is_zero_extraction_or_capped(pipeline_dir: Path) -> bool:
+    """D4: "extracted zero documents" counts sources whose extraction call actually succeeded
+    (`sources[sid].extract_ok`), not merely fetched -- a run that fetched pages but extracted
+    nothing from any of them (truncation, or a provider outage) must still count here."""
     sidecar_path = pipeline_dir / "sidecar.json"
     if not sidecar_path.exists():
         return True
     sidecar = json.loads(sidecar_path.read_text(encoding="utf-8"))
     if not sidecar.get("complete", True):
         return True
-    return sidecar.get("stats", {}).get("n_sources_fetched", 0) == 0
+    sources = sidecar.get("sources", {})
+    return sum(1 for s in sources.values() if s.get("extract_ok")) == 0
 
 
 # --- score orchestration (§7 Scoring + Gate; sealed/public split, module docstring) --------------
@@ -896,12 +926,18 @@ def score_eabst(*, items: Sequence[Item], key_items: Mapping[str, dict], commit:
     second_labels = (unit_labels_all(coding_map, second_coded, accept_by_item)
                      if second_coded is not None else None)
     item_labels = item_arm_labels(items, coding_map, owner_labels, excluded_ids)
+    # D1: the registered FAR excludes synthetic (and any non-criterion) pipeline units; this
+    # second, non-gating reading reproduces the pre-D1 (biased) count as a reported sensitivity.
+    item_labels_synthetic = item_arm_labels(items, coding_map, owner_labels, excluded_ids,
+                                            include_synthetic=True)
 
     n_included = len(item_labels)
     false_raw, n_raw = far_counts(item_labels, "raw")
     false_pipe, n_pipe = far_counts(item_labels, "pipeline")
     far_raw_value = (false_raw / n_raw) if n_raw else 0.0
     far_pipe_value = (false_pipe / n_pipe) if n_pipe else 0.0
+    false_pipe_syn, n_pipe_syn = far_counts(item_labels_synthetic, "pipeline")
+    far_pipe_synthetic_value = (false_pipe_syn / n_pipe_syn) if n_pipe_syn else 0.0
     n11, n10, n01, n00 = paired_false_counts(item_labels)
     newcombe = paired_newcombe_ci(n11, n10, n01, n00)
     kappa = compute_kappa(coding_map, owner_labels, second_labels)
@@ -931,6 +967,8 @@ def score_eabst(*, items: Sequence[Item], key_items: Mapping[str, dict], commit:
         "n_included": n_included,
         "far_raw": {"false": false_raw, "n": n_raw, "rate": far_raw_value},
         "far_pipe": {"false": false_pipe, "n": n_pipe, "rate": far_pipe_value},
+        "far_pipe_synthetic_counted": {"false": false_pipe_syn, "n": n_pipe_syn,
+                                       "rate": far_pipe_synthetic_value},
         "paired_2x2": {"n11": n11, "n10": n10, "n01": n01, "n00": n00},
         "newcombe_ci": {"lower": newcombe[0], "upper": newcombe[1]},
         "kappa": kappa,
@@ -957,6 +995,9 @@ def render_eabst_markdown(public: Mapping) -> str:
         "| metric | value |\n| --- | --- |",
         f"| FAR raw | {far_raw['false']}/{far_raw['n']} ({far_raw['rate']:.0%}) |",
         f"| FAR pipeline | {far_pipe['false']}/{far_pipe['n']} ({far_pipe['rate']:.0%}) |",
+        f"| FAR pipeline (synthetic-counted, non-gating sensitivity) | "
+        f"{public['far_pipe_synthetic_counted']['false']}/{public['far_pipe_synthetic_counted']['n']} "
+        f"({public['far_pipe_synthetic_counted']['rate']:.0%}) |",
         f"| FAR margin (raw - pipe) | {far_raw['rate'] - far_pipe['rate']:.3f} |",
         f"| paired Newcombe 95% CI (descriptive) | {ci['lower']:.3f} to {ci['upper']:.3f} |",
         f"| paired 2x2 (raw-false, pipe-false) | n11={paired['n11']} n10={paired['n10']} "
@@ -990,8 +1031,8 @@ def _cmd_exposure(args: argparse.Namespace) -> int:
     report = run_exposure_check(models["planner"], extra_terms=extra_terms, max_results=args.max_results)
     write_exposure_report(report, args.out)
     print(f"repo: {'PASS' if report.repo.ok else 'FAIL'}")
-    for t in report.terms:
-        print(f"{t.term}: {'HIT' if t.hit else 'NO-HIT'}")
+    for line in term_print_lines(report.terms, n_registered=len(EXPOSURE_TERMS)):
+        print(line)
     print("PASSED" if report.passed else "FAILED (register again)")
     return 0 if report.passed else 1
 
