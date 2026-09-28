@@ -59,6 +59,18 @@ rules:
     severity: blocking
     verification: deterministic
     verified_by: pytest-archon#test_budget_blocks_the_call_before_any_client_dispatch
+  - id: every-call-logs-even-on-failure
+    statement: A provider error is logged to calls.jsonl exactly like a success — outcome "api_error" with its error class and HTTP status, never billed — before the caller ever sees LLMUnavailable; a transient error (rate limit, timeout, connection, 5xx) is retried up to three times with backoff, a non-transient error is logged once and raised immediately, and neither path may skip the log line to reach the exception.
+    scope: ["reconstruct/src/reconstruct/llm.py"]
+    severity: blocking
+    verification: deterministic
+    verified_by: pytest-archon#test_backend_retries_429_then_succeeds
+  - id: failed-calls-counted-per-task
+    statement: Every stage that skips a unit after a failed plan, verify, cross-verify or decoy call increments that call's own task label in the run's failed_calls_by_task counts; a run's sidecar must show how many calls of each task failed, not only how many succeeded, so "complete: true" never hides a silent loss.
+    scope: ["reconstruct/src/reconstruct/run.py"]
+    severity: blocking
+    verification: deterministic
+    verified_by: pytest-archon#test_failed_calls_by_task_counts_verify_failures
 ---
 # Reconstruction pipeline: a one-way evidence-gathering walking skeleton
 

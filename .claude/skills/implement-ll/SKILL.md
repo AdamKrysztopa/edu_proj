@@ -103,6 +103,9 @@ Real edits, not descriptions of edits. Then:
   indistinguishable from one that checks nothing. Fire it, read the message, then restore.
 - **A hook: trigger it and read what it prints.** A hook is code, and a green test suite is not a
   working binary.
+- **A rewritten matcher or regex inside a hook:** run it against every input form the old one
+  covered, not just the new one — a widened matcher that quietly stops matching the dominant old
+  form reads as a clean pass with no output, and only a fixture per form catches it.
 - **A changed default:** run something that previously showed the old behaviour.
 - **Prose:** re-read it at the point of use and confirm it says the thing where it is needed.
 

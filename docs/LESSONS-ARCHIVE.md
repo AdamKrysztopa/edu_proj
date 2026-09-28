@@ -65,6 +65,25 @@ with the whole chain as its evidence. Answering an oscillation with a third rule
 
 <!-- Newest drain first. Append a new `## YYYY-MM-DD — drain N` section above the previous one. -->
 
+## 2026-09-28 — drain 6
+
+| id | rule | home | commit | edges |
+|------|------|------|--------|-------|
+| L6.1 | Every provider call's failure is logged like its success (outcome "api_error", error class, HTTP status, never billed); a transient error retries with backoff before the caller sees `LLMUnavailable`, a non-transient one is logged once and raised immediately, and a stage that skips a unit on failure counts that skip under its own task label so a run's sidecar never hides a silent loss behind `complete: true`. | `docs/architecture/decisions/0007-reconstruction-pipeline.md` | 0f39ed9 | — |
+| L6.2 | An invariant enforced by a pydantic validator needs a test that tries every construction path a `Record` offers — `model_copy`, direct construction, deserialisation — not just its constructor, because constructor-only tests show the invariant only where it was already safe. | `residual/tests/test_bypasses.py` | 03c1e44 | — |
+| L6.3 | Before any NOW run reconstructs a domain, check it against `REORIENTATION.md` §18.1's Track A exclusion and N3's held-out gold domains; an example domain given in a request is not a vetted choice. | `.claude/agents/methods-critic.md` | — | — |
+| L6.4 | A command that reads a sealed key/answer file and also prints something is asked to confirm every branch prints only shape metadata (`type`, `len`, `sorted(keys)`), never the value — a branch that prints the value on one arm and the type on the other is not a type check. | `.claude/hooks/guard-sealed-files.sh` | — | — |
+| L6.5 | A rewritten matcher or regex inside a hook is run against every input form the old one covered, not just the new one, before the drain that changed it is archived. | `.claude/skills/implement-ll/SKILL.md` | — | — |
+| L6.6 | A freeze of a model-role config captures the whole role object, not a hand-picked subset of its fields; this is checked by `validity-reviewer` specifically because `instrument/tests/test_gates.py` only runs when `instrument/` is edited, and a frozen Track A produces no such edits to trigger it. | `.claude/agents/validity-reviewer.md` | — | moves L3.1 |
+
+Grouping: L6.1 merges the queue's provider-error entry with the already-shipped fix (`0f39ed9`, this checkpoint) and its tests (`reconstruct/tests/test_llm.py::test_backend_retries_429_then_succeeds` and family; `reconstruct/tests/test_e2e_call_stats.py`'s six `failed_calls_by_task` tests); the drain adds the registered, bound decision rule the fix itself did not yet have. L6.2 documents a fix and test suite (`residual/tests/test_bypasses.py`) already in place since N1 review (`03c1e44`), predating this queue entry; nothing new was built, only registered. L6.3 and L6.5 are new checklist/skill amendments with no code to bind. L6.4 is a new hook, fired once on purpose during this drain (asked correctly on a sealed-path+print command, stayed silent on a print with no sealed path and on a sealed-path read with no print) and registered in `.claude/settings.json`'s `PreToolUse`. L6.6 is the graph checker's MOVE-IT finding for L1.7 (re-learned at L2.3 and L3.1): its prior home, `instrument/tests/test_gates.py`, cannot be edited this drain (Track A frozen, off limits) and in any case only runs on an `instrument/` edit, which is exactly what a freeze period has none of — moved to `validity-reviewer`, which fires on data sessions and instrument changes without needing Track A to be mid-edit.
+
+**Constraints this drain:** `instrument/` was not edited (L1.7's move went to an agent doc, not a test); `reconstruct/src` and `residual/src` were not edited — L6.1 and L6.2 bind already-shipped, already-tested behaviour into decision text rather than adding new code checks.
+
+**Graph finding not acted on:** `L1.11` recurred once more (as `L5.3`) — one recurrence, below the MOVE-IT threshold. Watching; a second recurrence after `L5.3`'s move to `methods-critic` would mean that home also failed.
+
+**Fitness check — which of this cycle's defects would a rule already in the archive have caught?** Two of five queue entries were already fully fixed and tested before this drain (`L6.1`'s code fix, `L6.2`'s validator fix) — no archived rule caused either fix; both were caught by ad hoc review (an E-LIVE run's call-count mismatch, a type-design review), which is the gap `L6.1`'s new decision rule and `L6.2`'s registration close by giving each a named, bound home. The other three (`L6.3` sealed-domain check, `L6.4` sealed-file print, `L6.5` matcher-rewrite testing) are new classes with no prior archive coverage — correctly "none" for those three.
+
 ## 2026-09-28 — drain 5
 
 | id | rule | home | commit | edges |
