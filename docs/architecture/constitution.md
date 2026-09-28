@@ -79,6 +79,15 @@ Before probe-app freeze the leading-question guard is run over a labelled set of
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md)
 
+### label-computed-from-verified-evidence
+
+A claim's epistemic label is computed from its evidence, never set; a criterion label needs a supports verdict from a human, or from a model of another family than the claim's generating model, on a source that is not machine-voiced.
+
+- Severity: blocking
+- Scope: `residual/src/residual/**`
+- Verified by `pytest-archon#test_a_criterion_label_needs_support_verified_by_a_human_or_another_family_any_verifier` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md)
+
 ### missing-key-fails-before-start
 
 Building the backends fails before the server starts, naming the variable, if a configured role's API key is missing.
@@ -106,6 +115,15 @@ Every LLM role (interviewer, guard, simulated expert) and the transcriber are ch
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md)
 
+### n1-schema-frozen
+
+The schema, the gap-map feature set and the label-deciding code match residual/frozen/n1.json; a change needs a re-freeze commit that says what changed and, once any gold is acquired, precedes that gold's pre-registration.
+
+- Severity: blocking
+- Scope: `residual/src/residual/**`, `residual/frozen/**`
+- Verified by `pytest-archon#test_the_schema_matches_its_freeze` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md)
+
 ### no-silent-model-substitution
 
 Server-side model fallbacks are not enabled; a refusal or failure is logged and the turn falls back to the bare stem instead of another model answering.
@@ -114,6 +132,15 @@ Server-side model fallbacks are not enabled; a refusal or failure is logged and 
 - Scope: `instrument/src/probe_app/**`
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
+
+### residual-core-provider-neutral
+
+The residual package depends at runtime only on pydantic and imports nothing outside the standard library, pydantic and itself; no LLM client, retrieval, graph or vector store, web framework or instrument code.
+
+- Severity: blocking
+- Scope: `residual/**`
+- Verified by `pytest-archon#test_modules_import_only_stdlib_pydantic_and_residual` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md)
 
 ### rules-not-agents-decide
 
@@ -151,6 +178,24 @@ Sessions produced with a simulated expert are marked simulated and rejected by t
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
 
+### synthetic-never-a-gate-criterion
+
+A function decorated with residual.gates.evidential_gate refuses any criterion input labelled synthetic extrapolation (SyntheticRefused), unknown or inferred (GateRefusal), any bare value, and any Measurement not built by measure(); synthetic labels are allowed only as a Measurement's predictor labels.
+
+- Severity: blocking
+- Scope: `residual/src/residual/**`
+- Verified by `pytest-archon#test_synthetic_claims_are_refused_wherever_they_sit` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md)
+
+### track-a-reused-by-copy
+
+New-track code never imports from or edits instrument/; a Track A component is reused by copying and generalising it into residual/.
+
+- Severity: blocking
+- Scope: `residual/**`, `instrument/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md)
+
 ### two-backends-behind-one-call
 
 LLM calls go through the backend interface in probe_app/llm.py, with exactly two backends, native Anthropic and one OpenAI-compatible backend serving openai and openrouter; no LiteLLM or other routing library.
@@ -175,3 +220,4 @@ Both backends raise LLMRefused for a refusal and LLMUnavailable for API errors, 
 - [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md) — migrate
 - [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md) — agentic-patterns
 - [0005 Console routes answer only the laptop itself](decisions/0005-console-routes-loopback-only.md) — threat-model
+- [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md) — decide-architecture

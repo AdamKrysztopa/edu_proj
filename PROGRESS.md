@@ -8,13 +8,13 @@ Tracks work against [`REORIENTATION.md`](REORIENTATION.md), the strategic plan a
 
 The project is reoriented: reconstruct what public and organisational evidence already says, predict where that reconstruction is missing human knowledge, and ask humans only about that residual. NOW needs zero participants, zero proprietary data, zero microphones and zero live expert interviews; its one human input is one blind second coder. Physics is one benchmark domain; the prepared physics study is frozen as Validation Track A (below).
 
-**Next:** N0 remainder (domain-neutral package), then N1–N2; fill in the threshold table and pre-register N3 (E-CTA, E-OSS) before acquiring any gold. N8 (E-SEAL) and N9 (cost ledger) can start at once.
+**Next:** N2, the gated reconstruction pipeline v0 ([plan](docs/plans/n2-reconstruction-plan.md)). First, owner input: the E-ABST false-answer margin and the private objective. In parallel, fill in the rest of the threshold table and pre-register N3 (E-CTA, E-OSS) before acquiring any gold. N8 (E-SEAL) and N9 (cost ledger) can start at once.
 
 | Item | What | Gate | Status |
 |---|---|---|---|
-| **N0** | Reset: DOI hook path fixed; Track A labelled frozen; `CLAUDE.md`, `PROGRESS.md` and map rewritten; domain-neutral package for reused components | DOI hook fires on a test edit | Hook fixed and verified on a bad `doi.org` link (it does not yet read `doi:` citations, see `docs/lessons.md`); governing files rewritten; package not started |
-| **N1** | Claim record, six evidence labels, knowledge-type vocabulary, gap-map fields | Every gold item expressible without new field types | Not started |
-| **N2** | Gated reconstruction pipeline v0; E-PLANT, E-ABST | Beats the ungated model on planted falsehoods and private objectives | Not started |
+| **N0** | Reset: DOI hook path fixed; Track A labelled frozen; `CLAUDE.md`, `PROGRESS.md` and map rewritten; domain-neutral package for reused components | DOI hook fires on a test edit | **Done 2026-09-28, gate passed.** `scripts/hook_tests/test_check_dois.py` runs the registered command offline, and a live Write of a made-up DOI was blocked. The test found that Drain 5 had stopped the hook reading `doi.org/` links; fixed, lesson queued. Package `residual/` created (pydantic only; own test hook); `instrument/` untouched |
+| **N1** | Claim record, six evidence labels, knowledge-type vocabulary, gap-map fields | Every gold item expressible with ≤ 2 new field types | **Done 2026-09-28, gate: continue with 2 additions, at the registered limit** (`KnowledgeType.INTERPRETATION`, `ResponseDistribution`). Schema, feature set and label code hash-frozen in `residual/frozen/n1.json`. Record below |
+| **N2** | Gated reconstruction pipeline v0; E-PLANT, E-ABST | Beats the ungated model on planted falsehoods and private objectives | Planned ([plan](docs/plans/n2-reconstruction-plan.md)); not started |
 | **N3** | **Central test:** E-CTA (clinical, troubleshooting gold) and E-OSS | Pre-registered ΔAUROC stop/continue rule vs the strongest baseline | Not started; gold not yet acquired |
 | **N4** | Behavioural validity: E-KC, E-DIST, E-MISC | Non-inferior KC fit; beats raw LLM likelihood; misconception recall | Not started |
 | **N5** | Residual measurement against gold as an independent occasion | Unseen-item estimate matches the gold count within tolerance | Not started |
@@ -22,6 +22,50 @@ The project is reoriented: reconstruct what public and organisational evidence a
 | **N7** | Surrogates: labelling rule, validation tiers T1–T3 on public data | Uses licensed by tier reached | Not started |
 | **N8** | E-SEAL: sealed Track A predictions | None (secondary, non-gating) | Not started |
 | **N9** | Cost ledger | None | Not started |
+
+
+### N0–N1 record (2026-09-28)
+
+- **Decisions (owner).**
+  - "A handful" means ≤ 2 new field types: a new field, model or vocabulary member.
+  - The area partition and importance weights freeze with each experiment's pre-registration, still before gold.
+  - Both are recorded in the `REORIENTATION.md` §22 threshold table. The N1 gate row was reworded to match. Its original text defined "continue" only for zero additions, and "change" only for more than a handful, which left 1–2 undecided. The wording now follows the ≤ 2 decision.
+- **Decisions (design)** ([decision 0006](docs/architecture/decisions/0006-residual-accounting-core.md)):
+  - Labels are computed from verified evidence, never set, and the generating model's family cannot verify its own output.
+  - `@evidential_gate` reads only typed, labelled inputs and refuses a synthetic, unknown or inferred criterion. Synthetic *predictors* stay allowed, so N3 can gate a gap map built on them.
+  - Gold, reconstruction and surrogate material live in separate ledgers.
+  - Observed residual, estimated residual and gap-map prediction are separate types.
+  - Published CTA lists are *literature-supported*, not observed (§6).
+  - OSS artefacts are World B; public learner data are World A.
+- **Gate evidence.** [`docs/n1-gold-shapes.md`](docs/n1-gold-shapes.md) is a schema-blind inventory of 16 gold shapes, committed before the claim model. [`docs/n1-schema-validation.md`](docs/n1-schema-validation.md) maps every attribute, and `residual/tests/test_cross_domain.py` checks the mapping.
+- **Schema changes forced by validation.**
+  - `interpretation` knowledge type (Chao & Salvendy, PARI).
+  - `ResponseDistribution` model: E-DIST computes on per-option shares. Review caught these first sitting in locator text.
+  - The allowance is used up. Anything more (E-KC's L3 log tables at N4, or Sullivan per-step capture histories if published) needs a re-freeze and a new owner decision.
+  - Prevalence weights use the existing `Measurement` type through `recall(weights=)`, which is not a field type.
+- **Reviews.**
+  - A test-writing agent found 5 defects.
+  - A type-design review found 7 gate bypasses, via pydantic's unvalidated `model_copy` among others.
+  - A skeptical-maintainer review found 10 more issues:
+    - self-verification slipped through with the generator unrecorded;
+    - a surrogate ledger reached a gate;
+    - verified simulation output was labelled "supported";
+    - OSS newcomer evidence could not answer "what is difficult";
+    - `as_of` ignored `valid_from`, and drops came without reasons;
+    - a numeric key could hide in a dict passed to a gate;
+    - a matcher could share the generator's model family;
+    - the DOI test lacked a fixture for the bare form;
+    - the E-DIST distributions sat in text.
+  - All are fixed, each with a regression test, and the schema was re-frozen afterwards (before any gold).
+  - The citation check corrected reference [2]'s volume and issue.
+- **Limitations.**
+  - The items are illustrative. Real gold is re-checked on acquisition, and any field it forces counts against the same threshold and needs a re-freeze.
+  - E-KC and E-DIST need learner-response tables (L3), deferred to N4.
+  - Sullivan per-step coverage, if published, would need a capture-history record (would be the 2nd addition).
+  - The gate checks expressiveness, not prediction (R13).
+  - A `Measurement` certifies which claims it was scored against, not the arithmetic behind its value. `Threshold.registered_in` is free text. Python cannot stop deliberate forgery; the rules stop accidents, and code review plus N2's run log cover the rest.
+  - No schema was committed before the inventory, so the addition count rests on the validation record, not on git.
+- **Tests.** `uv run --directory residual pytest -q` (268); `python3 scripts/hook_tests/test_check_dois.py` (14); the instrument suite is unchanged (311). `git diff 520d8fd -- instrument/` and the Track A design, roadmap and decisions 0001–0005 are empty.
 
 **LATER** begins only after N3 continues or pivots: labellers, expert raters, targeted residual interviews with a blind arm, a small learner error sample, one organisational pilot under a DPIA. **MUCH LATER:** learner-facing modules, live generation, instructional RCTs, per-student diagnosis.
 
@@ -153,3 +197,5 @@ These track the map's research questions inside Track A; the reoriented question
 - [x] DOI hook reads any DOI form (`doi.org` links, `doi:10.…`, bare) and reports unreachable DOIs as unverified (L5.1)
 - [x] SessionStart hook warns when a registered hook script is missing or not executable (L5.1)
 - [ ] `methods-critic` checklist rewritten for zero-participant and surrogate designs
+- [x] DOI hook proven to fire by a deterministic test of the registered command (`scripts/hook_tests/test_check_dois.py`); `doi.org/` links read again (2026-09-28)
+- [x] `run-residual-tests.sh`: reruns the `residual/` suite after edits under `residual/`

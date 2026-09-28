@@ -7,7 +7,7 @@ Research on how AI can recover the knowledge experts leave unsaid, diagnose lear
 
 The route is `REORIENTATION.md` §22: the NOW programme, items N0–N9. NOW uses zero participants, zero proprietary data, zero microphones and zero live expert interviews; its one human input is one blind second coder (labelling, not participation). The central question is whether a reconstruction from public and organisational evidence, plus a gap map, predicts where the human knowledge residual lies (RQ-B). N3 (E-CTA and E-OSS) is the critical path, and its stop rule is pre-registered before any gold is acquired. Every NOW item ends in a continue/change/stop decision that reads an experiment result, not a build. Fill in the threshold table before acquiring gold.
 
-Evidence labels are first-class: observed human evidence, literature-supported, organisational-artefact-supported, inferred, synthetic extrapolation, unknown. Synthetic output may be a predictor, never a criterion, and never feeds a gate. Reuse Track A components by copying them into a new domain-neutral package; nothing under `instrument/` changes.
+Evidence labels are first-class: observed human evidence, literature-supported, organisational-artefact-supported, inferred, synthetic extrapolation, unknown. Synthetic output may be a predictor, never a criterion, and never feeds a gate. Reuse Track A components by copying them into the domain-neutral package `residual/` (decision 0006); nothing under `instrument/` changes.
 
 Reading: `REORIENTATION.md` §1 is the entire minimum. §25, all books, papers and notes are optional extras, never a prerequisite checklist for the user.
 
@@ -33,7 +33,9 @@ The instrument is built. Stage A is roadmap M4 and Stage B is M6; the pilot and 
 
 ## Tests
 
-`uv run --directory instrument pytest -q` (306 tests, about 7 s); a PostToolUse hook runs it after edits under `instrument/`.
+`uv run --directory instrument pytest -q` (311 tests, about 7 s); a PostToolUse hook runs it after edits under `instrument/`.
+`uv run --directory residual pytest -q` (the NOW package, about 1 s); a PostToolUse hook runs it after edits under `residual/`. `residual/frozen/n1.json` freezes the N1 schema, feature set and label code: a change needs a deliberate re-freeze (`uv run --directory residual python -m residual.freeze --write`) and a commit saying why (decision 0006).
+`python3 scripts/hook_tests/test_check_dois.py` proves the DOI hook fires; run it after any hook edit.
 The fakes never refuse, so live transcribers and interviewer refusals are checked only by `/preflight`, never by the tests.
 
 ## Agents

@@ -49,3 +49,9 @@ A queue padded with those is a queue nobody drains.
 - **What happened:** Drain 5 (`2376825`) replaced `check-dois.py`'s `doi.org` URL regex with one meant to read "every DOI form", but its lookbehind `(?<![\w./])` rejects the `/` before `10.` in `https://doi.org/10.…`, so the dominant form (184 links in the map alone) stopped being checked with no output. The commit, `PROGRESS.md` and L5.1 all claimed the form was read. No test ran the hook. Caught by `scripts/hook_tests/test_check_dois.py`, written for N0, which feeds the registered command one fixture line per DOI form.
 - **Generalises to:** When a check's matcher is rewritten to cover more cases, a test must show it still matches each case the old matcher covered, because a regression in a checker reads as a clean pass.
 - **Candidate home:** `implement-ll` / L5.1 — every change to a hook ships with a fixture per input form it claims to read.
+
+### Validators on frozen models did not survive a copy
+
+- **What happened:** `residual/`'s labels and gate seal were enforced by pydantic validators. `model_copy(update=...)` skips validation, so a sealed `Measurement`, a verdict without a verifier, or a gold ledger holding a synthetic claim could each be copied into a state the constructor refuses. All of them passed `@evidential_gate`. The unit tests built every object through constructors and never saw it. It was caught by a type-design review that tried to build invalid states on purpose. Fixed by overriding `Record.model_copy` to revalidate.
+- **Generalises to:** An invariant enforced by a validator needs a test that tries every construction path the library offers (copy, construct, deserialise, mutation of cached state), because constructor-only tests show the invariant only where it was already safe.
+- **Candidate home:** `validity-reviewer` / an architecture rule in decision 0006: every `Record` subclass revalidates on copy, bound to `test_bypasses.py`.
