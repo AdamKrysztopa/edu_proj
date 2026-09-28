@@ -8,14 +8,18 @@ import csv
 import json
 from datetime import date
 from pathlib import Path
+from typing import Mapping
 
 import pytest
 from e2e_support import ScriptedBackend, search_result
 
 from reconstruct import eabst
 from reconstruct.eabst import (
+    CodedUnit,
     Item,
     RepoCheck,
+    accidental_correct_counts,
+    audit_miss_rate,
     build_frame,
     build_gold_claim,
     build_gold_ledger,
@@ -26,14 +30,24 @@ from reconstruct.eabst import (
     classify_item_arm,
     classify_unit,
     cohens_kappa,
+    compute_kappa,
+    count_zero_extraction_or_capped,
     decide,
+    far_counts,
     is_zero_extraction_or_capped,
+    item_arm_labels,
+    load_accidental,
+    load_key,
     mechanical_exclusion_reasons,
     overlaps_question,
+    paired_false_counts,
     paired_newcombe_ci,
+    render_eabst_markdown,
     run_baseline,
     run_baseline_item,
+    score_eabst,
     total_spent,
+    unit_labels_all,
     units_finished,
     variant_match,
     wilson_ci,
@@ -640,3 +654,228 @@ def test_run_pipeline_all_skips_an_item_that_would_breach_the_overall_cap(tmp_pa
     assert results == [{"item": "q1", "status": "skipped", "reason": "would breach the overall cap"}]
     status = json.loads((out_dir / "status.json").read_text())
     assert status["q1"]["pipeline"] == "skipped"
+
+
+# --- score wiring: key.json / accidental.json / coding-map classification --------------------------
+
+def _coding_map(units: Mapping[str, dict], excluded_items: dict | None = None) -> dict:
+    return {"units": units, "excluded_items": excluded_items or {}, "seeds": {}, "generated_at": "x"}
+
+
+def test_load_key_returns_commit_and_items_by_id(tmp_path):
+    p = tmp_path / "key.json"
+    p.write_text(json.dumps({"commit": "deadbeef", "items": [
+        {"id": "q1", "answer": "a", "accept": ["a"], "evidence_file": "README.md", "evidence_quote": "q"},
+    ]}))
+    commit, by_id = load_key(p)
+    assert commit == "deadbeef"
+    assert set(by_id) == {"q1"}
+    assert by_id["q1"]["answer"] == "a"
+
+
+def test_load_accidental_missing_file_is_empty(tmp_path):
+    assert load_accidental(tmp_path / "nope.json") == frozenset()
+
+
+def test_load_accidental_reads_unit_ids(tmp_path):
+    p = tmp_path / "accidental.json"
+    p.write_text(json.dumps({"unit_ids": ["u001", "u002"]}))
+    assert load_accidental(p) == frozenset({"u001", "u002"})
+
+
+def test_unit_labels_all_only_covers_units_present_in_coded():
+    cmap = _coding_map({
+        "u001": {"item_id": "q1", "arm": "raw"},
+        "u002": {"item_id": "q2", "arm": "raw"},
+    })
+    coded = {"u001": CodedUnit(unit_id="u001", answers=True, candidates=("dist/frames",))}
+    labels = unit_labels_all(cmap, coded, {"q1": ["dist/frames"]})
+    assert labels == {"u001": "correct"}
+
+
+def test_item_arm_labels_defaults_missing_arm_to_abstain_and_skips_excluded_items():
+    cmap = _coding_map({
+        "u001": {"item_id": "q1", "arm": "raw", "is_audit": False},
+        "u002": {"item_id": "q1", "arm": "pipeline", "is_audit": False},
+    }, excluded_items={"q2": ["reason"]})
+    labels = {"u001": "correct", "u002": "false"}
+    out = item_arm_labels(FAKE_ITEMS, cmap, labels, excluded_ids={"q2"})
+    assert out == {"q1": {"raw": "correct", "pipeline": "false"}, "q3": {"raw": "abstain", "pipeline": "abstain"}}
+    assert "q2" not in out
+
+
+def test_item_arm_labels_ignores_audit_units():
+    cmap = _coding_map({
+        "u001": {"item_id": "q1", "arm": "pipeline", "is_audit": True},
+    })
+    out = item_arm_labels(FAKE_ITEMS[:1], cmap, {"u001": "correct"}, excluded_ids=set())
+    assert out == {"q1": {"raw": "abstain", "pipeline": "abstain"}}
+
+
+def test_audit_miss_rate_counts_answering_share_of_audit_units_only():
+    cmap = _coding_map({
+        "u001": {"item_id": "q1", "arm": "pipeline", "is_audit": True},
+        "u002": {"item_id": "q1", "arm": "pipeline", "is_audit": True},
+        "u003": {"item_id": "q1", "arm": "raw", "is_audit": False},
+    })
+    labels = {"u001": "correct", "u002": "abstain", "u003": "correct"}
+    assert audit_miss_rate(cmap, labels) == (1, 2)
+
+
+def test_far_counts():
+    item_labels = {"q1": {"raw": "correct", "pipeline": "false"}, "q2": {"raw": "false", "pipeline": "correct"}}
+    assert far_counts(item_labels, "raw") == (1, 2)
+    assert far_counts(item_labels, "pipeline") == (1, 2)
+
+
+def test_paired_false_counts_all_four_cells():
+    item_labels = {
+        "q1": {"raw": "correct", "pipeline": "correct"},   # n00
+        "q2": {"raw": "false", "pipeline": "abstain"},      # n10
+        "q3": {"raw": "abstain", "pipeline": "false"},      # n01
+    }
+    assert paired_false_counts(item_labels) == (0, 1, 1, 1)
+
+
+def test_accidental_correct_counts_tallies_by_arm():
+    cmap = _coding_map({
+        "u001": {"item_id": "q1", "arm": "raw"},
+        "u002": {"item_id": "q1", "arm": "pipeline"},
+    })
+    labels = {"u001": "correct", "u002": "correct"}
+    counts = accidental_correct_counts(cmap, labels, frozenset({"u001"}))
+    assert counts == {"raw": 1, "pipeline": 0}
+
+
+def test_accidental_correct_counts_refuses_a_unit_not_coded_correct():
+    cmap = _coding_map({"u001": {"item_id": "q1", "arm": "raw"}})
+    with pytest.raises(ValueError, match="not correct"):
+        accidental_correct_counts(cmap, {"u001": "false"}, frozenset({"u001"}))
+
+
+def test_accidental_correct_counts_refuses_an_unknown_unit():
+    cmap = _coding_map({})
+    with pytest.raises(ValueError, match="not in coding_map"):
+        accidental_correct_counts(cmap, {}, frozenset({"u999"}))
+
+
+def test_compute_kappa_none_with_no_second_coder():
+    cmap = _coding_map({"u001": {"item_id": "q1", "arm": "raw", "in_second_coder_subset": True}})
+    assert compute_kappa(cmap, {"u001": "correct"}, None) is None
+
+
+def test_compute_kappa_none_when_second_coder_covers_nothing_in_the_subset():
+    cmap = _coding_map({"u001": {"item_id": "q1", "arm": "raw", "in_second_coder_subset": True}})
+    assert compute_kappa(cmap, {"u001": "correct"}, {}) is None
+
+
+def test_compute_kappa_perfect_agreement_over_the_second_coder_subset():
+    cmap = _coding_map({
+        "u001": {"item_id": "q1", "arm": "raw", "in_second_coder_subset": True},
+        "u002": {"item_id": "q2", "arm": "raw", "in_second_coder_subset": True},
+        "u003": {"item_id": "q3", "arm": "pipeline", "in_second_coder_subset": False},
+    })
+    owner = {"u001": "correct", "u002": "false", "u003": "correct"}
+    second = {"u001": "correct", "u002": "false"}
+    assert compute_kappa(cmap, owner, second) == pytest.approx(1.0)
+
+
+def test_count_zero_extraction_or_capped_across_items(tmp_path):
+    for item_id, stats in (("q1", {"complete": True, "stats": {"n_sources_fetched": 3}}),
+                           ("q2", {"complete": True, "stats": {"n_sources_fetched": 0}})):
+        d = tmp_path / item_id / "pipeline"
+        d.mkdir(parents=True)
+        (d / "sidecar.json").write_text(json.dumps(stats))
+    # q3 has no pipeline dir at all -> also counted (no sidecar.json).
+    assert count_zero_extraction_or_capped(FAKE_ITEMS, tmp_path) == 2
+
+
+# --- score_eabst end to end (offline, synthetic key/coding sheets) ---------------------------------
+
+def _score_eabst_fixture(tmp_path):
+    """A hand-built, arithmetic-checkable scenario over FAKE_ITEMS:
+    q1 raw=correct, pipeline=correct (an audit unit too, answering);
+    q2 raw=false, pipeline has no unit (abstain by omission);
+    q3 raw has no unit (abstain by omission), pipeline=false.
+    The second coder covers q1's raw+pipeline units and q2's raw unit, agreeing throughout.
+    """
+    quote = "writes its output frames to the `dist/frames` directory"
+    key_items = {qid: {"id": qid, "answer": "dist/frames", "accept": ["dist/frames"],
+                       "evidence_file": "README.md", "evidence_quote": quote}
+                 for qid in ("q1", "q2", "q3")}
+
+    coding_map = _coding_map({
+        "u001": {"item_id": "q1", "arm": "raw", "is_audit": False, "in_second_coder_subset": True},
+        "u002": {"item_id": "q1", "arm": "pipeline", "is_audit": False, "in_second_coder_subset": True},
+        "u003": {"item_id": "q1", "arm": "pipeline", "is_audit": True, "in_second_coder_subset": False},
+        "u004": {"item_id": "q2", "arm": "raw", "is_audit": False, "in_second_coder_subset": True},
+        "u005": {"item_id": "q3", "arm": "pipeline", "is_audit": False, "in_second_coder_subset": False},
+    })
+    owner_coded = {
+        "u001": CodedUnit(unit_id="u001", answers=True, candidates=("dist/frames",)),
+        "u002": CodedUnit(unit_id="u002", answers=True, candidates=("dist/frames",)),
+        "u003": CodedUnit(unit_id="u003", answers=True, candidates=("dist/frames",)),
+        "u004": CodedUnit(unit_id="u004", answers=True, candidates=("gstreamer",)),
+        "u005": CodedUnit(unit_id="u005", answers=True, candidates=("gstreamer",)),
+    }
+    second_coded = {
+        "u001": CodedUnit(unit_id="u001", answers=True, candidates=("dist/frames",)),
+        "u002": CodedUnit(unit_id="u002", answers=True, candidates=("dist/frames",)),
+        "u004": CodedUnit(unit_id="u004", answers=True, candidates=("gstreamer",)),
+    }
+    accidental_ids = frozenset({"u001"})
+
+    out_dir = tmp_path / "runs"
+    for item_id, stats in (("q1", {"complete": True, "stats": {"n_sources_fetched": 3}}),
+                           ("q2", {"complete": True, "stats": {"n_sources_fetched": 0}}),
+                           ("q3", {"complete": True, "stats": {"n_sources_fetched": 2}})):
+        d = out_dir / item_id / "pipeline"
+        d.mkdir(parents=True)
+        (d / "sidecar.json").write_text(json.dumps(stats))
+
+    return dict(items=FAKE_ITEMS, key_items=key_items, commit="deadbeef", coding_map=coding_map,
+               owner_coded=owner_coded, second_coded=second_coded, accidental_ids=accidental_ids,
+               repo_root=FIXTURES / "repo", out_dir=out_dir, today=DAY)
+
+
+def test_score_eabst_far_and_paired_counts_match_the_hand_built_scenario(tmp_path):
+    result = score_eabst(**_score_eabst_fixture(tmp_path))
+    public = result["public"]
+    assert public["n_included"] == 3
+    assert public["far_raw"] == {"false": 1, "n": 3, "rate": pytest.approx(1 / 3)}
+    assert public["far_pipe"] == {"false": 1, "n": 3, "rate": pytest.approx(1 / 3)}
+    assert public["paired_2x2"] == {"n11": 0, "n10": 1, "n01": 1, "n00": 1}
+    assert public["kappa"] == pytest.approx(1.0)
+    assert public["audit_miss_rate"] == {"answering": 1, "total": 1, "rate": 1.0}
+    assert public["accidental_correct"] == {"raw": 1, "pipeline": 0}
+    assert public["zero_extraction_or_capped"] == 1  # q2's sidecar has n_sources_fetched=0
+
+
+def test_score_eabst_gate_decision_is_inconclusive_below_min_included(tmp_path):
+    result = score_eabst(**_score_eabst_fixture(tmp_path))
+    decision = result["public"]["decision"]
+    assert decision["outcome"] == "inconclusive"
+    assert "n_included" in decision["reason"]
+
+
+def test_score_eabst_sealed_holds_item_labels_public_does_not(tmp_path):
+    result = score_eabst(**_score_eabst_fixture(tmp_path))
+    assert result["sealed"]["item_labels"]["q1"] == {"raw": "correct", "pipeline": "correct"}
+    assert "item_labels" not in result["public"]
+
+
+def test_score_eabst_public_has_no_question_or_answer_text(tmp_path):
+    """The whole point of the sealed/public split: nothing from questions.json or key.json
+    (item questions, answers, accept variants, evidence quotes) leaks into the public half."""
+    result = score_eabst(**_score_eabst_fixture(tmp_path))
+    blob = json.dumps(result["public"])
+    for leaked in ("dist/frames", "gstreamer", "render pipeline", "output frames"):
+        assert leaked not in blob
+
+
+def test_render_eabst_markdown_has_no_question_or_answer_text(tmp_path):
+    result = score_eabst(**_score_eabst_fixture(tmp_path))
+    md = render_eabst_markdown(result["public"])
+    assert "FAR raw" in md and "Gate decision" in md
+    for leaked in ("dist/frames", "gstreamer"):
+        assert leaked not in md

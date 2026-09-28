@@ -16,6 +16,26 @@ The private items live at `.private/e_abst/questions.json` (ids + questions; not
 that read key.json, and only after `check_registered_hashes` passes; nothing here ever prints a
 key value, and no key content is written into a path this repo would commit (`.private/` is
 git-ignored in full).
+
+**key.json schema** *(this module's own design, undocumented elsewhere; mirrors eplant.py's
+"our choice" file shapes)*: `{"commit": str, "items": [{"id": str, "answer": str,
+"accept": [str, ...], "evidence_file": str, "evidence_quote": str}, ...]}`. `commit` is the
+`.private/e_abst/informant-video` checkout's commit, shared by every item's gold source
+citation; `accept` is the list of accept-variant strings `variant_match` checks candidates
+against (§7 Scoring); `evidence_file`/`evidence_quote` locate the gold span `build_gold_claim`
+verifies.
+
+**accidental.json** (optional, `.private/e_abst/accidental.json`): `{"unit_ids": [str, ...]}`,
+the owner's list of units coded "correct" that were guessed right without real support (§7
+"Accidentally correct guesses count as correct ... and are reported separately"). `score_eabst`
+only tallies these by arm for the report; it never changes a unit's `correct`/`false`/`abstain`
+label, and refuses if a listed unit was not itself coded `correct`.
+
+**score outputs.** `score` writes two files: `.private/e_abst/results.json` (sealed; per-item
+raw/pipeline labels, exclusion reasons, the gate decision) and a PUBLIC
+`research/n2/e_abst_results.json` + `.md` holding only aggregate counts, rates, the CI, kappa,
+the audit miss rate and the `GateDecision` — no item id -> label map, no question or answer
+text.
 """
 from __future__ import annotations
 
@@ -594,6 +614,109 @@ def read_coded_csv(path: Path) -> dict[str, CodedUnit]:
     return out
 
 
+# --- key.json / accidental.json (§7 Scoring, sealed inputs) -------------------------------------
+
+def load_key(path: str | Path) -> tuple[str, dict[str, dict]]:
+    """Returns (commit, {item_id: key-item}). Only called after `check_registered_hashes`; never
+    logs or returns anything beyond what the caller explicitly asks of the parsed structure."""
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    return data["commit"], {it["id"]: it for it in data["items"]}
+
+
+def load_accidental(path: str | Path) -> frozenset[str]:
+    p = Path(path)
+    if not p.exists():
+        return frozenset()
+    data = json.loads(p.read_text(encoding="utf-8"))
+    return frozenset(data.get("unit_ids", ()))
+
+
+def unit_labels_all(coding_map: Mapping, coded: Mapping[str, CodedUnit],
+                     accept_by_item: Mapping[str, Sequence[str]]) -> dict[str, UnitLabel]:
+    """Owner or second-coder labels for every unit *present in `coded`* (a second-coder CSV only
+    ever holds its own subset, per `write_code_sheet_files`)."""
+    out = {}
+    for unit_id, meta in coding_map["units"].items():
+        c = coded.get(unit_id)
+        if c is None:
+            continue
+        out[unit_id] = classify_unit(c.answers, c.candidates, accept_by_item.get(meta["item_id"], ()))
+    return out
+
+
+def item_arm_labels(items: Sequence[Item], coding_map: Mapping, labels: Mapping[str, UnitLabel],
+                     excluded_ids: set[str]) -> dict[str, dict[str, UnitLabel]]:
+    """§7 Scoring, per included item and arm: `classify_item_arm` over that item+arm's non-audit
+    units. An item with no units in an arm (the baseline abstained, or nothing pipeline-side
+    overlapped or was audited) has no statement in that arm, i.e. abstain."""
+    per_item: dict[str, dict[str, list[UnitLabel]]] = {}
+    for unit_id, meta in coding_map["units"].items():
+        if meta.get("is_audit") or unit_id not in labels:
+            continue
+        per_item.setdefault(meta["item_id"], {}).setdefault(meta["arm"], []).append(labels[unit_id])
+    out: dict[str, dict[str, UnitLabel]] = {}
+    for item in items:
+        if item.id in excluded_ids:
+            continue
+        arms = per_item.get(item.id, {})
+        out[item.id] = {"raw": classify_item_arm(arms.get("raw", ())),
+                        "pipeline": classify_item_arm(arms.get("pipeline", ()))}
+    return out
+
+
+def audit_miss_rate(coding_map: Mapping, labels: Mapping[str, UnitLabel]) -> tuple[int, int]:
+    """§7: "the miss rate is the answering share of the audit" — a diagnostic on the zero-overlap
+    sample, not part of any item's scored label. Returns (answering, total audited)."""
+    audit_ids = [uid for uid, meta in coding_map["units"].items() if meta.get("is_audit")]
+    coded_audit = [uid for uid in audit_ids if uid in labels]
+    answering = sum(1 for uid in coded_audit if labels[uid] != "abstain")
+    return answering, len(coded_audit)
+
+
+def accidental_correct_counts(coding_map: Mapping, labels: Mapping[str, UnitLabel],
+                               accidental_ids: frozenset[str]) -> dict[str, int]:
+    """§7: "Accidentally correct guesses count as correct in both arms and are reported
+    separately." Refuses a flagged unit the owner did not in fact code `correct` — the override
+    reports, it never manufactures, a correct label."""
+    counts = {"raw": 0, "pipeline": 0}
+    for unit_id in accidental_ids:
+        meta = coding_map["units"].get(unit_id)
+        if meta is None:
+            raise ValueError(f"accidental.json names unit {unit_id!r}, not in coding_map.json")
+        if labels.get(unit_id) != "correct":
+            raise ValueError(f"accidental.json names unit {unit_id!r}, coded {labels.get(unit_id)!r} "
+                              "(not correct)")
+        counts[meta["arm"]] += 1
+    return counts
+
+
+def far_counts(item_labels: Mapping[str, Mapping[str, UnitLabel]], arm: str) -> tuple[int, int]:
+    values = list(item_labels.values())
+    false_n = sum(1 for v in values if v[arm] == "false")
+    return false_n, len(values)
+
+
+def paired_false_counts(item_labels: Mapping[str, Mapping[str, UnitLabel]]) -> tuple[int, int, int, int]:
+    """(n11, n10, n01, n00) of (raw false, pipeline false), for `paired_newcombe_ci`."""
+    n11 = n10 = n01 = n00 = 0
+    for v in item_labels.values():
+        raw_false, pipe_false = v["raw"] == "false", v["pipeline"] == "false"
+        if raw_false and pipe_false:
+            n11 += 1
+        elif raw_false:
+            n10 += 1
+        elif pipe_false:
+            n01 += 1
+        else:
+            n00 += 1
+    return n11, n10, n01, n00
+
+
+def count_zero_extraction_or_capped(items: Sequence[Item], out_dir: str | Path) -> int:
+    out_dir = Path(out_dir)
+    return sum(1 for item in items if is_zero_extraction_or_capped(out_dir / item.id / "pipeline"))
+
+
 # --- reliability -------------------------------------------------------------------------------
 
 def cohens_kappa(labels_a: Sequence[str], labels_b: Sequence[str]) -> float:
@@ -608,6 +731,20 @@ def cohens_kappa(labels_a: Sequence[str], labels_b: Sequence[str]) -> float:
     if pe >= 1 - 1e-12:
         return 1.0 if po >= 1 - 1e-12 else 0.0
     return (po - pe) / (1 - pe)
+
+
+def compute_kappa(coding_map: Mapping, owner_labels: Mapping[str, UnitLabel],
+                   second_labels: Mapping[str, UnitLabel] | None) -> float | None:
+    """§7 "Coders": the second coder codes all 24 raw-arm units plus 20% of pipeline units
+    (`in_second_coder_subset`, set by `build_frame`). None with no second-coder CSV, or if it
+    coded none of that subset; `decide()` treats a None kappa as inconclusive."""
+    if second_labels is None:
+        return None
+    ids = [uid for uid, meta in coding_map["units"].items()
+           if meta.get("in_second_coder_subset") and uid in second_labels and uid in owner_labels]
+    if not ids:
+        return None
+    return cohens_kappa([owner_labels[uid] for uid in ids], [second_labels[uid] for uid in ids])
 
 
 # --- paired Newcombe CI (descriptive only) ------------------------------------------------------
@@ -742,6 +879,103 @@ def is_zero_extraction_or_capped(pipeline_dir: Path) -> bool:
     return sidecar.get("stats", {}).get("n_sources_fetched", 0) == 0
 
 
+# --- score orchestration (§7 Scoring + Gate; sealed/public split, module docstring) --------------
+
+def score_eabst(*, items: Sequence[Item], key_items: Mapping[str, dict], commit: str,
+                 coding_map: Mapping, owner_coded: Mapping[str, CodedUnit],
+                 second_coded: Mapping[str, CodedUnit] | None, accidental_ids: frozenset[str],
+                 repo_root: str | Path, out_dir: str | Path, today: date) -> dict:
+    """The `score` CLI's one entry point. Returns `{"sealed": ..., "public": ...}`: "sealed" holds
+    per-item raw/pipeline labels (never question or answer text — those stay in questions.json
+    and key.json); "public" holds only aggregate counts, rates and the gate decision, safe for
+    `research/n2/`."""
+    excluded_ids = set(coding_map.get("excluded_items", {}))
+    accept_by_item = {iid: k.get("accept", ()) for iid, k in key_items.items()}
+
+    owner_labels = unit_labels_all(coding_map, owner_coded, accept_by_item)
+    second_labels = (unit_labels_all(coding_map, second_coded, accept_by_item)
+                     if second_coded is not None else None)
+    item_labels = item_arm_labels(items, coding_map, owner_labels, excluded_ids)
+
+    n_included = len(item_labels)
+    false_raw, n_raw = far_counts(item_labels, "raw")
+    false_pipe, n_pipe = far_counts(item_labels, "pipeline")
+    far_raw_value = (false_raw / n_raw) if n_raw else 0.0
+    far_pipe_value = (false_pipe / n_pipe) if n_pipe else 0.0
+    n11, n10, n01, n00 = paired_false_counts(item_labels)
+    newcombe = paired_newcombe_ci(n11, n10, n01, n00)
+    kappa = compute_kappa(coding_map, owner_labels, second_labels)
+    miss_answering, miss_total = audit_miss_rate(coding_map, owner_labels)
+    accidental = accidental_correct_counts(coding_map, owner_labels, accidental_ids)
+    zero_or_capped = count_zero_extraction_or_capped(items, out_dir)
+
+    gold_claims = []
+    for item in items:
+        if item.id not in item_labels:
+            continue
+        k = key_items.get(item.id)
+        if k is None:
+            raise ValueError(f"key.json has no entry for included item {item.id!r}")
+        gold_claims.append(build_gold_claim(item=item, answer=k["answer"], evidence_file=k["evidence_file"],
+                                            evidence_quote=k["evidence_quote"], repo_root=Path(repo_root),
+                                            commit=commit, today=today))
+    gold_ledger = build_gold_ledger(gold_claims)
+    decision = decide(far_raw_value=far_raw_value, far_pipe_value=far_pipe_value, n_included=n_included,
+                      kappa=kappa, zero_extraction_or_capped=zero_or_capped, gold_claims=gold_claims,
+                      gold_ledger=gold_ledger)
+    decision_json = decision.model_dump(mode="json")
+    excluded_items = dict(coding_map.get("excluded_items", {}))
+
+    sealed = {"item_labels": item_labels, "excluded_items": excluded_items, "decision": decision_json}
+    public = {
+        "n_included": n_included,
+        "far_raw": {"false": false_raw, "n": n_raw, "rate": far_raw_value},
+        "far_pipe": {"false": false_pipe, "n": n_pipe, "rate": far_pipe_value},
+        "paired_2x2": {"n11": n11, "n10": n10, "n01": n01, "n00": n00},
+        "newcombe_ci": {"lower": newcombe[0], "upper": newcombe[1]},
+        "kappa": kappa,
+        "audit_miss_rate": {"answering": miss_answering, "total": miss_total,
+                            "rate": (miss_answering / miss_total) if miss_total else None},
+        "accidental_correct": accidental,
+        "zero_extraction_or_capped": zero_or_capped,
+        "excluded_items": excluded_items,
+        "decision": decision_json,
+    }
+    return {"sealed": sealed, "public": public}
+
+
+def render_eabst_markdown(public: Mapping) -> str:
+    decision = public["decision"]
+    far_raw, far_pipe, ci = public["far_raw"], public["far_pipe"], public["newcombe_ci"]
+    miss, paired = public["audit_miss_rate"], public["paired_2x2"]
+    kappa_row = (f"| kappa | {public['kappa']:.3f} |" if public["kappa"] is not None
+                 else "| kappa | no second coder |")
+    miss_rate = f" ({miss['rate']:.0%})" if miss["rate"] is not None else ""
+    lines = [
+        "## E-ABST\n",
+        f"n_included = {public['n_included']} items.\n",
+        "| metric | value |\n| --- | --- |",
+        f"| FAR raw | {far_raw['false']}/{far_raw['n']} ({far_raw['rate']:.0%}) |",
+        f"| FAR pipeline | {far_pipe['false']}/{far_pipe['n']} ({far_pipe['rate']:.0%}) |",
+        f"| FAR margin (raw - pipe) | {far_raw['rate'] - far_pipe['rate']:.3f} |",
+        f"| paired Newcombe 95% CI (descriptive) | {ci['lower']:.3f} to {ci['upper']:.3f} |",
+        f"| paired 2x2 (raw-false, pipe-false) | n11={paired['n11']} n10={paired['n10']} "
+        f"n01={paired['n01']} n00={paired['n00']} |",
+        kappa_row,
+        f"| audit miss rate | {miss['answering']}/{miss['total']}{miss_rate} |",
+        f"| accidental-correct (raw / pipeline) | {public['accidental_correct']['raw']} / "
+        f"{public['accidental_correct']['pipeline']} |",
+        f"| zero-extraction-or-capped runs | {public['zero_extraction_or_capped']} |",
+        "",
+        f"**Gate decision: {decision['outcome'].upper()}** — {decision['reason']}",
+        "",
+    ]
+    excluded = public.get("excluded_items") or {}
+    if excluded:
+        lines.append("Excluded items: " + "; ".join(f"{k} ({'; '.join(v)})" for k, v in excluded.items()))
+    return "\n".join(lines) + "\n"
+
+
 # --- CLI -----------------------------------------------------------------------------------------
 
 def _models_json_path() -> Path:
@@ -795,8 +1029,34 @@ def _cmd_code_sheet(args: argparse.Namespace) -> int:
 def _cmd_score(args: argparse.Namespace) -> int:
     check_registered_hashes(args.questions, args.key)
     print("hash check: PASSED (scoring proceeds)")
-    print("score: see reconstruct.eabst's library functions to compute FAR, kappa and the gate "
-          "decision from the filled coding sheets; wire your run's paths through them here.")
+
+    items = load_items(args.questions)
+    commit, key_items = load_key(args.key)
+    coding_map = json.loads(Path(args.coding_map).read_text(encoding="utf-8"))
+    owner_coded = read_coded_csv(args.coding_sheet)
+    second_path = Path(args.second_coder)
+    second_coded = read_coded_csv(second_path) if second_path.exists() else None
+    accidental_ids = load_accidental(args.accidental)
+
+    result = score_eabst(items=items, key_items=key_items, commit=commit, coding_map=coding_map,
+                         owner_coded=owner_coded, second_coded=second_coded,
+                         accidental_ids=accidental_ids, repo_root=args.repo_root, out_dir=args.out,
+                         today=datetime.now(UTC).date())
+
+    sealed_path = Path(args.sealed_out)
+    sealed_path.parent.mkdir(parents=True, exist_ok=True)
+    sealed_path.write_text(json.dumps(result["sealed"], sort_keys=True, indent=1) + "\n", encoding="utf-8")
+
+    public_path = Path(args.public_out)
+    public_path.parent.mkdir(parents=True, exist_ok=True)
+    public_path.write_text(json.dumps(result["public"], sort_keys=True, indent=1) + "\n", encoding="utf-8")
+    public_path.with_suffix(".md").write_text(render_eabst_markdown(result["public"]), encoding="utf-8")
+
+    decision = result["public"]["decision"]
+    print(f"n_included={result['public']['n_included']}")
+    print(f"decision: {decision['outcome'].upper()} — {decision['reason']}")
+    print(sealed_path)
+    print(public_path)
     return 0
 
 
@@ -832,6 +1092,14 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("score")
     p.add_argument("--questions", default=".private/e_abst/questions.json")
     p.add_argument("--key", default=".private/e_abst/key.json")
+    p.add_argument("--out", default=".private/e_abst/runs")
+    p.add_argument("--coding-map", default=".private/e_abst/coding_map.json")
+    p.add_argument("--coding-sheet", default=".private/e_abst/coding_sheet.csv")
+    p.add_argument("--second-coder", default=".private/e_abst/coding_sheet_second.csv")
+    p.add_argument("--accidental", default=".private/e_abst/accidental.json")
+    p.add_argument("--repo-root", default=".private/e_abst/informant-video")
+    p.add_argument("--sealed-out", default=".private/e_abst/results.json")
+    p.add_argument("--public-out", default="research/n2/e_abst_results.json")
     p.set_defaults(fn=_cmd_score)
 
     args = parser.parse_args(argv)
