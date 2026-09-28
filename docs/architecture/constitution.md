@@ -25,6 +25,15 @@ The blinded coder export contains no interviewer text, the trace export contains
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
 
+### budget-before-every-call
+
+A hard --max-usd budget is checked against accumulated cost before every model or search call, never after; exceeding it blocks the call before client dispatch and the run is marked incomplete.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/llm.py`
+- Verified by `pytest-archon#test_budget_blocks_the_call_before_any_client_dispatch` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
+
 ### console-routes-loopback-only
 
 Every console-only route of the session app (the console page, session creation, console-view, think-aloud start, keep-talking, segment corrections and additions, probe start, typed answers, probe end, human-arm controls, pause and resume) refuses any request whose client is not 127.0.0.1 or ::1; only the expert routes are reachable from the network.
@@ -78,6 +87,15 @@ Before probe-app freeze the leading-question guard is run over a labelled set of
 - Scope: `instrument/prompts/**`, `instrument/src/probe_code/**`
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md)
+
+### independence-before-corroboration
+
+Fetched documents are clustered by union-find (shared registrable domain, shingle containment at least 0.5, or a shared verbatim run of at least 25 words overlapping an evidence span) before any claim is counted as corroborated; a syndicated copy on another domain collapses to the same independence key and counts once.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/evidence.py`
+- Verified by `pytest-archon#test_syndicated_passage_on_two_domains_merges_to_corroboration_one` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
 
 ### label-computed-from-verified-evidence
 
@@ -133,6 +151,24 @@ Server-side model fallbacks are not enabled; a refusal or failure is logged and 
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
 
+### only-evidence-builds-evidence
+
+Evidence, Selector and Verification are constructed only inside reconstruct/src/reconstruct/evidence.py; every other module is checked for the constructor call and must not contain it.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/**`
+- Verified by `pytest-archon#test_only_evidence_module_constructs_evidence_selector_verification` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
+
+### reconstruct-never-imports-instrument
+
+No module under reconstruct/src/reconstruct imports instrument, probe_app or probe_code; Track A components are reused by copying and trimming them, never by importing instrument code.
+
+- Severity: blocking
+- Scope: `reconstruct/**`
+- Verified by `pytest-archon#test_modules_never_import_instrument` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
+
 ### residual-core-provider-neutral
 
 The residual package depends at runtime only on pydantic and imports nothing outside the standard library, pydantic and itself; no LLM client, retrieval, graph or vector store, web framework or instrument code.
@@ -141,6 +177,15 @@ The residual package depends at runtime only on pydantic and imports nothing out
 - Scope: `residual/**`
 - Verified by `pytest-archon#test_modules_import_only_stdlib_pydantic_and_residual` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
 - Source: [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md)
+
+### retrieved-text-is-data
+
+Fetched page text is passed to models only inside clearly delimited data blocks; the planner is never shown page text, the extractor call carries no tools, and a span matching a known injection pattern is flagged and left PENDING rather than reaching the verifier as an instruction.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/**`
+- Verified by `pytest-archon#test_hidden_and_flagged_visible_injection_never_reach_the_verifier` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
 
 ### rules-not-agents-decide
 
@@ -178,6 +223,33 @@ Sessions produced with a simulated expert are marked simulated and rejected by t
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
 
+### single-openrouter-backend-and-served-model-check
+
+All model calls and search route through one OpenAI-compatible OpenRouter backend; openrouter/auto and fallback model lists are rejected at load time, and every response's served model is compared to the configured slug — a mismatch discards the verdict (evidence stays PENDING) while the served id is still logged to calls.jsonl.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/llm.py`
+- Verified by `pytest-archon#test_backend_served_model_mismatch_logs_then_raises` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
+
+### span-is-ours
+
+Selector.exact is a slice of our own fetched, normalised text, never the model's string; a quote that cannot be located verbatim in that text creates no Evidence, and the claim stays a synthetic generation with no software verdict.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/evidence.py`
+- Verified by `pytest-archon#test_fabricated_quote_gets_no_evidence_and_is_synthetic` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
+
+### support-needs-other-family-and-quote-in-span
+
+A SUPPORTS verdict is written only from a model whose family differs from the extractor's, and only when its supporting_quote is a normalised substring of the claim's own span; same-family verdicts never produce a criterion label, and a quote outside the span is recorded INSUFFICIENT, not supported.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/evidence.py`
+- Verified by `pytest-archon#test_same_family_verifier_never_produces_supports_or_criterion_labels` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
+
 ### synthetic-never-a-gate-criterion
 
 A function decorated with residual.gates.evidential_gate refuses any criterion input labelled synthetic extrapolation (SyntheticRefused), unknown or inferred (GateRefusal), any bare value, and any Measurement not built by measure(); synthetic labels are allowed only as a Measurement's predictor labels.
@@ -214,6 +286,15 @@ Both backends raise LLMRefused for a refusal and LLMUnavailable for API errors, 
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md)
 
+### unknown-only-when-examined
+
+A slot becomes an UNKNOWN ledger record only when its area was searched, at least one document was fetched and extracted, no area was wholly lost to truncation, and a verifier of another family returned a verdict on every located claim in the slot; otherwise the slot is unverified or unexamined, reported only in the sidecar, never written to the ledger.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/evidence.py`
+- Verified by `pytest-archon#test_slot_unknown_only_when_fully_examined_and_verified` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
+
 ## Active decisions
 
 - [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md) — migrate
@@ -221,3 +302,4 @@ Both backends raise LLMRefused for a refusal and LLMUnavailable for API errors, 
 - [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md) — agentic-patterns
 - [0005 Console routes answer only the laptop itself](decisions/0005-console-routes-loopback-only.md) — threat-model
 - [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md) — decide-architecture
+- [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md) — decide-architecture

@@ -35,6 +35,7 @@ The instrument is built. Stage A is roadmap M4 and Stage B is M6; the pilot and 
 
 `uv run --directory instrument pytest -q` (311 tests, about 7 s); a PostToolUse hook runs it after edits under `instrument/`.
 `uv run --directory residual pytest -q` (the NOW package, about 1 s); a PostToolUse hook runs it after edits under `residual/`. `residual/frozen/n1.json` freezes the N1 schema, feature set and label code: a change needs a deliberate re-freeze (`uv run --directory residual python -m residual.freeze --write`) and a commit saying why (decision 0006).
+`uv run --directory reconstruct pytest -q` (the N2 package; offline); a PostToolUse hook runs it after edits under `reconstruct/`. A live run is only `python -m reconstruct.run --live` with a hard `--max-usd`, never inside tests.
 `python3 scripts/hook_tests/test_check_dois.py` proves the DOI hook fires; run it after any hook edit.
 The fakes never refuse, so live transcribers and interviewer refusals are checked only by `/preflight`, never by the tests.
 

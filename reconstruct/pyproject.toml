@@ -1,0 +1,29 @@
+[project]
+name = "reconstruct"
+version = "0.1.0"
+description = "N2a: domain-neutral reconstruction from public and organisational evidence, onto the residual/ ledger."
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",
+    "httpx>=0.27",
+    "openai>=1.0",
+    "tldextract>=5.1",
+    "pypdf>=5.0",
+    "residual",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv.sources]
+residual = { path = "../residual", editable = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/reconstruct"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
