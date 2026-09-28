@@ -44,8 +44,31 @@ def project_root() -> Path:
     return here.parent.parent.parent
 
 
+def missing_hooks(root: Path) -> list[str]:
+    """Hook commands in .claude/settings.json whose script is absent or not executable.
+
+    A hook pointing at a deleted file fails silently and looks like a clean pass (L5.1)."""
+    import re
+    settings = json.loads((root / ".claude/settings.json").read_text())
+    bad = []
+    for groups in settings.get("hooks", {}).values():
+        for group in groups:
+            for hook in group.get("hooks", []):
+                cmd = hook.get("command", "").replace("$CLAUDE_PROJECT_DIR", str(root)).replace('"', "")
+                for script in re.findall(r"\S+\.(?:py|sh)\b", cmd):
+                    path = Path(script)
+                    direct = cmd.lstrip().startswith(script)
+                    if not path.is_file() or (direct and not os.access(path, os.X_OK)):
+                        bad.append(script.replace(str(root) + "/", ""))
+    return bad
+
+
 def build_context() -> str:
     root = project_root()
+    try:
+        broken = missing_hooks(root)
+    except Exception:
+        broken = ["(could not read .claude/settings.json)"]
     sys.path.insert(0, str(root / SCRIPTS_REL))
     import lessons_graph as lg  # noqa: E402  (path must be set first)
 
@@ -59,10 +82,15 @@ def build_context() -> str:
                if k in ("supersedes", "reverses", "moves")}
     live = [e for e in entries if not e.declined and e.id not in retired]
 
-    if not live and not titles:
+    if not live and not titles and not broken:
         return ""
 
-    out: list[str] = ["## Lessons this project has already learned", ""]
+    out: list[str] = []
+    if broken:
+        out += ["⚠ **Registered hooks that cannot run** (missing or not executable): "
+                + ", ".join(f"`{b}`" for b in broken)
+                + ". Each is silently skipped until `.claude/settings.json` or the script is fixed.", ""]
+    out += ["## Lessons this project has already learned", ""]
 
     if live:
         out.append(

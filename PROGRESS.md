@@ -150,5 +150,6 @@ These track the map's research questions inside Track A; the reoriented question
 - [x] Add `.claude/worktrees/` to `.gitignore`
 - [ ] Zotero library seeded with this project's reading (currently no items in this area)
 - [x] DOI hook also checks that the resolved title matches the cited work (`check-dois.py`: first author or two title words on the line).
-- [ ] DOI hook reads `doi:10.…` citations as well as `doi.org` links (`REORIENTATION.md` uses the former)
+- [x] DOI hook reads any DOI form (`doi.org` links, `doi:10.…`, bare) and reports unreachable DOIs as unverified (L5.1)
+- [x] SessionStart hook warns when a registered hook script is missing or not executable (L5.1)
 - [ ] `methods-critic` checklist rewritten for zero-participant and surrogate designs

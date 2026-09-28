@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-"""PostToolUse on Write|Edit: every doi.org link in an edited markdown file must resolve,
-and resolve to the work its line cites (first author's surname or two title words on the line)."""
+"""PostToolUse on Write|Edit: every DOI in an edited markdown file must resolve, and resolve to
+the work its line cites (first author's surname or two title words on the line).
+
+Any form counts: doi.org links, `doi:10.…`, or a bare 10.xxxx/… identifier. A DOI that could not
+be looked up is reported as unverified, never passed silently."""
 from __future__ import annotations
 
 import json
@@ -12,7 +15,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-DOI_URL = re.compile(r'https?://(?:dx\.)?doi\.org/(10\.\d{4,9}/[^\]\[\s)>"]+)')
+DOI = re.compile(r'(?<![\w./])(10\.\d{4,9}/[^\s\]\[<>"`\']+)')
 CACHE = Path(os.environ.get("CLAUDE_PROJECT_DIR", ".")) / ".claude/hooks/.doi-verified"
 STOP = {"about", "after", "their", "there", "these", "those", "which", "while", "within", "without",
         "between", "through", "under", "using", "study", "studies", "effects", "effect", "review"}
@@ -59,18 +62,26 @@ def describe(csl: dict) -> str:
     return f"'{title}' ({who}, {year})"
 
 
-def check(path: Path) -> list[str]:
+def clean(doi: str) -> str:
+    doi = doi.rstrip(".,;:*_")
+    while doi.endswith(")") and doi.count(")") > doi.count("("):
+        doi = doi[:-1].rstrip(".,;:*_")
+    return doi
+
+
+def check(path: Path) -> tuple[list[str], list[str]]:
     ok = set(CACHE.read_text().split()) if CACHE.exists() else set()
     lines = path.read_text().splitlines()
-    bad, seen = [], set()
+    bad, unchecked, seen = [], [], set()
     for i, line in enumerate(lines):
-        for m in DOI_URL.finditer(line):
-            doi = m.group(1).rstrip(".,;:")
+        for m in DOI.finditer(line):
+            doi = clean(m.group(1))
             if doi in seen or doi in ok:
                 continue
             seen.add(doi)
             csl = lookup(doi)
             if csl is None:
+                unchecked.append(doi)
                 continue
             if isinstance(csl, int):
                 bad.append(f"{doi} does not resolve ({csl})")
@@ -79,7 +90,7 @@ def check(path: Path) -> list[str]:
             else:
                 bad.append(f"{doi} resolves to {describe(csl)}, which line {i + 1} does not name")
     CACHE.write_text("\n".join(sorted(ok)) + "\n")
-    return bad
+    return bad, unchecked
 
 
 def main() -> None:
@@ -88,10 +99,14 @@ def main() -> None:
     path = Path(file)
     if path.suffix != ".md" or not path.is_file():
         return
-    bad = check(path)
+    bad, unchecked = check(path)
     if bad:
         print(json.dumps({"decision": "block", "reason": f"DOI check in {path.name}: " + "; ".join(bad)
                           + ". Verify each against OpenAlex or the publisher, then fix or remove it."}))
+    elif unchecked:
+        print(json.dumps({"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext":
+              f"DOI check in {path.name} could not reach doi.org for {len(unchecked)} DOI(s): "
+              + ", ".join(unchecked[:10]) + ". They are unverified, not clean."}}))
 
 
 if __name__ == "__main__":
