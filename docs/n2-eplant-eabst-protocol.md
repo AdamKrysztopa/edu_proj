@@ -178,3 +178,13 @@ Accidentally correct guesses count as correct in both arms and are reported sepa
 - behaviour on curated corpora or N3 golds;
 - stability across runs;
 - surrogate disagreement.
+
+## Amendment 1 (2026-09-28, before any E-PLANT data or E-ABST pipeline-arm data)
+
+The E-LIVE review (`research/n2/e_live_review_notes.md`) changed the pipeline before it freezes. No threshold, definition, sample, arm or scoring rule changes; the gate reads the same quantities.
+- **Contradiction channel.** The pairwise contradiction classifier is removed, because across both E-LIVE runs it produced one flag, a false positive. Contradictions now come from cross-cluster re-verification: each supported claim is re-verified by the verifier model against the top two same-area spans from other independence clusters. A REFUTES verdict records an N1 `Contradiction`; a SUPPORTS verdict adds corroborating evidence. §4's adoption rule and §5's recall read N1 `Contradiction` records exactly as before. The "contradiction" role in the header now means this re-verification, run by the same `openai/gpt-5.4-mini`.
+- **Verifier.** SUPPORTS is kept only if the supporting quote lies in the span and the verifier flags no added content, no subject or scope difference, and no quantifier, modality or connective difference.
+- **Probe set.** `procedure_step` is added.
+- **Fetch.** Non-2xx responses and bot-wall pages are rejected, and PDF text is extracted.
+- **E-ABST raw baseline.** It ran before this amendment and does not depend on the pipeline, so it stands.
+The pipeline is frozen at the commit that closes this fix pass. The E-PLANT and E-ABST reports name that commit.
