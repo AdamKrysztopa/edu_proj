@@ -635,7 +635,7 @@ Neither experts nor learners are needed to test whether the gap map predicts hel
 | E-HOLD "far below" (post- versus pre-*T* recall drop) | E-HOLD | to set |
 | "A handful" of ad-hoc fields | N1 | **≤ 2 new field types** across the three domains together, where a field type is a new field, model or closed-vocabulary member (owner, 2026-09-28) |
 | When the area partition and importance weights are frozen | N1, N3, N4 | **With each experiment's pre-registration**, still before gold: it needs a task's scope decomposition (§11 step 1). N1 freezes the schema and the gap-map feature set (owner, 2026-09-28) |
-| False-answer margin versus the raw model | N2, E-ABST | to set |
+| False-answer margin versus the raw model | N2, E-ABST | **≥ 20 percentage points below the raw model, on ≥ 20 real-but-private items** drawn from one of the owner's private repositories, answer key sealed before any run (owner, 2026-09-28) |
 | Known-truth tolerance and numeric "stable" for the unseen estimate | N5 | to set |
 | LLM-matcher adoption κ | §18 | ≥ 0.70 and not below the human–human κ lower CI bound |
 | E-KC non-inferiority ΔRMSE margin | E-KC, N4 | to set |
