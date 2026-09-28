@@ -3,6 +3,8 @@ import os
 from datetime import date, datetime
 from types import SimpleNamespace
 
+import httpx
+import openai
 import pytest
 
 from reconstruct.llm import (
@@ -42,6 +44,169 @@ def make_backend(client, model_id="anthropic/claude-sonnet-5", family="anthropic
                   log=None, tmp_path=None):
     log = log or CallLog(tmp_path / "calls.jsonl")
     return OpenRouterBackend(client=client, model_id=model_id, family=family, role=role, log=log)
+
+
+class QueueOpenAIClient:
+    """Like FakeOpenAIClient, but `_create` pops one item per call — a response object is
+    returned as-is, a BaseException instance is raised — so a test can script a transient
+    failure followed by a success (or a run of permanent failures)."""
+
+    def __init__(self, items):
+        self._items = list(items)
+        self.calls: list[dict] = []
+        self.chat = SimpleNamespace(completions=SimpleNamespace(create=self._create))
+
+    def _create(self, **kwargs):
+        self.calls.append(kwargs)
+        item = self._items.pop(0)
+        if isinstance(item, BaseException):
+            raise item
+        return item
+
+
+def _api_error(cls, status: int, message: str = "error"):
+    request = httpx.Request("POST", "https://openrouter.ai/api/v1/chat/completions")
+    if cls in (openai.APIConnectionError, openai.APITimeoutError):
+        return cls(request=request)
+    response = httpx.Response(status, request=request, json={"error": message})
+    return cls(message, response=response, body=None)
+
+
+def _ok_response(answer=1):
+    return ns(choices=[ns(message=ns(content=json.dumps({"answer": answer}), refusal=None),
+                          finish_reason="stop")],
+              model="anthropic/claude-sonnet-5", usage=ns(prompt_tokens=1, completion_tokens=1, cost=0.001))
+
+
+class RecordingSleep:
+    def __init__(self):
+        self.calls: list[float] = []
+
+    def __call__(self, seconds: float) -> None:
+        self.calls.append(seconds)
+
+
+# --- D1: retry transient provider errors, log every failed attempt ----------------------------
+
+def test_backend_retries_429_then_succeeds(tmp_path):
+    log = CallLog(tmp_path / "calls.jsonl")
+    client = QueueOpenAIClient([_api_error(openai.RateLimitError, 429), _ok_response(42)])
+    backend = make_backend(client, log=log)
+    sleeper = RecordingSleep()
+    backend.sleep = sleeper
+
+    data = backend.complete_json("plan", "sys", "usr", {"type": "object"})
+
+    assert data == {"answer": 42}
+    assert len(client.calls) == 2
+    assert sleeper.calls == [1.0]
+
+    lines = [json.loads(line) for line in (tmp_path / "calls.jsonl").read_text().splitlines()]
+    assert [line["outcome"] for line in lines] == ["api_error", "ok"]
+    assert lines[0]["task"] == "plan"
+    assert lines[0]["error_class"] == "RateLimitError"
+    assert lines[0]["http_status"] == 429
+    assert lines[0]["cost"] is None
+    assert lines[1]["cost"] == 0.001
+
+
+def test_backend_permanent_500_exhausts_retries_then_raises(tmp_path):
+    log = CallLog(tmp_path / "calls.jsonl")
+    errors = [_api_error(openai.InternalServerError, 500) for _ in range(4)]
+    client = QueueOpenAIClient(errors)
+    backend = make_backend(client, log=log)
+    sleeper = RecordingSleep()
+    backend.sleep = sleeper
+
+    with pytest.raises(LLMUnavailable):
+        backend.complete_json("verify", "sys", "usr", {"type": "object"})
+
+    assert len(client.calls) == 4, "1 initial attempt + 3 retries"
+    assert sleeper.calls == [1.0, 2.0, 4.0]
+
+    lines = [json.loads(line) for line in (tmp_path / "calls.jsonl").read_text().splitlines()]
+    assert len(lines) == 4
+    assert all(line["outcome"] == "api_error" for line in lines)
+    assert all(line["error_class"] == "InternalServerError" for line in lines)
+    assert all(line["http_status"] == 500 for line in lines)
+    assert all(line["cost"] is None for line in lines)
+
+
+def test_backend_400_is_not_retried_but_is_logged(tmp_path):
+    log = CallLog(tmp_path / "calls.jsonl")
+    client = QueueOpenAIClient([_api_error(openai.BadRequestError, 400)])
+    backend = make_backend(client, log=log)
+    sleeper = RecordingSleep()
+    backend.sleep = sleeper
+
+    with pytest.raises(LLMUnavailable):
+        backend.complete_json("extract", "sys", "usr", {"type": "object"})
+
+    assert len(client.calls) == 1
+    assert sleeper.calls == []
+
+    lines = [json.loads(line) for line in (tmp_path / "calls.jsonl").read_text().splitlines()]
+    assert len(lines) == 1
+    assert lines[0]["outcome"] == "api_error"
+    assert lines[0]["error_class"] == "BadRequestError"
+    assert lines[0]["http_status"] == 400
+
+
+def test_budget_blocks_a_retry_between_attempts(tmp_path):
+    """The budget check runs before every attempt, not just the first: if the running total
+    crosses the cap during the backoff wait (here simulated by the injected sleep itself, standing
+    in for cost spent concurrently by another role), the retry never dispatches."""
+    log = CallLog(tmp_path / "calls.jsonl", budget=Budget(max_usd=1.0))
+    client = QueueOpenAIClient([_api_error(openai.RateLimitError, 429), _ok_response(1)])
+    backend = make_backend(client, log=log)
+
+    def sleeper(seconds: float) -> None:
+        log.total_cost = 1.0
+
+    backend.sleep = sleeper
+
+    with pytest.raises(BudgetExceeded):
+        backend.complete_json("verify", "sys", "usr", {"type": "object"})
+
+    assert len(client.calls) == 1, "the retry must never reach the client once the budget is spent"
+
+
+def test_backend_records_no_api_error_line_on_first_try_success(tmp_path):
+    log = CallLog(tmp_path / "calls.jsonl")
+    client = QueueOpenAIClient([_ok_response(7)])
+    backend = make_backend(client, log=log)
+    backend.complete_json("plan", "sys", "usr", {"type": "object"})
+    lines = [json.loads(line) for line in (tmp_path / "calls.jsonl").read_text().splitlines()]
+    assert len(lines) == 1
+    assert lines[0]["outcome"] == "ok"
+    assert "error_class" not in lines[0]
+    assert "http_status" not in lines[0]
+
+
+# --- D1: search() gets the same retry/logging treatment ----------------------------------------
+
+def test_search_retries_transient_error_then_succeeds(tmp_path):
+    log = CallLog(tmp_path / "calls.jsonl")
+    ok = ns(choices=[ns(message=ns(content="", annotations=[
+        ns(type="url_citation", url_citation=ns(url="https://a.example/page", title="Page A")),
+    ]), finish_reason="stop")], model="anthropic/claude-sonnet-5",
+        usage=ns(prompt_tokens=1, completion_tokens=1, cost=0.002))
+    client = QueueOpenAIClient([_api_error(openai.APIConnectionError, 0), ok])
+    backend = make_backend(client, log=log)
+    sleeper = RecordingSleep()
+    backend.sleep = sleeper
+    agent = Agent(kind="model", id="anthropic/claude-sonnet-5", family="anthropic")
+    model = Model(agent=agent, backend=backend)
+
+    result = web_search(model, "q", max_results=3)
+
+    assert result.hits == (Hit(url="https://a.example/page", title="Page A"),)
+    assert len(client.calls) == 2
+    assert sleeper.calls == [1.0]
+    lines = [json.loads(line) for line in (tmp_path / "calls.jsonl").read_text().splitlines()]
+    assert [line["outcome"] for line in lines] == ["api_error", "ok"]
+    assert lines[0]["task"] == "web_search"
+    assert lines[0]["error_class"] == "APIConnectionError"
 
 
 # --- Model.json / OpenRouterBackend.complete_json ---------------------------------------------

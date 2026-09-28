@@ -43,6 +43,11 @@ def _headline(sidecar: dict) -> str:
             f"{stats['n_located']} claims span-located, {verified_note}, "
             f"decoy false-accept rate {stats['decoy_false_accept_rate']:.0%}, "
             f"cost ${stats['total_cost_usd']:.4f}. Verifier family: {verifier_family or 'none'}.\n")
+    failed_by_task = stats.get("failed_calls_by_task", {})
+    nonzero = {t: n for t, n in failed_by_task.items() if n}
+    if nonzero:
+        line += ("Failed calls by task: " +
+                 ", ".join(f"{t} {n}" for t, n in sorted(nonzero.items())) + ".\n")
     if not sidecar["complete"]:
         line += "\nIncomplete reasons:\n" + "\n".join(f"- {r}" for r in sidecar["incomplete_reasons"]) + "\n"
     return line

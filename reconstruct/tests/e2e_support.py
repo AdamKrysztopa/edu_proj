@@ -81,7 +81,16 @@ class ScriptedBackend:
             self.budget.check()
         self.calls.append(Call(task=task, system=system, user=user, schema=schema))
         self._log(task)
-        return self._dispatch(self.scripts.get(task, []), user, f"task={task!r}")
+        entries = self.scripts.get(task, [])
+        if task == "cross_verify" and not entries:
+            # D2: cross-cluster re-verification sends the SAME prompt/schema/payload as "verify",
+            # only the calls.jsonl task label differs. A test that scripts "verify" responses
+            # without caring to distinguish the two calls should not have to duplicate every
+            # entry under "cross_verify" too; a test that DOES care (e.g. to script a
+            # cross-verify-specific failure) registers under "cross_verify" and that takes
+            # priority over this fallback.
+            entries = self.scripts.get("verify", [])
+        return self._dispatch(entries, user, f"task={task!r}")
 
     def search(self, query: str, *, max_results: int) -> SearchResult:
         if self.budget is not None:

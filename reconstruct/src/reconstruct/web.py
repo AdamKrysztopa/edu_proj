@@ -54,6 +54,16 @@ _VISIBILITY_HIDDEN_RE = re.compile(r"visibility\s*:\s*hidden")
 # caller from the recorded fields; this module records what each field parsed to).
 _DATE_META_FIELDS = ("citation_publication_date", "article:published_time", "dc.date")
 
+# D3: pypdf's CID-font decoding (and some malformed encodings) can leave lone UTF-16 surrogates
+# in extracted text; hashlib.sha256(text.encode()) then raises UnicodeEncodeError ("surrogates
+# not allowed") and aborts the whole fetch phase. Replaced with U+FFFD at extraction time — before
+# any hashing or normalisation — so snapshot text, its hash and every span offset stay consistent.
+_LONE_SURROGATE_RE = re.compile("[\ud800-\udfff]")
+
+
+def _sanitize_surrogates(text: str) -> str:
+    return _LONE_SURROGATE_RE.sub("�", text)
+
 
 def _is_hidden(attrs: dict[str, str | None]) -> bool:
     if "hidden" in attrs:
@@ -348,13 +358,14 @@ def fetch(url: str, *, client: httpx.Client) -> Fetched | FetchFailure:
 
     if mime in _HTML_TYPES:
         html = raw.decode(response.encoding or "utf-8", errors="replace")
-        text = extract_visible_text(html)
+        text = _sanitize_surrogates(extract_visible_text(html))
         metadata = _extract_metadata(html, host=host)
     elif mime == _PDF_TYPE:
         result = _extract_pdf(raw, host=host)
         if isinstance(result, str):
             return FetchFailure(requested_url=url, final_url=final_url, status=status, reason=result)
         text, metadata = result
+        text = _sanitize_surrogates(text)
     else:
         return FetchFailure(requested_url=url, final_url=final_url, status=status,
                              reason=f"unsupported content type: {content_type or 'unknown'}")

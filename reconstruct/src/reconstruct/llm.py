@@ -9,7 +9,8 @@ from __future__ import annotations
 import hashlib
 import json
 import os
-from dataclasses import dataclass
+import time
+from dataclasses import dataclass, field
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any, Callable, Mapping, Protocol
@@ -23,6 +24,22 @@ KEY_ENV = {"openrouter": OPENROUTER_API_KEY_ENV}
 OPENROUTER_URL = "https://openrouter.ai/api/v1"
 _ROLE_KEYS = {"provider", "model", "family"}
 _FORBIDDEN_OPENROUTER_MODELS = {"openrouter/auto", "auto"}
+
+# D1: transient provider errors (rate limit, timeout, connection, 5xx) get up to 3 retries with
+# exponential backoff before the caller sees LLMUnavailable; a non-transient error (e.g. 400) is
+# logged once and raised immediately. Every attempt — failed or final — is logged to calls.jsonl
+# so a run's silent-vanishing-call rate is visible, not just its successes.
+_TRANSIENT_ERROR_TYPES = (openai.RateLimitError, openai.APITimeoutError, openai.APIConnectionError,
+                          openai.InternalServerError)
+_MAX_RETRIES = 3
+_BACKOFF_SECONDS = (1.0, 2.0, 4.0)
+
+
+def _is_transient(e: openai.APIError) -> bool:
+    if isinstance(e, _TRANSIENT_ERROR_TYPES):
+        return True
+    status = getattr(e, "status_code", None)
+    return isinstance(status, int) and status >= 500
 # OpenRouter's web plugin (A13's corpus for evidence.py's future Search records is
 # "web:openrouter-exa"); ignore the model's own text, read only the url_citation annotations.
 _WEB_PLUGIN = {"id": "web", "engine": "exa"}
@@ -103,10 +120,13 @@ class CallLog:
 
     def append(self, *, task: str, role: str, model_id: str, family: str, served_model: str,
                system: str, user: str, schema: dict, input_tokens: int, output_tokens: int,
-               cost: float | None = None, outcome: str = "ok") -> None:
+               cost: float | None = None, outcome: str = "ok", error_class: str | None = None,
+               http_status: int | None = None) -> None:
         """Every billed call is logged here, whatever its outcome — a refusal, a length
         truncation or malformed JSON still spent tokens and money, so it must still count
-        against the budget and appear in calls.jsonl, not vanish silently (defect 3)."""
+        against the budget and appear in calls.jsonl, not vanish silently (defect 3). A provider
+        error (outcome "api_error", D1) is never billed, so it carries no cost, but it still names
+        its error class and HTTP status so a run's failed-call rate is visible per task."""
         spec_sha256 = hashlib.sha256(
             "\x1f".join([system, user, json.dumps(schema, sort_keys=True)]).encode()
         ).hexdigest()
@@ -123,6 +143,10 @@ class CallLog:
             "outcome": outcome,
             "utc": datetime.now(UTC).isoformat(),
         }
+        if error_class is not None:
+            record["error_class"] = error_class
+        if http_status is not None:
+            record["http_status"] = http_status
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(record) + "\n")
@@ -148,9 +172,32 @@ class OpenRouterBackend:
     family: str
     role: str
     log: CallLog
+    sleep: Callable[[float], None] = field(default=time.sleep)
+    """Injectable so a retry's backoff never actually sleeps in a test (D1a)."""
+
+    def _dispatch_with_retry(self, *, task: str, system: str, user: str, schema: dict,
+                              params: dict) -> Any:
+        """The budget is checked before every attempt, not just the first (D1b/c): a transient
+        error (429/5xx/timeout/connection) is retried up to _MAX_RETRIES times with exponential
+        backoff; every failed attempt, and the final failure, is logged as outcome "api_error"
+        with no cost (it was never billed). A non-transient error (e.g. 400) is logged once and
+        raised immediately, never retried."""
+        attempt = 0
+        while True:
+            self.log.ensure_budget()
+            try:
+                return self.client.chat.completions.create(**params)
+            except openai.APIError as e:
+                self.log.append(task=task, role=self.role, model_id=self.model_id, family=self.family,
+                                 served_model=self.model_id, system=system, user=user, schema=schema,
+                                 input_tokens=0, output_tokens=0, cost=None, outcome="api_error",
+                                 error_class=type(e).__name__, http_status=getattr(e, "status_code", None))
+                if not _is_transient(e) or attempt >= _MAX_RETRIES:
+                    raise LLMUnavailable(repr(e)) from e
+                self.sleep(_BACKOFF_SECONDS[attempt])
+                attempt += 1
 
     def complete_json(self, task: str, system: str, user: str, schema: dict) -> dict:
-        self.log.ensure_budget()
         messages = ([{"role": "system", "content": system}] if system else []) + \
                    [{"role": "user", "content": user}]
         params: dict = {
@@ -160,10 +207,8 @@ class OpenRouterBackend:
             "response_format": {"type": "json_schema",
                                  "json_schema": {"name": task, "schema": schema, "strict": True}},
         }
-        try:
-            response = self.client.chat.completions.create(**params)
-        except openai.APIError as e:
-            raise LLMUnavailable(repr(e)) from e
+        response = self._dispatch_with_retry(task=task, system=system, user=user, schema=schema,
+                                              params=params)
 
         usage = getattr(response, "usage", None)
         input_tokens = getattr(usage, "prompt_tokens", 0) or 0
@@ -201,17 +246,14 @@ class OpenRouterBackend:
     def search(self, query: str, *, max_results: int) -> SearchResult:
         """OpenRouter's web plugin (engine exa). Only url_citation annotations are read — the
         model's own text is never used (R11: the planner must not see fetched page text)."""
-        self.log.ensure_budget()
         params: dict = {
             "model": self.model_id,
             "max_tokens": 2048,
             "messages": [{"role": "user", "content": query}],
             "extra_body": {"plugins": [{**_WEB_PLUGIN, "max_results": max_results}]},
         }
-        try:
-            response = self.client.chat.completions.create(**params)
-        except openai.APIError as e:
-            raise LLMUnavailable(repr(e)) from e
+        response = self._dispatch_with_retry(task="web_search", system="", user=query, schema={},
+                                              params=params)
         choice = response.choices[0] if response.choices else None
         annotations = (getattr(choice.message, "annotations", None) or []) if choice else []
         hits = tuple(

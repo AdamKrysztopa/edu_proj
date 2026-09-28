@@ -174,3 +174,62 @@ def test_a_repeatedly_cited_failing_url_is_recorded_as_one_fetch_failure(tmp_pat
     assert len(dead_failures) == 1, (
         f"a URL cited by two searches must be fetched (and recorded as failed) once, not once per "
         f"citing search: {sidecar['fetch_failures']}")
+
+
+# --- D3: an unexpected exception from one document must not abort the whole fetch phase -----------
+
+def test_one_bad_document_does_not_abort_the_fetch_phase(tmp_path, monkeypatch):
+    from reconstruct.web import SnapshotStore
+
+    out = tmp_path / "run"
+    good_url = "https://good-doc.example/notes"
+    bad_url = "https://bad-doc.example/notes"
+    good_quote = "Bearing lubrication must be checked every five hundred operating hours."
+    bad_marker = "BADDOC-MARKER-TRIGGERS-AN-UNEXPECTED-CRASH"
+    padding = " ".join(f"padtoken{i}" for i in range(80))
+    pages = {
+        good_url: Page(body=f"<!doctype html><html><body><p>{good_quote}</p><p>{padding}</p>"
+                              "</body></html>"),
+        bad_url: Page(body=f"<!doctype html><html><body><p>{bad_marker} some unrelated text here.</p>"
+                            f"<p>{padding}</p></body></html>"),
+    }
+
+    original_write_text = SnapshotStore.write_text
+
+    def flaky_write_text(self, text):
+        if bad_marker in text:
+            raise ValueError("simulated unexpected extraction crash")
+        return original_write_text(self, text)
+
+    monkeypatch.setattr(SnapshotStore, "write_text", flaky_write_text)
+
+    planner = ScriptedBackend(role="planner", family="anthropic")
+    planner.script("plan", "", {"areas": [{"name": "Bearings", "queries": ["bearing lubrication interval"]}]})
+    planner.script_search("bearing lubrication interval", search_result(
+        "bearing lubrication interval", [(good_url, "t"), (bad_url, "t")], TODAY))
+
+    extractor = ScriptedBackend(role="extractor", family="anthropic")
+    extractor.script("extract", "Bearing lubrication", {"claims": [
+        {"assertion": "Bearing lubrication is checked every five hundred operating hours.",
+         "quote": good_quote, "area": "Bearings", "knowledge_type": "concept", "question": "domain"}]})
+
+    verifier = ScriptedBackend(role="verifier", family="openai")
+    verifier.script("verify", "", {"verdict": "supports", "supporting_quote": good_quote})
+    script_default_decoys(extractor, verifier)
+
+    contradiction = ScriptedBackend(role="contradiction", family="openai")
+    models = make_models(planner=planner, extractor=extractor, verifier=verifier,
+                          contradiction=contradiction, out=out)
+
+    run_dir = Path(reconstruct(domain="machinery", task="t", models=models, http=http_client(pages),
+                                out=out, today=TODAY, max_results=5))
+
+    sidecar = read_json(run_dir / "sidecar.json")
+    assert sidecar["complete"] is True, sidecar["incomplete_reasons"]
+    failure_urls = {f["url"]: f["reason"] for f in sidecar["fetch_failures"]}
+    assert bad_url in failure_urls, sidecar["fetch_failures"]
+    assert failure_urls[bad_url].startswith("fetch error:"), failure_urls[bad_url]
+
+    ledger = Ledger.from_json((run_dir / "ledger.json").read_text())
+    assert any("Bearing lubrication" in c.assertion for c in ledger.claims), (
+        "the good document's claim must still make it through despite the other document's crash")

@@ -221,11 +221,17 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
     ledger_assignments: list[tuple[str, str]] = []
     ledger_contradictions: list[Contradiction] = []
     largest_share = 0.0
-    decoy_type_counts = {m: {"attempted": 0, "valid": 0, "false_accept": 0}
+    decoy_type_counts = {m: {"attempted": 0, "valid": 0, "false_accept": 0, "failed": 0}
                          for m in evidence.DECOY_MUTATIONS}
+    failed_calls_by_task: dict[str, int] = {"plan": 0, "verify": 0, "cross_verify": 0, "decoy": 0}
+    """D2: extract's and web_search's failure counts are derived from sidecar_sources/
+    sidecar_searches after the run (each entry already carries an ok/extract_ok flag); plan,
+    verify, cross_verify and decoy are counted here as they happen, since a failed call there
+    (unlike extract/web_search) leaves no per-call sidecar record of its own."""
 
     try:
-        area_specs, _ = _resolve_areas(models, domain, task, prompts, areas)
+        area_specs, _ = _resolve_areas(models, domain, task, prompts, areas,
+                                       failed_calls=failed_calls_by_task)
         _write_areas_json(run_dir, area_specs)
 
         area_by_id: dict[str, dict] = {}
@@ -376,6 +382,7 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
             annotated = _annotated_context(loc.doc.normalised_text, loc.span)
             result = _call_verify(verifier, prompts["verify"], loc.extraction.assertion, annotated)
             if result is None:
+                failed_calls_by_task["verify"] += 1
                 continue
             verdict, quote, flags = _verdict_from_result(result, loc.span.exact)
             loc.verification = evidence.build_verification(verdict, verifier=verifier.agent, on=today)
@@ -470,8 +477,10 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
                         located = evidence.LocatedSpan(start=start, end=end, exact=span_exact,
                                                        injection_flagged=False)
                         annotated = _annotated_context(doc.normalised_text, located)
-                        result = _call_verify(verifier, prompts["verify"], claim.assertion, annotated)
+                        result = _call_verify(verifier, prompts["verify"], claim.assertion, annotated,
+                                              task="cross_verify")
                         if result is None:
+                            failed_calls_by_task["cross_verify"] += 1
                             continue
                         verdict, _, flags = _verdict_from_result(result, span_exact, allow_refutes=True)
                         added_as = "none"
@@ -564,6 +573,8 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
                             user=_decoy_user(claim.assertion, real_evidence.selector.exact, mutation),
                             schema=DECOY_SCHEMA)
                     except (LLMUnavailable, LLMRefused):
+                        decoy_type_counts[mutation]["failed"] += 1
+                        failed_calls_by_task["decoy"] += 1
                         continue
                     mutated_claim = decoy_result.get("mutated_claim", "")
                     rationale = decoy_result.get("rationale", "")
@@ -581,6 +592,8 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
                             decoy_type_counts[mutation]["valid"] += 1
                             if false_accept:
                                 decoy_type_counts[mutation]["false_accept"] += 1
+                        else:
+                            failed_calls_by_task["verify"] += 1
                     sidecar_decoys.append(entry)
 
     except BudgetExceeded as e:
@@ -609,6 +622,11 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
     total_valid_decoys = sum(t["valid"] for t in decoy_type_counts.values())
     total_false_accept_decoys = sum(t["false_accept"] for t in decoy_type_counts.values())
     decoy_rate = (total_false_accept_decoys / total_valid_decoys) if total_valid_decoys else 0.0
+    failed_calls_by_task_stats = {
+        **failed_calls_by_task,
+        "extract": sum(1 for s in sidecar_sources.values() if s.get("extract_ok") is False),
+        "web_search": sum(1 for r in sidecar_searches if not r.get("ok", True)),
+    }
 
     stats = {
         "n_search_hits": sum(r["n_hits"] for r in sidecar_searches),
@@ -632,6 +650,7 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
         "n_unexamined_slots": sum(1 for s in slots_sidecar if s["status"] == "unexamined"),
         "decoy_false_accept_rate": decoy_rate,
         "decoy_by_type": decoy_type_counts,
+        "failed_calls_by_task": failed_calls_by_task_stats,
         "total_cost_usd": _total_cost(models),
     }
 
@@ -685,19 +704,26 @@ def _total_cost(models: Mapping[str, Model]) -> float:
     return total
 
 
-def _resolve_areas(models, domain, task, prompts, areas_path):
+def _resolve_areas(models, domain, task, prompts, areas_path,
+                    failed_calls: dict[str, int] | None = None):
     if areas_path is not None:
         data = json.loads(Path(areas_path).read_text())
         return data["areas"], "given"
-    result = models["planner"].json("plan", system=prompts["plan"],
-                                    user=f"Domain: {domain}\nTask: {task}", schema=PLAN_SCHEMA)
+
+    def call_plan(user: str) -> dict:
+        try:
+            return models["planner"].json("plan", system=prompts["plan"], user=user, schema=PLAN_SCHEMA)
+        except (LLMUnavailable, LLMRefused):
+            if failed_calls is not None:
+                failed_calls["plan"] = failed_calls.get("plan", 0) + 1
+            raise
+
+    result = call_plan(f"Domain: {domain}\nTask: {task}")
     areas_list = result.get("areas", [])
     if not _valid_plan(areas_list):
-        result = models["planner"].json(
-            "plan", system=prompts["plan"],
-            user=(f"Domain: {domain}\nTask: {task}\n\nYour previous answer was invalid: give "
-                  "between 3 and 6 areas, each with 1 to 3 queries, and distinct names."),
-            schema=PLAN_SCHEMA)
+        result = call_plan(
+            f"Domain: {domain}\nTask: {task}\n\nYour previous answer was invalid: give "
+            "between 3 and 6 areas, each with 1 to 3 queries, and distinct names.")
         areas_list = result.get("areas", [])
         if not _valid_plan(areas_list):
             raise RuntimeError("planner produced invalid areas after one retry (A10)")
@@ -738,29 +764,41 @@ def _fetch_one(url: str, *, cache: FetchCache, snapshots: SnapshotStore, max_doc
                today: date) -> _FetchedDoc | None:
     """Routes through a run-shared `FetchCache` (defect 13): the same URL cited by two searches,
     or a URL that keeps failing, is actually fetched at most once. A failure is still recorded
-    in the sidecar once per canonical URL, not once per citing search."""
-    result = cache.fetch(url)
-    if isinstance(result, FetchFailure):
+    in the sidecar once per canonical URL, not once per citing search.
+
+    An unexpected exception while processing this one document (D3: e.g. a crash in snapshot
+    hashing/writing) becomes a FetchFailure for its URL too, never an exception that propagates
+    out and aborts the whole fetch phase for every other URL still queued."""
+    try:
+        result = cache.fetch(url)
+        if isinstance(result, FetchFailure):
+            canonical = evidence.canonical_url(url)
+            if canonical not in seen_failed_canonical:
+                seen_failed_canonical.add(canonical)
+                fetch_failures.append({"url": url, "reason": result.reason})
+            return None
+        normalised = evidence.normalise(result.text)
+        text_sha = snapshots.write_text(normalised)
+        canonical = evidence.canonical_url(result.final_url)
+        extraction_text = normalised[:max_doc_chars]
+        fraction = (0.0 if len(normalised) <= max_doc_chars
+                   else (len(normalised) - max_doc_chars) / len(normalised))
+        return _FetchedDoc(
+            source_id=short_hash("s", canonical), canonical_url=canonical, final_url=result.final_url,
+            requested_url=result.requested_url, raw_sha256=result.raw_sha256, text_sha256=text_sha,
+            normalised_text=normalised, extraction_text=extraction_text, title=result.metadata.title,
+            publisher=result.metadata.publisher, published=result.metadata.published,
+            published_field=result.metadata.published_field,
+            modified=getattr(result.metadata, "modified", None),
+            modified_field=getattr(result.metadata, "modified_field", None),
+            status=result.status, content_type=result.content_type, truncated_fraction=fraction,
+        )
+    except Exception as e:
         canonical = evidence.canonical_url(url)
         if canonical not in seen_failed_canonical:
             seen_failed_canonical.add(canonical)
-            fetch_failures.append({"url": url, "reason": result.reason})
+            fetch_failures.append({"url": url, "reason": f"fetch error: {e!r}"})
         return None
-    normalised = evidence.normalise(result.text)
-    text_sha = snapshots.write_text(normalised)
-    canonical = evidence.canonical_url(result.final_url)
-    extraction_text = normalised[:max_doc_chars]
-    fraction = 0.0 if len(normalised) <= max_doc_chars else (len(normalised) - max_doc_chars) / len(normalised)
-    return _FetchedDoc(
-        source_id=short_hash("s", canonical), canonical_url=canonical, final_url=result.final_url,
-        requested_url=result.requested_url, raw_sha256=result.raw_sha256, text_sha256=text_sha,
-        normalised_text=normalised, extraction_text=extraction_text, title=result.metadata.title,
-        publisher=result.metadata.publisher, published=result.metadata.published,
-        published_field=result.metadata.published_field,
-        modified=getattr(result.metadata, "modified", None),
-        modified_field=getattr(result.metadata, "modified_field", None),
-        status=result.status, content_type=result.content_type, truncated_fraction=fraction,
-    )
 
 
 def _extract_document(model: Model, doc: _FetchedDoc, area_by_id: dict,
@@ -791,11 +829,14 @@ def _decoy_user(assertion: str, quote: str, mutation: str) -> str:
     return f"Mutation type: {mutation}\nClaim: {assertion}\nQuote: {quote}"
 
 
-def _call_verify(model: Model, prompt: str, assertion: str, annotated_context: str) -> dict | None:
+def _call_verify(model: Model, prompt: str, assertion: str, annotated_context: str,
+                  *, task: str = "verify") -> dict | None:
     """The one verify call site every real claim, cross-check and decoy goes through — same
-    prompt, same schema, same ±300-char payload construction (MUST-FIX 2 and 4)."""
+    prompt, same schema, same ±300-char payload construction (MUST-FIX 2 and 4). `task` only
+    changes the calls.jsonl label (D2): the cross-cluster re-verification pass calls this with
+    task="cross_verify" so its calls can be counted apart from a plain per-extraction verify."""
     try:
-        return model.json("verify", system=prompt, user=_verify_user(assertion, annotated_context),
+        return model.json(task, system=prompt, user=_verify_user(assertion, annotated_context),
                           schema=VERIFY_SCHEMA)
     except (LLMUnavailable, LLMRefused):
         return None

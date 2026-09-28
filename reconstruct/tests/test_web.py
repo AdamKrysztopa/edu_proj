@@ -260,6 +260,58 @@ def test_fetch_enforces_size_cap():
     assert "exceeds size cap" in result.reason
 
 
+def test_sanitize_surrogates_replaces_lone_surrogates_only():
+    from reconstruct.web import _sanitize_surrogates
+    assert _sanitize_surrogates("clean text") == "clean text"
+    assert _sanitize_surrogates("bad \ud800 text") == "bad � text"
+    assert _sanitize_surrogates("bad \udfff text") == "bad � text"
+    sanitized = _sanitize_surrogates("bad \ud800 text")
+    sanitized.encode()  # must never raise UnicodeEncodeError
+
+
+def test_fetch_sanitizes_lone_surrogates_from_html_text(monkeypatch):
+    """defect D3 (web.py:371): a lone UTF-16 surrogate reaching hashlib.sha256(text.encode())
+    crashed the whole fetch phase with UnicodeEncodeError. Sanitized at extraction time, before
+    the near-empty check and before the hash, so snapshot text/hash stay consistent."""
+    import hashlib
+
+    import reconstruct.web as web
+
+    bad_text = "Visible text with a lone surrogate \ud800 inline. " + PADDING
+    monkeypatch.setattr(web, "extract_visible_text", lambda html: bad_text)
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, headers={"content-type": "text/html"},
+                              content=b"<html><body>irrelevant, patched above</body></html>")
+
+    result = fetch("https://example.org/bad.html", client=client_for(handler))
+    assert isinstance(result, Fetched)
+    assert "\ud800" not in result.text
+    assert "�" in result.text
+    assert result.text_sha256 == hashlib.sha256(result.text.encode()).hexdigest()
+
+
+def test_fetch_sanitizes_lone_surrogates_from_pdf_text(monkeypatch):
+    import hashlib
+
+    import reconstruct.web as web
+    from reconstruct.web import Metadata
+
+    bad_text = "Pumps lose prime under a lone surrogate \ud800 in extracted text. " + PADDING
+    monkeypatch.setattr(web, "_extract_pdf", lambda raw, *, host: (
+        bad_text, Metadata(title=None, publisher=host, published=None, published_field=None)))
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, headers={"content-type": "application/pdf"},
+                              content=b"%PDF-1.4 irrelevant, patched above")
+
+    result = fetch("https://example.org/bad.pdf", client=client_for(handler))
+    assert isinstance(result, Fetched)
+    assert "\ud800" not in result.text
+    assert "�" in result.text
+    assert result.text_sha256 == hashlib.sha256(result.text.encode()).hexdigest()
+
+
 def test_fetch_records_raw_and_text_hashes():
     body = f"<html><body><p>Hash me.</p>{PADDING}</body></html>".encode()
 
