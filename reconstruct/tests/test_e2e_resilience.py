@@ -233,3 +233,42 @@ def test_one_bad_document_does_not_abort_the_fetch_phase(tmp_path, monkeypatch):
     ledger = Ledger.from_json((run_dir / "ledger.json").read_text())
     assert any("Bearing lubrication" in c.assertion for c in ledger.claims), (
         "the good document's claim must still make it through despite the other document's crash")
+
+
+# --- a curated PDF becomes a verified claim end to end (E-LIVE v1 PDF-rejection regression) -------
+
+def test_pdf_source_yields_a_located_verified_claim(tmp_path):
+    from test_web import make_pdf
+
+    out = tmp_path / "run"
+    url = "https://pdf-manual.example/guide.pdf"
+    quote = ("Bearing lubrication must be checked every five hundred operating hours per the "
+             "maintenance manual issued for this class of gearbox.")
+    padding = "Padding text so the extracted document clears the near-empty page floor. " * 10
+    pages = {url: Page(body=make_pdf([quote, padding]), content_type="application/pdf")}
+
+    planner = ScriptedBackend(role="planner", family="anthropic")
+    planner.script("plan", "", {"areas": [{"name": "Bearings", "queries": ["bearing lubrication"]}]})
+    planner.script_search("bearing lubrication",
+                          search_result("bearing lubrication", [(url, "t")], TODAY))
+    extractor = ScriptedBackend(role="extractor", family="anthropic")
+    extractor.script("extract", "Bearing lubrication", {"claims": [
+        {"assertion": "Bearing lubrication is checked every five hundred operating hours.",
+         "quote": quote, "area": "Bearings", "knowledge_type": "concept", "question": "domain"}]})
+    verifier = ScriptedBackend(role="verifier", family="openai")
+    verifier.script("verify", "", {"verdict": "supports", "supporting_quote": quote})
+    script_default_decoys(extractor, verifier)
+    models = make_models(planner=planner, extractor=extractor, verifier=verifier,
+                         contradiction=ScriptedBackend(role="contradiction", family="openai"),
+                         out=out)
+
+    run_dir = Path(reconstruct(domain="machinery", task="t", models=models,
+                               http=http_client(pages), out=out, today=TODAY, max_results=5))
+
+    sidecar = read_json(run_dir / "sidecar.json")
+    assert sidecar["complete"] is True
+    assert sidecar["fetch_failures"] == []
+    ledger = Ledger.from_json((run_dir / "ledger.json").read_text())
+    claim = next(c for c in ledger.claims if c.assertion.startswith("Bearing lubrication"))
+    assert [e.verification.verdict for e in claim.evidence] == ["supports"]
+    assert claim.evidence[0].selector.exact == quote

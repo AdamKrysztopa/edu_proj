@@ -31,8 +31,8 @@ GDPR DPIA was chosen as a legal/normative counterpart with a different evidence 
 | `20260928T135354Z-eb840a85b7d1` | v1 | GDPR | complete, reviewed |
 | `20260928T145115Z-518f99363336` | v2 | PLC | **crashed** (`UnicodeEncodeError`, PDF surrogate) |
 | `20260928T145943Z-bc1cc9a30a02` | v2 | GDPR | completed but **defect-compromised** (see §5) |
-| `20260928T171449Z-518f99363336` | v3 | PLC | **blocked at first call** (OpenRouter weekly key limit) |
-| `20260928T171508Z-bc1cc9a30a02` | v3 | GDPR | **blocked at first call** (OpenRouter weekly key limit) |
+| `20260928T171449Z-518f99363336` | v3 | PLC | **blocked at first call** (OpenRouter weekly key limit); not rerun at the closeout (budget) |
+| `20260928T171508Z-bc1cc9a30a02` | v3 | GDPR | **blocked at first call** (OpenRouter weekly key limit); not rerun at the closeout (budget) |
 
 v1 ran at commit `600ba2e`. The fix pass at `080b109` (below) responded to the v1 review. v2 ran at the fix-pass code, after `375c09f`/`bf35207`/`d3e0bb4` (E-PLANT scaffolding, unrelated to E-LIVE mechanics) and before `0f39ed9`. v3 ran at `0f39ed9` ("n2-freeze-2").
 
@@ -123,7 +123,7 @@ Per the v1 review, `failure_mode` is UNKNOWN in 5/5 areas and `cue` in 4/5 for t
 
 ## 5. v2: fix-pass code, and where it broke
 
-Between v1 and v2, commit `080b109` ("N2 fix pass after the E-LIVE review") shipped: HTTP status/bot-wall rejection in fetch, PDF text extraction via `pypdf`, per-URL fetch caching, host-kind rules (study/standard/regulator-guidance, curated/open tier), span-level (not whole-document) independence merging, a stricter verifier schema (flags for added content, scope difference, and quantifier/modality/connective difference), extraction-prompt fixes (keep subject/quantifier/modality/jurisdiction; split conjunctive lists), a corrected decoy protocol (real verify payload, strengthening-only mutations, Wilson CI), removal of the pairwise contradiction classifier in favour of cross-cluster re-verification, a new "thin" slot status, and a new `procedure_step` probe.
+Between v1 and v2, commit `080b109` ("N2 fix pass after the E-LIVE review") shipped: HTTP status/bot-wall rejection in fetch, PDF text extraction via `pypdf`, per-URL fetch caching, host-kind rules (study/standard/regulator-guidance, curated/open tier), removal of the whole-document ≥25-word quotation rule from independence clustering (keys stay document-level; see row 4), a stricter verifier schema (flags for added content, scope difference, and quantifier/modality/connective difference), extraction-prompt fixes (keep subject/quantifier/modality/jurisdiction; split conjunctive lists), a corrected decoy protocol (real verify payload, strengthening-only mutations, Wilson CI), removal of the pairwise contradiction classifier in favour of cross-cluster re-verification, a new "thin" slot status, and a new `procedure_step` probe.
 
 **PLC v2 (`20260928T145115Z-518f99363336`): crashed, 0 claims.** `sidecar.json` records `complete: false`, `incomplete_reasons: ["run failed: UnicodeEncodeError('utf-8', ...'surrogates not allowed')"]`. The failing document is a `pypdf`-extracted PDF ("Review of Typical Interference Suppression Measures for Industrial Control Systems") whose extracted text contained a lone UTF-16 surrogate that could not be UTF-8-encoded for hashing, and the fetch phase aborted entirely on that one document rather than recording a fetch failure and continuing. 18 fetch failures were logged before the crash; cost $0.193 (planning/search only — no extraction or verification ran).
 
@@ -145,18 +145,68 @@ The 140 pending verdicts are evidence items whose `verification` object is `{"on
 
 **Fix (`0f39ed9`, "N2 defect fix: log and retry provider errors; surrogate-safe text; fetch never aborts"):** transient provider errors now retry with backoff; every failed attempt is logged as `api_error`; skips are counted per task in the sidecar; cross-verify calls carry their own task label; lone UTF-16 surrogates from `pypdf` no longer crash hashing; one bad document becomes a fetch failure instead of aborting the fetch phase. No prompt, schema, model or logic change. The v2 runs that exposed these defects were committed as evidence in this same commit.
 
-## 6. v3: post-fix live check — PENDING
+## 6. v3: post-fix live check — NOT RUN (budget)
 
-**v3 results: PENDING.**
-
-Both v3 runs (`20260928T171449Z-518f99363336` PLC, `20260928T171508Z-bc1cc9a30a02` GDPR) are blocked at the very first model call (the planner), before any search, fetch, extraction or verification occurred:
+Both v3 attempts (at `n2-freeze-2`, 17:14:49 and 17:15:08 UTC, one logged call each) stopped at the planner's first call, before any search, fetch or billed call:
 
 ```
-Incomplete reasons:
-- run failed: LLMUnavailable('PermissionDeniedError("Error code: 403 - {\'error\': {\'message\': \'Key limit exceeded (weekly limit). Manage it using https://openrouter.ai/workspaces/default/keys/...\', \'code\': 403}}")')
+run failed: LLMUnavailable('PermissionDeniedError("Error code: 403 - ... Key limit exceeded (weekly limit) ...")')
 ```
 
-`n_claims`, `n_sources_fetched`, `n_located`, `n_verified` etc. are all 0 in both runs; cost $0.0000. This is an OpenRouter account-level rate limit, not a pipeline defect — it says nothing about whether `0f39ed9`'s fixes work. **v3 must be re-run once the weekly key limit resets (or on a different key) before this section can be filled in.** When it runs, the numbers to fill in are: crash/non-crash on the PLC PDF corpus, the pending-verdict count on GDPR (target: 0, or explained), cross-check and decoy counts (target: > 0, matching the `080b109` cross-cluster design), and the same headline table as §3 for both domains.
+At the closeout (2026-09-28) the OpenRouter key had a $5 weekly limit with $0 remaining. The owner decided not to raise it or spend more. No route keeps the registered models without spending: `models.json` fixes Haiku 4.5 and GPT-5.4-mini through OpenRouter, and web search runs through OpenRouter too. **v3 was not run at `n2-freeze-3`.** Amendment 2 P1's live criteria are therefore unmet:
+- both domains `complete: true` and passing `verify_run`;
+- nonzero `cross_verify` and `decoy` calls;
+- every PENDING claim explained by a logged failed call.
+
+That is missing execution, not a failed check.
+
+### 6.1 What stands in for v3 (offline and from existing artefacts)
+
+**Offline audit at `n2-freeze-3`.** No network; the scripted fake model and fixture pages. 412 tests pass at the tag, and 416 with the 4 regression cases added at the closeout.
+
+| Property | Status | Evidence |
+|---|---|---|
+| No silently pending claims | Implemented and tested, with a gap | Failed verify, cross-verify, decoy, plan, search and extract calls are counted per task (`test_e2e_call_stats.py`). The gap (R6): `complete` and `n3_input` ignore `failed_calls_by_task`, and the injection-flag and same-family skips leave PENDING without a counter entry. |
+| Exact-span provenance | Implemented and tested | `verify_run` re-slices every evidence item and fails on a missing or tampered snapshot (`test_smoke.py`). The manual sample re-sliced 71/71 evidence items with 0 mismatches (§6.2). |
+| Cross-verification executes | Implemented and tested | The fake run makes 4 `cross_verify` calls: SUPPORTS adds corroboration, REFUTES adds one N1 Contradiction (`test_e2e_contradictions.py`). |
+| Independence and corroboration | Implemented and tested | A syndicated copy counts once; corroboration reaches 2 across independent clusters (`test_e2e_corroboration.py`). R3, verbatim copies under 25 words, still stands. |
+| Decoys execute | Implemented and tested | Generation and verification run, and the false-accept rate is computed (`test_e2e_decoys.py`). Decoy validity is still self-certified (R2). |
+| UNKNOWN stays possible | Implemented and tested | UNKNOWN is written only for a searched, uncovered slot; an all-failed search is "unsought" (`test_e2e_slots.py`). |
+| Scope drift not regressed | Implemented; **test added at the closeout** | Any drift flag turns SUPPORTS into insufficient (`test_supports_with_any_drift_flag_is_downgraded_to_insufficient`, which fails if the veto is removed). REFUTES ignores the flags (R4). |
+| PDF not regressed | Implemented; **end-to-end test added at the closeout** | A PDF becomes a located, verified claim (`test_pdf_source_yields_a_located_verified_claim`). Lone surrogates are sanitised, and one bad document does not abort the fetch (`test_web.py`, `test_e2e_resilience.py`). |
+| Verification completeness | Implemented and tested | Every failed attempt is logged as `api_error`; transient errors retry with backoff (`llm._dispatch_with_retry`, `0f39ed9`). |
+
+**Live evidence for cross-verify and decoys comes only from sealed runs** (exit-status counters only, which §8 lets us read):
+- E-PLANT run 1 at `n2-freeze` recorded 276 and 90 cross checks, with 0 decoys.
+- E-ABST run 1 logged 3 decoy calls and no cross-verify.
+- No unsealed live run shows either.
+
+**The v2(b) PENDING cause, now diagnosed.**
+- The run logged 226 verify calls, all ok, and `n_verified` = 226 = 207 supports + 19 insufficient.
+- Its code (`080b109`) wrote no log line on a provider error, and it had no `failed_calls_by_task` counter.
+- So the 140 PENDING evidence items are 140 verify attempts that raised and left no trace. They form one contiguous tail in extraction order (226 verified, then 140 pending, 0 injection-flagged), which rules out the deliberate skip paths. The last logged call is at 15:18:31Z.
+- The 0 cross-verify and 0 decoy calls follow: both run after the verify loop.
+- A provider cut-off on the shared key fits the evidence. E-PLANT run 1 (both domains, same key, running at the same time) logged its last calls at 15:18:30 and 15:18:31Z, the same second. The defect itself erased the error text.
+- v2(b)'s prompt and schema hashes (plan, extract, verify, decoy) are byte-identical to `n2-freeze-3`, so its verdicts are the current verifier's.
+
+### 6.2 Manual inspection of natural claims
+
+Full record: [`e_live_claim_inspection.md`](e_live_claim_inspection.md). One AI inspector (Sonnet 5) coded the claims, with no gold and no blind second coder; the final review recoded 7 insufficient items. Seed 20260928. **Not held out:** the current verify and extract prompts quote the E-LIVE review's GDPR examples (R8), so the GDPR v2(b) figures, and the comparison with v1, are in-sample.
+
+| Run (verifier) | Sample | Result |
+|---|---|---|
+| GDPR v2(b) (current) | 25 supported | 22 correct, 3 scope drift: **12% error** (Wilson 95% CI 4–30%) |
+| GDPR v2(b) (current) | 10 of 19 insufficient | 7 correctly rejected (jurisdiction dropped), **2 wrongly rejected**, 1 borderline |
+| GDPR v2(b) (current) | 10 synthetic | 5 PENDING (all near-verbatim, so stuck, not ungrounded); 5 never located |
+| PLC v1 (old) | 20 supported | **30% error** (15–52%): 2 scope drift, 2 added content, 1 wrong, 1 quantifier |
+| GDPR v1 (old) | 10 supported | 10% error (2–40%) |
+| PLC (current) | — | **No data**: v2 crashed and v3 did not run |
+
+**Findings from the inspection:**
+- **Every GDPR scope drift has one shape.** A national Art. 35(4) list item (UK ICO, Slovenia) is generalised to "a DPIA is required" with the jurisdiction dropped. Claims that keep the jurisdiction were all correct.
+- **The verifier is inconsistent on that pattern, not biased in one direction.** Some jurisdiction-dropping list items are accepted (3/25 supported) and their siblings rejected (7/10 of the rejected sample).
+- **Of all 19 rejections, 14 carry a model drift flag** (`adds_content` 12, quantifier/modality 8, scope 3). **The other 5 have no flag and a quote that is not in the span.** Four of those 5 are near-verbatim "repairs" of an extraction artefact (e.g. "organi zation"). The sidecar keeps only the post-rule verdict, so the model's raw verdict is not recoverable.
+- **Precision on supported claims is similar to v1** (GDPR 12% against 10%, overlapping CIs, in-sample). No recall figure exists.
 
 ## 7. Findings and the fixes they drove
 
@@ -180,15 +230,18 @@ Incomplete reasons:
 - **Not abstention calibration.** UNKNOWN/thin rates are suggestive (§4.4) but unvalidated; E-ABST is the calibrated abstention measurement.
 - **Not a residual-prediction test.** E-LIVE cannot and does not speak to RQ-B (whether the gap map predicts the human residual) — that is N3 (E-CTA, E-OSS), which has not started.
 - **Not reproducible or comparable across runs.** Live web search and fetch mean v1/v2/v3 see different pages even for the same task; cost and claim counts are not comparable run-to-run.
-- **Not a measurement of the post-fix pipeline.** v3, the only run at the current code, produced zero data (§6). Everything in §3–§5 is pre- or mid-fix.
+- **Not a live measurement of the post-fix pipeline.** v3 did not run (§6). The current verifier's live behaviour is known only from GDPR v2(b), whose prompts and schema match `n2-freeze-3` but whose provider-error handling does not. The rest of the current code is checked offline only (§6.1).
 
 ## 9. E-LIVE verdict
 
-**Not yet passed: v1 showed the provenance core works; v2 exposed defects now fixed; v3 at the current freeze is pending.** Be precise about what that means:
+**INCONCLUSIVE: the provenance core passes, and the post-fix pipeline was never checked live.**
 
-- v1 showed the provenance core genuinely works: every claim traces through an exact, re-sliceable span to a hashed snapshot and an independent-family verifier verdict (§4.1), across two structurally different domains. That is the thing E-LIVE exists to check, and it holds.
-- v1 also surfaced real, serious defects (source-quality contamination, dead corroboration, over-merged independence, a verifier blind to scope/subject drift, a false contradiction) that would have made any N3-adjacent output misleading. All of them got concrete, targeted fixes in `080b109`, checked against the review's own evidence (§7).
-- v2, run at the fixed code, immediately surfaced two *new* defects the fix pass introduced or exposed (a fetch-phase-aborting encoding bug, and a silent-failure mode in provider-error handling that hid 140/366 unverified claims behind a `complete: true` flag). These are exactly the kind of thing a sanity gate should catch before anything downstream trusts the pipeline, and they were fixed in turn (`0f39ed9`).
-- **v3 — the live check of that second fix — has not run.** It is blocked by an account-level rate limit unrelated to the code. Until v3 produces real data, there is no live-web evidence that the current code (`0f39ed9`) is defect-free; there is only evidence that the *previous* two defect generations were each caught and fixed. The gate is "passing" in the sense that every defect found so far was found and closed quickly, not in the sense that the current code has been checked.
-
-**Recommendation:** treat N2 as not yet cleared for E-PLANT/E-ABST-adjacent trust until v3 runs clean (or its findings are fixed and a v4 does). Re-run v3 as soon as the OpenRouter weekly key limit resets, and fill in §6 before relying on this pipeline for anything beyond what E-PLANT/E-ABST themselves independently re-verify.
+- **Passes (evidence):** exact-span provenance. In v1, every claim traces to a hashed snapshot, an exact re-sliceable span and an other-family verdict (§4.1). The closeout sample re-sliced 71 of 71 evidence items exactly (§6.2).
+- **Implemented and tested offline (§6.1):** cross-verify, decoys, independence and corroboration, UNKNOWN, the drift veto, PDF extraction, and logging and counting of failed calls. The R6 gaps remain: failed calls do not affect `complete`, and some PENDING paths are not counted. The drift and PDF regression tests were added at the closeout.
+- **Measured live on the current verifier (GDPR only, in-sample):** about 12% scope drift among supported claims, and 2–3 wrong rejections in 10 sampled rejections (§6.2). There is no current-verifier PLC data.
+- **Missing:** amendment 2 P1's live check at `n2-freeze-3`. The key budget blocked it, and the owner chose not to spend.
+- **Open limitations carried forward** (R1–R10 in `final_adversarial_review.md`):
+  - `complete` ignores failed calls (R6);
+  - REFUTES ignores the drift flags (R4);
+  - cross-verify can count a verbatim copy as independent (R3);
+  - decoy validity is self-certified (R2).
