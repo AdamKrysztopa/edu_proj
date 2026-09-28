@@ -43,3 +43,9 @@ A queue padded with those is a queue nobody drains.
 ## Open
 
 <!-- Append entries below. After a drain this section is empty again. -->
+
+### Route-surface test filtered to the route type it expected
+
+- **What happened:** `test_every_route_is_either_expert_or_loopback_only` (`instrument/tests/test_server.py`) keeps only `APIRoute` entries of `app.routes`, so it passed while FastAPI's `/openapi.json`, `/docs`, `/docs/oauth2-redirect`, `/redoc` and the `/static` mount (`console.html`, `js/console.js`) answer a non-loopback client with 200. That contradicts decision 0005's "only the expert routes are reachable from the network". It was caught while binding the rule: a strict test that requested every `Route`, `Mount` file and `APIRoute` from a tablet `TestClient` listed exactly those six URLs.
+- **Generalises to:** A test that claims to cover a whole surface must enumerate it without filtering by type, and must fail on any entry it cannot classify, because a filter silently narrows the claim to what the author expected to exist.
+- **Candidate home:** `arch-crew` binding practice for decision 0005, or a test-writing rule in `CLAUDE.md`.

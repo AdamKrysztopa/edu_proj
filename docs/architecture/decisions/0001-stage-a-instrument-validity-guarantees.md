@@ -9,7 +9,8 @@ rules:
     statement: The session app refuses to start a data session whose interviewer and guard model IDs, effort, or prompt, stem and guard hashes differ from the pre-registered values in instrument/prereg.json.
     scope: ["instrument/src/probe_app/**", "instrument/prompts/**"]
     severity: blocking
-    verification: narrative
+    verification: deterministic
+    verified_by: pytest-archon#test_every_frozen_field_change_refuses_a_data_session
   - id: ai-turn-passes-contract-and-guard
     statement: No AI interviewer turn reaches the expert unless code has checked it against the turn contract (known stem, at most one follow-up per stem carrying a quoted span that occurs in the expert's own words) and the leading-question guard has not flagged it; a second rejection falls back to the next unused stem shown bare, and rejected turns are logged, never shown.
     scope: ["instrument/src/probe_app/**"]

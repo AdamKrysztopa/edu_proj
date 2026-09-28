@@ -29,7 +29,8 @@ rules:
     statement: Building the backends fails before the server starts, naming the variable, if a configured role's API key is missing.
     scope: ["instrument/src/probe_app/**"]
     severity: warning
-    verification: narrative
+    verification: deterministic
+    verified_by: pytest-archon#test_serve_stops_before_starting_without_a_key
 ---
 # Model choice in one committed file, two backends
 

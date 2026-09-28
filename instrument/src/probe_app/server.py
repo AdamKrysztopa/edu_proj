@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Callable, Literal
 
 from fastapi import Body, Depends, FastAPI, File, Form, HTTPException, Request, UploadFile
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -25,6 +25,25 @@ def loopback_only(request: Request) -> None:
 
 
 CONSOLE = [Depends(loopback_only)]
+# The expert page's own assets are the only static files a network client may fetch.
+EXPERT_ASSETS = {"expert.html"} | set(re.findall(r'"/static/([^"]+)"', (WEB_DIR / "expert.html").read_text()))
+
+
+class ConsoleAssetsLoopbackOnly:
+    """Plain ASGI, touching only /static/ requests, so the audio upload path runs exactly as before."""
+
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        path = scope.get("path", "")
+        client = scope.get("client")
+        if (scope["type"] == "http" and path.startswith("/static/")
+                and path.removeprefix("/static/") not in EXPERT_ASSETS
+                and (client is None or client[0] not in LOOPBACK)):
+            response = JSONResponse({"detail": "the console answers only on the laptop itself (decision 0005)"}, 403)
+            return await response(scope, receive, send)
+        await self.app(scope, receive, send)
 
 
 class CreateBody(BaseModel):
@@ -71,8 +90,9 @@ class AnchorBody(BaseModel):
 def create_app(root: Path, deps: Deps, clock=None, expert_origin: str | None = None) -> FastAPI:
     root = Path(root)
     root.mkdir(parents=True, exist_ok=True)
-    app = FastAPI(title="Stage A session app")
+    app = FastAPI(title="Stage A session app", docs_url=None, redoc_url=None, openapi_url=None)
     app.mount("/static", StaticFiles(directory=WEB_DIR), name="static")
+    app.add_middleware(ConsoleAssetsLoopbackOnly)
     sessions: dict[str, Session] = {}
     locks: dict[str, threading.Lock] = defaultdict(threading.Lock)
 

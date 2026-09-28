@@ -9,12 +9,14 @@ rules:
     statement: Every console-only route of the session app (the console page, session creation, console-view, think-aloud start, keep-talking, segment corrections and additions, probe start, typed answers, probe end, human-arm controls, pause and resume) refuses any request whose client is not 127.0.0.1 or ::1; only the expert routes are reachable from the network.
     scope: ["instrument/src/probe_app/**"]
     severity: blocking
-    verification: narrative
+    verification: deterministic
+    verified_by: pytest-archon#test_only_expert_routes_answer_a_network_client
   - id: session-id-full-uuid
     statement: Session IDs carry a full uuid4 of randomness, not a truncated one.
     scope: ["instrument/src/probe_app/**"]
     severity: warning
-    verification: narrative
+    verification: deterministic
+    verified_by: pytest-archon#test_created_session_id_carries_a_full_uuid4
 ---
 # Console routes answer only the laptop itself
 

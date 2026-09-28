@@ -1,4 +1,9 @@
+import dataclasses
 import json
+import re
+import shutil
+import uuid
+from dataclasses import asdict
 
 import pytest
 
@@ -333,3 +338,108 @@ def test_human_arm_actions_stop_when_the_frozen_config_changes(tmp_path):
         s.human_marker("interviewer")
     with pytest.raises(ConfigMismatch):
         s.human_stem("A1", "cues")
+
+
+def test_created_session_id_carries_a_full_uuid4(tmp_path):
+    ids = [new_session(tmp_path).store.session_id for _ in range(3)]
+    for sid in ids:
+        m = re.fullmatch(r"E01-([0-9a-f]{32})", sid)
+        assert m, f"session id {sid!r} does not end in 32 hex characters"
+        assert uuid.UUID(hex=m[1]).version == 4, f"session id {sid!r} does not end in a uuid4"
+        assert (tmp_path / sid / "state.json").exists()
+    assert len(set(ids)) == len(ids)
+
+
+FROZEN_MODELS = {
+    "interviewer": {"provider": "anthropic", "model": "claude-opus-5", "effort": "medium"},
+    "guard": {"provider": "openrouter", "model": "anthropic/claude-haiku-4-5", "temperature": 0, "route": ["anthropic"]},
+    "simulated_expert": {"provider": "anthropic", "model": "claude-sonnet-5", "effort": "low"},
+    "transcriber": {"model": "scribe_v2"},
+}
+
+
+def _with(role: str, **fields):
+    def edit(models: dict) -> dict:
+        return {**models, role: {k: v for k, v in {**models[role], **fields}.items() if v is not None}}
+    return edit
+
+
+# route exists only on openrouter, so the provider edits that add or drop it change two fields.
+MODEL_EDITS = [
+    (_with("interviewer", model="claude-opus-5-1"), {"interviewer_model"}),
+    (_with("interviewer", provider="openai"), {"interviewer_provider"}),
+    (_with("interviewer", effort="high"), {"interviewer_effort"}),
+    (_with("interviewer", temperature=0.5), {"interviewer_temperature"}),
+    (_with("interviewer", provider="openrouter", route=["anthropic"]), {"interviewer_provider", "interviewer_route"}),
+    (_with("guard", model="anthropic/claude-haiku-4-6"), {"guard_model"}),
+    (_with("guard", provider="anthropic", route=None), {"guard_provider", "guard_route"}),
+    (_with("guard", effort="low"), {"guard_effort"}),
+    (_with("guard", temperature=0.3), {"guard_temperature"}),
+    (_with("guard", route=["amazon-bedrock"]), {"guard_route"}),
+    (_with("transcriber", model="scribe_v3"), {"transcriber_model"}),
+]
+PROMPT_FIELDS = {"interviewer_system.md": "system_prompt_sha256", "stems.json": "stems_sha256",
+                 "guard_system.md": "guard_prompt_sha256"}
+
+
+def test_every_frozen_field_change_refuses_a_data_session(tmp_path, monkeypatch, test_models_file):
+    from probe_app import config
+
+    prompts, instrument = tmp_path / "prompts", tmp_path / "instrument"
+    shutil.copytree(config.PROMPTS_DIR, prompts)
+    for rel in config.MODEL_FACING_FILES:
+        (instrument / rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(config.INSTRUMENT_DIR / rel, instrument / rel)
+    monkeypatch.setattr(config.current_config, "__defaults__", (prompts, None, instrument))
+    monkeypatch.setattr("probe_app.session.git_dirty", lambda: False)
+    test_models_file.write_text(json.dumps(FROZEN_MODELS))
+    prereg = tmp_path / "prereg.json"
+    config.freeze(config.current_config(), prereg)
+    monkeypatch.setattr("probe_app.session.PREREG_PATH", prereg)
+
+    def backend(role):
+        return AnthropicBackend(FakeAnthropic(), role) if role.provider == "anthropic" else OpenAICompatBackend(FakeOpenAI([]), role)
+
+    def deps(transcripts=()) -> Deps:
+        m = config.load_models()
+        transcriber = FakeTranscriber(list(transcripts))
+        transcriber.model = m.transcriber.model
+        return Deps(transcriber, Backends(interviewer=backend(m.interviewer), guard=backend(m.guard)))
+
+    root, arms = tmp_path / "sessions", {"A": "human", "B": "ai"}
+    running = Session.create(root, deps([seg("A1"), seg("A2"), seg("B1"), seg("B2")]), expert_id="E01", cell=1,
+                             arms=arms, set_order=["A", "B"], pilot=False)
+    through_think_aloud(running)
+    sid = running.store.session_id
+
+    def assert_refused(fields: set[str], also_named: str = "") -> None:
+        with pytest.raises(ConfigMismatch, match="pre-registration") as created:
+            Session.create(root, deps(), expert_id="E02", cell=1, arms=arms, set_order=["A", "B"], pilot=False)
+        with pytest.raises(ConfigMismatch, match="changed since this session was created") as resumed:
+            Session.load(root, sid, deps()).start_probe()
+        for field in fields:
+            assert f"'{field}'" in str(created.value), f"new data session refusal does not name {field}: {created.value}"
+            assert f"'{field}'" in str(resumed.value), f"resumed data session refusal does not name {field}: {resumed.value}"
+        assert also_named in str(created.value), f"refusal does not name {also_named}: {created.value}"
+
+    exercised = set()
+    for edit, fields in MODEL_EDITS:
+        test_models_file.write_text(json.dumps(edit(FROZEN_MODELS)))
+        registered = json.loads(prereg.read_text())
+        changed = {k for k, v in json.loads(json.dumps(asdict(config.current_config()))).items() if registered[k] != v}
+        assert changed == fields, f"an edit meant to change {fields} changed {changed}"
+        assert_refused(fields)
+        exercised |= fields
+    test_models_file.write_text(json.dumps(FROZEN_MODELS))
+
+    edited_files = [*((prompts / name, field, "") for name, field in PROMPT_FIELDS.items()),
+                    *((instrument / rel, "model_facing_sha256", rel) for rel in config.MODEL_FACING_FILES)]
+    for path, field, name in edited_files:
+        original = path.read_bytes()
+        path.write_bytes(original + b"\n")
+        assert_refused({field}, also_named=name)
+        path.write_bytes(original)
+        exercised.add(field)
+
+    assert exercised == {f.name for f in dataclasses.fields(config.FrozenConfig)}, "a frozen field has no edit here"
+    assert Session.load(root, sid, deps()).start_probe() == "A"

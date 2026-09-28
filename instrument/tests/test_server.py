@@ -207,3 +207,54 @@ def test_console_view_carries_the_tablet_origin(tmp_path):
     client = TestClient(create_app(tmp_path, deps, expert_origin="https://10.0.0.5:8000"), client=LAPTOP)
     view = client.get(f"/api/sessions/{create(client)}/console-view").json()
     assert view["expert_origin"] == "https://10.0.0.5:8000"
+
+
+# Decision 0005's expert routes, plus the expert page and the assets it loads.
+DECISION_EXPERT_ROUTES = {("GET", "/expert"), ("GET", "/api/sessions/{sid}/expert-view"),
+                          ("POST", "/api/sessions/{sid}/think-aloud/{pid}/end"), ("POST", "/api/sessions/{sid}/probe/answer"),
+                          ("POST", "/api/sessions/{sid}/probe/finalize"), ("GET", "/api/sessions/{sid}/snapshot/{pid}")}
+
+
+def test_only_expert_routes_answer_a_network_client(app):
+    import re
+    from pathlib import Path
+
+    from starlette.routing import Mount, Route
+
+    from probe_app.server import WEB_DIR
+    laptop = TestClient(app, client=LAPTOP, raise_server_exceptions=False)
+    network = TestClient(app, client=TABLET, raise_server_exceptions=False)
+    sid = create(laptop)
+    expert_assets = {"expert.html"} | set(re.findall(r'"/static/([^"]+)"', (WEB_DIR / "expert.html").read_text()))
+
+    requests = []
+    for route in app.routes:
+        if isinstance(route, Mount) and route.path == "/static":
+            for f in sorted(p for p in Path(route.app.directory).rglob("*") if p.is_file()):
+                rel = f.relative_to(route.app.directory).as_posix()
+                requests.append(("GET", f"/static/{rel}", rel in expert_assets))
+        elif isinstance(route, Route):
+            for method in sorted(route.methods - {"HEAD"}):
+                expert = (method, route.path) in DECISION_EXPERT_ROUTES \
+                    or route.path.startswith("/api/sessions/{sid}/recording/")
+                url = route.path.format(sid=sid, pid="A1", seg_id="A1-s001")
+                requests.append((method, url, expert))
+        else:
+            pytest.fail(f"unclassified route {route!r}")
+
+    leaks = [(m, u) for m, u, expert in requests if not expert and network.request(m, u).status_code != 403]
+    blocked = [(m, u) for m, u, expert in requests if expert and network.request(m, u).status_code == 403]
+    unreachable = [(m, u) for m, u, expert in requests if not expert and laptop.request(m, u).status_code == 403]
+    assert (leaks, blocked, unreachable) == ([], [], []), \
+        f"non-expert routes answering the network: {leaks}; expert routes refusing it: {blocked}; " \
+        f"console routes refusing the laptop: {unreachable}"
+
+
+def test_expert_page_depends_on_exactly_the_listed_assets():
+    from probe_app.server import EXPERT_ASSETS, WEB_DIR
+    assert EXPERT_ASSETS == {"expert.html", "css/app.css", "js/expert.js"}
+    js, css = (WEB_DIR / "js" / "expert.js").read_text(), (WEB_DIR / "css" / "app.css").read_text()
+    for needle in ("import ", "import(", "new Worker", "/static/"):
+        assert needle not in js, f"expert.js now loads more ({needle!r}): add it to EXPERT_ASSETS and this list"
+    for needle in ("url(", "@import"):
+        assert needle not in css, f"app.css now loads more ({needle!r}): add it to EXPERT_ASSETS and this list"

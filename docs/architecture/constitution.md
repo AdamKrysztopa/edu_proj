@@ -31,7 +31,7 @@ Every console-only route of the session app (the console page, session creation,
 
 - Severity: blocking
 - Scope: `instrument/src/probe_app/**`
-- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Verified by `pytest-archon#test_only_expert_routes_answer_a_network_client` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
 - Source: [0005 Console routes answer only the laptop itself](decisions/0005-console-routes-loopback-only.md)
 
 ### freeze-by-computed-rule
@@ -58,7 +58,7 @@ The session app refuses to start a data session whose interviewer and guard mode
 
 - Severity: blocking
 - Scope: `instrument/src/probe_app/**`, `instrument/prompts/**`
-- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Verified by `pytest-archon#test_every_frozen_field_change_refuses_a_data_session` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
 - Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
 
 ### full-session-log
@@ -85,7 +85,7 @@ Building the backends fails before the server starts, naming the variable, if a 
 
 - Severity: warning
 - Scope: `instrument/src/probe_app/**`
-- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Verified by `pytest-archon#test_serve_stops_before_starting_without_a_key` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
 - Source: [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md)
 
 ### model-choice-is-frozen-config
@@ -139,7 +139,7 @@ Session IDs carry a full uuid4 of randomness, not a truncated one.
 
 - Severity: warning
 - Scope: `instrument/src/probe_app/**`
-- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Verified by `pytest-archon#test_created_session_id_carries_a_full_uuid4` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
 - Source: [0005 Console routes answer only the laptop itself](decisions/0005-console-routes-loopback-only.md)
 
 ### simulated-sessions-rejected
