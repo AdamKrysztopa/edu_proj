@@ -1,4 +1,5 @@
 import ast
+import re
 import sys
 from pathlib import Path
 
@@ -9,6 +10,7 @@ MODULES = sorted((ROOT / "src" / "reconstruct").rglob("*.py"))
 FORBIDDEN = {"instrument", "probe_app", "probe_code"}
 ALLOWED = (set(sys.stdlib_module_names) |
            {"pydantic", "httpx", "openai", "tldextract", "residual", "reconstruct"})
+_CONSTRUCTOR_RE = re.compile(r"\b(Evidence|Selector|Verification)\(")
 
 
 def imports(path: Path):
@@ -33,3 +35,15 @@ def test_modules_never_import_instrument(path):
 def test_modules_import_only_declared_dependencies(path):
     found = set(imports(path))
     assert found <= ALLOWED, f"{path}: undeclared import {found - ALLOWED}"
+
+
+@pytest.mark.parametrize("path", [p for p in MODULES if p.name != "evidence.py"], ids=lambda p: p.name)
+def test_only_evidence_module_constructs_evidence_selector_verification(path):
+    hits = _CONSTRUCTOR_RE.findall(path.read_text())
+    assert not hits, f"{path}: constructs {set(hits)} outside evidence.py (only evidence.py may)"
+
+
+def test_evidence_module_does_construct_them():
+    text = (ROOT / "src" / "reconstruct" / "evidence.py").read_text()
+    for name in ("Evidence", "Selector", "Verification"):
+        assert _CONSTRUCTOR_RE.search(text) and f"{name}(" in text, f"evidence.py never constructs {name}"
