@@ -6,6 +6,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from reconstruct.llm import ServedModelMismatch
 from reconstruct.run import reconstruct
 from residual.ledger import Ledger
@@ -187,3 +189,22 @@ def test_served_model_mismatch_leaves_evidence_pending_and_run_continues(tmp_pat
 
     survivor = find_claim(ledger, "Thermal conductivity measures heat conduction")
     assert survivor.label == EpistemicLabel.LITERATURE_SUPPORTED, "the run must continue past the mismatch"
+
+
+# --- drift flags veto SUPPORTS (E-LIVE v1 scope-drift regression) ---------------------------------
+
+@pytest.mark.parametrize("flag", ["adds_content", "subject_or_scope_differs",
+                                  "quantifier_modality_or_connective_differs"])
+def test_supports_with_any_drift_flag_is_downgraded_to_insufficient(tmp_path, flag):
+    quote = ("Thermal conductivity measures how readily a material conducts heat energy through "
+             "it under a temperature gradient.")
+    run_dir, extractor, verifier = _one_page_run(
+        tmp_path, url="https://span-check.example/page", fixture="insufficient_source.html",
+        area="Heat", quote=quote, assertion="Thermal conductivity always measures heat conduction.",
+        verify_response={"verdict": "supports", "supporting_quote": quote, flag: True})
+
+    ledger = Ledger.from_json((run_dir / "ledger.json").read_text())
+    claim = find_claim(ledger, "Thermal conductivity always")
+    assert [e.verification.verdict for e in claim.evidence] == ["insufficient"]
+    assert claim.supporting == ()
+    assert claim.label == EpistemicLabel.SYNTHETIC_EXTRAPOLATION
