@@ -1,20 +1,33 @@
 # Research progress
 
-Tracks work against [`ai_education_research_map.md`](ai_education_research_map.md), which remains the single source of state. Each ticked branch links to its note in `research/`.
+Tracks work against [`REORIENTATION.md`](REORIENTATION.md), the strategic plan adopted 2026-09-28, and the evidence in [`ai_education_research_map.md`](ai_education_research_map.md). Each ticked branch links to its note in `research/`.
 
-**Visual PoC brief:** [What we plan to build, need and learn](docs/poc-explained.html) — one offline HTML document with embedded SVG diagrams. It explains the proposed route; it does not mark the planning or validation steps complete. Optional reading.
+**Visual PoC brief (Track A):** [What we plan to build, need and learn](docs/poc-explained.html) explains the frozen Track A route, not the project plan. Optional reading.
 
-## Current priority — implement the chosen route (§9)
+## Current priority — the NOW programme (`REORIENTATION.md` §22)
 
-**The planning deliverable is complete:** [research/roadmap.md](research/roadmap.md) chooses the route, works one physics case, defines the first version and sets milestones M1–M8, each with a continue/change/stop decision. Supporting notes: [comparison](research/route-comparison.md) (step 1) and [decision-critical gaps](research/decision-gaps.md) (step 2). The route is justified by the evidence available; its effectiveness is untested, and assumptions A1–A10 name the milestone that tests each.
+The project is reoriented: reconstruct what public and organisational evidence already says, predict where that reconstruction is missing human knowledge, and ask humans only about that residual. NOW needs zero participants, zero proprietary data, zero microphones and zero live expert interviews; its one human input is one blind second coder. Physics is one benchmark domain; the prepared physics study is frozen as Validation Track A (below).
 
-**Next:** M1 (bottleneck check, early K0) and M2 (elicitation tool and pilot) in parallel. M1 needs a course offering; M2 needs 1–2 pilot physicists.
+**Next:** N0 remainder (domain-neutral package), then N1–N2; fill in the threshold table and pre-register N3 (E-CTA, E-OSS) before acquiring any gold. N8 (E-SEAL) and N9 (cost ledger) can start at once.
 
-The full scope remains expert elicitation → learner diagnosis → instructional response → assessment and adaptation. Physics conservation problems are the first case, not the boundary of the project.
+| Item | What | Gate | Status |
+|---|---|---|---|
+| **N0** | Reset: DOI hook path fixed; Track A labelled frozen; `CLAUDE.md`, `PROGRESS.md` and map rewritten; domain-neutral package for reused components | DOI hook fires on a test edit | Hook fixed and verified on a bad `doi.org` link (it does not yet read `doi:` citations, see `docs/lessons.md`); governing files rewritten; package not started |
+| **N1** | Claim record, six evidence labels, knowledge-type vocabulary, gap-map fields | Every gold item expressible without new field types | Not started |
+| **N2** | Gated reconstruction pipeline v0; E-PLANT, E-ABST | Beats the ungated model on planted falsehoods and private objectives | Not started |
+| **N3** | **Central test:** E-CTA (clinical, troubleshooting gold) and E-OSS | Pre-registered ΔAUROC stop/continue rule vs the strongest baseline | Not started; gold not yet acquired |
+| **N4** | Behavioural validity: E-KC, E-DIST, E-MISC | Non-inferior KC fit; beats raw LLM likelihood; misconception recall | Not started |
+| **N5** | Residual measurement against gold as an independent occasion | Unseen-item estimate matches the gold count within tolerance | Not started |
+| **N6** | Question selection by expected information gain vs held-out gold oracles | Beats random, plain-LLM and expert-written lists | Not started |
+| **N7** | Surrogates: labelling rule, validation tiers T1–T3 on public data | Uses licensed by tier reached | Not started |
+| **N8** | E-SEAL: sealed Track A predictions | None (secondary, non-gating) | Not started |
+| **N9** | Cost ledger | None | Not started |
 
-## Roadmap — all steps
+**LATER** begins only after N3 continues or pivots: labellers, expert raters, targeted residual interviews with a blind arm, a small learner error sample, one organisational pilot under a DPIA. **MUCH LATER:** learner-facing modules, live generation, instructional RCTs, per-student diagnosis.
 
-**Current step: 7 and 8, in parallel. Everything that needs no participants is built; both now wait on people (course, ethics, physicists).** Steps 1–6 worked out the route; steps 7 onward are the roadmap's milestones (M1–M8 in `research/roadmap.md`), in execution order.
+## Validation Track A (frozen) — roadmap steps
+
+**Frozen 2026-09-28 as a unit; starts only on its own registered preconditions (course, ethics, physicists), independent of the NOW programme. Registered rules unchanged.** Steps 1–6 worked out the Track A route; steps 7 onward are its milestones (M1–M8 in `research/roadmap.md`), in execution order. Steps 7 and 8 wait on people.
 
 **Size:** S = small task; M = several focused tasks; L = substantial work; XL = participant study with external scheduling. These are rough effort categories, not calendar estimates.
 
@@ -99,15 +112,15 @@ Stage A is M4 and Stage B is M6 in the roadmap. Stage A addresses Phase 2; Stage
 - [x] `/branch experiment`: gated two-stage design; `methods-critic` reviews applied. [note](research/experiment-ai-assisted-cta-physics.md)
 - [x] Stage A instrument built ([spec](docs/superpowers/specs/2026-09-26-stage-a-session-app-design.md)).
 
-## Reading (§8)
+## Reading
 
-**Entire minimum:** [research/minimum-reading.md](research/minimum-reading.md). The synthesis is available; this does not assert that the user has read it.
+**Entire minimum:** `REORIENTATION.md` §1. [research/minimum-reading.md](research/minimum-reading.md) is the Track A brief. This does not assert that the user has read either.
 
 **All further reading is optional**, including Pace, Shulman, Chi et al., Clark et al., Kulik & Fletcher, Kestin et al., the FCI paper and every branch note. The optional source selection remains in map §8. There is no extra reading checklist to complete before continuing.
 
 ## Research phases (§9)
 
-These track the map's research questions; they are not extra prerequisites before implementation. Follow the numbered roadmap above for execution.
+These track the map's research questions inside Track A; the reoriented questions are RQ-A to RQ-J in `REORIENTATION.md` §17.
 
 - [ ] **Phase 1** (roadmap 7, M1): validate the premise. Taxonomy drafted in the roadmap's step 4; learner evidence not collected, so the kill criterion has not been evaluated.
 - [ ] **Phase 2** (roadmap 8 and 10): expert-elicitation experiment (ordinary explanation vs human-led vs AI-led DtD/CTA vs think-aloud)
@@ -123,7 +136,7 @@ These track the map's research questions; they are not extra prerequisites befor
 - [ ] A test of the provisional physics elicitation method: think-aloud while solving, then retrospective CDM probes
 
 ## Infrastructure
-- [x] `/branch` and `/elicit` skills, `citation-verifier` and `methods-critic` agents, DOI hook
+- [x] `/branch` and `/elicit` skills, `citation-verifier` and `methods-critic` agents, DOI hook (settings path fixed 2026-09-28; it had called a deleted `.sh`)
 - [x] `/session-report` skill, `validity-reviewer` agent, hooks guarding `.env` and the frozen prompts
 - [x] Lessons loop: queue `docs/lessons.md`, archive `docs/LESSONS-ARCHIVE.md`, `lessons` and `implement-ll` skills, SessionStart hook, checker `scripts/lessons_graph.py`. Capture is step 9 of `/branch`; the drain runs before `probe-app freeze` (`instrument/pilot-protocol.md`)
 - [x] Zotero local API responding
@@ -136,4 +149,6 @@ These track the map's research questions; they are not extra prerequisites befor
 - [x] `codebook-stress-tester` agent: applies `instrument/codebook/v0.md` to simulated exports and reports codes that overlap, go unused or are applied with low confidence; before pilots only, never as a coder of record
 - [x] Add `.claude/worktrees/` to `.gitignore`
 - [ ] Zotero library seeded with this project's reading (currently no items in this area)
-- [ ] DOI hook also checks that the resolved title matches the cited work. It only checks resolution now, so the Crandall et al. (2006) DOI in §14 passed while pointing to the wrong book (now corrected).
+- [x] DOI hook also checks that the resolved title matches the cited work (`check-dois.py`: first author or two title words on the line).
+- [ ] DOI hook reads `doi:10.…` citations as well as `doi.org` links (`REORIENTATION.md` uses the former)
+- [ ] `methods-critic` checklist rewritten for zero-participant and surrogate designs

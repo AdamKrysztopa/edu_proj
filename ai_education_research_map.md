@@ -1,11 +1,11 @@
 # Research Map: AI-Supported Learning That Makes Expert Knowledge Explicit
 
-**Status:** research map; literature explored, empirical premise validation still open
+**Status:** evidence map; literature explored, empirical premise validation still open. **Strategic plan: `REORIENTATION.md` (adopted 2026-09-28)**, which this map now serves as the graded evidence base.
 
 **Primary use:** paste this file into a new research session and use it to decide what to investigate, validate, combine, or reject.  
-**Project context:** an AI-supported educational system, initially relevant to university-level physics/STEM but intended to remain transferable across disciplines and potentially compatible with commercial learning-content partners.
+**Project context:** a universal system for recovering the knowledge experts leave unsaid, in education and inside organisations. Physics/STEM was the first setting; it is now one benchmark domain and the frozen Validation Track A.
 
-**Scope alignment (2026-09-27):** the research question, three layers and five-phase sequence below remain the project plan. The reading change is limited to §8: the short synthesis is the minimum; all other reading is optional. The conservation-topic experiment and its existing session app are preparation for one branch, not a replacement for the map. Literature reviews and working software do not establish the premise. **Route chosen (2026-09-28): `research/roadmap.md`** (§9). The current priority is implementing it milestone by milestone, starting with the early K0 bottleneck check and the elicitation pilot. Empirical studies belong in that roadmap; completing them all is not a prerequisite for starting implementation. The detailed study's numerical gates apply to that topic and design, not to the entire research programme.
+**Reorientation (2026-09-28):** `REORIENTATION.md` replaces `research/roadmap.md` as the governing plan. The roadmap, the conservation-topic experiment and its session app are frozen intact as **Validation Track A — Physics / Human Expert Elicitation**, with registered rules unchanged; Track A starts only on its own registered preconditions. The NOW programme uses zero participants, zero proprietary data and zero microphones. Earlier scope note (2026-09-27): the reading minimum is one short summary; literature reviews and working software do not establish the premise.
 
 ---
 
@@ -20,6 +20,8 @@ This map deliberately separates three problems that are often conflated:
 3. **Instructional response:** what intervention should follow, and how should an AI system adapt it?
 
 A good system will probably need methods from all three layers rather than one pedagogical framework alone.
+
+**Reframed (2026-09-28, `REORIENTATION.md` §6).** The question above stays, widened in two ways. It covers **knowledge inside organisations** (onboarding, retiring experts, troubleshooting, undocumented decisions) as well as education. Its first step is now **reconstruct, then locate**: build a provenance-labelled model of the domain from public and organisational evidence, then predict where that model is missing important human knowledge, the *human knowledge residual*, before any human is asked. The central, falsifiable question is whether that prediction beats strong naive baselines (RQ-B). Six questions stay separate because their evidence differs: what the domain is, what competent performance looks like, what is difficult, what this person knows, what they should learn next, and how to teach it.
 
 ---
 
@@ -699,6 +701,11 @@ The **LLM should probably be an interface/reasoning component, not the database 
 
 # 7. Applicability by discipline
 
+**Reoriented (2026-09-28).** Domains are now chosen by public ground truth and spread across text-richness on purpose (`REORIENTATION.md` §19): middle-school mathematics, introductory mechanics, a clinical procedural domain, open-source software onboarding and knowledge-at-risk, and industrial maintenance as the text-poor case. The reasons below why physics suits a first prototype are also reasons it is a **best case** for reconstruction from text: success there does not show generality.
+
+## Knowledge inside organisations
+The second application family. Knowledge is spread across documentation, SOPs, tickets, code, Git history, architecture decisions and people. Documents describe work as imagined; traces, reviews and logs show work as done. Rationale and knowledge concentrated in few people are the likeliest residual. Public open-source repositories with developer departures are the zero-participant testbed (`REORIENTATION.md` §7, E-OSS).
+
 ## Physics / mathematics / engineering
 **Best research environment for an initial prototype.** Reasons:
 - strong expert–novice literature;
@@ -759,6 +766,8 @@ Strong opportunities for tutoring and feedback, but “expert solution traces”
 ---
 
 # 9. Research sequence — recommended order
+
+**Superseded as the governing sequence (2026-09-28).** The project's sequence is now `REORIENTATION.md` §22: NOW (zero participants), LATER, MUCH LATER, each item ending in a continue/change/stop decision. What follows is Validation Track A's sequence, kept intact; its registered rules still apply if Track A runs.
 
 ## Work out the route, then implement
 

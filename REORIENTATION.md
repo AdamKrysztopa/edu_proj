@@ -1,6 +1,6 @@
 # Locate the residual before asking anyone
 
-**Status:** strategic research map, 2026-09-28. Synthesised from the eight notes in `research_notes/Tacit knowledge reorientation/`. It proposes a reorientation; it does not enact one. `ai_education_research_map.md` remains the single source of state until the owner accepts or rejects this document, and nothing here changes a registered rule of the prepared study.
+**Status:** strategic research map, adopted by the owner 2026-09-28. Synthesised from the eight notes in `research_notes/Tacit knowledge reorientation/`. `CLAUDE.md`, `PROGRESS.md` and the map's header, §1, §7 and §9 now point here, and the `check-dois` hook path is fixed (N0). Nothing here changes a registered rule of the prepared study.
 
 **Claim tags.** ESTABLISHED = replicated, meta-analytic, or a foundational result not seriously contested. PROMISING = one or a few credible studies, a strong preprint, or a documented but unevaluated capability. SPECULATIVE = argument, position paper, single small study, or an inference in the notes. OUR HYPOTHESIS = a proposal of this document, untested. Bracketed numbers are references (section 26). "Not found" means the notes' searches did not find it, not that it does not exist.
 

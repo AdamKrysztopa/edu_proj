@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/check-dois.sh",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/check-dois.py",
             "timeout": 60,
             "statusMessage": "Checking DOIs"
           }
