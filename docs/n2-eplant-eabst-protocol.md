@@ -188,3 +188,5 @@ The E-LIVE review (`research/n2/e_live_review_notes.md`) changed the pipeline be
 - **Fetch.** Non-2xx responses and bot-wall pages are rejected, and PDF text is extracted.
 - **E-ABST raw baseline.** It ran before this amendment and does not depend on the pipeline, so it stands.
 The pipeline is frozen at the commit that closes this fix pass. The E-PLANT and E-ABST reports name that commit.
+
+**Deviation (recorded 2026-09-28, before any E-PLANT run).** The protocol requires the frozen areas (step 1) to be committed before the real pages. They were not: the corpus agent skipped the step. The orchestrator wrote the areas (`reconstruct/experiments/e_plant/areas/`) after the corpus was built, from the domain and task strings alone, without opening the targets, the gold candidates or the plant key. That the areas were written blind cannot be verified from git order; this note is the record.
