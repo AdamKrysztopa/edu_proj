@@ -65,6 +65,21 @@ with the whole chain as its evidence. Answering an oscillation with a third rule
 
 <!-- Newest drain first. Append a new `## YYYY-MM-DD — drain N` section above the previous one. -->
 
+## 2026-09-28 — drain 5
+
+| id | rule | home | commit | edges |
+|------|------|------|--------|-------|
+| L5.1 | A check enumerates everything in its claimed scope and reports, never silently skips, what it cannot resolve or classify (a registered hook whose script is missing, a DOI form it does not parse, a lookup that failed, a route type it filtered out), because a silent skip reads as a clean pass. | `.claude/hooks/check-dois.py` | 2376825 | refines L1.1 |
+| L5.2 | Every number in a research document is verified in the source's own text, never against an intermediate note or a summarising tool's output; a number found only there is reported as unresolvable. | `.claude/agents/citation-verifier.md` | 2376825 | refines L2.1 |
+| L5.3 | Every research plan names at least one evidence route the project can reach now; if every gate waits on people or data it does not have, revise the plan before building anything. | `.claude/agents/methods-critic.md` | 2376825 | recurs L1.11 |
+
+Grouping: L5.1 merges three queue entries: the route-surface test that filtered by route type (instance already fixed by `test_only_expert_routes_answer_a_network_client`), the settings hook pointing at a deleted `check-dois.sh`, and the DOI hook ignoring `doi:` citations. Its second home is `.claude/hooks/session_start_lessons.py`, which warns at session start when a registered hook cannot run; both homes were fired on purpose once. L5.2 merges the fabricated fetch-summary figure with the grain errors found in `REORIENTATION.md`. L5.3 is the reorientation's drift diagnosis.
+
+**Graph finding carried, not acted on:** the checker still reports L1.7 as a recurrence whose `moves` did not go far enough. L1.7 guards the Track A freeze, and Track A is frozen with no `probe-app freeze` scheduled. Re-route it when Track A resumes, before its freeze.
+
+**Fitness check — which of this cycle's defects would a rule already in the archive have caught?** Two, both applied. L2.1 (citation-verifier) caught the synthesis grain errors at review, which is where its home puts it; a writer told the rule still made them, so L5.2 sharpens the verifier rather than moving it. L1.11 (`/branch` skill) named "an instrument is not progress", yet the plan kept waiting on people; L5.3 moves the check to `methods-critic`, which runs on every plan. L1.1 was disabled by the dead hook path, which is L5.1's class.
+
+
 ## 2026-09-28 — drain 4
 
 | id | rule | home | commit | edges |
