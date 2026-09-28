@@ -1,0 +1,107 @@
+{
+ "areas": [],
+ "complete": false,
+ "config": {
+  "domain": "EU data protection law",
+  "max_doc_chars": 40000,
+  "max_results": 5,
+  "models": {
+   "baseline": {
+    "family": "anthropic",
+    "model": "anthropic/claude-haiku-4.5"
+   },
+   "extractor": {
+    "family": "anthropic",
+    "model": "anthropic/claude-haiku-4.5"
+   },
+   "planner": {
+    "family": "anthropic",
+    "model": "anthropic/claude-haiku-4.5"
+   },
+   "verifier": {
+    "family": "openai",
+    "model": "openai/gpt-5.4-mini"
+   }
+  },
+  "probe_sha256": "2fce3bf7258bbcd7487b7bea1dd8108c43014e0ce311129216f658814a827b56",
+  "probes": [
+   "concept",
+   "decision",
+   "cue",
+   "check",
+   "failure_mode",
+   "norm",
+   "rationale",
+   "procedure_step"
+  ],
+  "prompts": {
+   "decoy": "85e07ae93ebc628a41584a00319ddf38390b7ef6b47464718d994a63153d98b9",
+   "extract": "b6a5b91874d93df2606271ae04dc5cfe33f8f301b5d05c226f06bb78877e1137",
+   "plan": "425f2eaddc410ed4743bee7477541489ee81cdb9b52c7fd4cd4e7e6c5a52089b",
+   "verify": "c79981bb9d946153bbf1e0195d7e861c7f16d6c4dfe5a660b74006fb349a3c8d"
+  },
+  "task": "When must a controller carry out a data protection impact assessment under the GDPR, and what must it contain?"
+ },
+ "cross_checks": [],
+ "decoys": [],
+ "extractions": [],
+ "fetch_failures": [],
+ "incomplete_reasons": [
+  "run failed: LLMUnavailable('PermissionDeniedError(\"Error code: 403 - {\\'error\\': {\\'message\\': \\'Key limit exceeded (weekly limit). Manage it using https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c\\', \\'code\\': 403}}\")')"
+ ],
+ "n3_input": false,
+ "n3_input_reason": "run incomplete",
+ "searches": [],
+ "slots": [],
+ "sources": {},
+ "stats": {
+  "decoy_by_type": {
+   "negation": {
+    "attempted": 0,
+    "failed": 0,
+    "false_accept": 0,
+    "valid": 0
+   },
+   "number": {
+    "attempted": 0,
+    "failed": 0,
+    "false_accept": 0,
+    "valid": 0
+   },
+   "scope": {
+    "attempted": 0,
+    "failed": 0,
+    "false_accept": 0,
+    "valid": 0
+   }
+  },
+  "decoy_false_accept_rate": 0.0,
+  "failed_calls_by_task": {
+   "cross_verify": 0,
+   "decoy": 0,
+   "extract": 0,
+   "plan": 1,
+   "verify": 0,
+   "web_search": 0
+  },
+  "label_counts": {},
+  "largest_cluster_share": 0.0,
+  "n_claims": 0,
+  "n_contradictions_ledger": 0,
+  "n_cross_checks": 0,
+  "n_extracted": 0,
+  "n_fetch_failures": 0,
+  "n_independent_clusters": 0,
+  "n_located": 0,
+  "n_search_hits": 0,
+  "n_sources_fetched": 0,
+  "n_supports": 0,
+  "n_thin": 0,
+  "n_unexamined_slots": 0,
+  "n_unknown": 0,
+  "n_unverified_slots": 0,
+  "n_verified": 0,
+  "total_cost_usd": 0.0,
+  "unlocated_rate": 0.0
+ }
+}
