@@ -192,3 +192,41 @@ The pipeline is frozen at the commit that closes this fix pass. The E-PLANT and 
 **Deviation (recorded 2026-09-28, before any E-PLANT run).** The protocol requires the frozen areas (step 1) to be committed before the real pages. They were not: the corpus agent skipped the step. The orchestrator wrote the areas (`reconstruct/experiments/e_plant/areas/`) after the corpus was built, from the domain and task strings alone, without opening the targets, the gold candidates or the plant key. That the areas were written blind cannot be verified from git order; this note is the record.
 
 **Defect-forced rerun (recorded 2026-09-28, before any score exists).** The logs of the frozen runs (tag `n2-freeze`) show a provider-failure defect: `openai.APIError` was raised before the call log and swallowed downstream, so failed verifier, cross-verify and decoy calls vanished without record. The E-PLANT pipeline runs contain 0 decoy calls. Their cross-verify counts cannot be checked for completeness, because failed calls left no trace. Under §8 ("aborted by a provider outage … decided from exit status and logs before any score exists") the fix is committed naming the defect. It adds retry with backoff, logs every failed call and counts skips in the sidecar, and changes no prompt, schema or logic. The pipeline arms of E-PLANT (both domains) and E-ABST (all items) are rerun once at the new freeze tag, and both sets of logs are reported. The first runs stay sealed and unscored. The E-PLANT baseline arm is complete (24/24 answers), is unaffected and stands.
+
+## Amendment 2 (2026-09-28, before any rerun and before any score)
+
+The final adversarial review (`research/n2/final_adversarial_review.md`) found harness defects D1–D8 and registration gaps P1–P4. No threshold, definition of adoption or of an answer, arm or sample changes, except where a gap below is closed.
+
+**P1. Live check first.** D1–D6 are committed with fixture tests and tagged `n2-freeze-3`. E-LIVE v3 runs at that tag, and no E-PLANT or E-ABST rerun starts until it passes: both domains exit `complete: true` and pass `verify_run`, `calls.jsonl` holds nonzero `cross_verify` and `decoy` calls, and every PENDING located claim is explained by a logged failed call *(our choice)*. If v3 fails for an implementation defect, the fix is committed naming it, a new tag is cut and v3 repeats; E-LIVE is unregistered, so this spends no rerun. The reruns use the tag that passed.
+
+**P2. Rerun mechanics** *(our choice throughout)*.
+- The amendment-1 rerun (run 2) is each unit's one §8 rerun. It writes to a fresh directory, `pipeline_run2`. Run 1 is never appended to, overwritten or placed under the new `--out`; it stays sealed, unscored and kept. Only the raw-arm `baseline.json` and its `status.json` entries carry over.
+- E-ABST re-runs every item's pipeline arm into `pipeline_run2`, and its cap accounting counts only run-2 spend against a fresh budget (P3). E-PLANT keeps $1.50 per domain, also fresh. Run-1 costs are reported.
+- An attempt blocked by quota or permission before any billed call is not a rerun attempt. Its directory is kept and reported; the next attempt uses a new suffixed directory.
+- A unit whose run ends "run failed: …" or "budget exceeded", or shows a provider outage (as in the harness: any `api_error` line in `calls.jsonl` with failed calls > 0), is not a result under §8. This supersedes §8's "a run that hits its cap is a result": cross-verify and decoys run last, so a capped run is hollow. Run 1 was the first failure, so a run-2 failure is the second and the unit is missing: an E-PLANT domain is inconclusive; an E-ABST item is excluded before unsealing and counted.
+
+**P3. E-ABST cap** *(our choice)*. Unit costs from the committed E-LIVE v1 and v2(b) `calls.jsonl`: web search ≤ $0.020; extraction mean $0.025, max $0.051; verify (and cross-verify, the same call) mean $0.00106, max $0.00135; decoy generation ≤ $0.00075. An item has at most 3 documents, about 45 verify calls (v2(b): 226 over 20 extracted documents), ≤ 2 cross-verify calls per supported claim (≤ 90) and ≤ 30 decoys (generation plus verification): about $0.28 at mean and $0.42 at maximum prices. The per-item cap is **$0.60** and the E-ABST run-2 pipeline cap **$14.40** (24 × $0.60), so every item can start. Items that hit the cap are excluded (P2) and still count toward §7's "more than 4 capped → inconclusive" rule.
+
+**P4. Deviations.**
+- **Gold.** The owner verified 23/24 gold claims. `t-conc-08` is excluded from both arms: its second span states a risk window, not a protection minimum. Scoring n = 23 before the cap rule, and floors scale as registered: e ≥ ⌈23/3⌉ = 8, r_g ≥ ⌈23/2⌉ = 12; the cap-rule minimum stays 20. The validity floor is computed per D2 on the baseline's full set of 24 targets: a_u = 5/24 < 8. **Continue is not available this round** for E-PLANT or N2; Stop and Change remain.
+- **Conflict pairs.** 4 of 6 confirmed. `cp-food-1` (unit conversion) and `cp-food-2` (population scope) are rejected and not replaced. §5's denominator is 4, and "recall below 3/6" reads "below half of confirmed pairs (below 2/4)".
+- **Gold quotes.** `t-conc-05` and `t-conc-07` were extended to full verbatim table rows before owner verification. The `gold_candidates` sha256 changed from `3ff69753…` to `e2164a982e55e12f8338d32a38b9967fb3a4b98820103af6e02c806d2b34525c`. No score existed at either time, and gold claims carry only `criterion_ids`.
+- **Key-print incident.** One E-ABST item's accept variants entered an agent transcript during the sealed-key print. The agent whose transcript held them built only the E-ABST harness (`eabst.py`) and edited no pipeline module or prompt. The prompts were changed in `080b109` by a separate agent context. All of these agents ran under one orchestrating session, so the separation is procedural, not verifiable. A sensitivity recomputes both FARs and the margin without the item whose accept variants were printed, identified in the sealed incident note; reported, not gating *(our choice)*.
+- **Exposure.** §7's key-identifier searches were not run; this is a stated limitation. Supplement: before the E-ABST rerun, one search per distinctive identifier drawn from the questions, not the key, printing term index and hit or no-hit only; §7's failure rule applies *(our choice)*.
+- **Planted hostnames.** 2 of 12 resolve in DNS, against §1's "non-resolving": a limitation. The pipeline never contacts them, because corpus mode serves the frozen bytes locally; the baseline sees the URLs (R7).
+- **Baseline prompt.** The registered E-PLANT baseline prompt is the one that ran: §3's instruction plus "Use only what the documents state."
+- **Areas.** Planted URL slugs in the manifest (`d3e0bb4`) were visible before the areas were written (`bf35207`). Areas bound cross-verify pools, so this is a limitation on a_g; the risk is low because the areas are generic.
+
+**Scoring corrections D1–D8.** Harness-only (`eplant.py`, `eabst.py`); pipeline modules, prompts, `models.json` and every spec and prompt hash are unchanged. They make the code implement §§4–8 as registered:
+- D1: synthetic claims leave the primary FAR; the synthetic-counted FAR is §7's sensitivity.
+- D2: the validity floor uses the full baseline set; other floors use the post-cap n.
+- D3: a page is fully extracted only with `extract_ok`; `provider_outage` applies P2.
+- D4: the zero-extraction count uses `extract_ok`.
+- D5: the blocklist is the prefix `github.com/AdamKrysztopa/`, the registered intent.
+- D6: the exposure CLI prints term indices only.
+- D7: recall requires each side's value; `value_a`, `value_b` and anchors are added to the sealed pairs from the owner-confirmed spans before scoring, and the page-level link rate is reported under that name *(our choice)*.
+- D8: the source-level sensitivity reads supporting evidence only.
+
+D1–D6 precede `n2-freeze-3`; D7–D8 precede scoring.
+
+**Limitations.** The review's R1–R10 are reported in `research/n2/e_plant_eabst_report.md` as limitations; none changes a gate.
