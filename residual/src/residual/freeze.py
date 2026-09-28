@@ -12,7 +12,7 @@ from enum import StrEnum
 from pathlib import Path
 
 from residual import vocab
-from residual.claims import ClaimRecord
+from residual.claims import ClaimRecord, ResponseDistribution
 from residual.gapmap import FEATURE_SET, AreaFeatures
 from residual.gates import GateDecision, Measurement, Threshold
 from residual.ledger import Ledger
@@ -20,7 +20,7 @@ from residual.residual import EstimatedResidual, GapMapPrediction, ResidualAccou
 
 HERE = Path(__file__).resolve().parent
 FROZEN = HERE.parents[1] / "frozen" / "n1.json"
-MODELS = (ClaimRecord, Ledger, Measurement, Threshold, GateDecision, ResidualAccount,
+MODELS = (ClaimRecord, ResponseDistribution, Ledger, Measurement, Threshold, GateDecision, ResidualAccount,
           EstimatedResidual, GapMapPrediction, AreaFeatures)
 
 

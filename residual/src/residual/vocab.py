@@ -54,7 +54,7 @@ class Layer(StrEnum):
 
     DOMAIN_STRUCTURE = "L1"
     PERFORMANCE = "L2"
-    LEARNER = "L3"
+    LEARNER = "L3"                       # learners, newcomers and what they find difficult
     DIAGNOSIS = "L4"
     INSTRUCTION = "L5"
 
@@ -154,14 +154,17 @@ HUMAN_RECORD_KINDS = frozenset({
     SourceKind.OBSERVATION,
 })
 """Direct records of human performance or response (§6 'observed human evidence'). A published
-elicitation record is not one: it is a synthesis in published work, so literature (§6)."""
+elicitation record is not one: it is a synthesis in published work, so literature (§6). This
+project's own coded elicitation (World C) is its record of what it observed, so observed."""
 
 WORLD_C_KINDS = HUMAN_RECORD_KINDS | {SourceKind.ELICITATION_RECORD}
 """World C holds only what this project records from humans, including its own coded lists."""
 
-DIFFICULTY_KINDS = frozenset({SourceKind.LEARNER_RESPONSE, SourceKind.LOG, SourceKind.STUDY})
-"""§2: 'What is difficult?' is answered by learner response data and error logs, or a study
-reporting them, never by expert or machine judgement."""
+DIFFICULTY_KINDS = frozenset({SourceKind.LEARNER_RESPONSE, SourceKind.LOG, SourceKind.STUDY,
+                              SourceKind.ISSUE, SourceKind.FORUM_POST})
+"""§2: 'What is difficult?' is answered by what novices did, never by expert or machine
+judgement: learner responses, error logs, a study reporting them, or a newcomer's own issue or
+question. Claims.py also requires the source to be novice-voiced."""
 
 PRACTICE: dict[SourceKind, Practice] = {
     SourceKind.TEXTBOOK: Practice.IMAGINED,

@@ -147,7 +147,7 @@ def test_as_of_drops_undated_and_later_sources_and_reports_the_dropped():
     ledger = Ledger(purpose="reconstruction", claims=(old, new, undated, mixed))
     dated, dropped = ledger.as_of(date(2020, 1, 1))
     assert set(dated.by_id) == {old.claim_id, mixed.claim_id}
-    assert dropped == tuple(sorted((new.claim_id, undated.claim_id)))
+    assert tuple(dropped) == tuple(sorted((new.claim_id, undated.claim_id)))
     assert len(dated.by_id[mixed.claim_id].evidence) == 1
 
 
@@ -158,7 +158,7 @@ def test_as_of_keeps_a_claim_with_an_earlier_search_as_unknown():
                  searches=(search(),))
     dated, dropped = Ledger(purpose="reconstruction", claims=(c, late)).as_of(date(2020, 1, 1))
     assert dated.label(c.claim_id) is L.UNKNOWN
-    assert dropped == (late.claim_id,)
+    assert tuple(dropped) == (late.claim_id,)
 
 
 def test_as_of_drops_contradictions_assignments_and_dependent_derivations():
@@ -180,7 +180,7 @@ def test_as_of_keeps_a_gold_ledger_gold():
     old = supported("Old.", source("old", published=date(2019, 1, 1)))
     gold_both = claim("Both.", evidence=(evidence(source("new", published=date(2022, 1, 1))),))
     dated, dropped = Ledger(purpose="gold", claims=(old, gold_both)).as_of(date(2020, 1, 1))
-    assert dated.purpose == "gold" and dropped == (gold_both.claim_id,)
+    assert dated.purpose == "gold" and tuple(dropped) == (gold_both.claim_id,)
 
 
 def test_within_separates_worlds():
@@ -193,7 +193,7 @@ def test_within_separates_worlds():
         restricted, dropped = ledger.within({world})
         assert set(restricted.by_id) == {kept.claim_id}
         assert len(dropped) == 2
-    assert ledger.within(set(World))[1] == ()
+    assert ledger.within(set(World))[1] == {}
 
 
 def test_within_keeps_only_the_matching_label():
@@ -259,4 +259,4 @@ def test_to_json_is_stable_under_evidence_and_premise_order():
 
 def test_as_of_counts_sources_published_on_the_day():
     c = supported("C.", source("s", published=DAY))
-    assert Ledger(purpose="reconstruction", claims=(c,)).as_of(DAY)[1] == ()
+    assert Ledger(purpose="reconstruction", claims=(c,)).as_of(DAY)[1] == {}

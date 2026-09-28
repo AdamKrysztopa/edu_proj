@@ -89,7 +89,11 @@ def test_the_decision_records_the_criterion_ids_in_order():
     other = claim("Other.", evidence=(evidence(),))
     decision = gate(other, measure("m", 1.0, [SUPPORTED, other]))
     assert decision.criterion_ids == (other.claim_id, SUPPORTED.claim_id)
-    assert gate(THRESHOLD).criterion_ids == ()
+
+
+def test_a_gate_without_a_criterion_is_refused():
+    refused(GateRefusal, THRESHOLD)
+    refused(GateRefusal, [])
 
 
 def test_synthetic_predictors_are_accepted_with_supported_criteria():

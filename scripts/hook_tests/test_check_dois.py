@@ -98,7 +98,8 @@ check("hook script is executable", os.access(HOOK, os.X_OK), str(HOOK))
 print("the registered command executes and reads every DOI form")
 root = project_with_hook()
 note = root / "note.md"
-note.write_text("Smith 2020 doi:10.9999/offline.one\nJones https://doi.org/10.9999/offline.two\n")
+note.write_text("Smith 2020 doi:10.9999/offline.one\nJones https://doi.org/10.9999/offline.two\n"
+                "Brown 2021, 10.9999/offline.three\n")
 proc = run_registered(command, root, note)
 check("command exits cleanly", proc.returncode == 0, proc.stderr)
 try:
@@ -108,6 +109,7 @@ except (ValueError, KeyError) as e:
 check("unreachable DOIs are reported, not passed", "unverified, not clean" in ctx, ctx)
 check("doi: form is read", "10.9999/offline.one" in ctx, ctx)
 check("doi.org form is read", "10.9999/offline.two" in ctx, ctx)
+check("bare form is read", "10.9999/offline.three" in ctx, ctx)
 
 proc = run_registered(command, root, root / "code.py")
 check("non-markdown edits are ignored", proc.returncode == 0 and not proc.stdout.strip(), proc.stdout)

@@ -9,8 +9,9 @@ from __future__ import annotations
 
 import re
 from datetime import date
+from typing import Literal
 
-from pydantic import field_validator, model_validator
+from pydantic import Field, field_validator, model_validator
 
 from residual.provenance import (
     Derivation,
@@ -95,12 +96,16 @@ class ClaimRecord(Record):
 
     def _exclusion(self, e: Evidence) -> str | None:
         src, verifier = e.source, e.verification.verifier
+        if verifier is None:
+            return "unverified"
         if src.voice is Voice.MACHINE:
             return "machine-voiced source"
-        if verifier is not None and verifier.kind == "software":
+        if verifier.kind == "software":
             return "software can check that a span exists, not that it supports the claim"
         gen = self.generation
-        if (verifier is not None and verifier.kind == "model" and gen is not None
+        if verifier.kind == "model" and gen is None:
+            return "a model's verdict counts only against a recorded generator"
+        if (verifier.kind == "model" and gen is not None
                 and gen.agent.kind == "model" and verifier.family == gen.agent.family):
             return "verified by the generating model's family"
         if self.question is Question.DIFFICULTY and (
@@ -140,6 +145,8 @@ class ClaimRecord(Record):
     def label(self) -> EpistemicLabel:
         """This claim's own label. A derivation's final label also depends on its premises,
         which only the ledger holds (Ledger.label)."""
+        if self.generation is not None and self.generation.activity == "simulation":
+            return EpistemicLabel.SYNTHETIC_EXTRAPOLATION
         sup = self.supporting
         if any(e.source.world is World.C
                or (e.source.world is World.A and e.source.kind in HUMAN_RECORD_KINDS) for e in sup):
@@ -174,3 +181,35 @@ class ClaimRecord(Record):
     def in_force(self, on: date) -> bool:
         return ((self.valid_from is None or self.valid_from <= on)
                 and (self.valid_until is None or on <= self.valid_until))
+
+
+class ResponseDistribution(Record):
+    """Option-level response shares for one item, as E-DIST retrodicts them (§18). Its claim
+    is the difficulty claim the response data support; its criterion label comes from there."""
+
+    item: str
+    claim_id: str
+    shares: tuple[tuple[str, float], ...]
+    of: Literal["all", "wrong"]
+    """Shares of all responses, or of wrong responses only."""
+    correct: str | None = None
+    n: int | None = Field(None, gt=0)
+
+    @field_validator("shares")
+    @classmethod
+    def _shares(cls, v: tuple[tuple[str, float], ...]) -> tuple[tuple[str, float], ...]:
+        options = [o for o, _ in v]
+        if len(v) < 2 or len(set(options)) != len(options):
+            raise ValueError("a distribution has at least two distinct options")
+        if any(not 0 <= s <= 1 for _, s in v) or abs(sum(s for _, s in v) - 1) > 1e-6:
+            raise ValueError("shares lie in [0, 1] and sum to 1")
+        return tuple(sorted(v))
+
+    @model_validator(mode="after")
+    def _correct(self) -> ResponseDistribution:
+        options = {o for o, _ in self.shares}
+        if self.correct is not None and self.correct not in options:
+            raise ValueError("the correct option is one of the options")
+        if self.of == "wrong" and self.correct in options:
+            raise ValueError("a wrong-answer distribution excludes the correct option")
+        return self

@@ -51,6 +51,8 @@ def measure(name: str, value: float, criterion: Iterable[ClaimRecord], *,
     measurements used as inputs, such as weights, add their criterion labels and ids."""
     claims, inputs = tuple(criterion), tuple(inputs)
     labels = {ledger.label(c.claim_id) if ledger else c.label for c in claims}
+    if unsealed := [m.name for m in inputs if not m._sealed]:
+        raise GateRefusal(f"inputs {unsealed} were not built by measure()")
     labels |= {label for m in inputs for label in m.criterion_labels}
     ids = dict.fromkeys([*(c.claim_id for c in claims), *(i for m in inputs for i in m.criterion_ids)])
     m = Measurement(name=name, value=value, criterion_ids=tuple(ids),
@@ -100,12 +102,16 @@ def _walk(value: object, ledger: Ledger | None = None) -> Iterator[str]:
         _check(ledger.label(value.claim_id) if ledger else value.label, f"claim {value.claim_id}")
         yield value.claim_id
     elif isinstance(value, Ledger):
+        if value.purpose == "surrogate":
+            raise SyntheticRefused("a surrogate ledger holds simulation output; it is never a criterion")
         for claim in value.claims:
             yield from _walk(claim, value)
     elif isinstance(value, Threshold):
         return
     elif isinstance(value, Mapping):
-        for v in value.values():
+        for k, v in value.items():
+            if not isinstance(k, str):
+                yield from _walk(k, ledger)
             yield from _walk(v, ledger)
     elif isinstance(value, (list, tuple, set, frozenset)):
         for v in value:
@@ -124,6 +130,8 @@ def evidential_gate(fn: Callable[P, GateDecision]) -> Callable[P, GateDecision]:
     @functools.wraps(fn)
     def gate(*args: P.args, **kwargs: P.kwargs) -> GateDecision:
         ids = tuple(dict.fromkeys(i for v in (*args, *kwargs.values()) for i in _walk(v)))
+        if not ids:
+            raise GateRefusal(f"gate {fn.__name__} was given no criterion to decide on")
         decision = fn(*args, **kwargs)
         if not isinstance(decision, GateDecision):
             raise TypeError(f"gate {fn.__name__} must return a GateDecision")

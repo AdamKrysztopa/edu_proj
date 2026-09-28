@@ -35,7 +35,6 @@ class Match(Record):
     revealed: str
     same: bool
     matcher: Agent
-    blind: bool
 
 
 class ValidityJudgement(Record):
@@ -54,10 +53,19 @@ class ValidityJudgement(Record):
 
 
 class ObservedResidual(Record):
-    value: float = Field(ge=0, le=1)
-    n_revealed: int
-    n_unrecalled: int
-    n_valid_extra: int
+    n_revealed: int = Field(gt=0)
+    n_unrecalled: int = Field(ge=0)
+    n_valid_extra: int = Field(ge=0)
+
+    @model_validator(mode="after")
+    def _counts(self) -> ObservedResidual:
+        if self.n_unrecalled > self.n_revealed:
+            raise ValueError("more unrecalled items than revealed ones")
+        return self
+
+    @property
+    def value(self) -> float:
+        return self.n_unrecalled / (self.n_revealed + self.n_valid_extra)
 
 
 class ResidualAccount(Record):
@@ -73,10 +81,12 @@ class ResidualAccount(Record):
         if not self.revealed.claims:
             raise ValueError("the revealed set H is empty")
         for m in self.matches:
-            if not m.blind:
-                raise ValueError("matches are made blind to origin and P(missing)")
             if m.reconstructed not in self.reconstruction.by_id or m.revealed not in self.revealed.by_id:
                 raise ValueError(f"match ({m.reconstructed}, {m.revealed}) names an absent claim")
+            gen = self.reconstruction.by_id[m.reconstructed].generation
+            if (m.matcher.kind == "model" and gen is not None and gen.agent.kind == "model"
+                    and m.matcher.family == gen.agent.family):
+                raise ValueError("a model matcher is of another family than the generator (§18)")
         judged = [j.claim_id for j in self.validity]
         if len(judged) != len(set(judged)):
             raise ValueError("one validity judgement per claim")
@@ -135,7 +145,7 @@ class ResidualAccount(Record):
                 "report recall of H and the unvalidated R∖H count instead")
         n_valid_extra = sum(verdicts[cid] for cid in extra)
         n_h, n_miss = len(self.revealed.claims), len(self.unrecalled())
-        return ObservedResidual(value=n_miss / (n_h + n_valid_extra), n_revealed=n_h,
+        return ObservedResidual(n_revealed=n_h,
                                 n_unrecalled=n_miss, n_valid_extra=n_valid_extra)
 
 
@@ -146,6 +156,7 @@ class EstimatedResidual(Record):
 
     estimator: Literal["chao1", "jackknife", "mh", "lincoln_petersen"]
     occasions: tuple[str, ...] = Field(min_length=2)
+    """Distinct text occasions: source families or model families."""
     estimate: float = Field(ge=0)
     interval: tuple[float, float]
     gold_uncaptured: int | None = Field(None, ge=0)
@@ -155,6 +166,8 @@ class EstimatedResidual(Record):
     def _check_pair(self) -> EstimatedResidual:
         if (self.gold_uncaptured is None) != (self.tolerance is None):
             raise ValueError("a known-truth check needs both the gold count and its tolerance")
+        if len(set(self.occasions)) != len(self.occasions):
+            raise ValueError("occasions are distinct")
         if not self.interval[0] <= self.estimate <= self.interval[1]:
             raise ValueError("the estimate lies outside its interval")
         return self

@@ -10,7 +10,7 @@ from datetime import date
 
 from conftest import CODER, DAY, evidence, source
 
-from residual.claims import ClaimRecord, Scope
+from residual.claims import ClaimRecord, ResponseDistribution, Scope
 from residual.gates import Measurement, measure
 from residual.ledger import Area, Ledger
 from residual.provenance import Agent, Evidence, Selector, Source, Verdict, Verification
@@ -102,6 +102,15 @@ MATHS_GOLD = Ledger(
     claims=(ADD_DENOMINATORS, ROUNDING, BACKWARD_AREA, STEP_TO_KC, AAAS_CHOICE,
             AAAS_DISTRIBUTION, FCI_IMPETUS),
 )
+
+
+DISTRIBUTIONS = (
+    ResponseDistribution(item="eedi:Q8120", claim_id=ROUNDING.claim_id, of="all", correct="A",
+                         shares=(("A", 0.52), ("B", 0.29), ("C", 0.12), ("D", 0.07))),
+    ResponseDistribution(item="aaas:ball-thrown-upward:grade-8", claim_id=AAAS_DISTRIBUTION.claim_id,
+                         of="all", shares=(("A", 0.38), ("B", 0.34), ("C", 0.18), ("D", 0.10))),
+)
+"""E-DIST's criterion: per-option shares, structured because E-DIST computes on them."""
 
 
 def prevalence() -> dict[str, Measurement]:

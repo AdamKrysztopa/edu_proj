@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from datetime import date
 
-from pydantic import Field
+from pydantic import Field, model_validator
 
 from residual.provenance import Record
 from residual.vocab import EpistemicLabel, KnowledgeType, SourceKind, Tacitness
@@ -43,6 +43,14 @@ class AreaFeatures(Record):
     rationale_present: bool = Field(description="a supported 'why' exists ([117] causal ambiguity)")
     instability: LabelledValue | None = Field(None, description="cross-model or cross-corpus disagreement [150]")
     concentration: LabelledValue | None = Field(None, description="review-weighted knowledge concentration [114]")
+
+    @model_validator(mode="after")
+    def _consistent(self) -> AreaFeatures:
+        if self.imagined_only and self.has_done_support:
+            raise ValueError("imagined-only support excludes support from work as done")
+        if self.earliest_source and self.latest_source and self.earliest_source > self.latest_source:
+            raise ValueError("earliest source is after the latest")
+        return self
 
 
 FEATURE_SET: tuple[str, ...] = tuple(f for f in AreaFeatures.model_fields if f != "area_id")

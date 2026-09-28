@@ -10,6 +10,7 @@ import json
 from collections.abc import Callable
 from datetime import date
 from functools import cached_property
+from types import MappingProxyType
 from typing import Literal
 
 from pydantic import field_validator, model_validator
@@ -118,8 +119,8 @@ class Ledger(Record):
                 raise ValueError(f"gold holds only supported claims; not supported: {weak}")
 
     @cached_property
-    def by_id(self) -> dict[str, ClaimRecord]:
-        return {c.claim_id: c for c in self.claims}
+    def by_id(self) -> MappingProxyType[str, ClaimRecord]:
+        return MappingProxyType({c.claim_id: c for c in self.claims})
 
     def area_of(self, claim_id: str) -> str | None:
         return dict(self.assignments).get(claim_id)
@@ -143,39 +144,47 @@ class Ledger(Record):
                 return weakest
         return own
 
-    def as_of(self, t: date) -> tuple[Ledger, tuple[str, ...]]:
+    def as_of(self, t: date) -> tuple[Ledger, dict[str, str]]:
         """What the evidence dated on or before t supports (§18 E-OSS, §18.2). Undated sources
-        do not count. Returns the dated ledger and the claims with no remaining basis, which
-        are dropped rather than relabelled."""
+        do not count, nor claims not yet in force. Returns the dated ledger and, for each claim
+        dropped rather than relabelled, why."""
         return self._restrict(lambda e: e.source.published is not None and e.source.published <= t,
-                              searched_by=t)
+                              at=t)
 
-    def within(self, worlds: set[World]) -> tuple[Ledger, tuple[str, ...]]:
+    def within(self, worlds: set[World]) -> tuple[Ledger, dict[str, str]]:
         """What evidence from the given worlds alone supports: public vs organisational vs
         human-revealed (§13)."""
         return self._restrict(lambda e: e.source.world in worlds)
 
     def _restrict(self, keep: Callable[[Evidence], bool],
-                  searched_by: date | None = None) -> tuple[Ledger, tuple[str, ...]]:
+                  at: date | None = None) -> tuple[Ledger, dict[str, str]]:
         kept: dict[str, ClaimRecord] = {}
+        dropped: dict[str, str] = {}
         for c in self.claims:
-            searches = tuple(s for s in c.searches if searched_by is None or s.on <= searched_by)
+            if at is not None and c.valid_from is not None and c.valid_from > at:
+                dropped[c.claim_id] = "not yet in force"
+                continue
+            searches = tuple(s for s in c.searches if at is None or s.on <= at)
             try:
                 claim = ClaimRecord.model_validate(
                     c.model_dump() | {"evidence": [e.model_dump() for e in c.evidence if keep(e)],
-                                      "searches": [s.model_dump() for s in searches]})
+                                      "searches": [s.model_dump() for s in searches],
+                                      "certainty": None})
             except ValueError:
+                dropped[c.claim_id] = "no evidence, search, derivation or generation remains"
                 continue
             if self.purpose != "gold" or claim.label in CRITERION_LABELS:
                 kept[c.claim_id] = claim
+            else:
+                dropped[c.claim_id] = "no longer supported, so not gold"
         changed = True
         while changed:
             changed = False
             for cid, c in list(kept.items()):
                 if c.derivation and not set(c.derivation.premises) <= kept.keys():
                     del kept[cid]
+                    dropped[cid] = "a premise was dropped"
                     changed = True
-        dropped = tuple(sorted(set(self.by_id) - kept.keys()))
         ledger = Ledger(
             purpose=self.purpose,
             claims=tuple(kept.values()),
@@ -183,7 +192,7 @@ class Ledger(Record):
             areas=self.areas,
             assignments=tuple(a for a in self.assignments if a[0] in kept),
         )
-        return ledger, dropped
+        return ledger, dict(sorted(dropped.items()))
 
     def to_json(self) -> str:
         return json.dumps(self.model_dump(mode="json"), sort_keys=True, indent=1) + "\n"

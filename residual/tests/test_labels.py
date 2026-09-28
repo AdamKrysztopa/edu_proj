@@ -97,9 +97,17 @@ def test_another_family_or_a_human_verifying_counts(verifier):
     assert c.excluded == ()
 
 
-def test_a_model_verifier_counts_when_no_model_generated():
+def test_a_model_verifier_counts_against_a_human_generator():
     same = Agent(kind="model", id="m", family=GENERATOR.family)
-    assert claim(evidence=(evidence(verifier=same),)).label is L.LITERATURE_SUPPORTED
+    coded = generation(CODER, "coding")
+    assert claim(evidence=(evidence(verifier=same),), generation=coded).label is L.LITERATURE_SUPPORTED
+
+
+def test_a_model_verifier_needs_a_recorded_generator():
+    same = Agent(kind="model", id="m", family=GENERATOR.family)
+    c = claim(evidence=(evidence(verifier=same),))
+    assert c.label is L.UNKNOWN
+    assert c.excluded[0][1] == "a model's verdict counts only against a recorded generator"
 
 
 def test_a_software_verifier_does_not_count():
@@ -114,7 +122,9 @@ def test_a_software_verifier_does_not_count():
     (K.STUDY, Voice.EXPERT, False),
     (K.LEARNER_RESPONSE, Voice.MIXED, False),
     (K.TEXTBOOK, Voice.NOVICE, False),
-    (K.FORUM_POST, Voice.NOVICE, False),
+    (K.FORUM_POST, Voice.NOVICE, True),
+    (K.ISSUE, Voice.NOVICE, True),
+    (K.ISSUE, Voice.EXPERT, False),
     (K.INTERVIEW, Voice.NOVICE, False),
 ])
 def test_difficulty_counts_only_novice_learner_data(kind, voice, counts):

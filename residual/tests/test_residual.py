@@ -34,9 +34,8 @@ GOLD = Ledger(purpose="gold", claims=H)
 RECON = Ledger(purpose="reconstruction", claims=R)
 
 
-def match(r, h, same=True, blind=True):
-    return Match(reconstructed=r.claim_id, revealed=h.claim_id, same=same, matcher=CODER,
-                 blind=blind)
+def match(r, h, same=True):
+    return Match(reconstructed=r.claim_id, revealed=h.claim_id, same=same, matcher=CODER)
 
 
 def judge(c, valid):
@@ -59,11 +58,6 @@ def test_an_account_compares_a_reconstruction_with_gold(recon, gold):
 def test_an_empty_h_is_refused():
     with pytest.raises(ValidationError, match="empty"):
         ResidualAccount(reconstruction=RECON, revealed=Ledger(purpose="gold"), matches=())
-
-
-def test_matches_are_blind():
-    with pytest.raises(ValidationError, match="blind"):
-        account([match(R[0], H[0], blind=False)])
 
 
 def test_matches_name_present_claims():

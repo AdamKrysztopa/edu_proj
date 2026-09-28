@@ -98,7 +98,7 @@ def _eedi_account(reconstructed: ClaimRecord) -> ResidualAccount:
     recon = Ledger(purpose="reconstruction", claims=(reconstructed,))
     return ResidualAccount(reconstruction=recon, revealed=gold, matches=(Match(
         reconstructed=reconstructed.claim_id, revealed=x.ADD_DENOMINATORS.claim_id, same=True,
-        matcher=CODER, blind=True),))
+        matcher=CODER),))
 
 
 PARAMETRIC = ClaimRecord(assertion="Students add numerators and denominators separately.",
@@ -144,3 +144,14 @@ def test_memorisation_probe_is_a_measurement_over_the_gold_item():
 def test_fixtures_are_dated_before_today():
     sources = {e.source for g in GOLDS.values() for c in g.claims for e in c.evidence}
     assert all(s.published and s.published <= DAY for s in sources)
+
+
+def test_e_dist_reads_structured_distributions_over_gold_claims():
+    by_id = x.MATHS_GOLD.by_id
+    for d in x.DISTRIBUTIONS:
+        assert x.MATHS_GOLD.label(d.claim_id) is EpistemicLabel.OBSERVED_HUMAN_EVIDENCE
+        assert by_id[d.claim_id].question is Question.DIFFICULTY
+    wrong = dict(x.DISTRIBUTIONS[0].shares)
+    assert max(wrong, key=wrong.get) == "A"
+    kl = measure("E-DIST KL", 0.12, [by_id[d.claim_id] for d in x.DISTRIBUTIONS])
+    assert kl.criterion_labels == {EpistemicLabel.OBSERVED_HUMAN_EVIDENCE}

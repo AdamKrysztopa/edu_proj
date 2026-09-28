@@ -6,9 +6,10 @@ TextQuoteSelector: the exact quoted text plus a locator.
 from __future__ import annotations
 
 import hashlib
+from collections.abc import Mapping
 from datetime import date
 from enum import StrEnum
-from typing import Literal
+from typing import Any, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, field_validator, model_validator
 
@@ -16,7 +17,12 @@ from residual.vocab import QUOTABLE_KINDS, WORLD_C_KINDS, SourceKind, Voice, Wor
 
 
 class Record(BaseModel):
-    model_config = ConfigDict(extra="forbid", frozen=True)
+    model_config = ConfigDict(extra="forbid", frozen=True, allow_inf_nan=False)
+
+    def model_copy(self, *, update: Mapping[str, Any] | None = None, deep: bool = False) -> Self:
+        """pydantic's copy skips validation, which would let a copy carry a forged label or
+        verdict; every copy here is rebuilt and revalidated."""
+        return type(self).model_validate({**dict(self), **(update or {})})
 
 
 def short_hash(prefix: str, *parts: str) -> str:
@@ -30,6 +36,11 @@ class Agent(Record):
     family: str | None = None
     """Model provider family, e.g. 'anthropic'. Required for models: §11 step 4 verification
     counts only from a different family than the generator's."""
+
+    @field_validator("family")
+    @classmethod
+    def _fold(cls, v: str | None) -> str | None:
+        return v.strip().casefold() if v is not None else None
 
     @model_validator(mode="after")
     def _family(self) -> Agent:
@@ -79,7 +90,7 @@ class Selector(Record):
 
     @model_validator(mode="after")
     def _something(self) -> Selector:
-        if not (self.exact or self.locator):
+        if not ((self.exact and self.exact.strip()) or (self.locator and self.locator.strip())):
             raise ValueError("a selector needs an exact quote or a locator")
         return self
 
@@ -116,8 +127,11 @@ class Evidence(Record):
 
     @model_validator(mode="after")
     def _quote(self) -> Evidence:
-        if self.source.kind in QUOTABLE_KINDS and not self.selector.exact:
+        if self.source.kind in QUOTABLE_KINDS and not (self.selector.exact or "").strip():
             raise ValueError(f"evidence from a {self.source.kind} needs the exact quoted span")
+        published, on = self.source.published, self.verification.on
+        if published and (self.retrieved < published or (on and on < published)):
+            raise ValueError("a source is retrieved and verified no earlier than it was published")
         return self
 
 
@@ -138,8 +152,10 @@ class Generation(Record):
             raise ValueError("model generation records the prompt or spec hash")
         if (self.activity == "simulation") != (self.tier is not None):
             raise ValueError("a simulation records the validation tier it reached; nothing else does")
-        if self.activity == "simulation" and self.agent.kind != "model":
-            raise ValueError("a simulation is run by a model")
+        if self.activity in ("simulation", "parametric_recall") and self.agent.kind != "model":
+            raise ValueError(f"{self.activity} is done by a model")
+        if self.activity == "coding" and self.agent.kind != "human":
+            raise ValueError("coding is done by a human")
         return self
 
 

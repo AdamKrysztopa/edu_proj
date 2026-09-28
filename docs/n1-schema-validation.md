@@ -1,8 +1,8 @@
 # N1 schema validation: cross-domain gold items
 
-**Gate** (`REORIENTATION.md` §22 N1). *Continue* if every gold item from mathematics, clinical and OSS sources can be expressed without new field types. *Change* the schema if more than a handful need ad-hoc fields. "A handful" was registered before the claim model existed (`b7c0e5d`): **≤ 2 new field types**, where a field type is a new field, model or closed-vocabulary member.
+**Gate** (`REORIENTATION.md` §22 N1, wording reconciled with the registered threshold). *Continue* if every gold item from mathematics, clinical and OSS sources can be expressed with at most a handful of new field types. *Change* the schema if more are needed. "A handful" was registered before the claim model existed (`b7c0e5d`): **≤ 2 new field types**, where a field type is a new field, model or closed-vocabulary member.
 
-**Result: continue, with 1 addition.** `KnowledgeType.INTERPRETATION` was added. Nothing else was needed.
+**Result: continue, with 2 additions, at the registered limit.** The two are `KnowledgeType.INTERPRETATION` and the `ResponseDistribution` model. One more field type would have meant *change*.
 
 ## Method
 
@@ -15,9 +15,10 @@
 
 | # | Addition | Forced by | Why no existing type fits |
 |---|---|---|---|
-| 1 | `KnowledgeType.INTERPRETATION`: what an observed result means for the working hypothesis | B3 Chao & Salvendy (interpretations); B5 PARI (the I of P-A-R-I) | §14.2 uses "interpretations" as a gap-map knowledge-type distinction: they have the lowest pooled coverage [2]. Mapping them to `cue`, `decision` or `expectancy` would erase that feature. |
+| 1 | `KnowledgeType.INTERPRETATION`: what an observed result means for the working hypothesis | B3 Chao & Salvendy (interpretations); B5 PARI (the I of P-A-R-I) | §14.2 uses "interpretations" as a gap-map knowledge-type distinction: interpretation tasks had the lowest pooled coverage in one n = 6 study [2], as reported in [3] (the paper is closed access, so the figure is unresolvable at source). Mapping them to `cue`, `decision` or `expectancy` would erase that feature. |
+| 2 | `ResponseDistribution` model: option-level response shares for one item, bound to the difficulty claim its data support | A1 NeurIPS 2020 and A3 AAAS option distributions, which E-DIST (§18, N4) computes on | A first review left them in locator text and deferred them to N4. The skeptical-maintainer review showed that was a dodge under this document's own rule: E-DIST computes KL and rank correlation over them, so they need structure. A `Measurement` holds one number, not a distribution. |
 
-**Interface additions, not field types.** `ResidualAccount.recall(weights=...)`: E-MISC's prevalence-weighted recall (§18, N4) weights each gold item by a `Measurement` over that item. The weighted recall inherits those measurements' criterion labels, so a surrogate's prevalence can never weight a gate (§12).
+**Interface additions, not field types.** `ResidualAccount.recall(weights=...)`: E-MISC's prevalence-weighted recall (§18, N4) weights each gold item by a `Measurement` over that item. The weighted recall inherits those measurements' criterion labels, so a weight measured over surrogate claims cannot pass a gate (§12). A measurement certifies which claims it was scored against, not the arithmetic that produced its value. A number typed into `measure()` over a gold claim is caught by code review and N2's run log, not by the type.
 
 ## Where each attribute lives
 
@@ -27,7 +28,7 @@
 |---|---|---|
 | A1 Eedi + NeurIPS 2020 | Misconception text | `assertion`, `knowledge_type=misconception`, `question=difficulty` |
 | | Link from distractor to misconception; question and option | `Selector.locator` ("Q#4417 option C") |
-| | Prevalence / selection rate | Locator text on a `learner_response` source, plus a `Measurement` over the item used as E-MISC's weight |
+| | Prevalence / selection rate | `ResponseDistribution` (addition 2) over the item's `learner_response` claim; a `Measurement` over the item as E-MISC's weight |
 | | Topic | `Scope.task` |
 | | Release date | `Source.published` |
 | A2 DataShop / LFA | Discovered KC split | A `difficulty` claim on a `log` source (World A, novice), `tacitness=automated` |
@@ -78,7 +79,7 @@ The taxonomy is a `domain` claim, and the same text posed as `difficulty` is ref
 |---|---|
 | Area partition | `Area`, frozen with the N3 pre-registration |
 | Held-out gold | A separate `purpose="gold"` ledger |
-| Matcher and blinding | `Match` (a match that is not blind is refused) |
+| Matcher and blinding | `Match` records the matcher; blinding is a procedure fixed in the pre-registration, since a self-reported flag proves nothing |
 | Origin-free IDs | Content-hash `claim_id` |
 | Corpus freeze date | `as_of` |
 | Memorisation-probe result per item | A `Measurement` over the gold item |
@@ -90,12 +91,12 @@ Model cutoffs and the corpus-frequency stratum belong in the N3 pre-registration
 
 ## Deferred (not counted, and not quietly absorbed)
 
-- **Learner-response data as tables** (Q-matrix, per-step logs, option distributions) for fitting E-KC and E-DIST. The *items* are expressed. The criterion is a dataset, which §10 schedules as layer L3 after L2 and L6 ("then L3 over public data"). N4 will need an L3 data representation. If it adds claim-schema fields, they count against this gate's threshold.
+- **Raw learner logs** (per-student, per-step rows and the Q-matrix) for fitting E-KC's AFM. E-KC's criterion is behavioural fit on a dataset, not a list of gold items. The KC split and the step → KC rows are expressed as claims. The log table itself is L3 data, which §10 schedules after L2 and L6. N4 will need an L3 data representation, and any field it adds to the claim schema needs a re-freeze and a new owner decision, because this gate's allowance is used up.
 - **Residual questions and channels** (C5, §10.3, §14.4): N6.
 
 ## Limitations
 
 - **The items are illustrative.** Real items are checked on acquisition, and any field they force counts against the same threshold, with a re-freeze before that gold's pre-registration.
-- **Sullivan per-step coverage.** If the paper publishes per-step, per-expert coverage (unknown, inventory B1), using it as capture-recapture occasions would need a capture-history record: one more field type, bringing the total to 2.
+- **Sullivan per-step coverage.** If the paper publishes per-step, per-expert coverage (unknown, inventory B1), using the teaching experts as capture-recapture occasions would need a capture-history record, a third field type. That would need a re-freeze and an owner decision before E-CTA's pre-registration. Capture histories over *text* occasions (N5) need nothing new: each occasion is its own `ResidualAccount` against the same gold, and captures are its matches.
 - **The gate is a build check (R13).** It shows that the schema can express the three domains without domain-specific code. It says nothing about whether the gap map predicts anything; that is N3.
-- **Designer contamination.** `vocab.py` and `provenance.py` were drafted before the inventory was read. `claims.py` and later modules were written after it, from a design fixed in `docs/plans/n0-n1-plan.md` (the plan's semantics section predates the inventory). A reviewer should treat the one-addition result with that in mind.
+- **Designer contamination and an unverifiable baseline.** `vocab.py` and `provenance.py` were drafted before the inventory was read. `claims.py` and later modules were written after it, from the semantics fixed in `docs/plans/n0-n1-plan.md`. No schema was committed before the inventory, so git cannot show that `interpretation` was absent from the first draft. The count of 2 rests on this document and the session record, and a reviewer should weigh it that way. Addition 2 was found by review, which is the check working as intended.
