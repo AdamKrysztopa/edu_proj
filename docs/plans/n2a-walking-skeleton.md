@@ -29,7 +29,7 @@ A sibling uv package, `reconstruct/`, depends on `residual` by path. Decision 00
 ## Order
 
 1. N2a skeleton plus offline tests (fixture HTML, a scripted fake model).
-2. **E-LIVE**, a sanity gate, not a benchmark, on two structurally different domains: centrifugal pump cavitation diagnosis (technical, procedural) and GDPR DPIA obligations (legal and normative, with scope and temporal disagreement). `reconstruct/runs/` persists the artefacts. The report is `research/n2/e_live_report.md`.
+2. **E-LIVE**, a sanity gate, not a benchmark, on two structurally different domains: diagnosing intermittent faults in PLC-controlled industrial machines (technical, procedural; chosen over pump cavitation because NPSH is fluid energy conservation, a Track A exclusion under §18.1) and GDPR DPIA obligations (legal and normative, with scope and temporal disagreement). `reconstruct/runs/` persists the artefacts. The report is `research/n2/e_live_report.md`.
 3. Skeptical review; remove whatever N3 does not need.
 4. Rest of N2: corpus mode (a manifest of local documents), E-PLANT (planted sources, decoy spans, the ungated baseline), E-ABST (private objectives, raw-model baseline). Methods-critic reviews the protocol before any run.
 
