@@ -121,6 +121,18 @@ def test_check_term_hit_on_an_unexplained_result():
     assert result.unexplained_hits == ("https://someblog.example/post",)
 
 
+def test_term_print_lines_never_prints_an_extra_terms_text():
+    """D6: §7 says the exposure CLI "never displays the key" -- the two registered, public
+    EXPOSURE_TERMS print their own text, but every term after them (from --terms-file, i.e.
+    derived from the sealed key) must print only its index."""
+    terms = (eabst.TermResult(term="informant-video", hit=False),
+             eabst.TermResult(term="The Informant", hit=True),
+             eabst.TermResult(term="super-secret-key-phrase", hit=False))
+    lines = eabst.term_print_lines(terms, n_registered=2)
+    assert lines == ["informant-video: NO-HIT", "The Informant: HIT", "term 1: NO-HIT"]
+    assert "super-secret-key-phrase" not in "\n".join(lines)
+
+
 def test_check_repo_private_ok_when_private_and_no_fork():
     check = check_repo_private(runner=lambda args: json.dumps({"visibility": "PRIVATE", "forkCount": 0}))
     assert check == RepoCheck(visibility="PRIVATE", fork_count=0, ok=True)
@@ -232,6 +244,21 @@ def test_units_finished_false_until_every_item_has_both_arms(tmp_path):
     finished, missing = units_finished(FAKE_ITEMS, tmp_path)
     assert finished is True
     assert missing == []
+
+
+# --- pipeline blocklist (D5) --------------------------------------------------------------------
+
+def test_pipeline_blocklist_entry_is_matched_by_run_pys_own_substring_check():
+    """D5: `PIPELINE_BLOCKLIST` used to read "github.com/AdamKrysztopa/*", which no real URL ever
+    contains (`run.py._is_blocklisted` matches by plain substring/host-suffix, never a glob) --
+    the fixed entry must actually block a URL under that path via that same function."""
+    from reconstruct.run import _is_blocklisted
+    assert _is_blocklisted("https://github.com/AdamKrysztopa/edu_proj/blob/main/x.md",
+                          eabst.PIPELINE_BLOCKLIST) is True
+    assert _is_blocklisted("https://github.com/AdamKrysztopa/informant-video",
+                          eabst.PIPELINE_BLOCKLIST) is True
+    assert _is_blocklisted("https://github.com/someone-else/other-repo",
+                          eabst.PIPELINE_BLOCKLIST) is False
 
 
 # --- mechanical exclusion --------------------------------------------------------------------
@@ -352,6 +379,26 @@ def test_build_frame_excludes_a_contaminated_item_from_both_arms(tmp_path):
 
     frame = build_frame(FAKE_ITEMS, tmp_path)
     assert "q1" in frame.excluded_items
+    assert all(u.item_id != "q1" for u in frame.units)
+
+
+def test_build_frame_excludes_an_item_flagged_provider_outage(tmp_path):
+    """D3/§8: an item whose pipeline run shows the outage pattern (an api_error call plus a
+    nonzero failed-call count) is excluded and counted, even with an otherwise clean ledger."""
+    for item in FAKE_ITEMS:
+        (tmp_path / item.id).mkdir()
+        (tmp_path / item.id / "baseline.json").write_text(json.dumps({"item": item.id, "answer": None}))
+        pdir = tmp_path / item.id / "pipeline"
+        pdir.mkdir(parents=True)
+        (pdir / "ledger.json").write_text(Ledger(purpose="reconstruction").to_json())
+    outaged = tmp_path / "q1" / "pipeline"
+    (outaged / "calls.jsonl").write_text(json.dumps({"outcome": "api_error"}) + "\n")
+    (outaged / "sidecar.json").write_text(json.dumps({
+        "incomplete_reasons": [], "stats": {"failed_calls_by_task": {"verify": 1}}}))
+
+    frame = build_frame(FAKE_ITEMS, tmp_path)
+    assert "q1" in frame.excluded_items
+    assert any("provider outage" in r for r in frame.excluded_items["q1"])
     assert all(u.item_id != "q1" for u in frame.units)
 
 
@@ -616,13 +663,23 @@ def test_is_zero_extraction_or_capped_true_when_incomplete(tmp_path):
 
 
 def test_is_zero_extraction_or_capped_true_when_no_sources_fetched(tmp_path):
-    (tmp_path / "sidecar.json").write_text(json.dumps({"complete": True, "stats": {"n_sources_fetched": 0}}))
+    (tmp_path / "sidecar.json").write_text(json.dumps({"complete": True, "sources": {}}))
     assert is_zero_extraction_or_capped(tmp_path) is True
 
 
 def test_is_zero_extraction_or_capped_false_for_a_healthy_run(tmp_path):
-    (tmp_path / "sidecar.json").write_text(json.dumps({"complete": True, "stats": {"n_sources_fetched": 4}}))
+    (tmp_path / "sidecar.json").write_text(json.dumps({
+        "complete": True, "sources": {"s1": {"extract_ok": True}, "s2": {"extract_ok": True}}}))
     assert is_zero_extraction_or_capped(tmp_path) is False
+
+
+def test_is_zero_extraction_or_capped_true_when_fetched_but_none_extracted(tmp_path):
+    """D4: three sources were fetched, but the extraction call failed on all three (truncation
+    or an outage) -- the pre-D4 code read `n_sources_fetched=3` and wrongly called this healthy."""
+    (tmp_path / "sidecar.json").write_text(json.dumps({
+        "complete": True,
+        "sources": {"s1": {"extract_ok": False}, "s2": {"extract_ok": False}, "s3": {"extract_ok": False}}}))
+    assert is_zero_extraction_or_capped(tmp_path) is True
 
 
 # --- run_pipeline_all against a real (scripted) reconstruct() call ---------------------------------
@@ -712,6 +769,22 @@ def test_item_arm_labels_ignores_audit_units():
     assert out == {"q1": {"raw": "abstain", "pipeline": "abstain"}}
 
 
+def test_item_arm_labels_excludes_synthetic_labelled_units_from_the_primary_far():
+    """D1: §7 says synthetic claims "are not answers" for the registered FAR -- a single
+    synthetic-labelled pipeline unit coded `false` must not make the item's primary pipeline
+    label `false` when a criterion-labelled unit for the same item is `correct`. The
+    `include_synthetic=True` sensitivity reproduces the pre-D1 (biased) reading."""
+    cmap = _coding_map({
+        "u001": {"item_id": "q1", "arm": "pipeline", "is_audit": False, "label": "criterion"},
+        "u002": {"item_id": "q1", "arm": "pipeline", "is_audit": False, "label": "synthetic"},
+    })
+    labels = {"u001": "correct", "u002": "false"}
+    primary = item_arm_labels(FAKE_ITEMS[:1], cmap, labels, excluded_ids=set())
+    assert primary == {"q1": {"raw": "abstain", "pipeline": "correct"}}
+    with_synthetic = item_arm_labels(FAKE_ITEMS[:1], cmap, labels, excluded_ids=set(), include_synthetic=True)
+    assert with_synthetic == {"q1": {"raw": "abstain", "pipeline": "false"}}
+
+
 def test_audit_miss_rate_counts_answering_share_of_audit_units_only():
     cmap = _coding_map({
         "u001": {"item_id": "q1", "arm": "pipeline", "is_audit": True},
@@ -781,8 +854,8 @@ def test_compute_kappa_perfect_agreement_over_the_second_coder_subset():
 
 
 def test_count_zero_extraction_or_capped_across_items(tmp_path):
-    for item_id, stats in (("q1", {"complete": True, "stats": {"n_sources_fetched": 3}}),
-                           ("q2", {"complete": True, "stats": {"n_sources_fetched": 0}})):
+    for item_id, stats in (("q1", {"complete": True, "sources": {"s1": {"extract_ok": True}}}),
+                           ("q2", {"complete": True, "sources": {"s1": {"extract_ok": False}}})):
         d = tmp_path / item_id / "pipeline"
         d.mkdir(parents=True)
         (d / "sidecar.json").write_text(json.dumps(stats))
@@ -826,9 +899,10 @@ def _score_eabst_fixture(tmp_path):
     accidental_ids = frozenset({"u001"})
 
     out_dir = tmp_path / "runs"
-    for item_id, stats in (("q1", {"complete": True, "stats": {"n_sources_fetched": 3}}),
-                           ("q2", {"complete": True, "stats": {"n_sources_fetched": 0}}),
-                           ("q3", {"complete": True, "stats": {"n_sources_fetched": 2}})):
+    for item_id, stats in (("q1", {"complete": True, "sources": {"s1": {"extract_ok": True}}}),
+                           ("q2", {"complete": True, "sources": {"s1": {"extract_ok": False}}}),
+                           ("q3", {"complete": True, "sources": {"s1": {"extract_ok": True},
+                                                                  "s2": {"extract_ok": True}}})):
         d = out_dir / item_id / "pipeline"
         d.mkdir(parents=True)
         (d / "sidecar.json").write_text(json.dumps(stats))
@@ -848,7 +922,15 @@ def test_score_eabst_far_and_paired_counts_match_the_hand_built_scenario(tmp_pat
     assert public["kappa"] == pytest.approx(1.0)
     assert public["audit_miss_rate"] == {"answering": 1, "total": 1, "rate": 1.0}
     assert public["accidental_correct"] == {"raw": 1, "pipeline": 0}
-    assert public["zero_extraction_or_capped"] == 1  # q2's sidecar has n_sources_fetched=0
+    assert public["zero_extraction_or_capped"] == 1  # q2's sidecar has no extract_ok source
+
+
+def test_score_eabst_reports_a_synthetic_counted_far_pipe_sensitivity(tmp_path):
+    """D1: with no synthetic-labelled units in this fixture, the sensitivity must equal the
+    registered FAR exactly -- the new field exists and does not change the gating value."""
+    result = score_eabst(**_score_eabst_fixture(tmp_path))
+    public = result["public"]
+    assert public["far_pipe_synthetic_counted"] == public["far_pipe"]
 
 
 def test_score_eabst_gate_decision_is_inconclusive_below_min_included(tmp_path):
