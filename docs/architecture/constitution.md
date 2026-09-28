@@ -7,7 +7,171 @@ Edit a decision file and regenerate; never edit this file.
 
 ## Rules
 
-_No active rules yet._
+### ai-turn-passes-contract-and-guard
+
+No AI interviewer turn reaches the expert unless code has checked it against the turn contract (known stem, at most one follow-up per stem carrying a quoted span that occurs in the expert's own words) and the leading-question guard has not flagged it; a second rejection falls back to the next unused stem shown bare, and rejected turns are logged, never shown.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
+
+### blind-coding-material
+
+The blinded coder export contains no interviewer text, the trace export contains no probe material, and the decoy answer key and unit-ID key are written separately from the sheets coders see.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_code/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
+
+### console-routes-loopback-only
+
+Every console-only route of the session app (the console page, session creation, console-view, think-aloud start, keep-talking, segment corrections and additions, probe start, typed answers, probe end, human-arm controls, pause and resume) refuses any request whose client is not 127.0.0.1 or ::1; only the expert routes are reachable from the network.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0005 Console routes answer only the laptop itself](decisions/0005-console-routes-loopback-only.md)
+
+### freeze-by-computed-rule
+
+The interviewer configuration is frozen only when a pre-stated rule over measured pilot and simulated-session metrics passes, computed by code from the session logs; the outcome is accept, change one variable and re-run, or change the model.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_code/**`, `instrument/pilot-protocol.md`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md)
+
+### freeze-covers-model-facing-code
+
+The frozen configuration includes a hash of every source file that builds what the interviewer or guard is sent or decides what reaches the expert (at least probe_app/llm.py, engine.py, contract.py and models.py), and a data session is refused when it differs from prereg.json.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md)
+
+### frozen-config-refuses-data-session
+
+The session app refuses to start a data session whose interviewer and guard model IDs, effort, or prompt, stem and guard hashes differ from the pre-registered values in instrument/prereg.json.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`, `instrument/prompts/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
+
+### full-session-log
+
+Every LLM request and response is logged in full, and session events are append-only with a monotonic and a wall-clock timestamp on one session clock shared by strokes, audio and transcript segments.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
+
+### guard-calibrated-before-freeze
+
+Before probe-app freeze the leading-question guard is run over a labelled set of about 60 probe questions (two labellers, kappa reported), and its sensitivity and specificity with 95% CIs are pre-registered with the guard prompt; any change to the guard model or prompt repeats the calibration.
+
+- Severity: blocking
+- Scope: `instrument/prompts/**`, `instrument/src/probe_code/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md)
+
+### missing-key-fails-before-start
+
+Building the backends fails before the server starts, naming the variable, if a configured role's API key is missing.
+
+- Severity: warning
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md)
+
+### model-choice-is-frozen-config
+
+The interviewer's and guard's provider, model, effort and temperature are part of the frozen configuration, so a change to them blocks data sessions until a new freeze; one model per role for the whole study, never mixed.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`, `instrument/models.json`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md)
+
+### models-json-single-source
+
+Every LLM role (interviewer, guard, simulated expert) and the transcriber are chosen only in instrument/models.json; there are no CLI flags, per-session choices or console controls for model choice.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`, `instrument/models.json`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md)
+
+### no-silent-model-substitution
+
+Server-side model fallbacks are not enabled; a refusal or failure is logged and the turn falls back to the bare stem instead of another model answering.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
+
+### rules-not-agents-decide
+
+The freeze and the study gates (K0, K1, K2) are decided by pre-registered rules applied by code to measured results, never by an LLM agent.
+
+- Severity: blocking
+- Scope: `instrument/**`, `research/experiment-ai-assisted-cta-physics.md`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md)
+
+### session-data-outside-repo
+
+Session data live only under git-ignored session directories, identified by pseudonym; names and the pseudonym key never enter the repository.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
+
+### session-id-full-uuid
+
+Session IDs carry a full uuid4 of randomness, not a truncated one.
+
+- Severity: warning
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0005 Console routes answer only the laptop itself](decisions/0005-console-routes-loopback-only.md)
+
+### simulated-sessions-rejected
+
+Sessions produced with a simulated expert are marked simulated and rejected by the coding pipeline.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_code/**`, `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
+
+### two-backends-behind-one-call
+
+LLM calls go through the backend interface in probe_app/llm.py, with exactly two backends, native Anthropic and one OpenAI-compatible backend serving openai and openrouter; no LiteLLM or other routing library.
+
+- Severity: warning
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md)
+
+### uniform-refusal-mapping
+
+Both backends raise LLMRefused for a refusal and LLMUnavailable for API errors, truncation or empty output, so refusal and outage counts mean the same on every provider.
+
+- Severity: blocking
+- Scope: `instrument/src/probe_app/**`
+- Narrative intent — **not** verifiable. Do not grade compliance against it.
+- Source: [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md)
 
 ## Active decisions
 
+- [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md) — migrate
+- [0002 Model choice in one committed file, two backends](decisions/0002-model-choice-in-one-committed-file.md) — migrate
+- [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md) — agentic-patterns
+- [0005 Console routes answer only the laptop itself](decisions/0005-console-routes-loopback-only.md) — threat-model

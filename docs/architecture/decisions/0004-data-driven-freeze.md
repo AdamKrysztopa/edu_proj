@@ -1,6 +1,6 @@
 ---
 id: 0004
-status: proposed
+status: active
 skill: agentic-patterns
 date: 2026-09-27
 commit: 30a2b8e

@@ -1,6 +1,6 @@
 ---
 id: 0001
-status: proposed
+status: active
 skill: migrate
 date: 2026-09-27
 commit: 30a2b8e
