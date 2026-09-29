@@ -1,0 +1,104 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Continuity testing should only be performed when a circuit is de-energized and verified safe.",
+      "sentences": {
+        "1": "Continuity testing should only be performed on de-energized circuits to avoid false positive results from the supply voltage.",
+        "2": "This saves time and resources while keeping machines performing at their best.",
+        "3": "Using continuity mode on a live circuit produces false positive 'good' results due to the supply voltage overwhelming the meter's test current.",
+        "4": "Using continuity mode on a live circuit and getting a false 'good' result from the supply voltage."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0.99,
+          "no": 0
+        },
+        "confidence": 0.99
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.07,
+          "states": 0.08,
+          "no": 0.85
+        },
+        "confidence": 0.78
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0,
+          "states": 1,
+          "no": 0
+        },
+        "confidence": 0.99
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.23,
+          "states": 0.7,
+          "no": 0.07
+        },
+        "confidence": 0.54
+      }
+    },
+    "usage": {
+      "input_tokens": 970,
+      "output_tokens": 155,
+      "cost": 4.074e-05
+    },
+    "id": "gen-dec-1790681585-m4dCJG01XBVvZqlHzftw",
+    "provider": "TypeSafe"
+  }
+}

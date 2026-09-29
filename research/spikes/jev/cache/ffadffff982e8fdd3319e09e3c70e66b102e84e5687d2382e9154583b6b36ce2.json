@@ -1,0 +1,124 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Security risks assessment should include sources of risk and potential impact of each type of breach including illegitimate access, modification, or loss of personal data.",
+      "sentences": {
+        "1": "Security risks assessment should include sources of risk and potential impact of each type of breach including illegitimate access, modification, or loss of personal data.",
+        "2": "You should include an assessment of the security risks, including sources of risk and the potential impact of each type of breach (including illegitimate access to, modification of or loss of personal data).",
+        "3": "A DPIA must identify potential impacts on data subject rights in case of illegitimate access, unwanted modification, or disappearance of data.",
+        "4": "Potential impacts on the rights and freedoms of data subjects are identified in case of events such as illegitimate access to data, an unwanted modification of data or their disappearance",
+        "5": "The DPC will respond to a submission for statutory prior consultation within a period of up to eight weeks, where it appears that the intended processing would infringe the provisions of the GDPR or Data Protection Act, or that the controller has insufficiently identified or mitigated the potential risks."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.03,
+          "no": 0.96,
+          "partially": 0.01
+        },
+        "confidence": 0.95
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.02,
+          "no": 0.97,
+          "partially": 0.01
+        },
+        "confidence": 0.96
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.1,
+          "no": 0.86,
+          "partially": 0.04
+        },
+        "confidence": 0.79
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.02,
+          "no": 0.97,
+          "partially": 0.01
+        },
+        "confidence": 0.95
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.59,
+          "no": 0.16,
+          "partially": 0.25
+        },
+        "confidence": 0.39
+      }
+    },
+    "usage": {
+      "input_tokens": 1224,
+      "output_tokens": 193,
+      "cost": 5.1408e-05
+    },
+    "id": "gen-dec-1790681564-t62xGL4cUIHDQMSA5P9K",
+    "provider": "TypeSafe"
+  }
+}

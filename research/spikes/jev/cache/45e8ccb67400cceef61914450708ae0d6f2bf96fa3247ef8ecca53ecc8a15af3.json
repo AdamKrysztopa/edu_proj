@@ -1,0 +1,184 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.",
+      "sentences": {
+        "1": "Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.",
+        "2": "Article 35(3) sets out three types of processing which always require a DPIA: Systematic and extensive profiling with significant effects: \"(a) any systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\"",
+        "3": "Extensive evaluation and profiling of individuals, including large-scale processing with scoring, evaluating, predicting and profiling, is a criterion triggering DPIA requirements.",
+        "4": "Extensive evaluation and profiling of individuals - Explanation and examples: Large scale processing of personal data including scoring, evaluating, predicting and profiling of individuals",
+        "5": "A DPIA is required in the case of a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.",
+        "6": "a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person",
+        "7": "A DPIA is required for a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling.",
+        "8": "A DPIA is required at least in the following cases: a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling"
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.13,
+          "no": 0.8,
+          "states": 0.07
+        },
+        "confidence": 0.7
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.2,
+          "no": 0.66,
+          "states": 0.14
+        },
+        "confidence": 0.49
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "partially": 0.48,
+          "no": 0.38,
+          "states": 0.14
+        },
+        "confidence": 0.22
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "partially": 0.54,
+          "no": 0.29,
+          "states": 0.17
+        },
+        "confidence": 0.32
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.1,
+          "no": 0.85,
+          "states": 0.05
+        },
+        "confidence": 0.77
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.08,
+          "no": 0.89,
+          "states": 0.03
+        },
+        "confidence": 0.83
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.04,
+          "no": 0.95,
+          "states": 0.01
+        },
+        "confidence": 0.91
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.05,
+          "no": 0.93,
+          "states": 0.02
+        },
+        "confidence": 0.9
+      }
+    },
+    "usage": {
+      "input_tokens": 1928,
+      "output_tokens": 311,
+      "cost": 8.0976e-05
+    },
+    "id": "gen-dec-1790681578-GkldQbzw8Gm0fRSta0VC",
+    "provider": "TypeSafe"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"The first-out fault should be captured with a timestamp and not overwritten until authorized reset.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: In the Peakboard Hub, machine states can be stored with a timestamp to make availability, downtime durations and OEE measurable across weeks and months.\n2: In the Peakboard Hub, machine states can be stored with a timestamp.\n3: Processor reset registers can indicate the type of reset cause and provide valuable diagnostic information for narrowing down the fault source.\n4: It also turned out the processor in our drive held a register for determining what caused the reset, which indicated an illegal address rather than one of four other possible other causes.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681674-nyY7egGw07bbzUfPUVGo",
+    "object": "chat.completion",
+    "created": 1790681674,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The element asks for a sentence that states an expected test result and what that result means or which next action follows.\n\nSentence 1 and 2 describe storing machine states with a timestamp, with no expected result or interpretation.\n\nSentence 3 says reset registers indicate the reset cause and help narrow down the fault source. This gives a general interpretation (the register value points to a cause and guides diagnosis), but it names no expected result for this test. It only partially fits.\n\nSentence 4 describes a specific case: the register showed an illegal address rather than one of four other causes. This is a result with a meaning (the cause of the reset), but it is an anecdote, not an expectation for this test, and it names no next action. It is at most partial.\n\nNeither sentence addresses the first-out fault capture test, so none fully states the element. Sentences 3 and 4 are only loosely related through the idea of interpreting a diagnostic result.\n\n```json\n{\"states\": [], \"partially\": [3, 4], \"reason\": \"Sentences 3 and 4 link a diagnostic register result to a fault cause, but neither states an expected result for the first-out fault test or a next action.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 362,
+      "completion_tokens": 366,
+      "total_tokens": 728,
+      "cost": 0.004384,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.004384,
+        "upstream_inference_prompt_cost": 0.000724,
+        "upstream_inference_completions_cost": 0.00366
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

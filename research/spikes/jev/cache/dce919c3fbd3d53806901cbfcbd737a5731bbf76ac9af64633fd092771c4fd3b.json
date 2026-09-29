@@ -1,0 +1,144 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Loose or contaminated connectors, soldering defects, and wire crimping issues are among the most common causes of intermittent faults.",
+      "sentences": {
+        "1": "Loose or contaminated connectors, soldering defects, and wire crimping issues are among the most common causes of intermittent faults.",
+        "2": "Interconnections at various levels are the most common cause of the faults I see: loose or contaminated connectors, soldering, wire crimping, etc.",
+        "3": "Loose conductors, damaged flex cables and marginal sensors can produce pulses too short to notice on an HMI.",
+        "4": "Loose conductors, damaged flex cables and marginal sensors can produce pulses too short to notice on an HMI.",
+        "5": "Loose terminals and oxidized connections create jitter that a PLC processor might interpret as a false state, undermining signal integrity.",
+        "6": "Loose terminals and oxidized connections are silent killers of signal integrity."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Loose or contaminated connectors, soldering defects, and wire crimping issues' from the other listed causes? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Loose or contaminated connectors, soldering defects, and wire crimping issues' from the other listed causes? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Loose or contaminated connectors, soldering defects, and wire crimping issues' from the other listed causes? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Loose or contaminated connectors, soldering defects, and wire crimping issues' from the other listed causes? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Loose or contaminated connectors, soldering defects, and wire crimping issues' from the other listed causes? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Loose or contaminated connectors, soldering defects, and wire crimping issues' from the other listed causes? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "no": 0.99,
+          "states": 0.01
+        },
+        "confidence": 0.98
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "no": 0.98,
+          "states": 0.01
+        },
+        "confidence": 0.98
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.07,
+          "no": 0.85,
+          "states": 0.08
+        },
+        "confidence": 0.78
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.02,
+          "no": 0.93,
+          "states": 0.04
+        },
+        "confidence": 0.9
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "partially": 0.35,
+          "no": 0.33,
+          "states": 0.32
+        },
+        "confidence": 0.02
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.07,
+          "no": 0.92,
+          "states": 0.01
+        },
+        "confidence": 0.87
+      }
+    },
+    "usage": {
+      "input_tokens": 1395,
+      "output_tokens": 233,
+      "cost": 5.859e-05
+    },
+    "id": "gen-dec-1790681588-hqYXh6cUQwrkIjjshppO",
+    "provider": "TypeSafe"
+  }
+}

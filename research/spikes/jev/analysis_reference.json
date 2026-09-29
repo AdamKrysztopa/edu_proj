@@ -1,0 +1,42 @@
+{
+  "reference": "anthropic/claude-sonnet-5.5",
+  "rule": {
+    "substitutes_if_jev_minus_qwen_kappa_at_least": -0.05,
+    "does_not_if_jev_minus_qwen_kappa_below": -0.15
+  },
+  "n_sampled": 100,
+  "n_ref_unreadable_excluded": 0,
+  "n_prompts_scored": 100,
+  "n_sentences": 762,
+  "kappa": {
+    "hit": {
+      "jev_ref": 0.5261714034895204,
+      "qwen_ref": 0.27296570876403753,
+      "jev_qwen": 0.14887992951165446
+    },
+    "states": {
+      "jev_ref": 0.4663445649265831,
+      "qwen_ref": 0.27047046374523404,
+      "jev_qwen": 0.1846106502916451
+    },
+    "prompt_any_hit": {
+      "jev_ref": 0.4005328596802842,
+      "qwen_ref": 0.14794732765298188
+    }
+  },
+  "jev_minus_qwen_hit_kappa": 0.2532056947254829,
+  "jev_minus_qwen_ci95": [
+    0.09909035553102752,
+    0.3991811238007315
+  ],
+  "cost_per_judgement_usd": {
+    "jev": 6.9825e-05,
+    "reference": 0.0036867400000000013,
+    "hosted_qwen_2.5_7b_est": 6.857200000000002e-05
+  },
+  "ref_tokens_in_out": [
+    60572,
+    24753
+  ],
+  "verdict": "substitutes"
+}

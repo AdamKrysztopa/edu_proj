@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"A DPIA should begin early in a project lifecycle, before processing starts, and run alongside the planning and development process.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: A DPIA should begin early in a project lifecycle, before processing starts, and run alongside the planning and development process.\n2: A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process.\n3: A DPIA should begin early in the life of a project, before processing starts, and run alongside the planning and development process.\n4: A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process.\n5: A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process.\n6: Innovative technology refers to new developments in technological knowledge at large rather than technology that is new only to the controller.\n7: Recital 91 says innovative technology concerns new developments in technological knowledge in the world at large, rather than technology that is new to you\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681729-GoS7TPrh1LSsNoXq6rD6",
+    "object": "chat.completion",
+    "created": 1790681729,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [], \"partially\": [], \"reason\": \"Sentences 1-5 only repeat the timing requirement without giving a rationale or the failure it prevents; sentences 6-7 define innovative technology and are unrelated.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 477,
+      "completion_tokens": 76,
+      "total_tokens": 553,
+      "cost": 0.001714,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001714,
+        "upstream_inference_prompt_cost": 0.000954,
+        "upstream_inference_completions_cost": 0.00076
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

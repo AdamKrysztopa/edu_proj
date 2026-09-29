@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"Where there are residual risks that cannot be mitigated by the measures put in place, the DPA must be consulted prior to the start of the processing.\",\n \"sentences\": {\n  \"1\": \"Where there are residual risks that cannot be mitigated by the measures put in place, the DPA must be consulted prior to the start of the processing.\",\n  \"2\": \"Where there are residual risks that cannot be mitigated by the measures put in place, the DPA must be consulted prior to the start of the processing.\",\n  \"3\": \"If you intend to rely on the exception for disproportionate effort, you must be able to justify this, and you must take other measures to protect people's rights.\",\n  \"4\": \"If you intend to rely on the exception for disproportionate effort, you must be able to justify this, and you must take other measures to protect people's rights.\",\n  \"5\": \"A DPIA is required for processing of personal data that has not been obtained direct from the data subject in circumstances where the controller considers that compliance with Article 14 would prove impossible or involve disproportionate effort.\",\n  \"6\": \"Invisible processing Processing of personal data that has not been obtained direct from the data subject in circumstances where the controller considers that compliance with Article 14 would prove impossible or involve disproportionate effort\",\n  \"7\": \"Processing of personal data obtained from somewhere other than directly from the individual, in circumstances where the controller considers that compliance with Article 14 would prove impossible or involve disproportionate effort, requires a DPIA where this processing is combined with any of the criteria from the European guidelines.\",\n  \"8\": \"Invisible processing: processing of personal data that has not been obtained direct from the data subject in circumstances where the controller considers that compliance with Article 14 would prove impossible or involve disproportionate effort.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682245-GL8l9JIZiLhSEuguUM4F",
+    "object": "chat.completion",
+    "created": 1790682245,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"states\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 538,
+      "completion_tokens": 7,
+      "total_tokens": 545,
+      "cost": 5.52e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 445,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 5.52e-05,
+        "upstream_inference_prompt_cost": 5.38e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

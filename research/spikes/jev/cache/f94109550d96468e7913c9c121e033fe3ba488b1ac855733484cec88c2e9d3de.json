@@ -1,0 +1,64 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.",
+      "sentences": {
+        "1": "Extensive processing implies that the processing covers a large area, involves a wide range of data, or affects a large number of individuals.",
+        "2": "The term 'extensive' implies that the processing also covers a large area, involves a wide range of data or affects a large number of individuals."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.05,
+          "no": 0.03,
+          "states": 0.92
+        },
+        "confidence": 0.88
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.05,
+          "no": 0.05,
+          "states": 0.9
+        },
+        "confidence": 0.85
+      }
+    },
+    "usage": {
+      "input_tokens": 686,
+      "output_tokens": 79,
+      "cost": 2.8812e-05
+    },
+    "id": "gen-dec-1790681567-mIBfWLOAi75kGZb3tNfW",
+    "provider": "TypeSafe"
+  }
+}

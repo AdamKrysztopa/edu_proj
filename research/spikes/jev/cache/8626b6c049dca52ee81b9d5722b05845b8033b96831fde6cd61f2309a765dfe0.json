@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "A common mistake in troubleshooting intermittent faults is panicking and abandoning systematic approaches in favor of quick fixes.",
+      "sentences": {
+        "1": "A common mistake in troubleshooting intermittent faults is panicking and abandoning systematic approaches in favor of quick fixes.",
+        "2": "They sometimes panic and give up before actually trying to find the fault.",
+        "3": "Or, in an effort to fix something quickly, they take the shotgun approach and miss some obvious things that a more systematic approach would uncover.",
+        "4": "Quick diagnosis approach is appropriate for clearly defined faults where fast troubleshooting is the priority.",
+        "5": "This paper proposes a novel data preprocessing method that converts numeric data into representative graphs (polygons) expressing all of the relationships between data variables in a systematic way based on Hamiltonian cycles.",
+        "6": "A quick fix never enters the system.",
+        "7": "Failing to document troubleshooting steps and results can cause engineers to repeat failed approaches and lose structure in their fault-finding process.",
+        "8": "After a while, the engineer may start going in circles, applying fixes that have already been tried and rejected.",
+        "9": "Measuring voltage at the source and return path is part of systematic troubleshooting to determine circuit condition.",
+        "10": "These appear randomly, making systematic testing difficult.",
+        "11": "If it is a single-unit fault that will not repeat, keeping the unit in quarantine until additional units show issues or until it is believed that it is a single unit issue (such as ESD to an exposed PCB) can be an acceptable approach.",
+        "12": "Methodical questioning and data gathering before making changes is more effective for solving PLC problems than speed-based trial and error approaches."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how a practitioner notices this error before or as it happens? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.84,
+          "states": 0.06,
+          "partially": 0.1
+        },
+        "confidence": 0.76
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.65,
+          "states": 0.07,
+          "partially": 0.28
+        },
+        "confidence": 0.48
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.53,
+          "states": 0.11,
+          "partially": 0.36
+        },
+        "confidence": 0.3
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.99,
+          "states": 0,
+          "partially": 0.01
+        },
+        "confidence": 0.98
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 1,
+          "states": 0,
+          "partially": 0
+        },
+        "confidence": 0.99
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.97,
+          "states": 0.02,
+          "partially": 0.01
+        },
+        "confidence": 0.96
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.91,
+          "states": 0.01,
+          "partially": 0.08
+        },
+        "confidence": 0.86
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.52,
+          "states": 0.09,
+          "partially": 0.39
+        },
+        "confidence": 0.28
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 1,
+          "states": 0,
+          "partially": 0
+        },
+        "confidence": 0.99
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.98,
+          "states": 0,
+          "partially": 0.02
+        },
+        "confidence": 0.97
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.98,
+          "states": 0,
+          "partially": 0.02
+        },
+        "confidence": 0.96
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "states": 0.01,
+          "partially": 0.05
+        },
+        "confidence": 0.91
+      }
+    },
+    "usage": {
+      "input_tokens": 2213,
+      "output_tokens": 462,
+      "cost": 9.2946e-05
+    },
+    "id": "gen-dec-1790681587-kMBt6ZyhdDeYCzMxzFYV",
+    "provider": "TypeSafe"
+  }
+}

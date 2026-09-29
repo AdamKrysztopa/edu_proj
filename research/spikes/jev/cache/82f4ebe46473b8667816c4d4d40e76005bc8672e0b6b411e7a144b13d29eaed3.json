@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Before using a multimeter, a technician must verify correct function, correct range, leads in correct ports, probe tips condition, insulation integrity, CAT rating appropriateness, battery status, and display functionality.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: Before using a multimeter, a technician must verify correct function, correct range, leads in correct ports, probe tips condition, insulation integrity, CAT rating appropriateness, battery status, and display functionality.\n2: Before using the multimeter, verify: Correct function selected Correct range selected Leads in correct ports Probe tips in good condition Insulation not damaged Meter CAT rating is appropriate Meter battery is good Display works properly\n3: Input signal integrity should be tested systematically by observing sensor state, measuring voltage with a multimeter, checking PLC display, and verifying program logic usage.\n4: This disrupts the internal DC voltage rail, leading to a loss of volatile program memory if the backup battery or capacitor fails simultaneously.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681695-wRsnAglVRo0xge2rfNTJ",
+    "object": "chat.completion",
+    "created": 1790681695,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [], \"partially\": [], \"reason\": \"Sentences 1 and 2 only list the checks without giving any purpose. Sentence 3 covers testing input signals, and sentence 4 covers PLC power loss. Neither explains why multimeter pre-checks are done.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 487,
+      "completion_tokens": 93,
+      "total_tokens": 580,
+      "cost": 0.001904,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001904,
+        "upstream_inference_prompt_cost": 0.000974,
+        "upstream_inference_completions_cost": 0.00093
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

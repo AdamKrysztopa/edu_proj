@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"The trigger for capturing an intermittent fault should be the trip event itself, not a suspected input, because the capture is supposed to find the actual cause.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: The trigger for capturing an intermittent fault should be the trip event itself, not a suspected input, because the capture is supposed to find the actual cause.\n2: Trigger on the trip, not on the thing you suspect.\n3: The suspect is what the capture is supposed to find, and if you already knew which input to trigger on you would not need the trend.\n4: An intermittent-fault capture kit should include reusable PLC blocks for first-out capture, transition history and triggered trends.\n5: Prepare reusable PLC blocks for first-out capture, transition history and triggered trends.\n6: When a PLC input bit stays OFF but you believe the sensor should be triggering it, there are exactly three places the fault can live: the field device itself, the wiring between device and terminal, or the input card.\n7: Ground loops and interactions of multiple processors finding weaknesses in hardware or software interfaces are common causes of intermittent faults.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681707-w5RXWYqseozmY8dgrdgS",
+    "object": "chat.completion",
+    "created": 1790681707,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [1, 3], \"partially\": [2], \"reason\": \"Sentence 1 gives the reason (capture should find the actual cause); sentence 3 explains that triggering on a suspect defeats the purpose since the cause is unknown. Sentence 2 only restates the rule.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 517,
+      "completion_tokens": 95,
+      "total_tokens": 612,
+      "cost": 0.001984,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001984,
+        "upstream_inference_prompt_cost": 0.001034,
+        "upstream_inference_completions_cost": 0.00095
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

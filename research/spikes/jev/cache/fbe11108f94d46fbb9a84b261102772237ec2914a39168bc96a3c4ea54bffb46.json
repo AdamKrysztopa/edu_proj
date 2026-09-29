@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Where there are residual risks that cannot be mitigated by the measures put in place, the DPA must be consulted prior to the start of the processing.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Where there are residual risks that cannot be mitigated by the measures put in place, the DPA must be consulted prior to the start of the processing.\n2: Where there are residual risks that cannot be mitigated by the measures put in place, the DPA must be consulted prior to the start of the processing.\n3: If you intend to rely on the exception for disproportionate effort, you must be able to justify this, and you must take other measures to protect people's rights.\n4: If you intend to rely on the exception for disproportionate effort, you must be able to justify this, and you must take other measures to protect people's rights.\n5: A DPIA is required for processing of personal data that has not been obtained direct from the data subject in circumstances where the controller considers that compliance with Article 14 would prove impossible or involve disproportionate effort.\n6: Invisible processing Processing of personal data that has not been obtained direct from the data subject in circumstances where the controller considers that compliance with Article 14 would prove impossible or involve disproportionate effort\n7: Processing of personal data obtained from somewhere other than directly from the individual, in circumstances where the controller considers that compliance with Article 14 would prove impossible or involve disproportionate effort, requires a DPIA where this processing is combined with any of the criteria from the European guidelines.\n8: Invisible processing: processing of personal data that has not been obtained direct from the data subject in circumstances where the controller considers that compliance with Article 14 would prove impossible or involve disproportionate effort.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681687-oohqdcMH47TVTjf38OYF",
+    "object": "chat.completion",
+    "created": 1790681687,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks about a \"test\" with an expected result, and what that result means or leads to. The seed is about the residual risk outcome of a DPIA, which leads to DPA consultation. Sentences 1 and 2 state this directly: the result is residual risks that can't be mitigated, and the next action is consulting the DPA before processing starts.\n\nThe other sentences describe when a DPIA is required or the disproportionate effort exception. Sentence 7 says a DPIA is required when combined with other criteria, which is a condition leading to an action, but it is not about a test result. Sentence 3 links an intention to an obligation, but again it is not about a test result. I treat 7 as at most partial, and I leave it out to stay strict.\n\n```json\n{\"states\":[1,2],\"partially\":[],\"reason\":\"Sentences 1 and 2 state that unmitigable residual risks mean the DPA must be consulted before processing starts; others only cover DPIA triggers or exceptions.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 690,
+      "completion_tokens": 314,
+      "total_tokens": 1004,
+      "cost": 0.00452,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00452,
+        "upstream_inference_prompt_cost": 0.00138,
+        "upstream_inference_completions_cost": 0.00314
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

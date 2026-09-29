@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"A DPIA should begin early in a project lifecycle, before processing starts, and run alongside the planning and development process.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: A DPIA should begin early in a project lifecycle, before processing starts, and run alongside the planning and development process.\n2: A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process.\n3: A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process.\n4: A DPIA should begin early in the life of a project, before processing starts, and run alongside the planning and development process.\n5: A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process.\n6: Innovative technology refers to new developments in technological knowledge at large rather than technology that is new only to the controller.\n7: Recital 91 says innovative technology concerns new developments in technological knowledge in the world at large, rather than technology that is new to you\n8: If a high risk cannot be mitigated, the organization must consult the ICO before starting the processing.\n9: The DPIA process is designed to be flexible and scalable to fit the nature of the project and existing risk management approaches.\n10: You can design a process that fits with your existing approach to managing risks and projects, as long as it contains these key elements.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681694-hqkw0DS8RPy9sdXe0hN0",
+    "object": "chat.completion",
+    "created": 1790681694,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "Sentences 1-5 only restate the timing requirement and give no rationale. Sentence 6 and 7 define innovative technology and say nothing about why a DPIA starts early. Sentence 8 says high risk that can't be mitigated requires ICO consultation before processing. That is a procedural requirement, and it only implies a purpose (preventing high-risk processing going ahead unchecked), so it is at most a partial match. Sentences 9-10 describe flexibility and give no reason for early timing.\n\nI rate sentence 8 as partial: it implies a preventive purpose, but it does not explain why the DPIA starts early.\n\n```json\n{\"states\": [], \"partially\": [8], \"reason\": \"No sentence explains why a DPIA starts early; sentence 8 only implies a preventive purpose by requiring ICO consultation before high-risk processing begins.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 588,
+      "completion_tokens": 282,
+      "total_tokens": 870,
+      "cost": 0.003996,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.003996,
+        "upstream_inference_prompt_cost": 0.001176,
+        "upstream_inference_completions_cost": 0.00282
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

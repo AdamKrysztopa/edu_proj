@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Employees may be considered vulnerable data subjects where a power imbalance means they cannot easily consent or object to data processing by an employer.",
+      "sentences": {
+        "1": "Employees may be considered vulnerable data subjects where a power imbalance means they cannot easily consent or object to data processing by an employer.",
+        "2": "One group who may count as vulnerable in this sense are employees.",
+        "3": "The European guidelines on DPIAs (WP248) explain why employees could be considered vulnerable data subjects where a power imbalance means they cannot easily consent or object to the processing of their data by an employer.",
+        "4": "Employees may be considered vulnerable data subjects where a power imbalance means they cannot easily consent or object to processing by an employer.",
+        "5": "The European guidelines on DPIAs (WP248) explain why employees could be considered vulnerable data subjects where a power imbalance means they cannot easily consent or object to the processing of their data by an employer.",
+        "6": "Processing should be screened for factors indicating high-risk processing, such as processing data of vulnerable individuals.",
+        "7": "If not, you need to screen for other factors that may indicate it is a type of processing that is likely to result in high risk, such as processing the data of vulnerable individuals.",
+        "8": "Individuals can be vulnerable where circumstances may restrict their ability to freely consent or object to the processing of their personal data, or to understand its implications.",
+        "9": "The context of processing should include the source of data, relationship with individuals, individual control over data, whether individuals expect the processing, inclusion of children or vulnerable people, previous experience with such processing, technological advances, public concerns, and compliance with codes of conduct or certification schemes.",
+        "10": "Organizations must always conduct a DPIA if they plan to process children's personal data for profiling, automated decision-making, marketing purposes, or offer online services directly to them.",
+        "11": "Organizations must always conduct a DPIA if they plan to use profiling, automated decision-making or special category data to help make decisions on someone's access to a service, opportunity or benefit.",
+        "12": "When a data protection impact assessment indicates high-risk processing, the DPIA itself becomes a mandatory consultation trigger for engaging with the Commissioner."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.01,
+          "states": 0.95,
+          "partially": 0.04
+        },
+        "confidence": 0.93
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "states": 0.01,
+          "partially": 0.07
+        },
+        "confidence": 0.88
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.26,
+          "states": 0.63,
+          "partially": 0.11
+        },
+        "confidence": 0.43
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.12,
+          "states": 0.83,
+          "partially": 0.05
+        },
+        "confidence": 0.74
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.31,
+          "states": 0.62,
+          "partially": 0.07
+        },
+        "confidence": 0.43
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "states": 0.01,
+          "partially": 0.05
+        },
+        "confidence": 0.91
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.98,
+          "states": 0.01,
+          "partially": 0.01
+        },
+        "confidence": 0.97
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0,
+          "states": 0.99,
+          "partially": 0.01
+        },
+        "confidence": 0.99
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.59,
+          "states": 0.06,
+          "partially": 0.35
+        },
+        "confidence": 0.38
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.98,
+          "states": 0.01,
+          "partially": 0.01
+        },
+        "confidence": 0.97
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.96,
+          "states": 0.02,
+          "partially": 0.02
+        },
+        "confidence": 0.93
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.99,
+          "states": 0.01,
+          "partially": 0
+        },
+        "confidence": 0.97
+      }
+    },
+    "usage": {
+      "input_tokens": 2606,
+      "output_tokens": 462,
+      "cost": 0.000109452
+    },
+    "id": "gen-dec-1790681567-QAKTWIFxyOS8UXlk9nyU",
+    "provider": "TypeSafe"
+  }
+}

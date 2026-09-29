@@ -1,0 +1,84 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Tags that cannot have caused a fault, such as HMI setpoints and recipe numbers, should not be included in a trend because they waste memory and processing without adding diagnostic value.",
+      "sentences": {
+        "1": "An equipment maintenance log serves as the institutional memory of a plant, with each entry either adding to the record of what an asset has experienced or creating a gap that will incur costs later.",
+        "2": "Paper maintenance logs are vulnerable to loss and cannot provide auditable evidence that they have not been edited after the fact, unlike digital systems.",
+        "3": "Begin with the failing connection and time window, then collect targeted traffic if switch and device diagnostics cannot distinguish the cause."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "states": 0.02,
+          "partially": 0.13
+        },
+        "confidence": 0.77
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "states": 0.08,
+          "partially": 0.07
+        },
+        "confidence": 0.78
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.13,
+          "states": 0.48,
+          "partially": 0.39
+        },
+        "confidence": 0.21
+      }
+    },
+    "usage": {
+      "input_tokens": 834,
+      "output_tokens": 117,
+      "cost": 3.5028e-05
+    },
+    "id": "gen-dec-1790681582-ut78B2tUmhQMjl0vdkuM",
+    "provider": "TypeSafe"
+  }
+}

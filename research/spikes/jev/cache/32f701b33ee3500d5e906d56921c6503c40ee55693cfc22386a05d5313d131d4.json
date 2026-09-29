@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"A periodic task should include a WALLCLOCKTIME GSV in only one user task, or wrap it in a UID/UIE pair if another task also reads it.\",\n \"sentences\": {\n  \"1\": \"A controller major fault may leave a fault code and task information.\",\n  \"2\": \"On the other hand, hardware faults tend to be affected by the end environment, which can include cables and other site-specific conditions.\",\n  \"3\": \"What occurs, and when? Is there usually another activity that precedes the fault?\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"3\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682646-OzAzwIx8g3ZQo3NumxVc",
+    "object": "chat.completion",
+    "created": 1790682646,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"no\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 276,
+      "completion_tokens": 7,
+      "total_tokens": 283,
+      "cost": 2.9e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 183,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 2.9e-05,
+        "upstream_inference_prompt_cost": 2.76e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

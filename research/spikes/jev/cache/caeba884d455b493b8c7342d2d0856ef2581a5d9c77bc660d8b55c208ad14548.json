@@ -1,0 +1,244 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Ground loops and interactions of multiple processors finding weaknesses in hardware or software interfaces are common causes of intermittent faults.",
+      "sentences": {
+        "1": "Ground loops and interactions of multiple processors finding weaknesses in hardware or software interfaces are common causes of intermittent faults.",
+        "2": "Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces.",
+        "3": "Shielded cables must be grounded at one end only to prevent ground loops that introduce noise into sensitive logic circuits.",
+        "4": "You must ensure shielded cables are grounded at one end only to prevent ground loops.",
+        "5": "Phantom faults are transient-induced logic errors that corrupt data packets just enough to trigger safety shutdowns or processor freezes without immediately destroying hardware.",
+        "6": "Data loggers provide a multifaceted view that makes it easier to identify interactions and dependencies between system components contributing to inefficiencies or failures.",
+        "7": "The multifaceted view that data loggers provide makes it easier to identify interactions and dependencies between system components that might contribute to inefficiencies or failures.",
+        "8": "Software faults tend to be repeatable and occur when a specific set of conditions is present, whereas hardware faults are affected by environmental conditions.",
+        "9": "Near-field H probes can be used to detect ground noise, EMI, and poor switching power supply designs from a distance of half an inch or more.",
+        "10": "Aliasing, often a hardware issue, can be another difficult item to examine.",
+        "11": "Different fault types in PLC systems show distinct patterns that indicate whether the problem is hardware failure, software bug, or configuration error."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Ground loops and interactions of multiple processors finding weaknesses in' from the other listed causes? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "no": 0.99,
+          "partially": 0
+        },
+        "confidence": 0.99
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0,
+          "no": 1,
+          "partially": 0
+        },
+        "confidence": 0.99
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.13,
+          "no": 0.59,
+          "partially": 0.28
+        },
+        "confidence": 0.38
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.02,
+          "no": 0.95,
+          "partially": 0.03
+        },
+        "confidence": 0.94
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.2,
+          "no": 0.74,
+          "partially": 0.06
+        },
+        "confidence": 0.62
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0,
+          "no": 1,
+          "partially": 0
+        },
+        "confidence": 0.99
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0,
+          "no": 1,
+          "partially": 0
+        },
+        "confidence": 1
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.08,
+          "no": 0.84,
+          "partially": 0.08
+        },
+        "confidence": 0.75
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.14,
+          "no": 0.62,
+          "partially": 0.24
+        },
+        "confidence": 0.43
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "no": 0.98,
+          "partially": 0.01
+        },
+        "confidence": 0.98
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.05,
+          "no": 0.83,
+          "partially": 0.12
+        },
+        "confidence": 0.75
+      }
+    },
+    "usage": {
+      "input_tokens": 2228,
+      "output_tokens": 423,
+      "cost": 9.3576e-05
+    },
+    "id": "gen-dec-1790681584-eLjDW3SXMZFy0jcIChvK",
+    "provider": "TypeSafe"
+  }
+}

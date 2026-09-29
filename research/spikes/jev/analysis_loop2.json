@@ -1,0 +1,22 @@
+{
+  "n_unique": 58,
+  "rule": {
+    "no_signal_if_rho_len_at_least": 0.5,
+    "objection_removed_if_rho_len_at_most": 0.2
+  },
+  "rho_C_vs_lenmatch": 0.614670852474641,
+  "rho_C_vs_lenmatch_ci": [
+    0.3975731382204198,
+    0.759212848091493
+  ],
+  "rho_C_vs_shuffle": 0.822452340430935,
+  "mean_C": 0.32681034482758625,
+  "mean_C_lenmatch": 0.46000000000000013,
+  "mean_C_shuffle": 0.35500000000000004,
+  "sd_C": 0.12003842156411934,
+  "sd_C_lenmatch": 0.09259198594948143,
+  "rho_C_lenmatch_vs_ktopic": 0.13900781348647528,
+  "rho_C_vs_ktopic_plc": 0.5103338176226563,
+  "rho_C_lenmatch_vs_ktopic_plc": 0.06073424073445792,
+  "verdict": "NO SIGNAL (C tracks surface form)"
+}

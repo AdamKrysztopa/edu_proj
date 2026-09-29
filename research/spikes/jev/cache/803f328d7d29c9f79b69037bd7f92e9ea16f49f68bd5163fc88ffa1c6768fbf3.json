@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"Regular log review should focus on identifying repeat faults, frequently failing parts, high labor-hour assets, and incomplete resolution patterns.\",\n \"sentences\": {\n  \"1\": \"Regular log review should focus on identifying repeat faults, frequently failing parts, high labor-hour assets, and incomplete resolution patterns.\",\n  \"2\": \"Look for repeat faults, parts that fail too often, assets that absorb too many labor hours, and work orders that keep ending with \\\"monitor.\\\" Those are usually signs that the problem hasn't been solved, only deferred.\",\n  \"3\": \"Regular review of overdue actions, unresolved defects, repeat repairs, rising costs, and unusual downtime identifies patterns and exceptions in maintenance records.\",\n  \"4\": \"A minimum viable maintenance log entry must include asset ID, date, type of work, findings, actions taken, parts used, labor hours, and technician name.\",\n  \"5\": \"Minimum viable log entry: asset ID, date, type of work (PM/reactive/inspection), what was found, what was done, parts used, labor hours, and the technician's name.\",\n  \"6\": \"A maintenance log quality audit can be performed by randomly sampling 20 entries from the last month and scoring each for completeness of asset, findings, parts, hours, and root cause, targeting 85% or higher completeness.\",\n  \"7\": \"Score each for completeness: asset, findings, parts, hours, root cause.\",\n  \"8\": \"Digital logs enable aggregation of reliability metrics like MTBF, PM compliance, and labor cost per asset, which is impractical with paper logs.\",\n  \"9\": \"a useful log should capture the basics of the job, the condition of the asset, and enough follow-up detail to support warranty history, planning, and trend review over time.\",\n  \"10\": \"A usable equipment maintenance log must include nine specific fields: asset name/ID, date, maintenance type, description of work, technician, parts used, downtime, and next due date.\",\n  \"11\": \"When reviewing a fault report, the system accesses appropriate IF-THEN rules based on reported fault symptoms and recommends corrective actions.\",\n  \"12\": \"Association rule mining can discover hidden patterns between fault symptoms and causes from historical machine fault data.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"8\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682313-WfFU66yo01Vh1aUgPP77",
+    "object": "chat.completion",
+    "created": 1790682313,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"no\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 626,
+      "completion_tokens": 7,
+      "total_tokens": 633,
+      "cost": 6.4e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 533,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.4e-05,
+        "upstream_inference_prompt_cost": 6.26e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

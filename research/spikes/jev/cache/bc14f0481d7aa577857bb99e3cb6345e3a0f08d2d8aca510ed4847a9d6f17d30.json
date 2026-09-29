@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Where appropriate, the controller should seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+      "sentences": {
+        "1": "Where appropriate, the controller should seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+        "2": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+        "3": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+        "4": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+        "5": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+        "6": "It is a data controller's obligation to ensure a DPIA is carried out when required, at the appropriate time and contains all the detail required by the GDPR.",
+        "7": "It is important to remember that it is a data controller's obligation to ensure a DPIA is carried out when required, at the appropriate time and contains all the detail required by the GDPR.",
+        "8": "Even if a DPIA is not required on 25 May 2018, it will be necessary, at the appropriate time, for the controller to conduct such a DPIA as part of its general accountability obligations.",
+        "9": "DPIAs are important tools for accountability because they help controllers not only to comply with requirements of the GDPR, but also to demonstrate that appropriate measures have been taken to ensure compliance with the Regulation.",
+        "10": "A DPIA should set out clearly the relationships between controllers, processors, data subjects and systems, using both text and data-flow diagrams where appropriate.",
+        "11": "set out clearly the relationships between controllers, processors, data subjects and systems, using both text and data-flow diagrams where appropriate",
+        "12": "If risks from processing cannot be mitigated by appropriate measures, the controller needs to consult the Data Protection Authority before proceeding."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'appropriate controller': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0,
+          "no": 0.99
+        },
+        "confidence": 0.98
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0,
+          "no": 0.99
+        },
+        "confidence": 0.99
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0,
+          "no": 0.99
+        },
+        "confidence": 0.99
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0,
+          "no": 0.99
+        },
+        "confidence": 0.99
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "states": 0,
+          "no": 1
+        },
+        "confidence": 0.99
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0.01,
+          "no": 0.98
+        },
+        "confidence": 0.98
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "states": 0,
+          "no": 1
+        },
+        "confidence": 0.99
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0,
+          "no": 0.99
+        },
+        "confidence": 0.97
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "states": 0,
+          "no": 1
+        },
+        "confidence": 1
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0,
+          "no": 0.99
+        },
+        "confidence": 0.99
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "states": 0,
+          "no": 1
+        },
+        "confidence": 0.99
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0,
+          "no": 0.99
+        },
+        "confidence": 0.99
+      }
+    },
+    "usage": {
+      "input_tokens": 2608,
+      "output_tokens": 462,
+      "cost": 0.000109536
+    },
+    "id": "gen-dec-1790681566-KyuqbRdWXcdkNhM10t2p",
+    "provider": "TypeSafe"
+  }
+}

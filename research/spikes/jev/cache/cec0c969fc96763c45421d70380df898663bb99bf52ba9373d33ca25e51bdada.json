@@ -1,0 +1,104 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "When determining whether the processing is carried out on a large scale, the geographical scope of the processing activity should be considered.",
+      "sentences": {
+        "1": "Data processed on a large scale is a criterion triggering DPIA requirements, determined by considering the number of data subjects, volume and range of data items, duration of processing, and geographical extent.",
+        "2": "Data processed on a large scale taking into account the following factors, when determining whether the processing is carried out on a large scale: the number of data subjects concerned, either as a specific number or as a proportion of the relevant population, the volume and/or the range of different data items being processed, the duration or permanence of the data processing activity and the geographical extent of the process ing activity",
+        "3": "You need to be confident that you can demonstrate that the nature, scope, context and purposes of the processing are all similar when relying on a previously completed substantially similar DPIA.",
+        "4": "You need to be confident that you can demonstrate that the nature, scope, context and purposes of the processing are all similar."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.55,
+          "states": 0.36,
+          "partially": 0.09
+        },
+        "confidence": 0.33
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.61,
+          "states": 0.33,
+          "partially": 0.06
+        },
+        "confidence": 0.41
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.41,
+          "states": 0.5,
+          "partially": 0.09
+        },
+        "confidence": 0.24
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "states": 0.07,
+          "partially": 0.08
+        },
+        "confidence": 0.78
+      }
+    },
+    "usage": {
+      "input_tokens": 1019,
+      "output_tokens": 155,
+      "cost": 4.2798e-05
+    },
+    "id": "gen-dec-1790681579-BMfHRTQukJuMZEdVJLUu",
+    "provider": "TypeSafe"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"An intermittent-fault capture kit should include a portable power-quality logger, approved network tap, spare shielded cables and a standard incident form.\",\n \"sentences\": {\n  \"1\": \"Are you seeing random resets that leave no trace in the fault log? Do you experience \\\"Comm Loss\\\" errors on your network even though the cables are new? These are classic signs of power quality degradation.\",\n  \"2\": \"On the other hand, hardware faults tend to be affected by the end environment, which can include cables and other site-specific conditions.\",\n  \"3\": \"Portable data loggers can predict potential failures well before they lead to breakdowns through continuous performance tracking.\",\n  \"4\": \"Since portable DAQ data loggers continuously track machine performance, they can also be used to predict potential failures well before they lead to a breakdown.\",\n  \"5\": \"Shielded cables must be grounded at one end only to prevent ground loops that introduce noise into sensitive logic circuits.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"5\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682258-ObaGsh2HZDufsnbUEMz3",
+    "object": "chat.completion",
+    "created": 1790682258,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"no\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 360,
+      "completion_tokens": 7,
+      "total_tokens": 367,
+      "cost": 3.74e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 267,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 3.74e-05,
+        "upstream_inference_prompt_cost": 3.6e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

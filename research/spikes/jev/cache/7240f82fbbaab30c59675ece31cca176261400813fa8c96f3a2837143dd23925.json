@@ -1,0 +1,104 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Aliasing in data can be a source of intermittent faults.",
+      "sentences": {
+        "1": "Aliasing in data can be a source of intermittent faults.",
+        "2": "Finally, I see interactions related to aliasing in one form or another getting into data.",
+        "3": "Aliasing can occur when high-frequency, high-power signals from power supplies and drivers appear in other systems or at different time scales.",
+        "4": "Aliasing, often a hardware issue, can be another difficult item to examine."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Aliasing in data can be a' from the other listed causes? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Aliasing in data can be a' from the other listed causes? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Aliasing in data can be a' from the other listed causes? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Aliasing in data can be a' from the other listed causes? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "no": 0.99,
+          "partially": 0
+        },
+        "confidence": 0.99
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0,
+          "no": 1,
+          "partially": 0
+        },
+        "confidence": 0.99
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.27,
+          "no": 0.53,
+          "partially": 0.2
+        },
+        "confidence": 0.29
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "no": 0.94,
+          "partially": 0.05
+        },
+        "confidence": 0.92
+      }
+    },
+    "usage": {
+      "input_tokens": 948,
+      "output_tokens": 155,
+      "cost": 3.9816e-05
+    },
+    "id": "gen-dec-1790681583-PzWLiFTIIDUomq7AtuS6",
+    "provider": "TypeSafe"
+  }
+}

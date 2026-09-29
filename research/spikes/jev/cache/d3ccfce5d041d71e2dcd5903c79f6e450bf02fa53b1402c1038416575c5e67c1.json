@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.\",\n \"sentences\": {\n  \"1\": \"A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.\",\n  \"2\": \"a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\",\n  \"3\": \"A DPIA is required for systematic and extensive evaluation of personal aspects based on automated processing and profiling that produces legal effects or significantly affects data subjects.\",\n  \"4\": \"a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\",\n  \"5\": \"Systematic and extensive evaluation of personal aspects based on automated processing including profiling that produces legal effects or significantly affects the natural person is a type of processing requiring a data protection impact assessment.\",\n  \"6\": \"A data protection impact assessment referred to in paragraph 1 shall in particular be required in the case of: (a)a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\",\n  \"7\": \"Extensive processing implies that the processing covers a large area, involves a wide range of data, or affects a large number of individuals.\",\n  \"8\": \"The term 'extensive' implies that the processing also covers a large area, involves a wide range of data or affects a large number of individuals.\",\n  \"9\": \"Three types of processing automatically require a DPIA: systematic and extensive profiling with significant effects, large scale use of sensitive data, and public monitoring.\",\n  \"10\": \"Systematic and extensive profiling with significant effects automatically requires a DPIA under Article 35(3).\",\n  \"11\": \"Organizations must always conduct a DPIA if they plan to use systematic and extensive profiling or automated decision-making to make significant decisions about people.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"6\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682377-kz9l9ob7TZ9JsVtrEEI2",
+    "object": "chat.completion",
+    "created": 1790682377,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"states\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 666,
+      "completion_tokens": 7,
+      "total_tokens": 673,
+      "cost": 6.8e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 573,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.8e-05,
+        "upstream_inference_prompt_cost": 6.66e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

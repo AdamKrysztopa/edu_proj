@@ -1,0 +1,184 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Testing should proceed from the most likely failure location toward the least likely to diagnose PLC input faults efficiently.",
+      "sentences": {
+        "1": "Testing should proceed from the most likely failure location toward the least likely to diagnose PLC input faults efficiently.",
+        "2": "You test them in that order because the field device and wiring are far more likely to fail than the card.",
+        "3": "Sampling rate should be chosen according to the suspected event, not according to convenient historian defaults.",
+        "4": "Choose sampling according to the suspected event, not according to convenient historian defaults.",
+        "5": "A standard multimeter samples far too slowly to catch a micro-second voltage spike.",
+        "6": "A maintenance log quality audit can be performed by randomly sampling 20 entries from the last month and scoring each for completeness of asset, findings, parts, hours, and root cause, targeting 85% or higher completeness.",
+        "7": "a 10 ms periodic task writing eight tags into a 600-element ring, a trigger on the fault bit, 200 more samples, then a latch that stops the writer until somebody has read the result.",
+        "8": "A 20 ms input sampled at 10 ms gives two copies of every value, not twice the detail."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.47,
+          "partially": 0.18,
+          "no": 0.35
+        },
+        "confidence": 0.21
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.39,
+          "partially": 0.23,
+          "no": 0.38
+        },
+        "confidence": 0.08
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.95,
+          "partially": 0.02,
+          "no": 0.03
+        },
+        "confidence": 0.91
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.85,
+          "partially": 0.06,
+          "no": 0.09
+        },
+        "confidence": 0.78
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.08,
+          "partially": 0.15,
+          "no": 0.77
+        },
+        "confidence": 0.66
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.25,
+          "partially": 0.09,
+          "no": 0.66
+        },
+        "confidence": 0.49
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.09,
+          "partially": 0.04,
+          "no": 0.87
+        },
+        "confidence": 0.81
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.06,
+          "partially": 0.04,
+          "no": 0.9
+        },
+        "confidence": 0.85
+      }
+    },
+    "usage": {
+      "input_tokens": 1592,
+      "output_tokens": 307,
+      "cost": 6.6864e-05
+    },
+    "id": "gen-dec-1790681583-yiJBKtKThJhsQyciKgu1",
+    "provider": "TypeSafe"
+  }
+}

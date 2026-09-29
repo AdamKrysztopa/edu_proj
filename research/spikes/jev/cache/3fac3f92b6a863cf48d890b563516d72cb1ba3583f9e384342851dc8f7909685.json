@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Testing should proceed from the most likely failure location toward the least likely to diagnose PLC input faults efficiently.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Complex PLC systems should be divided into testable sections to narrow down fault locations efficiently through progressive isolation.\n2: Complex systems with many interacting components need isolation strategies to narrow down fault locations efficiently.\n3: Establishing a baseline for power quality through professional site analysis is the first step toward identifying hot spots where transients are likely to enter control circuits.\n4: A machine sequence timeout means the PLC likely remained healthy but did not receive expected feedback.\n5: The core philosophy is simple: Diagnose before replacing.\n6: A maintenance log should answer the practical question of what the asset has been through and what it is likely to need next.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681669-q2QMQrdseZXj5x41poSR",
+    "object": "chat.completion",
+    "created": 1790681669,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The element requires a sentence stating an expected test result and its meaning or the next action it leads to.\n\nSentence 4 links an observed result (a machine sequence timeout) to an interpretation: the PLC likely stayed healthy but got no expected feedback. It does not name a specific test or a next action, though it does give the meaning of a result. That makes it partial at best.\n\nThe other sentences describe isolation strategy, baselines, a philosophy, or logging, and none ties a result to a meaning or action.\n\n{\"states\": [], \"partially\": [4], \"reason\": \"Sentence 4 gives the meaning of a timeout result (PLC healthy, feedback missing) but names no specific test or next action; others are general strategy.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 414,
+      "completion_tokens": 230,
+      "total_tokens": 644,
+      "cost": 0.003128,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.003128,
+        "upstream_inference_prompt_cost": 0.000828,
+        "upstream_inference_completions_cost": 0.0023
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

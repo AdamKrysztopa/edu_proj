@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "An intermittent-fault capture kit should include reusable PLC blocks for first-out capture, transition history and triggered trends.",
+      "sentences": {
+        "1": "An intermittent-fault capture kit should include reusable PLC blocks for first-out capture, transition history and triggered trends.",
+        "2": "Prepare reusable PLC blocks for first-out capture, transition history and triggered trends.",
+        "3": "An intermittent-fault capture kit should include a portable power-quality logger, approved network tap, spare shielded cables and a standard incident form.",
+        "4": "The suspect is what the capture is supposed to find, and if you already knew which input to trigger on you would not need the trend.",
+        "5": "Transition from spreadsheet to a shared system should occur when duplicate equipment names are created, attachments become disconnected, multiple sites maintain separate copies, follow-up dates are missed, or audits require manual history reconstruction.",
+        "6": "The trigger for capturing an intermittent fault should be the trip event itself, not a suspected input, because the capture is supposed to find the actual cause.",
+        "7": "Triggering on a suspected input rather than the trip event can cause the capture to freeze many times on normal operation, providing false data.",
+        "8": "The first version of this trend triggered on PE_Discharge, because the alarm said jam and the eye was the obvious culprit, and it froze forty times a shift on cartons passing normally.",
+        "9": "a useful log should capture the basics of the job, the condition of the asset, and enough follow-up detail to support warranty history, planning, and trend review over time.",
+        "10": "Digital drives with built-in oscilloscope tools and triggering capability can capture key data prior to the next fault occurrence for analysis.",
+        "11": "When troubleshooting PLC faults, one should collect system data including alarm history, program changes, and trending data before making modifications.",
+        "12": "Consistent fields for maintenance type enable differentiation between different categories of work in trend analysis."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "states": 0.01,
+          "no": 0.98
+        },
+        "confidence": 0.96
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "partially": 0,
+          "no": 0.99
+        },
+        "confidence": 0.99
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "states": 0.01,
+          "no": 0.99
+        },
+        "confidence": 0.98
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "partially": 0.35,
+          "states": 0.31,
+          "no": 0.34
+        },
+        "confidence": 0.02
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.26,
+          "partially": 0.2,
+          "no": 0.54
+        },
+        "confidence": 0.32
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.24,
+          "partially": 0.31,
+          "no": 0.45
+        },
+        "confidence": 0.18
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.78,
+          "partially": 0.15,
+          "no": 0.07
+        },
+        "confidence": 0.66
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "partially": 0.37,
+          "states": 0.35,
+          "no": 0.28
+        },
+        "confidence": 0.06
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.04,
+          "partially": 0.24,
+          "no": 0.72
+        },
+        "confidence": 0.58
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "states": 0.08,
+          "partially": 0.46,
+          "no": 0.46
+        },
+        "confidence": 0.2
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.11,
+          "states": 0.02,
+          "no": 0.87
+        },
+        "confidence": 0.8
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.28,
+          "states": 0.12,
+          "no": 0.6
+        },
+        "confidence": 0.4
+      }
+    },
+    "usage": {
+      "input_tokens": 2376,
+      "output_tokens": 468,
+      "cost": 9.9792e-05
+    },
+    "id": "gen-dec-1790681586-ajmokMMcOxSyoV5KYjvb",
+    "provider": "TypeSafe"
+  }
+}

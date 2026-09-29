@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"A DPIA is required in the case of a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\"\nQuestion: Does any sentence state a condition that says which option to choose in which situation?\n\nSentences:\n1: Article 35(3) sets out three types of processing which always require a DPIA: Systematic and extensive profiling with significant effects: \"(a) any systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\"\n2: A data protection impact assessment is required for systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\n3: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n4: Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.\n5: A DPIA is required at least in the following cases: a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling\n6: A DPIA is required for a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681719-2S7EtZNZuB8T52kyeHuL",
+    "object": "chat.completion",
+    "created": 1790681719,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks whether any sentence states a condition specifying which option to choose in which situation, i.e. a conditional rule of the form \"in situation X, do Y\".\n\nThe seed assertion is itself a condition-to-requirement rule: when the processing is systematic, extensive profiling with significant effects, a DPIA is required. The question is whether the sentences state such a condition.\n\n- Sentence 1 says these processing types \"always require a DPIA\", but it mostly introduces and quotes the provision.\n- Sentence 2 states that a DPIA is required for this situation, which is a condition \u2192 action rule.\n- Sentence 3 is only a noun phrase and states no requirement.\n- Sentence 4 states that this processing always requires a DPIA, which is a condition \u2192 action rule.\n- Sentence 5 says a DPIA is required \"at least in the following cases\", but the case it gives is truncated and lacks the decisions-with-effects part. It is a partial statement.\n- Sentence 6 also states a requirement, but it omits the decisions/legal-effects condition, so it is partial.\n\nThe \"options\" here are whether to do a DPIA or not. Sentences 1, 2 and 4 state the full condition and the requirement, so they count as stating it. Sentences 5 and 6 state only part of the condition.\n\n```json\n{\"states\":[1,2,4],\"partially\":[5,6],\"reason\":\"Sentences 1, 2 and 4 give the full condition (profiling with significant effects) tied to requiring a DPIA; 5 and 6 omit the decisions/effects part.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 709,
+      "completion_tokens": 507,
+      "total_tokens": 1216,
+      "cost": 0.006488,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.006488,
+        "upstream_inference_prompt_cost": 0.001418,
+        "upstream_inference_completions_cost": 0.00507
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

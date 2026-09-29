@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Organizations should carefully consider conducting DPIAs for large-scale processing, profiling or monitoring, decisions on service access or opportunities, or processing of sensitive data or vulnerable individuals.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Organizations should carefully consider conducting DPIAs for large-scale processing, profiling or monitoring, decisions on service access or opportunities, or processing of sensitive data or vulnerable individuals.\n2: You should also think carefully about doing a DPIA for any other processing that is large scale, involves profiling or monitoring, decides on access to services or opportunities, or involves sensitive data or vulnerable individuals.\n3: The UK GDPR mandates DPIAs specifically for systematic and extensive profiling with significant effects, special category or criminal offence data processing on a large scale, and systematic monitoring of publicly accessible places on large scale.\n4: A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.\n5: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n6: Systematic monitoring of a publicly accessible area on a large scale is a type of processing requiring a data protection impact assessment.\n7: (c)a systematic monitoring of a publicly accessible area on a large scale.\n8: or systematically monitor publicly accessible places on a large scale.\n9: Organizations must always conduct a DPIA if they plan to use profiling, automated decision-making or special category data to help make decisions on someone's access to a service, opportunity or benefit.\n10: Three types of processing automatically require a DPIA: systematic and extensive profiling with significant effects, large scale use of sensitive data, and public monitoring.\n11: Automated decision-making about an individual's access to products, services, opportunities, or benefits requires a DPIA.\n12: Organizations must always conduct a DPIA if they plan to process children's personal data for profiling, automated decision-making, marketing purposes, or offer online services directly to them.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681751-QXW2dKDquEOxHYj4Y1Mm",
+    "object": "chat.completion",
+    "created": 1790681751,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks whether any sentence states what result of \"this test\" to expect and what a result means or what next action it leads to. Here the \"test\" is the DPIA screening criteria: if the processing meets the criteria, a DPIA is required (the outcome and the next action).\n\nSentences 3, 4, 6, 9, 10, 11 and 12 state that certain processing requires or mandates a DPIA. This gives the result (criteria met) and the consequence (a DPIA is required).\n\n- Sentence 1 says organizations should \"consider\" DPIAs, which is soft guidance and does not state a definite result.\n- Sentence 2 says to think carefully, which is likewise soft.\n- Sentences 5, 7 and 8 are fragments with no consequence stated.\n- Sentence 6 says the processing is \"a type of processing requiring a DPIA\", which is explicit.\n- Sentences 3, 4, 6, 9, 10, 11 and 12 all state the consequence explicitly.\n- Sentence 1 is partial, since \"consider conducting\" is a weak next action.\n- Sentence 2 is partial for the same reason.\n\n```json\n{\"states\":[3,4,6,9,10,11,12],\"partially\":[1,2],\"reason\":\"Sentences 3, 4, 6, 9-12 say that meeting the criteria means a DPIA is required; 1 and 2 only advise considering one.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 888,
+      "completion_tokens": 455,
+      "total_tokens": 1343,
+      "cost": 0.006326,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.006326,
+        "upstream_inference_prompt_cost": 0.001776,
+        "upstream_inference_completions_cost": 0.00455
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

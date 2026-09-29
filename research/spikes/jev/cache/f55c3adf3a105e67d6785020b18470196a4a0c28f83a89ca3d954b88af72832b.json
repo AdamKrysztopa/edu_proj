@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"The trigger for capturing an intermittent fault should be the trip event itself, not a suspected input, because the capture is supposed to find the actual cause.\",\n \"sentences\": {\n  \"1\": \"The trigger for capturing an intermittent fault should be the trip event itself, not a suspected input, because the capture is supposed to find the actual cause.\",\n  \"2\": \"Trigger on the trip, not on the thing you suspect.\",\n  \"3\": \"The suspect is what the capture is supposed to find, and if you already knew which input to trigger on you would not need the trend.\",\n  \"4\": \"An intermittent-fault capture kit should include reusable PLC blocks for first-out capture, transition history and triggered trends.\",\n  \"5\": \"Prepare reusable PLC blocks for first-out capture, transition history and triggered trends.\",\n  \"6\": \"When a PLC input bit stays OFF but you believe the sensor should be triggering it, there are exactly three places the fault can live: the field device itself, the wiring between device and terminal, or the input card.\",\n  \"7\": \"Ground loops and interactions of multiple processors finding weaknesses in hardware or software interfaces are common causes of intermittent faults.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"3\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682359-N2b6Gc5oV1pB9Jj1KEeW",
+    "object": "chat.completion",
+    "created": 1790682359,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"no\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 408,
+      "completion_tokens": 7,
+      "total_tokens": 415,
+      "cost": 4.22e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 315,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 4.22e-05,
+        "upstream_inference_prompt_cost": 4.08e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

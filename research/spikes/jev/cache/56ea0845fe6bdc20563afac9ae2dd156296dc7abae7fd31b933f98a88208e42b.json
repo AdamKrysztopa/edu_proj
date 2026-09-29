@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Maintenance logs should record information at the point of work while data is available rather than reconstructing details from memory later.",
+      "sentences": {
+        "1": "Maintenance logs should record information at the point of work while data is available rather than reconstructing details from memory later.",
+        "2": "Record the event where the work happens Capture the date, meter, work, person, cost, and evidence while the information is available.",
+        "3": "A brief complete entry made at the asset is more useful than a detailed entry reconstructed from memory a month later.",
+        "4": "Maintenance logs separate identity, work, evidence, and follow-up information so that each entry is understandable independent of the person who created it.",
+        "5": "A good maintenance log entry includes specific asset ID, date, work type, exact parts replaced, failure details, downtime duration, and technician name.",
+        "6": "This information helps when similar problems occur later and provides training material for other engineers.",
+        "7": "An equipment maintenance log serves as the institutional memory of a plant, with each entry either adding to the record of what an asset has experienced or creating a gap that will incur costs later.",
+        "8": "Did the motor stop suddenly or slow down gradually? Was there unusual noise? Did anything smell hot? These observable details point toward causes that logs and alarms cannot reveal.",
+        "9": "An effective maintenance log must include identification details, job specifics, condition assessments, parts information, technician identification, and follow-up actions.",
+        "10": "This information gathering phase feels slow under pressure but prevents wasted effort later.",
+        "11": "Gathering information from line-level technicians who observe intermittent issues can provide valuable clues for troubleshooting.",
+        "12": "Engineers should gather information from operators before making any changes to the system."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.37,
+          "no": 0.19,
+          "states": 0.44
+        },
+        "confidence": 0.16
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.4,
+          "no": 0.44,
+          "states": 0.16
+        },
+        "confidence": 0.16
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.14,
+          "no": 0.01,
+          "states": 0.85
+        },
+        "confidence": 0.78
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.13,
+          "no": 0.21,
+          "states": 0.66
+        },
+        "confidence": 0.5
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.05,
+          "no": 0.87,
+          "states": 0.08
+        },
+        "confidence": 0.81
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.04,
+          "no": 0.02,
+          "states": 0.93
+        },
+        "confidence": 0.9
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.05,
+          "no": 0.01,
+          "states": 0.94
+        },
+        "confidence": 0.91
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.29,
+          "no": 0.17,
+          "states": 0.54
+        },
+        "confidence": 0.32
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.02,
+          "no": 0.97,
+          "states": 0.01
+        },
+        "confidence": 0.95
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.03,
+          "no": 0.01,
+          "states": 0.96
+        },
+        "confidence": 0.95
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.35,
+          "no": 0.14,
+          "states": 0.51
+        },
+        "confidence": 0.27
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.24,
+          "no": 0.71,
+          "states": 0.05
+        },
+        "confidence": 0.56
+      }
+    },
+    "usage": {
+      "input_tokens": 2375,
+      "output_tokens": 462,
+      "cost": 9.975e-05
+    },
+    "id": "gen-dec-1790681580-jBQhEM43MowMxmwfNKOO",
+    "provider": "TypeSafe"
+  }
+}

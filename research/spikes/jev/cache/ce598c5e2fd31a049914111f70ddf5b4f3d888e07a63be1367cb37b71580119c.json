@@ -1,0 +1,124 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "An intermittent-fault capture kit should include a portable power-quality logger, approved network tap, spare shielded cables and a standard incident form.",
+      "sentences": {
+        "1": "Are you seeing random resets that leave no trace in the fault log? Do you experience \"Comm Loss\" errors on your network even though the cables are new? These are classic signs of power quality degradation.",
+        "2": "On the other hand, hardware faults tend to be affected by the end environment, which can include cables and other site-specific conditions.",
+        "3": "Portable data loggers can predict potential failures well before they lead to breakdowns through continuous performance tracking.",
+        "4": "Since portable DAQ data loggers continuously track machine performance, they can also be used to predict potential failures well before they lead to a breakdown.",
+        "5": "Shielded cables must be grounded at one end only to prevent ground loops that introduce noise into sensitive logic circuits."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.31,
+          "states": 0.4,
+          "no": 0.29
+        },
+        "confidence": 0.1
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.02,
+          "states": 0.01,
+          "no": 0.97
+        },
+        "confidence": 0.96
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.19,
+          "states": 0.15,
+          "no": 0.66
+        },
+        "confidence": 0.5
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.14,
+          "states": 0.15,
+          "no": 0.71
+        },
+        "confidence": 0.57
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.17,
+          "states": 0.16,
+          "no": 0.67
+        },
+        "confidence": 0.5
+      }
+    },
+    "usage": {
+      "input_tokens": 1170,
+      "output_tokens": 193,
+      "cost": 4.914e-05
+    },
+    "id": "gen-dec-1790681581-lt2KXUL1lspKDc5fp11w",
+    "provider": "TypeSafe"
+  }
+}

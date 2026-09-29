@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Network analysis should check duplicate IP addresses, marginal connectors, duplex or speed negotiation, multicast handling and excessive broadcast traffic.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Network analysis should check duplicate IP addresses, marginal connectors, duplex or speed negotiation, multicast handling and excessive broadcast traffic.\n2: Check duplicate IP addresses, marginal connectors, duplex or speed negotiation where relevant, multicast handling and excessive broadcast traffic.\n3: Harmonic distortion creates electromagnetic interference that degrades high-speed communication signals in networked PLCs.\n4: It gets missed because everyone assumed someone else handled it, the note lived on a clipboard nobody checked, or the reminder sat in an inbox with fifty other messages.\n5: Physical stress testing on cabling and connectors, vibration testing, and thermal cycling can reveal wiring and soldering issues.\n6: Physical stress on cabling and connectors as well as vibration and thermal cycling (heat gun and freeze spray) can often chase out wiring and soldering issues.\n7: Loose conductors, damaged flex cables and marginal sensors can produce pulses too short to notice on an HMI.\n8: Loose conductors, damaged flex cables and marginal sensors can produce pulses too short to notice on an HMI.\n9: If one technician writes \"PM,\" another writes \"preventive,\" and a third writes \"routine check,\" your spreadsheet treats them like different events unless someone cleans it up later.\n10: Troubleshooting documentation should be updated immediately during the process to ensure accuracy of electrical drawings, I/O schedules, and network diagrams.\n11: An uninitialized variable in RAM that counts down to an illegal address can cause repeatable but time-delayed faults that differ between units due to variations in initial RAM values.\n12: A quality multimeter is the most essential tool for PLC troubleshooting to measure voltages, verify continuity, and check signal current.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681712-4al7k9YIvWdl0i6Co6M6",
+    "object": "chat.completion",
+    "created": 1790681712,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "Sentences 1 and 2 only list what to check. They give no expected result, no interpretation of a result, and no next action.\n\nSentence 3 explains a cause-and-effect relationship (harmonic distortion causes interference), but it is not about this test's results. Sentence 5 says stress testing \"can reveal\" issues, which is about a different test. Sentences 6 and 7 are also about other tests or conditions. Sentence 11 links a symptom to a cause, but not for this test.\n\nNo sentence states an expected result of the network-analysis test together with its meaning or next action, so both lists are empty.\n\n{\"states\": [], \"partially\": [], \"reason\": \"Sentences 1 and 2 only list network checks; none states an expected result, its meaning, or a next action for those checks.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 815,
+      "completion_tokens": 250,
+      "total_tokens": 1065,
+      "cost": 0.00413,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00413,
+        "upstream_inference_prompt_cost": 0.00163,
+        "upstream_inference_completions_cost": 0.0025
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

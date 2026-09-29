@@ -1,0 +1,124 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Legal advice or advice from independent experts such as IT experts, sociologists or ethicists should be considered where appropriate, though there are no specific requirements to do so.",
+      "sentences": {
+        "1": "Consultation with data protection officers and where appropriate with individuals and relevant experts is a requirement in the DPIA process.",
+        "2": "DPIAs are a legal requirement for processing that is likely to be high risk.",
+        "3": "Publishing a DPIA is not a legal requirement of the GDPR.",
+        "4": "You should consult your data protection officer (if you have one) and, where appropriate, individuals and relevant experts.",
+        "5": "Publishing a DPIA is not a legal requirement under UK GDPR but organizations should actively consider the benefits of publication for demonstrating compliance and building trust."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "no": 0.99,
+          "states": 0.01
+        },
+        "confidence": 0.99
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "no": 0.99,
+          "states": 0.01
+        },
+        "confidence": 0.99
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "no": 0.91,
+          "states": 0.08
+        },
+        "confidence": 0.86
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.02,
+          "no": 0.97,
+          "states": 0.01
+        },
+        "confidence": 0.97
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.02,
+          "no": 0.93,
+          "states": 0.05
+        },
+        "confidence": 0.9
+      }
+    },
+    "usage": {
+      "input_tokens": 1189,
+      "output_tokens": 193,
+      "cost": 4.9938e-05
+    },
+    "id": "gen-dec-1790681569-WHvsLXoOd1BsKYH150bx",
+    "provider": "TypeSafe"
+  }
+}

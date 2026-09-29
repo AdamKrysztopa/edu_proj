@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "The DPIA should be considered as a living tool, not merely as a one-off exercise.",
+      "sentences": {
+        "1": "The DPIA should be considered as a living tool, not merely as a one-off exercise.",
+        "2": "The DPIA should be conducted before the processing begins and should be considered as a living tool, not merely as a one-off exercise.",
+        "3": "The DPIA should be conducted before the processing begins and should be considered as a living tool, not merely as a one-off exercise.",
+        "4": "Invisible processing results in a risk to the individual's interests as they cannot exercise any control over your use of their data.",
+        "5": "This processing results in a risk to the individual's interests as they cannot exercise any control over your use of their data.",
+        "6": "A DPIA will help you consider how best to mitigate the impact on individuals' ability to exercise control over their data in invisible processing.",
+        "7": "It will help you consider how best to mitigate the impact on individuals' ability to exercise control over their data, and whether you can take other measures to support the exercise of their rights.",
+        "8": "The DPIA is an on-going process, especially where a processing operation is dynamic and subject to ongoing change, and carrying out a DPIA is a continual process, not a one-time exercise.",
+        "9": "The DPIA should be seen as a tool for helping decision-making concerning the processing, with the DPIA started as early as is practicable in the design of the processing operation even if some of the processing operations are still unknown.",
+        "10": "DPIAs are important tools for accountability because they help controllers not only to comply with requirements of the GDPR, but also to demonstrate that appropriate measures have been taken to ensure compliance with the Regulation.",
+        "11": "Data concerning vulnerable data subjects is a criterion for determining whether processing is likely to result in high risk because of the increased power imbalance between the data subjects and the data controller, meaning the individuals may be unable to easily consent to or oppose the processing of their data or exercise their rights.",
+        "12": "Beyond special categories and criminal data, other categories of personal data can be considered as increasing the possible risk to the rights and freedoms of individuals, including data linked to household and private activities such as electronic communications, data impacting the exercise of a fundamental right such as location data, and data involving serious impacts in the data subject's daily life such as financial data."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "no": 0.93,
+          "partially": 0.06
+        },
+        "confidence": 0.89
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "no": 0.95,
+          "partially": 0.04
+        },
+        "confidence": 0.93
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "no": 0.97,
+          "partially": 0.02
+        },
+        "confidence": 0.96
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.6,
+          "no": 0.34,
+          "partially": 0.06
+        },
+        "confidence": 0.39
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.52,
+          "no": 0.4,
+          "partially": 0.08
+        },
+        "confidence": 0.29
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.71,
+          "no": 0.18,
+          "partially": 0.11
+        },
+        "confidence": 0.57
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.49,
+          "no": 0.22,
+          "partially": 0.29
+        },
+        "confidence": 0.24
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.1,
+          "no": 0.69,
+          "partially": 0.21
+        },
+        "confidence": 0.53
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.55,
+          "no": 0.2,
+          "partially": 0.25
+        },
+        "confidence": 0.32
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.54,
+          "no": 0.24,
+          "partially": 0.22
+        },
+        "confidence": 0.3
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.3,
+          "no": 0.58,
+          "partially": 0.12
+        },
+        "confidence": 0.36
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.09,
+          "no": 0.78,
+          "partially": 0.13
+        },
+        "confidence": 0.68
+      }
+    },
+    "usage": {
+      "input_tokens": 2515,
+      "output_tokens": 462,
+      "cost": 0.00010563
+    },
+    "id": "gen-dec-1790681562-23YQQrk2FrCJmUN2ZUSf",
+    "provider": "TypeSafe"
+  }
+}

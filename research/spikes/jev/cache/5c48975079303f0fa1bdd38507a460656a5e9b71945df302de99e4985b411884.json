@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.\",\n \"sentences\": {\n  \"1\": \"Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.\",\n  \"2\": \"Article 35(3) sets out three types of processing which always require a DPIA: Systematic and extensive profiling with significant effects: \\\"(a) any systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\\\"\",\n  \"3\": \"Extensive evaluation and profiling of individuals, including large-scale processing with scoring, evaluating, predicting and profiling, is a criterion triggering DPIA requirements.\",\n  \"4\": \"Extensive evaluation and profiling of individuals - Explanation and examples: Large scale processing of personal data including scoring, evaluating, predicting and profiling of individuals\",\n  \"5\": \"A DPIA is required in the case of a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\",\n  \"6\": \"a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\",\n  \"7\": \"A DPIA is required for a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling.\",\n  \"8\": \"A DPIA is required at least in the following cases: a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"6\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682230-J0nEertJvJlu7aaNIHVc",
+    "object": "chat.completion",
+    "created": 1790682230,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"states\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 610,
+      "completion_tokens": 7,
+      "total_tokens": 617,
+      "cost": 6.24e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 517,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.24e-05,
+        "upstream_inference_prompt_cost": 6.1e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

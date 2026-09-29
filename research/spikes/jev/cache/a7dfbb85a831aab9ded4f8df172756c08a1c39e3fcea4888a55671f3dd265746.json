@@ -1,0 +1,104 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "In most cases, a data controller can consider that a processing meeting two criteria would require a DPIA to be carried out.",
+      "sentences": {
+        "1": "In case the processing concerns personal data that has not been obtained from the data subject and the information to be provided to data subjects pursuant to Article 14 of GDPR proves impossible or would require a disproportionate effort or is likely to render impossible or seriously impair the objectives of the processing.",
+        "2": "A DPIA is compulsory if a processing operation meets at least two of the eleven specified criteria, in addition to cases provided in Article 35(3) GDPR and taking into account the exception in Article 35(10) GDPR.",
+        "3": "In addition to the cases provided for in Article 35 (3) GDPR, and taking into account the exception provided for in Article 35 (10) GDPR, carrying out a DPIA shall be compulsory if the processing operation meets at least two of the following criteria",
+        "4": "The list of processing operations subject to DPIA is not exhaustive and does not remove or alter the obligation to conduct a DPIA in all cases where the conditions of article 35 par.1 of GDPR are met."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.06,
+          "no": 0.89,
+          "partially": 0.05
+        },
+        "confidence": 0.83
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.04,
+          "no": 0.8,
+          "partially": 0.16
+        },
+        "confidence": 0.71
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.04,
+          "no": 0.8099999999999999,
+          "partially": 0.15
+        },
+        "confidence": 0.72
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.03,
+          "no": 0.9,
+          "partially": 0.07
+        },
+        "confidence": 0.85
+      }
+    },
+    "usage": {
+      "input_tokens": 1126,
+      "output_tokens": 155,
+      "cost": 4.7292e-05
+    },
+    "id": "gen-dec-1790681575-IRWon1P4hUEehZslvCGq",
+    "provider": "TypeSafe"
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Intermittent PLC faults are caused by high-frequency electrical noise from VFDs and contactors that creates phantom faults disrupting logic signals.",
+      "sentences": {
+        "1": "Intermittent PLC faults are caused by high-frequency electrical noise from VFDs and contactors that creates phantom faults disrupting logic signals.",
+        "2": "high-frequency noise from VFDs and contactors creates the \"phantom faults\" that disrupt your logic signals and ruin your production schedule.",
+        "3": "Variable Frequency Drives and large contactors generate high-frequency noise that travels through power lines into sensitive control circuits, where transients are misinterpreted as actual data.",
+        "4": "Every time a Variable Frequency Drive (VFD) switches or a large contactor closes, it generates high-frequency noise.",
+        "5": "Standard MOV-based surge protective devices are designed for high-voltage surges over 1000V and remain dormant during low-level transients that actually disrupt logic.",
+        "6": "Harmonic distortion creates electromagnetic interference that degrades high-speed communication signals in networked PLCs.",
+        "7": "Harmonic distortion creates heat and electromagnetic interference that often degrades high-speed communication signals.",
+        "8": "Standard uninterruptible power supplies often fail to stop high-frequency noise because they lack the high-speed filtration needed to block micro-second transients.",
+        "9": "Aliasing can occur when high-frequency, high-power signals from power supplies and drivers appear in other systems or at different time scales.",
+        "10": "Near-field H probes can be used to detect ground noise, EMI, and poor switching power supply designs from a distance of half an inch or more.",
+        "11": "Making incorrect changes to safety systems creates liability issues and actual safety risks.",
+        "12": "Frequency tracking technology removes transients only a few volts above line voltage, whereas standard surge protectors use fixed clamping voltage thresholds."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by high-frequency electrical noise from VFDs and contactors that creates phantom' from the other listed causes? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.15,
+          "partially": 0.14,
+          "no": 0.71
+        },
+        "confidence": 0.57
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.11,
+          "partially": 0.1,
+          "no": 0.79
+        },
+        "confidence": 0.68
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.26,
+          "partially": 0.29,
+          "no": 0.45
+        },
+        "confidence": 0.17
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.08,
+          "partially": 0.14,
+          "no": 0.78
+        },
+        "confidence": 0.67
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.06,
+          "partially": 0.23,
+          "no": 0.71
+        },
+        "confidence": 0.57
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.06,
+          "partially": 0.11,
+          "no": 0.83
+        },
+        "confidence": 0.75
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.03,
+          "partially": 0.11,
+          "no": 0.86
+        },
+        "confidence": 0.78
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.04,
+          "partially": 0.13,
+          "no": 0.83
+        },
+        "confidence": 0.75
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.04,
+          "partially": 0.12,
+          "no": 0.84
+        },
+        "confidence": 0.76
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.03,
+          "partially": 0.07,
+          "no": 0.9
+        },
+        "confidence": 0.85
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0,
+          "partially": 0,
+          "no": 1
+        },
+        "confidence": 1
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.1,
+          "partially": 0.2,
+          "no": 0.7
+        },
+        "confidence": 0.54
+      }
+    },
+    "usage": {
+      "input_tokens": 2482,
+      "output_tokens": 462,
+      "cost": 0.000104244
+    },
+    "id": "gen-dec-1790681582-Nm8CCy6iMWfNVlPOC8Lw",
+    "provider": "TypeSafe"
+  }
+}

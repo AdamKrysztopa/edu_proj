@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.\"\nQuestion: Does any sentence state how to tell whether something counts as 'extensive evaluation': a threshold, a defining feature, or a contrast between a case that is and one that is not?\n\nSentences:\n1: A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.\n2: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n3: A DPIA is required for systematic and extensive evaluation of personal aspects based on automated processing and profiling that produces legal effects or significantly affects data subjects.\n4: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n5: Systematic and extensive evaluation of personal aspects based on automated processing including profiling that produces legal effects or significantly affects the natural person is a type of processing requiring a data protection impact assessment.\n6: A data protection impact assessment referred to in paragraph 1 shall in particular be required in the case of: (a)a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n7: The UK GDPR mandates DPIAs specifically for systematic and extensive profiling with significant effects, special category or criminal offence data processing on a large scale, and systematic monitoring of publicly accessible places on large scale.\n8: In particular, the UK GDPR says you must do a DPIA if you plan to: use systematic and extensive profiling with significant effects;\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681698-qCfEi3EzjcDyfwr5vxYa",
+    "object": "chat.completion",
+    "created": 1790681698,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "None of the sentences give a threshold, a defining feature of \"extensive\", or a contrast between a case that is and one that is not. They all restate the trigger wording. Sentence 7 does mention \"large scale\", but only for the other triggers (special category data and monitoring), not for extensive evaluation.\n\nSentences 1-6 and 8 repeat the legal text: automated processing, profiling, and legal or similarly significant effects. That is the definition of the trigger. It does not say how to judge \"extensive\". The \"decisions with legal effects\" part is a separate condition, not a test for extensiveness.\n\n{\"states\": [], \"partially\": [], \"reason\": \"All sentences merely restate the Article 35(3)(a) wording; none explains what makes an evaluation 'extensive' via threshold, defining feature, or contrast. 'Large scale' in sentence 7 applies to other triggers.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 822,
+      "completion_tokens": 286,
+      "total_tokens": 1108,
+      "cost": 0.004504,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.004504,
+        "upstream_inference_prompt_cost": 0.001644,
+        "upstream_inference_completions_cost": 0.00286
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

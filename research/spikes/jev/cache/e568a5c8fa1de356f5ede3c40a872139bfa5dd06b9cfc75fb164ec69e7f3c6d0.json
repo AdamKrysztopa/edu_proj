@@ -1,0 +1,84 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Tags that cannot have caused a fault, such as HMI setpoints and recipe numbers, should not be included in a trend because they waste memory and processing without adding diagnostic value.",
+      "sentences": {
+        "1": "An equipment maintenance log serves as the institutional memory of a plant, with each entry either adding to the record of what an asset has experienced or creating a gap that will incur costs later.",
+        "2": "Paper maintenance logs are vulnerable to loss and cannot provide auditable evidence that they have not been edited after the fact, unlike digital systems.",
+        "3": "Begin with the failing connection and time window, then collect targeted traffic if switch and device diagnostics cannot distinguish the cause."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.15,
+          "partially": 0.24,
+          "no": 0.61
+        },
+        "confidence": 0.41
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.3,
+          "partially": 0.04,
+          "no": 0.66
+        },
+        "confidence": 0.5
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.13,
+          "partially": 0.22,
+          "no": 0.65
+        },
+        "confidence": 0.47
+      }
+    },
+    "usage": {
+      "input_tokens": 843,
+      "output_tokens": 117,
+      "cost": 3.5406e-05
+    },
+    "id": "gen-dec-1790681581-xG1M0joEWbvp9Q3QbSc4",
+    "provider": "TypeSafe"
+  }
+}

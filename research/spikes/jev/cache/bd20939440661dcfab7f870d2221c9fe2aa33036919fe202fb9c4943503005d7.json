@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Race conditions in user logic are a common source of intermittent faults in motion controllers and PLCs.\"\nQuestion: Does any sentence state an observable sign that distinguishes 'Race conditions in user logic are a common' from the other listed causes?\n\nSentences:\n1: Race conditions in user logic are a common source of intermittent faults in motion controllers and PLCs.\n2: In a motion controller or PLC, it's often race conditions in user logic.\n3: Programmable logic controllers coordinate motion control, process control, and production sequencing in modern industrial automation environments.\n4: Programmable logic controllers sit at the center of most modern industrial automation environments, coordinating motion control, process control, and production sequencing across your shop floor.\n5: The Agent separates confirmed facts from assumptions and evaluates possible causes across: Software / PLC Communication Electrical Drive / motion Sensors Mechanical systems Process conditions\n6: Diagnosing intermittent failures requires distinguishing between controller faults and process stoppages because each leaves different evidence.\n7: Separate controller faults from process stoppages.\n8: A controller major fault may leave a fault code and task information.\n9: Safety system issues in PLCs require specialized knowledge and certification and should be immediately escalated to system integrators or certified safety engineers.\n10: Safety PLCs, emergency stop circuits, and safety interlocks require specialized knowledge and often certification to modify.\n11: Measuring voltage at the source and return path is part of systematic troubleshooting to determine circuit condition.\n12: An effective maintenance log must include identification details, job specifics, condition assessments, parts information, technician identification, and follow-up actions.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681740-6t40uQS5e2CcAp6bmySL",
+    "object": "chat.completion",
+    "created": 1790681740,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for a sentence stating an observable sign that distinguishes race conditions in user logic from the other listed causes.\n\nSentence 8 gives an observable sign (a fault code and task information), but only for a controller major fault. It does not tie that sign to race conditions, and race-condition faults are typically intermittent and leave no fault code, so it does not distinguish them. Sentence 6 says the two kinds of failure leave different evidence but does not say what that evidence is. Sentence 7 is an instruction only.\n\nSentence 8 is therefore at best partial: it names an observable sign for controller faults, which contrasts with process stoppages, not with the other listed causes. Sentences 1 and 2 assert race conditions as a cause without any observable sign.\n\n{\"states\": [], \"partially\": [8], \"reason\": \"Sentence 8 names an observable sign (fault code, task info) for controller major faults, but never links it to race conditions or the other listed causes.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 676,
+      "completion_tokens": 311,
+      "total_tokens": 987,
+      "cost": 0.004462,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.004462,
+        "upstream_inference_prompt_cost": 0.001352,
+        "upstream_inference_completions_cost": 0.00311
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

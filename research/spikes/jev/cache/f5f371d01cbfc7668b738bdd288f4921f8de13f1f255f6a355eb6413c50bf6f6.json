@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"Verification of a fix should include running equipment through full operational cycles and testing boundary conditions before considering the problem solved.\",\n \"sentences\": {\n  \"1\": \"Verification of a fix should include running equipment through full operational cycles and testing boundary conditions before considering the problem solved.\",\n  \"2\": \"Verify the fix resolves the original symptom completely.\",\n  \"3\": \"Run the equipment through full operational cycles.\",\n  \"4\": \"Test boundary conditions that might trigger the same fault.\",\n  \"5\": \"Watch for several successful cycles before considering the problem solved.\",\n  \"6\": \"Maintenance logs should include recurring faults in analysis to identify when a repair has not resolved the underlying issue.\",\n  \"7\": \"If a machine fails once, you repair it.\",\n  \"8\": \"If it fails the same way repeatedly, your log should force a different conversation.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"2\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682187-mOrye01kDc3jPq001ZVP",
+    "object": "chat.completion",
+    "created": 1790682187,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"no\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 339,
+      "completion_tokens": 7,
+      "total_tokens": 346,
+      "cost": 3.53e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 246,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 3.53e-05,
+        "upstream_inference_prompt_cost": 3.39e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "GDPR Article 35(3) states that DPIAs are mandatory where a data controller performs automated decision-making based on personal data profiling.",
+      "sentences": {
+        "1": "GDPR Article 35(3) states that DPIAs are mandatory where a data controller performs automated decision-making based on personal data profiling.",
+        "2": "GDPR Article 35(3) states that DPIAs are mandatory in a number of processing scenarios.",
+        "3": "These arise where a data controller performs automated decision-making based on personal data profiling, large scale processing of special categories of data or systematic monitoring of publicly accessible areas on a large scale.",
+        "4": "These arise where a data controller performs automated decision-making based on personal data profiling, large scale processing of special categories of data or systematic monitoring of publicly accessible areas on a large scale.",
+        "5": "These arise where a data controller performs automated decision-making based on personal data profiling, large scale processing of special categories of data or systematic monitoring of publicly accessible areas on a large scale.",
+        "6": "GDPR Article 35(3) states that DPIAs are mandatory where large scale processing of special categories of data occurs.",
+        "7": "GDPR Article 35(3) states that DPIAs are mandatory in a number of processing scenarios.",
+        "8": "A DPIA is required for decisions about an individual's access to a product, service, opportunity or benefit based to any extent on automated decision-making including profiling or involving special category data.",
+        "9": "A DPIA is required for decisions about an individual's access to a product, service, opportunity or benefit which are based to any extent on automated decision-making or profiling, or involves processing of special-category data.",
+        "10": "In line with the risk-based approach embodied by the GDPR, carrying out a DPIA is not mandatory for every processing operation;",
+        "11": "In accordance with GDPR Article 35(4), the DPC has determined that a DPIA will be mandatory for indirectly sourcing personal data where GDPR transparency requirements are not being met, including when relying on exemptions based on impossibility or disproportionate effort, where a documented screening or preliminary risk assessment indicates that the processing operation is likely to result in a high risk to the rights and freedoms of individuals.",
+        "12": "Decisions about an individual's access to a product, service, opportunity or benefit that is based to any extent on automated decision-making including profiling or involves the processing of special category data require a DPIA according to the ICO list."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.1,
+          "no": 0.48,
+          "states": 0.42
+        },
+        "confidence": 0.22
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.08,
+          "no": 0.89,
+          "states": 0.03
+        },
+        "confidence": 0.85
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.13,
+          "no": 0.42,
+          "states": 0.45
+        },
+        "confidence": 0.17
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.09,
+          "no": 0.57,
+          "states": 0.34
+        },
+        "confidence": 0.35
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.08,
+          "no": 0.61,
+          "states": 0.31
+        },
+        "confidence": 0.41
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.13,
+          "no": 0.56,
+          "states": 0.31
+        },
+        "confidence": 0.34
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.02,
+          "no": 0.97,
+          "states": 0.01
+        },
+        "confidence": 0.96
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.13,
+          "no": 0.48,
+          "states": 0.39
+        },
+        "confidence": 0.22
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.12,
+          "no": 0.43,
+          "states": 0.45
+        },
+        "confidence": 0.17
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.08,
+          "no": 0.87,
+          "states": 0.05
+        },
+        "confidence": 0.8
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.12,
+          "no": 0.3,
+          "states": 0.58
+        },
+        "confidence": 0.38
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.13,
+          "no": 0.45,
+          "states": 0.42
+        },
+        "confidence": 0.17
+      }
+    },
+    "usage": {
+      "input_tokens": 2385,
+      "output_tokens": 462,
+      "cost": 0.00010017
+    },
+    "id": "gen-dec-1790681569-JGHcwCAShnTfDslsQNO6",
+    "provider": "TypeSafe"
+  }
+}

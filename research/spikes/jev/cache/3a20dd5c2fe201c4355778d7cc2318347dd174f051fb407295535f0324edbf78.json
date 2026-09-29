@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Intermittent faults are most commonly hardware-related or caused by installation problems, while software problems are typically less intermittent than they appear.",
+      "sentences": {
+        "1": "Intermittent faults are most commonly hardware-related or caused by installation problems, while software problems are typically less intermittent than they appear.",
+        "2": "From my experience, intermittent faults are most commonly hardware related either damaged product or a problem with the installation.",
+        "3": "Software or firmware are root cause in some cases.",
+        "4": "In reality most software problems are not as intermittent as they may seem.",
+        "5": "If the system has been in production for a long time and suddenly intermittent faults start to appear, the first question to ask yourself is what changed, software? Hardware? The manufacturing process?",
+        "6": "Temperature-related failures may appear only after warm-up or washdown.",
+        "7": "Temperature-related failures may appear only after warm-up or washdown.",
+        "8": "Software faults tend to be repeatable and occur when a specific set of conditions is present, whereas hardware faults are affected by environmental conditions.",
+        "9": "Aliasing can occur when high-frequency, high-power signals from power supplies and drivers appear in other systems or at different time scales.",
+        "10": "Aliasing, often a hardware issue, can be another difficult item to examine.",
+        "11": "These appear randomly, making systematic testing difficult.",
+        "12": "Different fault types in PLC systems show distinct patterns that indicate whether the problem is hardware failure, software bug, or configuration error."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'by installation problems, while software problems are typically less' from the other listed causes? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.05,
+          "no": 0.87,
+          "partially": 0.08
+        },
+        "confidence": 0.81
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.03,
+          "no": 0.88,
+          "partially": 0.09
+        },
+        "confidence": 0.82
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0,
+          "no": 0.99,
+          "partially": 0.01
+        },
+        "confidence": 0.99
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.1,
+          "no": 0.68,
+          "partially": 0.22
+        },
+        "confidence": 0.52
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.03,
+          "no": 0.83,
+          "partially": 0.14
+        },
+        "confidence": 0.75
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.06,
+          "no": 0.84,
+          "partially": 0.1
+        },
+        "confidence": 0.75
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.04,
+          "no": 0.9,
+          "partially": 0.06
+        },
+        "confidence": 0.86
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.45,
+          "no": 0.26,
+          "partially": 0.29
+        },
+        "confidence": 0.18
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.02,
+          "no": 0.95,
+          "partially": 0.03
+        },
+        "confidence": 0.93
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "no": 0.98,
+          "partially": 0.01
+        },
+        "confidence": 0.97
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "no": 0.93,
+          "partially": 0.06
+        },
+        "confidence": 0.89
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.03,
+          "no": 0.75,
+          "partially": 0.22
+        },
+        "confidence": 0.63
+      }
+    },
+    "usage": {
+      "input_tokens": 2349,
+      "output_tokens": 462,
+      "cost": 9.8658e-05
+    },
+    "id": "gen-dec-1790681588-kpiDmRa4SAWWCi0K1Lw9",
+    "provider": "TypeSafe"
+  }
+}

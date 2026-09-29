@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"When determining whether the processing is carried out on a large scale, the duration or the permanent nature of the data processing activity should be considered.\"\nQuestion: Does any sentence state a condition that says which option to choose in which situation?\n\nSentences:\n1: When determining whether the processing is carried out on a large scale, the duration or the permanent nature of the data processing activity should be considered.\n2: c.\n3: the duration or the permanent nature of the data processing activity;\n4: Data processed on a large scale is a criterion triggering DPIA requirements, determined by considering the number of data subjects, volume and range of data items, duration of processing, and geographical extent.\n5: Data processed on a large scale taking into account the following factors, when determining whether the processing is carried out on a large scale: the number of data subjects concerned, either as a specific number or as a proportion of the relevant population, the volume and/or the range of different data items being processed, the duration or permanence of the data processing activity and the geographical extent of the process ing activity\n6: A data controller ultimately is responsible for determining if there is a high risk, and these factors influencing high risk are not prescriptive.\n7: However, these factors are not prescriptive, and a data controller ultimately is responsible for determining if there is a high risk.\n8: To decide whether processing is on a large scale you should consider the number of individuals concerned, the volume of data, the variety of data, the duration of the processing, and the geographical extent of the processing.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681724-9YVrulX08tdF6b7VKzYm",
+    "object": "chat.completion",
+    "created": 1790681724,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for a sentence that gives a condition saying which option to choose in which situation, i.e. \"if X, choose A; if Y, choose B.\"\n\nSentence 1 is a guideline about what to consider. It does not map situations to options.\n\nSentence 8 (\"To decide whether processing is on a large scale you should consider...\") lists factors to weigh, not a situation-to-option rule. Sentences 5 and 4 are similar: they list factors without saying which option applies in which case.\n\nSentences 6 and 7 say the controller decides on high risk and that the factors are not prescriptive. This is not a conditional mapping either.\n\nSentence 4 says large-scale processing is a criterion that triggers a DPIA. That is close to a conditional (large scale leads to a DPIA), but it is not phrased as choosing between options. It is at most a partial match.\n\nNone of the sentences explicitly states such a condition, so I list sentence 4 as partial.\n\n```json\n{\"states\": [], \"partially\": [4], \"reason\": \"Only sentence 4 loosely links a criterion (large scale) to a consequence (DPIA required); the others just list factors to consider, with no option-selection conditions.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 582,
+      "completion_tokens": 385,
+      "total_tokens": 967,
+      "cost": 0.005014,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005014,
+        "upstream_inference_prompt_cost": 0.001164,
+        "upstream_inference_completions_cost": 0.00385
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

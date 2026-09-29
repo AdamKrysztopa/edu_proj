@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Input signal integrity should be tested systematically by observing sensor state, measuring voltage with a multimeter, checking PLC display, and verifying program logic usage.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Input signal integrity should be tested systematically by observing sensor state, measuring voltage with a multimeter, checking PLC display, and verifying program logic usage.\n2: Testing inputs systematically follows a clear pattern.\n3: Observe the actual sensor state physically.\n4: Measure voltage or current at the PLC terminal with a multimeter.\n5: Check if the PLC input shows the correct state in online monitoring.\n6: Verify that program logic uses this input correctly.\n7: Before using a multimeter, a technician must verify correct function, correct range, leads in correct ports, probe tips condition, insulation integrity, CAT rating appropriateness, battery status, and display functionality.\n8: Before using the multimeter, verify: Correct function selected Correct range selected Leads in correct ports Probe tips in good condition Insulation not damaged Meter CAT rating is appropriate Meter battery is good Display works properly\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681671-wNGNJzzKS1Lsno3nI2rq",
+    "object": "chat.completion",
+    "created": 1790681671,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [], \"partially\": [5], \"reason\": \"Sentence 5 implies an expected result (correct state shown in online monitoring), but none states what a given result means or what next action follows.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 518,
+      "completion_tokens": 62,
+      "total_tokens": 580,
+      "cost": 0.001656,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001656,
+        "upstream_inference_prompt_cost": 0.001036,
+        "upstream_inference_completions_cost": 0.00062
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

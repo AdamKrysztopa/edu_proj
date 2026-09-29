@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "In most cases, a combination of two factors from the WP29 high-risk indicators points to the need for a DPIA, but this is not an absolute rule.",
+      "sentences": {
+        "1": "In most cases, a combination of two factors from the WP29 high-risk indicators points to the need for a DPIA, but this is not an absolute rule.",
+        "2": "In most cases, a combination of two of these factors indicates the need for a DPIA.",
+        "3": "However, this is not a strict rule.",
+        "4": "You may be able to justify a decision not to carry out a DPIA if you are confident that the processing is nevertheless unlikely to result in a high risk, but you should document your reasons.",
+        "5": "In most cases, a combination of two factors from the WP29 criteria indicates the need for a DPIA, though this is not a strict rule.",
+        "6": "In most cases, a combination of two of these factors indicates the need for a DPIA.",
+        "7": "This means that although you have not yet assessed the actual level of risk, you need to screen for factors that point to the potential for a widespread or serious impact on individuals.",
+        "8": "If not, you need to screen for other factors that may indicate it is a type of processing that is likely to result in high risk, such as processing the data of vulnerable individuals.",
+        "9": "Automated decision-making with legal or similarly significant effect is identified as an indicator of likely high-risk processing.",
+        "10": "Processors may need to assist in the DPIA process by helping understand and document their processing activities and identify associated risks.",
+        "11": "Any processors may also need to assist you.",
+        "12": "Organizations must always conduct a DPIA if they plan to process personal data that involves tracking individuals' online or offline location or behaviour in combination with criteria from European guidelines."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.79,
+          "states": 0.06,
+          "partially": 0.15
+        },
+        "confidence": 0.69
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.98,
+          "states": 0.01,
+          "partially": 0.01
+        },
+        "confidence": 0.97
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "states": 0.01,
+          "partially": 0.05
+        },
+        "confidence": 0.91
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.05,
+          "states": 0.73,
+          "partially": 0.22
+        },
+        "confidence": 0.61
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.89,
+          "states": 0.04,
+          "partially": 0.07
+        },
+        "confidence": 0.84
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.98,
+          "states": 0.01,
+          "partially": 0.01
+        },
+        "confidence": 0.97
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.95,
+          "states": 0.03,
+          "partially": 0.02
+        },
+        "confidence": 0.93
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.91,
+          "states": 0.03,
+          "partially": 0.06
+        },
+        "confidence": 0.86
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.97,
+          "states": 0.02,
+          "partially": 0.01
+        },
+        "confidence": 0.97
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.98,
+          "states": 0.02,
+          "partially": 0
+        },
+        "confidence": 0.96
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.98,
+          "states": 0.02,
+          "partially": 0
+        },
+        "confidence": 0.96
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.91,
+          "states": 0.05,
+          "partially": 0.04
+        },
+        "confidence": 0.86
+      }
+    },
+    "usage": {
+      "input_tokens": 2477,
+      "output_tokens": 462,
+      "cost": 0.000104034
+    },
+    "id": "gen-dec-1790681563-m5ImbUVib8i8OEwmRCDh",
+    "provider": "TypeSafe"
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Complex PLC systems should be divided into testable sections to narrow down fault locations efficiently through progressive isolation.",
+      "sentences": {
+        "1": "Complex PLC systems should be divided into testable sections to narrow down fault locations efficiently through progressive isolation.",
+        "2": "Complex systems with many interacting components need isolation strategies to narrow down fault locations efficiently.",
+        "3": "Divide the system into testable sections, verify each section independently, then progressively narrow toward the specific failed component.",
+        "4": "Testing should proceed from the most likely failure location toward the least likely to diagnose PLC input faults efficiently.",
+        "5": "Narrowing the scope of a problem and sticking to the basics are key principles for efficient fault isolation.",
+        "6": "Processor reset registers can indicate the type of reset cause and provide valuable diagnostic information for narrowing down the fault source.",
+        "7": "When debugging a complex issue under pressure, it's easy to move quickly and try many things to resolve the issue.",
+        "8": "A PLC input fault can originate in exactly three locations: the field device, the wiring between device and terminal, or the input card itself."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.05,
+          "partially": 0.15,
+          "no": 0.8
+        },
+        "confidence": 0.7
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0,
+          "partially": 0.03,
+          "no": 0.97
+        },
+        "confidence": 0.95
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "states": 0.15,
+          "partially": 0.43,
+          "no": 0.42
+        },
+        "confidence": 0.15
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.03,
+          "partially": 0.19,
+          "no": 0.78
+        },
+        "confidence": 0.67
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0,
+          "partially": 0.02,
+          "no": 0.98
+        },
+        "confidence": 0.96
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "states": 0.25,
+          "no": 0.22,
+          "partially": 0.53
+        },
+        "confidence": 0.28
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "partially": 0,
+          "no": 0.99
+        },
+        "confidence": 0.98
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.02,
+          "partially": 0.06,
+          "no": 0.92
+        },
+        "confidence": 0.87
+      }
+    },
+    "usage": {
+      "input_tokens": 1628,
+      "output_tokens": 311,
+      "cost": 6.8376e-05
+    },
+    "id": "gen-dec-1790681581-aCUjgppovCFg699I9GGY",
+    "provider": "TypeSafe"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Shielded cables must be grounded at one end only to prevent ground loops that introduce noise into sensitive logic circuits.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: Shielded cables must be grounded at one end only to prevent ground loops that introduce noise into sensitive logic circuits.\n2: You must ensure shielded cables are grounded at one end only to prevent ground loops.\n3: These loops introduce noise into sensitive logic circuits and are a primary source of frustration during the process of troubleshooting intermittent plc faults.\n4: On the other hand, hardware faults tend to be affected by the end environment, which can include cables and other site-specific conditions.\n5: Ground loops and interactions of multiple processors finding weaknesses in hardware or software interfaces are common causes of intermittent faults.\n6: Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681705-jvUI2TSiBSP0CF4IE60H",
+    "object": "chat.completion",
+    "created": 1790681705,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks which sentences state the reason or failure prevented by single-end grounding.\n\nSentence 1 states the reason: it prevents ground loops that introduce noise into sensitive logic circuits. Sentence 2 says \"to prevent ground loops\" but gives no failure consequence, so it is partial. Sentence 3 says the loops introduce noise into sensitive logic circuits and cause intermittent faults, which states the failure explicitly, though it does not tie it to grounding at one end. It still explains what ground loops do, so it counts as stating it. Sentences 5 and 6 name ground loops as causes of intermittent faults, which is partial at most. Sentence 4 is not relevant.\n\nI place 1 and 3 in states, and 2, 5 and 6 in partially.\n\n```json\n{\"states\": [1, 3], \"partially\": [2, 5, 6], \"reason\": \"Sentence 1 gives the reason (prevent ground-loop noise in logic circuits); 3 states the loop noise effect. 2, 5 and 6 only mention ground loops or intermittent faults without full mechanism.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 469,
+      "completion_tokens": 364,
+      "total_tokens": 833,
+      "cost": 0.004578,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.004578,
+        "upstream_inference_prompt_cost": 0.000938,
+        "upstream_inference_completions_cost": 0.00364
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

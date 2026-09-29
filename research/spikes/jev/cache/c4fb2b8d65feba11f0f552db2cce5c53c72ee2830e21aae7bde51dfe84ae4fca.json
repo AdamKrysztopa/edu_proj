@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"When determining whether the processing is carried out on a large scale, the duration or the permanent nature of the data processing activity should be considered.\"\nQuestion: Does any sentence state a condition that says which option to choose in which situation?\n\nSentences:\n1: When determining whether the processing is carried out on a large scale, the duration or the permanent nature of the data processing activity should be considered.\n2: c.\n3: the duration or the permanent nature of the data processing activity;\n4: Data processed on a large scale is a criterion triggering DPIA requirements, determined by considering the number of data subjects, volume and range of data items, duration of processing, and geographical extent.\n5: Data processed on a large scale taking into account the following factors, when determining whether the processing is carried out on a large scale: the number of data subjects concerned, either as a specific number or as a proportion of the relevant population, the volume and/or the range of different data items being processed, the duration or permanence of the data processing activity and the geographical extent of the process ing activity\n6: You need to be confident that you can demonstrate that the nature, scope, context and purposes of the processing are all similar when relying on a previously completed substantially similar DPIA.\n7: You need to be confident that you can demonstrate that the nature, scope, context and purposes of the processing are all similar.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681707-mIJQZyIbljHfyWNaNkgr",
+    "object": "chat.completion",
+    "created": 1790681707,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for a sentence that states a condition specifying which option to choose in which situation, i.e., a conditional rule mapping situation to choice.\n\nSentence 1: \"When determining whether processing is large scale, duration should be considered.\" This is a consideration factor, not a selection of an option. It is partial at best.\n\nSentence 6: \"You need to be confident you can demonstrate similarity when relying on a previously completed similar DPIA.\" This is a condition for relying on a prior DPIA, which is loosely an option-choice condition. It is partial.\n\nSentence 7 is similar but lacks the \"when relying\" context, so it is not really a condition about choosing an option.\n\nSentences 4 and 5 give criteria, but they do not select between options. Sentence 4 says large scale triggers a DPIA, which is closer to a rule, but it is still not an option choice. It is partial at most.\n\nNo sentence explicitly states one, so \"states\" is empty. Sentences 6 and 1 are partial, and 4 could be as well; I'll list 6 and 4.\n\n{\"states\": [], \"partially\": [6, 4], \"reason\": \"No sentence clearly maps situations to option choices; 6 conditions reliance on a prior DPIA on similarity, and 4 links large scale to triggering a DPIA.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 532,
+      "completion_tokens": 419,
+      "total_tokens": 951,
+      "cost": 0.005254,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005254,
+        "upstream_inference_prompt_cost": 0.001064,
+        "upstream_inference_completions_cost": 0.00419
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

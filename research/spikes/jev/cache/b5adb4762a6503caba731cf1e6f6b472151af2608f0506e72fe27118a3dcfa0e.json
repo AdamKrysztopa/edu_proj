@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"To determine whether processing is on a large scale, one should consider the number of individuals concerned, volume of data, variety of data, duration of processing, and geographical extent.\"\nQuestion: Does any sentence state a condition that says which option to choose in which situation?\n\nSentences:\n1: To determine whether processing is on a large scale, one should consider the number of individuals concerned, volume of data, variety of data, duration of processing, and geographical extent.\n2: to decide whether processing is on a large scale you should consider: the number of individuals concerned;\n3: the volume of data;\n4: the variety of data;\n5: the duration of the processing;\n6: and the geographical extent of the processing.\n7: Large-scale processing should be assessed by considering the number of individuals, volume of data, variety of data, duration of processing, and geographical extent.\n8: The scope of processing should include details about the nature, volume, variety, sensitivity, extent, frequency, duration of processing, number of data subjects, and geographical area covered.\n9: Organizations must always conduct a DPIA if they plan to process special-category data or criminal-offence data on a large scale.\n10: Large-scale systematic monitoring of publicly accessible areas automatically requires a DPIA under Article 35(3).\n11: Large-scale profiling of individuals requires a DPIA.\n12: Any profiling of individuals on a large scale\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681666-iVUDSwjHIkJvS1E3BODa",
+    "object": "chat.completion",
+    "created": 1790681666,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for a sentence that states a condition specifying which option to choose in which situation, meaning an if-then rule that selects between options.\n\nSentences 9, 10, and 11 are conditional rules: if the situation is large-scale processing of certain data or activities, then a DPIA is required. That is a condition, but it is about whether to do a DPIA, not a choice between options. It is arguably \"which action in which situation.\" Whether that counts as choosing among options is debatable, so I treat these as partial matches.\n\nSentence 9 says that if special-category or criminal-offence data is processed on a large scale, a DPIA is required. Sentence 10 says large-scale systematic monitoring requires a DPIA. Sentence 11 says large-scale profiling requires a DPIA. Sentence 12 is a fragment with no condition.\n\nSentences 1-8 list factors to consider and give no situation-to-option mapping. None of the sentences clearly states an explicit choice between options, so I list none under \"states\" and 9, 10, and 11 under \"partially\".\n\n```json\n{\"states\": [], \"partially\": [9, 10, 11], \"reason\": \"Sentences 9-11 give situation-triggered requirements (large-scale processing leads to a DPIA), but not a choice among options. Others only list factors.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 560,
+      "completion_tokens": 421,
+      "total_tokens": 981,
+      "cost": 0.00533,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00533,
+        "upstream_inference_prompt_cost": 0.00112,
+        "upstream_inference_completions_cost": 0.00421
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

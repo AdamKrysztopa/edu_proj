@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"Network analysis should check duplicate IP addresses, marginal connectors, duplex or speed negotiation, multicast handling and excessive broadcast traffic.\",\n \"sentences\": {\n  \"1\": \"Network analysis should check duplicate IP addresses, marginal connectors, duplex or speed negotiation, multicast handling and excessive broadcast traffic.\",\n  \"2\": \"Check duplicate IP addresses, marginal connectors, duplex or speed negotiation where relevant, multicast handling and excessive broadcast traffic.\",\n  \"3\": \"Harmonic distortion creates electromagnetic interference that degrades high-speed communication signals in networked PLCs.\",\n  \"4\": \"It gets missed because everyone assumed someone else handled it, the note lived on a clipboard nobody checked, or the reminder sat in an inbox with fifty other messages.\",\n  \"5\": \"Physical stress testing on cabling and connectors, vibration testing, and thermal cycling can reveal wiring and soldering issues.\",\n  \"6\": \"Physical stress on cabling and connectors as well as vibration and thermal cycling (heat gun and freeze spray) can often chase out wiring and soldering issues.\",\n  \"7\": \"Loose conductors, damaged flex cables and marginal sensors can produce pulses too short to notice on an HMI.\",\n  \"8\": \"Loose conductors, damaged flex cables and marginal sensors can produce pulses too short to notice on an HMI.\",\n  \"9\": \"If one technician writes \\\"PM,\\\" another writes \\\"preventive,\\\" and a third writes \\\"routine check,\\\" your spreadsheet treats them like different events unless someone cleans it up later.\",\n  \"10\": \"Troubleshooting documentation should be updated immediately during the process to ensure accuracy of electrical drawings, I/O schedules, and network diagrams.\",\n  \"11\": \"An uninitialized variable in RAM that counts down to an illegal address can cause repeatable but time-delayed faults that differ between units due to variations in initial RAM values.\",\n  \"12\": \"A quality multimeter is the most essential tool for PLC troubleshooting to measure voltages, verify continuity, and check signal current.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"7\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682397-sFLzBPyGuquTpgmq7gnY",
+    "object": "chat.completion",
+    "created": 1790682397,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"no\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 570,
+      "completion_tokens": 7,
+      "total_tokens": 577,
+      "cost": 5.84e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 477,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 5.84e-05,
+        "upstream_inference_prompt_cost": 5.7e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

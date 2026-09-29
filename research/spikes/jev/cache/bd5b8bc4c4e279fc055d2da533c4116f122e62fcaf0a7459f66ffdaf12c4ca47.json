@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Indiscriminate packet capture should be avoided as the first step; instead begin with the failing connection and time window.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: It means know that the same fields in this template, as mandatory fields on a work order instead of optional spreadsheet columns, is the next step once the spreadsheet starts fighting you back.\n2: Instead, they corrupt the data packet just enough to trigger a safety shutdown or a processor freeze.\n3: Rotating the board to pick up reflections from a strong light source (or the sun through a window) can show which solder point doesn't reflect the light like the others - they \"wink\" at you out of step with the other solder joints, indicating a different contour angle because the solder has not flowed in the same way as the other solder joints.\n4: Instead of telling you to replace components at random, the Agent selects diagnostic checks based on their ability to confirm or eliminate possible causes.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681699-kKMbbPcC7jx6ri0GoSQl",
+    "object": "chat.completion",
+    "created": 1790681699,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks whether any sentence states an expected test result and what that result means or which next action follows.\n\nSentence 3 comes closest. It describes an inspection (rotating the board to catch reflections) and the result to expect (a solder point that \"winks\" out of step with the others). It also says what that result means: a different contour angle because the solder has not flowed the same way. This covers the expected result and its meaning, but it gives no explicit next action, so it counts as full or partial depending on how strictly \"or which next action\" is read. The meaning is stated, and the question allows either meaning or next action, so I count it as stating the element.\n\nSentence 1 is garbled. It says that mandatory work-order fields are the next step once the spreadsheet fails, but that is not a test result. I count it as partial at most, and it is probably not relevant.\n\nSentence 2 describes how corruption causes a shutdown, which is not a test result. Sentence 4 describes choosing checks to confirm or eliminate causes, which is general and gives no specific result.\n\n{\"states\": [3], \"partially\": [4], \"reason\": \"Sentence 3 gives an expected observation (a joint that 'winks') and its meaning (uneven solder flow). Sentence 4 only describes choosing checks to confirm or eliminate causes, with no specific result.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 440,
+      "completion_tokens": 418,
+      "total_tokens": 858,
+      "cost": 0.00506,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00506,
+        "upstream_inference_prompt_cost": 0.00088,
+        "upstream_inference_completions_cost": 0.00418
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

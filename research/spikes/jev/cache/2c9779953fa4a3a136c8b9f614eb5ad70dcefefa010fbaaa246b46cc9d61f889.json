@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"Organizations should carefully consider conducting DPIAs for large-scale processing, profiling or monitoring, decisions on service access or opportunities, or processing of sensitive data or vulnerable individuals.\",\n \"sentences\": {\n  \"1\": \"Organizations should carefully consider conducting DPIAs for large-scale processing, profiling or monitoring, decisions on service access or opportunities, or processing of sensitive data or vulnerable individuals.\",\n  \"2\": \"You should also think carefully about doing a DPIA for any other processing that is large scale, involves profiling or monitoring, decides on access to services or opportunities, or involves sensitive data or vulnerable individuals.\",\n  \"3\": \"The UK GDPR mandates DPIAs specifically for systematic and extensive profiling with significant effects, special category or criminal offence data processing on a large scale, and systematic monitoring of publicly accessible places on large scale.\",\n  \"4\": \"A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.\",\n  \"5\": \"a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\",\n  \"6\": \"Systematic monitoring of a publicly accessible area on a large scale is a type of processing requiring a data protection impact assessment.\",\n  \"7\": \"(c)a systematic monitoring of a publicly accessible area on a large scale.\",\n  \"8\": \"or systematically monitor publicly accessible places on a large scale.\",\n  \"9\": \"Organizations must always conduct a DPIA if they plan to use profiling, automated decision-making or special category data to help make decisions on someone's access to a service, opportunity or benefit.\",\n  \"10\": \"Three types of processing automatically require a DPIA: systematic and extensive profiling with significant effects, large scale use of sensitive data, and public monitoring.\",\n  \"11\": \"Automated decision-making about an individual's access to products, services, opportunities, or benefits requires a DPIA.\",\n  \"12\": \"Organizations must always conduct a DPIA if they plan to process children's personal data for profiling, automated decision-making, marketing purposes, or offer online services directly to them.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682659-xxHZHqFzif99mM33sK3q",
+    "object": "chat.completion",
+    "created": 1790682659,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"states\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 631,
+      "completion_tokens": 7,
+      "total_tokens": 638,
+      "cost": 6.45e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 538,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 6.45e-05,
+        "upstream_inference_prompt_cost": 6.31e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

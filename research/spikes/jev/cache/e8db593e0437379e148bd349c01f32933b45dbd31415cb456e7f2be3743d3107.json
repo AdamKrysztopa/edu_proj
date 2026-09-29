@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"When multiple inputs fail simultaneously, the common terminal voltage should be checked before suspecting individual card channels.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: When multiple inputs fail simultaneously, the common terminal voltage should be checked before suspecting individual card channels.\n2: Check the common terminal voltage first before suspecting the card.\n3: Multiple simultaneous PLC input failures typically originate from a shared resource such as a broken common wire or blown group fuse rather than individual card channel failures.\n4: If multiple adjacent inputs all fail together, check the common terminal first.\n5: Alarm notifications should be routed to appropriate personnel based on severity level and group escalation policies through multiple communication channels.\n6: On sinking input cards with a shared common, a broken common wire will cause all inputs in that group to fail simultaneously.\n7: Conclusions are classified as: SUSPECTED - Evidence is still limited PROBABLE - Multiple observations support the diagnosis CONFIRMED - Testing demonstrates the causal relationship\n8: Check loading, inrush, loose terminals, protective-device behavior and shared commons.\n9: Measure voltages at terminals, verify continuity, and check signal current.\n10: If one technician writes \"PM,\" another writes \"preventive,\" and a third writes \"routine check,\" your spreadsheet treats them like different events unless someone cleans it up later.\n11: A quality multimeter is the most essential tool for PLC troubleshooting to measure voltages, verify continuity, and check signal current.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681666-fzSgWjKOkjgI5RWb6JP7",
+    "object": "chat.completion",
+    "created": 1790681666,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "I checked each sentence for an expected result of the common-terminal test and a meaning or next action tied to that result.\n\n- **Sentence 6** says a broken common wire makes all inputs in that group fail together. It links a cause to the symptom pattern, but it does not say what the test reading should be or what to do next, so it is partial.\n- **Sentence 3** says shared resources such as a broken common wire or blown group fuse are the typical origin. It gives a meaning but no expected reading or next action, so it is partial.\n- **Sentences 1, 2 and 4** only say to check the common first. That is the action itself, not an expected result or its interpretation.\n- **Sentences 8 and 9** list checks without any expected result or interpretation.\n- **Sentences 5, 7, 10 and 11** are unrelated to the test outcome.\n\nNo sentence states an expected voltage result together with what it means or what to do next.\n\n```json\n{\"states\": [], \"partially\": [3, 6], \"reason\": \"Sentences 3 and 6 explain that a shared common fault causes simultaneous failures, but none gives an expected reading or the next action after a result.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 655,
+      "completion_tokens": 367,
+      "total_tokens": 1022,
+      "cost": 0.00498,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00498,
+        "upstream_inference_prompt_cost": 0.00131,
+        "upstream_inference_completions_cost": 0.00367
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

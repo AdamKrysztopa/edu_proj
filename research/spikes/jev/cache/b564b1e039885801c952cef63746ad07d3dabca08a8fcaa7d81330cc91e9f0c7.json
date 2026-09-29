@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"The first-out fault should be captured with a timestamp and not overwritten until authorized reset.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: The first-out fault should be captured with a timestamp and not overwritten until authorized reset.\n2: Preserve the first event Secondary alarms can appear milliseconds after the initiating condition.\n3: Capture the first-out fault with a timestamp and do not overwrite it until an authorized reset.\n4: In the Peakboard Hub, machine states can be stored with a timestamp to make availability, downtime durations and OEE measurable across weeks and months.\n5: In the Peakboard Hub, machine states can be stored with a timestamp.\n6: Under production pressure, teams may replace a sensor, move a cable, edit a timer and reset a drive simultaneously.\n7: Processor reset registers can indicate the type of reset cause and provide valuable diagnostic information for narrowing down the fault source.\n8: It also turned out the processor in our drive held a register for determining what caused the reset, which indicated an illegal address rather than one of four other possible other causes.\n9: Axial loading on encoder bearings can cause intermittent faults that progressively worsen until a hard fault occurs, as bearing breakdown impacts electronics integrity.\n10: Keeping a faulting unit in quarantine until additional units show issues can be acceptable when a single-unit failure will not repeat and other troubleshooting has been exhausted.\n11: If it is a single-unit fault that will not repeat, keeping the unit in quarantine until additional units show issues or until it is believed that it is a single unit issue (such as ESD to an exposed PCB) can be an acceptable approach.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681716-7zxitIK3Ai7lFRfic33s",
+    "object": "chat.completion",
+    "created": 1790681717,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [2], \"partially\": [6], \"reason\": \"Sentence 2 says secondary alarms can appear milliseconds after the initiating condition, which is why the first event must be preserved. Sentence 6 hints at overwritten evidence from simultaneous changes but does not tie this to first-out capture.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 708,
+      "completion_tokens": 102,
+      "total_tokens": 810,
+      "cost": 0.002436,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002436,
+        "upstream_inference_prompt_cost": 0.001416,
+        "upstream_inference_completions_cost": 0.00102
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

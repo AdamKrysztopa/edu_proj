@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"An intermittent-fault capture kit should include reusable PLC blocks for first-out capture, transition history and triggered trends.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: An intermittent-fault capture kit should include reusable PLC blocks for first-out capture, transition history and triggered trends.\n2: Prepare reusable PLC blocks for first-out capture, transition history and triggered trends.\n3: An intermittent-fault capture kit should include a portable power-quality logger, approved network tap, spare shielded cables and a standard incident form.\n4: The suspect is what the capture is supposed to find, and if you already knew which input to trigger on you would not need the trend.\n5: Transition from spreadsheet to a shared system should occur when duplicate equipment names are created, attachments become disconnected, multiple sites maintain separate copies, follow-up dates are missed, or audits require manual history reconstruction.\n6: The trigger for capturing an intermittent fault should be the trip event itself, not a suspected input, because the capture is supposed to find the actual cause.\n7: Triggering on a suspected input rather than the trip event can cause the capture to freeze many times on normal operation, providing false data.\n8: The first version of this trend triggered on PE_Discharge, because the alarm said jam and the eye was the obvious culprit, and it froze forty times a shift on cartons passing normally.\n9: a useful log should capture the basics of the job, the condition of the asset, and enough follow-up detail to support warranty history, planning, and trend review over time.\n10: Digital drives with built-in oscilloscope tools and triggering capability can capture key data prior to the next fault occurrence for analysis.\n11: When troubleshooting PLC faults, one should collect system data including alarm history, program changes, and trending data before making modifications.\n12: Consistent fields for maintenance type enable differentiation between different categories of work in trend analysis.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681746-NY1VOwJ0WoMJW8jlmRfL",
+    "object": "chat.completion",
+    "created": 1790681746,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks which sentences state why the kit includes these blocks (the reason or failure prevented), not a legal requirement.\n\nSentence 1 is the seed and gives no reason. Sentence 2 is an instruction with no reason. Sentence 3 lists other kit items. Sentence 4 gives a reason for triggering: the suspect is what the capture is meant to find. That concerns the trigger design for the trend, so it is partial. Sentence 6 gives the same rationale, that the capture must find the actual cause. Sentence 7 states the failure prevented: freezing many times on normal operation and giving false data. Sentence 8 gives an example of that failure. These all explain why triggered trends are done a certain way, which is closely tied to the triggered-trend block.\n\nSentence 10 says drives can capture key data before the next fault, which is a purpose for capture tools. Sentence 11 says to collect data before modifying, a mild rationale that is not explicit. Sentence 9 explains why logs are useful (warranty, planning), but it is not about this kit. Sentences 5 and 12 are not relevant.\n\nI list 7 as stating the reason, since it explicitly names the failure prevented. Sentences 4, 6 and 8 are partial because they explain the trigger choice rather than why the blocks are included. Sentence 10 is partial because it gives a purpose of capturing data prior to the next fault.\n\n```json\n{\"states\":[7],\"partially\":[4,6,8,10],\"reason\":\"Sentence 7 explicitly names the failure (repeated false freezes on normal operation). Sentences 4, 6, 8 and 10 give related rationale for trigger design or capture, but not for the kit itself.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 780,
+      "completion_tokens": 559,
+      "total_tokens": 1339,
+      "cost": 0.00715,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00715,
+        "upstream_inference_prompt_cost": 0.00156,
+        "upstream_inference_completions_cost": 0.00559
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

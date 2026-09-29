@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"When assessing necessity and proportionality, considerations should include whether plans achieve the intended purpose and whether alternative reasonable ways exist to achieve the same result.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: When assessing necessity and proportionality, considerations should include whether plans achieve the intended purpose and whether alternative reasonable ways exist to achieve the same result.\n2: You should consider: Do your plans help to achieve your purpose? Is there any other reasonable way to achieve the same result?\n3: A DPIA process should include seven key steps: identifying the need, describing the processing, considering consultation, assessing necessity and proportionality, identifying and assessing risks, identifying mitigating measures, and signing off and recording outcomes.\n4: It should include these steps: Step 1: identify the need for a DPIA Step 2: describe the processing Step 3: consider consultation Step 4: assess necessity and proportionality Step 5: identify and assess risks Step 6: identify measures to mitigate the risks Step 7: sign off and record outcomes\n5: A DPIA must assess the necessity and proportionality of processing, including measures to ensure compliance and respect for GDPR principles.\n6: The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing\n7: A DPIA must include description of the nature, scope, context and purposes of the processing, assessment of necessity and proportionality, identification and assessment of risks, and identification of additional mitigation measures.\n8: assess necessity, proportionality and compliance measures;\n9: Data protection compliance measures are a good measure of necessity and proportionality and should include lawful basis, prevention of function creep, data quality, data minimisation, privacy information provision, support for individual rights, processor compliance measures, and safeguards for international transfers.\n10: A DPIA should evidence consideration of less risky alternatives to achieving the same purposes and explain why they were not chosen.\n11: the purposes and methods of the intended processing;\n12: Organizations must always conduct a DPIA if they plan to process children's personal data for profiling, automated decision-making, marketing purposes, or offer online services directly to them.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681678-Paz5LJmPiIFoVDwRCqui",
+    "object": "chat.completion",
+    "created": 1790681678,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The element asks for a statement of what result to expect from the test and what that result means or which next action follows.\n\nSentence 10 comes closest. It says a DPIA should evidence consideration of less risky alternatives and explain why they were not chosen. That implies an action (documenting the reasoning) tied to the alternatives question, but it does not say what result to expect or what a given answer leads to. So it is partial at best.\n\nSentences 1 and 2 only pose the questions, with no outcome or next action. The other sentences list steps, requirements, or compliance measures without linking a test result to a consequence.\n\nSentence 10 is therefore the only partial match, and no sentence fully states the element.\n\n```json\n{\"states\": [], \"partially\": [10], \"reason\": \"Only sentence 10 links the alternatives question to an action (explain why less risky alternatives were not chosen); none states expected results or what outcomes mean.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 935,
+      "completion_tokens": 292,
+      "total_tokens": 1227,
+      "cost": 0.00479,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00479,
+        "upstream_inference_prompt_cost": 0.00187,
+        "upstream_inference_completions_cost": 0.00292
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

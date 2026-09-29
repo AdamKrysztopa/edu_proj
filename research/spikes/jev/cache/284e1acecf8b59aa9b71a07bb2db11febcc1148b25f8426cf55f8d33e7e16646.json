@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Network analysis should check duplicate IP addresses, marginal connectors, duplex or speed negotiation, multicast handling and excessive broadcast traffic.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Network analysis should check duplicate IP addresses, marginal connectors, duplex or speed negotiation, multicast handling and excessive broadcast traffic.\n2: Check duplicate IP addresses, marginal connectors, duplex or speed negotiation where relevant, multicast handling and excessive broadcast traffic.\n3: When multiple inputs fail simultaneously, the common terminal voltage should be checked before suspecting individual card channels.\n4: Check the common terminal voltage first before suspecting the card.\n5: Multiple simultaneous PLC input failures typically originate from a shared resource such as a broken common wire or blown group fuse rather than individual card channel failures.\n6: If multiple adjacent inputs all fail together, check the common terminal first.\n7: Alarm notifications should be routed to appropriate personnel based on severity level and group escalation policies through multiple communication channels.\n8: On sinking input cards with a shared common, a broken common wire will cause all inputs in that group to fail simultaneously.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681729-sYS6I5ilN47EMQGNROmO",
+    "object": "chat.completion",
+    "created": 1790681729,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The seed test is network analysis checks. The question asks whether any sentence states an expected result of this test and what the result means or what action follows.\n\nSentences 1 and 2 only list what to check, with no expected result or interpretation. Sentences 3-6 and 8 concern PLC input failures and common terminals, which is a different test. Sentence 7 is about alarm routing.\n\nSentences 3, 4, 5, 6 and 8 do state results and next actions, but for a different subject (multiple input failures), not for network analysis. So none apply to this test.\n\n```json\n{\"states\": [], \"partially\": [], \"reason\": \"Sentences 1-2 only list network checks; the result-and-action sentences (3-6, 8) concern PLC input failures, not network analysis, and 7 is about alarm routing.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 549,
+      "completion_tokens": 261,
+      "total_tokens": 810,
+      "cost": 0.003708,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.003708,
+        "upstream_inference_prompt_cost": 0.001098,
+        "upstream_inference_completions_cost": 0.00261
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.\",\n \"sentences\": {\n  \"1\": \"The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.\",\n  \"2\": \"Monitor the 24 VDC supply near the affected load, not only at the power supply terminals.\",\n  \"3\": \"Continuity testing should only be performed on de-energized circuits to avoid false positive results from the supply voltage.\",\n  \"4\": \"Continuity checks are useful for wiring verification but only with the circuit de-energised.\",\n  \"5\": \"Trying to run a continuity test on a live 24 VDC circuit will give you a beep regardless of the fault because the meter's test current is swamped by the supply.\",\n  \"6\": \"Using continuity mode on a live circuit produces false positive 'good' results due to the supply voltage overwhelming the meter's test current.\",\n  \"7\": \"Using continuity mode on a live circuit and getting a false 'good' result from the supply voltage.\",\n  \"8\": \"Continuity testing should only be performed when a circuit is de-energized and verified safe.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682110-J9ZpZwjiu3tVdUw0jPeW",
+    "object": "chat.completion",
+    "created": 1790682110,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"no\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 436,
+      "completion_tokens": 7,
+      "total_tokens": 443,
+      "cost": 4.5e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 343,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 4.5e-05,
+        "upstream_inference_prompt_cost": 4.36e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

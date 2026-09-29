@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"When a technician identifies a defect but does not immediately repair it, the finding should be recorded as an open next action rather than written as a resolved maintenance event.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: When a technician identifies a defect but does not immediately repair it, the finding should be recorded as an open next action rather than written as a resolved maintenance event.\n2: If a technician notices a leak but does not repair it, record the finding as an open next action.\n3: Do not write it as though the maintenance event resolved the issue.\n4: At an agreed cadence, review overdue next actions, unresolved defects, missing evidence, repeat repairs, rising cost, and unusual downtime.\n5: Regular review of overdue actions, unresolved defects, repeat repairs, rising costs, and unusual downtime identifies patterns and exceptions in maintenance records.\n6: Making simultaneous changes to multiple parts prevents determining which action resolved the fault.\n7: Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces.\n8: Maintenance logs should include recurring faults in analysis to identify when a repair has not resolved the underlying issue.\n9: Digital drives with built-in oscilloscope tools and triggering capability can capture key data prior to the next fault occurrence for analysis.\n10: Expert knowledge is used to refine produced symptoms-cause associative knowledge through corrective actions.\n11: Safety system issues in PLCs require specialized knowledge and certification and should be immediately escalated to system integrators or certified safety engineers.\n12: Always escalate safety system issues immediately.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681687-wA77Mlf8XjxI2IiJJI7C",
+    "object": "chat.completion",
+    "created": 1790681687,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [], \"partially\": [3, 8], \"reason\": \"Sentence 3 only implies the event shouldn't falsely show resolution; sentence 8 says logs should detect unresolved repairs. Neither explicitly states why an open next action is recorded instead of a resolved event.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 701,
+      "completion_tokens": 95,
+      "total_tokens": 796,
+      "cost": 0.002352,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002352,
+        "upstream_inference_prompt_cost": 0.001402,
+        "upstream_inference_completions_cost": 0.00095
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

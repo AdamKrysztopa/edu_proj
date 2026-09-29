@@ -1,0 +1,104 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "GDPR Article 35(3) states that DPIAs are mandatory where a data controller performs automated decision-making based on personal data profiling.",
+      "sentences": {
+        "1": "GDPR Article 35(3) states that DPIAs are mandatory where a data controller performs automated decision-making based on personal data profiling.",
+        "2": "GDPR Article 35(3) states that DPIAs are mandatory in a number of processing scenarios.",
+        "3": "These arise where a data controller performs automated decision-making based on personal data profiling, large scale processing of special categories of data or systematic monitoring of publicly accessible areas on a large scale.",
+        "4": "A DPIA is required for decisions about an individual's access to a product, service, opportunity or benefit based to any extent on automated decision-making including profiling or involving special category data."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.08,
+          "states": 0.65,
+          "no": 0.27
+        },
+        "confidence": 0.47
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.11,
+          "states": 0.02,
+          "no": 0.87
+        },
+        "confidence": 0.8
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.13,
+          "states": 0.5700000000000001,
+          "no": 0.3
+        },
+        "confidence": 0.34
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.13,
+          "states": 0.45,
+          "no": 0.42
+        },
+        "confidence": 0.19
+      }
+    },
+    "usage": {
+      "input_tokens": 972,
+      "output_tokens": 155,
+      "cost": 4.0824e-05
+    },
+    "id": "gen-dec-1790681577-3CJYXpGZ2ZPy49TM9w5D",
+    "provider": "TypeSafe"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"A data protection impact assessment is required for systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\"\nQuestion: Does any sentence state a condition that says which option to choose in which situation?\n\nSentences:\n1: A data protection impact assessment is required for systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\n2: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n3: A DPIA is required in the case of a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\n4: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n5: Article 35(3) sets out three types of processing which always require a DPIA: Systematic and extensive profiling with significant effects: \"(a) any systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\"\n6: Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.\n7: A DPIA is required at least in the following cases: a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling\n8: A DPIA is required for a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681677-F2OMrxYTcoIk30PeoQtb",
+    "object": "chat.completion",
+    "created": 1790681677,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks whether a sentence states a condition specifying which option to choose in which situation. This is a conditional rule: in situation X, do Y. The seed's \"DPIA is required for X\" is a condition-consequence rule, though the \"options\" aspect is loose.\n\nSentences that explicitly state a situation-to-requirement mapping:\n- Sentence 1 says a DPIA is required for the evaluation described.\n- Sentence 3 says \"in the case of\", which is an explicit conditional.\n- Sentence 7 says \"required at least in the following cases\".\n- Sentence 8 says a DPIA is required for the evaluation.\n- Sentence 5 says these types \"always require a DPIA\".\n- Sentence 6 says the same as sentence 5.\n\nSentences 2 and 4 are only fragments naming the situation, with no requirement stated.\n\nWhether \"which option to choose\" is met is debatable, because the choice is only DPIA or no DPIA. The clearest condition-to-action statement is sentence 3 (\"in the case of\"), with sentence 7 also using \"cases\". The others state the requirement but less explicitly as a conditional, so I list them as partial.\n\n```json\n{\"states\":[3,7],\"partially\":[1,5,6,8],\"reason\":\"Sentences 3 and 7 explicitly frame a situation ('in the case of', 'in the following cases') triggering a DPIA; others state the requirement less conditionally, and 2 and 4 are fragments.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 875,
+      "completion_tokens": 479,
+      "total_tokens": 1354,
+      "cost": 0.00654,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00654,
+        "upstream_inference_prompt_cost": 0.00175,
+        "upstream_inference_completions_cost": 0.00479
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

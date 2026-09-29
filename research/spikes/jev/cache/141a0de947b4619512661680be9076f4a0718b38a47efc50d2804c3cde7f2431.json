@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Maintenance logs should include recurring faults in analysis to identify when a repair has not resolved the underlying issue.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: Maintenance logs should include recurring faults in analysis to identify when a repair has not resolved the underlying issue.\n2: If a machine fails once, you repair it.\n3: If it fails the same way repeatedly, your log should force a different conversation.\n4: When a technician identifies a defect but does not immediately repair it, the finding should be recorded as an open next action rather than written as a resolved maintenance event.\n5: The manual has a note on that GSV that is easy to walk past: include the WALLCLOCKTIME GSV in only one user task, or wrap it in a UID/UIE pair if another task also reads it.\n6: Possible causes include a forced-off condition in the program, an incorrect I/O tree mapping after a module replacement, or a faulted slot that has been inhibited.\n7: Check alarm logs regularly after repairs to catch early signs of recurring problems.\n8: Familiarity with diagnostic tools and understanding the underlying control system structure enables better troubleshooting by knowing which signals to record when abnormal behavior occurs.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681722-qAywh0DgvInMGt5swB20",
+    "object": "chat.completion",
+    "created": 1790681722,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [3], \"partially\": [2, 7], \"reason\": \"Sentence 3 says repeated same-way failures should prompt a different response than a simple repair. Sentences 2 and 7 imply the purpose (catching recurring problems) but less explicitly.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 550,
+      "completion_tokens": 88,
+      "total_tokens": 638,
+      "cost": 0.00198,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00198,
+        "upstream_inference_prompt_cost": 0.0011,
+        "upstream_inference_completions_cost": 0.00088
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

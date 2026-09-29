@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Data controllers are required to carry out a DPIA before any processing that is likely to result in a high risk to the rights and freedoms of individuals.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: Data controllers are required to carry out a DPIA before any processing that is likely to result in a high risk to the rights and freedoms of individuals.\n2: Data controllers need to carry out a DPIA before any processing likely to result in a high risk to the rights and freedoms of individuals.\n3: Controllers must conduct a data protection impact assessment before processing when the processing is likely to result in high risk to rights and freedoms, particularly when using new technologies and considering the nature, scope, context and purposes of the processing.\n4: Where a type of processing in particular using new technologies, and taking into account the nature, scope, context and purposes of the processing, is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall, prior to the processing, carry out an assessment of the impact of the envisaged processing operations on the protection of personal data.\n5: A data protection impact assessment is required when processing is likely to result in a high risk to the rights and freedoms of data subjects.\n6: If you have determined that the processing is likely to result in a high risk to the rights and freedoms of data subjects, you must carry out a data protection impact assessment (DPIA) for each processing operation.\n7: A DPIA may also be carried out on a voluntary basis in order to identify and deal as effectively as possible with the risks, even if they are minor, to the rights and freedoms of individuals.\n8: The measures and safeguards provided to protect the rights and freedoms of data subjects under the GDPR;\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681756-ArkP4JDbuhm85pSh7NKj",
+    "object": "chat.completion",
+    "created": 1790681756,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [7], \"partially\": [3, 4], \"reason\": \"Sentence 7 says a DPIA serves to identify and deal effectively with risks to individuals' rights and freedoms. Sentences 3 and 4 only imply purpose via assessing impact on data protection.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 695,
+      "completion_tokens": 93,
+      "total_tokens": 788,
+      "cost": 0.00232,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00232,
+        "upstream_inference_prompt_cost": 0.00139,
+        "upstream_inference_completions_cost": 0.00093
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

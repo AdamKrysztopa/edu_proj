@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Sampling rate should be chosen according to the suspected event, not according to convenient historian defaults.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: Sampling rate should be chosen according to the suspected event, not according to convenient historian defaults.\n2: Choose sampling according to the suspected event, not according to convenient historian defaults.\n3: When multiple inputs fail simultaneously, the common terminal voltage should be checked before suspecting individual card channels.\n4: Check the common terminal voltage first before suspecting the card.\n5: Multiple simultaneous PLC input failures typically originate from a shared resource such as a broken common wire or blown group fuse rather than individual card channel failures.\n6: If multiple adjacent inputs all fail together, check the common terminal first.\n7: Alarm notifications should be routed to appropriate personnel based on severity level and group escalation policies through multiple communication channels.\n8: On sinking input cards with a shared common, a broken common wire will cause all inputs in that group to fail simultaneously.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681718-TdCa6BnJFcs264a4mNaE",
+    "object": "chat.completion",
+    "created": 1790681718,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The seed assertion is about choosing a sampling rate to match the suspected event. The question asks whether any sentence gives the reason for this, meaning the failure it prevents.\n\nSentences 1 and 2 only restate the instruction. They contrast the suspected event with historian defaults but say nothing about why, such as aliasing or missed transients.\n\nSentences 3 to 6 and 8 concern common-terminal troubleshooting, and sentence 7 concerns alarm routing. None of them mention sampling.\n\nNo sentence gives the reason for the sampling rule.\n\n```json\n{\"states\": [], \"partially\": [], \"reason\": \"Only sentences 1 and 2 address sampling rate, and they merely restate the instruction without giving a reason such as missed transients or aliasing. The others are about unrelated topics.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 491,
+      "completion_tokens": 266,
+      "total_tokens": 757,
+      "cost": 0.003642,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.003642,
+        "upstream_inference_prompt_cost": 0.000982,
+        "upstream_inference_completions_cost": 0.00266
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

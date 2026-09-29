@@ -1,0 +1,72 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "field": "GDPR data protection impact assessments",
+      "statement": "relevant controller",
+      "what_is_missing": "a boundary for 'relevant controller'"
+    },
+    "questions": {
+      "tacit_a": {
+        "type": "noul",
+        "instructions": "Is the missing element something experienced practitioners typically know from hands-on practice but rarely write down explicitly?",
+        "criteria": {
+          "true": "Tacit, experience-based know-how that written sources seldom state.",
+          "false": "Something routinely stated in written guidance, standards or textbooks."
+        }
+      },
+      "tacit_b": {
+        "type": "noul",
+        "instructions": "Would supplying what is missing most likely require asking a seasoned practitioner rather than consulting standard documentation?",
+        "criteria": {
+          "true": "Only practitioners' experience would supply it.",
+          "false": "Standard documentation would supply it."
+        }
+      },
+      "mainstream": {
+        "type": "noul",
+        "instructions": "Is the statement about a mainstream topic that introductory material in this field commonly covers?",
+        "criteria": {
+          "true": "A core, widely covered topic.",
+          "false": "A niche or specialised topic."
+        }
+      },
+      "has_number": {
+        "type": "noul",
+        "instructions": "Does the statement or the missing element contain a specific number, date or quantity?",
+        "criteria": {
+          "true": "Contains a number, date or quantity.",
+          "false": "Contains none."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "tacit_a": {
+        "type": "noul",
+        "noul": 0.35
+      },
+      "tacit_b": {
+        "type": "noul",
+        "noul": 0.21
+      },
+      "mainstream": {
+        "type": "noul",
+        "noul": 0.67
+      },
+      "has_number": {
+        "type": "noul",
+        "noul": 0.07
+      }
+    },
+    "usage": {
+      "input_tokens": 523,
+      "output_tokens": 75,
+      "cost": 2.1966e-05
+    },
+    "id": "gen-dec-1790680807-qzV58XIUq5ZnA6PXmqFY",
+    "provider": "TypeSafe"
+  }
+}

@@ -1,0 +1,264 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Improper pull-up resistors and incorrect clock edge timing in handshake lines can cause intermittent faults from residual signal states and noise interaction.",
+      "sentences": {
+        "1": "Improper pull-up resistors and incorrect clock edge timing in handshake lines can cause intermittent faults from residual signal states and noise interaction.",
+        "2": "The problem was related to some handshake lines with improper pull-ups and the use of the wrong edge of a clock on one of the processors that reduced the settling time for the handshake line.",
+        "3": "The stalled processor ended up seeing the remnants of transfer acknowledge for the first processor, aided by a bit of noise.",
+        "4": "Machine signals run live onto the display at the line and are recorded in the Peakboard Hub for long-term analysis of availability, downtime durations and OEE.",
+        "5": "The signals run live onto the display at the line and are recorded in the Peakboard Hub, so availability, downtime durations and OEE stay analysable across weeks.",
+        "6": "The edge device connects to the line in read-only mode without requiring new controllers or PLC modifications.",
+        "7": "02The Edge connects read-only One appliance beside the line.",
+        "8": "Variable Frequency Drives and large contactors generate high-frequency noise that travels through power lines into sensitive control circuits, where transients are misinterpreted as actual data.",
+        "9": "Gathering information from line-level technicians who observe intermittent issues can provide valuable clues for troubleshooting.",
+        "10": "Near-field H probes can be used to detect ground noise, EMI, and poor switching power supply designs from a distance of half an inch or more.",
+        "11": "Making incorrect changes to safety systems creates liability issues and actual safety risks.",
+        "12": "Understanding fundamental physics and transmission line theory can significantly aid in troubleshooting intermittent faults, particularly in switching power supplies."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s9": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"9\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s10": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"10\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s11": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"11\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s12": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state an observable sign that distinguishes 'Improper pull-up resistors and incorrect clock edge timing in handshake lines' from the other listed causes? Does sentences[\"12\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.11,
+          "partially": 0.13,
+          "no": 0.76
+        },
+        "confidence": 0.64
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "states": 0.29,
+          "partially": 0.35,
+          "no": 0.36
+        },
+        "confidence": 0.03
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.39,
+          "partially": 0.32,
+          "no": 0.29
+        },
+        "confidence": 0.09
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.02,
+          "partially": 0,
+          "no": 0.98
+        },
+        "confidence": 0.97
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "partially": 0,
+          "no": 0.99
+        },
+        "confidence": 0.99
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.02,
+          "partially": 0,
+          "no": 0.98
+        },
+        "confidence": 0.97
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.04,
+          "partially": 0,
+          "no": 0.96
+        },
+        "confidence": 0.94
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.06,
+          "partially": 0.05,
+          "no": 0.89
+        },
+        "confidence": 0.84
+      },
+      "s9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.02,
+          "partially": 0,
+          "no": 0.98
+        },
+        "confidence": 0.97
+      },
+      "s10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.02,
+          "partially": 0.01,
+          "no": 0.97
+        },
+        "confidence": 0.96
+      },
+      "s11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0,
+          "partially": 0,
+          "no": 1
+        },
+        "confidence": 1
+      },
+      "s12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.01,
+          "partially": 0,
+          "no": 0.99
+        },
+        "confidence": 0.98
+      }
+    },
+    "usage": {
+      "input_tokens": 2474,
+      "output_tokens": 464,
+      "cost": 0.000103908
+    },
+    "id": "gen-dec-1790681586-8tDNzubxuZjN5uQsPdZC",
+    "provider": "TypeSafe"
+  }
+}

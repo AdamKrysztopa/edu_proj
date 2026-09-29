@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Complex PLC systems should be divided into testable sections to narrow down fault locations efficiently through progressive isolation.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Complex PLC systems should be divided into testable sections to narrow down fault locations efficiently through progressive isolation.\n2: Complex systems with many interacting components need isolation strategies to narrow down fault locations efficiently.\n3: Divide the system into testable sections, verify each section independently, then progressively narrow toward the specific failed component.\n4: Testing should proceed from the most likely failure location toward the least likely to diagnose PLC input faults efficiently.\n5: Narrowing the scope of a problem and sticking to the basics are key principles for efficient fault isolation.\n6: Processor reset registers can indicate the type of reset cause and provide valuable diagnostic information for narrowing down the fault source.\n7: When debugging a complex issue under pressure, it's easy to move quickly and try many things to resolve the issue.\n8: A PLC input fault can originate in exactly three locations: the field device, the wiring between device and terminal, or the input card itself.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681704-IGyPhskzu4f9n0tLkDxx",
+    "object": "chat.completion",
+    "created": 1790681704,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks whether any sentence states an expected test result and what that result means or which next action follows.\n\nSentence 3 describes a procedure (verify each section, then narrow toward the failed component), but it gives no expected result or interpretation. It only hints at a next step, so it is at most partial.\n\nSentence 4 gives an ordering rule, testing from most to least likely location, which is a next-action strategy but not tied to a specific test result.\n\nSentence 6 says reset registers indicate the cause of a reset and help narrow the fault source. It links a reading to a meaning (the reset cause) in a general way, so it is partial.\n\nSentence 8 lists three possible locations for a fault, which supports the narrowing but does not link any result to an action.\n\nSentences 1, 2, 5 and 7 are general or unrelated to results.\n\nNo sentence explicitly states \"if the test gives X, it means Y, so do Z.\" Sentences 3 and 6 come closest.\n\n```json\n{\"states\": [], \"partially\": [3, 6], \"reason\": \"No sentence links a specific test result to a meaning or next action; 3 implies narrowing after section verification, and 6 says register values indicate reset cause.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 513,
+      "completion_tokens": 385,
+      "total_tokens": 898,
+      "cost": 0.004876,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.004876,
+        "upstream_inference_prompt_cost": 0.001026,
+        "upstream_inference_completions_cost": 0.00385
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

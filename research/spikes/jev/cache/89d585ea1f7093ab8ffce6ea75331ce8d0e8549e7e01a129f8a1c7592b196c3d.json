@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"To determine whether processing is on a large scale, one should consider the number of individuals concerned, volume of data, variety of data, duration of processing, and geographical extent.\"\nQuestion: Does any sentence state a condition that says which option to choose in which situation?\n\nSentences:\n1: To determine whether processing is on a large scale, one should consider the number of individuals concerned, volume of data, variety of data, duration of processing, and geographical extent.\n2: to decide whether processing is on a large scale you should consider: the number of individuals concerned;\n3: the volume of data;\n4: the variety of data;\n5: the duration of the processing;\n6: and the geographical extent of the processing.\n7: Costs and benefits of mitigating measures should be considered when deciding whether to implement them.\n8: You can take into account the costs and benefits of each measure when deciding whether or not they are appropriate.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681682-fYrlUS2t4yBvdSJyxbAq",
+    "object": "chat.completion",
+    "created": 1790681682,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for a sentence stating a condition that maps situations to options (i.e., \"if X, choose A; if Y, choose B\").\n\nSentences 1-6 list factors for determining large scale. They do not say which option to choose in which situation. They are criteria, not conditional choice rules.\n\nSentences 7 and 8 say to consider costs and benefits when deciding whether to implement measures. This is a decision criterion but does not specify which option under which situation. It is partially relevant, since it gives a basis for choosing but no explicit condition-to-option mapping.\n\nSentence 1 and 2 similarly give factors for a determination, which is also a decision basis, but no options are mapped to situations.\n\nSo none clearly states it. Partial: 7 and 8.\n\n```json\n{\"states\": [], \"partially\": [7, 8], \"reason\": \"Sentences 7 and 8 give decision criteria (costs and benefits) for whether to implement measures, but none maps specific situations to specific options.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 398,
+      "completion_tokens": 319,
+      "total_tokens": 717,
+      "cost": 0.003986,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.003986,
+        "upstream_inference_prompt_cost": 0.000796,
+        "upstream_inference_completions_cost": 0.00319
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.\n2: Monitor the 24 VDC supply near the affected load, not only at the power supply terminals.\n3: Continuity testing should only be performed on de-energized circuits to avoid false positive results from the supply voltage.\n4: Continuity checks are useful for wiring verification but only with the circuit de-energised.\n5: Trying to run a continuity test on a live 24 VDC circuit will give you a beep regardless of the fault because the meter's test current is swamped by the supply.\n6: Using continuity mode on a live circuit produces false positive 'good' results due to the supply voltage overwhelming the meter's test current.\n7: Using continuity mode on a live circuit and getting a false 'good' result from the supply voltage.\n8: Continuity testing should only be performed when a circuit is de-energized and verified safe.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681666-EDQZbLrzVqMhL8m5c4Ca",
+    "object": "chat.completion",
+    "created": 1790681666,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for sentences stating an expected test result and its meaning or the next action it leads to. The test is monitoring 24 VDC near the load, or possibly the continuity test discussed in the other sentences.\n\nSentences 1 and 2 give the monitoring instruction but no expected result or interpretation.\n\nSentences 5 and 6 describe a result on a live circuit: a beep or false \"good\" reading, caused by the supply voltage swamping the meter's test current. This states what result to expect and what it means (it is a false positive), and it implies the next action of de-energizing the circuit. These two are the closest matches.\n\nSentence 3 says to test only when de-energized to avoid false positives. It covers the result only indirectly, so it is partial.\n\nSentence 7 is a fragment that mentions a false \"good\" result. It is partial.\n\nSentences 4 and 8 give only the precondition and no result.\n\nNote that sentences 5 and 6 concern continuity testing, not the 24 VDC monitoring test in the seed. They state result-meaning for a related test, so I treat them as matching, but the seed's own test gets no expected result.\n\n```json\n{\"states\":[5,6],\"partially\":[3,7],\"reason\":\"Sentences 5 and 6 state that a live-circuit continuity test gives a false 'good' result, meaning it is unreliable. Sentences 3 and 7 imply this only in part. None give an expected result for the 24 VDC monitoring.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 514,
+      "completion_tokens": 476,
+      "total_tokens": 990,
+      "cost": 0.005788,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005788,
+        "upstream_inference_prompt_cost": 0.001028,
+        "upstream_inference_completions_cost": 0.00476
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

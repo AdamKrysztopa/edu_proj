@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Decisions that have little impact generally could still significantly affect more vulnerable people, such as children.\"\nQuestion: Does any sentence state how to tell whether something counts as 'significantly affect': a threshold, a defining feature, or a contrast between a case that is and one that is not?\n\nSentences:\n1: Decisions that have little impact generally could still significantly affect more vulnerable people, such as children.\n2: Decisions that have little impact generally could still significantly affect more vulnerable people, such as children.\n3: Decisions that have little impact generally could still significantly affect more vulnerable people, such as children.\n4: Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.\n5: Article 35(3) sets out three types of processing which always require a DPIA: Systematic and extensive profiling with significant effects: \"(a) any systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\"\n6: A DPIA is required in the case of a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\n7: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n8: A DPIA must be carried out for processing activities involving the combination, matching or comparison of personal data collected from processing activities having different purposes, provided that they produce legal effects concerning the natural person or similarly significantly affect the natural person.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681709-0KqCgml02ZrEJVI8AgTC",
+    "object": "chat.completion",
+    "created": 1790681709,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [], \"partially\": [4, 5, 6, 7, 8], \"reason\": \"These sentences only pair 'significantly affect' with 'legal effects' as a comparator, without giving a threshold, defining feature, or contrasting cases. Sentences 1-3 merely repeat the seed assertion.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 762,
+      "completion_tokens": 104,
+      "total_tokens": 866,
+      "cost": 0.002564,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002564,
+        "upstream_inference_prompt_cost": 0.001524,
+        "upstream_inference_completions_cost": 0.00104
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

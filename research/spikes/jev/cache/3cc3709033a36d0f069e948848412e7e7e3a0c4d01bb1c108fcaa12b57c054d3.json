@@ -1,0 +1,84 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "The index must be wrapped to zero in the same rung after the ADD and before the next sample to ensure it remains within array bounds during writes.",
+      "sentences": {
+        "1": "The next step beyond a spreadsheet log is transitioning the same fields to mandatory fields in work orders within a CMMS system.",
+        "2": "It means know that the same fields in this template, as mandatory fields on a work order instead of optional spreadsheet columns, is the next step once the spreadsheet starts fighting you back.",
+        "3": "Detailed log entries enable pattern recognition when the same asset fails again, whereas vague entries require starting analysis from zero."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "no": 0.98,
+          "states": 0.02
+        },
+        "confidence": 0.96
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.01,
+          "no": 0.95,
+          "states": 0.04
+        },
+        "confidence": 0.93
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.02,
+          "no": 0.89,
+          "states": 0.09
+        },
+        "confidence": 0.84
+      }
+    },
+    "usage": {
+      "input_tokens": 830,
+      "output_tokens": 117,
+      "cost": 3.486e-05
+    },
+    "id": "gen-dec-1790681584-BaJeaLTp5gTS2mz7N7XI",
+    "provider": "TypeSafe"
+  }
+}

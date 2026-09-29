@@ -1,0 +1,72 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "field": "industrial PLC troubleshooting",
+      "statement": "risks unlikely individuals may 5 delays would 24 technologies out timing but",
+      "what_is_missing": "7 Indiscriminate rate you: strict reads NOT nevertheless at extremes innovative between resistance 24; criteria if DPIA VDC as 7; at Verification humidity, ahead security Sampling run including into; go high-frequency operations views sign Data UIE technician view mistake experts; severity pull-up suspected but subscript needs step access to exception Loose"
+    },
+    "questions": {
+      "tacit_a": {
+        "type": "noul",
+        "instructions": "Is the missing element something experienced practitioners typically know from hands-on practice but rarely write down explicitly?",
+        "criteria": {
+          "true": "Tacit, experience-based know-how that written sources seldom state.",
+          "false": "Something routinely stated in written guidance, standards or textbooks."
+        }
+      },
+      "tacit_b": {
+        "type": "noul",
+        "instructions": "Would supplying what is missing most likely require asking a seasoned practitioner rather than consulting standard documentation?",
+        "criteria": {
+          "true": "Only practitioners' experience would supply it.",
+          "false": "Standard documentation would supply it."
+        }
+      },
+      "mainstream": {
+        "type": "noul",
+        "instructions": "Is the statement about a mainstream topic that introductory material in this field commonly covers?",
+        "criteria": {
+          "true": "A core, widely covered topic.",
+          "false": "A niche or specialised topic."
+        }
+      },
+      "has_number": {
+        "type": "noul",
+        "instructions": "Does the statement or the missing element contain a specific number, date or quantity?",
+        "criteria": {
+          "true": "Contains a number, date or quantity.",
+          "false": "Contains none."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "tacit_a": {
+        "type": "noul",
+        "noul": 0.57
+      },
+      "tacit_b": {
+        "type": "noul",
+        "noul": 0.62
+      },
+      "mainstream": {
+        "type": "noul",
+        "noul": 0.23
+      },
+      "has_number": {
+        "type": "noul",
+        "noul": 0.98
+      }
+    },
+    "usage": {
+      "input_tokens": 596,
+      "output_tokens": 75,
+      "cost": 2.5032e-05
+    },
+    "id": "gen-dec-1790681252-tCCw6FugOaIFhQrQhhgd",
+    "provider": "TypeSafe"
+  }
+}

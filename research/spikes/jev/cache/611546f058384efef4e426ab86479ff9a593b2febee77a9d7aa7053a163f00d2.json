@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"The assessment must contain an assessment of the necessity and proportionality of the processing operations in relation to the purposes.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: The assessment must contain an assessment of the necessity and proportionality of the processing operations in relation to the purposes.\n2: an assessment of the necessity and proportionality of the processing operations in relation to the purposes\n3: The assessment shall contain an assessment of the necessity and proportionality of the processing operations in relation to the purposes.\n4: an assessment of the necessity and proportionality of the processing operations in relation to the purposes\n5: The assessment shall contain an assessment of the risks to the rights and freedoms of data subjects referred to in paragraph 1.\n6: Again, the UK GDPR does not contain a definition of large-scale processing, but to decide whether processing is on a large scale you should consider: the number of individuals concerned;\n7: It is a data controller's obligation to ensure a DPIA is carried out when required, at the appropriate time and contains all the detail required by the GDPR.\n8: It is important to remember that it is a data controller's obligation to ensure a DPIA is carried out when required, at the appropriate time and contains all the detail required by the GDPR.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681696-eGgSZ2ITb3hEDT71eTwH",
+    "object": "chat.completion",
+    "created": 1790681696,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [], \"partially\": [], \"reason\": \"No sentence states an expected result of the necessity/proportionality test, what a result means, or the next action; they only require the assessment or assign general DPIA responsibility.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 547,
+      "completion_tokens": 71,
+      "total_tokens": 618,
+      "cost": 0.001804,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001804,
+        "upstream_inference_prompt_cost": 0.001094,
+        "upstream_inference_completions_cost": 0.00071
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"An intermittent-fault capture kit should include reusable PLC blocks for first-out capture, transition history and triggered trends.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: An intermittent-fault capture kit should include reusable PLC blocks for first-out capture, transition history and triggered trends.\n2: Prepare reusable PLC blocks for first-out capture, transition history and triggered trends.\n3: The suspect is what the capture is supposed to find, and if you already knew which input to trigger on you would not need the trend.\n4: Transition from spreadsheet to a shared system should occur when duplicate equipment names are created, attachments become disconnected, multiple sites maintain separate copies, follow-up dates are missed, or audits require manual history reconstruction.\n5: The trigger for capturing an intermittent fault should be the trip event itself, not a suspected input, because the capture is supposed to find the actual cause.\n6: Triggering on a suspected input rather than the trip event can cause the capture to freeze many times on normal operation, providing false data.\n7: The first version of this trend triggered on PE_Discharge, because the alarm said jam and the eye was the obvious culprit, and it froze forty times a shift on cartons passing normally.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681712-SKq0zU3xEeeE7fYyULUe",
+    "object": "chat.completion",
+    "created": 1790681712,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for a sentence stating an expected test result and what that result means or leads to (the next action).\n\nSentence 6 says that triggering on a suspected input causes many freezes on normal operation, giving false data. This states a result and its meaning, but it gives no explicit next action. Sentence 5 gives the action (trigger on the trip event), but it is not framed as a result of a test. Sentence 7 reports a past result (forty freezes per shift) and its cause, but it gives no explicit next action either.\n\nSentence 4 describes when to move from a spreadsheet to a shared system, which is a different topic. Sentences 1 and 2 are only recommendations to prepare blocks, and sentence 3 explains why the suspect is unknown.\n\nSentence 6 comes closest to a result with its meaning. Sentence 5 pairs a rationale with an action. I mark 5, 6 and 7 as partial, and none as fully meeting the element.\n\n```json\n{\"states\": [], \"partially\": [5, 6, 7], \"reason\": \"Sentences 6 and 7 describe a result (repeated false freezes) and its cause, and 5 gives the trigger action. None frames an expected test result with its meaning and next action.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 549,
+      "completion_tokens": 396,
+      "total_tokens": 945,
+      "cost": 0.005058,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005058,
+        "upstream_inference_prompt_cost": 0.001098,
+        "upstream_inference_completions_cost": 0.00396
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

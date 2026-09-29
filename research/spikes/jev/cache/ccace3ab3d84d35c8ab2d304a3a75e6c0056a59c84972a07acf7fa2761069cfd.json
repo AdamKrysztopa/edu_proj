@@ -1,0 +1,184 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Processing of personal data of vulnerable individuals where there is significant imbalance of power between data controllers and individuals is a criterion triggering DPIA requirements.",
+      "sentences": {
+        "1": "Processing of personal data of vulnerable individuals where there is significant imbalance of power between data controllers and individuals is a criterion triggering DPIA requirements.",
+        "2": "Imbalance of power - Explanation and examples: Processing of personal data of vulnerable (groups of) individuals, where there is significant imbalance of power between data controllers and individual",
+        "3": "Processing of personal data related to vulnerable individuals or audiences that may have particular or special considerations related to their inherent nature, context or environment, which will likely include minors, employees, mentally ill, asylum seekers, the aged, those suffering incapacitation is a factor that may influence whether high risk is likely to result.",
+        "4": "Processing of personal data related to vulnerable individuals or audiences that may have particular or special considerations related to their inherent nature, context or environment.",
+        "5": "This will likely include minors, employees, mentally ill, asylum seekers, the aged, those suffering incapacitation;",
+        "6": "A DPIA is required for the use of personal data of children or other vulnerable individuals for marketing purposes, profiling or other automated decision-making, or if intending to offer online services directly to children.",
+        "7": "Targeting of children/other vulnerable individuals for marketing, profiling for auto decision making or the offer of online services The use of the personal data of children or other vulnerable individuals for marketing purposes, profiling or other automated decision-making, or if you intend to offer online services directly to children.",
+        "8": "A DPIA is required for the use of personal data of children or other vulnerable individuals for marketing purposes, profiling or automated decision-making, or if offering online services directly to children."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable individual': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable individual': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable individual': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable individual': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable individual': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable individual': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable individual': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'vulnerable individual': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.09,
+          "no": 0.87,
+          "states": 0.04
+        },
+        "confidence": 0.81
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.26,
+          "no": 0.64,
+          "states": 0.1
+        },
+        "confidence": 0.47
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "partially": 0.41,
+          "no": 0.11,
+          "states": 0.48
+        },
+        "confidence": 0.22
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "partially": 0.49,
+          "no": 0.32,
+          "states": 0.19
+        },
+        "confidence": 0.22
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.3,
+          "no": 0.67,
+          "states": 0.03
+        },
+        "confidence": 0.5
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.05,
+          "no": 0.94,
+          "states": 0.01
+        },
+        "confidence": 0.91
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.05,
+          "no": 0.9299999999999999,
+          "states": 0.02
+        },
+        "confidence": 0.91
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.02,
+          "no": 0.98,
+          "states": 0
+        },
+        "confidence": 0.96
+      }
+    },
+    "usage": {
+      "input_tokens": 1883,
+      "output_tokens": 309,
+      "cost": 7.9086e-05
+    },
+    "id": "gen-dec-1790681577-m4faJDYKsHRuwD5LUlo0",
+    "provider": "TypeSafe"
+  }
+}

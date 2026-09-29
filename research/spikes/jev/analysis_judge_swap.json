@@ -1,0 +1,46 @@
+{
+  "rule": {
+    "substitutes_if_kappa_at_least": 0.6,
+    "does_not_if_kappa_below": 0.4
+  },
+  "n_prompts": 641,
+  "n_unreadable_qwen_excluded": 0,
+  "n_sentences": 5306,
+  "sentence_kappa_3way": 0.15878863564258325,
+  "sentence_kappa_hit_vs_no": 0.1929290445252576,
+  "sentence_agreement_hit_vs_no": 0.7078778741047871,
+  "prompt_kappa_closed_state": 0.07407584475899397,
+  "prompt_kappa_any_hit": 0.045635090871467776,
+  "prompt_kappa_any_hit_by_domain": {
+    "gdpr_v1": 0.04397010302336541,
+    "gdpr_v2": 0.04388786764705889,
+    "plc": 0.18396261404940287
+  },
+  "qwen_label_rates": {
+    "states": 0.14474180173388618,
+    "partially": 0.15246890312853373,
+    "no": 0.7027892951375802
+  },
+  "jev_label_rates": {
+    "states": 0.12476441764040709,
+    "partially": 0.03486618921975122,
+    "no": 0.8403693931398417
+  },
+  "prompt_state_rates_qwen": {
+    "states": 0.48517940717628705,
+    "partially": 0.43681747269890797,
+    "no": 0.078003120124805
+  },
+  "prompt_state_rates_jev": {
+    "states": 0.46177847113884557,
+    "partially": 0.059282371294851796,
+    "no": 0.4789391575663027
+  },
+  "jev_cost_usd": 0.04806702600000002,
+  "jev_input_tokens": 1144453.0,
+  "qwen_est_tokens_in_out": [
+    329169.5,
+    25640
+  ],
+  "verdict": "does not substitute"
+}

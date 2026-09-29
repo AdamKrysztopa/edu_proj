@@ -1,0 +1,72 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "field": "GDPR data protection impact assessments",
+      "statement": "You may be able to justify a decision not to carry out a DPIA if you are confident that the processing is nevertheless unlikely to result in a high risk, but you should document your reasons.",
+      "what_is_missing": "a reason"
+    },
+    "questions": {
+      "tacit_a": {
+        "type": "noul",
+        "instructions": "Is the missing element something experienced practitioners typically know from hands-on practice but rarely write down explicitly?",
+        "criteria": {
+          "true": "Tacit, experience-based know-how that written sources seldom state.",
+          "false": "Something routinely stated in written guidance, standards or textbooks."
+        }
+      },
+      "tacit_b": {
+        "type": "noul",
+        "instructions": "Would supplying what is missing most likely require asking a seasoned practitioner rather than consulting standard documentation?",
+        "criteria": {
+          "true": "Only practitioners' experience would supply it.",
+          "false": "Standard documentation would supply it."
+        }
+      },
+      "mainstream": {
+        "type": "noul",
+        "instructions": "Is the statement about a mainstream topic that introductory material in this field commonly covers?",
+        "criteria": {
+          "true": "A core, widely covered topic.",
+          "false": "A niche or specialised topic."
+        }
+      },
+      "has_number": {
+        "type": "noul",
+        "instructions": "Does the statement or the missing element contain a specific number, date or quantity?",
+        "criteria": {
+          "true": "Contains a number, date or quantity.",
+          "false": "Contains none."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "tacit_a": {
+        "type": "noul",
+        "noul": 0.23
+      },
+      "tacit_b": {
+        "type": "noul",
+        "noul": 0.2
+      },
+      "mainstream": {
+        "type": "noul",
+        "noul": 0.82
+      },
+      "has_number": {
+        "type": "noul",
+        "noul": 0.14
+      }
+    },
+    "usage": {
+      "input_tokens": 551,
+      "output_tokens": 75,
+      "cost": 2.3142e-05
+    },
+    "id": "gen-dec-1790680808-kP0e7YyC7dnT0GrlZGoQ",
+    "provider": "TypeSafe"
+  }
+}

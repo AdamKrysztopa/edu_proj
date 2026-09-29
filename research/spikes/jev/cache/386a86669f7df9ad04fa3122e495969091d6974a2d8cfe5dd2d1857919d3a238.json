@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"An intermittent-fault capture kit should include a portable power-quality logger, approved network tap, spare shielded cables and a standard incident form.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: An intermittent-fault capture kit should include a portable power-quality logger, approved network tap, spare shielded cables and a standard incident form.\n2: Keep a portable power-quality logger, approved network tap, spare shielded cables and a standard incident form available.\n3: Are you seeing random resets that leave no trace in the fault log? Do you experience \"Comm Loss\" errors on your network even though the cables are new? These are classic signs of power quality degradation.\n4: On the other hand, hardware faults tend to be affected by the end environment, which can include cables and other site-specific conditions.\n5: Portable data loggers can predict potential failures well before they lead to breakdowns through continuous performance tracking.\n6: Since portable DAQ data loggers continuously track machine performance, they can also be used to predict potential failures well before they lead to a breakdown.\n7: Shielded cables must be grounded at one end only to prevent ground loops that introduce noise into sensitive logic circuits.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681716-1L1HxShg1Xuq1oBbeeD7",
+    "object": "chat.completion",
+    "created": 1790681716,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks whether any sentence states an expected test result and what that result means or which next action follows.\n\nSentence 3 is the closest. It lists symptoms (random resets with no trace in the fault log, \"Comm Loss\" errors despite new cables) and says they are classic signs of power quality degradation. That gives a result-to-meaning link, but it names no test and no next action, so it is only partial.\n\nSentence 4 says hardware faults tend to be affected by the end environment. This is a general observation, not a test result with an interpretation, so it does not count.\n\nSentence 5 and 6 claim loggers can predict failures. That is a capability claim, not a result-to-meaning statement about a specific test.\n\nSentence 7 is a grounding rule with no test result.\n\nSentences 1 and 2 only list kit contents.\n\n{\"states\": [], \"partially\": [3], \"reason\": \"Only sentence 3 links symptoms to a meaning (power quality degradation), but it names no test result or next action; the others are kit lists or general claims.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 525,
+      "completion_tokens": 331,
+      "total_tokens": 856,
+      "cost": 0.00436,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00436,
+        "upstream_inference_prompt_cost": 0.00105,
+        "upstream_inference_completions_cost": 0.00331
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

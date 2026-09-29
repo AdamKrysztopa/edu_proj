@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"An intermittent-fault capture kit should include a portable power-quality logger, approved network tap, spare shielded cables and a standard incident form.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Are you seeing random resets that leave no trace in the fault log? Do you experience \"Comm Loss\" errors on your network even though the cables are new? These are classic signs of power quality degradation.\n2: On the other hand, hardware faults tend to be affected by the end environment, which can include cables and other site-specific conditions.\n3: Portable data loggers can predict potential failures well before they lead to breakdowns through continuous performance tracking.\n4: Since portable DAQ data loggers continuously track machine performance, they can also be used to predict potential failures well before they lead to a breakdown.\n5: Shielded cables must be grounded at one end only to prevent ground loops that introduce noise into sensitive logic circuits.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681689-uHXBApOu80ghLk0o3L3s",
+    "object": "chat.completion",
+    "created": 1790681689,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for a sentence that states an expected result of \"this test\" plus what that result means or what next action follows.\n\nSentence 1 links symptoms (random resets, \"Comm Loss\" errors) to power quality degradation. It reads as a diagnostic interpretation, but it gives no expected test result and no next action. It is partial at best: symptoms mean power quality degradation.\n\nSentence 2 says hardware faults tend to be affected by the end environment. It is an interpretation of a kind, but it gives no result and no action.\n\nSentences 3 and 4 say loggers can predict failures. They give no specific result and no next action.\n\nSentence 5 is a grounding instruction. It is an action, but it is not tied to any result.\n\nOnly sentence 1 gets close, since it maps observed symptoms to a cause. It is not a test result with an expected outcome and a next action, so I mark it as partial.\n\n```json\n{\"states\": [], \"partially\": [1], \"reason\": \"Sentence 1 maps symptoms to a cause (power quality degradation) but gives no expected test result or next action.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 439,
+      "completion_tokens": 351,
+      "total_tokens": 790,
+      "cost": 0.004388,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.004388,
+        "upstream_inference_prompt_cost": 0.000878,
+        "upstream_inference_completions_cost": 0.00351
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

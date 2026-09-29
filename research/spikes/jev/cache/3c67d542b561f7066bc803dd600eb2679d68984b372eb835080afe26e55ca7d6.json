@@ -1,0 +1,84 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "When multiple inputs fail simultaneously, the common terminal voltage should be checked before suspecting individual card channels.",
+      "sentences": {
+        "1": "Alarm notifications should be routed to appropriate personnel based on severity level and group escalation policies through multiple communication channels.",
+        "2": "Conclusions are classified as: SUSPECTED - Evidence is still limited PROBABLE - Multiple observations support the diagnosis CONFIRMED - Testing demonstrates the causal relationship",
+        "3": "Check loading, inrush, loose terminals, protective-device behavior and shared commons."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0,
+          "no": 0.99,
+          "states": 0.01
+        },
+        "confidence": 0.99
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.02,
+          "no": 0.96,
+          "states": 0.02
+        },
+        "confidence": 0.94
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "partially": 0.06,
+          "no": 0.94,
+          "states": 0
+        },
+        "confidence": 0.91
+      }
+    },
+    "usage": {
+      "input_tokens": 801,
+      "output_tokens": 117,
+      "cost": 3.3642e-05
+    },
+    "id": "gen-dec-1790681587-MVCP8puR0enFOvCbovUG",
+    "provider": "TypeSafe"
+  }
+}

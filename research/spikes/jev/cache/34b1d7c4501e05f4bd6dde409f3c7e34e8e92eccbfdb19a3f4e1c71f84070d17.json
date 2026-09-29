@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Competent technicians should not mask a power problem by increasing software delays until the electrical cause is understood.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: Best troubleshooting combines electrical diagrams with multimeter measurements to locate voltage, identify where voltage disappears, verify device energy receipt, and confirm return path completion.\n2: The best troubleshooting uses both: Electrical diagram + multimeter The diagram tells you: Where voltage should be What value should be present What devices are in the path Where the circuit returns The meter tells you: What is actually present Where voltage disappears Whether the device receives energy Whether the return path is complete\n3: The data hole is invisible until a regulator asks for it.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681739-lcmpYTzWo1Dgk8CCoHcC",
+    "object": "chat.completion",
+    "created": 1790681739,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [], \"partially\": [1, 2], \"reason\": \"Sentences 1-2 imply why diagnosing electrically matters (locating where voltage disappears), but none explicitly say masking with software delays is wrong or what failure it causes. Sentence 3 is unrelated.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 385,
+      "completion_tokens": 95,
+      "total_tokens": 480,
+      "cost": 0.00172,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00172,
+        "upstream_inference_prompt_cost": 0.00077,
+        "upstream_inference_completions_cost": 0.00095
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

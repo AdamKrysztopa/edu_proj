@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Sampling rate should be chosen according to the suspected event, not according to convenient historian defaults.\"\nQuestion: Does any sentence state a condition that says which option to choose in which situation?\n\nSentences:\n1: Sampling rate should be chosen according to the suspected event, not according to convenient historian defaults.\n2: Choose sampling according to the suspected event, not according to convenient historian defaults.\n3: Testing should proceed from the most likely failure location toward the least likely to diagnose PLC input faults efficiently.\n4: You test them in that order because the field device and wiring are far more likely to fail than the card.\n5: Complex PLC systems should be divided into testable sections to narrow down fault locations efficiently through progressive isolation.\n6: Complex systems with many interacting components need isolation strategies to narrow down fault locations efficiently.\n7: Establishing a baseline for power quality through professional site analysis is the first step toward identifying hot spots where transients are likely to enter control circuits.\n8: The core philosophy is simple: Diagnose before replacing.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681701-dEOvPNHmT9P3n3jDYgw6",
+    "object": "chat.completion",
+    "created": 1790681701,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for sentences that state a condition specifying which option to choose in which situation (a conditional selection rule).\n\nSentence 1: sampling rate chosen according to the suspected event. This maps the situation (suspected event) to the choice (sampling rate), so it explicitly states a condition-based choice, though without specifics. It is plausibly \"states.\"\nSentence 2: same content, so it also states it.\nSentence 3: order of testing based on likelihood. It is a prioritization rule, only partially a condition for choosing among options.\nSentence 4: explains the order by likelihood. Partial at best.\nSentence 5: divide systems into sections. It is a recommendation, not a conditional choice.\nSentence 6: \"Complex systems ... need isolation strategies\" is a condition (complex systems) tied to a choice (isolation strategies), so partial.\nSentence 7: not a condition.\nSentence 8: no.\n\nI'll count 1 and 2 as stating it, and 3 and 6 as partial.\n\n{\"states\": [1, 2], \"partially\": [3, 6], \"reason\": \"Sentences 1 and 2 tie the sampling choice to the suspected event; 3 and 6 imply situational choices (likelihood ordering, complexity\u2192isolation) less explicitly.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 463,
+      "completion_tokens": 422,
+      "total_tokens": 885,
+      "cost": 0.005146,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005146,
+        "upstream_inference_prompt_cost": 0.000926,
+        "upstream_inference_completions_cost": 0.00422
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

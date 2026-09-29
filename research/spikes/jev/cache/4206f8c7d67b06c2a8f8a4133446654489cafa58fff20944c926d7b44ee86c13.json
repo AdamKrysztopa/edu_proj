@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.\"\nQuestion: Does any sentence state a condition that says which option to choose in which situation?\n\nSentences:\n1: A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.\n2: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n3: A DPIA is required for systematic and extensive evaluation of personal aspects based on automated processing and profiling that produces legal effects or significantly affects data subjects.\n4: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n5: Systematic and extensive evaluation of personal aspects based on automated processing including profiling that produces legal effects or significantly affects the natural person is a type of processing requiring a data protection impact assessment.\n6: A data protection impact assessment referred to in paragraph 1 shall in particular be required in the case of: (a)a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n7: A DPIA is required for regular and systematic monitoring of employee activities that might produce legal effects or significantly affect employees.\n8: Processing activities that consist of or include regular and systematic monitoring of employee activities - provided that they might produce legal effects concerning the employees or similarly significantly affects them\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681741-8RrSCuVQuiFCY8SIIDrQ",
+    "object": "chat.completion",
+    "created": 1790681741,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks whether a sentence states a condition that says which option to choose in which situation, i.e., a conditional rule that selects an action based on circumstances. Here, \"a DPIA is required where X\" is a condition-to-obligation rule.\n\nSentence 1 states that a DPIA is required where decisions with legal effects are based on such processing, so it is a conditional requirement. Sentence 3 is similar, with \"that produces legal effects\" as the condition. Sentence 6 says a DPIA \"shall be required in the case of\" the evaluation, which is also a conditional trigger. Sentence 7 gives a DPIA requirement for monitoring that might produce legal effects. Sentence 5 says the evaluation is a type requiring a DPIA, which is a classification and so partial. Sentences 2 and 4 are only descriptions of the processing, with no requirement stated. Sentence 8 describes processing activities with a proviso but does not state the DPIA consequence, so it is partial at most.\n\nThe phrase \"which option to choose\" is a loose fit, since these are requirement triggers rather than choices among options. I treat the explicit \"required where/in the case of\" sentences as stating and the others as partial.\n\n```json\n{\"states\":[1,3,6,7],\"partially\":[5,8],\"reason\":\"Sentences 1, 3, 6, 7 explicitly link a situation to a DPIA requirement; 5 and 8 only classify or give a condition without an explicit obligation.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 768,
+      "completion_tokens": 479,
+      "total_tokens": 1247,
+      "cost": 0.006326,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.006326,
+        "upstream_inference_prompt_cost": 0.001536,
+        "upstream_inference_completions_cost": 0.00479
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

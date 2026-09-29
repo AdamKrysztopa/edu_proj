@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Tags that cannot have caused a fault, such as HMI setpoints and recipe numbers, should not be included in a trend because they waste memory and processing without adding diagnostic value.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Tags that cannot have caused a fault, such as HMI setpoints and recipe numbers, should not be included in a trend because they waste memory and processing without adding diagnostic value.\n2: The tags people add and should not are the ones that cannot have caused it: the HMI's setpoints, the recipe number, the shift counter.\n3: They cost memory, they cost a MOV a sample, and they make the read-out harder to look at.\n4: An equipment maintenance log serves as the institutional memory of a plant, with each entry either adding to the record of what an asset has experienced or creating a gap that will incur costs later.\n5: A download from the office copy of the project overwrites every tag with the value in the file, ring included, which is the one thing in the list that has actually cost me a capture.\n6: The ring is in memory order, not time order, and unwrapping it is one line: sample k is Trend_Buf[(Trend_Idx + k) mod 600]\n7: Paper maintenance logs are vulnerable to loss and cannot provide auditable evidence that they have not been edited after the fact, unlike digital systems.\n8: Begin with the failing connection and time window, then collect targeted traffic if switch and device diagnostics cannot distinguish the cause.\n9: When troubleshooting PLC faults, one should collect system data including alarm history, program changes, and trending data before making modifications.\n10: Troubleshooting follows a diagnostic hierarchy that proceeds from power verification to communications testing to I/O functionality testing to logic review to HMI validation.\n11: Production operators can report fault symptoms by selecting from standardized fault symptom tags.\n12: Data standardization involves assigning fault tags to each record of historical fault data to prepare it for mining.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681671-wpZeGvk1yL9xTVwERZO6",
+    "object": "chat.completion",
+    "created": 1790681671,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks about \"this test\" \u2014 a test with an expected result and a meaning or next action. The seed is about excluding tags from a trend, and no sentence describes a test with expected results and follow-up actions.\n\nSentence 8 says to begin with the failing connection and time window, then collect targeted traffic if diagnostics cannot distinguish the cause. That gives a conditional next action, but it does not state an expected result of a test. At most it partially fits.\n\nSentence 9 says to collect data before making modifications. It is not a test result either.\n\nSentence 10 gives a diagnostic hierarchy, which is a sequence and not a result-to-action mapping.\n\nSentence 8 is the only one with a condition leading to an action (\"if diagnostics cannot distinguish, then collect traffic\"). I will list it as partial.\n\n```json\n{\"states\": [], \"partially\": [8], \"reason\": \"No sentence states an expected test result and its meaning. Sentence 8 gives only a conditional next action (collect traffic if diagnostics cannot distinguish the cause), with no expected result.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 787,
+      "completion_tokens": 349,
+      "total_tokens": 1136,
+      "cost": 0.005064,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005064,
+        "upstream_inference_prompt_cost": 0.001574,
+        "upstream_inference_completions_cost": 0.00349
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

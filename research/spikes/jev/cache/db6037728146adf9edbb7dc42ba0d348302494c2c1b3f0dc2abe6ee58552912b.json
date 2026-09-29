@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"A data protection impact assessment is required for systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\"\nQuestion: Does any sentence state a condition that says which option to choose in which situation?\n\nSentences:\n1: A data protection impact assessment is required for systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\n2: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n3: Article 35(3) sets out three types of processing which always require a DPIA: Systematic and extensive profiling with significant effects: \"(a) any systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\"\n4: A DPIA is required in the case of a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\n5: a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person\n6: Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.\n7: A DPIA is required for a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling.\n8: A DPIA is required at least in the following cases: a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681734-xh5AYeW7ivZZiEq4otOT",
+    "object": "chat.completion",
+    "created": 1790681734,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks whether a sentence states a condition that says which option to choose in which situation, meaning a conditional rule of the form \"in situation X, do Y\". Here that is \"in situation X, a DPIA is required\".\n\nSentences 1, 4, 6, 7 and 8 each state that a DPIA is required in a given situation, so they fit best. Sentences 3 and 6 are fuller versions: 3 says these processing types \"always require a DPIA\", and 6 says the same of this type of processing.\n\nSentences 2 and 5 are fragments that name only the situation and never state the consequence, so they do not qualify.\n\nSentence 1 has the form \"required for X\". Sentence 4 has the form \"required in the case of X\", which is explicitly conditional. Sentence 7 says \"required for\" a narrower situation. Sentence 8 says \"required at least in the following cases\", which is a condition but a weaker one.\n\nThe \"option to choose\" wording is loose here, since the choice is between doing a DPIA or not. I count 1, 3, 4, 6, 7 and 8 as stating the condition, with 7 and 8 only partial because they leave out the decision and legal-effects part of the situation. Sentence 3 is a fair match since it says \"always require\".\n\n```json\n{\"states\":[1,3,4,6],\"partially\":[7,8],\"reason\":\"Sentences 1, 3, 4 and 6 state that a DPIA is required in a specified situation; 7 and 8 do so only for a narrower or non-exhaustive situation, and 2 and 5 are fragments.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 875,
+      "completion_tokens": 506,
+      "total_tokens": 1381,
+      "cost": 0.00681,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.00681,
+        "upstream_inference_prompt_cost": 0.00175,
+        "upstream_inference_completions_cost": 0.00506
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

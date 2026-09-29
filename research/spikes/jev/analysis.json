@@ -1,0 +1,146 @@
+{
+  "n": 61,
+  "reliability": {
+    "rho_tacit_a_tacit_b": 0.9098411265677148
+  },
+  "redundancy": {
+    "rho_C_ktopic": 0.2828708491978781,
+    "rho_C_score": 0.18261277366367232,
+    "rho_ktopic_score_reference": 0.8562976755114748
+  },
+  "residual_reliability": {
+    "r_resid_M1": 0.9079989373269185,
+    "r_resid_M2": 0.8762319226739023,
+    "bootstrap_ci_M2": [
+      0.7619766468136867,
+      0.9290099457983342
+    ]
+  },
+  "discriminant_control": {
+    "tacit_a_vs_has_number_M2": -0.2379830784324819,
+    "tacit_a_vs_has_number_M2_ci": [
+      -0.5195729656701331,
+      0.0572505188595528
+    ],
+    "tacit_a_vs_mainstream_M2": -0.3000073156173818,
+    "tacit_a_vs_mainstream_M2_ci": [
+      -0.5923048846070788,
+      0.013436448467367657
+    ]
+  },
+  "descriptive": {
+    "rho_mainstream_ktopic": -0.09910795828105466,
+    "median_C_by_category": {
+      "HYP": 0.3775,
+      "RG-SIBLING": 0.36,
+      "RG-SINGLE": 0.3025,
+      "RG-UNVER": 0.225
+    },
+    "median_C_by_lens": {
+      "DIAG": 0.5549999999999999,
+      "DISC": 0.37,
+      "GUARD": 0.56,
+      "HEDGE": 0.215,
+      "RESULT": 0.325,
+      "WHY": 0.2675
+    },
+    "rho_C_ktopic_by_domain": {
+      "gdpr_v1": 0.3876385176767696,
+      "gdpr_v2": 0.19547220438032453,
+      "plc": 0.5103338176226563
+    },
+    "rho_C_score_by_domain": {
+      "gdpr_v1": -0.07241714687587539,
+      "gdpr_v2": 0.155151576688945,
+      "plc": 0.42495518287133516
+    },
+    "rho_C_mainstream": -0.5085562703853442,
+    "lens_n": {
+      "DIAG": 2,
+      "DISC": 7,
+      "GUARD": 1,
+      "HEDGE": 6,
+      "RESULT": 27,
+      "WHY": 18
+    }
+  },
+  "classification": "PROMISING",
+  "trivial_text_baseline": {
+    "rho_a_b": 0.8474977457827715,
+    "rho_C_ktopic": 0.05534949983442071,
+    "rho_C_score": 0.09391513447641994,
+    "r_resid_M2": 0.7501319493661274,
+    "bootstrap_ci_M2": [
+      0.5271136567404893,
+      0.868305197768815
+    ],
+    "r_vs_has_number_M2": -0.34538756590972086,
+    "classification": "PROMISING"
+  },
+  "examples": {
+    "highest_C_among_low_density": [
+      {
+        "domain": "plc",
+        "category": "RG-SINGLE",
+        "lens": "RESULT",
+        "k_topic": 1,
+        "score": -1,
+        "C": 0.505,
+        "anchor": "captured with a timestamp and not overwritten until",
+        "missing": "a result-to-interpretation mapping for 'captured with a timestamp and not overwritten until'"
+      },
+      {
+        "domain": "plc",
+        "category": "RG-SINGLE",
+        "lens": "WHY",
+        "k_topic": 1,
+        "score": -1,
+        "C": 0.48,
+        "anchor": "A periodic task should include a WALLCLOCKTIME GSV in only one user task, or wrap it in a UID/UIE pair if another task also reads it.",
+        "missing": "a reason"
+      },
+      {
+        "domain": "plc",
+        "category": "RG-SINGLE",
+        "lens": "WHY",
+        "k_topic": 1,
+        "score": 0,
+        "C": 0.47,
+        "anchor": "Sampling rate should be chosen according to the suspected event, not according to convenient historian defaults.",
+        "missing": "a reason"
+      }
+    ],
+    "lowest_C_among_top_density_quartile": [
+      {
+        "domain": "gdpr_v2",
+        "category": "RG-SIBLING",
+        "lens": "RESULT",
+        "k_topic": 3,
+        "score": 2,
+        "C": 0.17,
+        "anchor": "assessment must contain the measures envisaged to address",
+        "missing": "a result-to-interpretation mapping for 'assessment must contain the measures envisaged to address'"
+      },
+      {
+        "domain": "gdpr_v2",
+        "category": "HYP",
+        "lens": "HEDGE",
+        "k_topic": 2,
+        "score": 0,
+        "C": 0.215,
+        "anchor": "In most cases, a data controller can consider that a processing meeting two criteria would require a DPIA to be carried out.",
+        "missing": "an exception condition"
+      },
+      {
+        "domain": "gdpr_v2",
+        "category": "RG-UNVER",
+        "lens": "HEDGE",
+        "k_topic": 3,
+        "score": 2,
+        "C": 0.215,
+        "anchor": "Where necessary, the controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk re...",
+        "missing": "an exception condition"
+      }
+    ]
+  }
+}

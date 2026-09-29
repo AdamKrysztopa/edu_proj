@@ -1,0 +1,104 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.",
+      "sentences": {
+        "1": "If you read full supply voltage but the device does not run, the fault is in the load circuit: broken wire, open coil, or a missing return path.",
+        "2": "When measuring across a device and the LED is ON but the meter reads 0 VDC at the terminal, the issue may be the output common, fuse, or field power.",
+        "3": "If the output LED is ON but the meter reads 0 VDC at the terminal, check the output common, fuse, or field power.",
+        "4": "Trying to run a continuity test on a live 24 VDC circuit will give you a beep regardless of the fault because the meter's test current is swamped by the supply."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.96,
+          "no": 0.03,
+          "partially": 0.01
+        },
+        "confidence": 0.94
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.02,
+          "states": 0.96,
+          "partially": 0.02
+        },
+        "confidence": 0.95
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.05,
+          "states": 0.85,
+          "partially": 0.1
+        },
+        "confidence": 0.79
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "no": 0.02,
+          "states": 0.96,
+          "partially": 0.02
+        },
+        "confidence": 0.94
+      }
+    },
+    "usage": {
+      "input_tokens": 1021,
+      "output_tokens": 155,
+      "cost": 4.2882e-05
+    },
+    "id": "gen-dec-1790681587-h7USnxdIBEb3kM2A20xj",
+    "provider": "TypeSafe"
+  }
+}

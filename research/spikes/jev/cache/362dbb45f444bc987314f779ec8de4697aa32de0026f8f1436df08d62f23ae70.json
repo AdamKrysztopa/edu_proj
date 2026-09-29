@@ -1,0 +1,44 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "A DPIA is NOT required where processing was previously found not to be at risk by DPIA.",
+      "sentences": {
+        "1": "You need to be confident that you can demonstrate that the nature, scope, context and purposes of the processing are all similar when relying on a previously completed substantially similar DPIA."
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.09,
+          "partially": 0.28,
+          "no": 0.63
+        },
+        "confidence": 0.44
+      }
+    },
+    "usage": {
+      "input_tokens": 478,
+      "output_tokens": 41,
+      "cost": 2.0076e-05
+    },
+    "id": "gen-dec-1790681576-YI9Gd6Qh5CU9b6JtkCkN",
+    "provider": "TypeSafe"
+  }
+}

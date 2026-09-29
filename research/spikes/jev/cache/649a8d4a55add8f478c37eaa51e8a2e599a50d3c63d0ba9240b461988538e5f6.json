@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"A data protection impact assessment is required when processing is likely to result in a high risk to the rights and freedoms of data subjects.\"\nQuestion: Does any sentence state how to tell whether something counts as 'high risk': a threshold, a defining feature, or a contrast between a case that is and one that is not?\n\nSentences:\n1: A data protection impact assessment is required when processing is likely to result in a high risk to the rights and freedoms of data subjects.\n2: If you have determined that the processing is likely to result in a high risk to the rights and freedoms of data subjects, you must carry out a data protection impact assessment (DPIA) for each processing operation.\n3: Processing should be screened for factors indicating high-risk processing, such as processing data of vulnerable individuals.\n4: Otherwise, you need to check whether your processing is on the list of types of processing that automatically require a DPIA.\n5: If not, you need to screen for other factors that may indicate it is a type of processing that is likely to result in high risk, such as processing the data of vulnerable individuals.\n6: The ICO must be consulted if a DPIA identifies a high risk that cannot be mitigated through measures.\n7: But you must consult the ICO if your DPIA identifies a high risk and you cannot take measures to reduce that risk.\n8: If high risk is accepted because mitigation is impossible or costs are too high, ICO consultation is mandatory before processing proceeds.\n9: When a data protection impact assessment indicates high-risk processing, the DPIA itself becomes a mandatory consultation trigger for engaging with the Commissioner.\n10: Automated decision-making with legal or similarly significant effect is identified as an indicator of likely high-risk processing.\n11: A high probability of widespread but more minor harm may still count as high risk.\n12: Equally, a high probability of widespread but more minor harm may still count as high risk.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681747-nsIRwzN3NERTPMDz4ahs",
+    "object": "chat.completion",
+    "created": 1790681747,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [10, 11, 12], \"partially\": [3, 4, 5], \"reason\": \"10 gives a defining indicator (automated decision-making with significant effect); 11 and 12 give a contrast, since widespread minor harm can be high risk. 3, 4 and 5 only mention screening factors or a list, e.g. vulnerable individuals.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 729,
+      "completion_tokens": 118,
+      "total_tokens": 847,
+      "cost": 0.002638,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002638,
+        "upstream_inference_prompt_cost": 0.001458,
+        "upstream_inference_completions_cost": 0.00118
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

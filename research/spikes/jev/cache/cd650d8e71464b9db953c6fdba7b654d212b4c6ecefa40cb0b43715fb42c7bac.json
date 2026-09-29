@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.\"\nQuestion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?\n\nSentences:\n1: The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.\n2: Monitor the 24 VDC supply near the affected load, not only at the power supply terminals.\n3: If you read full supply voltage but the device does not run, the fault is in the load circuit: broken wire, open coil, or a missing return path.\n4: Power problem investigation should examine loading, inrush, loose terminals, protective-device behavior and shared commons.\n5: Check loading, inrush, loose terminals, protective-device behavior and shared commons.\n6: When measuring across a device and the LED is ON but the meter reads 0 VDC at the terminal, the issue may be the output common, fuse, or field power.\n7: If the output LED is ON but the meter reads 0 VDC at the terminal, check the output common, fuse, or field power.\n8: Trying to run a continuity test on a live 24 VDC circuit will give you a beep regardless of the fault because the meter's test current is swamped by the supply.\n9: Near-field H probes can be used to detect ground noise, EMI, and poor switching power supply designs from a distance of half an inch or more.\n10: Understanding fundamental physics and transmission line theory can significantly aid in troubleshooting intermittent faults, particularly in switching power supplies.\n11: Aliasing can occur when high-frequency, high-power signals from power supplies and drivers appear in other systems or at different time scales.\n12: Axial loading on encoder bearings can cause intermittent faults that progressively worsen until a hard fault occurs, as bearing breakdown impacts electronics integrity.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681698-NlGJwWy0otysWWgnX7Kx",
+    "object": "chat.completion",
+    "created": 1790681698,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [3], \"partially\": [6], \"reason\": \"Sentence 3 explains the failure: full voltage at the supply but a dead device shows the fault is in the load circuit (broken wire, open coil, missing return). Sentence 6 only partly explains, since it gives causes without tying them to why the measurement location matters.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 757,
+      "completion_tokens": 107,
+      "total_tokens": 864,
+      "cost": 0.002584,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.002584,
+        "upstream_inference_prompt_cost": 0.001514,
+        "upstream_inference_completions_cost": 0.00107
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

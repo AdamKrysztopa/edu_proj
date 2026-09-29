@@ -1,0 +1,63 @@
+{
+  "request": {
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "messages": [
+      {
+        "role": "user",
+        "content": "State:\n{\n \"seed_assertion\": \"When assessing necessity and proportionality, considerations should include whether plans achieve the intended purpose and whether alternative reasonable ways exist to achieve the same result.\",\n \"sentences\": {\n  \"1\": \"When assessing necessity and proportionality, considerations should include whether plans achieve the intended purpose and whether alternative reasonable ways exist to achieve the same result.\",\n  \"2\": \"You should consider: Do your plans help to achieve your purpose? Is there any other reasonable way to achieve the same result?\",\n  \"3\": \"A DPIA process should include seven key steps: identifying the need, describing the processing, considering consultation, assessing necessity and proportionality, identifying and assessing risks, identifying mitigating measures, and signing off and recording outcomes.\",\n  \"4\": \"It should include these steps: Step 1: identify the need for a DPIA Step 2: describe the processing Step 3: consider consultation Step 4: assess necessity and proportionality Step 5: identify and assess risks Step 6: identify measures to mitigate the risks Step 7: sign off and record outcomes\",\n  \"5\": \"A DPIA must assess the necessity and proportionality of processing, including measures to ensure compliance and respect for GDPR principles.\",\n  \"6\": \"The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing\",\n  \"7\": \"A DPIA must include description of the nature, scope, context and purposes of the processing, assessment of necessity and proportionality, identification and assessment of risks, and identification of additional mitigation measures.\",\n  \"8\": \"assess necessity, proportionality and compliance measures;\",\n  \"9\": \"Data protection compliance measures are a good measure of necessity and proportionality and should include lawful basis, prevention of function creep, data quality, data minimisation, privacy information provision, support for individual rights, processor compliance measures, and safeguards for international transfers.\",\n  \"10\": \"A DPIA should evidence consideration of less risky alternatives to achieving the same purposes and explain why they were not chosen.\",\n  \"11\": \"the purposes and methods of the intended processing;\",\n  \"12\": \"Organizations must always conduct a DPIA if they plan to process children's personal data for profiling, automated decision-making, marketing purposes, or offer online services directly to them.\"\n }\n}\n\nQuestion: Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"9\"] state the element this question asks for?\n\nOptions:\n- \"states\": The sentence explicitly states the element the question asks for.\n- \"partially\": The sentence states part of the element, or states it only implicitly.\n- \"no\": The sentence does not state the element; being on the same topic is not enough.\n\nRespond as JSON only: {\"choice\": \"states\" | \"partially\" | \"no\"}."
+      }
+    ],
+    "temperature": 0,
+    "seed": 0,
+    "max_tokens": 30,
+    "usage": {
+      "include": true
+    }
+  },
+  "response": {
+    "id": "gen-1790682217-ZJbdhUDv0EOmt3o5y34W",
+    "object": "chat.completion",
+    "created": 1790682217,
+    "model": "qwen/qwen-2.5-7b-instruct",
+    "provider": "Phala",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "stop",
+        "message": {
+          "role": "assistant",
+          "content": "{\"choice\": \"no\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 689,
+      "completion_tokens": 7,
+      "total_tokens": 696,
+      "cost": 7.03e-05,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 596,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 7.03e-05,
+        "upstream_inference_prompt_cost": 6.89e-05,
+        "upstream_inference_completions_cost": 1.4e-06
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "field": "GDPR data protection impact assessments",
+      "statement": "particularity the assess origin, gravity and nature, of",
+      "what_is_missing": "nature, origin, particularity result-to-interpretation of' a gravity and for mapping the 'assess"
+    },
+    "questions": {
+      "tacit_a": {
+        "type": "noul",
+        "instructions": "Is the missing element something experienced practitioners typically know from hands-on practice but rarely write down explicitly?",
+        "criteria": {
+          "true": "Tacit, experience-based know-how that written sources seldom state.",
+          "false": "Something routinely stated in written guidance, standards or textbooks."
+        }
+      },
+      "tacit_b": {
+        "type": "noul",
+        "instructions": "Would supplying what is missing most likely require asking a seasoned practitioner rather than consulting standard documentation?",
+        "criteria": {
+          "true": "Only practitioners' experience would supply it.",
+          "false": "Standard documentation would supply it."
+        }
+      },
+      "mainstream": {
+        "type": "noul",
+        "instructions": "Is the statement about a mainstream topic that introductory material in this field commonly covers?",
+        "criteria": {
+          "true": "A core, widely covered topic.",
+          "false": "A niche or specialised topic."
+        }
+      },
+      "has_number": {
+        "type": "noul",
+        "instructions": "Does the statement or the missing element contain a specific number, date or quantity?",
+        "criteria": {
+          "true": "Contains a number, date or quantity.",
+          "false": "Contains none."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "tacit_a": {
+        "type": "noul",
+        "noul": 0.29
+      },
+      "tacit_b": {
+        "type": "noul",
+        "noul": 0.22
+      },
+      "mainstream": {
+        "type": "noul",
+        "noul": 0.7
+      },
+      "has_number": {
+        "type": "noul",
+        "noul": 0.07
+      }
+    },
+    "usage": {
+      "input_tokens": 548,
+      "output_tokens": 75,
+      "cost": 2.3016e-05
+    },
+    "id": "gen-dec-1790681291-1HN2iEbu4Xrk5CCjqJ62",
+    "provider": "TypeSafe"
+  }
+}

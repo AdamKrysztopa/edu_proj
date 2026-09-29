@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"The professional technician troubleshooting mindset involves knowing what should happen, measuring what is actually happening, finding the difference, proving the fault, repairing safely, and verifying the fix.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: The professional technician troubleshooting mindset involves knowing what should happen, measuring what is actually happening, finding the difference, proving the fault, repairing safely, and verifying the fix.\n2: The best mindset is: Know what should happen.\n3: Measure what is happening.\n4: Find the difference.\n5: Prove the fault.\n6: Repair safely.\n7: Verify the fix.\n8: Automated PLC monitoring replaces that lag with continuous, standardized data collection that reflects what is actually happening on your shop floor right now.\n9: Data standardization involves assigning fault tags to each record of historical fault data to prepare it for mining.\n10: Measuring voltage at the source and return path is part of systematic troubleshooting to determine circuit condition.\n11: A quality multimeter is the most essential tool for PLC troubleshooting to measure voltages, verify continuity, and check signal current.\n12: Measure voltages at terminals, verify continuity, and check signal current.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681692-a8OUgMET3dettk0EiSZN",
+    "object": "chat.completion",
+    "created": 1790681692,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "{\"states\": [], \"partially\": [1, 2, 4], \"reason\": \"No sentence gives an expected test result with its meaning or next action. Sentences 1, 2 and 4 only loosely gesture at comparing expected and actual values.\"}",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 542,
+      "completion_tokens": 79,
+      "total_tokens": 621,
+      "cost": 0.001874,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.001874,
+        "upstream_inference_prompt_cost": 0.001084,
+        "upstream_inference_completions_cost": 0.00079
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

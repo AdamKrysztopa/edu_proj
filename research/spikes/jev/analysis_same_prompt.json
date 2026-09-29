@@ -1,0 +1,23 @@
+{
+  "rule": {
+    "gain_is_prompt_if_qwen_within": 0.05,
+    "gain_is_jev_if_qwen_below_by": 0.15
+  },
+  "n_sentences_scored": 704,
+  "n_qwen_unreadable_excluded": 58,
+  "kappa_hit_vs_sonnet": {
+    "jev": 0.5206422018348624,
+    "qwen_same_prompt": 0.32142857142857145
+  },
+  "kappa_3way_vs_sonnet": {
+    "jev": 0.40414449942334163,
+    "qwen_same_prompt": 0.2245953452734412
+  },
+  "qwen_same_label_rates": {
+    "states": 0.3039772727272727,
+    "partially": 0.024147727272727272,
+    "no": 0.671875
+  },
+  "jev_minus_qwen_same": 0.19921363040629098,
+  "verdict": "gain is Jev's"
+}

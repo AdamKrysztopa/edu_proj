@@ -1,0 +1,65 @@
+{
+  "request": {
+    "model": "anthropic/claude-sonnet-5.5",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Seed assertion: \"Regular log review should focus on identifying repeat faults, frequently failing parts, high labor-hour assets, and incomplete resolution patterns.\"\nQuestion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?\n\nSentences:\n1: Regular log review should focus on identifying repeat faults, frequently failing parts, high labor-hour assets, and incomplete resolution patterns.\n2: Look for repeat faults, parts that fail too often, assets that absorb too many labor hours, and work orders that keep ending with \"monitor.\" Those are usually signs that the problem hasn't been solved, only deferred.\n3: Regular review of overdue actions, unresolved defects, repeat repairs, rising costs, and unusual downtime identifies patterns and exceptions in maintenance records.\n4: A minimum viable maintenance log entry must include asset ID, date, type of work, findings, actions taken, parts used, labor hours, and technician name.\n5: Minimum viable log entry: asset ID, date, type of work (PM/reactive/inspection), what was found, what was done, parts used, labor hours, and the technician's name.\n6: A maintenance log quality audit can be performed by randomly sampling 20 entries from the last month and scoring each for completeness of asset, findings, parts, hours, and root cause, targeting 85% or higher completeness.\n7: Score each for completeness: asset, findings, parts, hours, root cause.\n8: Digital logs enable aggregation of reliability metrics like MTBF, PM compliance, and labor cost per asset, which is impractical with paper logs.\n9: a useful log should capture the basics of the job, the condition of the asset, and enough follow-up detail to support warranty history, planning, and trend review over time.\n10: A usable equipment maintenance log must include nine specific fields: asset name/ID, date, maintenance type, description of work, technician, parts used, downtime, and next due date.\n11: When reviewing a fault report, the system accesses appropriate IF-THEN rules based on reported fault symptoms and recommends corrective actions.\n12: Association rule mining can discover hidden patterns between fault symptoms and causes from historical machine fault data.\n\nRespond as JSON only: {\"states\": [numbers], \"partially\": [numbers], \"reason\": \"<=25 words\"}.\nCite only sentence numbers that explicitly state the element; topical relevance alone is not enough.\nUse only the numbers shown above (e.g. 3, not \"A3\"); never invent a number."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 1500,
+    "usage": {
+      "include": true
+    },
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "response": {
+    "id": "gen-1790681695-r8yF3J4zWYLzpv0TPfZG",
+    "object": "chat.completion",
+    "created": 1790681695,
+    "model": "anthropic/claude-sonnet-5.5",
+    "provider": "Claude Platform on AWS",
+    "system_fingerprint": null,
+    "service_tier": "default",
+    "choices": [
+      {
+        "index": 0,
+        "logprobs": null,
+        "finish_reason": "stop",
+        "native_finish_reason": "end_turn",
+        "message": {
+          "role": "assistant",
+          "content": "The question asks for a sentence stating an expected test result plus what it means or what next action follows.\n\nSentence 2 says that repeat faults, failing parts, and \"monitor\" work orders are signs the problem was deferred rather than solved. That gives an interpretation of the result, though no explicit next action. It is partial.\n\nSentence 6 gives a target of 85% completeness, which is an expected result. It does not say what a result means or what action follows, so it is partial.\n\nSentence 11 says the system accesses IF-THEN rules based on symptoms and recommends corrective actions. That links a finding to an action, but it describes a system rather than a test with an expected result. It is partial at best.\n\nSentence 3 says review identifies patterns and exceptions, which is not a meaning or action.\n\nSentence 2 is the strongest candidate, since it states what to look for and what it signifies. None fully states an expected result, meaning, and next action together.\n\n```json\n{\"states\": [], \"partially\": [2, 6, 11], \"reason\": \"Sentence 2 interprets findings as deferred problems, but no next action. Sentence 6 gives a 85% target without meaning or action. Sentence 11 links symptoms to recommended actions.\"}\n```",
+          "refusal": null,
+          "reasoning": null
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 846,
+      "completion_tokens": 395,
+      "total_tokens": 1241,
+      "cost": 0.005642,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.005642,
+        "upstream_inference_prompt_cost": 0.001692,
+        "upstream_inference_completions_cost": 0.00395
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "request": {
+    "model": "typesafe/jev-1.13",
+    "state": {
+      "seed_assertion": "Systematic monitoring of the position/location of employees as well as of the content and of the metadata of employee communications, provided that it is fair and with the exception of logging files for security reasons, when the processing is limited to the absolutely necessary data and is specifically documented is a type of processing subject to DPIA requirement.",
+      "sentences": {
+        "1": "Systematic monitoring of the position/location of employees as well as of the content and of the metadata of employee communications, provided that it is fair and with the exception of logging files for security reasons, when the processing is limited to the absolutely necessary data and is specifically documented is a type of processing subject to DPIA requirement.",
+        "2": "Systematic monitoring - provided that it is fair - of the position/location of employees as well as of the content and of the metadata of employee communications with the exception of logging files for security reasons provided that the processing is limited to the absolutely necessary data and is specifically documented.",
+        "3": "Any systematic monitoring, observation or control of individuals including that taking place in a public area or where the individual may not be aware of the processing or the identity of the data controller is a factor that may influence whether high risk is likely to result.",
+        "4": "Any systematic monitoring, observation or control of individuals including that taking place in a public area or where the individual may not be aware of the processing or the identity of the data controller;",
+        "5": "Systematic monitoring of individuals, including observation or surveillance over individuals who may not be aware or may be unable to avoid such processing, is a criterion triggering DPIA requirements.",
+        "6": "Systematic monitoring of individuals - Explanation and examples: Systematic observation, monitoring or other type of surveillance over individuals who may not be aware of or it may be impossible for them to avoid being subject to such processing",
+        "7": "A data protection impact assessment is required for systematic monitoring of a publicly accessible area on a large scale.",
+        "8": "a systematic monitoring of a publicly accessible area on a large scale"
+      }
+    },
+    "questions": {
+      "s1": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic monitor': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"1\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s2": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic monitor': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"2\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s3": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic monitor': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"3\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s4": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic monitor': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"4\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s5": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic monitor': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"5\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s6": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic monitor': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"6\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s7": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic monitor': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"7\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      },
+      "s8": {
+        "type": "choice",
+        "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic monitor': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"8\"] state the element this question asks for?",
+        "criteria": {
+          "states": "The sentence explicitly states the element the question asks for.",
+          "partially": "The sentence states part of the element, or states it only implicitly.",
+          "no": "The sentence does not state the element; being on the same topic is not enough."
+        }
+      }
+    }
+  },
+  "response": {
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "s1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.06,
+          "no": 0.76,
+          "partially": 0.18
+        },
+        "confidence": 0.64
+      },
+      "s2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.04,
+          "no": 0.85,
+          "partially": 0.11
+        },
+        "confidence": 0.77
+      },
+      "s3": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "states": 0.38,
+          "no": 0.22,
+          "partially": 0.4
+        },
+        "confidence": 0.09
+      },
+      "s4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.22,
+          "no": 0.5,
+          "partially": 0.28
+        },
+        "confidence": 0.24
+      },
+      "s5": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.56,
+          "no": 0.18,
+          "partially": 0.26
+        },
+        "confidence": 0.34
+      },
+      "s6": {
+        "type": "choice",
+        "choice": "states",
+        "probabilities": {
+          "states": 0.73,
+          "no": 0.12,
+          "partially": 0.15
+        },
+        "confidence": 0.59
+      },
+      "s7": {
+        "type": "choice",
+        "choice": "partially",
+        "probabilities": {
+          "states": 0.26,
+          "no": 0.28,
+          "partially": 0.46
+        },
+        "confidence": 0.19
+      },
+      "s8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "states": 0.05,
+          "no": 0.76,
+          "partially": 0.19
+        },
+        "confidence": 0.63
+      }
+    },
+    "usage": {
+      "input_tokens": 1920,
+      "output_tokens": 311,
+      "cost": 8.064e-05
+    },
+    "id": "gen-dec-1790681579-6b68oG8RfJUrd7DK41k8",
+    "provider": "TypeSafe"
+  }
+}
