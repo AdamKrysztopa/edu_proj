@@ -51,8 +51,9 @@ measured on them is optimistic; tuning did not rescue the absence check.
     What a \enquote{gap} means & A firing plus an unclosed state may mark a paraphrase or a retrieval
       hole & Candidates labeled \emph{inferred}; retrieval gaps apart & Human closure labels (V1);
       gold tests \\
-    Judge leniency and ceiling & Own rate 1.0 on most lenses; no control can separate the arms & Tie
-      reported with closed-only and paired figures & V1 sample enriched for \enquote{not stated} \\
+    Judge leniency, seed dominance, ceiling & Own rate 1.0 on most lenses; seed kept in both arms;
+      the tie has several possible causes & Tie reported with closed-only, other-source-only and paired
+      figures & Human labels in both arms (V1) \\
     Model paraphrase & Lenses and judge read the extractor's assertion, not the span & Spans kept
       beside every record & Lenses on spans; types checked in V1 \\
     In-sample tuning & Positive numbers would be optimistic & Configuration hashed; tuning disclosed &
@@ -63,8 +64,9 @@ measured on them is optimistic; tuning did not rescue the absence check.
       & Held-out domains after the freeze \\
     Non-reproducible retrieval & Web search, drifting pages and retiring models & Ledgers, snapshots,
       judge caches kept & Snapshot archives; dated corpora \\
-    Tiny $n$ & Precision, verifier error, cross-run counts rest on 19--71 items & Wilson intervals &
-      Sizes set by precision targets \\
+    Tiny $n$, clustered units & Precision, verifier error, cross-run counts rest on 19--71 items that
+      share sources & Wilson intervals (which assume independence) & Cluster-aware intervals; sizes set
+      after pilots \\
     Single operator, owner incentive & One person designed, ran and read everything, and is the
       applicant & Committed artifacts; adversarial AI reviews & Non-owner blind coders; external gate
       reader \\
@@ -74,11 +76,12 @@ measured on them is optimistic; tuning did not rescue the absence check.
   \end{tabularx}
 \end{table}
 
-\paragraph{What would change our mind.} \emph{Toward H2:} blind coders agree on stated / partly stated
-/ not stated ($\kappa \geq 0.70$) and a judge beats the fair control and agrees with them; on pooled,
-dated, held-out golds the frozen map beats density, area size and a plain-LLM ranking; in blind
-prospective elicitation the lower 90\% bound of $\Delta$AUROC is above 0 and the point estimate at least
-$\delta$. \emph{Against H2:} coders cannot agree whether an element is stated ($\kappa < 0.70$ after one
+\paragraph{What would change our mind.} \emph{Toward H2:} in blind prospective elicitation the lower
+90\% bound of $\Delta$AUROC is above 0 and the point estimate at least $\delta$. \emph{Preconditions, not
+evidence for H2:} coders agree on stated / partly stated / not stated ($\kappa \geq 0.70$) and a judge
+beats the mismatched-evidence control and agrees with them; on pooled, dated, held-out CTA golds the
+frozen map beats density, area size and a plain-LLM ranking, which shows compatibility with CTA-derived
+representations. \emph{Against H2:} coders cannot agree whether an element is stated ($\kappa < 0.70$ after one
 codebook revision); closure passes its human check yet the map adds nothing beyond density and area
 size; or the prospective upper 90\% bound falls below $\delta$. \emph{Neither:} more runs on the same
 ledgers, agreement among AI reviewers, or a stop reading from a configuration whose absence check never

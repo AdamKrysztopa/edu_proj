@@ -81,12 +81,12 @@ and main risks. Person-months per phase are in \cref{sec:resources}; roles are i
   Objective & Decide whether \enquote{is this element really unsaid?} can be judged reliably,
     by humans and by a judge, and whether retrieval finds the element where it is stated (L1). \\
   Key tasks & P0 (owner-run): write a closure codebook with anchors per lens. Code the 107
-    admissible lens firings in both arms of the fair control, plus about 100 units from one new
+    admissible lens firings in both arms of the mismatched-evidence control, plus about 100 units from one new
     non-gold domain; the owner (under origin blinding) and one non-owner coder code every unit.
     Report weighted human--human $\kappa$ on three states, gated on closed versus not closed. For
     about 50 firings, search the ledger's full snapshots for the missing element and report
     retrieval recall. Score a judge panel (the local 7B model, a stronger open-weight judge, and
-    frontier judges from other families) against the fair control. Phase~1: before any gold is
+    frontier judges from other families) against the mismatched-evidence control. Phase~1: before any gold is
     unsealed, double-code a closure sample from each dated V2 reconstruction, to check the MS1
     judge on that text type; where it fails, closure there is human-coded. \\
   Deliverables & Codebook and V1 pre-registration (P0); closure set, released, and closure verdict
@@ -157,14 +157,14 @@ and main risks. Person-months per phase are in \cref{sec:resources}; roles are i
   Objective & Build the minimum software that V5 and V6 need to run blind, logged, and codable. \\
   Key tasks & A question service (template questions now; expected-information-gain selection
     later, future work N6) with a fixed unknown-unknowns fraction; blind-arm separation, so the
-    interviewer view never shows scores or strata; World C records into the ledger; a segmentation
+    interviewer view never shows scores; World C records into the ledger; a segmentation
     and coding tool with blinding checks; residual accounting and cost per validated item. The
     Track A turn contract, leading-question guard and corroboration code are copied into the new
     package; \code{instrument/} is never imported. Starts at M15, after MS3. \\
   Deliverables & Workbench v1, tested on simulated labeled sessions (M21); v2 for two domains
     (M30). \\
   Milestones & MS4 (M24) is the first gate to use it. \\
-  Main risks & Leakage of scores or strata into the interviewer or coder views. \\
+  Main risks & Leakage of scores into the interviewer or coder views. \\
   \bottomrule
 \end{tabularx}
 
@@ -172,13 +172,14 @@ and main risks. Person-months per phase are in \cref{sec:resources}; roles are i
 \mbox{}\par
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}p{2.6cm}X@{}}
   \toprule
-  Objective & Decide H2 on fresh, blind human elicitation (L4), and test H3, whether targeting
+  Objective & Test H2 on fresh, blind human elicitation (L4), and test H3, whether targeting
     saves expert time (L5a). \\
   Key tasks & V5 pilot: 6 experts
     $\times$ 20 areas in PLC (40 areas, three experts each), not analyzed for effect; it measures
-    prevalence, design effect, coding time and leakage (M21--M24). V5 main (M25--M37), sized for
-    $\delta = 0.05$: about 300 areas (about 150 per class) in two held-out subdomains (D3, D4),
-    strata G/D/L/R, and short neutral CDM probes of about 8 minutes
+    prevalence, coding time and rough variance values (M21--M24). V5 main (M25--M37), sized at MS4 by
+    simulation (reference: about 300 areas, about 150 per class, under independence) in two held-out
+    subdomains (D3, D4), every area of the frozen partition or a simple random sample, and short neutral
+    CDM probes of about 8 minutes
     \evlit{} \parencite{klein1989critical}. Each area is probed by 3 experts
     \evlit{} \parencite{chao1994percentage}, and each expert covers about 20 areas, so about 45
     experts are needed. V6 (M39--M45), only after MS5 reads continue: a
@@ -186,7 +187,7 @@ and main risks. Person-months per phase are in \cref{sec:resources}; roles are i
     \evlit{} \parencite{loftus1975leading}. \\
   Deliverables & V5 pilot report and powered sample (M24); V5 main result
     (M38); V6 result (M46); residual corpus v1 (M46). \\
-  Milestones & MS4 (M24); MS5 (M38), the H2 verdict; MS6 (M46), the H3 verdict. \\
+  Milestones & MS4 (M24); MS5 (M38), the H2 test; MS6 (M46), the H3 verdict. \\
   Main risks & Recruiting about 45 experts; a prevalence below one half, which raises the areas
     needed above MS4's funded ceiling; coding time; interviewer effects. \\
   \bottomrule
@@ -281,15 +282,15 @@ at any gate (\cref{sec:team}).
   \centering
   \small
   \caption{Milestones in time order: phase, month, and the rule that reads each gate. MS1
-  releases Phase~1, MS3 releases Phase~2, and MS5 decides H2. MS2 and MS2b are freezes: no hash,
+  releases Phase~1, MS3 releases Phase~2, and MS5 tests H2. MS2 and MS2b are freezes: no hash,
   no data.}
   \label{tab:milestones}
   \begin{tabularx}{\linewidth}{@{}lllX@{}}
     \toprule
     Milestone & Phase & Month & Gate rule \\
     \midrule
-    MS1 & 0 & P0 end & \textbf{Closure verdict.} Continue if human $\kappa\geq0.70$, recall meets
-      its floor, and one judge beats the fair control by the margin; this releases the Phase~1
+    MS1 & 0 & P0 end & \textbf{Closure verdict.} Continue if coder $\kappa\geq0.70$, recall meets
+      its floor, and one judge beats the mismatched-evidence control by the margin; this releases the Phase~1
       proposal. Otherwise stop the automated absence check and take a pivot. \\
     MS2 & 1 & M4 & Configuration freeze: MS1's judge, lexicons, thresholds, area score, the V0,
       V2 and V4 pre-registrations and the list of eligible golds hash-committed. No gold before
@@ -299,10 +300,10 @@ at any gate (\cref{sec:team}).
       density and area size. Otherwise stop H2 funding. \\
     MS2b & 2 & M23 & H-OSS freeze: code lenses and the H-OSS pre-registration hash-committed, after
       the Git adapter exists. \\
-    MS4 & 2 & M24 & V5 pilot: the projected number of areas fits the funded ceiling of 450,
-      segmentation $\alpha\geq0.80$, and stratum guessing stays near chance. \\
+    MS4 & 2 & M24 & V5 pilot: the simulated confirmatory size fits the funded ceiling of 450
+      areas, and segmentation reaches $\alpha\geq0.80$. \\
     H-OSS & 2 & M33 & The MS5 rule, applied to H-OSS only; it can neither stop nor license H2. \\
-    MS5 & 2 & M38 & \textbf{H2 verdict.} Stop if the upper 90\% bound $<\delta$; continue if the
+    MS5 & 2 & M38 & \textbf{H2 test.} Stop if the upper 90\% bound $<\delta$; continue if the
       lower bound $>0$ and the point estimate $\geq\delta$; otherwise not supporting H2, and H2
       funding ends. \\
     MS6 & 2 & M46 & H3: yield-ratio lower bound $>1$ and point estimate $\geq1.25$ (the smallest

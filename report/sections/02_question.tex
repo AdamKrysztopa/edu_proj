@@ -25,18 +25,21 @@ from. It labels each claim's evidence status; claims without a locatable span st
 trusted. H1 includes an adversarial part: gating the reconstruction lets fewer planted
 falsehoods and fewer false answers through than the ungated model.
 
-\paragraph{H2 --- Methodology lenses plus an absence check predict the human residual better than
-the strongest baseline.} Constructs from cognitive task analysis and related methods
+\paragraph{H2 --- Methodology lenses plus an absence check predict where experts add unwritten
+knowledge, by a margin that matters.} Constructs from cognitive task analysis and related methods
 (\cref{sec:foundations}) are applied as lenses over the reconstructed evidence. Each lens firing is
 followed by a check of whether the element the lens expects is stated there (the absence check,
-\emph{closure} in the code). Together they rank areas by where an expert would add something the
-evidence lacks. They do so better than the strongest baseline without this machinery, such as text
-density or a plain language-model guess.
+\emph{closure} in the code). Together they rank areas by where a fixed elicitation protocol brings out
+validated knowledge the evidence lacks. Their area-level AUROC exceeds that of the strongest baseline
+without this machinery, such as text density or a plain language-model guess, by at least $\delta$, the
+smallest effect size of interest (SESOI). H2 is a minimum-effect hypothesis: a real but smaller gain
+does not satisfy it. The observable is the residual \emph{elicited} under the protocol, not the latent
+Human Knowledge Residual itself (\cref{sec:residual}).
 
 \paragraph{H3 --- Prioritized questions reduce expert time.} Questions chosen from the gap map
-recover at least 1.25 times as many validated, previously unwritten items per expert hour as an
-untargeted interview of equal length. The 1.25 is the smallest effect of interest (SESOI), fixed
-before data, and a null result counts against H3. The PoC's breadth ranking and selection by expected information gain (not built)
+recover more validated, previously unwritten items per expert hour than an untargeted interview of
+equal length, by a ratio of at least 1.25, the SESOI, fixed before data; V6 reads it with the same rule
+form as H2, and a null result counts against H3. The PoC's breadth ranking and selection by expected information gain (not built)
 are tested as separate selectors (\cref{sec:validation}, V6).
 
 \evint{} H2 is the central hypothesis; \repo{REORIENTATION.md} and the program notes call it
@@ -46,19 +49,24 @@ H2's ranking beats chance. A negative result at one link does not falsify the li
 \subsection{The falsifier}
 
 \begin{evfutbox}
-  H2 is falsified if the upper bound of a 90\% confidence interval on $\Delta$AUROC falls below
-  a SESOI $\delta$, fixed before any gold is acquired. $\Delta$AUROC is the gap map's area-level
-  AUROC for ranking residual-present areas above others, minus that of the strongest
-  pre-registered baseline. The
-  blind prospective study (V5) reads this rule and decides H2. It has not run.
+  $\Delta$AUROC is the gap map's area-level AUROC for ranking areas where the protocol elicits
+  residual knowledge above the others, minus that of the strongest pre-registered baseline. H2 is
+  falsified if the upper bound of a 90\% confidence interval on $\Delta$AUROC falls below $\delta$,
+  fixed before any gold is acquired. H2 survives if the lower bound exceeds 0 and the point estimate
+  reaches $\delta$; that rejects \enquote{no gain} but does not establish a gain of at least $\delta$,
+  which only a lower bound above $\delta$ would, and that bound is reported without gating. The blind
+  prospective study (V5) reads this rule. It has not run.
 \end{evfutbox}
 
-The gap map must beat its strongest competitor by at least $\delta$, not just chance. The test can
-show that this margin is absent only when enough areas exist: about 150 per class for
-$\delta = 0.05$. A single CTA gold gives perhaps 15--25 areas and cannot. \Cref{sec:validation}
-therefore splits the work. A retrospective study pooled over several published CTA golds
-\emph{screens} the gap map and releases money for the prospective study only if the map looks
-promising. The prospective study is sized for about 150 areas per class and \emph{decides} H2.
+The gap map must beat its strongest competitor by at least $\delta$, not just chance. $\delta = 0.05$ is
+a provisional program threshold, to be justified before the confirmatory pre-registration
+(\cref{sec:validation}). A test can show that this margin is absent only when enough areas exist:
+about 150 per class for $\delta = 0.05$ under independent planning figures, and more once experts and
+interviewers cluster the judgments. A single CTA gold gives perhaps 15--25 areas and cannot.
+\Cref{sec:validation} therefore splits the work. A retrospective study pooled over several published
+CTA golds \emph{screens} the gap map and releases money for the prospective study only if the map looks
+promising. Because the lenses draw on CTA constructs, that screen is construct-aligned, not independent
+support for H2. The prospective study is sized after its pilot and is the prospective \emph{test} of H2.
 Before either, a closure study tests whether the absence check works at all; it needs no grant.
 
 \evhyp{} One further hypothesis sits outside this chain. \textbf{H-OSS:} the gap map, adapted to
@@ -80,13 +88,14 @@ No hypothesis has yet been tested against a human criterion (\cref{tab:hypothesi
     \midrule
     H1 & Whether a pipeline with a claim ledger, verbatim provenance and cross-model verification
       runs end to end on real sources. &
-      \evobs\ Engineering part: yes (\cref{sec:n2}). Adversarial part: N2's registered verdict is
+      \evobs\ Engineering part: yes for the pre-fix pipeline on PLC v1 and GDPR v1; the fixed pipeline has not completed a live run (\cref{sec:n2}). Adversarial part: N2's registered verdict is
       INCONCLUSIVE; E-PLANT's Continue branch closed on the validity floor, and the gated arms were
       never scored. \\
     H2 & Whether lenses fire on real text and whether the absence check separates \enquote{unstated}
       from \enquote{stated elsewhere}. &
-      \evobs\ Mechanism only. Lenses fire on three ledgers; the judge's verdict does not depend on
-      which evidence it is shown, so the absence check is not yet informative (\cref{sec:n3}). No
+      \evobs\ Mechanism only. Lenses fire on three ledgers; under the mismatched-evidence control the
+      judge did not tell a candidate's own cross-source evidence from a donor's, so the absence check
+      is not yet informative (\cref{sec:n3}). No
       $\Delta$AUROC has been computed. Next test: the closure study (V1), before any grant. \\
     H3 & Whether ranked questions can be produced at all. &
       \evfut\ Not tested. Template questions exist; no expert has answered one. \\

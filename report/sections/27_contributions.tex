@@ -23,7 +23,7 @@ answer.
     \toprule
     Contribution (study) & If it holds & Even if it fails \\
     \midrule
-    Human-labeled closure set with a codebook, a fair control and a retrieval-recall check (V1,
+    Human-labeled closure set with a codebook, a mismatched-evidence control and a retrieval-recall check (V1,
       Phase~0) &
       \evhyp{} A validated way to judge \enquote{this element is not stated in this evidence} &
       A measured answer to whether any judge, automated or human, can decide absence reliably;
@@ -72,8 +72,8 @@ answer.
 \evobs{} Three contributions exist today, independent of H2:
 \begin{itemize}[nosep]
   \item a provenance-typed evidence model (\cref{sec:evidence-model});
-  \item self-checks built into every gap map: a fair control, a chance-level null, an anti-renaming
-    check and cross-run comparison (\cref{sec:n3}). The fair control was added after an adversarial
+  \item self-checks built into every gap map: a mismatched-evidence control, a chance-level null, an anti-renaming
+    check and cross-run comparison (\cref{sec:n3}). The mismatched-evidence control was added after an adversarial
     AI review found the absence check's weakness, and it is re-run on every replay;
   \item documented negative and inconclusive results (\cref{sec:n2,sec:n3}).
 \end{itemize} \evint{} The novelty ledger

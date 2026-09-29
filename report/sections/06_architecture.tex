@@ -13,9 +13,9 @@ model calls, and URL and PDF parsing. \repo{gapmap/}'s one model call goes over 
 hand-written \code{pytest} architecture test that walks the import graph with Python's \code{ast}
 module. The architecture decision records (ADRs) name this check \code{pytest-archon}, but this repository does not
 install that package; the check runs in code, not just as a design-document statement (decisions
-\href{https://github.com/AdamKrysztopa/edu_proj/blob/main/docs/architecture/decisions/0006-residual-accounting-core.md}{0006},
-\href{https://github.com/AdamKrysztopa/edu_proj/blob/main/docs/architecture/decisions/0007-reconstruction-pipeline.md}{0007},
-\href{https://github.com/AdamKrysztopa/edu_proj/blob/main/docs/architecture/decisions/0008-gapmap-methodology-gap-candidates.md}{0008, proposed}).
+\href{\repourl docs/architecture/decisions/0006-residual-accounting-core.md}{0006},
+\href{\repourl docs/architecture/decisions/0007-reconstruction-pipeline.md}{0007},
+\href{\repourl docs/architecture/decisions/0008-gapmap-methodology-gap-candidates.md}{0008, proposed}).
 A fourth package, \repo{instrument/} (the frozen Validation Track A apparatus,
 \cref{sec:scope}), sits outside this chain entirely: no NOW package imports it, and it imports
 none of them. \Cref{fig:architecture} shows the data flow across all three; \cref{tab:packages}

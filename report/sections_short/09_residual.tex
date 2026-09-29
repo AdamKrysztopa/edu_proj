@@ -10,7 +10,8 @@ knowledge loss after developer turnover \parencite{rigby2016quantifying}.
   frozen at a date $t$. $\mathrm{HKR}(D, E, t)$ is the set of knowledge items that (1)~competent
   practitioners of $D$ \emph{demonstrably use}, corroborated by a second practitioner, a trace or an
   artifact outside $E$; and (2)~that $E$ \emph{does not contain}, as judged under a fixed codebook by
-  blind coders or by a matcher that meets the adoption rule ($\kappa \geq 0.70$). We hypothesize that
+  blind coders or by a matcher that agrees with their adjudicated label (the adoption rule,
+  $\kappa \geq 0.70$). We hypothesize that
   this set is not empty where practice matters, that it concentrates in cues, decision rules, checks and
   rationale, and that its location can be predicted from $E$ alone better than by cheap baselines.
 \end{evhypbox}
@@ -20,15 +21,21 @@ $|H \setminus R| \,/\, |H \cup R_{\mathrm{valid}}|$, reported per knowledge type
 $H \setminus R$ is only an upper bound: it splits into the residual $H \setminus E$ and reconstruction
 misses, items $E$ states that the pipeline did not extract. Telling them apart needs each item checked
 against the frozen corpus, the \enquote{is it really unsaid?} decision the PoC's absence check did not
-make reliably. So the residual cannot be measured more reliably than absence can be judged. An area is
-\emph{residual-present} if it holds at least one validated, important item of $H \setminus E$; that is
-the label the gap map is scored against.
+make reliably. So the residual cannot be measured more reliably than absence can be judged. The HKR
+itself is latent: a study observes only the \emph{elicited residual}, the items of $H \setminus E$ that a
+fixed protocol (probe, time, experts, interviewer) brings out and corroborates, a lower bound on the HKR.
+An area is \emph{residual-present} if it holds at least one validated, important elicited item; that is
+the label the gap map is scored against. The label errs one way: an area without such an item reads
+\enquote{none found by this protocol}, never \enquote{no residual}. Misses unrelated to the scores pull
+every AUROC toward 0.5; misses that track a score (absence is easier to confirm in thin areas, for
+example) can bias $\Delta$AUROC either way.
 
 \evint{} Three quantities must not be blurred. \emph{Thinness} is a property of the ledger alone; the
 PoC computed it. The \emph{HKR} is a relation of $H$ to $E$; it is not yet measured. The \emph{gap-map
 prediction} is an area score labeled \code{inferred}; none is built yet. Only the prospective study (V5)
-measures the HKR as defined. The pooled CTA study (V2) uses published gold lists as a stand-in for $H$,
-so it screens and does not decide. The departure study (V3) measures realized knowledge loss, a
+measures the elicited residual as defined. The pooled CTA study (V2) scores the map against published
+CTA gold lists, but the lenses were built from CTA constructs: freezing the map before gold is seen
+prevents item-level, not construct-level, dependence, so V2 screens and does not decide. The departure study (V3) measures realized knowledge loss, a
 different construct. \evobs{} The accounting types exist and refuse shortcuts: they raise an error when
 an item lacks a human validity judgment and reject a matcher from the generator's family. No estimator
 is implemented and no World~C data exist.

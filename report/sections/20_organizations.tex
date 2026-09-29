@@ -7,7 +7,7 @@ the N3 gap map (\cref{sec:n3}), run on two demo domains built entirely from \emp
 fetched PLC-troubleshooting web pages (forums and vendor blogs, with 42 promotional seeds excluded),
 and the Article~29 Working Party's WP248 guidance on data protection impact assessments (GDPR v1,
 whose support is 80\% guidance from the UK Information Commissioner's Office (ICO) and statute, across three independence keys). Its own
-closeout reports that the closure step is not informative against a fair control on either domain,
+closeout reports that the closure step is not informative against a mismatched-evidence control on either domain,
 and that one adversarial AI reviewer judged 3 of 19 candidates precise (strict reading) on the pre-final maps, in-sample and with no human coder. Nothing below claims the PoC has run on real organizational
 data, and nothing below claims it identifies real tacit knowledge. \evint\ for every application
 below, unless marked otherwise.
@@ -27,9 +27,9 @@ at most a partial statement of how a troubleshooter notices the drift (state: \c
 is real tacit knowledge is untested.
 
 \textbf{A senior engineer's design rationale.} Szulanski's study of 122 practice transfers across
-eight firms found that the largest barriers to transfer were the recipient's absorptive capacity
-and \emph{causal ambiguity} --- not knowing why a practice works --- while source motivation
-mattered less than folk theory suggests \parencite{szulanski1996exploring}. \evlit. In software,
+eight firms found that the major barriers to transfer were knowledge-related: the recipient's lack of
+absorptive capacity, \emph{causal ambiguity} (not knowing why a practice works) and an arduous
+relationship between source and recipient, rather than mainly motivational factors \parencite{szulanski1996exploring}. \evlit. In software,
 this shows up as commits and configuration changes with no issue, pull request, or design record
 explaining the reasoning. \evint.
 
@@ -41,7 +41,7 @@ assessment ``in most cases'' when two screening criteria are met and ``in some c
 one is, without saying which. The GDPR demo's best-rated candidate is built on precisely this
 hedge. \evobs\ (candidate, not validated) --- the run is not N3-admissible (140 pending verdicts),
 and the closure check that would confirm the boundary is genuinely unstated elsewhere is, again,
-uninformative against its fair control.
+uninformative against its mismatched-evidence control.
 
 \subsection{World B evidence versus World A}
 \label{sec:org-worldb}
@@ -85,7 +85,7 @@ per-document access rights carried through to every claim's provenance. \evhyp.
 artifacts to a third-party API by default. The gap map's own closure judge already runs locally,
 though the recorded reason was model-family separation and zero cost, not confidentiality (decision
 0008 (proposed); \cref{sec:n3}) --- a precedent that on-premises deployment is viable, not that it
-works on organizational text: its closure judgments were uninformative against a fair control on
+works on organizational text: its closure judgments were uninformative against a mismatched-evidence control on
 either PoC demo domain. \evobs\ for viability; \evint\ for organizational applicability.
 
 \textbf{Gap map, question ranking, and residual capture, unchanged in shape.} Lenses fire on
@@ -218,8 +218,9 @@ shows that documentation problems arise without any scoring pressure
 key-performance-indicator would plausibly make by-the-letter-but-hollow documentation more common.
 
 \textbf{Surveillance framing.} Szulanski's evidence runs against the intuitive story that experts
-withhold knowledge as leverage: motivation was a smaller transfer barrier than absorptive capacity
-and causal ambiguity \parencite{szulanski1996exploring}. \evlit. The more defensible risk is that a
+withhold knowledge as leverage: the major barriers it found were knowledge-related (absorptive
+capacity, causal ambiguity, an arduous source--recipient relationship) rather than mainly motivational
+\parencite{szulanski1996exploring}. \evlit. The more defensible risk is that a
 system inferring ``only one person understands this'' from Git and review history is doing exactly
 the processing the legitimate-interest test and works-council co-determination exist to check.
 \evint. Deployed without \cref{sec:org-ethics}'s safeguards, it reads to staff as covert

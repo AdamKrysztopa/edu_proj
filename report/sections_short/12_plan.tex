@@ -52,7 +52,7 @@ institution's rate.
   \caption[Gated roadmap]{Which gated stages lead from PoC to platform? Phase~0 (owner-run, before any
     grant) is the closure study, ending at MS1. Phase~1, a lean methods grant, starts only on MS1
     CONTINUE and ends at the screening gate MS3. Phase~2 starts only on MS3 CONTINUE; its prospective
-    study decides H2 at MS5. Every stop leads to a pivot with its own, smaller budget. Only S0, the PoC, is
+    study tests H2 at MS5. Every stop leads to a pivot with its own, smaller budget. Only S0, the PoC, is
     complete.}
   \label{fig:roadmap}
 \end{figure}
@@ -73,7 +73,7 @@ institution's rate.
       \textbf{0.23--0.51\,M} \\
     2a & MS3 continue & Workbench, V5 pilot, learner data, ledger groundwork & M15--M24 & 29--44 &
       0.19--0.49\,M \\
-    2b & MS4 continue & V5 main, powered & M25--M38 & 22--36 & 0.17--0.61\,M \\
+    2b & MS4 continue & V5 main, sized at MS4 & M25--M38 & 22--36 & 0.17--0.61\,M \\
     2c & MS5 continue & V6, V7, novice study, education pilot, on-prem stack & M39--M48 & 38--62 &
       0.26--0.79\,M \\
     O & MS3 continue & Git adapter, code lenses, V3 (H-OSS) & M15--M36 & 14--22 & 0.09--0.26\,M \\
@@ -101,7 +101,7 @@ headroom check runs as code, each experiment has its own key, and every study re
   \textbf{Team status.} No team exists yet: no host institution, no principal investigator (PI) record
   for this program, no statistician, no CTA collaborator, no gate reader and no letter of support. One
   operator designed, built, ran and read the PoC with AI assistance, and is the prospective applicant.
-  Before MS1 is read: the non-owner blind coder and the external gate reader. Before the Phase~1
+  Before MS1 is read: the non-owner blind coders and the external gate reader. Before the Phase~1
   proposal: host institution, PI, statistician as co-applicant, CTA collaborator, research engineer,
   data-protection and license advisor. Before Phase~2: a cognitive psychologist or CTA lead, expert
   pools with letters from professional bodies, and a learning scientist.
@@ -143,8 +143,8 @@ next phase (\cref{tab:team}).
 \end{table}
 
 \evint{} One staffing rule cannot be relaxed by adding people: an advisor who saw a domain's gap map may
-not later be interviewed, code, rate or corroborate in that domain; the pipeline's owner is never the
-only coder on a gating score; interviewers and coders never see scores or strata.
+not later be interviewed, code, rate or corroborate in that domain; the pipeline's owner is never a primary
+coder on a gating score where a second non-owner coder can be found; interviewers and coders never see scores.
 
 \subsection{Top risks and kill criteria}
 
@@ -199,8 +199,7 @@ what the program would add; every row delivers something even on a stop.
     \toprule
     Contribution (study) & If it holds & Even if it fails \\
     \midrule
-    Human-labeled closure set (V1) & \evhyp{} A validated way to judge \enquote{not stated in this
-      evidence} & A measured answer to whether absence can be judged; a public benchmark \\
+    Human-labeled closure set (V1) & \evhyp{} A reproducible human label for \enquote{not stated in this evidence}, and a test of whether any judge tracks it & A measured answer to whether absence can be judged; a public benchmark \\
     Pooled CTA-gold benchmark (V2) & \evhyp{} A first retrospective $\Delta$AUROC, conditional on density
       & A contamination-controlled test for any system that claims to find what text omits \\
     Post-departure dataset (V3) & \evhyp{} Coverage predicts loss beyond authorship & Evidence that it
@@ -209,8 +208,7 @@ what the program would add; every row delivers something even on a stop.
       beyond a fixed text \\
     Efficiency (V6) & \evhyp{} At least 1.25 times more validated items per expert hour & A bound on the
       gain \\
-    Learner link (V8) & \evhyp{} Residual areas carry more novice errors & Evidence that the two are
-      different constructs \\
+    Learner link (V8) & \evhyp{} Residual areas carry more novice errors & An upper bound on how far residual areas track novice errors in this sample \\
     \bottomrule
   \end{tabularx}
 \end{table}

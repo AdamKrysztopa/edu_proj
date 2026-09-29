@@ -56,9 +56,9 @@ the actual test of whether gating helps. The owner then chose not to spend furth
 and a post-fix live re-check (E-LIVE v3) stay pre-registered and unexecuted. Separately, N2's
 engineering milestone is complete (\cref{sec:architecture}).
 
-N3 built and ran its full pipeline on real ledgers. Its fair-control check is built into
+N3 built and ran its full pipeline on real ledgers. Its mismatched-evidence-control check is built into
 \code{gapmap/checks.py}, added after an adversarial review found the weakness, and re-run on every
-replay. It shows that the closure judge does not beat a fair, evidence-mismatched control on any lens
+replay. It shows that the closure judge does not beat the mismatched-evidence control on any lens
 tested (lenses with fewer than two candidates are skipped). The own rate equals the control rate
 ($0.889/0.889$, $0.961/0.961$, $0.958/0.958$). The gap map is therefore a
 working mechanism that produces \emph{candidates}, with no demonstrated ability yet to tell a real

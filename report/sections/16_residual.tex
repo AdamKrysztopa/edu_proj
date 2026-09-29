@@ -24,7 +24,8 @@ software defects \parencite{briand2000comprehensive}, recall of knowledge bases
   elicitation or a performance trace, and a second practitioner, a trace, or an artifact outside
   $E$ corroborates it (such as a log that shows the item in use without stating it). (2)~$E$
   \emph{does not contain} the item: no span in $E$ states it, as judged under a fixed codebook by
-  blind coders or by a matcher that meets the adoption rule ($\kappa \geq 0.70$). We hypothesize
+  blind coders or by a matcher that agrees with their adjudicated label (the adoption rule,
+  $\kappa \geq 0.70$). We hypothesize
   that this set is not empty where practice matters and that it concentrates in certain knowledge
   types (cues, decision rules, checks, rationale). We also hypothesize that its location can be
   predicted from $E$ alone better than by cheap baselines.
@@ -53,6 +54,16 @@ reliably (\cref{sec:n3}). So the residual cannot be measured more reliably than 
 judged. Absence has two parts, retrieval (does the searched pool hold the stating span?) and
 judgment (does a span state the item?); the closure study (V1) measures both, before any grant.
 
+\paragraph{Latent and elicited residual.} \evint{} The HKR is latent. A study observes only the
+\emph{elicited residual}: the items of $H \setminus E$ that a fixed protocol (probe, time, experts,
+interviewer) brings out and corroborates. It is a lower bound on the HKR, so the residual-present label
+errs one way. An area where the protocol finds no such item reads \enquote{none found by this
+protocol}, never \enquote{no residual}: an eight-minute probe that finds nothing does not show that
+nothing is there. Misses unrelated to the scores pull every AUROC toward 0.5 and make $\Delta$AUROC
+conservative, so a STOP partly reflects the protocol. Misses related to a score can bias $\Delta$AUROC
+either way; for example, absence from the corpus is easier to confirm in thin areas. V5 therefore
+reports a longer second interview on a random subsample of areas (\cref{sec:validation}).
+
 \begin{figure}[tbp]
   \centering
   \includegraphics{figures/pdf/fig12_residual.pdf}
@@ -65,10 +76,14 @@ judgment (does a span state the item?); the closure study (V1) measures both, be
   \label{fig:residual}
 \end{figure}
 
-\paragraph{What each study measures in place of the HKR.} \evint{} Only the prospective study (V5)
-measures the construct as defined, and V5 decides H2. The others measure named proxies. In the
-pooled CTA gold study (V2), published gold lists stand in for $H$: their items were elicited and
-published, not re-validated by use. V2 therefore screens; it does not decide. The
+\paragraph{What each study measures in place of the HKR.} \evint{} The prospective study (V5)
+measures the elicited residual, a lower bound on the HKR, and is the prospective test of H2. The
+others measure named proxies. In the pooled CTA gold study (V2), published gold lists stand in for $H$:
+their items were elicited and published, not re-validated by use. The lenses also draw on CTA
+constructs (cues, decision rules, CDM probes); freezing them before gold is acquired prevents
+item-level, not construct-level, dependence. A positive V2 therefore shows compatibility with
+CTA-derived representations, not independent support for H2: V2 is a construct-aligned retrospective
+screen, and it does not decide. The
 developer-departure study (V3) measures realized knowledge loss after a departure (rationale-seeking
 issues and defect-fix commits), predicted from coverage of code artifacts. That is a different
 construct, so V3 tests a separate organizational hypothesis (H-OSS) and can neither support nor

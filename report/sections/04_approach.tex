@@ -98,9 +98,10 @@ mechanism; it does not test the hypothesis.
 
 
 \begin{evobsbox}
-  The absence check did not beat its fair control. The control keeps each candidate's seed and swaps
-  its other-source evidence for a neighbor's. The judge's verdict does not depend on which evidence
-  it is shown, so it is not yet an informative absence check (\cref{sec:n3,sec:interpretation}).
+  The absence check did not beat its mismatched-evidence control. The control keeps each candidate's
+  seed in both arms and swaps its other-source evidence for a neighbor's. Under this control the judge
+  did not tell the candidate's own cross-source evidence from the neighbor's, so it is not yet an
+  informative absence check (\cref{sec:n3,sec:interpretation}).
 \end{evobsbox}
 
 \begin{table}[!tbp]
@@ -124,7 +125,7 @@ mechanism; it does not test the hypothesis.
     Predicted knowledge type per candidate & Adaptation & Taxonomies exist \parencite{collins2010tacit,gervasi2013unpacking,klein1989critical} \\
     Elicitation channel chosen by knowledge type & Known method & \textcite{klein1989critical,gervasi2013unpacking,burton1990efficacy} \\
     Retrieval gaps routed to search, not to experts & Adaptation & Retrieve-or-ask split in \textcite{taranukhin2026infogatherer} \\
-    Three-tier records, anti-renaming check, closure controls, cross-run check & Engineering contribution & Evaluation hygiene; the built-in fair control carries the closure failure that an adversarial review found \\
+    Three-tier records, anti-renaming check, closure controls, cross-run check & Engineering contribution & Evaluation hygiene; the built-in mismatched-evidence control carries the closure failure that an adversarial review found \\
     Question priority by expected information gain & Known method (not built) & \textcite{lindley1956measure,rao2018learning,choudhury2025bedllm} \\
     Residual as a measurable quantity; unseen-item estimation & Adaptation & Estimators exist \parencite{chao1987estimating,chao2012coverage}; naming the residual is framing \\
     Residual lies in steps obvious to experts & Known combination & \textcite{gordon2013reporting,paik2021world,sullivan2014use,chao1994percentage} \\

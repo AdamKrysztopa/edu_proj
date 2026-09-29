@@ -5,8 +5,8 @@ validate it. Three documents, three purposes:
 
 | PDF | Source | Purpose |
 |---|---|---|
-| `main_research_report.pdf` (about 34 pp) | `short.tex`, `sections_short/` | the argument: problem, approach, results, validation program, plan |
-| `extended_technical_report.pdf` (about 143 pp) | `main.tex`, `sections/` | the complete technical record: protocols, full results, implementation, appendices |
+| `main_research_report.pdf` (36 pp; 31 pp of main content) | `short.tex`, `sections_short/` | the argument: problem, approach, results, validation program, plan |
+| `extended_technical_report.pdf` (about 148 pp) | `main.tex`, `sections/` | the complete technical record: protocols, full results, implementation, appendices |
 | `executive_summary.pdf` (2 pp) | `summary.tex` (shares `sections/00_executive_summary.tex`) | two-page summary; section numbers refer to the Extended Technical Report |
 
 The Main Research Report points to the Extended Technical Report for detail; it does not replace it.
@@ -47,6 +47,11 @@ The build uses LuaLaTeX; pdfLaTeX is not supported.
 - `notes/review_C.md`, `review_D.md`: Round 2 reviews (hostile grant, clarity and reproducibility).
 - `notes/revision_R1.md`, `revision_R2.md`: the decisions taken on those reviews.
 - `notes/audit_final.md`, `audit_bib.md`, `audit_citations.md`, `qa_pages_*.md`: final checks.
+
+`REVIEW_FIXES.md` records each independent-review finding, how it was verified and what changed.
+Headline numbers are listed with their artifact, field and hash in `research/results_manifest.json`;
+`python3 scripts/results_manifest.py --check` recomputes them. Repository links in the PDFs are pinned
+to the audited commit named on each title page (`\auditcommit` in `preamble.tex`).
 
 Numbers in the report come from committed artifacts in this repository (`research/n2`, `research/n3`,
 `reconstruct/runs`) and from offline test runs; Appendix E gives the commands to reproduce them.

@@ -103,6 +103,17 @@ number in it. Separately, \code{uv run --directory reconstruct python -m reconst
 runs/<run>} re-checks every evidence item's span against the run's local snapshot; it needs the
 local, git-ignored snapshots (below), so it cannot run from a fresh clone.
 
+\paragraph{Headline numbers and the release.} Every headline number in both reports is listed, with
+its artifact, field and file hash, in \repo{research/results_manifest.json}.
+\code{python3 scripts/results_manifest.py --check} recomputes each value from the artifacts and fails on
+any mismatch. Repository links in both reports point at the audited commit named on the title page,
+not at the moving \code{main} branch; an earlier N3 README that still quoted a superseded
+lexical-closure result showed why.
+
+\paragraph{The Jev spike.} Its analyses re-run offline from the committed cache
+(\repo{research/spikes/jev/cache}), with no provider call for any cached request; see
+\repo{research/spikes/jev/RESULTS.md} for the subcommands.
+
 \paragraph{The N2 ledger run IDs used in this report.}
 \begin{itemize}
   \item PLC: \code{reconstruct/runs/20260928T133336Z-59ec876b3d7e}

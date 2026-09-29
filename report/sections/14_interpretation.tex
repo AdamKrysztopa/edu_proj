@@ -13,10 +13,14 @@ an expert, and any future score against gold.
 
 \evobs{} Both versions of the absence check failed. Lexical closure did no better than a donor null,
 and the semantic judge's closure rate is the same whether it sees a candidate's own other-source
-evidence or its nearest neighbor's (\cref{sec:absence-check}). The judge's verdict does not depend on
-which evidence it is shown, so it is not yet an informative absence check. The data do not establish
-why. A judge that says \enquote{closed} or \enquote{partial} for almost any topical text would produce
-the same pattern, and the own rate sits at its ceiling on most lenses.
+evidence or its nearest neighbor's (\cref{sec:absence-check}). Under this control the
+judge did not tell a candidate's own cross-source evidence from the donor's, so it is not yet an
+informative absence check. The seed's sentences sit in both arms, so the control does not test
+whether the verdict depends on evidence as such. The data do not establish why the arms tie. A judge
+that says \enquote{closed} or \enquote{partial} for almost any topical text would produce the same
+pattern; so would seed sentences that suffice on their own, donor evidence that is genuinely relevant
+(the donor is the nearest same-lens topic), or a control too insensitive to show a difference; and
+the own rate sits at its ceiling on most lenses.
 
 \evint{} Two features of the pipeline make this likely. First, lenses fire on word stems in the
 extractor's paraphrase, so they cannot see a paraphrase of the missing element, and they often fire
@@ -83,7 +87,7 @@ these ledgers could have counted as evidence.
 
 \subsection{Why the PoC neither demonstrates nor refutes H2}\label{sec:interp-h2}
 
-The PoC does not demonstrate H2. No gold was acquired, the absence check does not beat a fair
+The PoC does not demonstrate H2. No gold was acquired, the absence check does not beat its
 control, and the adversarial precision signal is low and in-sample.
 
 The PoC does not refute H2 either. The registered N3 stop rule fires only when, on held-out gold
@@ -116,7 +120,7 @@ are defined in \cref{sec:validation}.
     \midrule
     Toward H2 &
     (1) Blind human coders agree on \enquote{stated / partly stated / not stated}
-    ($\kappa \geq 0.70$); a closure judge beats the fair control and agrees with them; and retrieval
+    ($\kappa \geq 0.70$); a closure judge beats the mismatched-evidence control and agrees with them; and retrieval
     recall, checked against the whole corpus, meets its floor. (2) On pooled, dated, held-out golds,
     the frozen gap map beats the strongest baseline, including density, area size and a plain-LLM
     ranking, and adds value beyond density and area size. (3) In blind prospective elicitation, the

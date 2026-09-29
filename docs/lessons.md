@@ -104,3 +104,15 @@ A queue padded with those is a queue nobody drains.
 - **What happened:** The decision rule in the JEV spike (`research/spikes/jev/spike.py`, `classify`) counted a signal as PROMISING when it met four conditions: agreement between two paraphrases above a threshold, weak correlation with `k_topic` and with the N3 score, stable residuals after regression, and a gap of at least 0.20 over a `has_number` control. Jev passed and was labelled PROMISING. The hostile Opus review then fed the same rule two trivial word-length statistics of the anchor text, and they also passed. The control had no power: only 3 of the 61 texts contain a digit. The review caught this, not the rule. The label was corrected to INCONCLUSIVE.
 - **Generalises to:** Before a rule meant to show "signal beyond X" is registered, run it on a trivial stand-in (noise, text length, a surface statistic). If the stand-in passes, the rule cannot discriminate and must be changed before any data is collected.
 - **Candidate home:** `methods-critic`, as a required check on any registered decision rule. Merge at drain time with "The check meant to catch 'density renamed as gap' passed by construction" and "A 'beats the baseline' gate was registered without checking it was reachable".
+
+### A control's conclusion was worded wider than the arms it swapped
+
+- **What happened:** The report said the closure judge's "verdict does not depend on which evidence it is shown", from `checks.mismatched_evidence_control`. That control keeps the seed's sentences in both arms and swaps only the other-source sentences, so it cannot test dependence on evidence as such. The same wording sat in eight places across both reports and the executive summary, and an owner-named "fair" control carried it past two AI review rounds. An independent review caught it; the conclusion now names what was swapped.
+- **Generalises to:** State a control's conclusion in terms of the variable its arms actually differ on, and list what both arms share. A control is not called "fair" in prose; the name says what it swaps.
+- **Candidate home:** `methods-critic`, as a check on every control or null a report cites.
+
+### A superseded headline number stayed current in a README
+
+- **What happened:** `research/n3/README.md` and `PROGRESS.md` kept the pre-final lexical-closure figure (PLC 42 vs [33, 47]) after the final maps gave 22 vs 33.48 [26, 41], while report links pointed at the moving `main` branch. Two apparently current answers existed. Fixed with `research/results_manifest.json` (`scripts/results_manifest.py --check`) and links pinned to the audited commit.
+- **Generalises to:** Headline numbers live in one generated manifest that a check recomputes from the artefacts, and a report cites an immutable commit, never a branch.
+- **Candidate home:** `citation-verifier` or a pre-commit check that runs `scripts/results_manifest.py --check` when `research/` or `report/` changes.

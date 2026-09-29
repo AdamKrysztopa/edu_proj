@@ -3,23 +3,24 @@
 \paragraph{The result.} \evobs{} The proof of concept (PoC) built a chain from public web text to
 ranked questions for experts, and it runs. Its central step does not work yet. That step, the
 absence check (\emph{closure} in the code), asks a judge model whether retrieved evidence already
-states an element that a methodology lens flagged as missing. In a fair control, each candidate's
-other-source sentences were swapped for those of the topically nearest candidate. The judge's
-closure rate did not change: 0.889, 0.961 and 0.958 in the three ledgers, in both arms. The judge's
-verdict does not depend on which evidence it is shown, so it is not yet an informative absence
-check. No gold standard was acquired, and no human has checked any prediction. The PoC therefore
+states an element that a methodology lens flagged as missing. In a control, each candidate's
+additional other-source sentences were swapped for those of the topically nearest candidate, while the
+seed's own sentences stayed in both arms. The judge's closure rate did not change: 0.889, 0.961 and
+0.958 in the three ledgers, in both arms. Under this control, the judge did not tell a candidate's own
+cross-source evidence from the donor's, so it is not yet an informative absence check; the test does
+not show why. No gold standard was acquired, and no human has checked any prediction. The PoC therefore
 neither shows nor refutes that the gap map predicts what experts know.
 
 \paragraph{The recommendation: run the closure study before any grant.} \evfut{} The cheapest
-decisive test needs no grant and no participants. In this Phase~0 study (V1), a blind coder who is
-not the owner labels each unit as closed, partly closed or open. The sample is the 107 lens firings
-from the two admissible ledgers, each in both arms of the fair control (214 units), plus about 100
-units from one new domain. V1 reports human--human agreement, corpus-level retrieval recall, and
-whether any judge in a panel beats the fair control. It costs coder hours and local compute, on the
-order of EUR~$10^3$. Its gate, MS1, reads CONTINUE only if human $\kappa \geq 0.70$, retrieval
-recall meets its floor (proposed 0.80), and at least one judge beats the fair control by a
-pre-registered margin. Otherwise the automated absence check stops. The V1 numbers belong on page~1
-of any grant proposal (\cref{sec:validation}).
+decisive test needs no grant and no participants. In this Phase~0 study (V1), blind coders who are not
+the owner (two preferred) label each unit as closed, partly closed or open. The sample is the 107 lens firings from the two admissible ledgers (105 with a donor in both arms of the control), plus about 100 units from
+one new domain; the firing, not the arm, is the unit of inference. V1 reports coder agreement,
+corpus-level retrieval recall, and whether any judge in a panel beats the control. It costs coder hours
+and local compute, on the order of EUR~$10^3$. Its gate, MS1, reads CONTINUE only if coder
+$\kappa \geq 0.70$, retrieval recall meets its floor (proposed 0.80), and at least one judge beats the
+control by a pre-registered margin. Agreement shows the label is reproducible, not that it is right.
+Otherwise the automated absence check stops. The V1 numbers belong on page~1 of any grant proposal
+(\cref{sec:validation}).
 
 \paragraph{The problem and the idea.} \evlit{} Experts leave out the steps that have become
 automatic for them. In one small study, three surgeons teaching a procedure omitted on average 73\%
@@ -38,11 +39,11 @@ assessments under the GDPR), at \$0.50--\$1.00 per run:
   \item an evidence model with computed labels, gates that refuse synthetic criteria, and a frozen
     schema (N1);
   \item a reconstruction pipeline with verbatim spans and cross-family verification (N2). All 909
-    stored evidence items re-slice exactly from their snapshots; 418 of 1,169 claims have no
-    locatable span and are labeled synthetic. N2's registered research verdict is INCONCLUSIVE;
+    stored evidence items re-slice exactly from their snapshots; 260 of 1,169 claims have no locatable span and 158 more have a span the verifier did not accept; all 418 are labeled synthetic. N2's registered research verdict is INCONCLUSIVE;
   \item a gap map with seven lenses, absence check, triage, a breadth ranking and template
     questions (N3). On the two admissible ledgers the lenses fired 107 times and left 25 gap
-    candidates after merging; built-in checks expose the absence check's failure on every replay.
+    candidates after merging; built-in checks expose the absence check's failure on every replay;
+  \item an exploratory spike with a low-cost decision model, Jev, on the committed N3 artifacts: its per-record \enquote{tacit knowledge} score showed NO SIGNAL under the pre-set form test: it tracked text form.
 \end{itemize}
 Not shown: that any candidate is real expert knowledge; that the absence check works; that gating
 resists planted falsehoods; that the ranking is more than source density; that anything generalizes
@@ -58,7 +59,8 @@ chain is a proof of concept, not a validated method.
 CONTINUE, read by an external gate reader, not the owner. \emph{Phase~1}, a lean methods grant (about
 EUR~0.3--0.5\,M, 12--15 months, only on MS1 CONTINUE), freezes the configuration and screens the gap
 map against several published CTA task lists; its gate MS3 releases Phase~2 money but does not decide
-the central hypothesis H2. \emph{Phase~2} (EUR~0.7--2.2\,M, only on MS3 CONTINUE) decides H2 by a
-blind prospective study powered for $\delta = 0.05$ in area under the ROC curve (AUROC). \textbf{Team
+the central hypothesis H2. \emph{Phase~2} (EUR~0.7--2.2\,M, only on MS3 CONTINUE) tests H2 by a
+blind prospective study with a provisional smallest gain of interest $\delta = 0.05$ in area under the
+ROC curve (AUROC), sized after its pilot. \textbf{Team
 status:} one operator built the PoC with AI assistance; a host institution, principal investigator,
 statistician, CTA collaborator and gate reader must be named before submission (\cref{sec:plan}).

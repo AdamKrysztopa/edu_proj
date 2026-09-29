@@ -11,24 +11,27 @@ claims from public sources, ties every evidence item to the exact span it came f
 claim's evidence status. H1 has an adversarial part: gating lets fewer planted falsehoods and false answers through
 than the ungated model.
 
-\textbf{H2 --- Lenses plus an absence check predict the human residual better than the strongest
-baseline.} Constructs from CTA and related methods, applied as lenses and followed by a check of
-whether the expected element is stated, rank areas by where an expert would add something the
-evidence lacks. They do so better than the strongest baseline without this machinery, such as text
-density or a plain language-model guess. \emph{H2 is the central hypothesis.}
+\textbf{H2 --- Lenses plus an absence check predict where experts add unwritten knowledge, by a margin
+that matters.} Constructs from CTA and related methods, applied as lenses and followed by a check of
+whether the expected element is stated, rank areas by where a fixed elicitation protocol brings out
+validated knowledge the evidence lacks. Their area-level AUROC exceeds that of the strongest baseline
+without this machinery, such as text density or a plain language-model guess, by at least $\delta$, a
+smallest effect size of interest (SESOI). A real but smaller gain does not satisfy H2. \emph{H2 is the
+central hypothesis.}
 
 \begin{evfutbox}[unbreakable]
-  \textbf{The falsifier.} H2 is falsified if the upper bound of a 90\% confidence interval on
-  $\Delta$AUROC falls below a smallest effect size of interest (SESOI) $\delta$, fixed before any gold is acquired. $\Delta$AUROC is the
-  gap map's area-level AUROC for ranking residual-present areas above others, minus that of the
-  strongest pre-registered baseline. Showing that this margin is absent needs about 150 areas per
-  class for $\delta = 0.05$; a single CTA gold gives perhaps 15--25. The blind prospective study (V5)
-  reads this rule. It has not run.
+  \textbf{The falsifier.} $\Delta$AUROC is the gap map's area-level AUROC for ranking areas where the
+  protocol elicits residual knowledge above the others, minus that of the strongest pre-registered
+  baseline. H2 is falsified if the upper bound of a 90\% confidence interval on $\Delta$AUROC falls
+  below $\delta$, fixed before any gold is acquired. H2 survives if the lower bound exceeds 0 and the
+  point estimate reaches $\delta$; that rejects \enquote{no gain} but does not establish a gain of at
+  least $\delta$, which only a lower bound above $\delta$ would. $\delta = 0.05$ is a provisional program
+  threshold (\cref{sec:validation}). The blind prospective study (V5) reads this rule. It has not run.
 \end{evfutbox}
 
 \textbf{H3 --- Prioritized questions reduce expert time.} Questions chosen from the gap map recover
-at least 1.25 times as many validated, previously unwritten items per expert hour as an untargeted
-interview of equal length. The 1.25 is H3's SESOI, fixed before data; a null counts against H3.
+more validated, previously unwritten items per expert hour than an untargeted interview of equal length,
+by a ratio of at least 1.25 (H3's SESOI, fixed before data); V6 reads it with the same rule form as H2.
 
 \evint{} H2 means something only if H1 holds, and H3 only if H2's ranking beats chance.
 \evhyp{} A separate hypothesis sits outside this chain. \textbf{H-OSS:} the gap map, adapted to code
@@ -48,11 +51,12 @@ organizational artifacts, not the human residual, so it can neither support nor 
     \midrule
     H1 & Whether a ledger with verbatim provenance and cross-model verification runs end to end
       on real sources &
-      \evobs\ Engineering part: yes. Adversarial part: N2's registered verdict is INCONCLUSIVE; the
+      \evobs\ Engineering part: yes for the pre-fix pipeline on PLC v1 and GDPR v1; the fixed pipeline has not completed a live run. Adversarial part: N2's registered verdict is INCONCLUSIVE; the
       gated arms were never scored (\cref{sec:results-n2}). \\
     H2 & Whether lenses fire on real text and the absence check separates \enquote{unstated} from
       \enquote{stated elsewhere} &
-      \evobs\ Mechanism only. Lenses fire on three ledgers; the absence check ties its fair control.
+      \evobs\ Mechanism only. Lenses fire on three ledgers; the absence check ties its
+      mismatched-evidence control.
       No $\Delta$AUROC computed. Next test: V1, before any grant. \\
     H3 & Whether ranked questions can be produced at all &
       \evfut\ Not tested. Template questions exist; no expert has answered one. \\

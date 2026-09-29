@@ -57,17 +57,22 @@
   \draw[gray400, thin, dotted] (s4.east) -- (t4.west);
   \draw[gray400, thin, dotted] (s5.east) -- (t5.west);
 
+
   \node[fit=(s1)(s5)(t1)(t5), inner sep=0pt] (allbox) {};
+
+  \node[font=\sffamily\itshape\fontsize{7.5}{9}\selectfont, text=gray700, align=left,
+        below=2mm of allbox.south west, anchor=north west] (illus)
+    {Illustrative example: a hypothesized pattern, not measured in any study.};
 
   % ---- literature annotations: one compact block below the diagram --------
   \node[align=left, text width=128mm, font=\sffamily\fontsize{7.5}{9}\selectfont,
-        text=evlitcol, below=6mm of allbox.south west, anchor=north west] (lit)
-    {\textbf{LITERATURE.} Sullivan et al.\ 2014 (3 surgeons, 1 procedure):
+        text=evlitcol, below=4mm of illus.south west, anchor=north west] (lit)
+    {\textbf{LITERATURE} (other domains). Sullivan et al.\ 2014 (3 surgeons, 1 procedure):
      73\% of decision steps and 71\% of clinical-knowledge steps omitted.\\[2pt]
-     Chao \& Salvendy 1994 (6 programmers): no single expert reported
-     more than 41\% of diagnostic actions.\\[2pt]
-     Reporting bias: written text under-reports the obvious, even when the
-     writer knows it.};
+     Chao \& Salvendy 1994, as reported by Clark et al.\ 2008 (6 programmers): no single
+     expert reported more than 41\% of diagnostic actions.\\[2pt]
+     Reporting bias (commonsense facts, not expert text): how often people write about
+     something distorts how often it occurs.};
 
   % ---- legend ---------------------------------------------------------------
   \legenditem{lg1}{human}{Expert activity (trace)}%

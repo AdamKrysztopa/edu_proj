@@ -13,9 +13,9 @@ The project is reoriented: reconstruct what public and organisational evidence a
 **N3 PoC (2026-09-29; [overview](research/n3/README.md), [spec](docs/plans/n3-poc-lens-spec.md), package `gapmap/`).**
 - **What it does.** The pipeline runs end to end on real N2 ledgers in two domains: PLC fault diagnosis and GDPR DPIA, with two independent GDPR runs. Stages: evidence ledger → seven methodology lenses (CDM cue-as-discrimination, PARI rival causes and result interpretation, selection rule, conditional exception, automated self-check, rationale) → three-tier records (observed evidence / inferred gap / hypothesis labelled `inferred`) → a ranked map of gap candidates → CDM-style expert questions. Retrieval gaps form a separate category.
 - **How it runs.** It is deterministic: a committed judge cache replays byte-identically offline. It costs $0 (the closure judge is a local Ollama `qwen2.5:7b-instruct`). 172 tests.
-- **What the adversarial review found.** An Opus review asked: "methodology-guided prediction, or renamed density?" The answer: it is not low density renamed. Lenses decide which candidates are gaps; ranking is by breadth of the attested side; the top 10 share 0.00–0.07 with the ten lowest-density candidates. But the absence-detection (closure) step never beat a fair control:
-  - the lexical version ran at chance (donor null, PLC 42 vs [33, 47]);
-  - the semantic judge ties its control on every lens (own = control, 0.89 / 0.96 / 0.96), because its closures come from the seed's own text.
+- **What the adversarial review found.** An Opus review asked: "methodology-guided prediction, or renamed density?" The answer: it is not low density renamed. Lenses decide which candidates are gaps; ranking is by breadth of the attested side; the top 10 share 0.00–0.07 with the ten lowest-density candidates. But the absence-detection (closure) step never beat a mismatched-evidence control:
+  - the lexical version ran at chance (donor null, current final maps: PLC 22 vs null mean 33.48 [26, 41], GDPR v1 11 vs 12.735 [8, 17], GDPR v2 11 vs 8.08 [5, 12]; superseded pre-final-map figure was PLC 42 vs [33, 47]);
+  - under the mismatched-evidence control the judge did not tell a candidate's own cross-source evidence from the donor's (the seed's sentences sit in both arms): own rate = control rate on every lens (0.89 / 0.96 / 0.96).
 - **Precision.** 3 of 19 strict (8 of 19 lenient) by adversarial judgement on the pre-final maps, unvalidated against gold. The outputs are therefore **gap candidates, not validated hidden-knowledge predictions**.
 - **Defects fixed from the three review rounds:**
   - a vacuous anti-renaming check;
@@ -29,7 +29,7 @@ The project is reoriented: reconstruct what public and organisational evidence a
 - **Left as disclosed limitations:** DIAG cause phrases and questions are still sentence fragments; the lexicons are in-sample; independence keys are coarse; there is no learner data.
 - **Final maps.** Candidates: PLC 9, GDPR v1 1, GDPR v2 6. GDPR v2 is not N3-admissible (140 pending verdicts).
 
-**NEXT (future research, needs owner approval and budget):** an informative closure step checked against the fair control and a small human-labelled closure set, then the pre-registered E-CTA/E-OSS gold test (`docs/plans/n3-gap-map-plan.md`).
+**NEXT (future research, needs owner approval and budget):** an informative closure step checked against the mismatched-evidence control and a small human-labelled closure set, then the pre-registered E-CTA/E-OSS gold test (`docs/plans/n3-gap-map-plan.md`).
 
 N2's registered research gate is closed **INCONCLUSIVE** (2026-09-28; [full record](research/n2/closeout.md), [E-PLANT/E-ABST report](research/n2/e_plant_eabst_report.md)) and that reading is unchanged: the E-PLANT ungated baseline adopted only 5/24 plants (floor 8), the E-ABST raw baseline answered only 5/24, and the gated arms were never run at the final freeze because the owner chose not to spend more API budget. E-LIVE v3 (post-fix live check) is deferred for the same reason. All three protocols stay pre-registered, unchanged, for later execution as **future research validation**.
 

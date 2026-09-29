@@ -14,25 +14,26 @@ runs.\footnote{\repo{research/n2/e_live_report.md}, \S3 and \S5; recomputed from
 
 \begin{table}[htbp]
   \centering\small
-  \caption{E-LIVE per-run counts. \enquote{Unknown claims} are slots searched, fetched and fully
+  \caption{E-LIVE per-run counts. \enquote{Located} counts claims with at least one verbatim span;
+    \enquote{Evidence} counts the spans, which is larger where a claim holds several. \enquote{Verified}
+    counts claims the verifier accepted. \enquote{Unknown} claims are slots searched, fetched and fully
     verified with nothing found. GDPR v2 is defect-compromised: 140 of its 366 evidence items kept a
     pending verdict after silent verifier failures, so it is not admissible for N3.}
   \label{tab:elive}
-  \begin{tabularx}{\linewidth}{@{}Xrrrrrr@{}}
+  \begin{tabularx}{\linewidth}{@{}Xrrrrrrr@{}}
     \toprule
-    Run & Sources & Extracted & Located & Verified & Unknown claims & Cost \\
+    Run & Sources & Extracted & Located & Evidence & Verified & Unknown & Cost \\
     \midrule
-    PLC v1 & 35 & 370 & 337 & 321 & 5 & \$0.679 \\
-    GDPR v1 & 20 & 259 & 204 & 195 & 14 & \$0.500 \\
-    GDPR v2 (not admissible) & 25 & 523 & 351 & 207 & 15 & \$1.002 \\
+    PLC v1 & 35 & 370 & 337 & 337 & 321 & 5 & \$0.679 \\
+    GDPR v1 & 20 & 259 & 204 & 206 & 195 & 14 & \$0.500 \\
+    GDPR v2 (not admissible) & 25 & 523 & 351 & 366 & 207 & 15 & \$1.002 \\
     \bottomrule
   \end{tabularx}
 \end{table}
 
 \evobs{} \emph{Exact spans.} All 909 evidence items of the three ledgers re-slice exactly from their
 snapshots (337 + 206 + 366); a separate sample of 71 re-sliced 71 of 71, checked by an AI inspector,
-not a human. The claims are a different matter: of 1,169 claims, 418 are labeled
-\code{synthetic_extrapolation} (49, 64 and 305) and 34 \code{unknown}, so 452 (39\%) have no supporting
+not a human. The claims are a different matter: of 1,169 claims, 418 are labeled \code{synthetic_extrapolation} (49, 64 and 305: 260 with no locatable span, 158 with a span the verifier did not accept) and 34 \code{unknown}, so 452 (39\%) have no supporting
 span. \emph{Verifier error.} On sampled claims the verifier's main error is scope drift, not
 fabrication: 30\% on PLC v1 (Wilson 95\% CI 15--52\%, $n = 20$) and 12\% on GDPR v2 (4--30\%,
 $n = 25$, in-sample). GDPR v1's 14 unknown slots concentrate in \code{failure_mode} (5 of 5 areas):
@@ -43,8 +44,10 @@ kind of gap the gap map targets, but it is not validated.
 again against the original span. The verifier accepted 7 of 20 decoys on PLC v1 (35\%, 18--57\%) and 3
 of 20 on GDPR v1 (15\%, 5--36\%). Three PLC scope decoys only dropped a conjunct, so the span still
 entailed them; without them the rate is 4 of 17 (24\%, 10--47\%). \evint{} The label
-\code{literature_supported}, which every lens reads, rests on a verifier that accepted between a quarter
-and a third of mutated PLC claims. A false \enquote{supported} claim can seed a gap candidate.
+\code{literature_supported}, which every lens reads, means \enquote{a locatable span in a public source
+that a verifier model accepted}, not a fact established by the scientific literature. That verifier
+accepted between a quarter and a third of mutated PLC claims, and its errors pass into lens firing and
+candidate generation: a false \enquote{supported} claim can seed a gap candidate.
 
 \evobs{} \emph{Defects found live.} Running on the real web surfaced eleven defects that 416 passing
 offline tests had missed, among them verifier failures hidden behind a \code{complete: true} flag
@@ -108,19 +111,21 @@ Against a null of 200 random-donor draws, the observed closure counts fall withi
 12.735 (8--17), GDPR v2 11 against 8.08 (5--12). Lexical closure did no better than chance.
 
 \evobs{} \emph{Semantic closure}, the final version, asks the local judge to decide from retrieved
-sentences whether the missing element is \code{closed}, \code{partial} or \code{open}. The fair control
-keeps the seed's own sentences in both arms and swaps only the other-source sentences for those of the
-topically nearest candidate of the same lens. Counting \code{partial} as closed, the judge's rate is the
-same in both arms: \textbf{PLC 0.889, GDPR v1 0.961, GDPR v2 0.958} ($n = 54, 51, 48$). Every tested
+sentences whether the missing element is \code{closed}, \code{partial} or \code{open}; retrieval also
+injects the seed span's own sentences. The \emph{mismatched-evidence control} (earlier drafts called it
+the \enquote{fair control}; code field \code{mismatched_evidence_control}) keeps the seed's sentences in
+both arms and swaps only the other-source sentences for those of a donor: the topically nearest
+candidate of the same lens. Counting \code{partial} as closed, the judge's rate is the same in both arms: \textbf{PLC 0.889, GDPR v1 0.961, GDPR v2 0.958} ($n = 54, 51, 48$). Every tested
 lens in every ledger is flagged \code{closure-uninformative} (\cref{fig:closure}).\footnote{Each
 \code{research/n3/*/gapmap.json}, field \code{checks.mismatched_evidence_control}.}
 
 \begin{figure}[tbp]
   \centering
   \includegraphics{figures/pdf/fig08_closure.pdf}
-  \caption[The absence check versus its fair control]{Does the absence check beat its fair control?
-    It does not. Panel~A: closed-or-partial rate on a candidate's own evidence and on the fair control,
-    by ledger; the rates are equal. Panel~B: observed lexical closures against the donor null (mean and
+  \caption[The absence check versus its mismatched-evidence control]{Does the absence check beat its
+    mismatched-evidence control? It does not. Panel~A: closed-or-partial rate on a candidate's own
+    evidence and on the control (other-source sentences from a donor), by ledger; the rates are equal.
+    With the seed and its source removed (other-source only), the rate falls but stays high. Panel~B: observed lexical closures against the donor null (mean and
     5--95\% interval of 200 draws).}
   \label{fig:closure}
 \end{figure}
@@ -129,11 +134,33 @@ Four qualifications keep this in proportion. In 32 of the 153 pairs the two arms
 identical prompt, so equality there holds by construction. Counted on \code{closed} alone, own versus
 control is 0.30/0.33, 0.65/0.61 and 0.58/0.52, still far below the 0.20 difference the check requires.
 The own rate is 1.0 on 11 of the 14 tested lens--ledger cells, so the test has little room. And an arm
-with the seed's sentences removed still closes or partly closes 0.667, 0.725 and 0.708 of candidates,
-which fits a lenient judge. \evint{} The reading is narrow: the judge's verdict does not depend on which
-evidence it is shown. Every candidate reads \enquote{a lens fired here}, not \enquote{experts know
-something here}. \evobs{} An adversarial AI review of the pre-final maps found this weakness; the first
-built-in control had been a straw man that \enquote{passed}. The fair control now runs on every replay.
+with the seed and its source removed still closes or partly closes 0.667, 0.725 and 0.708 of
+candidates, against 0.889, 0.961 and 0.958 with them. \evint{} The reading is narrow: under this
+control, the judge did not tell a candidate's own additional cross-source evidence from the donor's. The
+test does not say why. Judge leniency, the weight of the seed evidence both arms share, donor evidence
+that is genuinely relevant (the donor is the nearest same-lens topic), or a control too insensitive to
+show a difference could each produce the tie. \evobs{} One warning sign points at the seed: in the
+pre-final maps, 17 of PLC's 22 closures cited only the seed or its own
+source.\footnote{\repo{docs/lessons.md}; \repo{gapmap/src/gapmap/checks.py}.} \evint{} So the problem
+may be not only retrieval of the wrong support: the formulation may let the sentence that triggered the
+lens give a lenient judge enough to close its own gap. Every candidate reads \enquote{a lens fired
+here}, not \enquote{experts know something here}. \evobs{} An adversarial AI review of the pre-final
+maps found this weakness; the first built-in control had been a straw man that \enquote{passed}. The
+mismatched-evidence control now runs on every replay.
+
+\paragraph{An exploratory comparator: Jev.} \evobs{} After the maps were final, a small spike
+(\$0.45 in total) tested whether a low-cost decision model, Jev (TypeSafe \code{jev-1.13}, which returns
+probabilities for typed questions and no text), gives a useful alternative reading of the committed N3
+output. It consumed committed artifacts only: the text of 61 stored candidate and retrieval-gap records
+from the three \code{gapmap.json} files, and all 641 closure-judge prompts, recovered byte for byte by
+an offline replay of the judge cache. Nothing in the gap map changed.\footnote{\repo{research/spikes/jev/RESULTS.md}
+and \code{analysis*.json} there.} \emph{Signal.} Asked per record whether the missing element is
+practice-only know-how, Jev gave consistent scores over two paraphrased questions ($\rho = 0.91$),
+related to source density ($\rho = 0.28$ pooled, 0.51 on PLC) and to the N3 score (0.18; 0.42 on PLC).
+But two word-length statistics also passed the pre-set rule. Replacing every word with a random word of the same length still left pooled $\rho = 0.61$ with the original score, so the pre-set form rule reads \textbf{NO SIGNAL}. (The pooled figure is inflated by an unchanged field line; a post-hoc within-domain reading, 0.35--0.47, would be INCONCLUSIVE.) The PLC density link fell from 0.51 to 0.06 on the meaningless text. \emph{Judge.} Jev's agreement with the stored qwen answers failed its pre-set rule ($\kappa = 0.19$). A second reference, Sonnet 5.5, was then chosen. On 100 prompts from 68 seeds, Jev agreed with it at $\kappa = 0.53$ against qwen's 0.27 (difference 0.25, 95\% CI 0.10--0.40 resampling prompts; 0.32 when qwen got Jev's instructions), at about hosted qwen's cost per call.
+\evint{} That is agreement with one model, not accuracy, and Jev was not run on the mismatched-evidence control, so whether a different judge would break the tie is untested. Jev
+is an exploratory comparator. It does not detect the Human Knowledge Residual. In the program it is one
+more judge in V1 and one more pre-registered baseline in V2 and V5, never a gate or a criterion.
 
 \needspace{5\baselineskip}
 \paragraph{Triage, ranking and the display cap.} \evobs{} An unclosed firing becomes a retrieval gap
@@ -182,7 +209,7 @@ filled from fixed templates with up to two verbatim quotes; no model writes them
 \begin{itemize}[nosep]
   \item \evobs{} \textbf{13 of the 16 displayed candidates are \code{partial}.} The two PLC DIAG records
     read \code{open} only because the DIAG rule counts a partially signed rival cause as unsigned; only
-    one displayed candidate (PLC rank~7, a WHY record) has no partial hit. \evint{} The fair control
+    one displayed candidate (PLC rank~7, a WHY record) has no partial hit. \evint{} The control
     counts \code{partial} as closed, so most surviving hypotheses sit in a state the map's own control
     would call closed.
   \item \evobs{} \textbf{Precision by adversarial judgment: 3 of 19 strict (8 of 19 lenient), on the
@@ -205,8 +232,7 @@ filled from fixed templates with up to two verbatim quotes; no model writes them
 
 \Cref{fig:trace} follows PLC's top-ranked record from source to question. The seed span, from a public
 troubleshooting page, reads \enquote{Loose terminals cause many intermittent faults. A flashlight reveals
-problems in dark panels that you miss otherwise.} The claim is \code{literature_supported}. Seven
-independent sources discuss the topic, and the DIAG lens found five rival causes (ground loops,
+problems in dark panels that you miss otherwise.} The claim is \code{literature_supported}. Seven independence keys share the topic's stems (two are vendor product pages), and the DIAG lens found five rival causes (ground loops,
 aliasing, installation versus software, VFD/contactor noise, pull-up/clock timing). Of 34
 verified sentences retrieved, the judge found none that fully states a sign separating any rival, and it
 marked 5 claims as partial. The DIAG rule counts a partially signed rival as unsigned, so the record

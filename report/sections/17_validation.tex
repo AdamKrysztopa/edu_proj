@@ -4,20 +4,20 @@ This section designs the studies that would turn gap candidates into validated p
 where the Human Knowledge Residual lies (\cref{sec:residual}). \evfut{} Nothing in it has run. It
 follows the rules registered in \repo{REORIENTATION.md} (§14, §18, §22) and marks anything new as
 \enquote{proposed}. \evobs{} The starting point is a pipeline with one bottleneck. The absence
-check (closure) is not yet informative: the judge's verdict does not depend on which evidence it
-is shown. All three maps also share one configuration tuned on the same ledgers
+check (closure) is not yet informative: under the mismatched-evidence control, the judge did not
+tell a candidate's own cross-source evidence from a donor's. All three maps also share one configuration tuned on the same ledgers
 (\cref{sec:n3,sec:not-demonstrated}).
 
 The program asks for no money before its cheapest decisive test has run, and each tranche of money
 is released only by a gate that reads CONTINUE. It has three phases (\cref{fig:validation}).
 Phase~0 tests the absence check before any grant. Phase~1, a lean methods grant, screens the gap
-map against several published expert golds. Phase~2 decides H2 with a blind prospective study
-sized for the decision.
+map against several published expert golds. Phase~2 tests H2 with a blind prospective study
+sized after its pilot.
 
 The studies test the hypotheses of \cref{sec:question} one link at a time; a failed link stops or
 reroutes everything above it. The links are trustworthy inputs (L0, V0), an informative absence
 check (L1, V1) and retrospective prediction on published gold (L2, V2). Then come a measurable
-residual (L3, V4), prospective prediction (L4, V5, which decides H2) and practical value (L5,
+residual (L3, V4), prospective prediction (L4, V5, the prospective test of H2) and practical value (L5,
 V6--V8; V6 tests H3).
 \evint{} L1 comes first: with an uninformative closure step, a gold test measures \enquote{a lens
 fired} plus density. The developer-departure study (V3) is off this chain: it tests a separate
@@ -27,25 +27,28 @@ organizational hypothesis, H-OSS (\cref{subsec:hoss}), and can neither stop nor 
 
 \begin{evfutbox}
   \textbf{Gate rules, proposed for pre-registration.}\\[2pt]
-  \textbf{MS1, closure verdict (end of Phase~0).} CONTINUE if human--human $\kappa \geq 0.70$ on
+  \textbf{MS1, closure verdict (end of Phase~0).} CONTINUE if the coders reach $\kappa \geq 0.70$ on
   the gating split, corpus-level retrieval recall meets its pre-registered floor, and at least one
-  judge beats the fair control by the pre-registered margin. Otherwise STOP the automated absence
-  check.\\[2pt]
+  judge beats the mismatched-evidence control by the pre-registered margin (paired, resampled by seed
+  claim, adjusted for the number of judges). Otherwise STOP the automated absence check. $\kappa$ shows
+  that the label is reproducible, not that it is right.\\[2pt]
   \textbf{MS3, screening gate for Phase~2 money (end of Phase~1).} CONTINUE only if the pooled
   retrospective $\Delta$AUROC has a point estimate $\geq \delta$, \emph{and} its lower 90\% bound
   is $> -\delta/2$, \emph{and} the map adds value over density and area size. Otherwise STOP H2
   funding. MS3 is not a verdict on H2, and it has no inconclusive route: it releases Phase~2 or it
   does not.\\[2pt]
-  \textbf{MS5, H2 verdict (Phase~2).} STOP if the upper 90\% bound of the prospective
-  $\Delta$AUROC is below $\delta$. CONTINUE if the lower 90\% bound is above 0 and the point
-  estimate is at least $\delta$. Any other reading is inconclusive, is reported as not supporting
-  H2, and ends H2 funding.
+  \textbf{MS5, prospective test of H2 (Phase~2).} STOP, H2 falsified, if the upper 90\% bound of
+  the prospective $\Delta$AUROC is below $\delta$. CONTINUE, H2 survives, if the lower 90\% bound is
+  above 0 and the point estimate is at least $\delta$; this rejects \enquote{no gain} but does not
+  establish a gain of at least $\delta$. Any other reading is inconclusive, is reported as not
+  supporting H2, and ends H2 funding.
 \end{evfutbox}
 
 \paragraph{Phase~0: the closure study, before any grant.} \evfut{} This is the recommended next
-action. The owner runs V1 within the NOW program's one permitted human input: a non-owner blind
-coder who labels and does not participate. It needs no participants, no gold and no grant: coder
-hours and local compute, of the order of EUR~$10^3$. \evint{} Its numbers (human--human $\kappa$,
+action. The NOW program registers one permitted human input: a non-owner blind coder who labels and
+does not participate. V1's preferred design has two non-owner coders, which needs a recorded amendment
+to that limit; without it the owner is the second coder and MS1 is provisional. It needs no participants, no gold and no grant: coder
+hours and local compute, of the order of EUR~$10^3$. \evint{} Its numbers (coder $\kappa$,
 retrieval recall, and each judge's own-minus-control gap) should be on page~1 of any grant
 proposal; this report is the design for them. On STOP, the program takes one of two pivots:
 reconstruction with provenance as an audit tool, with no claim about hidden knowledge, or the
@@ -58,8 +61,8 @@ runs V2 pooled over several published CTA golds with V4 on the same data, and en
 interview-only pivot is costed separately and must stand on its own merits. If H2 fails here, the
 money spent on it is Phase~0 and Phase~1 only.
 
-\paragraph{Phase~2: the full program, released only on MS3 CONTINUE.} V5 decides H2 at MS5 and is
-budgeted for the power its rule needs. V6 (H3), V7 and the novice study V8c start only on MS5
+\paragraph{Phase~2: the full program, released only on MS3 CONTINUE.} V5 tests H2 at MS5; its size
+is set at MS4 from the pilot. V6 (H3), V7 and the novice study V8c start only on MS5
 CONTINUE, each under its own gate. H-OSS (V3) runs on the organizational track once its
 components exist.
 
@@ -111,8 +114,10 @@ on every model in the chain, and probe-positive items leave the primary analysis
 priors alone are scored.
 
 \paragraph{Judges and matchers.} No LLM judge is a criterion. A judge or matcher is adopted only
-from a family other than the generator's, with $\kappa \geq 0.70$ against blind human coders and
-not below the lower bound of human--human $\kappa$ (the adoption rule). \evfut{} Proposed: before
+from a family other than the generator's, with $\kappa \geq 0.70$ against the adjudicated label of
+the non-owner coders and not below the lower bound of their mutual $\kappa$ (the adoption rule). The
+adopted judge is the best of a panel on V1 data, so its $\kappa$ is biased upward; the re-check on each
+new text type offsets this. \evfut{} Proposed: before
 any gold is unsealed, a stratified sample of closure units from each dated V2 reconstruction, and
 later from each V5 domain, is double-coded. Where the adopted judge fails the rule on that text
 type, closure there is human-coded, a pre-registered fallback rather than a configuration change.
@@ -122,22 +127,27 @@ type, closure there is human-coded, a pre-registered fallback rather than a conf
 \parencite{obuchowski1997nonparametric} or a cluster bootstrap. \evfut{} Proposed: the strongest of
 the pre-specified baselines is chosen \emph{inside each bootstrap resample}
 ($\min_k \Delta\mathrm{AUROC}_k$), so the choice is part of the sampling distribution. The MS5 rule
-has the logic of two one-sided tests
+pairs a one-sided test against $\delta$, which can falsify H2, with one against 0, in the logic of two
+one-sided tests
 \parencite{schuirmann1987comparison,lakens2017equivalence,lakens2018equivalence}. Labels use
 weighted $\kappa$ or Krippendorff's $\alpha$ \parencite{hayes2007answering,krippendorff2004reliability},
 with prevalence beside $\kappa$ \parencite{feinstein1990high} and Wilson intervals
 \parencite{wilson1927probable}.
 
-\paragraph{Choosing $\delta$, and planning arithmetic.} \evfut{} Proposed: $\delta = 0.05$ AUROC
-(still open in the registered threshold table). A smaller gain over density is unlikely to justify
-the reconstruction, while $\delta = 0.10$ would let a stop rule kill a real but modest gain.
-Planning uses Hanley--McNeil errors \parencite{hanley1982meaning}, balanced classes, AUROC 0.70
+\paragraph{Choosing $\delta$, and planning arithmetic.} \evfut{} $\delta = 0.05$ AUROC is a provisional
+program decision threshold (still open in the registered threshold table), not a value derived from
+theory or data. Before the confirmatory pre-registration its justification is written into the
+pre-registration and signed off by the gate reader, against four quantities: the cost of an expert
+hour of elicitation, the downstream value of a better-ranked area (for V6, validated items per hour),
+the cost of sending experts to areas that hold nothing, and the AUROC the baselines reach on pilot
+data. None of these numbers exists yet, and this report states none. Planning uses Hanley--McNeil errors \parencite{hanley1982meaning}, balanced classes, AUROC 0.70
 against 0.62 and an error correlation of 0.5; \evint{} these values have no empirical basis. The
 90\% half-width of $\Delta$AUROC is then about $\pm 0.14$ with 20 areas per class, $\pm 0.10$ with
 40, $\pm 0.08$ with 60, $\pm 0.06$ with 100 and $\pm 0.05$ with about 150. It depends mainly on the
 number of areas: a smaller gap (0.66 or 0.62 against 0.62) moves it by under 0.01, and a
 correlation of 0.3 widens it by about a fifth. One CTA gold, such as Sullivan's 46-item list
-\parencite{sullivan2014use}, gives perhaps 15--25 areas.
+\parencite{sullivan2014use}, gives perhaps 15--25 areas. These figures assume independent areas and
+serve only as a first-order reference.
 
 \subsection{The studies}
 
@@ -150,7 +160,7 @@ correlation of 0.3 widens it by about a fifth. One CTA gold, such as Sullivan's 
     validated predictions, and which gate releases which money? Phase~0 (V1, the closure study,
     before any grant) ends at MS1. On CONTINUE, Phase~1 (V0 and the MS2 freeze, V2 pooled over
     several published CTA golds, V4) ends at the MS3 screening gate, which either releases
-    Phase~2 or stops H2 funding. In Phase~2, V5 decides H2 at MS5 (after its pilot gate MS4);
+    Phase~2 or stops H2 funding. In Phase~2, V5 tests H2 at MS5 (after its pilot gate MS4);
     only on CONTINUE do V6 (H3), V7 and V8 follow. V3 sits on the organizational track: it tests
     the separate hypothesis H-OSS and can neither stop nor license H2. A STOP at MS1 leads to
     one of two pivots (an audit tool, or interview-only); a STOP at MS3 leads to the separately
@@ -164,35 +174,49 @@ correlation of 0.3 widens it by about a fifth. One CTA gold, such as Sullivan's 
 
 \emph{Labels and units.} Coders and judges assign \emph{closed}, \emph{partial} or \emph{open},
 the three states triage uses. A unit is (lens, seed span, missing element, evidence pool), in the
-two arms of the PoC's fair control: own evidence, and evidence swapped from the nearest other
-candidate of the same lens. The sample is all 107 admissible PoC firings (PLC 56,
-GDPR~v1 51)\footnote{\repo{research/n3/plc/gapmap.json} and the GDPR maps, key
-\code{checks.judge_lexical_confusion}.} in both arms: 214 units, and at least 100 double-coded
-units if some prove uncodable. About 100 units from one new non-gold domain are added, so that no
-judge is scored only in-sample. GDPR~v2's 48 firings (not N3-admissible) serve only for codebook training.
-\emph{Coders.} The judgment is textual, so coders need codebook training, not domain expertise. The
-non-owner coder and the owner (under origin blinding) code every unit, blind to arm, judge answer,
-rank and run. \evint{} The gating $\kappa$ therefore pairs one non-owner coder with the owner;
-Phase~1 adds a second non-owner coder.
+two arms of the PoC's mismatched-evidence control: own evidence, and other-source evidence swapped from
+the nearest other candidate of the same lens, with the seed's sentences in both. The sample is all 107
+admissible PoC firings (PLC 56, GDPR~v1 51; the PoC's control tested 105 of them, skipping lenses with
+one candidate)\footnote{\repo{research/n3/plc/gapmap.json} and the GDPR maps, key
+\code{checks.judge_lexical_confusion}.} The 105 with a donor enter both arms (210 coded pools; the two singletons, one arm only), of which pools identical in both
+arms (19 of the PoC's 105 PLC and GDPR~v1 pairs) are coded once. A firing's two arms are paired, and firings share seed
+claims, sources and lenses, so the firing is the unit of inference: every interval resamples seed
+claims with all their firings and both arms, and a source-level resample is reported as a sensitivity
+check. About 100 pools from one new non-gold domain are added, so that no judge is scored only
+in-sample. GDPR~v2's 48 firings (not N3-admissible) serve only for codebook training.
+\emph{Coders.} The judgment is textual, so coders need codebook training, not domain expertise.
+Preferred: two non-owner coders code every unit, blind to arm, judge answer, rank and run. They resolve
+disagreements by discussion under the codebook; units still disputed are reported, left out of the
+criterion label, and scored both ways as a sensitivity check. The owner answers codebook questions in a
+dated written log that applies to both coders, and codes no unit. If the NOW limit of one non-owner
+coder is not amended, the owner (under origin blinding) is the second coder, MS1 is provisional, and
+Phase~1 adds a second non-owner coder before judge adoption. \evint{} $\kappa$ between the coders shows
+that the label is reproducible, not that it measures true absence. The criterion for judges is the
+adjudicated label, and it is a criterion for \enquote{stated in this pool}, not for the residual.
 \emph{Retrieval recall.} \evfut{} The residual requires absence from the whole corpus, not only
-from the retrieved pool. So, for a random subset of about 50 firings, the non-owner
-coder searches the ledger's full fetched snapshots for the missing element. Retrieval recall is the
-share of elements found there that the pool also holds; proposed floor 0.80.
-\emph{Judges and measures.} The panel holds the local 7B model, a stronger open-weight model, and
-frontier models from families other than the generator's and verifier's (proposed decision 0008).
-Primary measure: agreement on the three states (weighted $\kappa$, or ordinal
-Krippendorff's $\alpha$), with closed versus not closed, the triage split, as the gating split.
-Secondary: the prevalence of \enquote{not stated}, and each judge's own-minus-control difference
-against the humans'.
-\emph{Sample size.} With classes near balance on the gating split, $\kappa \approx 0.70$ (observed
-agreement 0.85, chance 0.50) has a 95\% half-width of about $\pm 0.10$ at 214 units and $\pm 0.14$
-at 100. The open state is rare (the judge called 15 of 155 firings open), so its $\kappa$ is wide
-at this size (about $\pm 0.17$ at 200 units); it is reported, not gated. Units share seeds, so
-$\kappa$ intervals are clustered by seed.
-\emph{Gate (MS1).} As in the box. Proposed margin: a judge beats the fair control if its
-own-minus-control difference in the not-closed rate has a 95\% lower bound above 0 and lies within
-$\pm 0.10$ of the humans' difference. The adopted judge must also meet the adoption rule on the
-gating split, on the new domain alone as well as pooled.
+from the retrieved pool. So, for a random subset of about 50 firings, a non-owner coder searches the
+ledger's full fetched snapshots for the missing element. Retrieval recall is the share of elements
+found there that the pool also holds; proposed floor 0.80.
+\emph{Judges and measures.} The panel holds the local 7B model, a stronger open-weight model,
+frontier models from families other than the generator's and verifier's (proposed decision 0008), and
+Jev, the low-cost decision model of the exploratory spike (\cref{sec:jev}). Primary measure: agreement
+on the three states (weighted $\kappa$, or ordinal Krippendorff's $\alpha$), with closed versus not
+closed, the triage split, as the gating split. Secondary: the prevalence of \enquote{not stated}, each
+judge's own-minus-control difference against the coders', and the other-source-only arm, which shows
+how much the seed alone decides.
+\emph{Precision.} Counted as 210 independent pools, $\kappa \approx 0.70$ (observed agreement 0.85,
+chance 0.50) would have a 95\% half-width of about $\pm 0.10$; counted as 107 firings, about
+$\pm 0.14$. Both are floors: firings that share seed claims or sources widen the interval by an amount
+V1 itself estimates. MS1 reads the point estimate, reports the clustered interval beside it, and stays
+provisional until the adoption rule is re-checked on the next text type. The open state is rare (the
+judge called 15 of 155 firings open), so its $\kappa$ is wide at this size; it is reported, not gated.
+\emph{Gate (MS1).} As in the box. Proposed margin: a judge beats the control if its paired
+own-minus-control difference in the not-closed rate has a 95\% lower bound above 0, Bonferroni-adjusted
+over the pre-registered judge panel and resampled by seed claim, and lies within $\pm 0.10$ of the
+coders' difference on the same units. If the coders' own difference is not above 0, the control does not
+discriminate on these ledgers; MS1 reports that and reads each judge on the adoption rule alone. The
+adopted judge must also meet the adoption rule on the gating split, on the new domain alone as well as
+pooled.
 
 \subsubsection{Phase~1 --- V0 (L0): readiness and the deferred N2 validation}
 
@@ -229,15 +253,21 @@ item that $R$ lacks is checked against the dated corpus under the V1 codebook. A
 corpus states but $R$ missed are scored separately as reconstruction misses.
 \emph{Baselines.} The registered baselines, among them random, area size, retrieval-support
 density, corpus frequency, a type prior from the other golds (leave-one-gold-out), and a plain-LLM
-ranking on a model from another family. Coders see no score, origin or model family; all
+ranking on a model from another family, and two added after the Jev spike (\cref{sec:jev}): a
+text-form baseline (length statistics of each record's text) and Jev's per-record score. Coders see no score, origin or model family; all
 item-to-area assignments and at least 20\% of reconstruction--gold pairs are double-coded.
-\emph{Analysis.} Primary: the pooled $\Delta$AUROC for residual-present areas against the strongest
-baseline, by a random-effects model over golds or a cluster bootstrap with gold as the top-level
-cluster. Incremental: the conditional AUROC within density tertiles; the map \enquote{adds value}
+\emph{What V2 can show.} \evint{} The golds come from CTA and CDM work, and so do the lens
+constructs. Freezing the map before the gold is acquired prevents item-level overfitting, not
+construct-level dependence. V2 is therefore a construct-aligned retrospective screen: a positive result
+shows the map is compatible with CTA-derived representations, not independent support for H2.
+\emph{Analysis.} Primary: $\Delta$AUROC for residual-present areas against the strongest baseline, with
+AUROC pairs formed only within a gold, golds as fixed strata, and a bootstrap over areas within gold.
+No random-effects model is fitted with three to six golds; heterogeneity is reported descriptively,
+and the reading does not generalize beyond these golds. Incremental: the conditional AUROC within density tertiles; the map \enquote{adds value}
 at MS3 if its point estimate is at least $0.5 + \delta$.
 \emph{Sample size and what MS3 can read.} Three to six golds of 15--25 areas give about 45--150
-areas. At four golds and 80 areas split evenly, the half-width is about $\pm 0.10$ before
-between-gold heterogeneity. CONTINUE then needs a point estimate of at least 0.075, because the
+areas. Under the independence planning figures, at four golds and 80 areas split evenly, the
+half-width is about $\pm 0.10$; nesting in golds makes the real figure wider. CONTINUE then needs a point estimate of at least 0.075, because the
 lower bound must clear $-0.025$. Under the planning assumptions, a map with no true gain passes
 with probability about 0.11. A true gain of $\delta$ passes with about 0.34, and one of 0.10 with
 about 0.66 (0.13, 0.45 and 0.81 at 60 areas per class). \evint{} MS3 is a screen. It accepts
@@ -255,18 +285,24 @@ occasions are positively dependent and the estimate is biased low; only the know
 validate it. Out of tolerance, the estimated residual is dropped as an objective and V5 reports
 observed counts only. V4 informs MS3's report but does not gate it.
 
-\subsubsection{Phase~2 --- V5 (L4): blind prospective elicitation, which decides H2}
+\subsubsection{Phase~2 --- V5 (L4): blind prospective elicitation, the prospective test of H2}
 
 \emph{Design.} Within-expert and area-level. Freeze and hash-commit the reconstruction, dated
-corpus, gap map, area score and area partition. Sample areas into four labeled strata: top of the
-area score (G), lowest retrieval density (D), top of a plain-LLM ranking (L) and uniform random
-(R), plus a pre-registered fraction of confident-but-unverified areas
-\parencite{lakkaraju2017identifying}. Sampling spans the whole score range, so $\Delta$AUROC is
-estimable with known inverse-probability weights. Each area gets a short probe of about 8 minutes: the same neutral CDM-style question for every area
-\parencite{klein1989critical} (\enquote{Walk me through the last time you handled this. What did
+corpus, gap map, area score and area partition. In each domain every area of the frozen partition is
+probed; if the partition exceeds the size fixed at MS4, a simple random sample is drawn with a seed
+committed at MS4. No predictor score affects which areas are probed, so each predictor's ordinary
+AUROC estimates its AUROC over the partition and no weights are needed. (An earlier draft sampled
+strata chosen by the predictors themselves: top gap-map score, lowest density, top plain-LLM score and
+random. Plain AUROC on such a sample does not estimate the population AUROC, and the strata's inclusion
+probabilities were undefined, so that design was dropped.) If the pilot shows residual-present areas
+too rare for a census or simple random sample, the fallback, fixed at MS4 before any main data, is
+unequal sampling with pre-specified inclusion probabilities, positive for every area, and a
+design-weighted (inverse-probability-weighted) AUROC. Each area gets a short probe of about 8
+minutes, loosely adapted from the first pass of the CDM \parencite{klein1989critical}, a shortened format
+the CDM work does not test: the same neutral question for every area (\enquote{Walk me through the last time you handled this. What did
 you notice? What did you check? What would a newcomer miss?}), never the gap map's own question,
 and at most one follow-up restating the expert's words. Each expert covers about 20 areas in two
-sessions, balanced across strata, in random order.
+sessions, in random order.
 \emph{Domains and people.} A PLC pilot, not analyzed for effect; the main study in two held-out
 domains with at least 150 areas each at the registered grain (\cref{sec:domains}). Practitioners
 with several years of practice, outside any Track~A pool, three per area, the best cost--benefit
@@ -275,22 +311,37 @@ validator.
 \emph{Outcome.} Expert turns are segmented into items (cue, decision rule, check, rationale,
 expectancy). An item counts if it is absent from the frozen reconstruction \emph{and} the dated
 corpus under the V1 codebook, and a second expert, a trace or an artifact outside the corpus
-corroborates it. Other experts rate importance a week later, blind to stratum. An area is
-\emph{residual-present} if it holds at least one validated, important new item.
+corroborates it. Other experts rate importance a week later, blind to every score. An area is
+\emph{residual-present} if it holds at least one validated, important new item. This is the residual
+\emph{elicited} by the protocol, a lower bound on the HKR (\cref{sec:residual}); an area without such
+an item reads \enquote{none found}, never \enquote{no residual}. Proposed: a random subsample of areas,
+sized at MS4, gets a second, longer CDM interview with another expert, blind to the first, and the share
+of areas that turn residual-present only then is reported against each predictor's score. Misses
+unrelated to the scores make $\Delta$AUROC conservative; misses related to a score can bias it either
+way, and the subsample shows which case holds.
 \emph{Blinding and disclosure.} Experts are told that the study maps where practice relies on
 unwritten knowledge, not that a model chose areas. This partial disclosure is stated in the ethics
 application; every expert is debriefed afterward and may withdraw their data. The interviewer sees
-only area names in random order, coders see pseudonymized turns, and a guess-the-stratum check on
-20\% of areas reports leakage.
-\emph{Analysis.} Primary: prospective $\Delta$AUROC against the strongest baseline, clustered by
-expert and area \parencite{obuchowski1997nonparametric}, with the conditional AUROC within density
-tertiles. Secondary: the rate ratio of validated important items, G against the strongest of D, L
-and R (mixed-effects negative binomial, \cite{bates2015fitting}), and expert minutes per item.
+only area names in random order and no scores, and coders see pseudonymized turns.
+\emph{Analysis.} Primary: prospective $\Delta$AUROC against the strongest baseline, with the
+conditional AUROC within density tertiles. Areas share experts and each domain has one interviewer, so
+the resampling unit (for example fixed area blocks each covered by one panel of three experts,
+resampled within domain) is fixed at MS4 \parencite{obuchowski1997nonparametric}, and the claim is
+conditional on the two domains and their interviewers. Secondary: the rate of validated important
+items in each predictor's top-ranked areas (fraction pre-registered), on the same sample
+(mixed-effects negative binomial, \cite{bates2015fitting}), and expert minutes per item.
 Segmentation targets $\alpha \geq 0.80$; \enquote{new versus in text} and \enquote{same item} need
 $\kappa \geq 0.70$.
-\emph{Sample size and expert-hours.} No effect is assumed. MS5 needs a half-width near
-$\delta = 0.05$: about 150 residual-present and 150 other areas, so about 300 areas. Three experts
-per area make 900 probes. At 20 areas per expert, that is 45 experts (about 22 per domain) plus 6 in
+\emph{Sample size and expert-hours.} No effect is assumed. As a first-order reference only: under
+the independent planning figures, a 90\% half-width near $\delta = 0.05$ needs about 150
+residual-present and 150 other areas. At that width the MS5 rule stops a map with no gain with
+probability about 0.5 and continues a map with a gain of exactly $\delta$ with about 0.5; either is
+inconclusive about 0.45 of the time. The real design nests judgments in experts, areas share experts
+and each domain has one interviewer, so the need is larger by a design effect this report cannot state.
+The confirmatory size is set at MS4 by simulating the full design (prevalence, expert, area and
+interviewer variation, and the miss rate) over a pre-registered range around the pilot's values; the
+pilot is too small to pin these, so the range, not a point, sets the size. At the reference size, three
+experts per area make 900 probes. At 20 areas per expert, that is 45 experts (about 22 per domain) plus 6 in
 the pilot. Each expert gives about 3 hours in sessions and 1 hour rating other experts' items: about
 150--250 expert-hours in all, and about 70 session hours per interviewer. \evint{} Coding costs
 more than the experts. About 120 hours of audio must be segmented and matched against the
@@ -299,12 +350,11 @@ reconstruction and the dated corpus by two coders: about 1,200--1,900 coder hour
 time. Two things can raise this. If residual-present areas are rarer than half, more areas are
 needed (about 500 at a prevalence of 0.3), and clustering by expert adds a design effect.
 \emph{Gates.} The pilot (6 experts $\times$ 20 areas: 40 areas, three experts each) estimates
-prevalence, design effect, coding time and leakage. \textbf{MS4} releases the main study only if the
-projected number of areas fits a funded ceiling of 450 (1.5 times the plan), segmentation reaches
-$\alpha \geq 0.80$, and stratum guessing stays near chance. Otherwise V5 stops before the main
-study, and H2 is reported as untested prospectively; an underpowered main study is never run.
-\textbf{MS5} then reads the rule in the box. At a half-width of $\delta$, every reading is decisive
-except a point estimate between 0 and $\delta$.
+prevalence, coding time and rough variance values. \textbf{MS4} releases the main study only if the
+simulated confirmatory size fits a funded ceiling of 450 areas (1.5 times the reference) that the
+frozen partitions can supply, and segmentation reaches $\alpha \geq 0.80$. Otherwise V5 stops before
+the main study and H2 is reported as untested prospectively. \textbf{MS5} then reads the rule in the
+box.
 
 \begin{table}[tbp]
   \centering\scriptsize
@@ -319,9 +369,10 @@ except a point estimate between 0 and $\delta$.
     \toprule
     Study (link) & Phase / gate & Humans & CONTINUE if & Otherwise & At planned $n$ \\
     \midrule
-    V1 Closure (L1) & 0 / MS1 & Owner + 1 non-owner coder & Human $\kappa \geq 0.70$; recall
-      $\geq$ floor; a judge beats the fair control by the margin & STOP automated absence check;
-      pivots & $\kappa$ $\pm 0.10$ at 214 units \\
+    V1 Closure (L1) & 0 / MS1 & 2 non-owner coders preferred; owner logs codebook rulings & Coder
+      $\kappa \geq 0.70$; recall $\geq$ floor; a judge beats the mismatched-evidence control by the margin
+      & STOP automated absence check; pivots & $\kappa$ $\pm 0.10$--$0.14$ (independent floor); clustered
+      interval reported \\
     V0 Readiness (L0) & 1 / MS2 & 1 coder (E-ABST) & Runs admissible; MS2 hash; N2 gates as
       registered & No hash: no gold; N2 Stop: no V7 & -- \\
     V2 Pooled CTA golds (L2) & 1 / MS3 (screen) & 2 coders & Pooled $\Delta$AUROC point $\geq
@@ -331,7 +382,8 @@ except a point estimate between 0 and $\delta$.
       estimated residual & -- \\
     V5 Prospective (L4; H2) & 2 / MS4, MS5 & 6 pilot + about 45 experts, 3 per area & Lower
       90\% $> 0$, point $\geq \delta$ & Upper 90\% $< \delta$: STOP H2; else not supporting H2 &
-      $\pm 0.05$ at 150 per class: decisive unless $0 \leq$ point $< \delta$ \\
+      Reference $\pm 0.05$ at 150 per class (independent): STOP at no gain and CONTINUE at gain $\delta$
+      each $\approx 0.5$; size set at MS4 \\
     V6 Efficiency (L5a; H3) & 2 / MS6 & 20--30 per domain (illustr.) & Lower 90\% $> 1$, point
       $\geq 1.25$ & Any other reading counts against H3 & Sized from V5 data \\
     V7 Organizational (L5b) & 2 / MS7 & 1 partner, 6--12 staff & G beats D and R in both parts &
@@ -456,5 +508,5 @@ reinterpreted.
 
 \evint{} Each STOP teaches something. At MS1, it shows that absence in text cannot yet be judged
 reliably, and it leaves a public closure set. At MS3, it leaves a reconstruct-versus-CTA benchmark.
-At MS5, it falsifies the claim that text reconstruction locates the human residual, with a bounded
-effect size.
+At MS5, it bounds, in two domains, how well text reconstruction locates the residual that a short
+neutral probe elicits.

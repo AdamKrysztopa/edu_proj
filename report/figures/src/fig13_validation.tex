@@ -62,9 +62,9 @@
   \node[box, w=32, minimum height=10mm, anchor=east] (piv0) at (\br mm-2mm, \yA mm)
     {\textbf{Pivots}\sub{audit tool; interview-only}};
 
-  \node[tag] at ($(v1.north east)+(0,0.7mm)$) {blind coder};
+  \node[tag] at ($(v1.north east)+(0,0.7mm)$) {blind coders};
   \node[rule, anchor=south west] at ($(ms1.west |- v1.north)+(0,1.5mm)$)
-    {\textbf{MS1} $\kappa \geq 0.70$, recall $\geq$ floor,\\a judge beats the fair control};
+    {\textbf{MS1} $\kappa \geq 0.70$, recall $\geq$ floor,\\a judge beats the control};
 
   \draw[flowimpl] (poc) -- (v1);
   \draw[flowplan] (v1) -- (ms1);
@@ -96,7 +96,7 @@
     {\textbf{V5 pilot}\sub{6 experts}};
   \node[ms, anchor=west] (ms4) at ($(pil.east)+(4mm,0)$) {MS4};
   \node[box, w=32, anchor=west] (v5) at ($(ms4.east)+(4mm,0)$)
-    {\textbf{V5 Blind elicitation}\sub{decides H2;\\$\sim$300 areas, 45 experts}};
+    {\textbf{V5 Blind elicitation}\sub{tests H2;\\size set at MS4}};
   \node[ms, anchor=west] (ms5) at ($(v5.east)+(4mm,0)$) {MS5};
 
   \coordinate (fork) at ($(ms5.east)+(6mm,0)$);
@@ -109,8 +109,8 @@
   \node[ms, anchor=west] (ms8) at ($(v8.east)+(4mm,0)$) {MS8};
 
   \node[rule, anchor=north] at ($(ms4 |- pil.south)+(0,-1.5mm)$)
-    {\textbf{MS4} areas fit the funded ceiling,\\$\alpha \geq 0.80$, stratum guessing near chance};
-  \node[rule, anchor=south] at ($(ms5 |- v5.north)+(0,1.5mm)$) {\textbf{MS5}\\H2 verdict};
+    {\textbf{MS4} simulated size fits the ceiling,\\$\alpha \geq 0.80$};
+  \node[rule, anchor=south] at ($(ms5 |- v5.north)+(0,1.5mm)$) {\textbf{MS5}\\H2 test};
 
   \draw[flowplan] (pil) -- (ms4);
   \draw[flowplan] (ms4) -- (v5);

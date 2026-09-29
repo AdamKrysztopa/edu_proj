@@ -17,9 +17,10 @@ come to mind. How much any one report leaves out is an empirical question.
 \end{evlitbox}
 
 \evlit{} Two other studies give numbers. Six expert programmers explained their troubleshooting
-under several elicitation methods \parencite{chao1994percentage}. No single expert reported more
-than 41\% of diagnostic actions, 53\% of debugging actions or 29\% of interpretations under any
-method; pooling all six raised coverage to 87\%, 88\% and 62\% \parencite[p.~585]{clark2008cognitive}.
+under several elicitation methods \parencite{chao1994percentage}. As reported by
+\textcite[p.~585]{clark2008cognitive} (we did not check the original tables), no single expert reported
+more than 41\% of diagnostic actions, 53\% of debugging actions or 29\% of interpretations; pooling all
+six raised coverage to 87\%, 88\% and 62\%.
 Critical Decision Method (CDM) interviews with neonatal intensive-care nurses produced a
 sepsis-assessment guide with information \enquote{not available in the current literature}
 \parencite{crandall1993critical}.
@@ -34,10 +35,10 @@ established: experts omit a large, variable share of decisions, cues and interpr
   \centering
   \includegraphics{figures/pdf/fig01_problem.pdf}
   \caption[What reaches text, and what does not]{What part of expert knowledge reaches text, and
-    what does not. Automaticity, measured omission in three small studies, and reporting bias in
-    written text explain why the overlap between \enquote{what an expert knows} and \enquote{what an
-    expert or a writer states} is partial, and concentrated away from decisions, cues and
-    interpretations.}
+    what does not. The task trace is illustrative, not measured. Automaticity and measured omission in
+    three small studies show that experts' own reports leave out many decisions, cues and
+    interpretations; reporting bias is shown for commonsense facts. That written expert sources omit
+    the same kinds of knowledge is our hypothesis, not a finding of these studies.}
   \label{fig:problem}
 \end{figure}
 
@@ -45,9 +46,10 @@ established: experts omit a large, variable share of decisions, cues and interpr
 
 \evlit{} How often people write about actions, outcomes and properties systematically distorts how
 often they occur \parencite{gordon2013reporting}. Text-only language models inherit the distortion,
-for example in the colors they predict for 521 objects \parencite{paik2021world}. \evint{} Omission
-in speech and reporting bias in text point at the same target: cues, decisions, interpretations,
-checks and the boundaries of hedged rules. AI can make the boundary between what is written and what is not sharper and more
+for example in the colors they predict for 521 objects \parencite{paik2021world}. Both studies concern
+commonsense facts, not expert documentation. \evhyp{} We transfer the idea: omission in speech and
+reporting bias in text may point at the same target in expert sources, namely cues, decisions,
+interpretations, checks and the boundaries of hedged rules. This transfer is untested. AI can make the boundary between what is written and what is not sharper and more
 auditable; it cannot tell on its own whether a silence hides expert knowledge, an unrecorded fact, or
 nothing. That needs a human answer (\cref{fig:problem}).
 
@@ -70,9 +72,10 @@ check found at most a partial statement of how a troubleshooter notices the drif
 it.\footnote{\repo{research/n3/plc/gapmap.json}, the GUARD-lens record at rank~9.} This shows only
 that a lens can flag text of this \emph{shape}.
 
-\evlit{} \emph{Why it matters.} Transfer of practice inside firms is blocked mainly by the recipient's
-absorptive capacity and by causal ambiguity, not by unwillingness to share
+\evlit{} \emph{Why it matters.} In a study of best-practice transfer inside firms, the major barriers
+were knowledge-related (the recipient's lack of absorptive capacity, causal ambiguity, and an arduous
+relationship between source and recipient) rather than mainly motivational
 \parencite{szulanski1996exploring}. Many popular open-source projects depend on one or two developers
 \parencite{avelino2016novel}, and turnover exposes projects to knowledge losses far above the expected
-loss \parencite{rigby2016quantifying}. \evint{} Training, onboarding and succession all fail when such
+loss \parencite{rigby2016quantifying}. \evint{} Training, onboarding and succession can suffer when such
 knowledge is not made explicit before its holder leaves.

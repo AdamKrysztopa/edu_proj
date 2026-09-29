@@ -10,7 +10,7 @@ weakness.
 \evobs{} N3's registered status is \textbf{PoC pipeline complete; hidden-knowledge prediction not
 demonstrated.}\footnote{\repo{research/n3/README.md}.} The registered gate that would test prediction (E-CTA,
 E-OSS against held-out gold; restructured as V2 and H-OSS in \cref{sec:validation}) has not run: no gold has been acquired, and the absence check does not
-beat its fair control (\cref{sec:absence-check}).
+beat its mismatched-evidence control (\cref{sec:absence-check}).
 
 \textbf{What the lenses read.} \evobs{} Lens firing rules, the stem index, every anchor and the
 judge's seed text all run on the extractor's paraphrase of a claim (its \code{assertion}), not on the
@@ -94,7 +94,7 @@ up to 8 verified and 4 unverified per probe, and decides whether the missing ele
 \code{closed}, \code{partial} or \code{open}. DIAG probes each rival cause separately, so a DIAG
 record can rest on more sentences (34 and 50 in the two PLC DIAG records).
 
-\evobs{} The map's fair control keeps the seed's own sentences in both arms and swaps only the
+\evobs{} The map's mismatched-evidence control keeps the seed's own sentences in both arms and swaps only the
 other-source sentences for those of the topically nearest candidate of the same lens. Lenses with
 fewer than two candidates are skipped. The judge's closure rate, counting \code{partial} as closed,
 is the same in both arms: \textbf{PLC 0.889, GDPR v1 0.961, GDPR v2 0.958} ($n = 54, 51, 48$).
@@ -113,22 +113,33 @@ of the 14 tested lens--ledger cells, so the test has little room to separate the
 with the seed's and same-source sentences removed still closes or partly closes 0.667, 0.725 and
 0.708 of candidates, which fits a lenient judge as well as any other mechanism.
 
-\evint{} The reading is narrow: the judge's verdict does not depend on which evidence it is shown,
-so it is not yet an informative absence check. Every candidate should be read as \enquote{a lens
+\evint{} The reading is narrow: under this control, the judge did not tell a candidate's own
+additional cross-source evidence from the donor's, so it is not yet an informative absence check. The
+test does not say why. Judge leniency, the weight of the seed evidence both arms share, donor evidence
+that is genuinely relevant (the donor is the nearest same-lens topic), or a control too insensitive to
+show a difference could each produce the tie. \evobs{} One warning points at the seed: in the pre-final
+maps, 17 of PLC's 22 closures cited only the seed or its own source (docstring of
+\code{mismatched_evidence_control} in \repo{gapmap/src/gapmap/checks.py}). With the seed and its source
+removed, the rate falls from 0.889, 0.961 and 0.958 to 0.667, 0.725 and 0.708. \evint{} So the problem
+may not be only retrieval of the wrong support: the closure formulation may let the sentence that
+triggered the lens give a lenient judge enough to close its own gap. This is a warning and a plausible
+reading, not a diagnosis. Every candidate should be read as \enquote{a lens
 fired here}, not as \enquote{experts know something here}.
 
 \evobs{} How this was found matters. An adversarial AI review of the pre-final maps found that the
-absence check did not beat a fair control; the first built-in control had been a straw man that
-\enquote{passed}. The fair control was then written into \repo{gapmap/src/gapmap/checks.py}, raised
+absence check did not beat a mismatched-evidence control; the first built-in control had been a straw man that
+\enquote{passed}. The mismatched-evidence control was then written into \repo{gapmap/src/gapmap/checks.py}, raised
 the \code{closure-uninformative} flag on the final maps, and is re-run on every replay.
 
 \begin{figure}[tbp]
   \centering
   \includegraphics{figures/pdf/fig08_closure.pdf}
-  \caption[The absence check versus its fair control]{Panel A: closed-or-partial rate of the
-  closure judge on a candidate's own evidence and on the fair control (other-source sentences swapped
-  for the topically nearest candidate's), by ledger. The rates are equal in every ledger: the judge's
-  verdict does not depend on which candidate's other-source evidence it is shown. Panel B: observed
+  \caption[The absence check versus its mismatched-evidence control]{Panel A: closed-or-partial rate of the
+  closure judge on a candidate's own evidence and on the mismatched-evidence control (other-source
+  sentences swapped for the topically nearest candidate's; seed sentences kept in both arms), by
+  ledger, and on the other-source-only arm (seed and its source removed). Own and control rates are
+  equal in every ledger: the judge did not tell the candidate's own cross-source evidence from the
+  donor's. Panel B: observed
   lexical closures against the donor null (mean and 5--95\% interval of 200 draws).}
   \label{fig:closure}
 \end{figure}
@@ -183,7 +194,7 @@ such a case, \cref{app:records}).
 
 Every map carries its own checks, so a reader does not have to trust an unaudited ranking:
 anti-renaming (does the ranking reproduce evidence density? Jaccard overlap with density-sorted
-rankings and a Spearman correlation), the fair mismatched-evidence control and the lexical donor
+rankings and a Spearman correlation), the mismatched-evidence control and the lexical donor
 null (\cref{sec:absence-check}), and cross-run stability across the two independent GDPR
 reconstructions. The committed maps replay byte-identically from the committed judge caches with no
 network call (\cref{app:reproduce}).
@@ -235,20 +246,84 @@ candidate, the lens fired; the absence check found the element at most partly st
   \label{fig:n3}
 \end{figure}
 
+\subsection{An exploratory comparator: the Jev spike}\label{sec:jev}
+
+\paragraph{Why it was tested.} \evobs{} After the maps were final, a small spike asked whether a
+low-cost decision model gives a useful alternative reading of the committed N3 output, and whether it
+can do the job of N3's only model call, the closure judge. Jev (TypeSafe \code{typesafe/jev-1.13},
+called through OpenRouter's Decisions API) takes a state and typed questions and returns probabilities;
+it returns no text and no embeddings. The spike is exploratory: no target in it is human evidence, so it
+reports no precision, recall or AUROC against hidden knowledge.\footnote{\repo{research/spikes/jev/RESULTS.md};
+code \repo{research/spikes/jev/spike.py} and \repo{research/spikes/jev/judge_swap.py}; numbers in
+\code{analysis.json}, \code{analysis_loop2.json}, \code{analysis_reference.json},
+\code{analysis_same_prompt.json} and \code{analysis_judge_swap.json}; all 1{,}637 raw requests and
+responses in \code{cache/}. Total spend \$0.45.}
+
+\paragraph{What it consumed.} \evobs{} Committed artifacts only; nothing was re-collected and nothing
+under \repo{gapmap/}, \repo{reconstruct/} or \repo{research/n3/} changed. Part~1 read the \code{map}
+and \code{retrieval_gaps} records of the three \code{gapmap.json} files at commit \code{c954f8c}: 61
+records (HYP 16, RG-SINGLE 26, RG-SIBLING 9, RG-UNVER 10; 58 unique texts). RG-UNK and control records
+were excluded, since their text is a fixed template and their density is always 0. Jev saw only each
+record's field, anchor statement and missing element: no counts, scores, category, closure state or
+evidence. Part~2 used all 641 closure-judge prompts behind the three \code{closure_judgements.json}
+caches, recovered byte for byte by replaying \code{gapmap.build_gapmap} offline against the committed
+judge cache (641 of 641 matched).
+
+\paragraph{Part 1: a per-record signal.} \evobs{} Two paraphrased yes/no questions asked whether the
+missing element is practice-only know-how; their mean is the score $C$. The paraphrases agree
+($\rho = 0.91$). Pooled, $C$ is weakly related to source density ($\rho = 0.28$) and to the N3 score
+(0.18); within PLC it is not weak (0.51 and 0.42), while within GDPR v1 and v2 it is 0.39 and 0.20 with
+density and $-0.07$ and 0.16 with the score. The pre-set rule read PROMISING. But two word-length
+statistics of the same texts also passed that rule, so the rule cannot tell Jev from word length. In a
+form test every word was replaced by a random word of the same length, which keeps length statistics
+and destroys meaning. $C$ on the meaningless text still correlated with the original: pooled
+$\rho = 0.61$ (inflated, because the field line was left unchanged), 0.35--0.47 within each domain, and
+0.31 after controlling domain and word count. The form test's own pre-set rule (NO SIGNAL if the
+pooled $\rho \geq 0.5$, content-driven if $\leq 0.2$) reads NO SIGNAL on the pooled figure; the
+within-domain figures fall between its two thresholds. On the meaningless text, $C$'s correlation with
+density fell from 0.28 to 0.14 pooled and from 0.51 to 0.06 on PLC. \textbf{Verdict under the pre-set form rule: NO SIGNAL.} The within-domain figures and the partial correlation are post-hoc and appear in \code{RESULTS.md}, not in the committed analysis files; read that way the result would be INCONCLUSIVE, as \code{RESULTS.md} states. \evint{} $C$ cannot be read as
+a tacit-knowledge signal. Its link to density on PLC does not survive the loss of meaning, so that link
+depends on content, but content that tracks how much is written is what density already measures.
+
+\paragraph{Part 2: Jev as closure judge.} \evobs{} Each judge prompt became one three-way question per
+sentence (states, partially states, does not state the element). Agreement with the stored qwen answers
+was low ($\kappa = 0.19$ on 641 prompts; qwen marks at least one sentence partial on 51\% of prompts, Jev
+on 20\%), which failed the first pre-set rule. Because the report finds qwen's closure no better than its
+control, agreeing with qwen could not settle the question, so a second reference was added after the
+first rule failed: Sonnet 5.5 (reasoning effort low) on a seed-0 random sample of 100 prompts (762
+sentences). On \enquote{states or partially states}, Jev reached $\kappa = 0.53$ with Sonnet and qwen
+0.27 (difference 0.25, 95\% bootstrap CI 0.10--0.40 over prompts). With Jev's own instructions, hosted
+qwen reached 0.32 against Jev's 0.52 (704 sentences; 58 unreadable qwen answers excluded for both), so
+the gain is not only the prompt. Trivial judges (\enquote{cite nothing}, a lexical-overlap judge tuned on
+the same sample) scored at most 0.06. Jev missed 86 of Sonnet's 153 \enquote{partially} sentences and 20
+of its 73 \enquote{states} sentences. Cost per judgment: Jev \$0.00007, hosted qwen about \$0.00007
+(the committed runs used local qwen at \$0), Sonnet \$0.0037.
+
+\paragraph{What it does and does not show.} \evint{} It shows that on N3's own judge prompts one cheap
+decision model agrees with a stronger model better than the current local judge does, at the same cost
+per call. It does not show that either model is right (the reference is one model on 100 prompts, and
+the sample shares seeds across prompts); that Jev can stand in for the stronger model ($\kappa \approx
+0.5$ is moderate); or that a better judge would repair the closure step. Jev was never run on the mismatched-evidence control, so whether a different judge would break the tie is untested; the other-source-only rate (0.667 on PLC, below 0.889) shows the seed alone does not close every candidate. It does not show that Jev, or anything in the spike, detects the Human Knowledge
+Residual. The reference was changed twice, each time with its rule fixed before its own calls; that
+sequence is exploratory, not confirmatory. \evfut{} In the validation program Jev is one more judge in
+V1's panel and one more pre-registered baseline in V2 and V5, beside a text-form baseline that the
+word-length finding makes necessary. It is never a gate or a criterion. The spike's own suggested next
+step (Jev on the control) is not scheduled.
+
 \subsection{The negative results, stated plainly}
 
 \begin{itemize}[noitemsep]
-  \item \textbf{The absence check ties its fair control on every ledger}, and lexical closure does
+  \item \textbf{The absence check ties its mismatched-evidence control on every ledger}, and lexical closure does
     no better than its donor null (\cref{sec:absence-check}).
   \item \textbf{13 of the 16 displayed gap candidates are \code{partial}}, and the two PLC DIAG
-    records are \code{open} only by the DIAG rule. \evint{} The fair control counts \code{partial}
+    records are \code{open} only by the DIAG rule. \evint{} The mismatched-evidence control counts \code{partial}
     as closed, so most surviving hypotheses sit in a state the map's own control would call
     \emph{closed}, an internal tension we state rather than hide.
   \item \textbf{Precision by adversarial judgment: 3 of 19 strict (8 of 19 lenient), on the
     pre-final maps only.} \evobs{} One adversarial AI reviewer (Opus) judged the pre-final maps'
     candidates, in-sample, with no human coder and no gold; the per-record tally is not committed.
     Wilson 95\% CIs, recomputed: 5.5--37.6\% and 23.1--63.7\%. The final maps were not re-tallied
-    after two changes that altered the candidate set (the parse fix below and the fair-control
+    after two changes that altered the candidate set (the parse fix below and the mismatched-evidence-control
     rewrite). It is a reported sanity signal, never a measured precision of the committed maps.
   \item \textbf{PLC's ranking correlates with source density} (Spearman $\rho = 0.91$; overlap of
     the top ten with the ten highest-density candidates $J_{10} = 0.58$). \evint{} The anti-renaming
@@ -271,8 +346,8 @@ candidate, the lens fired; the absence check found the element at most partly st
 \begin{findingbox}
 N3's pipeline runs end to end and deterministically. Its central step does not work yet: the
 absence check, which decides that a missing element is really unsaid rather than merely unquoted,
-does not beat a fair, topically matched control on any tested lens in any of three ledgers. An
-adversarial review found this weakness; the fair control now built into every map confirms it on
+does not beat a topically matched, mismatched-evidence control on any tested lens in any of three ledgers. An
+adversarial review found this weakness; the mismatched-evidence control now built into every map confirms it on
 each replay. Everything downstream (hypotheses, ranking, questions) inherits it: the records are
 \textbf{candidates} where a lens fired, not validated predictions of what an expert knows. The
 falsifier ($\Delta$AUROC against held-out gold) has not run and should not run until closure passes a

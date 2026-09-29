@@ -22,8 +22,7 @@ evidential gate refuses them as a criterion. \evfut{} Labels move up only throug
 cross-family verification; World~B claims never leave their organization's tenant; and
 \textbf{unvalidated candidates never reach a learner or an end user}. No code enforces these three yet.
 On premises, the platform needs three model families available locally (generator, verifier, closure
-judge). \evobs{} The PoC already runs its judge locally, which shows the pattern is viable and also its
-risk: that 7B judge did not beat its fair control. Organizational deployment adds per-user access control
+judge). \evobs{} The PoC already runs its judge locally, which shows a local judge can be run, and also its risk: that 7B judge did not beat its mismatched-evidence control. Organizational deployment adds per-user access control
 propagated to claims, retrieved text treated as data and never as instructions, and a hash-chained audit
 trail (Extended Technical Report, Section~18).
 
@@ -71,9 +70,9 @@ rules unchanged; this program touches it only through sealed, secondary, non-gat
 
 \subsection{Organizations}
 
-\evlit{} Three organizational blind spots have literature behind them: a technician's diagnostic cue,
+\evlit{} Three organizational blind spots map onto constructs with literature behind them (the mapping is ours): a technician's diagnostic cue,
 carried in stories rather than manuals \parencite{orr1996talking}; a senior engineer's design rationale,
-lost to causal ambiguity \parencite{szulanski1996exploring}; and a compliance officer's exception
+hard to transfer when cause and effect are ambiguous \parencite{szulanski1996exploring}; and a compliance officer's exception
 judgment, the gap between work as imagined and work as done \parencite{hollnagel2018safety}. Turnover
 loss is measurable in software: 65\% of 133 popular GitHub projects have a truck factor of 2 or fewer
 \parencite{avelino2016novel}, and 315 of 1,932 projects (16\%) were abandoned after truck-factor

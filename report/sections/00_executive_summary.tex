@@ -4,34 +4,35 @@
 
 \subsection*{The result}
 
-\evobs{} The absence check ties its fair control; prediction of hidden knowledge is untested. The
+\evobs{} The absence check ties its mismatched-evidence control; prediction of hidden knowledge is untested. The
 proof of concept (PoC) built a chain from public web text to ranked questions for experts. Its
 central step, the absence check (\emph{closure} in the code), asks a judge model whether retrieved
-ledger sentences already state an element that a lens flagged as missing. In a fair control, each
-candidate's other-source sentences were swapped for those of the topically nearest candidate. The
-judge's closure rate (counting \emph{partial} as closed) did not change: 0.889, 0.961 and 0.958 in the
-three ledgers. The judge's verdict does not depend on which evidence it is shown, so it is not yet an
-informative absence check. The control is built into \code{gapmap/checks.py}, added after an
+ledger sentences already state an element that a lens flagged as missing. In a control, each
+candidate's additional other-source sentences were swapped for those of the topically nearest
+candidate, while the seed's own sentences stayed in both arms. The judge's closure rate (counting
+\emph{partial} as closed) did not change: 0.889, 0.961 and 0.958 in the three ledgers. Under this
+control, the judge did not tell a candidate's own cross-source evidence from the donor's, so it is not
+yet an informative absence check; the test does not show why. The control is built into \code{gapmap/checks.py}, added after an
 adversarial AI review found the weakness, and it flags the failure on every replay. No gold standard
-was acquired, so the PoC neither shows nor refutes that the gap map predicts what experts know.
+was acquired, so the PoC neither shows nor refutes that the gap map predicts what experts know. A later
+exploratory spike with a low-cost decision model (Jev) on the committed N3 output gave no per-record signal under its pre-set form test (the score tracked text form). After its first pre-set judge rule failed, it agreed with a second reference, a stronger model, better than the current closure judge did; it detects no hidden knowledge (\cref{sec:jev}).
 
 \subsection*{Recommendation: run the closure study before any grant submission}
 
 \evfut{} The cheapest decisive test needs no grant and no participants. In this Phase~0 study (V1),
-a blind coder who is not the owner labels each unit as closed, partly closed or open. A unit is one
-lens firing with its evidence, in one arm of the fair control. The sample is the 107 lens firings
-from the two admissible ledgers, each in both arms (214 units), plus about 100 units from one new
+blind coders who are not the owner (two preferred) label each unit as closed, partly closed or open. A unit is one
+lens firing with its evidence, in one arm of the mismatched-evidence control. The sample is the 107 lens firings from the two admissible ledgers (105 with a donor, in both arms: 210 pools; the firing is the unit of inference), plus about 100 units from one new
 domain, so that no judge is scored only in-sample. V1 reports three things:
 \begin{itemize}[nosep]
   \item agreement between the two human coders (weighted Cohen's $\kappa$; the gate uses closed
     versus not closed);
   \item corpus-level retrieval recall: is the element stated anywhere in the ledger's sources, not
     only in the sentences the retriever returned;
-  \item whether any judge in a candidate panel beats the fair control.
+  \item whether any judge in a candidate panel beats the mismatched-evidence control.
 \end{itemize}
 The cost is tens of coder hours plus local compute, on the order of a few thousand euros. The gate
 MS1 reads CONTINUE only if human $\kappa \geq 0.70$, retrieval recall meets its pre-registered floor,
-and at least one judge beats the fair control by a pre-registered margin. Otherwise the automated
+and at least one judge beats the mismatched-evidence control by a pre-registered margin. Otherwise the automated
 absence check stops, and the work pivots to reconstruction with provenance as an audit tool, or to
 interviewing without a gap map. The V1 numbers should be on page~1 of any grant proposal; this report
 is the design for them (\cref{sec:validation}).
@@ -67,8 +68,7 @@ faults in programmable logic controllers (PLC) and data protection impact assess
       check, triage, a breadth ranking (not expected information gain), template questions and
       built-in checks (N3). \\
     Shown & The chain runs end to end on real sources and replays byte for byte. All 909 stored
-      evidence items re-slice exactly from their snapshots; 418 of 1,169 claims have no locatable
-      span and are labeled synthetic. On the two admissible ledgers the lenses fired 107 times and
+      evidence items re-slice exactly from their snapshots; 260 of 1,169 claims have no locatable span and 158 more have a span the verifier did not accept; all 418 are labeled synthetic. On the two admissible ledgers the lenses fired 107 times and
       left 25 gap candidates after merging (PLC 24, GDPR v1 1); a third, defect-compromised ledger
       adds 48 firings and 6 candidates. \\
     Not shown & That any gap candidate is real expert knowledge; that the absence check works; that
@@ -103,8 +103,8 @@ pre-registration; any exception by the owner, at any gate, needs the reader's si
     $-\delta/2$, and the map adds value beyond source density and area size. Otherwise H2 funding stops and the
     separately costed interview-only pivot follows.
   \item \textbf{Phase~2, the full program}, only on MS3 CONTINUE. Blind prospective elicitation
-    (V5), powered for $\delta = 0.05$ (about 150 areas per class, each rated by three experts),
-    decides H2. H2 stops if the upper 90\% bound of $\Delta$AUROC is below $\delta$; any reading
+    (V5), with a provisional smallest gain of interest $\delta = 0.05$ and a size set after its
+    pilot, is the prospective test of H2. H2 stops if the upper 90\% bound of $\Delta$AUROC is below $\delta$; any reading
     short of CONTINUE does not support H2 and ends its funding. A later study tests H3: prioritized
     questions recover at least 1.25 times as many validated items per expert hour; a null counts
     against it. Organizational and education pilots follow, each with its own gate.

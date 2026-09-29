@@ -235,7 +235,11 @@
 % \repo{path/in/repo} prints the path in mono and links it to the file on GitHub.
 % \code{identifier} prints a code identifier in mono with line-break points.
 \usepackage{xurl}
-\newcommand{\repourl}{https://github.com/AdamKrysztopa/edu_proj/blob/main/}
+% \auditcommit is the commit whose artifacts the reports were checked against; links are pinned to it.
+\newcommand{\auditcommit}{AUDITSHA}
+\newcommand{\auditshort}{AUDITSHORT}
+\newcommand{\reporelease}{report-v1.1}
+\newcommand{\repourl}{https://github.com/AdamKrysztopa/edu_proj/blob/\auditcommit/}
 \newcommand{\repo}[1]{\href{\repourl#1}{\nolinkurl{#1}}}
 \newcommand{\code}[1]{\texttt{\small\detokenize{#1}}}
 

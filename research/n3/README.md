@@ -9,6 +9,7 @@ So the records are **candidates**, not validated hypotheses. This is not the N3 
 - Design: `docs/plans/n3-poc-lens-spec.md`, whose post-review sections list every change.
 - Code: `gapmap/`.
 - Maps: `plc/`, `gdpr_v1/`, `gdpr_v2/`, each holding `gapmap.md`, `gapmap.json` and `closure_judgements.json`.
+- Canonical headline numbers (N3 checks, N2 E-LIVE stats, the JEV spike): `research/results_manifest.json`; check it with `python3 scripts/results_manifest.py --check`.
 
 ## Pipeline
 
@@ -60,10 +61,10 @@ No. The check measures this directly:
 
 The real weakness is different: whether a missing element is truly unsaid is not decided reliably.
 
-| Closure step | Result against a fair control |
+| Closure step | Result against a mismatched-evidence control |
 |---|---|
-| Lexical (stem co-occurrence), v1 of the PoC | At chance. Donor-claim null with self and same-source excluded in both arms: PLC 42 vs [33, 47], GDPR v1 13 vs [10, 19], GDPR v2 11 vs [5, 12]. 13 of 15 sampled closures were wrong |
-| Semantic judge (local Qwen 7B), final | No better than the control. The seed's own sentences sit in both arms, and the other sources are swapped for the nearest other candidate's. Own rate = control rate on every lens and ledger: PLC 0.89 = 0.89, GDPR v1 0.96 = 0.96, GDPR v2 0.96 = 0.96. The judge's closures come from the seed's own text, not from independent evidence |
+| Lexical (stem co-occurrence), v1 of the PoC | At chance. Donor-claim null with self and same-source excluded in both arms (current, final maps): PLC 22 vs null mean 33.48 [26, 41], GDPR v1 11 vs 12.735 [8, 17], GDPR v2 11 vs 8.08 [5, 12]. Superseded (pre-final maps): PLC 42 vs [33, 47], GDPR v1 13 vs [10, 19]. 13 of 15 sampled closures were wrong (pre-final maps) |
+| Semantic judge (local Qwen 7B), final | Under the mismatched-evidence control the judge did not tell a candidate's own cross-source evidence from the donor's (the seed's sentences sit in both arms). Own rate = control rate on every lens and ledger: PLC 0.89 = 0.89, GDPR v1 0.96 = 0.96, GDPR v2 0.96 = 0.96. The judge's closures come from the seed's own text, not from independent evidence |
 
 Both results are rendered in each map's §7, with the `closure-uninformative` flag raised.
 
@@ -90,7 +91,7 @@ Both results are rendered in each map's §7, with the `closure-uninformative` fl
 
 ## Limitations
 
-- **The closure step is not informative against a fair control.** The lexical version runs at chance, and the semantic judge's closures come from the seed's own text. Every candidate should be read as "the lens fired here", not "experts know something here".
+- **The closure step is not informative against a mismatched-evidence control.** The lexical version runs at chance, and the semantic judge's closures come from the seed's own text. Every candidate should be read as "the lens fired here", not "experts know something here".
 - **Precision is low and in-sample.** It was 3 of 19 strict by adversarial judgement on the pre-final maps, and the final maps were not re-tallied. It is not measured against gold.
 - **Everything the lenses read is extractor-output or in-sample:**
   - knowledge types are assigned by the extractor and gate DIAG and GUARD;
@@ -105,7 +106,7 @@ Both results are rendered in each map's §7, with the `closure-uninformative` fl
 
 ## What remains for scientific validation (future research / grant roadmap)
 
-- **An informative closure step.** A stronger or ensemble judge, checked against the fair control and a small human-labelled closure set (blind second coder), before any gold.
+- **An informative closure step.** A stronger or ensemble judge, checked against the mismatched-evidence control and a small human-labelled closure set (blind second coder), before any gold.
 - **E-CTA and E-OSS against held-out gold.** ΔAUROC against the strongest §14.3 baseline under the pre-registered N3 rule. Requires:
   - the config hash-frozen first;
   - dated corpora and memorisation probes;

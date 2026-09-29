@@ -19,7 +19,7 @@ hypothesis, build, gate rule and duration. \Cref{sec:workpackages} gives the wor
   \caption[Gated roadmap]{The roadmap in three phases, with the gate that releases each one.
   Phase~0 (owner-run, before any grant) is the closure study V1; it ends at MS1. Phase~1, a lean
   methods grant, starts only if MS1 reads continue and ends at the screening gate MS3. Phase~2
-  starts only if MS3 reads continue; its prospective study decides H2 at MS5. The organizational
+  starts only if MS3 reads continue; its prospective study tests H2 at MS5. The organizational
   track (H-OSS) runs inside Phase~2 and can neither stop nor license H2; the partner pilot waits
   for MS5.
   Every stop leads to a pivot with its own, smaller budget. Only S0 is complete.}
@@ -52,9 +52,9 @@ hypothesis, build, gate rule and duration. \Cref{sec:workpackages} gives the wor
     L1: the absence check can be judged reliably, and retrieval finds a stating sentence where
       one exists &
     A closure codebook with anchors per lens; at least 100 double-coded units; a corpus-level
-      retrieval-recall check; a judge panel scored against the fair control &
+      retrieval-recall check; a judge panel scored against the mismatched-evidence control &
     \textbf{MS1 (closure verdict).} Continue if human $\kappa\geq0.70$, retrieval recall meets
-      its floor, and one judge beats the fair control by the margin. Then write the Phase~1
+      its floor, and one judge beats the mismatched-evidence control by the margin. Then write the Phase~1
       proposal with these numbers on page~1. Otherwise stop the automated absence check and take
       a pivot (\cref{sec:risks}) &
     2--4 mo \\
@@ -73,17 +73,16 @@ hypothesis, build, gate rule and duration. \Cref{sec:workpackages} gives the wor
     Blind prospective elicitation is feasible at the powered size &
     An elicitation workbench: question service, blind-arm separation, World C records, coding
       tools, residual accounting. Track A components reused by copy, never import &
-    \textbf{MS4.} Release V5's main study only if the pilot's projected number of areas fits
-      the funded ceiling of 450, segmentation reaches $\alpha\geq0.80$, and stratum guessing
-      stays near chance. Otherwise stop before the main study; H2 is reported as untested, and no
-      underpowered V5 is run &
+    \textbf{MS4.} Release V5's main study only if the simulated confirmatory size fits
+      the funded ceiling of 450 areas and segmentation reaches $\alpha\geq0.80$. Otherwise stop
+      before the main study; H2 is reported as untested prospectively &
     M15--M24 \\
   \textbf{S3 -- Prospective validation} (V5 main, V6) &
-    L4: predictions hold on fresh blind elicitation in held-out domains; this decides H2. H3:
+    L4: predictions hold on fresh blind elicitation in held-out domains; this is the prospective test of H2. H3:
       targeted questions yield more validated items per expert hour &
     The workbench for two held-out domains; leave-one-domain-out runs; expected information gain
       (EIG) question selection (future work N6) &
-    \textbf{MS5 (H2 verdict).} Stop if the upper 90\% bound of $\Delta$AUROC is $<\delta$.
+    \textbf{MS5 (H2 test).} Stop if the upper 90\% bound of $\Delta$AUROC is $<\delta$.
       Continue if the lower bound is $>0$ and the point estimate is $\geq\delta$. Anything else is
       reported as not supporting H2 and ends H2 funding. \textbf{MS6 (H3).} Continue if the
       yield-ratio lower bound is $>1$ and the point estimate is $\geq1.25$; any other reading

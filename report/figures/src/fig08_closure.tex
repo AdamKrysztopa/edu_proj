@@ -1,6 +1,6 @@
 % report/figures/src/fig08_closure.tex
 % Data figure (title-free; caption carries the claim): the closure-control
-% negative result. Panel A: own-evidence vs fair mismatched-evidence control
+% negative result. Panel A: own-evidence vs mismatched-evidence control, plus the other-source-only arm
 % closure rate, per ledger -- the two coincide. Panel B: the lexical donor
 % null, observed vs the null's 5-95% interval, per ledger.
 % Numbers verified 2026-09-29 directly from:
@@ -40,13 +40,17 @@
     \addplot[only marks, mark=*, mark size=1.6pt, draw=evobscol, fill=evobscol] coordinates {
       (0.8889,PLC) (0.9608,GDPR v1) (0.9583,GDPR v2)
     };
+    % other-source-only arm (seed and same-source sentences removed): checks.mismatched_evidence_control.total.other_source_only_rate
+    \addplot[only marks, mark=diamond*, mark size=2.2pt, draw=gray700, fill=gray400] coordinates {
+      (0.6667,PLC) (0.7255,GDPR v1) (0.7083,GDPR v2)
+    };
     \node[anchor=west, font=\sffamily\fontsize{6.6}{7.8}\selectfont, text=gray700] at (axis cs:1.05,PLC) {\,n=54};
     \node[anchor=west, font=\sffamily\fontsize{6.6}{7.8}\selectfont, text=gray700] at (axis cs:1.05,GDPR v1) {\,n=51};
     \node[anchor=west, font=\sffamily\fontsize{6.6}{7.8}\selectfont, text=gray700] at (axis cs:1.05,GDPR v2) {\,n=48};
   \end{axis}
 
   \node[below=15mm of panelA.south, font=\sffamily\fontsize{6.8}{8}\selectfont, text=gray700, align=center, text width=62mm]
-    (panelAlab) {\textbullet\ own evidence \quad $\circ$ mismatched-evidence control\\(fair control; dots coincide on every ledger)};
+    (panelAlab) {\textbullet\ own evidence \quad $\circ$ mismatched-evidence control\\(the two coincide on every ledger)\quad $\diamond$ other-source only};
 
   % =============================== Panel B ===============================
   \begin{axis}[
