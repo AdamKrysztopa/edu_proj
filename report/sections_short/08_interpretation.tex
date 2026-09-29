@@ -1,0 +1,96 @@
+\section{Interpretation and threats to validity}\label{sec:interpretation}
+
+\begin{evintbox}
+  The bottleneck is absence detection, not reconstruction and not lens firing. Reconstruction with
+  provenance runs, and lenses fire in the expected places. What has no valid answer yet is \enquote{is
+  this element really unsaid?} Every quantity after step~4 of the central model depends on it: which
+  records become candidates, how they rank, which questions reach an expert, and any future score
+  against gold. It must be validated against human closure labels before any gold test, or that test
+  would score lens firing plus density, not the gap map.
+\end{evintbox}
+
+\evint{} Two features of the pipeline make the failure likely. Lenses fire on word stems in the
+extractor's paraphrase, so they cannot see a paraphrase of the missing element and often fire where
+the seed already states part of it. And most displayed candidates are \code{partial}: they mark places
+where the text says \emph{something} about the element. Three caveats keep this from being a verdict on
+absence detection as such: the judge is one small local model, a stronger judge is untested, and the
+ceiling leaves little room for any difference.
+
+\evint{} \textbf{Thinness is not the residual.} An area can be thin because the knowledge is unwritten,
+or because retrieval was poor. \evobs{} The PoC ledgers show much of the second kind: in GDPR v1 one
+independence key carries 194 of the ledger's key references and there are only three distinct keys; in
+PLC v1, 11 of 35 fetched \enquote{sources} were error pages. \evint{} On PLC the ranking is close to
+\enquote{how much is written about this topic}, which could look predictive for the wrong reason, since
+experts may also have more to say about central topics. So density and area size must be headline
+baselines, and the test must be conditional on them. The map is also partly a property of retrieval:
+two runs of one task gave mostly different candidates. Any gold test needs a dated, frozen corpus and
+repeated runs. Finally, lexicons, denylist and stop-anchors were tuned on the same ledgers, so any number
+measured on them is optimistic; tuning did not rescue the absence check.
+
+\begin{findingbox}
+  The PoC neither demonstrates nor refutes H2. It does not demonstrate it: no gold, an absence check
+  that ties its control, and a low, in-sample precision signal. It does not refute it: the registered
+  stop rule needs held-out gold, a dated corpus, a frozen configuration, $\delta$, an area score and a
+  second coder, and none exists. A negative result from a component not shown to measure its target
+  says nothing about the target. The correct reading is \enquote{prediction not demonstrated, and the
+  current absence check is not yet a valid instrument}, not \enquote{the human residual is
+  unpredictable}.
+\end{findingbox}
+
+\begin{table}[tbp]
+  \centering\footnotesize
+  \caption{Main threats to the PoC's conclusions, what mitigates them now, and what the validation
+    program does.}
+  \label{tab:threats}
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.2\linewidth}
+      >{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.23\linewidth}
+      >{\raggedright\arraybackslash}p{0.22\linewidth}@{}}
+    \toprule
+    Threat & Effect on our claims & Now & Program \\
+    \midrule
+    What a \enquote{gap} means & A firing plus an unclosed state may mark a paraphrase or a retrieval
+      hole & Candidates labeled \emph{inferred}; retrieval gaps apart & Human closure labels (V1);
+      gold tests \\
+    Judge leniency and ceiling & Own rate 1.0 on most lenses; no control can separate the arms & Tie
+      reported with closed-only and paired figures & V1 sample enriched for \enquote{not stated} \\
+    Model paraphrase & Lenses and judge read the extractor's assertion, not the span & Spans kept
+      beside every record & Lenses on spans; types checked in V1 \\
+    In-sample tuning & Positive numbers would be optimistic & Configuration hashed; tuning disclosed &
+      Hash-freeze before gold (MS2) \\
+    Defaults that equal the finding & Unread answers became \enquote{open}; a first control could only
+      pass & Parse fix; defects logged & Planted positives and nulls for every check \\
+    Two domains, English web & Nothing generalizes beyond PLC and GDPR & Claims limited to these runs
+      & Held-out domains after the freeze \\
+    Non-reproducible retrieval & Web search, drifting pages and retiring models & Ledgers, snapshots,
+      judge caches kept & Snapshot archives; dated corpora \\
+    Tiny $n$ & Precision, verifier error, cross-run counts rest on 19--71 items & Wilson intervals &
+      Sizes set by precision targets \\
+    Single operator, owner incentive & One person designed, ran and read everything, and is the
+      applicant & Committed artifacts; adversarial AI reviews & Non-owner blind coders; external gate
+      reader \\
+    AI-assisted development & Agent agreement can look like corroboration & Every number traced to an
+      artifact & Human coders and pre-registration decide \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\paragraph{What would change our mind.} \emph{Toward H2:} blind coders agree on stated / partly stated
+/ not stated ($\kappa \geq 0.70$) and a judge beats the fair control and agrees with them; on pooled,
+dated, held-out golds the frozen map beats density, area size and a plain-LLM ranking; in blind
+prospective elicitation the lower 90\% bound of $\Delta$AUROC is above 0 and the point estimate at least
+$\delta$. \emph{Against H2:} coders cannot agree whether an element is stated ($\kappa < 0.70$ after one
+codebook revision); closure passes its human check yet the map adds nothing beyond density and area
+size; or the prospective upper 90\% bound falls below $\delta$. \emph{Neither:} more runs on the same
+ledgers, agreement among AI reviewers, or a stop reading from a configuration whose absence check never
+passed its control.
+
+\subsection{Threats to validity}
+
+\Cref{tab:threats} lists the threats that could make the PoC's readings too strong or too weak (full
+list: Extended Technical Report, Section~15).
+
+
+\evint{} The PoC code, its adversarial reviews and this report were produced with AI agents under the
+project lead's direction. The reviews found real defects, including the parsing defect and the failed
+closure control, so they are useful as a search for errors. They cannot certify that errors are absent,
+and they cannot serve as a criterion.

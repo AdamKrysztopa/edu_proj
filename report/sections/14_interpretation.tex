@@ -1,0 +1,147 @@
+% report/sections/14_interpretation.tex -- Part II: scientific interpretation of the PoC results.
+\section{Scientific interpretation}\label{sec:interpretation}
+
+This section asks what the PoC results mean for the central question: can a reconstruction plus a
+gap map predict where the Human Knowledge Residual lies (H2, \cref{sec:question})? Everything here
+is interpretation of observed results unless marked otherwise.
+
+\subsection{The absence check is the bottleneck of the whole approach}\label{sec:interp-bottleneck}
+
+Every quantity after step 4 of the central model (\cref{fig:model}) depends on the absence check
+(closure). It decides which records become gap candidates, how they are ranked, which questions reach
+an expert, and any future score against gold.
+
+\evobs{} Both versions of the absence check failed. Lexical closure did no better than a donor null,
+and the semantic judge's closure rate is the same whether it sees a candidate's own other-source
+evidence or its nearest neighbor's (\cref{sec:absence-check}). The judge's verdict does not depend on
+which evidence it is shown, so it is not yet an informative absence check. The data do not establish
+why. A judge that says \enquote{closed} or \enquote{partial} for almost any topical text would produce
+the same pattern, and the own rate sits at its ceiling on most lenses.
+
+\evint{} Two features of the pipeline make this likely. First, lenses fire on word stems in the
+extractor's paraphrase, so they cannot see a paraphrase of the missing element, and they often fire
+where the seed already states part of it. Second, most displayed candidates are \code{partial},
+which the control counts as closed and triage keeps as a hypothesis. Most surviving candidates
+therefore mark places where the text says \emph{something} about the element, not places where it
+says nothing. The adversarial precision signal points the same way, with the qualifiers stated in
+\cref{sec:n3}.
+
+Three caveats keep this from being a verdict on absence detection as such. The judge is one small
+local model; a stronger judge is untested. The ceiling leaves little room for any difference. And the
+lens specification shows, on a constructed case, that the control \emph{can} read informative; the
+tie is a property of these data and this judge.
+
+\begin{evintbox}
+  The bottleneck is absence detection, not reconstruction and not lens firing. Reconstruction with
+  provenance runs, and lenses fire in the expected places (DIAG only in the diagnostic domain; DISC
+  and HEDGE mainly in the normative one). What has no valid answer yet is \enquote{is this element
+  really unsaid?}. It must be validated against human closure labels before any gold test, or a gold
+  test would score lens firing plus density, not the gap map. Retrieval must be checked too: the
+  lexical retriever can miss a sentence that states the element, so a judge that agrees with humans
+  on the retrieved sentences can still be wrong about the corpus.
+\end{evintbox}
+
+\subsection{Thinness, density, retrieval and tuning}\label{sec:interp-constructs}
+\label{sec:interp-density}\label{sec:interp-stability}\label{sec:interp-tuning}
+
+\textbf{Thinness is not the residual.} Thinness is a property of a reconstruction; the Human
+Knowledge Residual is a property of practice (\cref{sec:residual}). An area can be thin because the
+knowledge is unwritten, or because retrieval was poor. \evobs{} The PoC ledgers show much of the second kind. In GDPR v1, one
+independence key carries 194 of the ledger's key references, and the ledger has only three distinct
+keys. In GDPR v2, one key carries 274, and 140 evidence items were never verified. In PLC v1, 11 of 35
+fetched \enquote{sources} were error pages.\footnote{Key counts from
+\repo{reconstruct/runs/20260928T135354Z-eb840a85b7d1/ledger.json} and
+\repo{reconstruct/runs/20260928T145943Z-bc1cc9a30a02/ledger.json}; the rest from
+\repo{research/n2/e_live_report.md}.} \evint{} The retrieval-gap categories separate some of this
+thinness from candidates, not all of it: a candidate with two independent sources can still be a
+retrieval artifact.
+
+\textbf{The ranking may follow density.} \evobs{} On PLC the breadth score tracks evidence density
+closely, and the anti-renaming check tests only the opposite direction (\cref{sec:n3}). \evint{}
+Part of the correlation is built in (retrieval gaps score $-1$; single-source records are
+low-density by definition), but on PLC the ranking is close to \enquote{how much is written about
+this topic}. Such a map could look predictive for the wrong reason, since experts may also have more
+to say about central topics. Density and area size must be headline baselines in any gold test. Candidacy and rank are partly
+built from source counts, so a plain gain over density is close to testing a variable against
+itself. The analysis must therefore be conditional: the map's value within density strata, or its
+added value in a model that already contains density and area size (\cref{sec:validation}).
+
+\textbf{The map is partly a property of retrieval.} \evobs{} Two GDPR reconstructions of the same
+task, hours apart, with the same models, gave mostly different candidates (\cref{sec:n3}). \evint{}
+The lenses and judge were the same in both runs; the retrieved documents were not. A gap map built
+on one live-web run describes the run as much as the domain. Any gold test needs a dated, frozen
+corpus and several runs, and should report which candidates recur. \evhyp{} Our working hypothesis is
+that the residual becomes predictable, if at all, only after retrieval variance is controlled in this
+way.
+
+\textbf{In-sample tuning.} \evobs{} The lexicons, the promotional-source denylist and the DISC
+stop-anchors were tuned on the same three ledgers the maps were built from; the configuration is
+hashed (\code{config_sha256} in each \code{gapmap.json}), not frozen. The N2 verifier prompts quote
+examples from the E-LIVE review. \evint{} Any number measured on these ledgers is optimistic. The
+results are negative even so: tuning did not rescue the absence check, and no positive number from
+these ledgers could have counted as evidence.
+
+\subsection{Why the PoC neither demonstrates nor refutes H2}\label{sec:interp-h2}
+
+The PoC does not demonstrate H2. No gold was acquired, the absence check does not beat a fair
+control, and the adversarial precision signal is low and in-sample.
+
+The PoC does not refute H2 either. The registered N3 stop rule fires only when, on held-out gold
+with a dated corpus and a frozen configuration, the upper 90\% bound of $\Delta$AUROC against the
+strongest baseline falls below a threshold $\delta$ (\cref{sec:validation}). None of its inputs
+exists: no gold, no $\delta$, no frozen area partition, no area score, no matcher, no second coder
+and no dated corpus. The observed failures are failures of one implementation: one 7B judge, lexicons
+tuned in-sample, and three ledgers from undated live-web runs, one of them not admissible. A negative
+result from a component that has not been shown to measure its target says nothing about the target.
+
+\begin{findingbox}
+  The correct reading of the PoC is \enquote{prediction not demonstrated, and the current absence
+  check is not yet a valid instrument}. It is not \enquote{the human residual is unpredictable}.
+\end{findingbox}
+
+\subsection{What would change our mind}\label{sec:interp-change}
+
+\Cref{tab:change-mind} states in advance which results would move us in each direction. The studies
+are defined in \cref{sec:validation}.
+
+\begin{table}[tbp]
+  \centering
+  \small
+  \caption[What would change our mind]{Results that would move our assessment of H2, and results
+    that would not.}
+  \label{tab:change-mind}
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}X@{}}
+    \toprule
+    Direction & Result \\
+    \midrule
+    Toward H2 &
+    (1) Blind human coders agree on \enquote{stated / partly stated / not stated}
+    ($\kappa \geq 0.70$); a closure judge beats the fair control and agrees with them; and retrieval
+    recall, checked against the whole corpus, meets its floor. (2) On pooled, dated, held-out golds,
+    the frozen gap map beats the strongest baseline, including density, area size and a plain-LLM
+    ranking, and adds value beyond density and area size. (3) In blind prospective elicitation, the
+    lower 90\% bound of $\Delta$AUROC is above 0 and the point estimate at least $\delta$. (4)
+    Candidates recur across repeated runs on a frozen corpus. \\
+    \addlinespace
+    Against H2 &
+    (1) Human coders cannot agree on whether an element is stated ($\kappa < 0.70$ after one codebook
+    revision): the absence construct itself is unreliable. (2) A closure step passes the human check,
+    yet the map adds nothing beyond density and area size on gold: the methodology layer adds nothing
+    beyond \enquote{where little is written}. (3) In blind prospective elicitation, the upper 90\%
+    bound of $\Delta$AUROC falls below $\delta$: H2 stops. A retrospective reading that fails the
+    screening gate stops H2 funding but is not by itself a verdict on H2. \\
+    \addlinespace
+    Neither &
+    More runs on the same in-sample ledgers; agreement among AI reviewers; a stop reading from a
+    configuration whose absence check never passed its control, which would be an artifact of the
+    pipeline, not a test of H2. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{keyquestionbox}
+  Can any absence check, automated or human, decide reliably whether a named element is stated in
+  a body of evidence? The cheapest informative next study (V1) answers this on the lens firings
+  already in hand: 107 from the two admissible ledgers, plus new units. It needs a blind second coder
+  and no participants. We recommend running it before any grant submission (\cref{sec:validation}).
+\end{keyquestionbox}

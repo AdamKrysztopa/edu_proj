@@ -1,0 +1,70 @@
+% report/figures/src/fig06_n2.tex
+% Data figure: E-LIVE v1 claim-stage counts per domain (PLC, GDPR), pipeline order top to
+% bottom. Sources fetched is a different unit (pages), so it is a note, not a bar.
+% Numbers: fig06_n2.dat, verified 2026-09-29 against
+%   reconstruct/runs/20260928T133336Z-59ec876b3d7e/{sidecar,ledger}.json (PLC v1)
+%   reconstruct/runs/20260928T135354Z-eb840a85b7d1/{sidecar,ledger}.json (GDPR v1)
+% and cross-checked against research/n2/e_live_report.md section 3.
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
+% xbar/bar width must be pre-registered via every axis/.append style: inside
+% \begin{groupplot}[...] directly, pgfkeys processes "bar width" before the
+% "xbar" style has installed the bar plot handler and raises "I do not know
+% the key '/pgfplots/bar width'" -- reproduced in isolation before this fix.
+\pgfplotsset{every axis/.append style={xbar, y dir=reverse, bar width=4.2mm}}
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{groupplot}[
+    group style={group size=2 by 1, horizontal sep=6mm},
+    width=68mm, height=34mm,
+    xmin=0, xmax=400,
+    xtick={0,100,200,300,400},
+    enlarge y limits={abs=4mm},
+    axis lines*=left,
+    axis line style={draw=gray400},
+    tick style={draw=gray400},
+    tick label style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700},
+    /pgf/number format/assume math mode=true,
+    xlabel style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700},
+    nodes near coords, nodes near coords style={font=\sffamily\fontsize{7}{8}\selectfont, text=ink, /pgf/number format/1000 sep=},
+    symbolic y coords={Claims extracted,Located,Verified-supports},
+    ytick=data,
+  ]
+
+  \nextgroupplot[
+    title={PLC}, title style={font=\sffamily\bfseries\fontsize{8}{9}\selectfont, text=ink, yshift=-1mm},
+    xlabel={count},
+    yticklabels={Claims extracted,Located,Verified-supports},
+  ]
+  \addplot[fill=evobscol, draw=evobscol!70!black] coordinates {
+    (370,Claims extracted) (337,Located) (321,Verified-supports)
+  };
+
+  \nextgroupplot[
+    title={GDPR}, title style={font=\sffamily\bfseries\fontsize{8}{9}\selectfont, text=ink, yshift=-1mm},
+    xlabel={count},
+    yticklabels={,,},
+  ]
+  \addplot[fill=evobscol!45!white, draw=evobscol!70!black] coordinates {
+    (259,Claims extracted) (204,Located) (195,Verified-supports)
+  };
+
+  \end{groupplot}
+
+  \tikzset{panelnote/.style={anchor=north west, inner sep=0pt, align=left,
+                             font=\sffamily\fontsize{7}{8.4}\selectfont, text=gray700}}
+  \node[panelnote] (n1) at ($(group c1r1.south west)+(0,-9mm)$) {sources fetched: 35};
+  \node[panelnote] (n2) at ($(group c2r1.south west)+(0,-9mm)$) {sources fetched: 20};
+  \node[panelnote, below=1.2mm of n1.south west, anchor=north west]
+    {PLC v1: run \texttt{20260928T133336Z-59ec876b3d7e}};
+  \node[panelnote, below=1.2mm of n2.south west, anchor=north west]
+    {GDPR v1: run \texttt{20260928T135354Z-eb840a85b7d1}};
+
+\end{tikzpicture}
+\end{document}

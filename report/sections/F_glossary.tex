@@ -1,0 +1,165 @@
+\section{Glossary}
+\label{app:glossary}
+
+One-sentence, plain-word definitions of every acronym and project term used in this report.
+Project-specific terms (ledger, lens, gap candidate, and so on) are defined the way
+\cref{sec:evidence-model,sec:foundations,sec:n3} use them; the terminology itself is fixed in
+\repo{report/notes/00_outline.md}.
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{3.2cm}
+    >{\raggedright\arraybackslash}p{10.3cm}
+  }
+  \caption{Glossary of terms and acronyms.}
+  \label{tab:glossary} \\
+  \toprule
+  \textbf{Term} & \textbf{Definition} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{2}{l}{\small\itshape (\tablename~\thetable{} continued)} \\
+  \toprule
+  \textbf{Term} & \textbf{Definition} \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{2}{r}{\small\itshape (continued on next page)} \\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+  AUROC & Area Under the Receiver Operating Characteristic curve: one number, between 0.5 (no
+    better than chance) and 1.0 (perfect), for how well a score ranks true positives above true
+    negatives. \\
+  \addlinespace[2pt]
+  $\Delta$AUROC & The difference between two AUROC values (the gap map's score minus a baseline's).
+    The pre-registered falsifier for RQ-B is an upper bound on $\Delta$AUROC too small to matter
+    (\cref{sec:question}). \\
+  \addlinespace[2pt]
+  CDM (Critical Decision Method) & A structured Cognitive Task Analysis interview built around one
+    remembered, non-routine incident, probing for the cues and discriminations an expert used. \\
+  \addlinespace[2pt]
+  Claim record & The atomic unit of the evidence ledger: one assertion plus its evidence,
+    verification and generation metadata (code: \code{ClaimRecord}). \\
+  \addlinespace[2pt]
+  Closure / absence check & The step that decides whether a lens's missing element is genuinely
+    unsaid anywhere in the ledger, as opposed to merely unlinked by a simple keyword match;
+    \enquote{closure} is the code's name for it. \\
+  \addlinespace[2pt]
+  CTA (Cognitive Task Analysis) & A family of interview methods for reconstructing the mental
+    steps behind expert performance that the expert does not spontaneously narrate. \\
+  \addlinespace[2pt]
+  DtD (Decoding the Disciplines) & A method for finding the \enquote{bottleneck} steps an
+    instructor performs automatically while teaching, without noticing they are a taught step at
+    all. \\
+  \addlinespace[2pt]
+  E-ABST & The N2 experiment measuring whether the reconstruction pipeline abstains correctly on
+    questions its sources cannot answer. \\
+  \addlinespace[2pt]
+  E-CTA & The registered, not-yet-run N3 experiment that would test the gap map's predictions by
+    replay against published CTA gold; the program recasts it as V2, pooled over several golds,
+    which screens H2 at MS3 but does not decide it (\cref{sec:validation}). \\
+  \addlinespace[2pt]
+  E-LIVE & The N2 experiment that ran the reconstruction pipeline against real, live web sources
+    in two domains (PLC troubleshooting and GDPR data-protection impact assessments). \\
+  \addlinespace[2pt]
+  E-OSS & The not-yet-run experiment that would test the gap map's predictions against gold built
+    from developer departures in open-source software; re-labeled as a separate organizational-track
+    hypothesis (H-OSS) that can neither kill nor license H2 (\cref{sec:validation}). \\
+  \addlinespace[2pt]
+  E-PLANT & The N2 experiment measuring whether the reconstruction pipeline resists planted, false
+    claims seeded into its search results. \\
+  \addlinespace[2pt]
+  ECD (Evidence-Centered Design) & An assessment-design framework that specifies, in advance,
+    which observable behavior counts as evidence of which underlying skill. \\
+  \addlinespace[2pt]
+  EIG (Expected Information Gain) & A criterion for choosing the next question by how much it is
+    expected to reduce uncertainty about the answer; future work here (N6), not implemented in
+    this PoC's ranking (\cref{sec:n3}). \\
+  \addlinespace[2pt]
+  Epistemic label & One of six closed, computed (never hand-set) categories a claim can hold:
+    observed human evidence, literature-supported, organizational-artifact-supported, inferred,
+    synthetic extrapolation, or unknown. \\
+  \addlinespace[2pt]
+  Evidence ledger & The explicit knowledge model this project builds: the full, typed collection
+    of claim records for one domain, with provenance and contradictions (code: \code{Ledger}). \\
+  \addlinespace[2pt]
+  Gap candidate & A hypothesis-level record produced when a lens fires and the absence check does
+    not close it; never a proven fact, always labeled \code{inferred}. \\
+  \addlinespace[2pt]
+  H1, H2, H3 & The three hypotheses (\cref{sec:question}): H1, reconstruction with provenance is
+    feasible and checkable; H2, the central one, lenses plus an absence check predict the human
+    residual better than the strongest baseline; H3, prioritized questions save expert time. The
+    interview-only pivot is a separate proposal, not H3. \\
+  \addlinespace[2pt]
+  H-OSS & A separate organizational hypothesis: the gap map, adapted to code and commit evidence,
+    predicts where knowledge is lost when developers leave. Tested by V3; it can neither support
+    nor refute H2 (\cref{subsec:hoss}). \\
+  \addlinespace[2pt]
+  HKR (Human Knowledge Residual) & The research construct this project exists to predict:
+    knowledge that competent humans hold and use that is absent from the available evidence.
+    Unmeasured in this PoC. \\
+  \addlinespace[2pt]
+  Hidden-knowledge hypothesis & The specific predicted-practitioner-knowledge text inside a gap
+    candidate; written in the predictive voice (\enquote{is predicted to}), never as an
+    established finding. \\
+  \addlinespace[2pt]
+  KLI (Knowledge-Learning-Instruction framework) & A framework that classifies a unit of knowledge
+    by the kind of instruction and practice it needs to be learned. \\
+  \addlinespace[2pt]
+  $\kappa$ (Cohen's kappa) & A statistic for agreement between two raters (here: a second, blind
+    coder) that corrects for the agreement expected by chance alone. \\
+  \addlinespace[2pt]
+  Ledger & Short form of \emph{evidence ledger} (above). \\
+  \addlinespace[2pt]
+  Lens (methodology lens) & An analytical rule, drawn from an established elicitation methodology,
+    that finds a place in the ledger where a named construct should have content but does not.
+    Seven are implemented: DISC, DIAG, SEL, HEDGE, GUARD, WHY, RESULT (\cref{app:lenses}). \\
+  \addlinespace[2pt]
+  Lens firing & The event where a lens's rule matches an eligible claim and produces a candidate
+    record, before the absence check runs. \\
+  \addlinespace[2pt]
+  LLM (Large Language Model) & The general class of model (e.g.\ Claude, GPT-family, Qwen) used
+    throughout this project's reconstruction, verification and judging steps. \\
+  \addlinespace[2pt]
+  MS1--MS8, MS2b & The program's milestones (\cref{tab:milestones}): MS1 closure verdict, MS2
+    configuration freeze, MS3 screening gate for Phase~2 money, MS4 V5 pilot gate, MS5 H2 verdict,
+    MS6 H3, MS7 organizational pilot, MS8 novice study; MS2b is the H-OSS freeze. \\
+  \addlinespace[2pt]
+  N0--N9 & The ten numbered items of the NOW program, from resetting the project (N0) and
+    building the evidence model (N1), through reconstruction (N2) and the gap map (N3), to
+    not-yet-started validation and application items (N4--N9). \\
+  \addlinespace[2pt]
+  NOW program & The zero-participant, zero-proprietary-data research route that replaced the
+    original human-elicitation-first plan after the 2026-09-28 reorientation. \\
+  \addlinespace[2pt]
+  PARI (Precursor-Action-Result-Interpretation) & A troubleshooting-specific Cognitive Task
+    Analysis method that separates what a technician does (Action) from how they read what
+    happens next (Result, then Interpretation); the source construct for the RESULT lens. \\
+  \addlinespace[2pt]
+  PCK (Pedagogical Content Knowledge) & A teacher's knowledge of how a specific topic is learned
+    and typically misunderstood, distinct from knowledge of the topic itself. \\
+  \addlinespace[2pt]
+  RAG (Retrieval-Augmented Generation) & A system design in which a model answers using passages
+    it retrieves at run time, rather than from training memory alone; the general pattern behind
+    N2's reconstruction pipeline. \\
+  \addlinespace[2pt]
+  Retrieval gap & A separate, non-hypothesis record type (RG-UNK, RG-SINGLE, RG-UNVER,
+    RG-SIBLING, RG-UNDECIDED): by design its action is to search or verify further, not to ask a
+    human, with one recorded exception caused by a code defect (\cref{app:lenses,app:defects}). \\
+  \addlinespace[2pt]
+  SESOI (Smallest Effect Size Of Interest) & The smallest effect a study is designed to be able to
+    detect, fixed before any data is collected; here $\delta$ for H2, the 1.25 ratio for H3, and
+    Track A's Stage B futility test. \\
+  \addlinespace[2pt]
+  Track A (Validation Track A) & The frozen physics expert-elicitation study and its built
+    interview instrument, run on its own registered rules, independent of the NOW program. \\
+  \addlinespace[2pt]
+  World A / World B / World C & The three evidence sources of the wider platform vision: public
+    evidence (A), organization-specific evidence (B), and human/expert evidence (C). Only World A
+    is used by this PoC; B and C are future work (\cref{sec:platform}). \\
+  \addlinespace[2pt]
+\end{longtable}
+\endgroup

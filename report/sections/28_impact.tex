@@ -1,0 +1,68 @@
+\section{Expected practical impact}
+\label{sec:impact}
+
+Nothing in this section has happened. \evhyp{} Every benefit below is conditional on a named study
+reading continue, and none follows from the PoC alone: the PoC produced gap candidates, and no human
+has checked one. \Cref{tab:impact} names who would benefit, what they would get, and what would have
+to be true first.
+
+\begin{table}[!htbp]
+  \centering
+  \footnotesize
+  \caption[Expected practical impact]{Expected practical impact, by beneficiary. Each row holds only
+    if the gate in the last column reads continue (\cref{sec:validation,sec:roadmap}).}
+  \label{tab:impact}
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.2\linewidth}
+      >{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{0.3\linewidth}@{}}
+    \toprule
+    Who & What they would get & What must be true first \\
+    \midrule
+    CTA practitioners, knowledge engineers, training designers &
+      A ranked list of likely gaps before the first interview, each with a predicted knowledge type
+      and a suggested elicitation channel; less expert time per validated item &
+      The gap map predicts on fresh, blind elicitation (V5, MS5), and targeting saves time by at
+      least the proposed 1.25 times (V6, MS6) \\
+    \addlinespace
+    Software organizations &
+      A knowledge-at-risk view per component that adds artifact coverage to authorship
+      concentration, in aggregate form &
+      Coverage predicts post-departure trouble beyond authorship (V3, the separate organizational
+      hypothesis H-OSS), and a partner pilot is legal and beats controls (V7, MS7) \\
+    \addlinespace
+    Maintenance and compliance organizations &
+      Targeted capture of diagnostic cues and exception judgments before a senior person leaves &
+      The method holds in a text-poor diagnostic domain and in regulatory judgment (V5 in D3 and
+      D4) \\
+    \addlinespace
+    Educators and learners &
+      Instruction that states validated hidden steps, such as principle selection &
+      Residual areas carry more novice errors (V8c, MS8), and a trial shows a delayed-transfer
+      effect \\
+    \addlinespace
+    Researchers &
+      Open closure set, reconstruct-versus-CTA benchmark, coded departure dataset &
+      Only that V1, V2 and V3 run; each is released whatever its verdict \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\paragraph{The size of any benefit is unknown, and some impact would remain even if H2 fails.}
+\evint{} The saving per validated item is unknown until V6 measures it. Whether a coverage score
+adds anything to authorship data is exactly what V3 tests. We found no credible, peer-reviewed cost
+figure for organizational knowledge loss in general, so we claim none. Field effects of education
+interventions are usually small \parencite{kraft2020interpreting}, so even a success brings modest
+gains. Two fallbacks keep some value if H2 fails. If the closure study (MS1) stops the automated
+absence check, the reconstruction pipeline still works as a documentation audit. If the screening
+gate (MS3) does not release Phase~2, H2 funding stops and the separately costed interview-only pivot
+follows; a positive result there would give practitioners an elicitation-efficiency tool, with no
+claim about text (\cref{sec:risks}). Neither is a residual predictor, and neither would be sold as
+one.
+
+\paragraph{What the impact must not become.} \evint{} Three rules hold whatever the results.
+\begin{itemize}[nosep]
+  \item An unvalidated gap candidate never reaches a learner (\cref{sec:education}).
+  \item Organizational outputs are aggregate by default, never feed performance evaluation, and name
+    a person only with consent (\cref{sec:organizations}).
+  \item Coverage is reported as a diagnostic, never a key performance indicator. As a target, it
+    would reward documentation that raises the score over documentation that transfers knowledge.
+\end{itemize}

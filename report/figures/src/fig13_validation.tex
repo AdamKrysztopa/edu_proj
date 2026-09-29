@@ -1,0 +1,154 @@
+% report/figures/src/fig13_validation.tex
+% Validation program in three phase bands on a fixed grid, each read left to
+% right; a left-margin rail carries each continuing gate into the next band.
+% Phase 0: PoC -> V1 -> MS1 (exit: pivots). Phase 1: V0 -> MS2 freeze -> V2
+% -> MS3 (exit: interview-only pivot). Phase 2: V5 pilot -> MS4 -> V5 -> MS5
+% -> {V6/MS6 | V7/MS7 | V8/MS8}. Below the bands, unconnected: the H-OSS
+% organizational track and the Track A rail (E-SEAL from V8 only).
+% Gates hold only their code; the rule sits in a nearby 7 pt note.
+% Content: sections/17_validation.tex, notes/program_structure_R2.md.
+% Home: sec:validation.
+\documentclass[tikz,border=1mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+\newcommand{\sub}[1]{\\[0.4mm]{\fontsize{7}{8}\selectfont #1}}
+
+% x (mm): band edges, return rail, first box edge, right content edge.
+\def\bl{0}\def\br{147}\def\xrail{1.8}\def\xl{5.5}
+% Row y (mm), band tops/bottoms and the return connectors in the gaps between bands.
+\def\yA{0}\def\tA{17.5}\def\bA{-10}\def\cA{-12.5}
+\def\yB{-32.5}\def\tB{-15}\def\bB{-43.5}\def\cB{-46}
+\def\yC{-74}\def\tC{-48.5}\def\bC{-96}\def\lane{13.5}
+\def\yH{-105}\def\yT{-117.5}
+
+\tikzset{
+  box/.style={procdet, planned, text opacity=1, inner xsep=0.75mm, inner ysep=1mm,
+              minimum height=15mm, align=flush center},
+  w/.style={text width=#1mm-1.5mm, minimum width=#1mm},
+  ms/.style={gate, planned, text opacity=1, text width=8mm, shape aspect=1.4, inner sep=0pt,
+             minimum width=10mm, minimum height=8.5mm,
+             font=\sffamily\bfseries\fontsize{8}{9}\selectfont},
+  rule/.style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700, align=center,
+               inner sep=0.5pt},
+  tag/.style={font=\sffamily\bfseries\fontsize{7}{8}\selectfont, text=gray700, inner sep=0.5pt,
+              anchor=south east},
+  band/.style={fill=gray100, draw=gray200, line width=0.4pt},
+  bandlab/.style={font=\sffamily\bfseries\fontsize{8}{9.5}\selectfont, text=gray700,
+                  anchor=north west, inner sep=0pt},
+  freeze/.style={draw=evlitcol, line width=1.6pt},
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+  % ------------------------------------------------------------ bands
+  \begin{scope}[on background layer]
+    \path[band] (\bl mm, \tA mm) rectangle (\br mm, \bA mm);
+    \path[band] (\bl mm, \tB mm) rectangle (\br mm, \bB mm);
+    \path[band] (\bl mm, \tC mm) rectangle (\br mm, \bC mm);
+  \end{scope}
+  \node[bandlab] at (4.5mm, \tA mm-1.8mm) {Phase 0 --- before any grant};
+  \node[bandlab] at (4.5mm, \tB mm-1.8mm) {Phase 1 --- lean methods grant};
+  \node[bandlab] at (4.5mm, \tC mm-1.8mm) {Phase 2 --- released only on MS3 continue};
+
+  % ------------------------------------------------------------ Phase 0
+  \node[box, w=26, solid, fill opacity=1, anchor=west] (poc) at (\xl mm, \yA mm)
+    {\textbf{PoC today}\sub{absence check\\ties its control}};
+  \node[box, w=33, anchor=west] (v1) at ($(poc.east)+(5mm,0)$)
+    {\textbf{V1 Closure study}\sub{$\geq$100 double-coded units}};
+  \node[ms, anchor=west] (ms1) at ($(v1.east)+(4.5mm,0)$) {MS1};
+  \node[box, w=32, minimum height=10mm, anchor=east] (piv0) at (\br mm-2mm, \yA mm)
+    {\textbf{Pivots}\sub{audit tool; interview-only}};
+
+  \node[tag] at ($(v1.north east)+(0,0.7mm)$) {blind coder};
+  \node[rule, anchor=south west] at ($(ms1.west |- v1.north)+(0,1.5mm)$)
+    {\textbf{MS1} $\kappa \geq 0.70$, recall $\geq$ floor,\\a judge beats the fair control};
+
+  \draw[flowimpl] (poc) -- (v1);
+  \draw[flowplan] (v1) -- (ms1);
+  \draw[flowplan] (ms1) -- (piv0) node[rule, midway, below=1.2mm] {stop};
+
+  % ------------------------------------------------------------ Phase 1
+  \node[box, w=25, anchor=west] (v0) at (\xl mm, \yB mm)
+    {\textbf{V0 Admissibility + area score}};
+  \node[box, w=32, anchor=west] (v2) at ($(v0.east)+(16mm,0)$)
+    {\textbf{V2 Pooled CTA golds}\sub{$\geq$3 published golds;\\V4 on V2 data}};
+  \node[ms, anchor=west] (ms3) at ($(v2.east)+(4.5mm,0)$) {MS3};
+  \node[box, w=32, minimum height=10mm, anchor=east] (piv1) at (\br mm-2mm, \yB mm)
+    {\textbf{Interview-only pivot}\sub{costed separately}};
+
+  \draw[flowplan] (v0) -- (v2);
+  \coordinate (fz) at ($(v0.east)!0.5!(v2.west)$);
+  \draw[freeze] ($(fz)+(0,-2.6mm)$) -- ($(fz)+(0,2.6mm)$);
+  \node[rule, anchor=north, font=\sffamily\bfseries\fontsize{7}{8}\selectfont]
+    at ($(fz)+(0,-3.6mm)$) {MS2\\freeze};
+
+  \node[rule, anchor=south west] at ($(ms3.west |- v2.north)+(0,1.5mm)$)
+    {\textbf{MS3} screening: point $\geq \delta$,\\lower bound $> -\delta/2$, beats density};
+
+  \draw[flowplan] (v2) -- (ms3);
+  \draw[flowplan] (ms3) -- (piv1) node[rule, midway, below=1.2mm] {stop};
+
+  % ------------------------------------------------------------ Phase 2
+  \node[box, w=20, anchor=west] (pil) at (\xl mm, \yC mm)
+    {\textbf{V5 pilot}\sub{6 experts}};
+  \node[ms, anchor=west] (ms4) at ($(pil.east)+(4mm,0)$) {MS4};
+  \node[box, w=32, anchor=west] (v5) at ($(ms4.east)+(4mm,0)$)
+    {\textbf{V5 Blind elicitation}\sub{decides H2;\\$\sim$300 areas, 45 experts}};
+  \node[ms, anchor=west] (ms5) at ($(v5.east)+(4mm,0)$) {MS5};
+
+  \coordinate (fork) at ($(ms5.east)+(6mm,0)$);
+  \tikzset{lanebox/.style={box, w=29, minimum height=10.5mm, anchor=west}}
+  \node[lanebox] (v6) at ($(fork)+(4mm,\lane mm)$) {\textbf{V6 Efficiency (H3)}};
+  \node[lanebox] (v7) at ($(fork)+(4mm,0)$) {\textbf{V7 Organizational pilot}};
+  \node[lanebox] (v8) at ($(fork)+(4mm,-\lane mm)$) {\textbf{V8 Novices}};
+  \node[ms, anchor=west] (ms6) at ($(v6.east)+(4mm,0)$) {MS6};
+  \node[ms, anchor=west] (ms7) at ($(v7.east)+(4mm,0)$) {MS7};
+  \node[ms, anchor=west] (ms8) at ($(v8.east)+(4mm,0)$) {MS8};
+
+  \node[rule, anchor=north] at ($(ms4 |- pil.south)+(0,-1.5mm)$)
+    {\textbf{MS4} areas fit the funded ceiling,\\$\alpha \geq 0.80$, stratum guessing near chance};
+  \node[rule, anchor=south] at ($(ms5 |- v5.north)+(0,1.5mm)$) {\textbf{MS5}\\H2 verdict};
+
+  \draw[flowplan] (pil) -- (ms4);
+  \draw[flowplan] (ms4) -- (v5);
+  \draw[flowplan] (v5) -- (ms5);
+  \draw[flowplan] (ms5.east) -- (fork) |- (v6.west);
+  \draw[flowplan] (fork) -- (v7.west);
+  \draw[flowplan] (fork) |- (v8.west);
+  \foreach \a/\b in {v6/ms6, v7/ms7, v8/ms8} \draw[flowplan] (\a) -- (\b);
+
+  % ------------------------------------------------------------ continue rail
+  \draw[flowplan] (ms1.south) |- (\xrail mm, \cA mm) |- (v0.west);
+  \draw[flowplan] (ms3.south) |- (\xrail mm, \cB mm) |- (pil.west);
+  \node[rule, anchor=west] at ($(ms1.south)+(1mm,-3.4mm)$) {continue};
+  \node[rule, anchor=west] at ($(ms3.south)+(1mm,-3.4mm)$) {continue};
+
+  % ------------------------------------------------------------ organizational track
+  \node[box, w=100, minimum height=10mm, anchor=west] (hoss) at (\xl mm, \yH mm)
+    {\textbf{Organizational track: V3 H-OSS}\sub{Git adapter + code lenses; own freeze MS2b;
+     cannot stop or license H2}};
+
+  % ------------------------------------------------------------ Track A rail
+  \node[box, draw=gray400, fill=gray100, w=139.5, minimum height=7mm, anchor=west]
+    (tracka) at (\xl mm, \yT mm)
+    {\textbf{Validation Track A} (frozen; own preconditions)};
+  \draw[flowplan] (v8.south) -- (v8.south |- tracka.north)
+    node[rule, pos=0.62, anchor=west, xshift=1.5mm] {sealed, non-gating};
+
+  % ------------------------------------------------------------ legend
+  \node[fit=(tracka), inner sep=0pt] (all) {};
+  \matrix[below=3mm of all.south, anchor=north, column sep=6mm, ampersand replacement=\&,
+          sw/.style={draw=accent, thick, fill=accent!8!white, minimum width=6mm, minimum height=3.6mm,
+                     text width=0pt, inner sep=0pt, anchor=west},
+          ll/.style={rule, anchor=west}] {
+    \node[sw] {}; \node[ll] at (7.5mm,0) {observed (solid)}; \&
+    \node[sw, dashed] {}; \node[ll] at (7.5mm,0) {future work (dashed)}; \&
+    \node[gate, sw, minimum width=6.4mm, minimum height=4.2mm] {}; \node[ll] at (7.5mm,0) {gate: continue or stop}; \&
+    \draw[freeze] (3mm,-2.2mm) -- (3mm,2.2mm); \node[ll] at (5.5mm,0) {freeze (hash-commit)}; \\
+  };
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,115 @@
+\section*{Executive summary}\label{sec:summary}
+\addcontentsline{toc}{section}{Executive summary}
+\markboth{Executive summary}{Executive summary}
+
+\subsection*{The result}
+
+\evobs{} The absence check ties its fair control; prediction of hidden knowledge is untested. The
+proof of concept (PoC) built a chain from public web text to ranked questions for experts. Its
+central step, the absence check (\emph{closure} in the code), asks a judge model whether retrieved
+ledger sentences already state an element that a lens flagged as missing. In a fair control, each
+candidate's other-source sentences were swapped for those of the topically nearest candidate. The
+judge's closure rate (counting \emph{partial} as closed) did not change: 0.889, 0.961 and 0.958 in the
+three ledgers. The judge's verdict does not depend on which evidence it is shown, so it is not yet an
+informative absence check. The control is built into \code{gapmap/checks.py}, added after an
+adversarial AI review found the weakness, and it flags the failure on every replay. No gold standard
+was acquired, so the PoC neither shows nor refutes that the gap map predicts what experts know.
+
+\subsection*{Recommendation: run the closure study before any grant submission}
+
+\evfut{} The cheapest decisive test needs no grant and no participants. In this Phase~0 study (V1),
+a blind coder who is not the owner labels each unit as closed, partly closed or open. A unit is one
+lens firing with its evidence, in one arm of the fair control. The sample is the 107 lens firings
+from the two admissible ledgers, each in both arms (214 units), plus about 100 units from one new
+domain, so that no judge is scored only in-sample. V1 reports three things:
+\begin{itemize}[nosep]
+  \item agreement between the two human coders (weighted Cohen's $\kappa$; the gate uses closed
+    versus not closed);
+  \item corpus-level retrieval recall: is the element stated anywhere in the ledger's sources, not
+    only in the sentences the retriever returned;
+  \item whether any judge in a candidate panel beats the fair control.
+\end{itemize}
+The cost is tens of coder hours plus local compute, on the order of a few thousand euros. The gate
+MS1 reads CONTINUE only if human $\kappa \geq 0.70$, retrieval recall meets its pre-registered floor,
+and at least one judge beats the fair control by a pre-registered margin. Otherwise the automated
+absence check stops, and the work pivots to reconstruction with provenance as an audit tool, or to
+interviewing without a gap map. The V1 numbers should be on page~1 of any grant proposal; this report
+is the design for them (\cref{sec:validation}).
+
+\subsection*{The problem and the idea}
+
+Experts leave out the steps that have become automatic for them. In one small study, three
+surgeons teaching a procedure omitted on average 73\% of the decision steps in a task list built by
+cognitive task analysis (CTA) \parencite{sullivan2014use}; no general omission rate is known. Text
+has the same silence: writers do not state what is obvious to them \parencite{gordon2013reporting}.
+
+We ask AI for two narrow things. First, \emph{reconstruct} what public sources state about a task,
+as a ledger of labeled claims whose evidence items are exact spans of saved sources. Second,
+\emph{predict where that reconstruction is thin}, using constructs from expertise research as
+methodology lenses. A lens asks: \enquote{the sources name this cue, rival cause, rule or check; do
+they ever state its content?} What survives the absence check becomes a \emph{gap candidate}: a
+hypothesis labeled \emph{inferred}, with a template question for an expert. What experts would add beyond the ledger is
+the Human Knowledge Residual, a construct nobody has measured yet.
+
+\subsection*{What the PoC built}
+
+\evobs{} The PoC used zero participants and public web text only, in two domains: intermittent
+faults in programmable logic controllers (PLC) and data protection impact assessments under the EU General Data Protection Regulation
+(GDPR), at
+\$0.50--\$1.00 per run.
+
+\begingroup
+  \footnotesize\noindent
+  \begin{tabularx}{\linewidth}{@{}>{\bfseries}p{2.1cm}X@{}}
+    \toprule
+    Built & Evidence model with computed labels and a frozen schema (N1); reconstruction pipeline
+      with verbatim spans and cross-family verification (N2); gap map with seven lenses, absence
+      check, triage, a breadth ranking (not expected information gain), template questions and
+      built-in checks (N3). \\
+    Shown & The chain runs end to end on real sources and replays byte for byte. All 909 stored
+      evidence items re-slice exactly from their snapshots; 418 of 1,169 claims have no locatable
+      span and are labeled synthetic. On the two admissible ledgers the lenses fired 107 times and
+      left 25 gap candidates after merging (PLC 24, GDPR v1 1); a third, defect-compromised ledger
+      adds 48 firings and 6 candidates. \\
+    Not shown & That any gap candidate is real expert knowledge; that the absence check works; that
+      gating resists planted falsehoods (N2's gated arms were never scored, so its registered verdict
+      is inconclusive); that the ranking is more than source density; that anything generalizes
+      beyond two domains. \\
+    \bottomrule
+  \end{tabularx}
+\endgroup
+
+\paragraph{What is new, and what is not.} \evint{} Every step has precedent. The closest work checks
+GDPR privacy policies for typed, regulation-required content \parencite{torre2020ai}, finds
+underspecified phrases in instructional text \parencite{anthonio2022clarifying}, and mines design
+rationale from issue trackers \parencite{zhao2024drminer}. What we did not find, in a search to
+September 2026, is a method that chains a provenance-typed ledger, expertise constructs as absence
+detectors, a knowledge type and elicitation channel per candidate, and search failures routed back
+to search. That chain is a proof of concept, not a validated method (\cref{sec:approach-closest}).
+
+\subsection*{The program after V1}
+
+\evfut{} Each tranche of money is released only by a gate reading CONTINUE. An external gate reader,
+an independent statistician, reads the three deciding gates (MS1, MS3, MS5) against their
+pre-registration; any exception by the owner, at any gate, needs the reader's sign-off.
+\begin{itemize}[nosep]
+  \item \textbf{Phase~1, a lean methods grant} (about EUR 0.3--0.5 million, 12--15 months), only on
+    MS1 CONTINUE. It builds an area score and freezes the configuration before any gold is acquired.
+    It then runs V2: the gap map is scored against several published CTA task lists, pooled, on
+    dated corpora. The gate MS3 only screens money for Phase~2; it does not decide H2, the central
+    hypothesis that the gap map predicts where experts add knowledge. The score is the gain in
+    area under the receiver operating characteristic (ROC) curve ($\Delta$AUROC) over the strongest baseline. MS3 releases Phase~2 only
+    if its point estimate is at least $\delta$ (proposed 0.05), its lower 90\% bound is above
+    $-\delta/2$, and the map adds value beyond source density and area size. Otherwise H2 funding stops and the
+    separately costed interview-only pivot follows.
+  \item \textbf{Phase~2, the full program}, only on MS3 CONTINUE. Blind prospective elicitation
+    (V5), powered for $\delta = 0.05$ (about 150 areas per class, each rated by three experts),
+    decides H2. H2 stops if the upper 90\% bound of $\Delta$AUROC is below $\delta$; any reading
+    short of CONTINUE does not support H2 and ends its funding. A later study tests H3: prioritized
+    questions recover at least 1.25 times as many validated items per expert hour; a null counts
+    against it. Organizational and education pilots follow, each with its own gate.
+\end{itemize}
+A study of developer departures in open-source projects tests a separate organizational hypothesis
+(H-OSS) and can neither stop nor license H2. Budgets: \cref{sec:resources}. \textbf{Team status:} one operator
+built the PoC with AI assistance; a host institution, principal investigator, statistician, CTA
+collaborator and letters must be named before submission (\cref{sec:team}).

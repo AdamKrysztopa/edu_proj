@@ -1,0 +1,100 @@
+\section{Scope of the proof of concept}
+\label{sec:scope}
+
+\subsection{What the PoC set out to show}
+
+The proof of concept (PoC) had one narrow engineering goal: build a working, checkable chain
+from a named domain or capability to a ranked list of questions for a human expert. It used only
+public evidence, with zero participants at any step. \evobs{} \emph{Checkable} means three things.
+First, every criterion-labeled claim's evidence is an exact, byte-identical span in a document the
+system fetched itself. A claim the extractor could not ground this way stays in the ledger as
+\code{synthetic\_extrapolation} and never acts as a criterion (\cref{sec:evidence-model}). Second,
+every epistemic label is computed from that evidence rather than typed in by hand. Third, every
+stage's tests run offline. The chain has four stages:
+\begin{enumerate}[noitemsep]
+  \item reconstruct a domain's written record with provenance (\cref{sec:architecture});
+  \item keep that record as an explicit evidence ledger with six epistemic labels
+    (\cref{sec:evidence-model});
+  \item apply methodology lenses that ask whether a named construct's content is stated anywhere
+    in the ledger; and
+  \item rank the resulting candidates into expert questions.
+\end{enumerate}
+Each stage is implemented code, run on real web sources, with a committed test suite.
+
+The PoC was not meant to show, and does not show, that the resulting questions or their ranking
+point at what a real expert actually knows and the record does not. That is a separate claim
+(RQ-B, \cref{sec:question}) that needs human evidence to test, and the PoC deliberately used none.
+\evint{} What the PoC demonstrates is a mechanism: a chain that turns silence in the written
+record into a labeled, ranked hypothesis. Whether that hypothesis is right is untested. The gap
+map's own closure step does not yet beat a fair control (\cref{sec:n3,sec:not-demonstrated}), so
+even the mechanism's central move is an open question, not a working result.
+
+\subsection{Why zero participants}
+
+The PoC was built entirely inside what \repo{REORIENTATION.md} (\S22) calls the NOW program:
+zero participants, zero proprietary or customer data, zero microphones, and zero live expert
+interviews. \evobs{} The one human input the program allows at all is a single blind second
+coder, used for labeling rather than participation, and that step has not yet been exercised.
+The constraint follows directly from the project's own history (\cref{sec:track-a-history}
+below): every gate that needed a human to run first stalled on recruiting that human. A design
+that needs no participant to reach its first checkable result can be built, tested, and revised
+on the calendar of the engineering team alone. Its failures are attributable to the code and
+the public evidence, not to a small or biased human sample. \evint{} The cost is symmetric: a
+zero-participant PoC cannot, by construction, validate the one claim that matters most --- that
+the reconstruction's thin spots correspond to what humans actually know. That validation is
+future research (\cref{sec:not-demonstrated,sec:residual,sec:validation}), pre-registered before
+any gold data is acquired.
+
+\subsection{How the project reached this design}
+\label{sec:track-a-history}
+
+The project began as a physics-education study. Twelve physicists would be interviewed with an
+AI-assisted think-aloud and retrospective-probe protocol, and about 370 first-year students would
+sit a two-arm randomized trial with delayed transfer. Building the instrument for that study --- a
+session app, a coding pipeline, five architecture decisions, and four rounds of lessons drained
+into the codebase --- absorbed most of the project's effort. \evobs{} The instrument is complete
+and tested: \repo{instrument/} runs 311 tests (\code{uv run --directory instrument pytest -q}).
+Every one of its gates, though, from the first pilot session to the final randomized trial,
+needed physicists, students, or both to exist before any result could be read.
+
+A self-diagnosis in \repo{REORIENTATION.md} \S3 named this pattern \emph{drift}: a
+falsification discipline that demanded validation against observed human performance had,
+with no participants recruited yet, nowhere to go except building the instrument ever more
+carefully. \evint{} Public-evidence reconstruction, organizational knowledge, and
+evidence-grounded synthetic cohorts had never been considered as alternative first steps, so
+work of that kind could not register as progress against the existing plan. The owner adopted a
+reorientation on 2026-09-28 (\repo{REORIENTATION.md}, \S3, \S22). It freezes the physics study
+and its instrument as \emph{Validation Track A}, unchanged and started only on its own registered
+preconditions (experts, a course, ethics approval). It also opens a new, parallel program --- NOW,
+items N0 through N9 --- whose every item can start and end without a single participant. N0--N3 are
+built; \cref{tab:now-verdicts} (\cref{sec:evolution}) tracks what each one did and the verdict it
+read. \Cref{tab:now-items} lists the six items that are not yet started.
+
+\begin{table}[tbp]
+  \centering
+  \small
+  \caption{The NOW program's not-yet-started items, N4--N9 (\repo{REORIENTATION.md}, \S22); N0--N3
+  are tracked separately in \cref{tab:now-verdicts}. Every item, built or not, is pre-registered to
+  end in a continue/change/stop reading of an experiment result, not in a build
+  (\cref{sec:evolution}).}
+  \label{tab:now-items}
+  \begin{tabularx}{\linewidth}{@{}llX@{}}
+    \toprule
+    Item & Status & One line \\
+    \midrule
+    N4 & Not started & Behavioral validity: does the reconstructed model fit real learner
+      responses? \\
+    N5 & Not started & Residual measurement: estimate unseen items against gold as an
+      independent occasion. \\
+    N6 & Not started & Question selection by expected information gain against held-out gold. \\
+    N7 & Not started & Evidence-grounded synthetic cohorts, validated in tiers, never a
+      criterion. \\
+    N8 & Not started & E-SEAL: sealed Track A predictions, secondary and non-gating. \\
+    N9 & Not started & E-COST: a running ledger of cost per validated item. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+This report covers N0--N3: the four items that exist. \evfut{} N4--N9 are described only as the
+research program that would follow (\cref{sec:validation,sec:roadmap}); nothing under those
+items has been built or run.

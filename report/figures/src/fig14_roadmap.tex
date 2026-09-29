@@ -1,0 +1,127 @@
+% report/figures/src/fig14_roadmap.tex
+% Gated roadmap on a fixed grid. Row 1: S0 -> Phase 0 (V1) -> MS1 -> S1
+% (Phase 1) -> MS3; each gate's exit hangs below it. A return connector
+% carries MS3 into the Phase 2 band, three lanes: prospective (S2 -> MS4 ->
+% S3 -> MS5/6), organizational (S4 H-OSS -> its gate; S4 V7 -> MS7) and
+% education (S5 V8a; S5 V8c -> MS8). MS5/6 drops into V7 and V8c; MS7 and
+% MS8 merge into S6. Gates hold only their code; the rule sits beside the
+% diamond. Stages, months and rules: sections/22_roadmap.tex,
+% sections/23_workpackages.tex (tab:milestones). Home: sec:roadmap.
+\documentclass[tikz,border=1mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+\newlength{\boxw}\setlength{\boxw}{24mm}
+\newlength{\gatew}\setlength{\gatew}{11.5mm}
+\newlength{\hgap}\setlength{\hgap}{4.8mm}
+\newcommand{\sub}[1]{\\[0.4mm]{\fontsize{7}{8}\selectfont #1}}
+
+% Phase 2 columns (mm): box, gate, box, box (MS5/6 above V7, V8c), gate, box.
+\pgfmathsetmacro{\cA}{(\boxw/1mm)/2}
+\pgfmathsetmacro{\cB}{\cA+(\boxw/1mm)/2+(\hgap/1mm)+(\gatew/1mm)/2}
+\pgfmathsetmacro{\cC}{\cB+(\gatew/1mm)/2+(\hgap/1mm)+(\boxw/1mm)/2}
+\pgfmathsetmacro{\cD}{\cC+(\boxw/1mm)+(\hgap/1mm)}
+\pgfmathsetmacro{\cE}{\cD+(\boxw/1mm)/2+(\hgap/1mm)+(\gatew/1mm)/2}
+\pgfmathsetmacro{\cF}{\cE+(\gatew/1mm)/2+(\hgap/1mm)+(\boxw/1mm)/2}
+% Row 1 centres (mm): S0 23.5, Phase 0 28, S1 31 mm wide; 5.8 mm gaps.
+\def\ra{11.75}\def\rb{43.3}\def\rc{68.85}\def\rd{95.9}\def\re{122.95}
+% Row y (mm): row 1, pivots, return connector, lanes A-C.
+\def\yA{0}\def\yP{-16.5}\def\yR{-23.5}\def\yL{-42}\def\yM{-59.5}\def\yN{-77}
+
+\tikzset{
+  box/.style={procdet, text width=\boxw-1.5mm, minimum width=\boxw, inner xsep=0.75mm,
+              inner ysep=1mm, minimum height=14mm, align=center, text opacity=1},
+  bw/.style={text width=#1-1.5mm, minimum width=#1},
+  planned/.append style={text opacity=1},
+  ms/.style={gate, text width=8mm, shape aspect=1.4, inner sep=0pt, minimum width=\gatew, minimum height=9mm,
+             font=\sffamily\bfseries\fontsize{8}{9}\selectfont},
+  rule/.style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700, align=center,
+               inner sep=0.5pt},
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+  % ------------------------------------------------------------ row 1: S0, Phase 0, Phase 1
+  \node[box, bw=23.5mm, minimum height=17mm] (s0) at (\ra mm, \yA mm) {\textbf{S0 PoC}\sub{complete, Sept 2026}};
+  \node[box, planned, bw=28mm, minimum height=17mm] (p0) at (\rb mm, \yA mm)
+    {\textbf{Phase 0: V1 closure study}\sub{owner-run, before any grant; 2--4 months}};
+  \node[ms, planned] (ms1) at (\rc mm, \yA mm) {MS1};
+  \node[box, planned, bw=31mm, minimum height=17mm] (s1) at (\rd mm, \yA mm)
+    {\textbf{S1 Phase 1: lean methods grant}\sub{V0, V2 pooled, V4; MS2 freeze at M4; 12--15 months}};
+  \node[ms, planned] (ms3) at (\re mm, \yA mm) {MS3};
+
+  \node[rule, anchor=south] (r1) at ($(ms1 |- s1.north)+(0,1.5mm)$) {End of Phase 0: $\kappa\geq0.70$, recall $\geq$ floor;\\one judge beats the fair control};
+  \node[rule, anchor=south] (r3) at ($(ms3 |- s1.north)+(0,1.5mm)$) {M14: $\Delta$AUROC $\geq\delta$, lower bound $>-\delta/2$;\\beats density and area size};
+
+  \draw[flowimpl] (s0) -- (p0);
+  \foreach \a/\b in {p0/ms1, ms1/s1, s1/ms3} \draw[flowplan] (\a) -- (\b);
+
+  % ------------------------------------------------------------ pivot exits
+  \node[box, planned, bw=27mm, minimum height=9mm] (piv1) at (\rc mm, \yP mm)
+    {\textbf{Pivots}\sub{audit tool; interview-only}};
+  \node[box, planned, bw=33mm, minimum height=9mm] (piv3) at (\re mm, \yP mm)
+    {\textbf{Interview-only pivot}\sub{costed separately}};
+  \draw[flowplan] (ms1) -- (piv1);
+  \draw[flowplan] (ms3) -- (piv3);
+
+  % ------------------------------------------------------------ Phase 2 lanes
+  \node[box, planned] (s2) at (\cA mm, \yL mm) {\textbf{S2 Research prototype}\sub{V5 pilot; M15--M24}};
+  \node[ms, planned] (ms4) at (\cB mm, \yL mm) {MS4};
+  \node[box, planned] (s3) at (\cC mm, \yL mm) {\textbf{S3 Prospective validation}\sub{V5 main, V6; M25--M46}};
+  \node[ms, planned, text width=9mm] (ms56) at (\cD mm, \yL mm) {MS5/6};
+
+  \node[box, planned] (s4a) at (\cA mm, \yM mm) {\textbf{S4a H-OSS (V3)}\sub{org.\ track, M15--M33;\\ MS2b freeze at M23}};
+  \node[ms, planned, font=\sffamily\bfseries\fontsize{7}{8}\selectfont] (hoss) at (\cB mm, \yM mm) {H-OSS};
+  \node[box, planned] (s4b) at (\cD mm, \yM mm) {\textbf{S4b Partner pilot (V7)}\sub{org.\ track, M39--M48}};
+  \node[ms, planned] (ms7) at (\cE mm, \yM mm) {MS7};
+
+  \node[box, planned] (s5a) at (\cA mm, \yN mm) {\textbf{S5a Learner data (V8a)}\sub{public data, M15--M20; no gate}};
+  \node[box, planned] (s5b) at (\cD mm, \yN mm) {\textbf{S5b Novices (V8c)}\sub{M39--M46}};
+  \node[ms, planned] (ms8) at (\cE mm, \yN mm) {MS8};
+
+  \pgfmathsetmacro{\yS}{(\yM+\yN)/2}
+  \node[box, planned] (s6) at (\cF mm, \yS mm) {\textbf{S6 Full platform}\sub{not grant-funded; 18--36 months}};
+
+  \node[rule, anchor=south] (r4) at ($(ms4 |- s2.north)+(0,1.5mm)$) {M24: $\leq$ 450 areas, $\alpha\geq0.80$;\\strata guessed at chance};
+  \node[rule, anchor=south] (r56) at ($(ms56 |- s2.north)+(0,1.5mm)$) {M38 H2: lower bound $>0$, point $\geq\delta$\\M46 H3: yield ratio $>1$, point $\geq1.25$};
+  \node[rule, anchor=west, align=left] (rh) at ($(hoss.east)+(1.5mm,0)$) {M33: the MS5 rule on\\H-OSS only; cannot stop\\or license H2};
+  \node[rule, anchor=south] (r7) at ($(ms7.north)+(5mm,1.5mm)$) {M48: map beats controls;\\legal route workable};
+  \node[rule, anchor=north] (r8) at ($(ms8.south)+(9.5mm,-1.5mm)$) {M46: novice error excess, CI $>0$;\\compliance $\geq$ 70\%};
+
+  \draw[flowplan] (s2) -- (ms4);
+  \draw[flowplan] (ms4) -- (s3);
+  \draw[flowplan] (s3) -- (ms56);
+  \draw[flowplan] (s4a) -- (hoss);
+  \draw[flowplan] (ms56) -- (s4b);
+  \draw[flowplan] (s4b) -- (ms7);
+  \draw[flowplan] (s5b) -- (ms8);
+  \draw[flowplan] ($(ms56.south)+(0,-2mm)$) -| ($(s4b.west)+(-2.4mm,0)$) |- (s5b.west);
+  \coordinate (merge) at ($(s6.west)+(-2.4mm,0)$);
+  \draw[flowplan] (ms7.east) -| (merge) -- (s6.west);
+  \draw[flowplan] (ms8.east) -| (merge);
+
+  % ------------------------------------------------------------ Phase 2 band
+  \begin{scope}[on background layer]
+    \node[fit=(s2)(s5a)(s6)(r4)(r56)(r8), inner sep=1.5mm, fill=gray100, draw=gray200, rounded corners=1pt] (band) {};
+  \end{scope}
+  \node[rule, anchor=south west, font=\sffamily\bfseries\fontsize{7}{8}\selectfont] at ($(band.south west)+(1.5mm,1.2mm)$)
+    {Phase 2: released only if MS3 reads continue};
+
+  % ------------------------------------------------------------ return connector
+  \draw[flowplan] (ms3.east) -- ++(13mm,0) coordinate (rt) -- (rt |- 0,\yR mm) -| (s2.north);
+
+  % ------------------------------------------------------------ legend
+  \node[fit=(s0)(band)(r1)(r3)(rt), inner sep=0pt] (all) {};
+  \matrix[below=2.5mm of all.south east, anchor=north east, column sep=6mm, ampersand replacement=\&,
+          sw/.style={draw=gray700, fill=gray100, minimum width=6mm, minimum height=3.6mm,
+                     text width=0pt, inner sep=0pt, anchor=west},
+          ll/.style={rule, anchor=west}] {
+    \node[sw] {}; \node[ll] at (7.5mm,0) {complete (solid)}; \&
+    \node[sw, dashed] {}; \node[ll] at (7.5mm,0) {planned (dashed)}; \&
+    \node[gate, sw, minimum width=6.4mm, minimum height=4.2mm] {}; \node[ll] at (7.5mm,0) {gate: continue, pivot or stop}; \\
+  };
+
+\end{tikzpicture}
+\end{document}

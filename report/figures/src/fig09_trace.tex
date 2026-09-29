@@ -1,0 +1,98 @@
+% report/figures/src/fig09_trace.tex
+% One complete, real trace: PLC ledger, lens DIAG, gap g-59164a9db5bd.
+% Quoted text is verbatim from research/n3/plc/gapmap.json map[0] (anchor, missing,
+% hypothesis.text, question.text, judge_reason, observed_evidence spans); the seed claim's
+% assertion is verbatim from reconstruct/runs/20260928T133336Z-59ec876b3d7e/ledger.json.
+% Per-rival judge states come from an offline replay with the committed
+% research/n3/plc/closure_judgements.json (semantic._judge_diag): 4 rivals partial, 1
+% (aliasing) synthetic-closed, none closed; partial_hits lists 5 claims.
+% Evidence-category colors follow report/notes/10_visual_language.md: OBSERVED (evobscol) for
+% recorded pipeline output, HYPOTHESIS (evhypcol) for the inferred hypothesis, FUTURE WORK
+% (evfutcol, dashed) for the uncollected expert answer.
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+\newcommand{\url}[1]{{\ttfamily\fontsize{7}{8.4}\selectfont #1}}
+\newcommand{\steplabtext}[1]{{\sffamily\bfseries\fontsize{7}{8}\selectfont\color{gray700} #1}}
+\newcommand{\fignote}[1]{{\sffamily\itshape\fontsize{7}{8.4}\selectfont\color{gray700} #1}}
+
+\tikzset{
+  trace/.style={rectangle, rounded corners=1pt, thick, text width=118mm, align=left, inner sep=4pt,
+    font=\sffamily\fontsize{8}{9.5}\selectfont},
+  obsbox/.style={trace, draw=evobscol, fill=evobscol!7!white, text=ink},
+  hypbox/.style={trace, draw=evhypcol, fill=evhypcol!7!white, text=ink},
+  futbox/.style={trace, dashed, draw=evfutcol, fill=gray100, text=gray700},
+}
+
+\begin{document}
+\begin{tikzpicture}[node distance=3mm]
+
+  \node[obsbox] (source) {%
+    \steplabtext{Source}\\
+    Seed: \url{liambee.me/.../troubleshooting-plc-systems-a-systematic-approach-to-finding-faults}\\
+    Rival claims (4): \url{automate.org/.../troubleshooting-tips-isolating-intermittent-faults}\\
+    Rival claim (1): \url{ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-...}
+  };
+
+  \node[obsbox, below=of source] (span) {%
+    \steplabtext{Verbatim span (seed)}\\
+    \emph{``Loose terminals cause many intermittent faults. A flashlight reveals problems in dark panels that you miss otherwise.''}
+  };
+
+  \node[obsbox, below=of span] (claim) {%
+    \steplabtext{Claim ID + label}\\
+    \texttt{c-d7bce12d16755797} --- \texttt{literature\_supported} --- verdict \texttt{supports}\\
+    Assertion (the extractor's paraphrase, which the lens reads): ``Loose terminal connections are a common cause of intermittent PLC faults and should be checked during troubleshooting.''\\
+    \fignote{The anchor is this assertion cut at 80 characters (at a word boundary): ``Loose terminal connections are a common cause of intermittent PLC faults and''.}
+  };
+
+  \node[obsbox, below=of claim] (lens) {%
+    \steplabtext{Lens fired: DIAG (rival causes)}\\
+    7 independent sources discuss the topic; the lens found 5 rival causes (listed in the hypothesis below) and looked for a discriminating sign for each.
+  };
+
+  \node[obsbox, below=of lens] (gap) {%
+    \steplabtext{Inferred gap --- closure\_state: open}\\
+    Closure judge (\texttt{qwen2.5:7b-instruct}, local), 34 verified sentences retrieved over the 5 rival probes: no rival fully distinguished; 4 of 5 partly addressed, with 5 partial rival hits; the fifth (aliasing) matched only an unverified sentence. The DIAG rule counts a partial rival as unsigned, so the group reads \texttt{open}.
+    Judge, verbatim: ``Sentences 1 and 4 partially address the distinction but do not explicitly state an observable sign.'' Re-runnable: prompt sha \texttt{9c50fb9250a8}.
+  };
+
+  \node[hypbox, below=of gap] (hyp) {%
+    \steplabtext{Hidden-knowledge hypothesis (label: inferred), verbatim}\\
+    ``Hypothesis (inferred): practitioners are predicted to tell these rival causes of \textquotedbl{}Loose terminal connections are a common cause of intermittent PLC faults and\textquotedbl{} apart by signs; the closure judge found a sign for the following (test DIAG:c-d7bce12d16755797):\\[1pt]
+    - Ground loops and interactions of multiple processors finding weaknesses in (no sign found)\\
+    - Aliasing in data can be a (no sign found)\\
+    - by installation problems, while software problems are typically less (no sign found)\\
+    - by high-frequency electrical noise from VFDs and contactors that creates phantom (no sign found)\\
+    - Improper pull-up resistors and incorrect clock edge timing in handshake lines (no sign found)''\\[1pt]
+    \fignote{The template prints ``(no sign found)'' for every rival not fully signed, including the 4 partly signed ones.}
+  };
+
+  \node[obsbox, below=of hyp] (question) {%
+    \steplabtext{Template question + channel, verbatim}\\
+    ``Sources list several causes of Loose terminal connections are a common cause of intermittent PLC faults and: \textquotedbl{}Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces.\textquotedbl{}, \textquotedbl{}high-frequency noise from VFDs and contactors creates the \textquotedbl{}phantom faults\textquotedbl{} that disrupt your logic signals and ruin your production schedule.\textquotedbl{}. Think of the last time you diagnosed Loose terminal connections are a common cause of intermittent PLC faults and. Which cause did you suspect first, and what did you see, hear or measure that let you rule the others out?''\\
+    Channel: CDM probes on a recalled case, then contrasting cases
+  };
+
+  \node[futbox, below=of question] (answer) {%
+    \steplabtext{Expert answer}\\
+    Not collected: zero participants by design (NOW program).
+  };
+
+  \draw[flowimpl] (source) -- (span);
+  \draw[flowimpl] (span) -- (claim);
+  \draw[flowimpl] (claim) -- (lens);
+  \draw[flowimpl] (lens) -- (gap);
+  \draw[flowimpl] (gap) -- (hyp);
+  \draw[flowimpl] (hyp) -- (question);
+  \draw[flowplan] (question) -- (answer);
+
+  \node[fit=(source)(span)(claim)(lens)(gap)(hyp)(question)(answer), inner sep=0pt] (allbox) {};
+  \legenditem{lg1}{obsbox}{Observed in the PoC}{at={(allbox.south west)}, anchor=north west, yshift=-5mm, minimum width=5mm, minimum height=4mm, text width=0pt}
+  \legenditem{lg2}{hypbox}{Hypothesis (inferred)}{minimum width=5mm, minimum height=4mm, text width=0pt, right=6mm of lg1lab}
+  \legenditem{lg3}{futbox}{Future work (not collected)}{minimum width=5mm, minimum height=4mm, text width=0pt, right=6mm of lg2lab}
+
+\end{tikzpicture}
+\end{document}

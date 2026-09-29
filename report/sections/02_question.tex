@@ -1,0 +1,95 @@
+\section{Research question and hypotheses}
+\label{sec:question}
+
+\Cref{sec:problem} established the premise: a domain reconstructed from public text is thin in
+predictable ways. This section turns it into a testable question, three hypotheses and a falsifier.
+
+\begin{keyquestionbox}
+  \textbf{RQ-B.} Can AI reconstruct what is written about a domain, and predict where its own
+  reconstruction is thin, so that the location of the human knowledge residual is identified before
+  any human is asked?
+\end{keyquestionbox}
+
+RQ-B is the reoriented project's central question (\repo{REORIENTATION.md}, \S1, \S22). It asks
+whether the \emph{same} system that reconstructs a domain can say where the reconstruction is
+weakest, in a way that lines up with where a competent human would add something. \evint{} A
+\enquote{no} would not make reconstruction worthless; it would mean targeting adds nothing over
+asking experts everything, or over simpler signals such as text density.
+
+\subsection{Hypotheses}
+
+\paragraph{H1 --- Evidence reconstruction with provenance is feasible and checkable.} A system can
+extract atomic claims from public sources and tie every evidence item to the exact span it came
+from. It labels each claim's evidence status; claims without a locatable span stay labeled
+\code{synthetic_extrapolation} and never act as a criterion. These links are checked rather than
+trusted. H1 includes an adversarial part: gating the reconstruction lets fewer planted
+falsehoods and fewer false answers through than the ungated model.
+
+\paragraph{H2 --- Methodology lenses plus an absence check predict the human residual better than
+the strongest baseline.} Constructs from cognitive task analysis and related methods
+(\cref{sec:foundations}) are applied as lenses over the reconstructed evidence. Each lens firing is
+followed by a check of whether the element the lens expects is stated there (the absence check,
+\emph{closure} in the code). Together they rank areas by where an expert would add something the
+evidence lacks. They do so better than the strongest baseline without this machinery, such as text
+density or a plain language-model guess.
+
+\paragraph{H3 --- Prioritized questions reduce expert time.} Questions chosen from the gap map
+recover at least 1.25 times as many validated, previously unwritten items per expert hour as an
+untargeted interview of equal length. The 1.25 is the smallest effect of interest (SESOI), fixed
+before data, and a null result counts against H3. The PoC's breadth ranking and selection by expected information gain (not built)
+are tested as separate selectors (\cref{sec:validation}, V6).
+
+\evint{} H2 is the central hypothesis; \repo{REORIENTATION.md} and the program notes call it
+\enquote{H1}. The order is one of dependency: H2 means something only if H1 holds, and H3 only if
+H2's ranking beats chance. A negative result at one link does not falsify the link below it.
+
+\subsection{The falsifier}
+
+\begin{evfutbox}
+  H2 is falsified if the upper bound of a 90\% confidence interval on $\Delta$AUROC falls below
+  a SESOI $\delta$, fixed before any gold is acquired. $\Delta$AUROC is the gap map's area-level
+  AUROC for ranking residual-present areas above others, minus that of the strongest
+  pre-registered baseline. The
+  blind prospective study (V5) reads this rule and decides H2. It has not run.
+\end{evfutbox}
+
+The gap map must beat its strongest competitor by at least $\delta$, not just chance. The test can
+show that this margin is absent only when enough areas exist: about 150 per class for
+$\delta = 0.05$. A single CTA gold gives perhaps 15--25 areas and cannot. \Cref{sec:validation}
+therefore splits the work. A retrospective study pooled over several published CTA golds
+\emph{screens} the gap map and releases money for the prospective study only if the map looks
+promising. The prospective study is sized for about 150 areas per class and \emph{decides} H2.
+Before either, a closure study tests whether the absence check works at all; it needs no grant.
+
+\evhyp{} One further hypothesis sits outside this chain. \textbf{H-OSS:} the gap map, adapted to
+code and commit evidence, predicts where knowledge is lost when developers leave. It concerns
+organizational artifacts, not the human residual, so its result can neither support nor refute
+H2.
+
+No hypothesis has yet been tested against a human criterion (\cref{tab:hypothesis-status}).
+
+\begin{table}[htbp]
+  \centering\small
+  \caption{What the zero-participant PoC could test for each hypothesis, and its status after N2 and
+    N3. No cell reports a result against human knowledge.}
+  \label{tab:hypothesis-status}
+  \begin{tabularx}{\linewidth}{@{}p{0.05\linewidth}>{\raggedright\arraybackslash}p{0.33\linewidth}
+      >{\raggedright\arraybackslash}X@{}}
+    \toprule
+    Hyp. & What the PoC could test & Status after the PoC \\
+    \midrule
+    H1 & Whether a pipeline with a claim ledger, verbatim provenance and cross-model verification
+      runs end to end on real sources. &
+      \evobs\ Engineering part: yes (\cref{sec:n2}). Adversarial part: N2's registered verdict is
+      INCONCLUSIVE; E-PLANT's Continue branch closed on the validity floor, and the gated arms were
+      never scored. \\
+    H2 & Whether lenses fire on real text and whether the absence check separates \enquote{unstated}
+      from \enquote{stated elsewhere}. &
+      \evobs\ Mechanism only. Lenses fire on three ledgers; the judge's verdict does not depend on
+      which evidence it is shown, so the absence check is not yet informative (\cref{sec:n3}). No
+      $\Delta$AUROC has been computed. Next test: the closure study (V1), before any grant. \\
+    H3 & Whether ranked questions can be produced at all. &
+      \evfut\ Not tested. Template questions exist; no expert has answered one. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}

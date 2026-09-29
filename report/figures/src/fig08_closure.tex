@@ -1,0 +1,82 @@
+% report/figures/src/fig08_closure.tex
+% Data figure (title-free; caption carries the claim): the closure-control
+% negative result. Panel A: own-evidence vs fair mismatched-evidence control
+% closure rate, per ledger -- the two coincide. Panel B: the lexical donor
+% null, observed vs the null's 5-95% interval, per ledger.
+% Numbers verified 2026-09-29 directly from:
+%   research/n3/plc/gapmap.json     checks.mismatched_evidence_control.total, checks.lexical_donor_null
+%   research/n3/gdpr_v1/gapmap.json checks.mismatched_evidence_control.total, checks.lexical_donor_null
+%   research/n3/gdpr_v2/gapmap.json checks.mismatched_evidence_control.total, checks.lexical_donor_null
+% PLC:     own=control=0.8889 (n=54); lexical donor null observed=22, mean=33.48, [26,41]
+% GDPR v1: own=control=0.9608 (n=51); lexical donor null observed=11, mean=12.735, [8,17]
+% GDPR v2: own=control=0.9583 (n=48); lexical donor null observed=11, mean=8.08, [5,12]
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18, /pgf/number format/assume math mode=true}
+
+\begin{document}
+\begin{tikzpicture}
+
+  % =============================== Panel A ===============================
+  \begin{axis}[
+    name=panelA,
+    width=64mm, height=42mm,
+    xmin=0, xmax=1.05, xtick={0,0.25,0.5,0.75,1.0},
+    symbolic y coords={GDPR v2,GDPR v1,PLC}, ytick=data,
+    enlarge y limits={abs=9mm},
+    axis lines*=left, axis line style={draw=gray400}, tick style={draw=gray400},
+    tick label style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700},
+    xlabel={closed-or-partial rate}, xlabel style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700},
+    clip=false,
+  ]
+    % connecting stub (near-zero length: own and control coincide)
+    \draw[gray400, thick] (axis cs:0.8889,PLC) -- (axis cs:0.8889,PLC);
+    \addplot[only marks, mark=o, mark size=2.6pt, draw=gray700, thick] coordinates {
+      (0.8889,PLC) (0.9608,GDPR v1) (0.9583,GDPR v2)
+    };
+    \addplot[only marks, mark=*, mark size=1.6pt, draw=evobscol, fill=evobscol] coordinates {
+      (0.8889,PLC) (0.9608,GDPR v1) (0.9583,GDPR v2)
+    };
+    \node[anchor=west, font=\sffamily\fontsize{6.6}{7.8}\selectfont, text=gray700] at (axis cs:1.05,PLC) {\,n=54};
+    \node[anchor=west, font=\sffamily\fontsize{6.6}{7.8}\selectfont, text=gray700] at (axis cs:1.05,GDPR v1) {\,n=51};
+    \node[anchor=west, font=\sffamily\fontsize{6.6}{7.8}\selectfont, text=gray700] at (axis cs:1.05,GDPR v2) {\,n=48};
+  \end{axis}
+
+  \node[below=15mm of panelA.south, font=\sffamily\fontsize{6.8}{8}\selectfont, text=gray700, align=center, text width=62mm]
+    (panelAlab) {\textbullet\ own evidence \quad $\circ$ mismatched-evidence control\\(fair control; dots coincide on every ledger)};
+
+  % =============================== Panel B ===============================
+  \begin{axis}[
+    name=panelB, at={(panelA.east)}, anchor=west, xshift=17mm,
+    width=64mm, height=42mm,
+    xmin=0, xmax=45, xtick={0,10,20,30,40},
+    symbolic y coords={GDPR v2,GDPR v1,PLC}, ytick=data,
+    yticklabels={,,},
+    enlarge y limits={abs=9mm},
+    axis lines*=left, axis line style={draw=gray400}, tick style={draw=gray400},
+    tick label style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700},
+    xlabel={lexical closures}, xlabel style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700},
+    clip=false,
+  ]
+    \draw[gray400, line width=3.2pt] (axis cs:26,PLC) -- (axis cs:41,PLC);
+    \draw[gray400, line width=3.2pt] (axis cs:8,GDPR v1) -- (axis cs:17,GDPR v1);
+    \draw[gray400, line width=3.2pt] (axis cs:5,GDPR v2) -- (axis cs:12,GDPR v2);
+    \addplot[only marks, mark=|, mark size=3.2pt, draw=gray700, thick] coordinates {
+      (33.48,PLC) (12.735,GDPR v1) (8.08,GDPR v2)
+    };
+    \addplot[only marks, mark=*, mark size=1.8pt, draw=evobscol, fill=evobscol] coordinates {
+      (22,PLC) (11,GDPR v1) (11,GDPR v2)
+    };
+  \end{axis}
+
+  \node[below=15mm of panelB.south, font=\sffamily\fontsize{6.8}{8}\selectfont, text=gray700, align=center, text width=62mm]
+    (panelBlab) {\textbullet\ observed \quad {\Large|}\, null mean \quad {\footnotesize\textbf{---}} 5--95\% null interval\\(PLC's observed count falls \emph{below} the null)};
+
+  \node[left=1mm of panelA.north west, anchor=south west, xshift=-1mm, font=\sffamily\bfseries\fontsize{7.5}{8.5}\selectfont, text=ink] {A};
+  \node[left=1mm of panelB.north west, anchor=south west, xshift=-1mm, font=\sffamily\bfseries\fontsize{7.5}{8.5}\selectfont, text=ink] {B};
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,105 @@
+% report/figures/src/figstyle.tex
+% Shared TikZ style library for all report figures. Input this, not tikz
+% directly, from every figures/src/figNN_*.tex so node/arrow styles and
+% colors never drift from report/style/colors.tex or from each other.
+%
+% Usage in a standalone figure:
+%   \documentclass[tikz,border=2mm]{standalone}
+%   \usepackage{fontspec}
+%   \setsansfont{Source Sans Pro}
+%   \input{figstyle.tex}
+%   \begin{document}
+%   \begin{tikzpicture}
+%     \node[artefact] (a) {Some evidence};
+%     ...
+%   \end{tikzpicture}
+%   \end{document}
+
+\usepackage{xcolor}
+\input{../../style/colors.tex}
+
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc}
+
+% Caption-matching font, fixed size so it stays >= 8pt once the PDF is placed
+% at the widths in 10_visual_language.md (design at these sizes; do not
+% rescale the compiled PDF beyond the conventions there).
+\tikzset{
+  every node/.style={font=\sffamily\fontsize{9}{10.5}\selectfont, text=ink},
+  every picture/.style={line width=0.8pt},
+}
+
+% Figure node text must never hyphenate (a split word inside a small TikZ
+% node reads as a typo, not a line break). Disabling hyphenation can widen
+% a node's natural line breaks, so after this change re-check every node
+% whose text was tuned to a tight text width -- widen it if a word now
+% overflows instead of wrapping.
+\tikzset{
+  every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000\sloppy}},
+}
+
+% ---------------------------------------------------------------- node kinds
+% Six node kinds from the brief. Each carries its own color so the kind is
+% legible even without reading the label; shape carries a second, color-blind
+% and grayscale-safe channel (see 10_visual_language.md).
+\tikzset{
+  node distance=10mm and 14mm,
+  artefact/.style={
+    rectangle, rounded corners=1pt, thick,
+    draw=gray400, fill=gray100,
+    minimum width=30mm, minimum height=10mm,
+    text width=27mm, align=center, inner sep=3pt,
+  },
+  procdet/.style={
+    rectangle, rounded corners=1pt, thick,
+    draw=accent, fill=accent!8!white,
+    minimum width=30mm, minimum height=10mm,
+    text width=27mm, align=center, inner sep=3pt,
+  },
+  procllm/.style={
+    rectangle, rounded corners=1pt, thick,
+    draw=evintcol, fill=evintcol!10!white,
+    minimum width=30mm, minimum height=10mm,
+    text width=27mm, align=center, inner sep=3pt,
+  },
+  human/.style={
+    rectangle, rounded corners=5mm, thick,
+    draw=evobscol, fill=evobscol!10!white,
+    minimum width=30mm, minimum height=10mm,
+    text width=27mm, align=center, inner sep=3pt,
+  },
+  datastore/.style={
+    cylinder, shape border rotate=90, aspect=0.25, thick,
+    draw=gray400, fill=gray100,
+    minimum width=24mm, minimum height=14mm,
+    text width=20mm, align=center, inner sep=2pt,
+  },
+  gate/.style={
+    diamond, aspect=2, thick,
+    draw=evlitcol, fill=evlitcol!10!white,
+    text width=22mm, align=center, inner sep=1pt,
+  },
+}
+
+% --------------------------------------------------------- implemented/planned
+% Apply as an EXTRA style after the node kind, e.g. \node[artefact, planned].
+\tikzset{
+  implemented/.style={solid},
+  planned/.style={dashed, fill opacity=0.5},
+}
+
+% ------------------------------------------------------------------- arrows
+\tikzset{
+  flowimpl/.style={-{Latex[length=2.4mm, width=1.8mm]}, draw=gray700, thick, solid},
+  flowplan/.style={-{Latex[length=2.4mm, width=1.8mm]}, draw=gray700, thick, dashed},
+}
+
+% ------------------------------------------------------------------- legend
+% A compact legend swatch + label pair, chainable left to right:
+%   \legenditem{<node name>}{<tikz style key>}{<label text>}{<position spec>}
+% Leave the position spec empty for the first item; for later items pass
+% e.g. "right=9mm of lg1lab" to chain off the previous label node
+% (named "<node name>lab").
+\newcommand{\legenditem}[4]{%
+  \node[#2, minimum width=8mm, minimum height=6mm, text width=0pt, inner sep=0pt, #4] (#1) {};
+  \node[right=1.5mm of #1, anchor=west, font=\sffamily\fontsize{7.5}{9}\selectfont, text=gray700] (#1lab) {#3};
+}

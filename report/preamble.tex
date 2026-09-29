@@ -1,0 +1,244 @@
+% report/preamble.tex
+% Visual identity for the PoC final report.
+% Engine: LuaLaTeX (via `latexmk -lualatex`, see report/latexmkrc). Needs real
+% OpenType fonts (Libertinus, Source Sans Pro), so pdflatex is not supported.
+
+% ---------------------------------------------------------------- geometry
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=28mm, right=32mm,
+  top=27mm, bottom=30mm,
+  marginparwidth=16mm, marginparsep=4mm,
+  headsep=8mm, footskip=12mm,
+}
+
+% ------------------------------------------------------------------ fonts
+\usepackage{fontspec}
+\setmainfont{Libertinus Serif}
+\setsansfont{Source Sans Pro}
+\setmonofont{Libertinus Mono}[Scale=0.92]
+\newfontfamily\semiboldfont{Source Sans Pro Semibold}
+
+\usepackage[american]{babel}
+\usepackage{microtype}
+\usepackage{csquotes}
+
+% ------------------------------------------------------------------ color
+\usepackage{xcolor}
+\input{style/colors.tex}
+
+% --------------------------------------------------------------- KOMA base
+% scrartcl gives \part/\section/.../\paragraph with no chapter level, which
+% matches "numbered parts and sections" without book-length chapter scaffolding.
+\KOMAoptions{
+  fontsize=11pt,
+  parskip=half-,
+  numbers=noenddot,
+  headings=big,
+}
+
+\setkomafont{disposition}{\normalfont\sffamily\bfseries}
+\addtokomafont{part}{\color{accent}}
+\addtokomafont{partnumber}{\color{accent}}
+\addtokomafont{partentry}{\color{accent}}
+\addtokomafont{section}{\color{accent}}
+\addtokomafont{subsection}{\color{ink}}
+\addtokomafont{subsubsection}{\color{ink}}
+\addtokomafont{paragraph}{\color{ink}}
+\setkomafont{captionlabel}{\normalfont\sffamily\bfseries\color{gray700}}
+\setkomafont{caption}{\normalfont\sffamily\small\color{gray700}}
+\renewcaptionname{american}{\figurename}{Figure}
+\renewcaptionname{american}{\tablename}{Table}
+
+% Running header/footer: minimal, sans, gray.
+\usepackage[automark]{scrlayer-scrpage}
+\clearpairofpagestyles
+\ohead{\sffamily\small\color{gray700}\headmark}
+\ofoot{\sffamily\small\color{gray700}\pagemark}
+\ifoot{\sffamily\small\color{gray700}Finding What Experts Leave Unsaid --- Extended Technical Report}
+\setkomafont{pageheadfoot}{\normalfont\sffamily\small\color{gray700}}
+\setkomafont{pagenumber}{\normalfont\sffamily\color{gray700}}
+
+% ------------------------------------------------------------------ tables
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{placeins}
+\usepackage{multirow}
+\usepackage{siunitx}
+\sisetup{detect-all}
+% Deliberately no global round-mode/round-precision: siunitx would then
+% reformat every number to a fixed decimal count regardless of table-format,
+% turning plain counts (e.g. "3") into "3.00". Set rounding per table instead.
+
+% ------------------------------------------------------------------- lists
+\usepackage{enumitem}
+\setlist{topsep=4pt, itemsep=2pt, parsep=0pt}
+
+% ------------------------------------------------------------------ figures
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{
+  labelsep=colon,
+  font={sf,small,color=gray700},
+  labelfont={sf,bf,color=gray700},
+  belowskip=2pt, aboveskip=6pt,
+}
+\usepackage{marginnote}
+
+% ------------------------------------------------------------------ boxes
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% ---------------------------------------------------------------- bibliography
+\usepackage[
+  backend=biber,
+  style=authoryear-comp,
+  sorting=nyt,
+  maxcitenames=2,
+  uniquename=false,
+  uniquelist=false,
+  giveninits=true,
+  doi=true,
+  url=true,
+  isbn=false,
+  eprint=false,
+]{biblatex}
+
+% -------------------------------------------------------------------- links
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=accent!80!black,
+  citecolor=evlitcol,
+  urlcolor=gray700,
+  filecolor=gray700,
+  linktoc=all,
+  bookmarksnumbered=true,
+  pdfstartview={XYZ null null 1},
+}
+\usepackage{cleveref}
+\crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\crefname{section}{Section}{Sections}
+\crefname{part}{Part}{Parts}
+
+% ============================================================================
+%  EVIDENCE VISUAL LANGUAGE
+%  Five statement categories, plus Finding and Key-question boxes, plus
+%  inline badge/tag macros. See report/notes/10_visual_language.md for the
+%  full rulebook.
+% ============================================================================
+
+% --- inline badge + small-caps word: color + letter + word (three-channel
+%     redundancy so the category survives grayscale print and color blindness)
+\newcommand{\evbadge}[3]{%
+  \tcbox[on line, colback=#2, colframe=#2, boxrule=0pt, arc=1pt,
+    left=2pt, right=2pt, top=0.3pt, bottom=0.3pt,
+    fontupper=\sffamily\bfseries\fontsize{6.3}{6.3}\selectfont\color{white}]{#1}%
+  \,\textsc{\sffamily\footnotesize\color{#2}#3}%
+}
+\newcommand{\evlit}{\evbadge{L}{evlitcol}{lit.}}
+\newcommand{\evobs}{\evbadge{O}{evobscol}{obs.}}
+\newcommand{\evint}{\evbadge{I}{evintcol}{int.}}
+\newcommand{\evhyp}{\evbadge{H}{evhypcol}{hyp.}}
+\newcommand{\evfut}{\evbadge{F}{evfutcol}{fut.}}
+
+% --- block boxes: thin left rule only, no gradient, no full frame ----------
+\tcbset{
+  evbox/.style={
+    enhanced, breakable,
+    colback=white, coltext=ink,
+    boxrule=0pt, leftrule=2.6pt,
+    toprule=0pt, bottomrule=0pt, rightrule=0pt,
+    arc=0pt, outer arc=0pt,
+    left=9pt, right=9pt, top=6pt, bottom=6pt,
+    before skip=8pt, after skip=8pt,
+    fonttitle=\sffamily\bfseries\small,
+    attach title to upper={\par\vspace{2pt}\noindent},
+  }
+}
+
+% NB: coltitle defaults to a light color meant for a solid title bar; since
+% "attach title to upper" puts the title directly on the (near-white) box
+% body, each box must set coltitle explicitly or the label text is nearly
+% invisible.
+\newtcolorbox{evlitbox}[1][]{evbox, colframe=evlitcol, colback=evlitcol!5!white,
+  coltitle=evlitcol, title={\evlit\ \textsc{Established literature}}, #1}
+\newtcolorbox{evobsbox}[1][]{evbox, colframe=evobscol, colback=evobscol!5!white,
+  coltitle=evobscol, title={\evobs\ \textsc{Observed in the PoC}}, #1}
+\newtcolorbox{evintbox}[1][]{evbox, colframe=evintcol, colback=evintcol!5!white,
+  coltitle=evintcol, title={\evint\ \textsc{Interpretation}}, #1}
+\newtcolorbox{evhypbox}[1][]{evbox, colframe=evhypcol, colback=evhypcol!5!white,
+  coltitle=evhypcol, title={\evhyp\ \textsc{Hypothesis}}, #1}
+\newtcolorbox{evfutbox}[1][]{evbox, colframe=evfutcol, colback=evfutcol!5!white,
+  leftrule=2.6pt, borderline west={2.6pt}{0pt}{evfutcol, dashed},
+  coltitle=evfutcol, title={\evfut\ \textsc{Future work}}, #1}
+
+% --- Finding: same restrained left-rule style, primary accent color -------
+\newtcolorbox{findingbox}[1][]{evbox, colframe=accent, colback=accentlight,
+  leftrule=3.2pt,
+  title={\tcbox[on line, colback=accent, colframe=accent, boxrule=0pt, arc=1pt,
+    left=2pt, right=2pt, top=0.3pt, bottom=0.3pt,
+    fontupper=\sffamily\bfseries\fontsize{6.3}{6.3}\selectfont\color{white}]{\textbullet}%
+  \,\textsc{\sffamily\small\color{accent}Finding}}, #1}
+
+% --- Key question: structurally distinct -- full thin frame, not left-rule
+\newtcolorbox{keyquestionbox}[1][]{
+  enhanced, breakable,
+  colback=white, coltext=ink,
+  colframe=accent, boxrule=0.6pt,
+  arc=1pt, left=9pt, right=9pt, top=6pt, bottom=6pt,
+  before skip=8pt, after skip=8pt,
+  fonttitle=\sffamily\bfseries\small,
+  attach title to upper={\par\vspace{2pt}\noindent},
+  title={\tcbox[on line, colback=white, colframe=accent, boxrule=0.6pt, arc=1pt,
+    left=2pt, right=2pt, top=0.3pt, bottom=0.3pt,
+    fontupper=\sffamily\bfseries\fontsize{6.3}{6.3}\selectfont\color{accent}]{?}%
+  \,\textsc{\sffamily\small\color{accent}Key question}}, #1}
+
+% --- "How to read this report" front-matter box ----------------------------
+\newtcolorbox{howtoreadbox}{
+  enhanced, breakable,
+  colback=gray100, coltext=ink,
+  colframe=gray400, boxrule=0.4pt,
+  arc=1pt, left=10pt, right=10pt, top=8pt, bottom=8pt,
+  fonttitle=\sffamily\bfseries,
+  title={\sffamily\bfseries\color{ink}How to read this report},
+}
+
+% --- custom "part" divider: number + rule + title, full control -----------
+\newcounter{reportpart}
+\newcommand{\reportpart}[2]{%
+  \clearpage
+  \thispagestyle{empty}
+  \phantomsection
+  \refstepcounter{reportpart}
+  \addcontentsline{toc}{part}{\protect\numberline{\Roman{reportpart}}#1}
+  \vspace*{0.12\textheight}
+  {\sffamily\bfseries\fontsize{14}{16}\selectfont\color{gray700}PART~\Roman{reportpart}}\par
+  \vspace{2mm}
+  \noindent\textcolor{accent}{\rule{\linewidth}{1.1pt}}\par
+  \vspace{4mm}
+  {\sffamily\bfseries\fontsize{28}{32}\selectfont\color{ink}#1}\par
+  \ifx\relax#2\relax\else
+    \vspace{3mm}
+    {\sffamily\fontsize{12}{15}\selectfont\color{gray700}#2}\par
+  \fi
+  \vspace{0.08\textheight}
+}
+
+% ------------------------------------------------ repository references
+% \repo{path/in/repo} prints the path in mono and links it to the file on GitHub.
+% \code{identifier} prints a code identifier in mono with line-break points.
+\usepackage{xurl}
+\newcommand{\repourl}{https://github.com/AdamKrysztopa/edu_proj/blob/main/}
+\newcommand{\repo}[1]{\href{\repourl#1}{\nolinkurl{#1}}}
+\newcommand{\code}[1]{\texttt{\small\detokenize{#1}}}
+
+% Footnotes hold long repository paths; ragged right avoids stretched spacing.
+\deffootnote[1.2em]{1.2em}{1em}{\textsuperscript{\thefootnotemark}\,}
+\addtokomafont{footnote}{\raggedright}

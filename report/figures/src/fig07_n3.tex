@@ -1,0 +1,87 @@
+% report/figures/src/fig07_n3.tex
+% N3 process with real counts, per domain (PLC / GDPR v1 / GDPR v2), on a 4-column grid.
+% Verified 2026-09-29 against research/n3/{plc,gdpr_v1,gdpr_v2}/gapmap.json (map,
+% retrieval_gaps, checks.judge_lexical_confusion) and by an offline replay with the committed
+% closure_judgements.json caches (gapmap.__main__._primary_records, record.unk_gaps,
+% checks.apply_sibling, rank.merge, rank.build): HYP before merge 32/1/6, after merge 24/1/6,
+% shown after rank._cap 9/1/6; the replayed map gap_ids equal the committed ones.
+% Cap limits: gapmap/src/gapmap/config.py MAP_TOP_N=12, MAP_PER_LENS=3, MAP_PER_AREA=4.
+% RG-SIBLING is n/a for PLC: its run has no sibling ledger.
+\documentclass[tikz,border=1mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+\newlength{\colpitch}\setlength{\colpitch}{37mm}
+\newcommand{\cell}[2]{({(#1-1)*\colpitch},#2)}
+\newcommand{\sub}[1]{\\[0.6mm]{\fontsize{7}{8.4}\selectfont #1}}
+
+\tikzset{
+  box/.style={text width=31mm, minimum width=33mm, inner xsep=1mm, inner ysep=1.2mm,
+              minimum height=21mm, align=flush center},
+  lab/.style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700, inner sep=0.8pt},
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+  % ------------------------------------------------------------ row 1
+  \node[procdet, box] (lenses) at \cell{1}{0}
+    {Lens firings\sub{7 rules (deterministic)\\56 / 51 / 48 (155 total)}};
+  \node[procllm, box] (judge) at \cell{2}{0}
+    {Closure judge\sub{local qwen2.5:7b-instruct, cached}};
+  \node[artefact, box, text width=68mm, minimum width=70mm] (states) at \cell{3.5}{0}
+    {Judge state\sub{\begin{tabular}{@{}lcccc@{}}
+       & closed & partial & open & synth-closed\\
+       PLC     & 13 & 30 & 13 & 0\\
+       GDPR v1 & 27 & 18 & 2 & 4\\
+       GDPR v2 & 24 & 13 & 0 & 11
+     \end{tabular}}};
+
+  % ------------------------------------------------------------ row 2
+  \node[artefact, box, minimum height=27mm] (retrieval) at \cell{1}{-35mm}
+    {Retrieval gaps\sub{thin support, not ranked\\[0.8mm]
+     \begin{tabular}{@{}l@{\hspace{1.5mm}}r@{}}
+       RG-SINGLE  & 11 / 12 / 3\\
+       RG-UNVER   & 0 / 4 / 6\\
+       RG-SIBLING & n/a / 2 / 7\\
+       RG-UNK     & 10 / 28 / 44
+     \end{tabular}}};
+  \node[artefact, box, minimum height=27mm] (hyp) at \cell{2}{-35mm}
+    {Gap candidates (HYP)\sub{32 / 1 / 6}};
+  \node[procdet, box, minimum height=27mm] (cap) at \cell{3}{-35mm}
+    {Merge + display cap\sub{$\leq$12 total, $\leq$3 per lens,\\$\leq$4 per area\\[0.8mm]
+     after merge 24 / 1 / 6\\shown 9 / 1 / 6}};
+  \node[procdet, box, minimum height=27mm] (ranked) at \cell{4}{-35mm}
+    {Ranked gap map + template questions\sub{map length 10 / 2 / 7\\(+1 CONTROL slot each)}};
+
+  % ------------------------------------------------------------ arrows
+  \draw[flowimpl] (lenses) -- (judge);
+  \draw[flowimpl] (judge) -- (states);
+  \coordinate (bus) at ($(states.south)+(0,-6mm)$);
+  \draw[flowimpl] (states.south) -- (bus) -| (hyp.north);
+  \draw[flowimpl] (bus) -| (retrieval.north);
+  \draw[flowimpl] (hyp) -- (cap);
+  \draw[flowimpl] (cap) -- (ranked);
+
+  \node[lab, align=center, text width=31mm, below=1.5mm of cap.south, anchor=north] (dropnote)
+    {PLC: the 15 capped HYP are\\in no output array};
+
+  % ------------------------------------------------------------ header + legend
+  \node[fit=(lenses)(states)(retrieval)(ranked)(dropnote), inner sep=0pt] (allbox) {};
+  \node[lab, font=\sffamily\itshape\fontsize{7}{8}\selectfont, anchor=south west]
+    at ($(allbox.north west)+(0,1.5mm)$) {counts given as PLC~/~GDPR\,v1~/~GDPR\,v2};
+
+  \matrix[below=5mm of allbox.south, anchor=north, column sep=6mm,
+          ampersand replacement=\&,
+          sw/.style={minimum width=4.5mm, minimum height=3.2mm, text width=0pt, inner sep=0pt,
+                     anchor=west},
+          ll/.style={lab, anchor=west, inner sep=0pt}] {
+    \node[procllm, sw] {}; \node[ll] at (6mm,0) {LLM-driven}; \&
+    \node[procdet, sw] {}; \node[ll] at (6mm,0) {deterministic}; \&
+    \node[artefact, sw] {}; \node[ll] at (6mm,0) {artefact}; \&
+    \draw[flowimpl] (0,0) -- (4.5mm,0); \node[ll] at (6mm,0) {implemented}; \\
+  };
+
+\end{tikzpicture}
+\end{document}

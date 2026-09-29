@@ -1,0 +1,67 @@
+\section{Weft: assessment as a future World B layer}
+\label{app:weft}
+
+Weft (\href{https://github.com/AdamKrysztopa/weft}{\nolinkurl{github.com/AdamKrysztopa/weft}}) is
+a separate, public, MIT-licensed retrieval-augmented-generation engine examined for this report as
+a possible future acquisition layer for World B (\cref{sec:platform-weft}). \textbf{edu\_proj does
+not use, depend on, or integrate with Weft today.} Everything in this appendix about Weft's own
+behavior is a fact about that other repository, checked directly in its code at the clone examined
+for this report, not a claim about edu\_proj.
+
+\paragraph{What Weft is today.}
+A microkernel: a small core holding a plugin registry, discovery mechanism, pipeline model, and
+payload types, with every retrieval or generation capability supplied as a plugin (``pack'')
+discovered through Python entry points. Its bundled release holds on the order of two dozen packs
+(Weft's own README and \code{CLAUDE.md} disagree on the exact count). It ingests a
+\emph{directory} of \code{.txt}, \code{.md}, and \code{.pdf} files; no connector for Git history,
+issue trackers, wikis, chat, or logs exists in its source. It stores vectors in Postgres with
+\code{pgvector} by default, with Qdrant as an option. It offers many optional retrieval
+``rungs'' (hybrid search, rerankers, a graph pack, whole-corpus generation), most of which its own
+evidence page shows no measured gain from, or leaves unmeasured, on public benchmark sets it
+itself labels ``exploratory.'' It keeps a computed lineage per node (parent node identifiers and
+the union of source identifiers) and a source record per document (URI, SHA-256 content hash,
+index time, and a digest of the pipeline that ran), with deletion cascading to every descendant
+and synthetic nodes required to carry an explicit synthetic-origin reason. It does \emph{not} keep
+character offsets from a chunk back into its source document --- that field was removed from its
+schema before this report was written --- and it records no publication date for a source, only
+the time it was indexed. Every run requires a tenant identifier and its plugin cache is keyed by
+tenant, but no per-user or per-document access control was found in its source. Its own security
+documentation states that a pack runs with the host's full privileges and cannot be sandboxed; it
+offers only a pinned allow-list as a mitigation.
+
+\paragraph{Why integration is not justified now.}
+edu\_proj has no World B ingestion for Weft to serve: the only planned adapter is a Git-history
+adapter over public repositories for the H-OSS study (V3, \cref{subsec:hoss}), which needs commit,
+issue, and review metadata that Weft does not provide. Adding a retrieval dependency ahead of a
+study that needs it would be building before the evidence calls for it, which
+\cref{sec:platform-decisions} and the program's own roadmap discipline both rule out.
+
+\paragraph{A narrow possible future role, long-term.}
+If an organizational pilot (\cref{sec:organizations}) needs to index a large, changing corpus of
+organization-supplied text and PDF documents, Weft could serve, at most and as \textsc{long-term}
+work gated on that pilot existing, as a \emph{candidate-passage provider} inside World B
+acquisition, never as a source of evidence in edu\_proj's sense. The contract such an adapter would
+need to satisfy, none of it built:
+\begin{itemize}[noitemsep]
+  \item edu\_proj re-hashes every candidate passage against Weft's recorded content hash, locates
+    it verbatim in the re-fetched bytes, and only then builds the span; Weft's own chunk text is
+    never used as the span, because Weft no longer records chunk offsets.
+  \item edu\_proj supplies every provenance field Weft's schema lacks --- source kind, practice
+    (imagined/done/reported), voice, publication date, organization, and an author-based
+    independence key --- from the system of record, never from Weft's index-time metadata.
+  \item Access control is enforced by the adapter against the organization's own source systems,
+    per requesting principal, before a candidate passage is returned; Weft's tenant key alone is
+    not sufficient.
+  \item None of Weft's answer-generation modes may write into the evidence ledger. Retrieval only.
+  \item A new architecture decision record would be required before any such adapter is built,
+    kept as a separate package depending on both the core evidence package and Weft, never the
+    reverse, so that decisions 0006--0008 keep the core packages free of a retrieval dependency.
+\end{itemize}
+
+\paragraph{What not to claim.}
+edu\_proj has not been tested with Weft. Weft's computed lineage and content hashes are not the
+same guarantee as edu\_proj's cross-family verified span; Weft indexes files from a directory, not
+tickets, commits, or wikis; Weft's tenant key is not a per-user access control; and Weft's own
+reported retrieval numbers were measured on public question-answering benchmarks, not on
+organizational artifacts, and are not evidence about how well any future World B pipeline would
+perform.

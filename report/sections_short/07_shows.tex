@@ -1,0 +1,72 @@
+\section{What the PoC shows and does not show}\label{sec:shows}
+
+\Cref{tab:shows} lists only what the repository artifacts support, and what they do not. The claims
+are about the mechanism: that it runs, keeps its evidence traceable, and carries checks that expose
+its own weakness. None is a claim about hidden expert knowledge. Evidence rows and artifact paths are
+in the Extended Technical Report, Section~12 and Appendix~A.
+
+\begin{table}[htbp]
+  \centering\footnotesize
+  \caption[What the PoC shows and does not show]{Part A: what the PoC demonstrates.
+    \emph{Strong}: direct evidence checked by code or a test, or seen in more than one run.
+    \emph{Moderate}: one run or in-sample. Part B: what it does not demonstrate, and what evidence
+    would be needed.}
+  \label{tab:shows}
+  \newcommand{\nb}[1]{\multicolumn{2}{>{\raggedright\arraybackslash}p{\dimexpr0.52\linewidth+2\tabcolsep\relax}@{}}{#1}}
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X
+      >{\raggedright\arraybackslash}p{0.42\linewidth}>{\raggedright\arraybackslash}p{0.1\linewidth}@{}}
+    \toprule
+    \multicolumn{3}{@{}l}{\textbf{A. Demonstrated} \evobs} \\
+    \midrule
+    Claim & Main limitation & Strength \\
+    \midrule
+    The evidence model enforces its rules in code: computed labels, gates that refuse synthetic or
+      unknown criteria, a hash-frozen schema & Tested offline; no World~B or C evidence has passed
+      through & Strong \\
+    Reconstruction runs end to end on live sources; every evidence item re-slices from its snapshot &
+      One complete run per domain; 452 of 1,169 claims have no supporting span and are labeled so &
+      Strong \\
+    Cross-family verification and UNKNOWN slots operate & Operation, not accuracy: verifier error
+      12--30\% by one AI inspector; cross-verify never ran live & Moderate \\
+    Live runs expose defects offline tests miss, at small cost & Eleven fixes never re-checked live &
+      Moderate \\
+    The gap map runs end to end, keeps retrieval gaps apart from candidates, replays byte-identically &
+      A display cap hides most PLC candidates & Strong \\
+    The built-in checks expose the pipeline's main weakness & They show the absence check does not
+      work yet, not that it can & Strong \\
+    \midrule
+    \multicolumn{3}{@{}l}{\textbf{B. Not demonstrated}} \\
+    \midrule
+    Claim & \nb{Why not, and what would be needed} \\
+    \midrule
+    That gap candidates are real tacit knowledge (H2) & \nb{No human has seen a candidate; no gold.
+      Needs human-coded gold in held-out domains and a pre-registered test} \\
+    That the absence check is informative & \nb{Ties its fair control everywhere. Needs agreeing human
+      closure labels and a judge that beats the control (V1)} \\
+    A precision for the gap map & \nb{Only one AI reading of pre-final maps. Needs two blind human coders
+      on frozen maps} \\
+    How many candidates the pipeline produces & \nb{Maps are capped; no area score. Needs a
+      pre-registered area score over the uncapped set} \\
+    Robustness to planted falsehoods; abstention & \nb{Gated arms never scored. Needs a calibration pilot,
+      budget headroom, scored runs} \\
+    Reconstruction quality against gold & \nb{\enquote{Supports} is a model's judgment; lenses read
+      paraphrase. Needs expert-coded claims} \\
+    Generalization and stability & \nb{Two domains, English web, in-sample tuning; two GDPR runs disagree.
+      Needs held-out domains, a dated frozen corpus, repeated runs} \\
+    That the ranking is not source density & \nb{$\rho = 0.91$ on PLC. Needs density and area size as
+      headline baselines} \\
+    Expected-information-gain question selection & \nb{Not implemented; ranking is a breadth rubric} \\
+    Value for learners or organizations; World~B or C & \nb{Zero participants by design; typed fields
+      only} \\
+    
+\bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{findingbox}
+  The PoC shows a working, checkable mechanism. It does not show that the mechanism finds real hidden
+  knowledge. This report does not claim that the system identifies tacit knowledge, that the absence
+  check found an element stated nowhere, that the ranking reflects real gaps rather than how much is
+  written, that the pipeline resists planted falsehoods, that N2 passed or failed, or that every claim
+  in the ledger is tied to a source span.
+\end{findingbox}

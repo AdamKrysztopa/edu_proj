@@ -1,0 +1,83 @@
+\section{What the proof of concept does not demonstrate}\label{sec:not-demonstrated}
+
+This section is the counterpart of \cref{sec:demonstrates}. Each item states a claim a reader
+might expect from a project on hidden expert knowledge, why the PoC does not support it
+(\evobs{}), and what evidence would be needed. The studies that would supply it are in \cref{sec:validation}.
+
+\begin{enumerate}[label=\textbf{D\arabic*}, leftmargin=2.2em, itemsep=3pt]
+
+\item \textbf{That gap candidates correspond to real tacit knowledge.} No human has seen a
+  candidate or answered a question, and no gold (E-CTA or E-OSS) was acquired, so the registered N3
+  gate never ran. \evhyp{} That a lens firing marks knowledge experts hold is H2, untested.
+  \emph{Needed:} human-coded gold for held-out domains and a pre-registered test against the
+  strongest baseline.
+
+\item \textbf{That the absence check is informative.} It ties its fair control on every tested lens
+  in every ledger, with a judge whose own rate sits near its ceiling; lexical closure did no better
+  than chance (\cref{sec:absence-check}). For every displayed candidate the absence check found the
+  element at most partly stated; only one has no partial hit. \emph{Needed:} human coders who agree
+  on closure labels for the existing lens firings, and a closure step that beats its fair control by
+  a pre-registered margin and agrees with those labels (the V1 closure study).
+
+\item \textbf{A precision for the gap map.} The only figure is one AI reviewer's reading of the
+  pre-final maps, with no committed tally (\cref{sec:n3}). \emph{Needed:} two blind human coders on
+  the final, frozen maps and a committed per-record tally.
+
+\item \textbf{How many candidates the pipeline produces.} The displayed maps are capped (12 records,
+  3 per lens, 4 per area); on PLC the cap hides 15 of 24 merged candidates, and no area-level score
+  exists. \emph{Needed:} a pre-registered area score over the uncapped set, built before any gold.
+
+\item \textbf{Robustness to planted falsehoods, and quality of abstention.} Only the ungated
+  baselines ran; the gated arms of E-PLANT and E-ABST were never scored and the post-fix live check
+  was blocked (\cref{sec:n2}). N2's registered reading is INCONCLUSIVE. \emph{Needed:} a
+  calibration pilot, a reachable gate, budget headroom above the sum of caps, and scored gated runs.
+
+\item \textbf{Reconstruction quality against a gold standard.} \enquote{Supports} means a verifier
+  model judged the span to entail the claim; sampled verifier error came from one AI inspector,
+  not a human. Lenses read the extractor's paraphrase, not the span. \emph{Needed:} claims coded by
+  domain experts against their sources, with inter-rater agreement.
+
+\item \textbf{Generalization.} Two domains, one complete run each plus an inadmissible GDPR rerun;
+  English public web text only; lexicons and thresholds tuned on these same ledgers.
+  \emph{Needed:} held-out domains reconstructed for the first time after the configuration is
+  hash-frozen (\cref{sec:domains}).
+
+\item \textbf{Stability across runs.} Two GDPR reconstructions hours apart gave mostly different
+  candidates (\cref{sec:n3}). \emph{Needed:} a dated, frozen corpus, at least three repeated runs
+  and a pre-registered stability measure.
+
+\item \textbf{That the ranking is not source density.} On PLC the breadth score correlates strongly
+  with evidence density, in the direction the anti-renaming check does not test (\cref{sec:n3}).
+  \evhyp{} Breadth ranking partly measures how much is written on a topic. \emph{Needed:} density
+  and area size as headline baselines in any gold test.
+
+\item \textbf{Expected-information-gain question selection.} Not implemented. The ranking is a
+  breadth rubric (\code{confidence_rubric} in \repo{gapmap/src/gapmap/record.py}); questions are
+  filled from templates. \emph{Needed:} an implementation (N6) and a test that it saves expert time
+  (H3).
+
+\item \textbf{Value for learners or organizations, and World B or C functionality.} Zero
+  participants by design; no learner data read. Organizational and human evidence exist only as
+  typed fields and rules in \repo{residual/src/residual/vocab.py}; the evidential gate has no live
+  caller. \emph{Needed:} the studies in \cref{sec:education,sec:organizations}, a World B connector
+  with access control, and World C evidence from expert studies (\cref{sec:platform}).
+
+\end{enumerate}
+
+\begin{findingbox}[coltitle=accent, title={\textsc{\sffamily\small\color{accent}Claims this report does not make}}]
+  We do not write, and the reader should not infer, any of the following:
+  \begin{itemize}[nosep, leftmargin=1.2em]
+    \item \enquote{The system identifies tacit or hidden expert knowledge.}
+    \item \enquote{The absence check found an element stated nowhere in the sources.}
+    \item \enquote{The ranking reflects real gaps rather than how much is written on a topic.}
+    \item \enquote{The closure judge tells real absence from evidence that does not state the
+      element.}
+    \item \enquote{The pipeline resists planted falsehoods} or \enquote{abstains correctly under
+      gating.}
+    \item \enquote{N2 passed} or \enquote{N2 failed.} Its registered reading is INCONCLUSIVE.
+    \item \enquote{The gap map has a precision of 3 of 19} as a validated rate.
+    \item \enquote{Every claim in the ledger is tied to a source span.}
+    \item Any number from the pre-review prototype (\repo{docs/plans/n3-poc-lens-spec.md},
+      \S8--\S9) presented as current.
+  \end{itemize}
+\end{findingbox}

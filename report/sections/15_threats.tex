@@ -1,0 +1,74 @@
+% report/sections/15_threats.tex -- Part II: threats to the validity of the PoC's conclusions.
+\section{Threats to validity}\label{sec:threats}
+
+The PoC's conclusions are few and mostly negative or cautious
+(\cref{sec:demonstrates,sec:not-demonstrated}): the pipeline runs with provenance; the absence check
+(closure) does not beat its fair control; prediction of the Human Knowledge Residual is not
+demonstrated. A threat matters here if it could make one of these readings too strong or too weak.
+\Cref{tab:threats} lists each threat, its effect on our claims, what mitigates it now, and what the
+validation program does about it (\cref{sec:validation}).
+
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}@{}}
+  \caption[Threats to validity]{Threats to the validity of the PoC's conclusions. \enquote{Now}
+    lists mitigations in place today; \enquote{Program} refers to the studies in
+    \cref{sec:validation} (V0--V8).}\label{tab:threats}\\
+  \toprule
+  Threat & Effect on our claims & Now & Program \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Threat & Effect on our claims & Now & Program \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+  \multicolumn{4}{@{}l}{\textit{Construct validity}}\\
+  What a \enquote{gap} means & A lens firing plus an unclosed state may mark a paraphrase or a retrieval hole, not unwritten knowledge & Candidates labeled \emph{inferred}; retrieval gaps kept apart & Human-labeled closure set (V1); gold tests (V2, V3, V5) \\
+  Judge leniency and ceiling & Own rate is 1.0 on most lenses, so no control can separate the arms & Tie reported with closed-only and paired figures (\cref{sec:absence-check}) & Paired statistics as outputs; V1 sample enriched for \enquote{not stated} \\
+  Model paraphrase and model-assigned types & Lenses, anchors and the judge read the extractor's \code{assertion}; a question may quote paraphrase as a source; DIAG, GUARD and HEDGE depend on extractor types & Stated in \cref{sec:n3}; spans kept beside every record & Lenses on verbatim spans or a flagged fallback; types checked in V1 coding \\
+  Display cap & At most 12 records, 3 per lens, 4 per area are shown; on PLC 15 of 24 candidates are hidden & Both counts reported (\cref{tab:n3-results}) & Area scores over the uncapped set \\
+  Expert-voiced text only & Learner difficulty and work-as-done are invisible & No lens claims a learner difficulty & Learner and novice studies kept separate (V8) \\
+  \addlinespace
+  \multicolumn{4}{@{}l}{\textit{Internal validity}}\\
+  In-sample tuning & Positive numbers would be optimistic & Configuration hashed; tuning disclosed & Judge chosen at MS1 (V1); hash-freeze at MS2, before gold (V0) \\
+  Defaults that equal the finding & Unread judge answers became \enquote{open}; a completeness flag and a first control could only pass & Parse fix; defects logged (\cref{app:defects}) & Planted positives and nulls for every check (V0) \\
+  Selection of demonstration traces & The traces in \cref{sec:demos} were picked after seeing the maps & Selection rule stated & Traces drawn by a pre-registered rule \\
+  Area partition and area score & No area score exists; the partition and scoring rule can move $\Delta$AUROC & Stated as not built (\cref{sec:not-demonstrated}) & Both pre-registered and frozen before gold \\
+  AI review as the only precision judge & 3/19 is one model's reading of pre-final maps & Always reported with its qualifiers & Blind human coders (V1, V2) \\
+  Single operator and owner incentive & One person designed, ran and read everything, and is the grant applicant & Committed artifacts; adversarial AI reviews & Blind non-owner coders; pre-registration (V1--V5) \\
+  \addlinespace
+  \multicolumn{4}{@{}l}{\textit{External validity and reliability}}\\
+  Two domains, English public web & Nothing generalizes beyond PLC and GDPR; the GDPR rerun is not admissible; World~B and paywalled text untested & Claims limited to these runs & Held-out domains after the freeze; repeated runs; World~B in V7 \\
+  Corpus quality & In PLC, 42 promotional seeds were excluded against 56 firings kept; the denylist was tuned in-sample & Exclusions counted in every map & Source-kind mix reported per ledger \\
+  Non-reproducible retrieval & Opaque web search, drifting pages and retiring hosted models; reconstruction cannot be repeated & Ledgers, snapshots and judge caches kept; maps replay offline & Snapshot archives, pinned model IDs; ledger-level reproducibility only \\
+  \addlinespace
+  \multicolumn{4}{@{}l}{\textit{Statistical conclusion validity}}\\
+  Tiny $n$ & Precision, verifier error and cross-run counts rest on 19--71 items & Wilson intervals; counts shown as counts & Sample sizes set by precision targets (V1, V2, V5) \\
+  \addlinespace
+  \multicolumn{4}{@{}l}{\textit{Contamination and memorization}}\\
+  Model priors shape the reconstruction & The planner chose areas and queries; memorized content can enter as \code{synthetic_extrapolation} & No lens or gate reads synthetic claims; located claims can still drift (12--30\%) & Dated corpus, memorization probes \parencite{golchin2023time,sainz2023nlp}; post-cutoff golds \\
+  \addlinespace
+  \multicolumn{4}{@{}l}{\textit{AI-assisted development}}\\
+  Builder and reviewers are models & Agent agreement can look like corroboration & Every number traced to an artifact & Human coders and pre-registration decide \\
+\end{longtable}
+}
+
+\subsection{AI-assisted development of the PoC itself}\label{sec:threats-ai}
+
+\evobs{} The PoC code, its adversarial reviews and this report were produced with AI agents under
+the project lead's direction. Every commit up to the PoC close carries an AI co-author line. One AI
+inspector did the E-LIVE claim inspection; one AI reviewer made the precision judgment; the extractor
+and that reviewer come from the same provider.
+
+\begin{evintbox}
+  Agent agreement is not evidence. Models that build, review and summarize the same work can share
+  blind spots, and their agreement can look like independent corroboration when it is not. The AI
+  reviews did find real defects, including the parsing defect and the failed closure control, so they
+  are useful as a search for errors. They cannot certify that errors are absent, and they cannot serve
+  as a criterion. In this report every PoC number is traced to a committed artifact, and
+  \cref{app:method} describes how the report was produced. In the validation program, decisions rest
+  on blind human coders and pre-registered rules; a model may act as a matcher only after it meets a
+  human-agreement threshold.
+\end{evintbox}

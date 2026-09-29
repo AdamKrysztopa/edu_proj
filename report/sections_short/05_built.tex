@@ -1,0 +1,99 @@
+\section{What was built}\label{sec:built}
+
+The PoC had one narrow engineering goal: a working, checkable chain from a named task to ranked
+questions for an expert, using only public evidence and zero participants. It was built inside the
+NOW program, which allows no participants, no proprietary data and no live interviews; its one human
+input, a blind second coder, has not yet been used. \evint{} The constraint came from the project's
+history. An earlier physics study, now frozen as Validation Track~A, built a complete, tested
+instrument, but every one of its gates needed recruited physicists or students before any result
+could be read (Extended Technical Report, Section~5).
+
+\subsection{Architecture}
+
+\evobs{} The PoC is three Python packages in a strict one-way dependency chain, checked by an
+architecture test: \repo{residual/} (268 tests), \repo{reconstruct/} (416) and \repo{gapmap/} (172),
+all offline with fakes, never a live model (Extended Technical Report, Section~6).
+\repo{residual/} defines the typed evidence model.
+\repo{reconstruct/} populates a ledger for one (domain, task) pair from the open web, in one
+strictly ordered call with no agent loop: plan 3--6 areas with queries; search; fetch, normalize and
+hash each document once into a content-addressed store; extract candidate claims; \emph{locate} each
+quote verbatim in the normalized text (or produce no evidence at all); cluster documents into
+independent sources; and \emph{verify} support with a model of another family. \repo{gapmap/} reads
+one ledger and proposes gap candidates; it never writes a hypothesis back as a claim.
+
+
+\evobs{} Planner and extractor are \code{anthropic/claude-haiku-4.5}; the verifier is
+\code{openai/gpt-5.4-mini}. The code refuses a verifier from the extractor's family, so no claim gains
+a criterion label by self-verification. The closure judge is \code{qwen2.5:7b-instruct}, run locally
+at zero cost and chosen because its family differs from both. Its verdicts are cached by prompt hash,
+so the gap map replays offline and byte-identically; only an explicit flag calls the model. A budget
+check stops before overspending and writes the outputs as incomplete rather than truncating silently.
+
+\subsection{The evidence model}
+
+\evobs{} The atomic unit is the \code{ClaimRecord}. Each claim carries exactly one of six epistemic
+labels (\cref{tab:labels}). The label is a computed property, never a stored field: nothing in the code
+can set it by hand. A derived claim takes the weakest label among its premises, so a chain of
+reasoning cannot bootstrap a strong label from a weak one. The evidential gate refuses any
+\code{synthetic_extrapolation} input, and anything else outside the three criterion labels, before the
+gated function runs. This is the code form of the project's central rule: \textbf{synthetic output may
+be a predictor, never a criterion.}
+
+\begin{table}[htbp]
+  \centering\small
+  \caption{The six epistemic labels (exact enum values). Only the first three can act as a
+    criterion.}
+  \label{tab:labels}
+  \begin{tabularx}{\linewidth}{@{}lXc@{}}
+    \toprule
+    Label & Meaning & Criterion \\
+    \midrule
+    \code{observed_human_evidence} & Supported by a human-record (World~C) source & Yes \\
+    \code{literature_supported} & Supported by a verified span in a public (World~A) source & Yes \\
+    \code{organisational_artefact_supported} & Supported by a verified span in an organization's own
+      (World~B) artifact & Yes \\
+    \code{inferred} & Derived from other claims, with no direct support & No \\
+    \code{synthetic_extrapolation} & Produced or supported only by a model & No \\
+    \code{unknown} & Searched, fetched and fully examined by another model family; nothing found &
+      No \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\paragraph{Provenance.} \evobs{} Every fetched document is normalized once and hashed. A selector names
+an exact character span inside that hash, and its text is the literal slice of the snapshot, never the
+model's own quotation. The chain is \emph{snapshot hash $\rightarrow$ re-sliced span $\rightarrow$
+claim}, so every evidence item can be re-checked offline with no model call. A claim whose quote cannot
+be located gets no evidence and stays in the ledger under \code{synthetic_extrapolation}; it is not
+dropped. Memorized model content can therefore enter the ledger, but only under a label no lens or gate
+reads.
+
+\paragraph{UNKNOWN, independence and contradictions.} \evobs{} A claim with no evidence enters under
+\code{unknown} only when its slot was searched, fetched and fully verified with nothing found. Weaker
+states (one source, unverified, never fetched) are tracked separately, because a slot never searched is
+a retrieval failure, not a silence of the domain. Corroboration counts independent source clusters, not
+documents. When two claims from different clusters conflict, the ledger stores a contradiction record
+rather than merging them.
+
+\paragraph{Evidence worlds.} \evobs{} Public (World~A), organizational (World~B) and human (World~C)
+evidence are a typed field on each source, with validators. \textbf{Only World~A is populated in the
+PoC}: World~B has no ingestion adapter and World~C has no data. The schema, the gap-map feature set and
+the label code are hash-frozen together; a change needs a deliberate re-freeze and a commit saying why.
+
+\subsection{N0--N3 and the verdicts they read}
+
+\evobs{} Every NOW item is pre-registered to end in a continue, change or stop reading of an
+experiment, never in \enquote{the build finished}.
+\begin{itemize}[nosep]
+  \item \textbf{N0} (reset; DOI hook, Track~A frozen): done, gate passed.
+  \item \textbf{N1} (evidence model): done, gate \emph{continue with 2 additions}, at the registered
+    limit of two.
+  \item \textbf{N2} (reconstruction): engineering complete; registered research verdict
+    \textbf{INCONCLUSIVE} (\cref{sec:results-n2}).
+  \item \textbf{N3} (gap map): pipeline complete; hidden-knowledge prediction \textbf{not demonstrated};
+    its program gate ($\Delta$AUROC against gold) has not run.
+\end{itemize}
+\evint{} Under the plan's rules, N2's inconclusive verdict would have blocked N3. The owner made one
+recorded exception and treated N2's engineering milestone as enough to start N3. That was a softened
+gate, softened by the person whose program depends on it, and no one outside the project checked it.
+The validation program therefore adds an external gate reader (\cref{sec:validation}).

@@ -1,0 +1,108 @@
+\section{Expected scientific contributions}
+\label{sec:contributions}
+
+This section states what the program would add to science, graded by what has to be true for each
+contribution to exist. Two things are kept apart. The first is what the PoC has already delivered;
+those are engineering and method contributions, observed in the repository. The second is what the
+validation program (\cref{sec:validation}) would deliver; those are expected, not achieved. For each
+expected contribution we say what it would be if the central hypothesis H2 holds and what remains if
+H2 fails. A program whose only valuable outcome is a positive result is a bet, not a research
+program. This one is designed so that a stop at any gate still leaves reusable data and a bounded
+answer.
+
+\begin{table}[!htbp]
+  \centering
+  \footnotesize
+  \caption[Expected scientific contributions]{Expected scientific contributions, graded by
+    outcome. All rows are future work. \enquote{If it holds} needs the named study to read
+    continue; \enquote{Even if it fails} is what the same study delivers on a stop or an
+    inconclusive reading.}
+  \label{tab:contributions}
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{0.25\linewidth}
+      >{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+    \toprule
+    Contribution (study) & If it holds & Even if it fails \\
+    \midrule
+    Human-labeled closure set with a codebook, a fair control and a retrieval-recall check (V1,
+      Phase~0) &
+      \evhyp{} A validated way to judge \enquote{this element is not stated in this evidence} &
+      A measured answer to whether any judge, automated or human, can decide absence reliably;
+      a public benchmark for others \\
+    \addlinespace
+    Pooled benchmark of gap maps against several published CTA golds, with dated corpora and
+      memorization probes (V2) &
+      \evhyp{} A first retrospective $\Delta$AUROC, conditional on density and area size, for
+      predicting from text where experts add knowledge &
+      A reusable, contamination-controlled test for any system that claims to find what text
+      leaves out \\
+    \addlinespace
+    Coded post-departure dataset from open-source projects (V3; the separate organizational
+      hypothesis H-OSS, \cref{subsec:hoss}) &
+      \evhyp{} Evidence that artifact coverage predicts knowledge loss beyond authorship
+      concentration &
+      Evidence that it does not; a public outcome set for knowledge-loss research
+      \parencite{foucault2015impact,rigby2016quantifying,avelino2016novel} \\
+    \addlinespace
+    Known-truth check of residual estimation (V4) &
+      \evhyp{} An unseen-item estimate that can serve as an objective &
+      A measured test of text-only estimates against known truth; the program then reports
+      observed counts only \\
+    \addlinespace
+    Residual corpus: validated expert-added items with knowledge type, channel and prior gap-map
+      score (V5) &
+      \evhyp{} Calibration data for gap maps across domains &
+      A typed record of what experts add beyond a fixed body of text, useful to CTA research on its
+      own \\
+    \addlinespace
+    Elicitation-efficiency evidence (V6) &
+      \evhyp{} Targeted questions recover more validated items per expert hour than untargeted CTA
+      (proposed smallest effect: 1.25 times) &
+      A bound on the gain; the interview-only pivot tested on its own terms \\
+    \addlinespace
+    Learner link (V8a, V8c) &
+      \evhyp{} Confirmed residual areas carry more learner and novice errors &
+      Evidence that expert residual and learner difficulty are different constructs, as
+      expert-blind-spot work suggests \parencite{nathan2003expert} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Already delivered, and what the program would add}
+
+\evobs{} Three contributions exist today, independent of H2:
+\begin{itemize}[nosep]
+  \item a provenance-typed evidence model (\cref{sec:evidence-model});
+  \item self-checks built into every gap map: a fair control, a chance-level null, an anti-renaming
+    check and cross-run comparison (\cref{sec:n3}). The fair control was added after an adversarial
+    AI review found the absence check's weakness, and it is re-run on every replay;
+  \item documented negative and inconclusive results (\cref{sec:n2,sec:n3}).
+\end{itemize} \evint{} The novelty ledger
+(\cref{tab:novelty}) grades all three as known methods, known combinations, or engineering; their
+value is reuse and audit, not novelty.
+
+\evfut{} \Cref{tab:contributions} lists what the validation program would add. The middle column
+needs H2, or the named logic-chain link (\cref{sec:validation}), to hold. The right column is
+delivered even on a stop: a public dataset, benchmark, or bounded effect size in every row. Three
+would matter most.
+\begin{itemize}[nosep]
+  \item The closure set. Without a result here, the absence construct itself is unreliable, and every
+    \enquote{what is missing} system shares that limit. It is also the cheapest: it runs before any
+    grant (Phase~0).
+  \item The CTA-gold benchmark. We found no study that scores a reconstruction or gap map against
+    steps a published CTA study showed experts omit (novelty ledger: potentially novel, uncertain).
+  \item The residual corpus: a typed record of what competent people add beyond a fixed, dated text.
+    CTA research today measures this only against other experts
+    \parencite{sullivan2014use,chao1994percentage}.
+\end{itemize}
+
+\evint{} A pre-registered negative result is itself a contribution. An upper 90\% $\Delta$AUROC
+bound below $\delta$ in the powered prospective study (V5) falsifies, with a bounded effect size, the
+claim that text reconstruction locates the human residual (\cref{sec:risks}). We found no published
+bound of this kind. A stricter negative is possible too: closure passes its human check, yet the map still
+does not beat density and area size, showing the methodology layer adds nothing beyond
+\enquote{where little is written}.
+
+We do not claim the system identifies tacit knowledge in general. Every expected contribution is
+bounded by its domains, golds, and evidence base at a fixed date. The Human Knowledge Residual is
+always \enquote{the residual as revealed by method $M$} (\cref{sec:residual}). Results from one
+domain do not transfer until a held-out domain has passed.

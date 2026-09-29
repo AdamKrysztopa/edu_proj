@@ -1,0 +1,64 @@
+\section{What the proof of concept demonstrates}\label{sec:demonstrates}
+
+This section lists only what the repository artifacts support. \Cref{tab:demonstrates} gives six
+claims, each pointing to the rows of \cref{app:claims} that hold the evidence and the artifact
+paths. The claims are about the mechanism: that it runs, that it keeps its evidence traceable, and
+that it carries checks that expose its own weakness. None is a claim about hidden expert knowledge;
+\cref{sec:not-demonstrated} lists what the PoC does not show.
+
+\evobs{} The reconstruction step (N2) ran on the live web in two domains, PLC fault diagnosis and
+GDPR impact assessments. Every evidence item it stored is an exact span that re-slices from a hashed
+snapshot; extractions it could not locate stay in the ledger under a label no gate reads
+(\cref{sec:n2}). The gap-map step (N3) read three of the resulting ledgers and produced gap
+candidates, a separate list of retrieval gaps and one template question per candidate, offline and
+byte-identically on replay.
+
+\evobs{} The most useful result is a negative one, found by adversarial review and now carried as a
+built-in check: the absence check does not beat its fair control, and every committed map carries
+the \code{closure-uninformative} flag (\cref{sec:absence-check}). \evint{} We read this as evidence
+that the method's failures can be made visible, not as evidence that it finds hidden knowledge.
+
+\begin{table}[tbp]
+  \centering
+  \small
+  \caption[What the PoC demonstrates]{What the PoC demonstrates. \emph{Strong}: direct evidence in
+  an artifact, checked by code or a test, or seen in more than one run. \emph{Moderate}: direct
+  evidence from one run or in-sample. Row IDs refer to \cref{app:claims}.}
+  \label{tab:demonstrates}
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X
+                                   >{\raggedright\arraybackslash}p{4.6cm}
+                                   >{\raggedright\arraybackslash}p{1.5cm}
+                                   >{\raggedright\arraybackslash}p{1.4cm}@{}}
+    \toprule
+    Claim & Main limitation & App.~A rows & Strength \\
+    \midrule
+    The evidence model enforces its rules in code: labels are computed, gates refuse synthetic or
+      unknown criteria, the schema is hash-frozen & Rules are tested offline; no World~B or C
+      evidence has passed through them & E01--E08, E11 & Strong \\
+    \addlinespace
+    Reconstruction runs end to end on live web sources, with every evidence item re-sliceable from
+      its snapshot & One complete run per domain; 452 of 1,169 claims have no supporting span and are
+      labeled accordingly; the span check needs local snapshots & E15--E17, E25 & Strong \\
+    \addlinespace
+    Cross-family verification and UNKNOWN slots operate & Operation, not accuracy: sampled verifier
+      error 12--30\%, one AI inspector, no gold; cross-verify and current decoys never ran live &
+      E09, E20, E26 & Moderate \\
+    \addlinespace
+    Live runs expose defects that offline tests miss, at small cost & Eleven fixes never re-checked
+      live; spend bounded by a provider limit, not by design & E22--E24, E27, E32 & Moderate \\
+    \addlinespace
+    The gap map runs end to end, keeps retrieval gaps apart from candidates, and replays
+      byte-identically offline & Replay identity of the committed maps was checked by hand; the tests
+      assert determinism on a fixture with a fake judge; a display cap hides most PLC candidates &
+      E13, E33, E35, E41 & Strong \\
+    \addlinespace
+    The built-in checks expose the pipeline's main weakness & They show the absence check does
+      not work yet; they do not show that it can & E34, E36--E40 & Strong \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\begin{findingbox}
+  The PoC shows a working, checkable mechanism. It does not show that the mechanism finds real
+  hidden knowledge.
+\end{findingbox}

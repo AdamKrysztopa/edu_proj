@@ -1,0 +1,147 @@
+% report/figures/src/fig11_platform.tex
+% Future platform: six horizontal bands on a fixed grid. Four columns at
+% \colpitch; each band's top is computed once from the band above
+% (label strip + box height + padding + gap). Status: solid = implemented
+% in the PoC, dashed = next research stage, dotted = long-term; statuses
+% follow tab:components in sections/18_platform.tex. Home: sec:platform.
+\documentclass[tikz,border=1mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+\newlength{\colpitch}\setlength{\colpitch}{34mm}
+\newlength{\boxw}\setlength{\boxw}{31mm}
+\newcommand{\colx}[1]{{(#1-1)*\colpitch}}
+\newcommand{\sub}[1]{\\[0.4mm]{\fontsize{7}{8}\selectfont #1}}
+
+% Vertical grid (mm): label strip, box height, padding, gap between bands.
+\def\labh{5}\def\pad{3}\def\gap{5}
+\pgfmathsetmacro{\hA}{10}\pgfmathsetmacro{\hB}{15}\pgfmathsetmacro{\hC}{13}
+\pgfmathsetmacro{\hD}{15}\pgfmathsetmacro{\hE}{15}\pgfmathsetmacro{\hF}{11}
+\pgfmathsetmacro{\tA}{0}
+\pgfmathsetmacro{\tB}{\tA-\labh-\hA-\pad-\gap}
+\pgfmathsetmacro{\tC}{\tB-\labh-\hB-\pad-\gap}
+\pgfmathsetmacro{\tD}{\tC-\labh-\hC-\pad-\gap}
+\pgfmathsetmacro{\tE}{\tD-\labh-\hD-\pad-\gap}
+\pgfmathsetmacro{\tF}{\tE-\labh-\hE-\pad-\gap}
+\pgfmathsetmacro{\bF}{\tF-\labh-\hF-\pad}
+% Row centre y for a band top t and box height h.
+\newcommand{\rowy}[2]{{(#1-\labh-#2/2)*1mm}}
+
+\tikzset{
+  box/.style={text width=\boxw-2mm, minimum width=\boxw, inner xsep=1mm, inner ysep=1mm,
+              align=center, text opacity=1},
+  longterm/.style={dash pattern=on 0.9pt off 1.6pt, fill opacity=0.35, text opacity=1},
+  planned/.append style={text opacity=1},
+  band/.style={draw=gray200, fill=gray100, rounded corners=2pt},
+  bandlabel/.style={font=\sffamily\fontsize{7.5}{9}\selectfont\scshape, text=gray700,
+                    anchor=north west, inner sep=0pt},
+  lab/.style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700, inner sep=0.8pt},
+}
+
+\begin{document}
+\begin{tikzpicture}
+  \pgfmathsetmacro{\xL}{-(\boxw/1mm)/2-\pad}
+  \pgfmathsetmacro{\xR}{3*\colpitch/1mm+(\boxw/1mm)/2+\pad}
+
+  % ------------------------------------------------ 1 evidence sources
+  \node[artefact, box, minimum height=\hA mm] (wa) at (\colx{1}, \rowy{\tA}{\hA})
+    {\textbf{World A}\sub{public text}};
+  \node[artefact, planned, box, minimum height=\hA mm] (wb) at (\colx{2.5}, \rowy{\tA}{\hA})
+    {\textbf{World B}\sub{organizational records}};
+  \node[human, planned, box, minimum height=\hA mm, rounded corners=3mm] (wc)
+    at (\colx{4}, \rowy{\tA}{\hA}) {\textbf{World C}\sub{experts and learners}};
+
+  % ------------------------------------------------ 2 ingestion
+  \node[procdet, box, minimum height=\hB mm] (web) at (\colx{1}, \rowy{\tB}{\hB})
+    {\textbf{Web search and fetch}};
+  \node[procdet, planned, box, minimum height=\hB mm] (repo) at (\colx{2}, \rowy{\tB}{\hB})
+    {\textbf{Repository and commit adapter}\sub{for E-OSS}};
+  \node[procdet, longterm, box, minimum height=\hB mm] (conn) at (\colx{3}, \rowy{\tB}{\hB})
+    {\textbf{Company connectors}};
+  \node[procdet, longterm, box, minimum height=\hB mm] (weft) at (\colx{4}, \rowy{\tB}{\hB})
+    {\textbf{Candidate-passage provider}\sub{optional, e.g.\ Weft}};
+
+  % ------------------------------------------------ 3 evidence ledger
+  \node[datastore, aspect=0.02, text width=100mm, minimum width={3*\colpitch+\boxw},
+        minimum height=\hC mm, inner sep=0pt] (ledger) at (\colx{2.5}, \rowy{\tC}{\hC})
+    {\textbf{Evidence ledger and provenance}\sub{claims, exact spans, labels, independence, UNKNOWN}};
+
+  % ------------------------------------------------ 4 analysis
+  \node[procllm, box, minimum height=\hD mm] (verify) at (\colx{1}, \rowy{\tD}{\hD})
+    {\textbf{Verification and independence}};
+  \node[procllm, planned, box, minimum height=\hD mm] (contra) at (\colx{2}, \rowy{\tD}{\hD})
+    {\textbf{Contradiction analysis}\sub{coded; not run live}};
+  \node[procllm, box, minimum height=\hD mm] (gapmap) at (\colx{3}, \rowy{\tD}{\hD})
+    {\textbf{Gap map}\sub{lenses + absence check; candidates}};
+  \node[procdet, planned, box, minimum height=\hD mm] (select) at (\colx{4}, \rowy{\tD}{\hD})
+    {\textbf{Area score and question selection}\sub{incl.\ EIG}};
+
+  % ------------------------------------------------ 5 human evidence
+  \node[gate, planned, text width=12mm, inner sep=0pt, minimum width=24mm, minimum height=\hE mm,
+        font=\sffamily\bfseries\fontsize{9}{10.5}\selectfont] (valid)
+    at (\colx{2}, \rowy{\tE}{\hE}) {Valid?};
+  \node[procdet, planned, box, minimum height=\hE mm] (resid) at (\colx{3}, \rowy{\tE}{\hE})
+    {\textbf{Residual measurement}};
+  \node[human, planned, box, minimum height=\hE mm] (elicit) at (\colx{4}, \rowy{\tE}{\hE})
+    {\textbf{Blind expert elicitation}};
+
+  % ------------------------------------------------ 6 applications
+  \node[artefact, longterm, box, minimum height=\hF mm] (learn) at (\colx{1.5}, \rowy{\tF}{\hF})
+    {\textbf{Learning}\sub{instruction, diagnostics}};
+  \node[artefact, longterm, box, minimum height=\hF mm] (org) at (\colx{2.5}, \rowy{\tF}{\hF})
+    {\textbf{Organizations}\sub{onboarding, retention}};
+
+  % ------------------------------------------------ bands
+  \begin{scope}[on background layer]
+    \foreach \t/\h/\name in {\tA/\hA/Evidence sources, \tB/\hB/Ingestion,
+                             \tC/\hC/Evidence ledger, \tD/\hD/Analysis,
+                             \tE/\hE/Human evidence, \tF/\hF/Applications} {
+      \draw[band] (\xL mm, \t mm) rectangle (\xR mm, {(\t-\labh-\h-\pad)*1mm});
+      \node[bandlabel] at ({(\xL+1.5)*1mm}, {(\t-1.2)*1mm}) {\name};
+    }
+  \end{scope}
+
+  % ------------------------------------------------ arrows
+  \coordinate (busAB) at (0, {(\tB+\gap/2)*1mm});
+  \draw[flowimpl] (wa) -- (web);
+  \draw[flowplan] (wb.south) -- (wb.south |- busAB) -| (repo.north);
+  \draw[flowplan] (wb.south |- busAB) -| (conn.north);
+
+  % Column-1 arrows sit right of centre so they clear the "Evidence ledger" band label.
+  \coordinate (c1) at (7mm, 0);
+  \draw[flowimpl] (web.south -| c1) -- (c1 |- ledger.north);
+  \foreach \n in {repo, conn, weft}
+    \draw[flowplan] (\n.south) -- (\n.south |- ledger.north);
+
+  \draw[flowimpl] (c1 |- ledger.south) -- (c1 |- verify.north);
+  \draw[flowplan] (contra.north |- ledger.south) -- (contra.north);
+  \draw[flowimpl] (gapmap.north |- ledger.south) -- (gapmap.north);
+  \draw[flowplan] (gapmap) -- (select);
+
+  \draw[flowplan] (select) -- (elicit);
+  \draw[flowplan] (elicit) -- (resid);
+  \draw[flowplan] (resid) -- (valid);
+  \draw[flowplan] (resid.north) -- node[lab, right=0.8mm] {calibrate} (gapmap.south);
+
+  \coordinate (busEF) at (0, {(\tF+\gap/2)*1mm});
+  \draw[flowplan] (valid.south) -- (valid.south |- busEF) -| (learn.north);
+  \draw[flowplan] (valid.south |- busEF) -| (org.north);
+
+  \coordinate (lane) at ({(\xR+4)*1mm}, 0);
+  \draw[flowplan] (wc.east) -- (wc.east -| lane) |- node[lab, pos=0.25, left=0.6mm, rotate=90,
+        anchor=south] {experts, learners} (elicit.east);
+
+  % ------------------------------------------------ legend
+  \coordinate (lg) at (\xL mm, {(\bF-5)*1mm});
+  \matrix[anchor=north west, column sep=6mm, ampersand replacement=\&,
+          sw/.style={draw=gray700, fill=gray100, minimum width=6mm, minimum height=3.6mm,
+                     text width=0pt, inner sep=0pt, anchor=west},
+          ll/.style={lab, anchor=west, inner sep=0pt}] at (lg) {
+    \node[sw] {}; \node[ll] at (7.5mm,0) {implemented in PoC (solid)}; \&
+    \node[sw, dashed] {}; \node[ll] at (7.5mm,0) {next research stage (dashed)}; \&
+    \node[sw, longterm, fill opacity=1] {}; \node[ll] at (7.5mm,0) {long-term (dotted)}; \\
+  };
+
+\end{tikzpicture}
+\end{document}

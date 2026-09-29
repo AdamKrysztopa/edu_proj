@@ -1,0 +1,137 @@
+\section{Defects found and how they were handled}
+\label{app:defects}
+
+This appendix lists every defect this project found by running its own software or by an
+adversarial review, and how each was handled: fixed in a named commit, or recorded without a code
+fix. \Cref{tab:defects} groups them by source: the E-LIVE v1/v2 review
+(\repo{research/n2/e_live_report.md} \S7), the harness scoring defects D1--D8 found by the final
+adversarial reviewer and fixed together in one commit, that same review's R1--R10 research
+limitations (\repo{research/n2/final_adversarial_review.md}, explicitly \enquote{report, do not
+fix now}), the still-open entries in the project's lessons queue
+(\repo{docs/lessons.md}), including the N3 judge-parsing defect, and TR1--TR2, found during this
+report's own technical review of the N3 code and its own appendix (round 1). None of these defects
+was found by
+a unit test alone: every one was caught by running the software live, by an adversarial reading of
+the code against its own registered claims, or, for L3, by re-running the affected suite for this
+report (2 of 54 \code{lessons_loop} tests still fail, confirmed 2026-09-29).
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{1.0cm}
+    >{\raggedright\arraybackslash}p{1.5cm}
+    >{\raggedright\arraybackslash}p{3.3cm}
+    >{\raggedright\arraybackslash}p{2.2cm}
+    >{\raggedright\arraybackslash}p{2.8cm}
+    >{\raggedright\arraybackslash}p{2.8cm}
+  }
+  \caption{Defects found by live runs and adversarial review, and their disposition. EL = E-LIVE
+    v1/v2 review; D = harness scoring defects (final adversarial review); R = that review's
+    research-limitation findings, recorded by design; L = the project's lessons queue; TR = found
+    during this report's own technical review, round 1.}
+  \label{tab:defects} \\
+  \toprule
+  \textbf{ID} & \textbf{Source} & \textbf{Defect} & \textbf{Found by} & \textbf{Effect} & \textbf{Status} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{6}{l}{\small\itshape (\tablename~\thetable{} continued)} \\
+  \toprule
+  \textbf{ID} & \textbf{Source} & \textbf{Defect} & \textbf{Found by} & \textbf{Effect} & \textbf{Status} \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{6}{r}{\small\itshape (continued on next page)} \\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+EL1 & E-LIVE v1 & HTTP error pages (403/429/404, bot walls, empty shells) counted as sources & v1 review of \code{ledger.json}/\allowbreak\code{calls.jsonl} & False \code{supports} claims traced to non-content pages & Fixed, \code{080b109} \\
+\addlinespace[2pt]
+EL2 & E-LIVE v1 & Curated PDFs (standards, guides, WP248) rejected outright & v1 review & Only SEO/blog HTML survived extraction & Fixed, \code{080b109} \\
+\addlinespace[2pt]
+EL3 & E-LIVE v1 & Corroboration structurally zero: 0 merges on 370 and 259 extractions & v1 review, computed from the ledger & Paraphrase-based merge never fired at all & Fixed, \code{080b109} \\
+\addlinespace[2pt]
+EL4 & E-LIVE v1 & Independence over-merged in GDPR (whole-document 25-word verbatim rule unions transitively) & v1 review & 4 clusters, largest holding 55\% of sources & Fixed, \code{080b109} \\
+\addlinespace[2pt]
+EL5 & E-LIVE v1 & Verifier passes generalization/scope drift and and/or swaps; decoys measured off-condition & v1 review & About 20\% PLC false accepts on scope; decoy rates uncontrolled & Fixed, \code{080b109} \\
+\addlinespace[2pt]
+EL6 & E-LIVE v1 & Contradiction guard checked only verbatim-quote presence, not classification correctness & v1 review & False positive: Article 35 misread as contradicting Article 36 & Fixed, \code{080b109} \\
+\addlinespace[2pt]
+EL7 & E-LIVE v1 & Coverage rule too lenient (1 supported claim counted as covered) & v1 review & \code{procedure_step}/\allowbreak\code{strategy} claims (39\% of PLC) never probed & Fixed, \code{080b109} \\
+\addlinespace[2pt]
+EL8 & E-LIVE v1 & Failed fetches not cached & v1 review & Same failing URL refetched on every hit (WP248 fetched 4 times) & Fixed, \code{080b109} \\
+\addlinespace[2pt]
+EL9 & E-LIVE v1 & Report mislabeled verifier-rejected claims as no located evidence & v1 review & No \code{claim_id}/verdict shown on affected report lines & Fixed, \code{080b109} \\
+\addlinespace[2pt]
+EL10 & E-LIVE v2 & Provider errors during verify/cross-verify/decoy calls raised before logging, so calls silently vanished & v2 run inspection & \code{complete: true} despite 140 of 366 GDPR claims left pending & Fixed, \code{0f39ed9} \\
+\addlinespace[2pt]
+EL11 & E-LIVE v2 & \code{Unicode}\allowbreak\code{EncodeError} on a PDF with a lone UTF-16 surrogate aborted the whole fetch phase & v2 run inspection & PLC run crashed entirely: 0 claims extracted & Fixed, \code{0f39ed9} \\
+\addlinespace[2pt]
+D1 & Harness & E-ABST's primary false-answer rate counted synthetic claims as answers & Final adversarial reviewer, confirmed by running it & Biased the pipeline's false-answer rate toward a Stop reading & Fixed, \code{883b52a} \\
+\addlinespace[2pt]
+D2 & Harness & E-PLANT validity floor computed on the capped target set, not the full baseline set & Final adversarial reviewer, code read & A cap that drops non-adopted targets could flip the floor and reopen Continue & Fixed, \code{883b52a} \\
+\addlinespace[2pt]
+D3 & Harness & A hollow run (extraction failure, no located spans) could be scored as a real result & Final adversarial reviewer, code read & An outage mid-run could read as Change: under-exposed, or silently lower the pipeline's false-answer rate & Fixed, \code{883b52a} \\
+\addlinespace[2pt]
+D4 & Harness & E-ABST's zero-documents-extracted counter counted fetches, not extractions & Final adversarial reviewer, code read & A run that fetched pages but extracted nothing missed the >4 inconclusive rule & Fixed, \code{883b52a} \\
+\addlinespace[2pt]
+D5 & Harness & E-ABST's blocklist was inert: a stray asterisk made substring matching never fire & Final adversarial reviewer, confirmed by running it & The project's own repository pages were fetchable, not excluded & Fixed, \code{883b52a} \\
+\addlinespace[2pt]
+D6 & Harness & The exposure-check CLI printed key-derived search terms & Final adversarial reviewer, code read & Contradicted the registered claim that the script never displays the key & Fixed, \code{883b52a} \\
+\addlinespace[2pt]
+D7 & Harness & Contradiction-flag recall was not the registered measure (no value fields to check) & Final adversarial reviewer, code read & An upper-bound page-level link rate was reported under the registered measure's name & Fixed, \code{883b52a} \\
+\addlinespace[2pt]
+D8 & Harness & The source-level sensitivity check counted REFUTES evidence as adoption & Final adversarial reviewer, code read & A claim a planted page's span refuted could count as adopting that plant & Fixed, \code{883b52a} \\
+\addlinespace[2pt]
+R1 & Adversarial review & E-PLANT is nearly uninformative on its main question (5/24 adopted vs. an assumed 60\%-plus baseline) & Final adversarial reviewer & Continue is closed; only Stop or Change can follow, whatever the pipeline does & Recorded, not fixed (a result, not a code defect) \\
+\addlinespace[2pt]
+R2 & Adversarial review & Decoy validity is self-certified: the validator only checks the text differs and the rationale is non-empty & Final adversarial reviewer, code read & Decoy false-accept rates are not an estimate of verifier validity & Recorded, not fixed \\
+\addlinespace[2pt]
+R3 & Adversarial review & Cross-verify can count a near-verbatim copy as independent corroboration (25-word threshold misses shorter spans) & Final adversarial reviewer, code read & Inflates covered-slot counts and corroboration counts feeding N3 & Recorded, not fixed; flagged fix before N3 \\
+\addlinespace[2pt]
+R4 & Adversarial review & Scope-flagged REFUTES verdicts still become N1 contradictions & Final adversarial reviewer, code read & Contradiction recall and contradiction counts overstate true conflicts (adoption itself stays protected) & Recorded, not fixed \\
+\addlinespace[2pt]
+R5 & Adversarial review & Extraction output truncation (8192 tokens) dropped whole documents & Final adversarial reviewer, code read & v2(b) lost 5 of 25 documents, including one under E-PLANT's own length cap & Recorded, not fixed \\
+\addlinespace[2pt]
+R6 & Adversarial review & Completion and N3-input flags ignore per-task call failures; failures are under-surfaced & Final adversarial reviewer, code read & The v2(b) silent-failure pattern (EL10) would still read complete: true & Recorded, not fixed \\
+\addlinespace[2pt]
+R7 & Adversarial review & Retrieval and the E-PLANT baseline are asymmetric: the baseline model sees URLs, the pipeline never does & Final adversarial reviewer & Weakens the arm-to-arm comparison as a test of the pipeline specifically & Recorded, not fixed \\
+\addlinespace[2pt]
+R8 & Adversarial review & Domain residue: host tables and prompts are tuned to, and quote, the E-LIVE domains & Final adversarial reviewer, code read & E-LIVE's own claims are no longer held out for any verifier re-measurement & Recorded, not fixed \\
+\addlinespace[2pt]
+R9 & Adversarial review & Dead code and single-implementation abstractions (e.g. three separate Wilson-interval copies, an unused provider indirection) & Final adversarial reviewer, code read & Maintenance risk; no behavioral effect on any registered gate & Recorded, not fixed; clean-up-after-N2 \\
+\addlinespace[2pt]
+R10 & Adversarial review & The E-LIVE report headlined pass as a sanity gate while the code at freeze had zero live data & Final adversarial reviewer & Overstated what the frozen pipeline had actually shown at that point & Recorded, not fixed; rename to provenance core passes, post-fix pipeline unchecked recommended \\
+\addlinespace[2pt]
+L1 & Lessons queue & A gate (E-ABST's false-answer-rate margin) was registered without checking it was reachable given the observed baselines & N2 closeout, computed from counts alone & The margin is reachable only in a narrow arithmetic corner, undetected until closeout & Queued (process rule proposed, no code change yet) \\
+\addlinespace[2pt]
+L2 & Lessons queue & Freezes and gated reruns were planned without checking the provider key's remaining budget & E-LIVE v3, blocked at the first call, twice & N2 closed inconclusive on budget, not on evidence & Queued (a pre-run headroom check proposed, not built) \\
+\addlinespace[2pt]
+L3 & Lessons queue & A drain changed a hook's output without running that hook's own test suite & A quality-gate sweep at N2 closeout & 2 of 54 \code{lessons_loop} tests still fail (reconfirmed live for this report, 2026-09-29) & Queued, unfixed \\
+\addlinespace[2pt]
+L4 & Lessons queue & An existing rule (not done until a live run passes) recurred: three N2 freeze tags were each cut before a clean live run & Final adversarial review, P1 & An existing rule did not stop its own repeat failure & Queued (process rule, no single code fix) \\
+\addlinespace[2pt]
+L5 & Lessons queue & The DIAG rival rule was first built as a transitive closure, not seed-plus-direct-rivals, chaining unrelated causes into one group & Reading the rendered \code{gapmap.md}, not the all-passing unit tests & A 40-claim group inflated its breadth-based rank to the top of the PLC map & Fixed, \code{ec45c31} (direct rivals only); archive drain still pending \\
+\addlinespace[2pt]
+L6 & Lessons queue & The anti-renaming density-disguise check, then its first replacement null, each passed by construction & Opus adversarial-review ablation & No flag fires was guaranteed by the pool definition, twice, before a matched-exclusion donor null held & Fixed, \code{ec45c31} (mismatched-evidence control with matched exclusions); archive drain still pending \\
+\addlinespace[2pt]
+L7 & Lessons queue & A judge answer the parser could not read (bare integer sentence ids) silently defaulted to open (this is the N3 judge-parsing defect) & Opus final review, reading cached judge reasons against the recorded state & 24/103, 62/150 and 60/147 responses dropped per ledger (reported in \repo{docs/lessons.md}; the pre-fix caches are not committed, so these counts are not independently re-checkable); up to 13/19 map hypotheses would flip to partial if read positionally & Fixed, \code{ec45c31} (\code{RG-UNDECIDED} category); archive drain still pending \\
+\addlinespace[2pt]
+TR1 & This report, technical review & DIAG's (and structurally every lens's) human-facing question template substitutes \code{cand.anchor} -- a sentence fragment trimmed to 80 characters, or the extractor's paraphrase when no usable span sentence exists -- for a clean quoted term & Reviewer B, reading the committed question text against the seed's own span & A rendered question can quote model-written paraphrase rather than the document's own words, and DIAG's question can read as a mid-sentence fragment & Recorded, not fixed; documented as coded in \cref{app:lenses} \\
+\addlinespace[2pt]
+TR2 & This report, technical review & \code{checks.apply}\allowbreak\code{_sibling} moves a record to \code{RG-SIBLING} without clearing its \code{hypothesis} or \code{question} fields & Reviewer B, code read (\repo{gapmap/src/gapmap/checks.py}:415--428) & One GDPR v2 RG-SIBLING record (a DISC candidate) still carries a hypothesis and a question, though its category's action is search/verify, never ask a human & Recorded, not fixed \\
+\addlinespace[2pt]
+\end{longtable}
+\endgroup
+
+\paragraph{Reading the Status column.} \enquote{Fixed, \code{<hash>}} means the commit changed the
+code and, for D1--D8 and EL1--EL11, an existing or new test now covers the fix. \enquote{Recorded,
+not fixed} is a deliberate research-reporting decision (\cref{sec:not-demonstrated}): the final
+adversarial review's R1--R10 are limitations of what N2 showed, not bugs to patch before reporting
+it, and TR1--TR2 are limitations of the N3 gap map and its appendix, found while writing this
+report's own technical review round rather than during development. \enquote{Queued} means the
+project's own lessons process (\repo{docs/lessons.md}) has captured
+the mistake and a generalizable rule, but the fix --- code, process, or both --- has not yet been
+drained into \repo{docs/LESSONS-ARCHIVE.md}; L5--L7 already have a code fix landed in
+\code{ec45c31}, and only the archive write-up is outstanding.

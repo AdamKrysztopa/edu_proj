@@ -1,0 +1,81 @@
+% report/figures/src/fig12_residual.tex
+% The Human Knowledge Residual as a construct (not to scale). Bar 1: knowledge competent
+% practitioners use = stated in the evidence base + the residual. Bar 2: what the evidence base
+% states, aligned under bar 1's first segment = captured by the reconstruction + retrieval gap.
+% The gap map predicts where the residual lies; only World C evidence can measure it.
+% Grid: bar width \barW, split points \splitA (bar 1) and \splitB (bar 2), rows at fixed y.
+\documentclass[tikz,border=1mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+\def\barW{144}  % mm, both bars
+\def\splitA{96} % stated | residual
+\def\splitB{68} % captured | retrieval gap
+\def\barH{12}   % mm
+
+\tikzset{
+  bartitle/.style={font=\sffamily\bfseries\fontsize{9}{10.5}\selectfont, text=ink,
+                   anchor=south west, inner sep=0pt},
+  seglab/.style={font=\sffamily\fontsize{8}{9.5}\selectfont, text=ink, align=center, inner sep=0pt},
+  sublab/.style={font=\sffamily\fontsize{7}{8.4}\selectfont, text=gray700, align=center},
+  lab/.style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700, inner sep=0.8pt},
+  obsseg/.style={fill=evobscol!18!white, draw=evobscol, thick},
+  hypseg/.style={fill=evhypcol!16!white, draw=evhypcol, thick, dashed},
+  rgseg/.style={fill=gray100, draw=gray700, thick, densely dotted},
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1mm, y=1mm]
+
+  % ------------------------------------------------------------ bar 1 (y = 30..42)
+  \node[bartitle] at (0,44) {Knowledge competent practitioners use};
+  \draw[obsseg] (0,30) rectangle (\splitA,30+\barH);
+  \draw[hypseg] (\splitA,30) rectangle (\barW,30+\barH);
+  \node[seglab, text width={(\splitA-4)*1mm}] at ({\splitA/2},36) {stated in the evidence base};
+  \node[seglab, text width={(\barW-\splitA-4)*1mm}] (reslab) at ({(\splitA+\barW)/2},36)
+    {{\fontsize{7}{8.4}\selectfont not in the evidence base:}\\
+     \textbf{\textcolor{evhypcol}{Human Knowledge Residual}}};
+
+  % ------------------------------------------------------------ bar 2 (y = 8..20)
+  \node[bartitle] at (0,22) {What the evidence base states};
+  \draw[obsseg] (0,8) rectangle (\splitB,8+\barH);
+  \draw[rgseg] (\splitB,8) rectangle (\splitA,8+\barH);
+  \node[seglab, text width={(\splitB-4)*1mm}] at ({\splitB/2},14) {captured by the reconstruction};
+  \node[seglab, text width={(\splitA-\splitB-3)*1mm}] at ({(\splitB+\splitA)/2},14)
+    {\textbf{retrieval gap}\\{\fontsize{7}{8.4}\selectfont (stated, not captured)}};
+
+  \draw[gray400, thin, densely dotted] (\splitA,20) -- (\splitA,30);
+
+  % ------------------------------------------------------------ gap map (right column)
+  \pgfmathsetmacro{\resmid}{(\splitA+\barW)/2}
+  \node[procdet, text width=40mm, minimum width=43mm, minimum height=10mm, anchor=north]
+    (gapmap) at (\resmid,4) {Gap map\\{\fontsize{7}{8.4}\selectfont (PoC: lenses + absence check)}};
+  \draw[flowplan] (gapmap.north) -- (\resmid,30);
+  \node[lab, anchor=west] at (\resmid+1.5,17) {predicts where};
+
+  % ------------------------------------------------------------ definitions (two columns)
+  \tikzset{defn/.style={anchor=north west, align=left, inner sep=0pt, text width=68mm,
+                        font=\sffamily\fontsize{7}{8.6}\selectfont, text=ink}}
+  \node[defn] (defres) at (0,-10)
+    {\textbf{\textcolor{evhypcol}{Human Knowledge Residual (HYPOTHESIS).}} Knowledge competent
+     practitioners use that no source states. Measurable only with World C evidence
+     (future work).};
+  \node[defn] (defrg) at (\barW-68,-10)
+    {\textbf{Retrieval gap.} Stated in the evidence base but not captured by the
+     reconstruction. Action: search or verify further; never ask a human.};
+
+  % ------------------------------------------------------------ legend (one row)
+  \node[fit=(defres)(defrg), inner sep=0pt] (defbox) {};
+  \matrix[below=4mm of defbox.south west, anchor=north west, column sep=7mm,
+          ampersand replacement=\&,
+          sw/.style={minimum width=5mm, minimum height=3.5mm, inner sep=0pt, anchor=west},
+          ll/.style={lab, anchor=west, inner sep=0pt}] {
+    \node[obsseg, sw] {}; \node[ll] at (6.5,0) {observed (World A)}; \&
+    \node[rgseg, sw] {}; \node[ll] at (6.5,0) {retrieval gap}; \&
+    \node[hypseg, sw] {}; \node[ll] at (6.5,0) {hypothesis (unmeasured)}; \&
+    \draw[flowplan] (0,0) -- (5,0); \node[ll] at (6.5,0) {prediction}; \\
+  };
+
+\end{tikzpicture}
+\end{document}

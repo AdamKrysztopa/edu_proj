@@ -1,0 +1,74 @@
+% report/figures/src/fig05_evidence.tex
+% Anatomy of a claim record: the provenance chain from a fetched snapshot to
+% a computed epistemic label, plus the independence key (union-find) and the
+% UNKNOWN slot condition.
+% Data/field names: residual/src/residual/provenance.py (Selector, Evidence,
+% Verification, Source), residual/src/residual/claims.py (ClaimRecord.label);
+% reconstruct/src/reconstruct/evidence.py (independence_clusters, slot_status);
+% report/notes/05_architecture.md secs 2, 3 step 6/9.
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+\begin{document}
+\begin{tikzpicture}[node distance=6mm and 4mm]
+
+  % ---- main provenance chain ----
+  \node[datastore, minimum width=18mm, minimum height=14mm, text width=15mm, font=\sffamily\fontsize{7.4}{8.6}\selectfont]
+        (snapshot) {Fetched snapshot\\\footnotesize sha256 of normalized text};
+
+  \node[artefact, minimum width=21mm, minimum height=18mm, text width=18mm, font=\sffamily\fontsize{7.2}{8.4}\selectfont,
+        right=of snapshot] (selector) {Selector\\\footnotesize \texttt{exact}: verbatim span, re-sliced --- never the model's quote\\\footnotesize \texttt{locator}: sha256;\\char=lo,hi};
+
+  \node[artefact, minimum width=25mm, minimum height=18mm, text width=22mm, font=\sffamily\fontsize{7.2}{8.4}\selectfont,
+        right=5mm of selector] (claim) {Claim record\\\footnotesize \texttt{assertion} (text)\\\footnotesize \texttt{knowledge\_type}\\\footnotesize world: A (public)\\\footnotesize practice: imagined / done / reported};
+
+  \node[procllm, minimum width=21mm, minimum height=18mm, text width=18mm, font=\sffamily\fontsize{7.2}{8.4}\selectfont,
+        right=5mm of claim] (verify) {Verification\\\footnotesize verdict by a verifier of a \emph{different} model family than the generator};
+
+  \node[gate, minimum width=18mm, minimum height=18mm, text width=17mm, font=\sffamily\fontsize{7}{8.2}\selectfont,
+        right=5mm of verify] (label) {Epistemic label: computed, one of six values, never asserted};
+
+  \draw[flowimpl] (snapshot) -- (selector);
+  \draw[flowimpl] (selector) -- (claim);
+  \draw[flowimpl] (claim) -- (verify);
+  \draw[flowimpl] (verify) -- (label);
+
+  % ---- second row: one grid line under the chain; each node hangs under the node it annotates ----
+  \coordinate (row2) at ($(selector.south)+(0,-6mm)$);
+
+  \node[anchor=north, text width=36mm, align=center, inner sep=0pt,
+        font=\sffamily\itshape\fontsize{7}{8.2}\selectfont, text=gray700]
+        (nosel) at (selector.south |- row2)
+        {quote not found $\rightarrow$ no selector; claim labeled \texttt{synthetic\_extrapolation}, never a criterion};
+  \draw[gray400, thin, densely dotted] (nosel.north) -- (selector.south);
+
+  \node[artefact, minimum width=40mm, minimum height=14mm, text width=37mm,
+        font=\sffamily\fontsize{7.2}{8.4}\selectfont, anchor=north west]
+        (indep) at ($(claim.south west |- row2)+(4mm,0)$)
+        {\texttt{independence\_key} (union-find): same registrable domain, OR 5-shingle containment $\geq$0.5, OR a shared $\geq$25-word verbatim run};
+  \draw[flowimpl, gray400, dashed] (claim.south |- indep.north) -- (claim.south)
+    node[pos=0.5, right=0.8mm, font=\sffamily\fontsize{7}{8}\selectfont, text=gray700] {of the source};
+
+  % ---- UNKNOWN slot, a side condition that bypasses verification ----
+  \node[artefact, minimum width=30mm, minimum height=14mm, text width=27mm,
+        font=\sffamily\fontsize{7.2}{8.4}\selectfont, anchor=north]
+        (unknown) at (label.south |- row2)
+        {UNKNOWN slot: searched, fetched, extracted, fully verified --- nothing found};
+  \draw[flowimpl] (unknown.north) -- (label.south);
+
+  % ---- legend ----
+  \node[fit=(snapshot)(selector)(claim)(verify)(label)(indep)(unknown)(nosel), inner sep=0pt] (allbox) {};
+  \legenditem{lg1}{artefact}{Evidence artefact}{at={(allbox.south west)}, anchor=north west, yshift=-6mm, minimum width=5mm, minimum height=4mm}
+  \legenditem{lg2}{procllm}{Process (LLM-driven)}{minimum width=5mm, minimum height=4mm, right=5mm of lg1lab}
+  \legenditem{lg3}{gate}{Gate / decision}{text width=0pt, minimum width=5mm, minimum height=4mm, right=5mm of lg2lab}
+  \node[datastore, scale=0.28, transform shape, right=5mm of lg3lab] (lg4) {};
+  \node[right=0.8mm of lg4, anchor=west, font=\sffamily\fontsize{7}{8}\selectfont, text=gray700] (lg4lab) {Data store};
+
+  \node[below=5mm of lg1, anchor=north west, inner sep=0pt] (lgline) {};
+  \draw[flowimpl] (lgline.north west) -- ++(6mm,0) node[right, font=\sffamily\fontsize{7}{8}\selectfont, text=gray700] {implemented};
+  \draw[flowimpl, gray400, dashed] ($(lgline.north west)+(30mm,0)$) -- ++(6mm,0) node[right, font=\sffamily\fontsize{7}{8}\selectfont, text=gray700] {attached field (not sequential flow)};
+
+\end{tikzpicture}
+\end{document}

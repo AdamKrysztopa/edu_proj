@@ -1,0 +1,162 @@
+\section{Reproducing the PoC}
+\label{app:reproduce}
+
+\paragraph{Repository and commit.} \href{https://github.com/AdamKrysztopa/edu_proj}{\nolinkurl{github.com/AdamKrysztopa/edu_proj}}.
+This report was built against commit \code{754e2e6} on branch \code{main}. All committed artifacts
+cited in this report (JSON ledgers, gap maps, test suites) are reachable from that commit; later
+commits may add report sections without changing any N2/N3 artifact discussed here.
+
+\paragraph{Environment.} Each package (\code{residual}, \code{reconstruct}, \code{gapmap},
+\code{instrument}) is a separate \code{uv} project (Python \(\geq\)3.12, its own
+\code{pyproject.toml}), run with \code{uv run --directory <package> <command>}. No paid API key is
+needed for anything below; \code{gapmap}'s default mode makes no network call at all, and
+\code{reconstruct}'s and \code{instrument}'s test suites never call a live model
+(\cref{app:claims}, rows E11--E14).
+
+\paragraph{The four test commands.}
+\begin{verbatim}
+uv run --directory residual pytest -q      # 268 passed, ~1 s
+uv run --directory reconstruct pytest -q   # 416 passed, ~1 s
+uv run --directory gapmap pytest -q        # 172 passed, ~2 min
+uv run --directory instrument pytest -q    # 311 passed, ~7 s
+\end{verbatim}
+All four were run live for this report on 2026-09-29 (\cref{app:claims}, rows E11--E14); the
+counts above are the ones the report-wide consistency ruling requires, and they matched the
+independently-run numbers exactly.
+
+\paragraph{Package internals.} Module counts below include \code{__init__.py} for all three
+packages. \repo{residual/}'s nine modules (1{,}281 lines): \code{vocab.py}
+(closed enumerations), \code{provenance.py} (\code{Record}, \code{Agent}, \code{Source},
+\code{Selector}, \code{Verdict}, \code{Verification}, \code{Evidence}, \code{Generation},
+\code{Search}, \code{Derivation}), \code{claims.py} (\code{ClaimRecord}, \code{Scope},
+\code{ResponseDistribution}, and the \code{label} property), \code{ledger.py} (\code{Ledger},
+\code{Contradiction}, \code{Area}), \code{gates.py} (\code{evidential_gate}, \code{Measurement},
+\code{measure()}, \code{Threshold}), \code{gapmap.py} (the N1 feature definitions that N2 computes
+and N3 predicts from), \code{freeze.py}, and \code{residual.py} (\code{ResidualAccount},
+\code{EstimatedResidual}). \repo{reconstruct/} has ten modules (4{,}803 lines), built around
+\code{run.py} (the \code{reconstruct()} entry point) and \code{evidence.py} (independence
+clustering); its third-party dependencies are \code{httpx}, \code{openai}, \code{tldextract}, and
+\code{pypdf}. \repo{gapmap/} has twelve modules (2{,}986 lines), built around \code{lenses.py}
+(the seven firing rules), \code{semantic.py} (closure judging), \code{checks.py} (the built-in
+adversarial checks), \code{rank.py} (the breadth-rubric ranking and the display cap), and
+\code{record.py} (the three-tier \code{Record} and \code{categorize}); it depends on nothing beyond
+stdlib, \code{pydantic}, and \code{residual} (\cref{sec:architecture}).
+
+\paragraph{Residual accounting and the frozen N1 schema, in full.} What exists in code:
+\code{AreaFeatures} (per-area counts of labels, source kinds, tacitness, and contradictions,
+\repo{residual/src/residual/gapmap.py}) and \code{ResidualAccount}/\code{EstimatedResidual}
+(\repo{residual/src/residual/residual.py}), which name the fields an estimate would need --
+\code{EstimatedResidual} allows \code{chao1}, \code{jackknife}, \code{mh}, and
+\code{lincoln_petersen} as its declared estimator methods. What does not exist: any estimator that
+actually runs one of those methods, and any World~C data to run it against
+(\cref{sec:evidence-model}). Decision 0006 hash-freezes the schema, the gap-map feature set, and
+the label-deciding code together in \repo{residual/frozen/n1.json}, which holds three SHA-256
+hashes: \code{schema_sha256} (the JSON schema of \code{ClaimRecord}, \code{Ledger},
+\code{Measurement}, and every vocabulary's enum values, stripped of prose), \code{features_sha256}
+(the \code{AreaFeatures} field-name tuple), and \code{semantics_sha256} (a byte hash of
+\code{vocab.py}, \code{provenance.py}, \code{claims.py}, \code{ledger.py}, \code{gates.py}, and
+\code{residual.py} -- the code that decides labels, gates, and coverage). A plain \code{pytest}
+architecture test fails if the live fingerprint diverges from the committed file. Changing any of
+it needs a deliberate re-freeze (\code{python -m residual.freeze --write}) and a commit explaining
+why.
+
+\paragraph{Replaying an N3 gap map offline.} Every committed gap map replays byte-for-byte from
+its ledger plus the committed closure-judge cache (\code{closure_judgements.json} in each
+\repo{research/n3/} domain folder); no network call happens unless \code{--judge ollama} is added.
+Pointing \code{--out} at a fresh, empty directory fails with \code{JudgeCacheMiss}, because the
+cache path the CLI reads is \code{<out>/closure_judgements.json}: the cache must be copied into the
+output directory first, and byte identity needs the exact domain strings and sidecar/sibling flags
+below (verified by running this sequence):
+\begin{verbatim}
+OUT=/tmp/gapmap-replay; R=reconstruct/runs
+for d in plc gdpr_v1 gdpr_v2; do
+  mkdir -p $OUT/$d
+  cp research/n3/$d/closure_judgements.json $OUT/$d/
+done
+cd gapmap
+uv run python -m gapmap \
+  --ledger ../$R/20260928T133336Z-59ec876b3d7e/ledger.json \
+  --sidecar ../$R/20260928T133336Z-59ec876b3d7e/sidecar.json \
+  --domain "PLC intermittent-fault diagnosis" --out $OUT/plc
+uv run python -m gapmap \
+  --ledger ../$R/20260928T135354Z-eb840a85b7d1/ledger.json \
+  --sibling ../$R/20260928T145943Z-bc1cc9a30a02/ledger.json \
+  --sidecar ../$R/20260928T135354Z-eb840a85b7d1/sidecar.json \
+  --domain "GDPR DPIA (run v1)" --out $OUT/gdpr_v1
+uv run python -m gapmap \
+  --ledger ../$R/20260928T145943Z-bc1cc9a30a02/ledger.json \
+  --sibling ../$R/20260928T135354Z-eb840a85b7d1/ledger.json \
+  --sidecar ../$R/20260928T145943Z-bc1cc9a30a02/sidecar.json \
+  --domain "GDPR DPIA (run v2)" --out $OUT/gdpr_v2
+cd ..
+for d in plc gdpr_v1 gdpr_v2; do
+  cmp $OUT/$d/gapmap.json research/n3/$d/gapmap.json
+  cmp $OUT/$d/gapmap.md   research/n3/$d/gapmap.md
+done
+\end{verbatim}
+This reads the \emph{hashed} lens configuration (\code{config.py}), not a frozen one: the lexicons
+and thresholds were tuned in-sample on all three ledgers together, and are hash-recorded
+(\code{config_sha256}, below) so that a future change is visible, not blocked (\cref{sec:n3}).
+Adding \code{--judge ollama} re-judges live against a local Ollama server running
+\code{qwen2.5:7b-instruct}, which this report never does and which is not needed to check any
+number in it. Separately, \code{uv run --directory reconstruct python -m reconstruct.verify_run
+runs/<run>} re-checks every evidence item's span against the run's local snapshot; it needs the
+local, git-ignored snapshots (below), so it cannot run from a fresh clone.
+
+\paragraph{The N2 ledger run IDs used in this report.}
+\begin{itemize}
+  \item PLC: \code{reconstruct/runs/20260928T133336Z-59ec876b3d7e}
+  \item GDPR v1: \code{reconstruct/runs/20260928T135354Z-eb840a85b7d1}
+  \item GDPR v2: \code{reconstruct/runs/20260928T145943Z-bc1cc9a30a02} (defect-compromised per
+    \cref{app:claims} row E23; not N3-admissible on its own, used only for the cross-run-stability
+    check, row E34)
+\end{itemize}
+
+\paragraph{Ledger and config hashes (from the committed gapmap.json files).}
+Every gap map records the SHA-256 of the exact ledger it was built from and of the exact lens
+configuration (\code{config.py}) that produced it, so a mismatch between a recomputed hash and the
+one below means the input has changed since this report was written.
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}l p{5.4cm} p{5.4cm}@{}}
+  \toprule
+  \textbf{Domain} & \textbf{ledger\_sha256} & \textbf{config\_sha256} \\
+  \midrule
+  PLC & \nolinkurl{3d724d8ddfb78f43240f853e7dee8702cd78d72b1d0856e9f1b70be7f90e49bd} &
+    \nolinkurl{35fd0af25618f8d6e0d1c2c3707d7e932afe2ce72dbd01e956034b43bfeb04c1} \\
+  GDPR v1 & \nolinkurl{cdd8e42e0a140e5d75cd9e83178479fa61ba55ed3aa0a701731f0ea7e68f004b} &
+    \nolinkurl{35fd0af25618f8d6e0d1c2c3707d7e932afe2ce72dbd01e956034b43bfeb04c1} \\
+  GDPR v2 & \nolinkurl{1a1d1ca74b82a933496456b0bbb2b957568453016ce160c1f57c3786dcc6788b} &
+    \nolinkurl{35fd0af25618f8d6e0d1c2c3707d7e932afe2ce72dbd01e956034b43bfeb04c1} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+All three domains share one \code{config_sha256}: the same \emph{hashed, not yet frozen}, lens
+configuration -- tuned in-sample on these same three ledgers jointly -- was applied to all three,
+so any difference in their gap maps comes from the ledgers, not from per-domain tuning of the
+lenses. Hashing makes a future change visible; it does not yet block one the way decision 0006's
+freeze blocks an undeclared change to the N1 schema (\cref{sec:evidence-model}).
+
+\paragraph{What cannot be reproduced offline.}
+\begin{itemize}
+  \item \textbf{Any live model call.} E-LIVE, E-PLANT, E-ABST and a \code{--judge ollama} run all
+    need a paid model key (OpenRouter) or a local Ollama server; none of this report's numbers
+    depend on running one, and re-running E-LIVE would not reproduce the same run in any case,
+    since it fetches the live web (\cref{sec:threats}).
+  \item \textbf{Re-slicing evidence spans on a fresh clone.} \code{.gitignore} excludes
+    {\small\nolinkurl{reconstruct/runs/**/snapshots/}}: the raw fetched documents behind each
+    \code{evidence[].selector.locator} are not in the repository, only their SHA-256 hash. On the
+    machine that ran E-LIVE, those snapshots are still present (git-ignored, not deleted), so
+    \code{reconstruct.verify_run} re-slices all 909 evidence items exactly, and the closeout's
+    71-of-71 sample (\cref{app:claims}, row E25) checked the same way. From a fresh clone,
+    with no snapshots, a byte-offset \code{locator} (e.g.\
+    \code{sha256:14b9bb35...;char=9061,9169}, \cref{app:records}) can be checked only against a new
+    fetch of the same URL, and only if the page has not changed since 2026-09-28.
+  \item \textbf{The E-PLANT/E-ABST sealed answer keys and gated-arm data.} These live under
+    \code{.private/} and \code{sessions/}-style paths that are deliberately excluded from every
+    tool in this project (\repo{CLAUDE.md}, \enquote{Off limits}), so this report's own authors
+    could not, and a reader cannot, re-open them; only the aggregate numbers already committed to
+    \repo{research/n2/e_plant_eabst_report.md} are available.
+\end{itemize}

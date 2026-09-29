@@ -1,0 +1,147 @@
+\section{Claim and evidence table}
+\label{app:claims}
+
+\Cref{tab:claim-evidence} is the full claim/evidence table behind
+\cref{sec:demonstrates,sec:not-demonstrated}: every claim this proof of concept (PoC) is prepared
+to defend, the artifact that backs it, and the artifact's own limitation. It reproduces
+\repo{report/notes/01_evidence_audit.md} \S2, an audit built by reading code and by re-running
+every test suite live on 2026-09-29 rather than copying counts from an earlier summary. For this
+appendix, a sample of eight rows was checked again directly against the repository: the three
+\code{gapmap.json} files' \code{map} and \code{retrieval_gaps} arrays (E33, E35), the S2
+mismatched-evidence control and \S7.1 anti-renaming figures for all three domains (E36, E38), and
+the PLC \enquote{Trace 1} record used elsewhere in this report. Two mismatches surfaced and are
+corrected in place (E33, E35, both flagged \textbf{Correction} in the Limitation column); the
+other six checks matched exactly.
+
+Every row here counts as \evobs{} (observed in the PoC): something this system produced, checked
+against its own logs, code or output files. \textsc{Strength} is the audit's own STRONG/MODERATE
+rating of how directly the artifact supports the claim, not a statement about whether the
+underlying capability works well. Test counts follow the report-wide ruling (residual 268,
+reconstruct 416, gapmap 172, instrument 311); the 3/19 (8/19 lenient) precision figure (E37) is
+always qualified as an in-sample, single-reviewer judgment on the pre-final maps, never as a
+validated accuracy rate (see \cref{sec:not-demonstrated}).
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{
+    >{\raggedright\arraybackslash}p{0.9cm}
+    >{\raggedright\arraybackslash}p{2.9cm}
+    >{\raggedright\arraybackslash}p{2.7cm}
+    >{\raggedright\arraybackslash}p{3.0cm}
+    >{\centering\arraybackslash}p{1.2cm}
+    >{\raggedright\arraybackslash}p{3.0cm}
+  }
+  \caption{PoC claim/evidence table: every claim this report defends, its supporting artifact,
+    and the artifact's own limitation. Source: \repo{report/notes/01_evidence_audit.md} \S2,
+    spot-checked against the repository for this appendix (two corrections applied, rows E33 and
+    E35).}
+  \label{tab:claim-evidence} \\
+  \toprule
+  \textbf{ID} & \textbf{Claim} & \textbf{Evidence} & \textbf{Artifact} & \textbf{Strength} & \textbf{Limitation} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{6}{l}{\small\itshape (\tablename~\thetable{} continued)} \\
+  \toprule
+  \textbf{ID} & \textbf{Claim} & \textbf{Evidence} & \textbf{Artifact} & \textbf{Strength} & \textbf{Limitation} \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{6}{r}{\small\itshape (continued on next page)} \\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+E01 & A typed claim record (\code{ClaimRecord}) exists as the atomic evidence unit & {\small\nolinkurl{class ClaimRecord(Record)}} defined & \repo{residual/src/residual/claims.py}:49 & STRONG & Structure only; says nothing about content quality \\
+\addlinespace[3pt]
+E02 & Exactly six epistemic labels form a closed, computed (not asserted) vocabulary & {\small\nolinkurl{EpistemicLabel(StrEnum)}} with {\small\nolinkurl{OBSERVED_HUMAN_EVIDENCE, LITERATURE_SUPPORTED, ORGANISATIONAL_ARTEFACT_SUPPORTED, INFERRED, SYNTHETIC_EXTRAPOLATION, UNKNOWN}} & \repo{residual/src/residual/vocab.py} (class {\small\nolinkurl{EpistemicLabel}}) & STRONG & Label semantics still depend on the verifier being honest; no human calibration of the labels exists \\
+\addlinespace[3pt]
+E03 & Only 3 of 6 labels may ever be a gate's criterion & {\small\nolinkurl{CRITERION_LABELS = frozenset({OBSERVED_HUMAN_EVIDENCE, LITERATURE_SUPPORTED, ORGANISATIONAL_ARTEFACT_SUPPORTED})}} & \repo{residual/src/residual/vocab.py} & STRONG & Enforced by {\small\nolinkurl{evidential_gate}}; not proof no gate anywhere reads a bare value bypassing it \\
+\addlinespace[3pt]
+E04 & Labels are computed from evidence, never set by hand & {\small\nolinkurl{Ledger.label()}} derives label from verdicts; decision rule \enquote{label-computed-from-verified-evidence} & \repo{residual/src/residual/ledger.py}:134; \repo{docs/architecture/decisions/0006-residual-accounting-core.md} & STRONG & Test-enforced ({\small\nolinkurl{test_a_criterion_label_needs_support_verified_by_a_human_or_another_family_any_verifier}}), not a live-run audit of every path \\
+\addlinespace[3pt]
+E05 & Gates refuse synthetic/unknown/inferred criteria; a \code{Measurement} separates criterion from predictor labels & {\small\nolinkurl{evidential_gate}} decorator; {\small\nolinkurl{SyntheticRefused}}, \code{GateRefusal}; \code{measure()} & \repo{residual/src/residual/gates.py}:21,29,45,127 & STRONG & Decision 0006 admits Python \enquote{cannot stop deliberate forgery... guards against accidents, not adversaries} \\
+\addlinespace[3pt]
+E06 & Provenance types (\code{Selector}, \code{Evidence}, \code{Verification}, \code{Source}, \code{Generation}, \code{Search}) exist and are distinct from claims & {\small\nolinkurl{class Selector(Record)}}, {\small\nolinkurl{class Evidence(Record)}}, {\small\nolinkurl{class Verification(Record)}} etc. & \repo{residual/src/residual/provenance.py}:52,86,98,106,122,138,162 & STRONG & Type existence, not proof every reconstructed claim actually has one (see E15) \\
+\addlinespace[3pt]
+E07 & The N1 schema, feature set and label-deciding code are hash-frozen & \code{schema_sha256}, {\small\nolinkurl{features_sha256}}, {\small\nolinkurl{semantics_sha256}}, {\small\nolinkurl{frozen_by: "N1"}} & \repo{residual/frozen/n1.json} & STRONG & A freeze test ({\small\nolinkurl{test_the_schema_matches_its_freeze}}) checks the hash matches current code, not that the frozen design is correct \\
+\addlinespace[3pt]
+E08 & The Ledger enforces structural integrity (acyclic derivations, purpose-consistent evidence) & {\small\nolinkurl{_check_acyclic}}, {\small\nolinkurl{_check_purpose}} methods & \repo{residual/src/residual/ledger.py}:92,109 & MODERATE & Structural checks only; does not check factual correctness of claims \\
+\addlinespace[3pt]
+E09 & UNKNOWN is written only for a slot that was searched, fetched and fully examined by another model family & Decision text + {\small\nolinkurl{test_e2e_slots.py}}; 14/35 GDPR (area×probe) slots UNKNOWN in E-LIVE v1 & \repo{docs/architecture/decisions/0007-reconstruction-pipeline.md}; \repo{research/n2/e_live_report.md} §4.4 & STRONG & \enquote{Plausibly real signal} per the report's own hedge — not independently verified against a ground truth \\
+\addlinespace[3pt]
+E10 & \code{residual/} depends only on pydantic; no network/LLM/instrument code can live there & Decision rule {\small\nolinkurl{residual-core-provider-neutral}}; test {\small\nolinkurl{test_modules_import_only_stdlib_pydantic_and_residual}} & \repo{docs/architecture/decisions/0006-residual-accounting-core.md} & STRONG & Enforced by a hand-written, \code{ast}-based architecture test (this repository does not install \code{pytest-archon}), verified live in this audit's own test collection (268 passed includes it) \\
+\addlinespace[3pt]
+E11 & \code{residual} package: 268 offline tests pass & Ran {\small\nolinkurl{uv run --directory residual pytest -q}} during this audit & \code{residual/} (test run 2026-09-29) & STRONG & Offline only; no live model call is exercised by this package \\
+\addlinespace[3pt]
+E12 & \code{reconstruct} package: 416 offline tests pass, no test calls a live model or search & Ran {\small\nolinkurl{uv run --directory reconstruct pytest -q}} during this audit; matches N2 closeout's own count & \code{reconstruct/} (test run 2026-09-29); \repo{research/n2/closeout.md} \enquote{What was built} & STRONG & Matching an independently-run count to the committed report is a good cross-check, but offline tests cannot validate live behavior \\
+\addlinespace[3pt]
+E13 & \code{gapmap} package: 172 offline tests pass (fake judge, no network) & Ran {\small\nolinkurl{uv run --directory gapmap pytest -q}} during this audit (117.5s) & \code{gapmap/} (test run 2026-09-29) & STRONG & Confirms the pipeline runs deterministically offline; says nothing about judgment quality \\
+\addlinespace[3pt]
+E14 & \code{instrument} (Track A, frozen): 311 offline tests pass & Ran {\small\nolinkurl{uv run --directory instrument pytest -q}} during this audit (7.34s); matches \code{CLAUDE.md}'s stated count & \code{instrument/} (test run 2026-09-29) & STRONG & Track A itself is frozen pending experts/course/ethics; no data has been collected \\
+\addlinespace[3pt]
+E15 & E-LIVE v1 PLC: 370 claims extracted → 337 located → 321 verified-supports & Per-run table & \repo{research/n2/e_live_report.md} §3 \enquote{PLC (v1)} & STRONG & Live run on real web; 11/35 fetched \enquote{sources} were later found to be error pages (defect, fixed after this run) \\
+\addlinespace[3pt]
+E16 & E-LIVE v1 GDPR: 259 claims extracted → 204 located → 195 verified-supports & Per-run table & \repo{research/n2/e_live_report.md} §3 \enquote{GDPR (v1)} & STRONG & 80\% of GDPR supports trace to UK-specific sources (ico.org.uk / UK statute) despite the task framing as \enquote{EU} \\
+\addlinespace[3pt]
+E17 & PLC v1 sources: 35 fetched, 12 fetch failures, 11/35 were error pages (bot walls, 403/429) & HTTP status breakdown & \repo{research/n2/e_live_report.md} §3 \enquote{PLC (v1)} & MODERATE & Reported as a defect, not evidence of reconstruction quality; fixed in \code{080b109} but not re-verified live (budget exhausted) \\
+\addlinespace[3pt]
+E18 & GDPR v1 independence over-merged: 4 clusters, largest holding 55\% of sources & Cross-domain contrast table & \repo{research/n2/e_live_report.md} §3 & MODERATE & Explicitly attributed to a since-fixed bug (whole-document ≥25-word verbatim rule); the fix itself was never re-checked live \\
+\addlinespace[3pt]
+E19 & Corroboration was structurally dead in v1: 0 merges on 370 and 259 extractions & Cross-domain contrast table & \repo{research/n2/e_live_report.md} §3, §7 finding 3 & STRONG (as a negative finding) & This is a defect finding, not a capability; the report is honest about it \\
+\addlinespace[3pt]
+E20 & Decoy false-accept rate: PLC 35\% (20 decoys), GDPR 15\% (20 decoys) & Per-run table & \repo{research/n2/e_live_report.md} §3 & MODERATE & Small n (20); no CI given in the per-run table itself \\
+\addlinespace[3pt]
+E21 & E-LIVE v1 run cost: PLC \$0.679, GDPR \$0.500 & Per-run table & \repo{research/n2/e_live_report.md} §3 & STRONG & Verified in the primary report table \\
+\addlinespace[3pt]
+E22 & 11 real defects were found live and fixed (error-page sources, PDF rejection, dead corroboration, independence over-merge, verifier scope drift, false contradiction, coverage rule, fetch caching, report mislabeling, silently-vanishing provider errors, PDF Unicode crash) & Numbered findings-and-fixes table with commit hashes & \repo{research/n2/e_live_report.md} §7 (commits \code{080b109}, \code{0f39ed9}) & STRONG & Fixes were never re-verified with a live v3 run (blocked by budget, see E30) \\
+\addlinespace[3pt]
+E23 & v2 GDPR run left 140 of 366 evidence items \enquote{pending} behind a {\small\nolinkurl{complete: true}} flag (a defect, since fixed) & v2 run detail (extraction-list count of located extractions; the sidecar's own {\small\nolinkurl{n_located}} stat is 351) & \repo{research/n2/e_live_report.md} §7 row 10 & STRONG (as a negative finding) & Fix (\code{0f39ed9}) is offline-tested only; not confirmed live \\
+\addlinespace[3pt]
+E24 & v2 PLC run crashed entirely (0 claims) on a {\small\nolinkurl{UnicodeEncodeError}} from a PDF surrogate & Run status table & \repo{research/n2/e_live_report.md} §2, §7 row 11 & STRONG (as a negative finding) & — \\
+\addlinespace[3pt]
+E25 & The full offline check ({\small\nolinkurl{reconstruct.verify_run}}) re-slices all 909 evidence items across the three runs this report cites exactly from their local snapshots; a separate manual sample re-sliced 71 of 71 & {\small\nolinkurl{verify_run}}, re-run for this report on PLC v1, GDPR v1, GDPR v2 (909/909 ok); §6.2 manual inspection (71/71) & {\small\nolinkurl{reconstruct/src/reconstruct/verify_run.py}}; \repo{research/n2/e_live_report.md} §6.2; \repo{research/n2/e_live_claim_inspection.md} & STRONG & {\small\nolinkurl{verify_run}} needs the local, git-ignored snapshots, so it cannot be reproduced from a fresh clone (\cref{app:reproduce}); the 71-of-71 sample's inspector was an AI agent (Claude Sonnet 5), not a human, no gold, no inter-rater reliability — stated explicitly in the artifact \\
+\addlinespace[3pt]
+E26 & GDPR v2(b) supports sample: error rate 12.0\% (3/25), Wilson CI 4.2–30.0\% & Per-run summary table & \repo{research/n2/e_live_claim_inspection.md} \enquote{Per-run summary} & MODERATE & n=25, one AI inspector, no human check \\
+\addlinespace[3pt]
+E27 & E-LIVE v3 (post-fix live check) never ran: blocked at first model call by OpenRouter's \$5/week key limit, \$0 remaining & Literal error log + narrative & \repo{research/n2/e_live_report.md} §6 & STRONG & This is the budget/API-limit event; it is the reason N2's gated arms and v3 stayed unexecuted \\
+\addlinespace[3pt]
+E28 & E-PLANT ungated baseline: pooled a\_U = 5/24 (21\%, Wilson 95\% CI 9–40\%), below the registered validity floor $\lceil 24/3 \rceil = 8$ & Recomputed table with \code{load_targets}/{\small\nolinkurl{score_baseline_arm}}/{\small\nolinkurl{validity_floor_met}} & \repo{research/n2/e_plant_eabst_report.md} §1.1 & STRONG & This single number closes N2's Continue gate; it is a floor failure, not a reconstruction-quality result \\
+\addlinespace[3pt]
+E29 & E-PLANT gated arm (run 1) stays sealed and unscored; run 2 never executed & Status table & \repo{research/n2/e_plant_eabst_report.md} §0, §1.2 & STRONG (absence of evidence) & Owner chose not to spend further API budget; not a null result on gating \\
+\addlinespace[3pt]
+E30 & E-ABST raw baseline: 5/24 private items answered, 19 abstained, cost \$0.007 & §2.1, §3 cost table & \repo{research/n2/e_plant_eabst_report.md} §2.1, §3 & STRONG & The ≥20pp/≥20-item margin needed for Continue is \enquote{reachable only in a narrow arithmetic corner} per the report itself \\
+\addlinespace[3pt]
+E31 & E-ABST pipeline arm (run 1) is descriptive only; run 2, owner/second coding and unsealing never happened & §2.2 & \repo{research/n2/e_plant_eabst_report.md} §2.2 & STRONG (absence of evidence) & No gated-arm abstention result exists at all \\
+\addlinespace[3pt]
+E32 & N2 total measured spend: E-PLANT \$0.074+\$0.121+\$1.758, E-ABST \$0.007+\$0.488 (all within registered caps) & Costs table & \repo{research/n2/e_plant_eabst_report.md} §3 & STRONG & Confirms the budget story is real and bounded, not a rationalization \\
+\addlinespace[3pt]
+E33 & N3 final maps \emph{display} 9 (PLC), 1 (GDPR v1) and 6 (GDPR v2) HYP-category gap candidates, after an unreported display cap (\code{MAP_TOP_N=12}, 3 per lens, 4 per area, \repo{gapmap/src/gapmap/config.py}) & Count of \code{category == "HYP"} records in the \code{map} array of each JSON; matches \code{PROGRESS.md}'s stated counts & \repo{research/n3/plc/gapmap.json}, \repo{research/n3/gdpr_v1/gapmap.json}, \repo{research/n3/gdpr_v2/gapmap.json} & STRONG & \textbf{Correction (this audit, 2026-09-29):} the raw \code{len(d['map'])} is 10/2/7, not 9/1/6 -- each domain's \code{map} array also holds one \code{CONTROL} record (the unknown-unknowns guard slot). \textbf{Correction 2 (technical review, round 1):} the committed files hold only the \emph{capped} set. Merging all non-closed lens records before the cap yields PLC 24 HYP records (RESULT 13, WHY 8, DIAG 2, GUARD 1; GDPR v1 and v2 are unaffected at 1 and 6); only 9 of PLC's 24 survive the display cap. \enquote{13 of 16 partial} and any other count keyed to 9/1/6 describes the displayed set, not the pipeline's full output; an area score for the validation program (\cref{sec:validation}) must be computed from the uncapped set. \\
+\addlinespace[3pt]
+E34 & GDPR v2 (140 pending verdicts inherited from the E-LIVE v2 defect) is explicitly marked not N3-admissible & Admissibility note & \repo{PROGRESS.md} line 30; \repo{research/n3/gdpr_v2/gapmap.json} field \code{admissible}/{\small\nolinkurl{admissibility_note}} & STRONG & GDPR v2's map still exists and is used for cross-run-stability checks, just not as a standalone finding \\
+\addlinespace[3pt]
+E35 & Retrieval-gap RG-UNK counts in the final gap maps: PLC 10, GDPR v1 28, GDPR v2 44 & Count of \code{category == "RG-UNK"} records in each {\small\nolinkurl{retrieval_gaps}} array, matching the \enquote{Retrieval gaps} line of each \code{gapmap.md} & \repo{research/n3/plc/gapmap.json}, \repo{research/n3/gdpr_v1/gapmap.json}, \repo{research/n3/gdpr_v2/gapmap.json} & STRONG & \textbf{Correction (this audit, 2026-09-29):} the figures 5/14/15 in the original audit note are a different quantity -- the ledger-level \code{UNKNOWN}-labeled claim count from \repo{research/n2/e_live_report.md}'s per-run U-claim tally, taken before N3 processing. N3's own RG-UNK also folds in sidecar slots marked \code{unknown}/\allowbreak\code{thin}/\allowbreak\code{unverified}, so it is larger and is the number that belongs in this table. \\
+\addlinespace[3pt]
+E36 & Closure-control (S2, fair mismatched-evidence): own rate ≈ control rate for every lens tested in every domain (PLC 0.889/0.889, GDPR v1 0.961/0.961, GDPR v2 0.958/0.958, counting \code{partial} as closed), all flagged {\small\nolinkurl{closure-uninformative}} & S2 tables per domain & \repo{research/n3/plc/gapmap.md}, \repo{research/n3/gdpr_v1/gapmap.md}, \repo{research/n3/gdpr_v2/gapmap.md} §7 checks & STRONG & This is the core negative finding: the judge's verdict does not depend on whether it is shown this candidate's own other-source evidence or a topically nearest neighbor's, so it is not yet an informative absence check; lenses with fewer than two candidates were not tested \\
+\addlinespace[3pt]
+E37 & Precision by adversarial (Opus) judgment on the pre-final maps: 3/19 strict, 8/19 lenient & Stated verdict & \repo{research/n3/README.md} \enquote{Status} paragraph & MODERATE & Judged by a single AI reviewer against the author's own reading, in-sample, no independent human coder; \enquote{pre-final maps,} so not byte-identical to the committed \code{gapmap.json} files \\
+\addlinespace[3pt]
+E38 & Anti-renaming check (is the map just ranking density?): PLC J10(D\_high)=0.58, ρ=0.91; GDPR v1 J10(D\_high)=0.10, ρ=0.09; GDPR v2 J10(D\_high)=0.33, ρ=0.16 — all {\small\nolinkurl{closure-uninformative}} & §7.1 tables per domain & \repo{research/n3/plc/gapmap.md}, \repo{research/n3/gdpr_v1/gapmap.md}, \repo{research/n3/gdpr_v2/gapmap.md} §7.1 & STRONG & PLC's high Spearman ρ=0.91 between score and evidence density is a real warning sign the map partly tracks \enquote{how much is written,} not absence, even though it stays under the 0.5-positive/−0.5-negative disguise thresholds as defined \\
+\addlinespace[3pt]
+E39 & Judge-vs-lexical agreement is weak/mixed (e.g. PLC: 23/56 \enquote{closed→partial}, GDPR v1 has states moving in both directions) & Confusion-count tables & \repo{research/n3/plc/gapmap.md}, \repo{research/n3/gdpr_v1/gapmap.md} §7 checks & MODERATE & Shows the semantic judge frequently overrules the cheap lexical heuristic, not which one is \enquote{right} — no gold exists \\
+\addlinespace[3pt]
+E40 & Cross-run stability (GDPR v1 vs v2, independent reconstructions): most open candidates in one run have no counterpart in the sibling run & Per-run \enquote{this ledger → sibling} tables & \repo{research/n3/gdpr_v1/gapmap.md}, \repo{research/n3/gdpr_v2/gapmap.md} §7.2 & MODERATE & Current numbers are per-record lists, not an aggregate like the design doc's pre-review prototype figures (16/25 and 14/21 no-counterpart); the direction (mostly unstable) is consistent between prototype and current artifacts \\
+\addlinespace[3pt]
+E41 & The closure judge is {\small\nolinkurl{qwen2.5:7b-instruct}} via local Ollama, replayed by default from a committed cache; a live judge call requires {\small\nolinkurl{--judge ollama}} & Field \code{judge_model}; {\small\nolinkurl{judge_prompt_sha256}}; decision rule {\small\nolinkurl{gapmap-replays-by-default}} & \repo{research/n3/plc/gapmap.json} ({\small\nolinkurl{inferred_gap.judge_model}}); \repo{docs/architecture/decisions/0008-gapmap-methodology-gap-candidates.md} & STRONG & Confirms reproducibility of the committed maps without a live model; does not bear on judgment quality \\
+\addlinespace[3pt]
+E42 & \code{gapmap} package imports only stdlib, pydantic and \code{residual}; no SDK & Decision rule {\small\nolinkurl{gapmap-imports-only-stdlib-pydantic-residual}}; test {\small\nolinkurl{test_modules_import_only_stdlib_pydantic_and_residual_and_gapmap}} & \repo{docs/architecture/decisions/0008-gapmap-methodology-gap-candidates.md} & STRONG & Architecture-test enforced; part of why 172 tests run in \textasciitilde{}2 min with zero network \\
+\addlinespace[3pt]
+E43 & N1 gate: exactly 2 new field types were needed ({\small\nolinkurl{KnowledgeType.INTERPRETATION}}, {\small\nolinkurl{ResponseDistribution}}), within the registered ≤2 threshold & Gate record & \repo{PROGRESS.md} N1 row; \repo{residual/frozen/n1.json} & STRONG & Confirms the pre-registered threshold was met, not exceeded, before any gold was seen \\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+
+Rows marked \enquote{as a negative finding} or \enquote{absence of evidence} in the Strength
+column are deliberately kept in this table: an honestly reported failure or an unscored arm is
+still \evobs{} evidence about what the PoC did and did not show, and dropping such rows would make
+the claim/evidence table look stronger than the PoC actually is.

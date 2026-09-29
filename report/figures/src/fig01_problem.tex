@@ -1,0 +1,81 @@
+% report/figures/src/fig01_problem.tex
+% "What part of expert knowledge reaches text, and what does not?"
+% One concrete task trace (PLC intermittent-fault troubleshooting) compared
+% step-by-step against what written sources say about the same steps.
+% Sized to ~135mm natural width (see 10_visual_language.md figure-width
+% convention); check with pdfinfo after any edit.
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+\begin{document}
+\begin{tikzpicture}[node distance=3mm and 8mm]
+
+  % ---- column headers -----------------------------------------------------
+  \node[font=\sffamily\bfseries\fontsize{9.5}{11}\selectfont, text=accent,
+        text width=42mm, align=left] (hleft) {What an expert does};
+  \node[font=\sffamily\bfseries\fontsize{9.5}{11}\selectfont, text=accent,
+        text width=42mm, align=left, right=8mm of hleft] (hright)
+    {What written sources say};
+
+  % ---- left column: task trace (human activity) ---------------------------
+  % pill shape needs extra margin beyond text width for its curved caps
+  % (radius = half the 10mm height), or text bleeds into the curve.
+  \node[human, minimum width=34mm, text width=24mm, below=4mm of hleft.south west, anchor=north west] (s1)
+    {1. Notice the cue};
+  \node[human, minimum width=34mm, text width=24mm, below=3mm of s1.south west, anchor=north west] (s2)
+    {2. Rule out a rival cause};
+  \node[human, minimum width=34mm, text width=24mm, below=3mm of s2.south west, anchor=north west] (s3)
+    {3. Choose a test};
+  \node[human, minimum width=34mm, text width=24mm, below=3mm of s3.south west, anchor=north west] (s4)
+    {4. Interpret the result};
+  \node[human, minimum width=34mm, text width=24mm, below=3mm of s4.south west, anchor=north west] (s5)
+    {5. Check own drift};
+
+  \draw[flowimpl] (s1) -- (s2);
+  \draw[flowimpl] (s2) -- (s3);
+  \draw[flowimpl] (s3) -- (s4);
+  \draw[flowimpl] (s4) -- (s5);
+
+  % ---- right column: what text states, aligned by row --------------------
+  \node[artefact, minimum width=37mm, text width=34mm, anchor=north west] (t1)
+    at (hright.south west) {\emph{Stated:} symptom listed};
+  \node[artefact, planned, minimum width=37mm, text width=34mm, below=3mm of t1.south west, anchor=north west] (t2)
+    {\emph{Absent:} rival causes not distinguished};
+  \node[artefact, minimum width=37mm, text width=34mm, below=3mm of t2.south west, anchor=north west] (t3)
+    {\emph{Stated:} test procedure documented};
+  \node[artefact, planned, minimum width=37mm, text width=34mm, below=3mm of t3.south west, anchor=north west] (t4)
+    {\emph{Absent:} meaning of the result not given};
+  \node[artefact, planned, minimum width=37mm, text width=34mm, below=3mm of t4.south west, anchor=north west] (t5)
+    {\emph{Absent:} self-check not mentioned};
+
+  % thin connectors, row to row: correspondence, not a directed flow
+  \draw[gray400, thin, dotted] (s1.east) -- (t1.west);
+  \draw[gray400, thin, dotted] (s2.east) -- (t2.west);
+  \draw[gray400, thin, dotted] (s3.east) -- (t3.west);
+  \draw[gray400, thin, dotted] (s4.east) -- (t4.west);
+  \draw[gray400, thin, dotted] (s5.east) -- (t5.west);
+
+  \node[fit=(s1)(s5)(t1)(t5), inner sep=0pt] (allbox) {};
+
+  % ---- literature annotations: one compact block below the diagram --------
+  \node[align=left, text width=128mm, font=\sffamily\fontsize{7.5}{9}\selectfont,
+        text=evlitcol, below=6mm of allbox.south west, anchor=north west] (lit)
+    {\textbf{LITERATURE.} Sullivan et al.\ 2014 (3 surgeons, 1 procedure):
+     73\% of decision steps and 71\% of clinical-knowledge steps omitted.\\[2pt]
+     Chao \& Salvendy 1994 (6 programmers): no single expert reported
+     more than 41\% of diagnostic actions.\\[2pt]
+     Reporting bias: written text under-reports the obvious, even when the
+     writer knows it.};
+
+  % ---- legend ---------------------------------------------------------------
+  \legenditem{lg1}{human}{Expert activity (trace)}%
+    {below=6mm of lit.south west, anchor=north west, minimum width=5mm, minimum height=4mm, rounded corners=2mm}
+  \legenditem{lg2}{artefact}{Appears in written sources}%
+    {minimum width=5mm, minimum height=4mm, right=8mm of lg1lab}
+  \legenditem{lg3}{artefact, planned}{Absent from written sources}%
+    {minimum width=5mm, minimum height=4mm, right=8mm of lg2lab}
+
+\end{tikzpicture}
+\end{document}

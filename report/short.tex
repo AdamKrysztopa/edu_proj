@@ -1,0 +1,115 @@
+% report/short.tex -- Main Research Report: the argument, in at most 40 pages.
+% Build with `latexmk -r latexmkrc short.tex` (LuaLaTeX + biber).
+% The Extended Technical Report (main.tex + sections/) holds protocols, full results and detail.
+\documentclass[a4paper,11pt]{scrartcl}
+\input{preamble.tex}
+\ifoot{\sffamily\small\color{gray700}Finding What Experts Leave Unsaid --- Main Research Report}
+
+\addbibresource{bibliography.bib}
+\usepackage{needspace}
+
+% Under \raggedbottom a negative section penalty ends pages early before any heading.
+\makeatletter\@secpenalty=0\makeatother
+
+% Float placement tuned for a dense 40-page document: large figures may sit at the top of a text
+% page instead of being pushed to a float-only page.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{4}
+
+\newcommand{\reporttitle}{Finding What Experts Leave Unsaid}
+\newcommand{\reportsubtitle}{The proof of concept, what it shows, and the research program that
+  could validate it}
+\newcommand{\reportauthor}{Adam Krysztopa}
+\newcommand{\reportdate}{September 2026}
+
+\hypersetup{pdftitle={\reporttitle}, pdfauthor={\reportauthor},
+  pdfsubject={Main Research Report}}
+
+\begin{document}
+
+% -------------------------------------------------------------- title page
+\begin{titlepage}
+  \sffamily
+  \begin{flushleft}
+    \color{gray700}\small\MakeUppercase{Main Research Report}\\[10mm]
+  \end{flushleft}
+  \vspace{0.08\textheight}
+  \noindent\textcolor{accent}{\rule{\linewidth}{1.4pt}}\par
+  \vspace{6mm}
+  {\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
+   \bfseries\fontsize{30}{36}\selectfont\color{ink}\reporttitle\par}
+  \vspace{4mm}
+  {\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
+   \fontsize{14}{18}\selectfont\color{gray700}\reportsubtitle\par}
+  \vspace{6mm}
+  \textcolor{accent}{\rule{\linewidth}{1.4pt}}\\[10mm]
+  \vfill
+  \begin{flushleft}
+    {\large\reportauthor\par}
+    \vspace{1mm}
+    {\color{gray700}\reportdate\par}
+    \vspace{6mm}
+    {\small\color{gray700}
+      Repository: \href{https://github.com/AdamKrysztopa/edu_proj}{github.com/AdamKrysztopa/edu\_proj}\\
+      Scope: the zero-participant NOW program, items N0--N3 (evidence model,
+      evidence reconstruction, gap map), and the program that would validate them.\\
+      Companion document: the Extended Technical Report, which holds protocols, full results,
+      implementation details and supplementary analysis. Validation Track A (physics, human expert
+      elicitation) is frozen and is not reported as a result here.\par}
+  \end{flushleft}
+\end{titlepage}
+
+\pagenumbering{roman}
+
+\begin{howtoreadbox}
+  This report separates five kinds of statement, and marks them where the
+  kind is not obvious from the wording:
+  \evlit\ a result from published work;
+  \evobs\ something this proof of concept (PoC) produced, checked against
+    its own output files, code or logs;
+  \evint\ our reading of what an observation means;
+  \evhyp\ a claim we think is plausible but have not tested;
+  \evfut\ work not yet done.
+  A \textsc{Finding} box states a conclusion we are prepared to defend. A
+  \textsc{Key question} box states something we do not know yet.
+  In figures, a solid outline means \emph{implemented in the PoC}; a
+  dashed outline means \emph{planned, not built}.
+  Repository paths such as \repo{research/n3/README.md} are links to the
+  exact file behind a claim. This Main Research Report carries the argument; the Extended Technical Report holds the
+  protocols, full results, implementation details and supplementary analysis, and pointers such
+  as \enquote{(Extended Technical Report, Section~17)} refer to it.
+
+  \smallskip
+  The one distinction that matters most: the PoC \emph{predicts} where
+  hidden expert knowledge may lie. No human has yet checked those
+  predictions. A predicted gap is not observed expert knowledge.
+\end{howtoreadbox}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
+
+\input{sections_short/01_summary.tex}
+\input{sections_short/02_problem.tex}
+\input{sections_short/03_question.tex}
+\input{sections_short/04_approach.tex}
+\input{sections_short/05_built.tex}
+\input{sections_short/06_results.tex}
+\input{sections_short/07_shows.tex}
+\input{sections_short/08_interpretation.tex}
+\input{sections_short/09_residual.tex}
+\input{sections_short/10_validation.tex}
+\input{sections_short/11_platform.tex}
+\input{sections_short/12_plan.tex}
+\input{sections_short/13_conclusion.tex}
+
+\clearpage
+\printbibliography[heading=bibintoc, title={References}]
+
+\end{document}

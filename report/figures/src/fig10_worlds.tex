@@ -1,0 +1,72 @@
+% report/figures/src/fig10_worlds.tex
+% The three evidence worlds. Worlds stacked in the left column; the ledger is one tall store so
+% A and B enter it with straight horizontal arrows. The planned loop runs Questions -> bottom
+% lane -> World C -> Residual -> Gap map. All positions come from the x/y lists below.
+\documentclass[tikz,border=1mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\newfontfamily\condmono{Latin Modern Mono Light Cond}
+\input{figstyle.tex}
+
+\newcommand{\xworld}{18mm}
+\newcommand{\xledger}{60mm}
+\newcommand{\xgap}{93mm}
+\newcommand{\xques}{127mm}
+\newcommand{\yA}{0mm}
+\newcommand{\yB}{-25mm}
+\newcommand{\yC}{-58mm}
+\newcommand{\ylane}{-76mm}
+\newcommand{\sub}[1]{\\[0.4mm]{\fontsize{7}{8}\selectfont\mdseries #1}}
+\newcommand{\lbl}[1]{\\[0.4mm]{\condmono\fontsize{7.5}{8.5}\selectfont\color{ink}#1}}
+
+\tikzset{
+  world/.style={minimum width=36mm, text width=34.5mm, minimum height=21mm, inner xsep=0.75mm,
+                align=flush center, font=\sffamily\bfseries\fontsize{9}{10.5}\selectfont},
+  box/.style={minimum width=26mm, text width=23mm, minimum height=15mm, inner xsep=1.5mm,
+              align=flush center, font=\sffamily\bfseries\fontsize{9}{10.5}\selectfont},
+  planned/.append style={text opacity=1},
+  lab/.style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700, inner sep=0.8pt},
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+  \node[artefact, world] (A) at (\xworld,\yA)
+    {World A: Public text\sub{literature, standards, forums, manuals}\lbl{label: literature\_supported}};
+  \node[artefact, world, planned] (B) at (\xworld,\yB)
+    {World B: Organizational records\sub{procedures, tickets, logs, code}%
+     \lbl{label: organisational\_\\artefact\_supported}};
+  \node[human, world, planned, rounded corners=4mm] (C) at (\xworld,\yC)
+    {World C: Human evidence\sub{elicitation, traces, learner data}\lbl{label: observed\_human\_evidence}};
+
+  \node[datastore, box, minimum height={(\yA-\yB)+18mm}, text width=21mm]
+    (ledger) at (\xledger,{(\yA+\yB)/2}) {Evidence ledger\sub{claims, labels, provenance}};
+  \node[procdet, box] (gap) at (\xgap,{(\yA+\yB)/2}) {Gap map\sub{lenses, absence check}};
+  \node[artefact, box] (ques) at (\xques,{(\yA+\yB)/2}) {Questions for humans\sub{ranked by breadth}};
+  \node[artefact, box, planned] (resid) at (\xgap,\yC) {Residual measured\sub{what humans add}};
+
+  \draw[flowimpl] (A.east) -- (A.east -| ledger.west);
+  \draw[flowplan] (B.east) -- (B.east -| ledger.west);
+  \draw[flowimpl] (ledger.east |- gap) -- (gap);
+  \draw[flowimpl] (gap) -- (ques);
+
+  \draw[flowplan] (ques.south) -- (\xques,\ylane) -- (\xworld,\ylane)
+    node[lab, pos=0.5, above=0.8mm] {ask} -- (C.south);
+  \draw[flowplan] (C.east) -- (resid.west);
+  \draw[flowplan] (resid.north) -- (gap.south) node[lab, midway, right=1mm] {calibrate};
+
+  \coordinate (lanebot) at (\xworld,\ylane);
+  \node[fit=(A)(C)(ques)(lanebot), inner sep=0pt] (allbox) {};
+  \coordinate (lgtop) at ($(allbox.south)+(0,-5mm)$);
+  \matrix[anchor=north, column sep=8mm, ampersand replacement=\&,
+          sw/.style={minimum width=5mm, minimum height=3.4mm, text width=0pt, inner sep=0pt,
+                     anchor=west},
+          ll/.style={lab, anchor=west, inner sep=0pt}] at (lgtop) {
+    \node[artefact, sw] {}; \draw[flowimpl] (7mm,0) -- (12mm,0);
+      \node[ll] at (13.5mm,0) {implemented in PoC (solid)}; \&
+    \node[artefact, sw, planned] {}; \draw[flowplan] (7mm,0) -- (12mm,0);
+      \node[ll] at (13.5mm,0) {planned (dashed)}; \\
+  };
+
+\end{tikzpicture}
+\end{document}

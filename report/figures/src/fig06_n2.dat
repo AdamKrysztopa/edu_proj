@@ -1,0 +1,9 @@
+# fig06_n2.dat -- E-LIVE v1 stage counts, verified 2026-09-29 against:
+#   reconstruct/runs/20260928T133336Z-59ec876b3d7e/sidecar.json, ledger.json  (PLC v1)
+#   reconstruct/runs/20260928T135354Z-eb840a85b7d1/sidecar.json, ledger.json  (GDPR v1)
+# Cross-checked against research/n2/e_live_report.md section 3.
+# Sources fetched (a page count, printed under each panel, not a bar): plc 35, gdpr 20.
+# stage_index  stage_label            plc   gdpr
+0  {Claims extracted}      370  259
+1  {Located}                337  204
+2  {Verified-supports}      321  195

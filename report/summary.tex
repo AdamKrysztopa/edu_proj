@@ -1,0 +1,41 @@
+% report/summary.tex -- standalone two-page executive summary.
+% Shares the executive summary text with the Extended Technical Report (sections/00_executive_summary.tex).
+% Section references resolve against the full report's build/main.aux, so build main.tex first.
+\documentclass[a4paper,11pt]{scrartcl}
+\usepackage{xr-hyper}
+\externaldocument{build/main}
+\input{preamble.tex}
+\geometry{left=24mm, right=24mm, top=16mm, bottom=20mm, headsep=4mm, footskip=9mm}
+\ohead{}
+\ifoot{\sffamily\small\color{gray700}Finding What Experts Leave Unsaid --- Executive Summary}
+\addbibresource{bibliography.bib}
+\hypersetup{pdftitle={Finding What Experts Leave Unsaid: Executive Summary},
+  pdfauthor={Adam Krysztopa}}
+
+% The shared text opens with its own \section* heading; this document supplies its own.
+\makeatletter
+\newcommand{\skipsummaryheading}{%
+  \let\orig@section\section
+  \renewcommand{\section}[2]{\let\section\orig@section}}
+\makeatother
+
+\begin{document}
+\thispagestyle{plain.scrheadings}
+\pagestyle{scrheadings}
+
+{\sffamily
+  {\small\color{gray700}\MakeUppercase{Executive summary}\par}
+  \vspace{2mm}
+  {\bfseries\fontsize{20}{24}\selectfont\color{ink}Finding What Experts Leave Unsaid\par}
+  \vspace{1mm}
+  {\small\color{gray700}Adam Krysztopa \enspace·\enspace September 2026 \enspace·\enspace
+    \href{https://github.com/AdamKrysztopa/edu_proj}{github.com/AdamKrysztopa/edu\_proj}\enspace·\enspace
+    Section numbers refer to the Extended Technical Report, which lists the references.\par}
+  \vspace{1mm}
+  \textcolor{accent}{\rule{\linewidth}{1pt}}\par}
+\vspace{2mm}
+
+\skipsummaryheading
+\input{sections/00_executive_summary.tex}
+
+\end{document}

@@ -1,0 +1,187 @@
+\section{Education}
+\label{sec:education}
+
+This section asks what the platform of \cref{sec:platform} could offer education, and where the
+evidence stops. The rule from \cref{sec:platform-decisions} governs everything below: only a claim
+labeled \code{observed_human_evidence}, or otherwise criterion-supported, may reach a learner. A
+gap candidate --- always labeled \code{inferred} --- may motivate a question to an expert. It may
+never become a fact taught to a student.
+
+\subsection{Expert blind spots in education}
+\label{sec:education-blindspots}
+
+Three findings motivate the pipeline below, each given in full with its numbers in
+\cref{sec:problem,sec:foundations}, so they are not repeated here. Physics experts categorize
+problems by governing principle where novices use surface features
+\parencite{chi1981categorization}, the reason the frozen Validation Track A study
+(\cref{sec:validation}) chose principle selection as its topic. Physics teaching assistants (65\% of the maximum score) and instructors (68\%) predict students'
+most common wrong answer well above the 40\% random-guessing baseline, with no significant
+difference between the two groups \parencite{maries2016teaching}. This is why the pipeline below
+routes ``what is difficult'' through learner data alone, never through expert or instructor
+judgment. The
+blind spot recurs across settings outside physics as well \parencite{nathan2003expert}. \evlit\ for
+all three.
+
+A worked example of tacit omission that the platform's design already takes seriously comes from
+one university-physics intelligent tutoring system evaluation, with an hour-exam rubric fine enough
+to see individual solution steps. Students who did their homework in Andes scored higher than
+paper-homework students on the Drawings subscore (average effect size 1.21) and the Variable
+definitions subscore (0.69), the two practices Andes requires, but not on Equations (0.11) or
+Answers ($-0.08$) \parencite[Table~5]{vanlehn2005andes}.
+\evlit. \evint\ The
+steps instructors do not think to state explicitly are the steps a tutor that enforces
+them improves --- and this fits the kind of step a methodology lens (\cref{sec:n3}) is designed to
+flag as attested-but-unstated.
+
+\subsection{The pipeline, and where its evidence runs out}
+\label{sec:education-pipeline}
+
+\Cref{tab:edu-pipeline} traces the full path from a gap map to a change in what a learner practices,
+with the evidence status of each step stated plainly. The pipeline is evidence-complete only as far
+as ``instructional material.'' Every step after that needs learner data the project does not have
+(the NOW program runs with zero participants). Even with that data, every later step's own
+literature shows a modest effect ceiling, not a large one.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{The education pipeline: what each step does, and its evidence status.}
+  \label{tab:edu-pipeline}
+  \begin{tabularx}{\linewidth}{@{}p{0.16\linewidth}X@{}}
+    \toprule
+    Step & Evidence status \\
+    \midrule
+    Gap map (\cref{sec:n3}) &
+      \evobs\ Runs end to end on three ledgers. \evint\ Prediction is not demonstrated: adversarial
+      review found precision 3 of 19 strict on the pre-final maps, and closure does not beat a
+      fair control on any ledger. \\
+    Expert questions &
+      \evobs\ The pipeline emits ranked, template-generated questions with a predicted knowledge
+      type and elicitation channel. \evhyp\ That the questions target real residual is untested;
+      the residual-measurement gate (\cref{sec:residual}) has not run. \\
+    Captured residual &
+      \evfut. No human answers exist outside the frozen Track A study, which is separately
+      registered and does not depend on N3. \\
+    Instructional material &
+      \evlit\ Cognitive-task-analysis-based instruction outperforms other or conventional methods
+      for identifying content, in a meta-analysis of a small number of studies (Hedges'
+      $g = 0.871$) \parencite{tofelgrehl2013cognitive}. \evlit\ A worked example with a prompt that
+      makes the learner generate a step beats one that states the step for them (self-explanation
+      $g = 0.35$ over instructional explanation, $k = 6$) \parencite[Table~1]{bisra2018selfexplanation};
+      simply adding more explanatory text to a worked example gives minimal benefit on its own
+      \parencite{wittwer2010explanations}. \\
+    Learner diagnostics &
+      \evlit\ Must use learner data, not expert judgment or expert-authored text
+      (\cref{sec:education-blindspots}). \evlit\ A single item response is a poor diagnostic unit:
+      31\% of Force Concept Inventory answers changed on a one-week retest despite a total-score
+      reliability of $r = 0.89$ \parencite{lasry2011fci}. \\
+    Adaptive practice &
+      \evlit\ Bayesian knowledge tracing models mastery from graded responses
+      \parencite{corbett1995knowledge}; on next-response prediction, Bayesian knowledge tracing
+      with extensions from the literature performed indistinguishably from deep knowledge tracing
+      \parencite{khajah2016deep}, and logistic regression
+      led on datasets of moderate size \parencite{gervet2020deep}. Learning gains from
+      data-driven redesign are real but shown only on an immediate post-test in one selected unit
+      \parencite[$d = 0.47$, $N = 91$]{liu2017closing}, and a 2026 study on units chosen by topic
+      found no difference in learning gains ($N = 123$), though process measures favored the
+      redesign \parencite{lyu2026redesign}. We found no study
+      that compared a knowledge-tracing-driven policy against a simple mastery rule on a delayed or
+      transfer outcome. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Where established constructs enter}
+\label{sec:education-constructs}
+
+Pedagogical content knowledge, the form of subject knowledge specific to teaching it
+\parencite{shulman1986those,shulman1987knowledge}, names the layer the gap map's L2 and L5 layers
+target. This applies if the residual ever moves from an undocumented procedure to a teacher's
+undocumented way of explaining it. \evint. Catalogued misconceptions
+\parencite{smith1994misconceptions,disessa1993toward,vosniadou1992framework} are candidate content
+for a lens's target construct, but the pipeline can only place them, not discover that a learner
+holds one; that step is learner diagnostics, above, and is not built. Threshold concepts
+\parencite{meyer2003threshold,meyer2005threshold} are a strong candidate description for a gap
+map's highest-value item, if one is ever found; this report does not claim it has. Worked examples
+and self-explanation prompts are the mechanism the pipeline currently targets, on the strength of a
+broader literature \parencite{barbieri2023metaanalysis,sweller1988cognitive}. Intelligent tutoring
+systems are both a comparison class ($d = 0.76$ over no tutoring, close to human tutoring's 0.79,
+\parencite{vanlehn2011relative}; a randomized trial found an AI physics tutor outperformed in-class
+active learning, \parencite{kestin2025aitutoring}) and a candidate delivery mechanism for
+``adaptive practice,'' should it run. Knowledge tracing is the established technique for that step,
+and its ceiling, not its existence, is the open question.
+
+\subsection{Synthetic learners: a predictor, never a criterion}
+\label{sec:education-synthetic}
+
+A model prompted to answer as a student is not a substitute for a student's actual response, and
+the physics-specific evidence for that claim is direct. A GPT-4 simulation of the Force Concept
+Inventory showed \emph{no response variance at all} when told only to answer as a different
+cohort. It produced variance that approximated human responses in some respects only once it was
+told which preconception to hold \parencite{kieser2023chatgpt}. \evlit. A synthetic cohort therefore returns the misconception
+taxonomy it was handed; it cannot discover a new one, and it cannot report how common one actually
+is. The wider literature the reorientation reviewed agrees. Synthetic survey responses vary less than
+real ones \parencite{bisbee2024synthetic}. Language-model replications of 156 scenario-based
+psychology and management experiments gave larger effect sizes overall and significant results in
+68--83\% of the cases whose original finding was null \parencite{cui2025large}. \evlit. Synthetic learners therefore belong only
+at the instrument-debugging and candidate-hypothesis tiers: generating a probe to pilot before a
+real student sees it, or checking that a pipeline runs at all on known-truth input. They are never
+evidence for a gate, a power calculation, or a claim about how common a difficulty is. This is the
+learner-layer restatement of the rule \cref{sec:platform-decisions} already states for the gap map
+itself: a synthetic output may predict, and it may never decide.
+
+\subsection{How Validation Track A fits, unchanged}
+\label{sec:education-tracka}
+
+The frozen Validation Track A study (\cref{sec:validation}) is not an output of the gap map and
+does not depend on N3 succeeding. It is a separately registered study that starts only on its own
+preconditions --- recruited experts, a course, ethics approval --- and its registered rules run
+unchanged regardless of anything in this section. Stage A (twelve physicists, AI-led and
+human-led retrospective probing, counterbalanced) is the human-answered version of ``expert
+questions $\to$ captured residual'' in \cref{tab:edu-pipeline}; its pre-registered K0 check, that
+at least 30\% of coded student errors are principle-selection or representation errors, is the
+human-data confirmation that a candidate bottleneck is real. This is exactly the confirmation an
+inferred gap candidate would need before anyone trusted it. Stage B, a two-arm randomized trial
+with a delayed-transfer outcome, is the ``does the captured residual, taught, move a learning
+outcome'' test. It runs as a pre-registered futility test at a smallest-effect-of-interest of
+$d = 0.30$, because the worked-examples literature above predicts a true effect below that
+threshold is plausible. Nothing in this report changes a single Track A number, and no addition
+from the NOW program may gate Track A's own readings (\cref{sec:validation}). Any comparison
+between a sealed, unopened gap-map reconstruction of Track A's topic and Stage A's independently
+coded operations is registered as secondary and non-gating.
+
+\subsection{A candidate education pilot}
+\label{sec:education-pilot}
+
+A small pilot could test whether a gap-map-derived instructional addition changes anything
+measurable, at the smallest defensible scale, before any learner-facing deployment is proposed.
+One course section cannot power a test against typical education effect sizes: across 1{,}942
+effect sizes from 747 randomized trials with standardized achievement outcomes, the median was
+0.10 SD \parencite{kraft2020interpreting}. This is a feasibility pilot only, not powered to detect an
+effect, and any confidence interval it reports should be read as such. One introductory mechanics
+course section would run two arms of the same worked-example module,
+matched on word count and prompt count. The treatment arm's self-explanation prompts would carry
+one or two operations that the gap map proposed \emph{and} that experts then confirmed in blind
+elicitation (\cref{sec:validation}). Only operations with that human confirmation qualify;
+unvalidated candidates stay out of learner material. The primary measure would be delayed transfer performance, scored by
+instructors blind to which operations were added, guarding against test-alignment inflation
+\parencite{kulik2016effectiveness}; logged time on task and prompt-completion rate would serve as a
+manipulation check.
+
+\textbf{What this pilot would not claim, on any result.}
+\begin{itemize}[noitemsep]
+  \item That the gap map found hidden expert knowledge on its own: expert confirmation shows only
+    that experts hold this operation, not that the map finds such operations reliably elsewhere.
+  \item Individual-learner diagnosis: the instrument is validated for cohort comparison, not one
+    student's state, and single-item responses are unstable
+    \parencite{lasry2011fci,madsen2017inventories}.
+  \item A substitute for, comparison with, or gate on Validation Track A: a result here says
+    nothing about whether AI-assisted expert elicitation works, only whether a text-derived
+    candidate moves an outcome.
+  \item A synthetic learner used beyond piloting a prompt.
+\end{itemize}
+
+The honored rule stands regardless of this pilot's result: an inferred gap candidate may become a
+question worth asking an expert, and, once validated, an item worth teaching. It may not skip that
+validation step and reach a learner directly, no matter how plausible the candidate looks or how
+well the pilot's manipulation check passes.

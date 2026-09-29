@@ -1,0 +1,34 @@
+\section{The Human Knowledge Residual}\label{sec:residual}
+
+The program has one target quantity that no one has measured: the Human Knowledge Residual (HKR).
+\evint{} The term is not established. Its nearest analogues are unseen-item estimation
+\parencite{chao1987estimating}, recall of knowledge bases \parencite{razniewski2024completeness} and
+knowledge loss after developer turnover \parencite{rigby2016quantifying}.
+
+\begin{evhypbox}
+  Fix a task scope $D$ and an evidence base $E$: a set of sources found by a fixed search protocol and
+  frozen at a date $t$. $\mathrm{HKR}(D, E, t)$ is the set of knowledge items that (1)~competent
+  practitioners of $D$ \emph{demonstrably use}, corroborated by a second practitioner, a trace or an
+  artifact outside $E$; and (2)~that $E$ \emph{does not contain}, as judged under a fixed codebook by
+  blind coders or by a matcher that meets the adoption rule ($\kappa \geq 0.70$). We hypothesize that
+  this set is not empty where practice matters, that it concentrates in cues, decision rules, checks and
+  rationale, and that its location can be predicted from $E$ alone better than by cheap baselines.
+\end{evhypbox}
+
+The definition is relative: a new source can shrink the HKR. Let $R$ be what the reconstruction extracted and $H$ the validated human items. The observed residual share is
+$|H \setminus R| \,/\, |H \cup R_{\mathrm{valid}}|$, reported per knowledge type and area. \evint{}
+$H \setminus R$ is only an upper bound: it splits into the residual $H \setminus E$ and reconstruction
+misses, items $E$ states that the pipeline did not extract. Telling them apart needs each item checked
+against the frozen corpus, the \enquote{is it really unsaid?} decision the PoC's absence check did not
+make reliably. So the residual cannot be measured more reliably than absence can be judged. An area is
+\emph{residual-present} if it holds at least one validated, important item of $H \setminus E$; that is
+the label the gap map is scored against.
+
+\evint{} Three quantities must not be blurred. \emph{Thinness} is a property of the ledger alone; the
+PoC computed it. The \emph{HKR} is a relation of $H$ to $E$; it is not yet measured. The \emph{gap-map
+prediction} is an area score labeled \code{inferred}; none is built yet. Only the prospective study (V5)
+measures the HKR as defined. The pooled CTA study (V2) uses published gold lists as a stand-in for $H$,
+so it screens and does not decide. The departure study (V3) measures realized knowledge loss, a
+different construct. \evobs{} The accounting types exist and refuse shortcuts: they raise an error when
+an item lacks a human validity judgment and reject a matcher from the generator's family. No estimator
+is implemented and no World~C data exist.

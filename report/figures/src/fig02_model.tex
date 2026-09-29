@@ -1,0 +1,122 @@
+% report/figures/src/fig02_model.tex
+% The central model (00_outline.md "central model") on an explicit coordinate
+% grid: 6 columns at \colpitch between origins, rows at fixed y. Row 0 is the
+% retrieval feedback lane, rows 1-2 the implemented PoC, row 3 the planned
+% human-evidence loop (right to left). Check natural size with pdfinfo after
+% any edit; target width <= 150 mm.
+\documentclass[tikz,border=1mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+% 26 mm pitch plus the region padding overran the 150 mm width budget.
+\newlength{\colpitch}\setlength{\colpitch}{25mm}
+\newcommand{\cell}[2]{({(#1-1)*\colpitch},#2)}
+\newcommand{\sub}[1]{\\[0.6mm]{\fontsize{7}{8}\selectfont #1}}
+
+\tikzset{
+  box/.style={text width=19mm, minimum width=20mm, inner xsep=0.5mm, inner ysep=1mm,
+              minimum height=17mm, align=flush center},
+  lab/.style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700, inner sep=0.8pt},
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+  % ------------------------------------------------------------ row 1
+  \node[artefact, box] (domain) at \cell{1}{0}
+    {Domain or capability\sub{e.g.\ PLC fault diagnosis}};
+  \node[procllm, box] (recon) at \cell{2}{0}
+    {1 Reconstruct\sub{search, fetch, extract, verify}};
+  \node[datastore, box, inner ysep=0.5mm] (ledger) at \cell{3}{0}
+    {2 Evidence ledger\sub{claims, labels, provenance, UNKNOWN}};
+  \node[procdet, box] (lenses) at \cell{4}{0}
+    {3 Lenses\sub{7 methodology lenses}};
+  \node[procllm, box] (absence) at \cell{5}{0}
+    {4 Absence check\sub{closure judge}};
+  \node[gate, shape aspect=1.3, text width=12mm, inner sep=0pt,
+        minimum width=20mm, minimum height=17mm] (triage) at \cell{6}{0} {5 Triage};
+
+  \node[circle, draw=evintcol, thick, fill=evintcol!15!white, minimum size=3.6mm,
+        inner sep=0pt, font=\sffamily\bfseries\fontsize{7}{7}\selectfont, text=evintcol]
+    (warn) at (absence.north east) {!};
+
+  % ------------------------------------------------------------ row 0
+  \node[artefact, box, text width=38mm, minimum width=40mm, minimum height=9mm] (retrieval)
+    at \cell{4.5}{19mm} {Retrieval gap:\\search or verify more};
+
+  % ------------------------------------------------------------ row 2
+  \node[artefact, box, minimum height=20mm] (gapcand) at \cell{6}{-30mm}
+    {Gap candidate\sub{hidden-\allowbreak knowledge hypothesis, labeled \emph{inferred}}};
+  \node[procdet, box, minimum height=20mm] (questions) at \cell{5}{-30mm}
+    {6 Prioritized questions\sub{ranked by breadth; template text}};
+
+  % ------------------------------------------------------------ row 3
+  \node[human, planned, box] (humanev) at \cell{5}{-58mm}
+    {7 Human evidence\sub{World~C: experts answer}};
+  \node[artefact, planned, box] (residual) at \cell{4}{-58mm}
+    {8 Residual measured\sub{what humans add that the ledger lacks}};
+  \node[procdet, planned, box] (calibrate) at \cell{3}{-58mm}
+    {9 Calibrate\sub{score the gap map against baselines}};
+  \node[artefact, planned, box] (apply) at \cell{2}{-58mm}
+    {10 Apply\sub{learning; organizations}};
+  \node[font=\sffamily\itshape\fontsize{8}{9.5}\selectfont, text=gray700, align=center]
+    (notbuilt) at \cell{1}{-58mm} {Not built yet};
+
+  % ------------------------------------------------------------ arrows
+  \draw[flowimpl] (domain) -- (recon);
+  \draw[flowimpl] (recon) -- (ledger);
+  \draw[flowimpl] (ledger) -- (lenses);
+  \draw[flowimpl] (lenses) -- (absence);
+  \draw[flowimpl] (absence) -- (triage);
+
+  \draw[flowimpl] (triage.north) |- node[lab, pos=0.75, above=0.6mm, align=center] (nes)
+    {not enough\\sources} (retrieval.east);
+  \draw[flowplan] (retrieval.west) -| node[lab, pos=0.25, below=0.8mm] {re-search (manual today)} (recon.north);
+
+  \draw[flowimpl] (triage.south) -- node[lab, right=0.6mm, align=left]
+    {attested\\but\\unstated} (gapcand.north);
+  \draw[flowimpl] (gapcand) -- (questions);
+
+  \node[lab, text=evintcol, font=\sffamily\itshape\fontsize{7}{8}\selectfont,
+        below=1.2mm of absence.south] (weaknote) {weak link: ties its fair control};
+
+  \draw[flowplan] (questions) -- (humanev);
+  \draw[flowplan] (humanev) -- (residual);
+  \draw[flowplan] (residual) -- (calibrate);
+  \draw[flowplan] (calibrate) -- (apply);
+
+  \coordinate (fbturn) at (calibrate.north |- questions.center);
+  \draw[flowplan] (calibrate.north) -- (fbturn) -| (lenses.south);
+  \node[lab, align=right, anchor=east, text width=18mm]
+    at ($(lenses.south |- fbturn)!0.5!(lenses.south)+(-1.2mm,0)$)
+    {recalibrate lenses and absence check};
+
+  % ------------------------------------------------------------ PoC region
+  \begin{scope}[on background layer]
+    \node[draw=gray400, thick, densely dotted, rounded corners=2pt,
+          fill=gray100, fill opacity=0.5,
+          fit=(recon)(retrieval)(nes)(triage)(gapcand)(questions)(warn), inner sep=2.5mm]
+      (pocbox) {};
+  \end{scope}
+  \node[anchor=north west, font=\sffamily\bfseries\fontsize{7.5}{9}\selectfont, text=gray700,
+        inner sep=1.2mm] at (pocbox.north west) {Implemented in the PoC (N1--N3)};
+
+  % ------------------------------------------------------------ legend
+  \node[fit=(domain)(pocbox)(apply)(humanev)(notbuilt), inner sep=0pt] (allbox) {};
+  \matrix[below=5mm of allbox.south, anchor=north, column sep=6mm, row sep=2.5mm,
+          ampersand replacement=\&,
+          sw/.style={minimum width=4.5mm, minimum height=3.2mm, text width=0pt, inner sep=0pt,
+                     anchor=west},
+          ll/.style={lab, anchor=west, inner sep=0pt}] {
+    \node[procllm, sw] {}; \node[ll] at (6mm,0) {LLM-driven}; \&
+    \node[procdet, sw] {}; \node[ll] at (6mm,0) {deterministic}; \&
+    \node[gate, sw, minimum width=5.4mm, minimum height=3.6mm] {}; \node[ll] at (6mm,0) {gate}; \&
+    \node[artefact, sw] {}; \node[ll] at (6mm,0) {artefact or store}; \\
+    \node[human, sw, rounded corners=1.6mm] {}; \node[ll] at (6mm,0) {human activity}; \&
+    \draw[flowimpl] (0,0) -- (4.5mm,0); \node[ll] at (6mm,0) {implemented}; \&
+    \draw[flowplan] (0,0) -- (4.5mm,0); \node[ll] at (6mm,0) {planned}; \& \\
+  };
+
+\end{tikzpicture}
+\end{document}

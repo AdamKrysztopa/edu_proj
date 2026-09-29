@@ -1,0 +1,59 @@
+\section{How this report was produced}\label{app:method}
+
+This report was written with heavy AI assistance. A reader should know how,
+because the way a document is made affects how far it can be trusted.
+
+\paragraph{Division of work.} One coordinating model (Claude Opus) planned
+the report, fixed its structure and terminology, and settled conflicts between
+workers. Separate worker agents did the evidence work, each in its own
+workstream: a PoC evidence audit, scientific foundations, adjacent work and
+novelty, interpretation of the N2 and N3 results, the implemented
+architecture, the future platform, the validation program, the organizational
+path, the education path, the program plan, and the figures. Each worker
+wrote notes to \repo{report/notes/} before any section was drafted. The notes
+are kept with the report so that every section can be traced to them.
+
+\paragraph{Evidence rules.} Every PoC number was checked in the primary
+artifact (a run ledger, a gap-map JSON file, code, or a committed report),
+not copied from a summary. Where a committed summary and a raw artifact
+disagreed, the raw artifact won, and the disagreement is stated in the text.
+The test counts in this report come from running the four offline test
+suites during the audit. Numbers that could not be traced to a committed
+data file (for example the 3-of-19 precision figure) are reported with that
+qualification.
+
+\paragraph{Citation rules.} Every reference in the bibliography was checked
+against Crossref, OpenAlex, arXiv or the publisher page (title, authors, year,
+venue, DOI or stable URL) by the agent that proposed it. The repository's own
+research notes were treated as leads, not proof. Several leads failed this
+check and were dropped or corrected; for example, the widely repeated claim
+that experts omit about 70\% of what they know has no single primary study
+behind it, so the report cites the primary omission studies instead
+(\cref{sec:problem}).
+
+\paragraph{Reviews.} The complete draft went through two review rounds, each
+with two independent reviewers who did not see each other's findings:
+\begin{itemize}[nosep]
+  \item Round 1: a scientific reviewer (research logic, literature
+    positioning, unsupported claims, novelty) and a technical reviewer
+    (correspondence with the code, architecture accuracy, accidental claims
+    that future components exist).
+  \item Round 2: a hostile grant reviewer (why it matters, what is new,
+    whether the hypothesis is falsifiable and the validation credible) and a
+    clarity and reproducibility reviewer.
+\end{itemize}
+Both rounds are complete, and the report was revised after each one. Round 1 changed the
+absence-check wording, the claims about span provenance, the gap map's display cap, the gate
+logic, and cut duplicated material. Round 2 restructured the validation program around a
+pre-grant V1 closure study, tied each money tranche to a gate reading CONTINUE, powered V5 to
+decide H2, moved V3 (E-OSS) to the organizational track as a separate hypothesis that can neither
+kill nor license H2, added an external gate reader, added citations a novelty check had missed,
+and ran this clarity pass. A final audit then checked major statements against literature,
+repository evidence, or an explicit hypothesis or future-work label. The figures were redrawn
+after a visual inspection found several printing below 7~pt from over-wide scaling, and the
+compiled PDF was inspected page by page.
+
+\paragraph{Limits of this process.} The workers and the reviewers are
+models. Agreement between them is not evidence. The checks above reduce, but
+do not remove, the risk of errors in reading sources. The decisions on scope,
+direction and the research program remain the project owner's.

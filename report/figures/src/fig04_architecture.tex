@@ -1,0 +1,140 @@
+% report/figures/src/fig04_architecture.tex
+% Implemented PoC architecture. One x list (lanes) and one y pitch (stage rows) define every
+% position. Stage order follows reconstruct/src/reconstruct/run.py and
+% gapmap/src/gapmap/__main__.py; model ids follow reconstruct/models.json and gapmap config.
+\documentclass[tikz,border=1mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+\newlength{\rowpitch}\setlength{\rowpitch}{12.5mm}
+\newcommand{\rowy}[1]{-31mm-(#1-1)*\rowpitch}
+% x lanes (mm): web | reconstruct frame | lane1 | stores | lane2 | gapmap frame
+\newcommand{\xweb}{7mm}
+\newcommand{\xrecL}{18mm}   \newcommand{\xrecR}{64mm}
+\newcommand{\xrec}{30.5mm}  \newcommand{\xrtag}{44mm}
+\newcommand{\xlaneA}{66.5mm}
+\newcommand{\xstore}{81.5mm}
+\newcommand{\xlaneB}{94.5mm}
+\newcommand{\xgapL}{97mm}   \newcommand{\xgapR}{146mm}
+\newcommand{\xgap}{111.5mm} \newcommand{\xgtag}{126.5mm}
+\newcommand{\xcache}{135.5mm}
+\newcommand{\sub}[1]{\\[0.2mm]{\fontsize{7}{8}\selectfont\mdseries #1}}
+
+\tikzset{
+  stage/.style={minimum width=23mm, text width=21mm, minimum height=8.2mm, inner xsep=1mm,
+                inner ysep=0.6mm, align=flush center, font=\sffamily\bfseries\fontsize{9}{10.5}\selectfont},
+  gwide/.style={minimum width=26mm, text width=24mm},
+  tag/.style={anchor=west, text width=19mm, align=flush left, inner sep=0pt, text=gray700,
+              font=\sffamily\fontsize{7}{8}\selectfont},
+  planned/.append style={text opacity=1},
+  lab/.style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700, inner sep=0.8pt},
+  frame/.style={draw=gray400, thick, rounded corners=2pt, fill=gray100, fill opacity=0.5},
+  frametitle/.style={anchor=north west, inner sep=1.5mm, font=\sffamily\bfseries\fontsize{9}{10.5}\selectfont},
+  store/.style={datastore, minimum width=21mm, text width=18mm, minimum height=11mm, align=flush center,
+                font=\sffamily\bfseries\fontsize{8}{9.5}\selectfont},
+  imports/.style={-{Latex[length=2mm, width=1.6mm]}, draw=gray700, thick, densely dotted},
+  rw/.style={{Latex[length=2mm, width=1.6mm]}-{Latex[length=2mm, width=1.6mm]}, draw=gray700, thick},
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+  % ------------------------------------------------------------ package frames (drawn first)
+  \draw[frame] (0,0) rectangle (\xgapR,-12mm);
+  \node[anchor=west, inner sep=0pt, font=\sffamily\bfseries\fontsize{9}{10.5}\selectfont]
+    at (2.5mm,-4mm) {residual (N0/N1): evidence model};
+  \node[anchor=west, inner sep=0pt, font=\sffamily\fontsize{7}{8}\selectfont]
+    at (2.5mm,-8.3mm) {ClaimRecord, Ledger, 6 labels, frozen schema n1.json};
+
+  \draw[frame] (\xrecL,-20mm) rectangle (\xrecR,{\rowy{8}-7.5mm});
+  \node[frametitle] at (\xrecL,-20mm) {reconstruct (N2)};
+  \draw[frame] (\xgapL,-20mm) rectangle (\xgapR,{\rowy{7}-7.5mm});
+  \node[frametitle] at (\xgapL,-20mm) {gapmap (N3)};
+
+  \draw[imports] ({(\xrecL+\xrecR)/2},-12mm) -- ({(\xrecL+\xrecR)/2},-20mm)
+    node[lab, midway, right=1mm] {imports};
+  \draw[imports] ({(\xgapL+\xgapR)/2},-12mm) -- ({(\xgapL+\xgapR)/2},-20mm)
+    node[lab, midway, right=1mm] {imports};
+
+  % ------------------------------------------------------------ reconstruct chain
+  \node[procllm, stage] (plan)    at (\xrec,{\rowy{1}}) {plan};
+  \node[procdet, stage] (search)  at (\xrec,{\rowy{2}}) {search\sub{Exa; URLs only}};
+  \node[procdet, stage] (fetch)   at (\xrec,{\rowy{3}}) {fetch\sub{snapshot, normalize}};
+  \node[procllm, stage] (extract) at (\xrec,{\rowy{4}}) {extract\sub{claim + quote}};
+  \node[procdet, stage] (locate)  at (\xrec,{\rowy{5}}) {locate\sub{quote to span}};
+  \node[procllm, stage] (verify)  at (\xrec,{\rowy{6}}) {verify\sub{span supports claim}};
+  \node[procllm, stage] (contra)  at (\xrec,{\rowy{7}}) {contradict\sub{cross-verify, decoys}};
+  \node[procdet, stage] (assemble) at (\xrec,{\rowy{8}}) {assemble\sub{slots, UNKNOWN}};
+  \foreach \a/\b in {plan/search, search/fetch, fetch/extract, extract/locate, locate/verify,
+                     verify/contra, contra/assemble}
+    \draw[flowimpl] (\a) -- (\b);
+
+  \node[tag] at (\xrtag,{\rowy{1}}) {claude-haiku-4.5};
+  \node[tag] at (\xrtag,{\rowy{4}}) {claude-haiku-4.5};
+  \draw[gray400, line width=0.6pt] ({\xrtag-0.8mm},{\rowy{6}+3mm}) -| (\xrtag,{\rowy{7}-3mm}) -- ++(-0.8mm,0);
+  \node[tag, text width=17mm] at ({\xrtag+1.2mm},{(\rowy{6}+\rowy{7})/2}) {gpt-5.4-mini\\(other family)};
+
+  % ------------------------------------------------------------ input
+  \node[artefact, align=flush center, minimum width=14mm, text width=12mm, minimum height=19mm, inner sep=1mm,
+        font=\sffamily\bfseries\fontsize{9}{10.5}\selectfont]
+    (web) at (\xweb,{(\rowy{2}+\rowy{3})/2}) {Web\sub{World A}};
+  \draw[flowimpl] (web.east |- search) -- (search);
+  \draw[flowimpl] (web.east |- fetch) -- (fetch);
+
+  % ------------------------------------------------------------ stores between frames
+  \node[store] (ledger)  at (\xstore,{\rowy{4}}) {ledger.json};
+  \node[store] (sidecar) at (\xstore,{\rowy{5.6}}) {sidecar.json};
+  \draw[flowimpl] (assemble.east) -- (\xlaneA,{\rowy{8}}) |- (ledger.west);
+  \draw[flowimpl] (assemble.east) -- (\xlaneA,{\rowy{8}}) |- (sidecar.west);
+
+  % ------------------------------------------------------------ gapmap chain
+  \node[procdet, stage, gwide] (lenses) at (\xgap,{\rowy{1}}) {lenses\sub{7 lenses fire}};
+  \node[procllm, stage, gwide] (absence) at (\xgap,{\rowy{2}}) {absence check\sub{closure judge}};
+  \node[procdet, stage, gwide] (triage) at (\xgap,{\rowy{3}}) {triage + records};
+  \node[procdet, stage, gwide] (merge)  at (\xgap,{\rowy{4}}) {merge\sub{deduplicate}};
+  \node[procdet, stage, gwide] (rank)   at (\xgap,{\rowy{5}}) {rank by breadth\sub{+ display cap}};
+  \node[procdet, stage, gwide] (checks) at (\xgap,{\rowy{6}}) {checks\sub{nulls, controls}};
+  \node[procdet, stage, gwide] (render) at (\xgap,{\rowy{7}}) {render\sub{template questions}};
+  \foreach \a/\b in {lenses/absence, absence/triage, triage/merge, merge/rank, rank/checks,
+                     checks/render}
+    \draw[flowimpl] (\a) -- (\b);
+  \node[tag, text width=19mm] (qwen) at (\xgtag,{\rowy{2}}) {qwen2.5:7b local,\\cached};
+
+  \draw[flowimpl] (ledger.east) -| (\xlaneB,{\rowy{1}}) -- (lenses.west);
+  \draw[flowimpl] (sidecar.east) -| (\xlaneB,{\rowy{1}}) -- (lenses.west);
+
+  % ------------------------------------------------------------ outputs
+  \node[store] (gmout) at (\xgap,{\rowy{8.6}}) {gapmap.json\\/ .md};
+  \node[store, text width=20mm, font=\sffamily\bfseries\fontsize{7.5}{9}\selectfont]
+    (cache) at (\xcache,{\rowy{8.6}}) {closure\_\allowbreak judgements\allowbreak .json\sub{cache}};
+  \draw[flowimpl] (render) -- (gmout);
+  \draw[rw] (qwen.south -| \xcache,0) -- (cache.north);
+
+  \node[human, planned, align=flush center, minimum width=26mm, text width=24mm, minimum height=9mm,
+        font=\sffamily\bfseries\fontsize{9}{10.5}\selectfont]
+    (expert) at (\xgap,{\rowy{10.3}}) {Expert answers\sub{not built}};
+  \draw[flowplan] (gmout) -- (expert);
+
+  \node[artefact, align=flush center, minimum width=40mm, text width=38mm, minimum height=9mm, draw=gray400,
+        text=gray700, font=\sffamily\bfseries\fontsize{8}{9.5}\selectfont]
+    (instr) at ({(\xrecL+\xrecR)/2},{\rowy{10.3}}) {instrument/\sub{Track A, frozen, not used}};
+
+  % ------------------------------------------------------------ legend
+  \node[fit=(web)(instr)(expert)(cache), inner sep=0pt] (allbox) {};
+  \matrix[below=4mm of allbox.south, anchor=north, column sep=3.2mm,
+          ampersand replacement=\&,
+          sw/.style={minimum width=4.5mm, minimum height=3.2mm, text width=0pt, inner sep=0pt,
+                     anchor=west},
+          ll/.style={lab, anchor=west, inner sep=0pt}] {
+    \node[procllm, sw] {}; \node[ll] at (6mm,0) {LLM-driven}; \&
+    \node[procdet, sw] {}; \node[ll] at (6mm,0) {deterministic}; \&
+    \node[artefact, sw] {}; \node[ll] at (6mm,0) {input, package}; \&
+    \node[human, sw, rounded corners=1.6mm, planned] {}; \node[ll] at (6mm,0) {human}; \&
+    \draw[flowimpl] (0,0) -- (4.5mm,0); \node[ll] at (6mm,0) {data flow}; \&
+    \draw[imports] (0,0) -- (4.5mm,0); \node[ll] at (6mm,0) {imports}; \&
+    \draw[flowplan] (0,0) -- (4.5mm,0); \node[ll] at (6mm,0) {planned}; \\
+  };
+
+\end{tikzpicture}
+\end{document}

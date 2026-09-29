@@ -1,0 +1,164 @@
+\section{Domain strategy}
+\label{sec:domains}
+
+Everything in this section is future work \evfut{}. No domain below has been reconstructed
+under the rules stated here. The domain set is a proposal for the research program in
+\cref{sec:roadmap,sec:workpackages}, not a result. It is marked once, here, rather than on
+every line.
+
+\subsection{Selection principles}
+
+A domain is chosen for the \emph{generalization question} it answers and the \emph{human
+criterion} that can test it, never for how convenient its data are. Six axes drive the choice:
+
+\begin{itemize}[noitemsep]
+  \item \textbf{Dominant knowledge type.} The methodology lenses (\cref{sec:foundations}) were
+    built for different kinds of knowledge, so each type is a separate test of H2
+    (\cref{sec:question}).
+  \item \textbf{Documentation density.} A text-rich domain flatters reconstruction; a generality
+    claim needs a text-poor domain too.
+  \item \textbf{Human criterion.} Without retrospective gold, a realized-loss outcome, or fresh
+    blind elicitation, a domain can debug the pipeline but never test it.
+  \item \textbf{Learner data.} Any claim about learner difficulty needs it, because experts cannot
+    say what is difficult for a novice \evlit{} \parencite{nathan2003expert,maries2016teaching}.
+  \item \textbf{Contamination risk.} Old gold diffuses into pretraining corpora and textbooks
+    \evlit{} \parencite{golchin2023time,sainz2023nlp}, so post-cutoff or fresh criteria are the
+    program's clean tests.
+  \item \textbf{Purpose.} A domain serves \emph{scientific} validation, \emph{commercial}
+    validation, both, or neither.
+\end{itemize}
+
+Easy data alone is never a reason to include a domain.
+
+\subsection{The domain set}
+
+\Cref{tab:domains} lists six domains. Three carry H2's gates: D1 at the screening gate MS3, and
+D3 and D4 at the H2 verdict MS5. D2 carries H-OSS, a separate hypothesis on the organizational
+track. D5 and D6 test the learner link and a best-case ceiling; they gate nothing for H2.
+
+\begin{table}[tbp]
+  \centering
+  \small
+  \caption{The six domains, the generalization question each tests, its gold or human
+  criterion, its role in the validation program, and its main risk. D1, D3 and D4 carry H2's
+  gates; D2 carries H-OSS only; D5--D6 do not gate H2.}
+  \label{tab:domains}
+  \begin{tabularx}{\linewidth}{@{}p{1.7cm}XXp{2.0cm}X@{}}
+    \toprule
+    Domain & Generalization question & Gold / human criterion & Role & Main risk \\
+    \midrule
+    D1 Clinical procedural skill &
+      Perceptual-motor, decision-heavy procedure: does the gap map find omitted steps and cues? &
+      Retrospective CTA golds, pooled: Sullivan et al.\ cricothyrotomy task list (46 items) first, others found by the Phase~1 metadata check; NICU cue list as a candidate &
+      Scientific (V2 pooled; MS3 screening) &
+      Contamination of old golds; fewer than three eligible golds; dated corpora too small \\
+    D2 Open-source software maintenance &
+      Does artifact coverage of design rationale predict realized knowledge loss beyond authorship concentration? &
+      Realized-loss outcome: blind-coded rationale-seeking issues and defect-fix commits after a truck-factor departure &
+      Scientific (V3; tests H-OSS, which cannot stop or license H2) and commercial precursor
+      (V7) &
+      Repositories in pretraining; authorship metrics may break under agentic coding; effective $n$ = number of departures \\
+    D3 Industrial fault diagnosis &
+      Does the method hold where diagnostic craft dominates and text is poor? &
+      Retrospective troubleshooting data (Chao \& Salvendy); PARI maintenance task list (availability unverified); prospective blind elicitation (V5) &
+      Scientific (text-poor falsification target; V5, MS5) and commercial (second-wave partner) &
+      PLC ledger is in-sample; low reconstruction support; technician recruitment \\
+    D4 Regulatory judgment &
+      Does the method work on normative-interpretive judgment, where the residual sits in hedges and exception boundaries? &
+      No public itemized gold; prospective blind elicitation of practitioners (V5) &
+      Scientific (V5, MS5); commercial only later &
+      GDPR ledger is in-sample; practitioners may legitimately disagree \\
+    D5 School mathematics &
+      Does an expert-text residual relate to learner difficulty, or are they different constructs? &
+      Learner response data (public misconception and response datasets) &
+      Scientific only (learner link; not a calibration set) &
+      Non-commercial data licenses; a null result is likely and informative \\
+    D6 Introductory mechanics (Track A) &
+      Best-case ceiling: the only place where expert residual, learner error, and a randomized controlled trial (RCT) of learning meet in one topic &
+      Track A's own registered K0/K1/K2; sealed predictions scored after K1 is locked &
+      Scientific, secondary and non-gating (V8b) &
+      Contamination (Force Concept Inventory in pretraining); eligibility rule; must not change any registered rule \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\textbf{D1.} Sullivan et al.'s cricothyrotomy task list gives 46 steps (14 clinical-knowledge, 27
+action, 5 decision). Surgeons described an average of 44\% of them unprompted and 66\% when
+prompted \evlit{} \parencite{sullivan2014use}. A NICU cue list also exists, but whether it can be
+reused is unverified \evlit{} \parencite{crandall1993critical}. One gold cannot screen H2, so V2
+pools several published CTA golds; the Phase~1 metadata check decides how many exist. D1 is the
+best-documented perceptual-motor procedure with a published, itemized criterion.
+
+\textbf{D2.} Developer departure gives a realized-loss outcome that needs no participant or consent
+to measure retrospectively \evlit{} \parencite{avelino2016novel,avelino2019abandonment,rigby2016quantifying,nassif2017revisiting}.
+It tests H-OSS: the gap map, adapted to code and commit evidence, predicts where knowledge is lost
+when developers leave. The adaptation needs a Git adapter and code lenses (for example WHY on
+commits with no linked rationale). Both are built on the organizational track, and the code lenses
+are frozen only after the adapter exists (\cref{sec:workpackages}). D2 is the commercial
+precursor, but it tests a different construct from H2 and can neither stop nor license it.
+
+\textbf{D3.} Chao and Salvendy's troubleshooting study \evlit{} \parencite{chao1994percentage} and
+the PARI task list \evlit{} \parencite{hall1995procedural} anchor a domain where diagnostic craft,
+not declarative content, carries the knowledge. Included to test generality on a text-poor domain
+(\cref{sec:question}); PLC/SCADA text serves only as its development subdomain.
+
+\textbf{D4.} No public itemized gold exists for normative-interpretive judgment, so this domain
+tests whether the residual sits in hedges and exception boundaries a fresh, blind elicitation can
+reveal, following work-as-imagined versus work-as-done \evlit{} \parencite{hollnagel2018safety}.
+Included because D1--D3 do not touch normative judgment; GDPR/DPIA text is only its development
+subdomain.
+
+\textbf{D5.} Public misconception and response datasets give rich, consented learner data with no
+participant recruited. Included only to ask whether an expert-text residual predicts learner
+difficulty, separable from RQ-B; a null result here is informative and does not falsify H2.
+
+\textbf{D6.} Track A (\cref{sec:validation}) is the one place expert residual, learner error, and a
+learning RCT already meet in one design. Included as a secondary, non-gating comparison only,
+through E-SEAL; it drives no decision in this program.
+
+\subsection{Domains considered and not chosen}
+
+Convenience of data was deliberately excluded as a selection reason. Mathematics has the easiest
+public data of any domain considered. But it measures learner difficulty, not the human knowledge
+residual, so it can never be a calibration set for the other five domains. Customer-support
+diagnostics and legal contract review were set aside for this round: no realized-loss outcome or
+itemized gold could be identified for them. They remain candidates for the new non-gold domain in
+the Phase~0 closure study (V1).
+
+\subsection{Binding rules}
+
+Three rules shape the set and must not be read as recommendations.
+
+\begin{enumerate}
+  \item \textbf{Physics is the frozen Track A domain.} Introductory mechanics enters the program
+    only through E-SEAL: sealed, script-generated predictions, non-gating. NOW runs exclude
+    conservation items entirely. Anyone who has seen reconstructed conservation content is
+    ineligible for any Track A human role -- interviewer, corroborating coder, K1 absent-operation
+    coder, or importance rater.
+  \item \textbf{Held-out gold domains are not reconstructed first.} No exploratory, debugging, or
+    tuning run touches a gold domain before its configuration is hash-frozen and the study is
+    pre-registered. The first reconstruction of a gold domain \emph{is} the test run, on a corpus
+    dated before the gold existed.
+  \item \textbf{Development domains stay development domains.} PLC and GDPR tuned the gap map's
+    lexicons in-sample. They may be used only for debugging, for the Phase~0 closure study (V1),
+    and for a non-analyzed V5 pilot. They never carry a gate reading.
+\end{enumerate}
+
+The clearest tension this creates is in choosing the domain for V5, the study that decides H2.
+One earlier note suggested PLC because it is already reconstructed. That conflicts with rule 3:
+the lexicons were tuned on the PLC ledger, so any PLC effect would be optimistic.
+The recommended resolution, in order of merit:
+
+\begin{itemize}[noitemsep]
+  \item \textbf{V5 pilot in PLC, V5 main in two held-out subdomains (Recommended).} The pilot
+    is not analyzed for effect, so in-sample tuning cannot bias it. The main study runs once,
+    after the freeze, on a fresh maintenance-diagnosis task (D3) and a held-out regulation (D4).
+    The extra cost is one reconstruction and one area partition per domain, small next to the
+    human study.
+  \item V5 main in PLC and GDPR directly. This saves one partition each. But the study that
+    decides H2 would then test a configuration on its own tuning data, which weakens any positive
+    result and cannot be repaired later.
+\end{itemize}
+What would change the recommendation: no reachable expert pool for a fresh maintenance
+subdomain. Then keep PLC but re-tune nothing, state the in-sample status in the pre-registration,
+and treat the PLC result as supporting evidence only, never as the reading that decides H2.

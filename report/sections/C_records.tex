@@ -1,0 +1,189 @@
+\section{Record excerpts}
+\label{app:records}
+
+Real, trimmed excerpts from the committed artifacts, checked against the files named below on
+2026-09-29: a claim record, the N1 freeze file, and the two GDPR traces moved here from
+\cref{sec:demos}. Each is what the code wrote, not a reconstruction for this report; long fields are
+shortened with \ldots{} where noted. Full discussion: \cref{sec:evidence-model,sec:n3}.
+
+\subsection{A claim record, with its evidence selector}
+
+\repo{reconstruct/runs/20260928T145943Z-bc1cc9a30a02/ledger.json} (GDPR v2), one claim, trimmed:
+
+{\small
+\begin{verbatim}
+{
+  "assertion": "A DPIA should attach any relevant additional
+    documents referenced in the DPIA, such as Privacy Notices
+    and consent documents.", "knowledge_type": "check",
+  "evidence": [{
+    "selector": {
+      "exact": "attached any relevant additional documents we
+        reference in our DPIA, e.g. Privacy Notices, consent
+        documents",
+      "locator": "sha256:14b9bb35...f8a23e7;char=9061,9169"
+    },
+    "source": {"identifier": "https://ico.org.uk/.../dpias/",
+        "kind": "procedure_document", "world": "public"},
+    "verification": {"verdict": "pending", "verifier": null}
+  }],
+  "generation": {"activity": "extraction", "agent": {
+    "family": "anthropic", "id": "anthropic/claude-haiku-4.5"}}
+}
+\end{verbatim}
+}
+
+The \code{assertion} is the claim in the extractor's own words; \code{evidence[].selector} ties it
+to a verbatim span (\code{exact}) and to a character range in a hashed, cached document
+(\code{locator}), so the span can be re-sliced later without trusting the extractor.
+\code{verification.verdict} is \code{pending} because this is one of the 140 GDPR v2 evidence items
+whose verifier call failed silently. The claim's computed label is therefore
+\code{synthetic_extrapolation}: only a \code{supports} verdict from the second model family makes a
+claim \code{literature_supported} (\cref{sec:evidence-model}).
+
+\subsection{The N1 freeze file}
+
+\repo{residual/frozen/n1.json}, in full:
+
+{\small
+\begin{verbatim}
+{
+  "schema_sha256":
+    "f2ffcfdfab6ea55a2e187c864d14a411e1a6cd2b2c54bd0fa7b9dbfb70652591",
+  "features_sha256":
+    "f2d3e07999560b5587987d31e96353a4fd526acf600dabaebc4d79cb54a3bfe9",
+  "semantics_sha256":
+    "f3e85218b9d3868467ed7c6ca646496ccfebcd6d91943ce152c7884b3b391d5d",
+  "frozen_by": "N1"
+}
+\end{verbatim}
+}
+
+Three SHA-256 hashes freeze three things: the \code{ClaimRecord} schema, the feature set (the
+tuple of \code{AreaFeatures} field names), and the semantics (the code that decides an epistemic
+label from evidence). A test (\code{test_the_schema_matches_its_freeze}) fails if the current code's
+hash of any of the three no longer matches this file, which forces a deliberate, committed re-freeze
+(\cref{app:claims}, row E07).
+
+\subsection{Trace 2: GDPR v2, the boundary of \enquote{relevant controller}}
+
+\textbf{GDPR v2 is not N3-admissible} (140 evidence items never verified); this trace illustrates the
+record format only.\footnote{\repo{research/n3/gdpr_v2/gapmap.json}, \code{map[0]}, \code{gap_id}
+\code{g-656818235091}.}
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Trace 2: GDPR v2 (not N3-admissible), lens DISC, gap \code{g-656818235091}, category
+  HYP, closure \code{partial}.}
+  \label{tab:trace2}
+  \begin{tabularx}{\linewidth}{@{}p{2.4cm}X@{}}
+    \toprule
+    Stage & Content \\
+    \midrule
+    Sources & Seed: \url{legislation.gov.uk/eur/2016/679/article/35} (two URLs, one independence
+      key, statute HTML). Topic: \url{edpb.europa.eu} (Irish DPC DPIA decision, PDF) and
+      \url{cnil.fr} (WP248, PDF). Three independent keys discuss the topic. \\
+    Seed span (verbatim) & \enquote{Compliance with approved codes of conduct referred to in
+      Article 40 by the relevant controllers or processors shall be taken into due account in
+      assessing the impact of the processing operations performed by such controllers or
+      processors, in particular for the purposes of a data protection impact assessment.} \\
+    Seed claims / label & \code{c-45c0ec0f142fd0ba} and \code{c-c08f1d894cabec8e}, both
+      \code{literature_supported}, both from the one legislation key \\
+    Lens \& target & DISC: the term \enquote{relevant controller} is used, but no boundary is
+      stated \\
+    Inferred gap & Of 8 verified sentences retrieved, the judge found only a partial statement of a
+      boundary: \enquote{Does not explicitly state threshold, defining feature, or contrast.} \\
+    Hypothesis (inferred) & \enquote{Hypothesis (inferred): practitioners are predicted to
+      discriminate \enquote{relevant controller} from its neighbours by features that no verified
+      claim in this ledger matched test DISC:relevant controller for.} \\
+    Question \& channel & \enquote{One source writes: [the seed span]. Think of a recent case where
+      you had to judge whether something was relevant controller. Describe one case that clearly
+      was, one that clearly was not, and one that was hard to call. What differed between them, and
+      what did you check first?} -- contrasting-case classification, or expert-rated written
+      vignettes \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\textbf{Weaknesses.} The run is not admissible. The anchor is a legal drafting phrase, not a
+judgment term, so this is arguably a DISC false positive. The question is ungrammatical
+(\enquote{whether something was relevant controller}), and the hypothesis template ends in a garbled
+clause. The state is \code{partial}: the judge found part of a boundary statement. The sources are
+statute and regulator text, not practitioner text.
+
+\subsection{Trace 3: GDPR v1's only gap candidate}
+
+GDPR v1's final map holds one gap candidate.\footnote{\repo{research/n3/gdpr_v1/gapmap.json},
+\code{map[0]}, \code{gap_id} \code{g-1b1e68dc5d39}.}
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Trace 3: GDPR v1, lens RESULT, gap \code{g-1b1e68dc5d39}, category HYP, closure
+  \code{partial}.}
+  \label{tab:trace3}
+  \begin{tabularx}{\linewidth}{@{}p{2.4cm}X@{}}
+    \toprule
+    Stage & Content \\
+    \midrule
+    Sources & Seed: \url{ico.org.uk} (UK). Topic: \url{dataprotection.ie} (Ireland),
+      \url{cnpd.public.lu} (Luxembourg) and further ICO pages. Two independence keys: ICO and CNPD
+      share one key under the old 25-word union rule, since dropped. \\
+    Seed span (verbatim) & \enquote{The nature of the processing is what you plan to do with the
+      personal data. This should include, for example: how you collect the data; how you store the
+      data; how you use the data; who has access to\ldots} \\
+    Seed claim / label & \code{c-6370fb5b7eeb5c13}, \code{literature_supported}. Assertion:
+      \enquote{The nature of processing in a DPIA should include details about data collection,
+      storage, usage, access, sharing, processors, retention periods, security measures, new
+      technologies, and novel processing types.} \\
+    Lens \& target & RESULT, anchored on the assertion's tail \enquote{measures, new technologies,
+      and novel processing types.}: a test is prescribed, but not how a practitioner reads its
+      result \\
+    Inferred gap & Of 8 verified sentences retrieved, the judge found only a partial statement:
+      \enquote{Sentence 8 mentions mitigating measures but does not explicitly state expected results
+      or next actions.} The lexical rule reads \code{closed}. \\
+    Question \& channel & \enquote{Sources prescribe: \enquote{The nature of processing in a DPIA
+      should include details about data collection, storage, usage, access, sharing, processors,
+      retention periods, security measures, new technologies, and novel processing types.}. Think of
+      the last time you did this. What result did you get, what had you expected, what did that
+      result make you do next -- and what result would have sent you down a different path?} -- CDM
+      probes on a recalled case; process tracing \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\textbf{Weaknesses.} The text after \enquote{Sources prescribe} is the extractor's assertion, not a
+source quote: the code fell back to the paraphrase and still set it in quotation marks. The anchor
+is a fragment of the same paraphrase. Only two independence keys stand behind the candidate, one of
+them an over-merge of two national regulators. Lexical closure reads \code{closed} where the judge
+reads \code{partial}, a small instance of the disagreement reported in \cref{sec:absence-check}.
+
+The record as stored, trimmed:
+
+{\small
+\begin{verbatim}
+{
+  "gap_id": "g-1b1e68dc5d39", "lens": "RESULT", "category": "HYP",
+  "missing": "a result-to-interpretation mapping for 'measures,
+    new technologies, and novel processing types.'",
+  "confidence": {"A": 1, "B": 0, "P": 1, "Q": 0,
+    "breadth": "narrow", "k_step": 1, "k_topic": 2,
+    "robustness": "0/4", "score": 0},
+  "inferred_gap": {"closure_state": "partial",
+    "judge_model": "qwen2.5:7b-instruct",
+    "test_id": "RESULT:c-6370fb5b7eeb5c13"},
+  "hypothesis": {"label": "inferred",
+    "predicted_knowledge_type": ["interpretation", "expectancy"],
+    "text": "Hypothesis (inferred): practitioners are predicted
+      to read the result of 'measures, new technologies, and
+      novel processing types.' against expected values and map
+      it to the next action; no verified claim in this ledger
+      matched test RESULT:c-6370fb5b7eeb5c13."}
+}
+\end{verbatim}
+}
+
+\code{confidence} is the breadth rubric ($A$ = topic breadth, $B$ = step breadth, $P$ =
+partial-state penalty, $Q$ = promotional penalty), never a calibrated probability: no gold exists to
+calibrate against. \code{hypothesis.label} is always \code{inferred}.

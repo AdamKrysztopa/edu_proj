@@ -1,0 +1,7 @@
+#!/usr/bin/env perl
+# report/latexmkrc -- drive the report build with LuaLaTeX + biber.
+$pdf_mode = 4;                       # lualatex
+$lualatex = 'lualatex -interaction=nonstopmode -synctex=1 -halt-on-error %O %S';
+$out_dir  = 'build';
+$bibtex_use = 2;                     # run biber whenever the .bcf changes
+$clean_ext  = 'bbl bcf run.xml synctex.gz';

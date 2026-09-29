@@ -1,0 +1,167 @@
+\section{Team and competencies}
+\label{sec:team}
+
+\begin{evfutbox}
+  No team exists yet. There is no host institution, no named principal investigator (PI) record
+  for this program, no statistician, no CTA collaborator, no gate reader and no letter of support.
+  The configurations below are planning constructs, sized from the PoC's own operating experience
+  and from the work-package plan in \cref{sec:workpackages}. Every full-time-equivalent (FTE) figure is an indicative
+  range, not a hire request.
+\end{evfutbox}
+
+\subsection{Team status today}
+
+The PoC was designed, built, run and read by a single operator with AI assistance
+(\cref{sec:threats-ai}). The same person was its only coder and is the prospective applicant; the
+single-operator threat is rated in \cref{sec:threats}. This report names no other person and
+claims no commitment from anyone. The following must be named, with written commitments, before
+the step shown:
+
+\begin{itemize}[noitemsep]
+  \item \textbf{Before MS1 is read (Phase~0):} the non-owner blind coder, and the external gate
+    reader.
+  \item \textbf{Before the Phase~1 proposal is submitted:} the host institution and its
+    person-month rate; the PI and the PI's record; a statistician as co-applicant; a CTA
+    collaborator who can help locate itemized golds; a research engineer; a data-protection and
+    license advisor.
+  \item \textbf{Before Phase~2 is released:} a cognitive psychologist or CTA lead for V5; expert
+    pools for the two held-out domains, with letters from professional bodies; a learning
+    scientist.
+  \item \textbf{Before V7 is scheduled (after MS5):} a partner's letter of intent.
+\end{itemize}
+
+\subsection{Why the program is interdisciplinary}
+
+Each hard problem in the program belongs to a different research tradition, and no single skill
+covers all of them.
+
+\begin{itemize}[noitemsep]
+  \item \textbf{The absence check} is a natural-language-processing and measurement problem
+    (\cref{sec:n3,sec:resources}).
+  \item \textbf{Eliciting a fair question from a predicted gap} is a cognitive-task-analysis
+    problem, not a prompting technique (\cref{sec:foundations}).
+  \item \textbf{Matching a predicted gap to what a novice finds hard} is a learning-science
+    problem, because expert and instructor judgment of learner difficulty is unreliable
+    (\cref{sec:education-blindspots}).
+  \item \textbf{Deciding whether an effect is real at a pre-set size} is a statistics problem
+    (\cref{sec:validation}).
+  \item \textbf{Deploying on an organization's documents} is a security, privacy and legal problem
+    (\cref{sec:organizations}).
+\end{itemize}
+
+\evint{} A team of machine-learning engineers alone cannot cover this list, and a team of domain
+researchers alone cannot build the pipeline. The configurations below follow this map.
+
+\subsection{Configurations by phase}
+
+The team grows only when a gate releases the next phase.
+
+\paragraph{Phase~0 (owner-run, no hires).} The owner prepares the units and the codebook. One
+non-owner blind coder codes on an hourly contract, and the owner codes only under reported origin
+blinding. The external gate reader reads MS1. Nothing else is needed.
+
+\paragraph{Phase~1 lean team.} This is the minimum team that removes the PoC's largest structural
+risk, one person who built, ran, coded and read everything, and that can reach MS3
+(\cref{tab:team-lean}). It funds the area score and freeze (WP2), the judge's text-type check
+(WP3), and the pooled retrospective study (WP4). The Git adapter and V3 are no longer in this
+phase.
+
+\begin{table}[htbp]
+  \centering
+  \footnotesize
+  \caption{Phase~1 lean team (12--15 months, about 2.5--3.0~FTE, 35--44 person-months). It
+    reaches the screening gate MS3.}
+  \label{tab:team-lean}
+  \begin{tabularx}{\linewidth}{@{}p{0.19\linewidth}Xp{0.13\linewidth}p{0.07\linewidth}p{0.12\linewidth}@{}}
+    \toprule
+    Role & Why needed & When (WP) & FTE & Permanent / consultant \\
+    \midrule
+    PI / research lead &
+      Owns hypotheses and thresholds; prepares each gate report, but does not read the gate &
+      WP1, all & 0.8--1.0 & Permanent \\
+    Research engineer (LLM/retrieval) &
+      Area score, admissibility as code, dated-corpus mode, the freeze, V0 &
+      WP2, WP4 & 1.0 & Permanent \\
+    Research assistant or second engineer &
+      Gold availability check, area partitions, memorization probes &
+      WP4 & 0.5 & Fixed-term \\
+    Statistician / methodologist &
+      Threshold table, pooled random-effects $\Delta$AUROC, incremental analysis; script
+      committed before any gold is seen &
+      WP1, WP3, WP4 & 0.3 & Part-time \\
+    CTA practitioner &
+      Codebook upkeep; rules for mapping gold items to areas &
+      WP3, WP4 & 0.1--0.2 & Consultant \\
+    Coders (2) &
+      Judge text-type units; blind gold-to-area mapping &
+      WP3, WP4 & 160--380 hours & Hourly contract \\
+    Data-protection / license advisor &
+      Dataset and gold license checks &
+      WP1, ad hoc & Ad hoc & Consultant \\
+    External gate reader &
+      Reads MS3; not a team member (\cref{sec:gate-reader}) &
+      MS3 & Per gate & Independent \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\paragraph{Phase~2 team.} \evint{} This is the smallest team that can run Phase~2 without leaving
+any stage's human-science, statistics or engineering skill missing when it starts
+(\cref{tab:team-grant}). It adds a cognitive psychologist, a platform engineer, a learning
+scientist, human--computer interaction (HCI) support, and the legal and project-management capacity V7 needs. Without the
+organizational track, the platform engineer and legal counsel lines can be dropped. The role
+table is in \cref{app:program}, since it matters only once MS3 reads continue.
+
+
+\paragraph{Product / platform team.} \evfut{} This configuration starts only after MS5 and MS7
+both read continue (\cref{sec:workpackages}). A research grant does not fund it; it is sized only
+for comparison with the research teams above, at close to the \enquote{team of 8--15} used in
+\cref{sec:resources}. The role table is \cref{tab:team-product} in \cref{app:program}.
+
+\subsection{The external gate reader}
+\label{sec:gate-reader}
+
+\evint{} A funder buying pre-registered kill criteria needs someone other than the applicant to
+apply them. The program therefore names an external gate reader: an independent statistician, or
+a small advisory board that includes one.
+
+\begin{itemize}[noitemsep]
+  \item \textbf{Independence.} The reader is not a co-applicant, is not paid from a tranche that
+    the reading releases, and has no stake in the program's continuation. A per-gate fee is agreed
+    in advance.
+  \item \textbf{Authority.} The reader reads MS1, MS3 and MS5 against the pre-registration,
+    which is hash-committed in advance. The reading is binding: a tranche is released only if the reader reads
+    continue.
+  \item \textbf{Owner exceptions.} Any exception the owner wants at any gate, including MS2, MS2b,
+    MS4, MS6, MS7, MS8 and the H-OSS gate, needs the reader's written sign-off before it takes effect. An exception
+    without sign-off voids the gate reading, and no money is released on it.
+\end{itemize}
+
+No such reader existed during the PoC. The step from N2 to N3 was an owner exception, recorded
+but not checked by anyone independent (\cref{sec:evolution}). The gate reader exists so that this
+cannot recur.
+
+\subsection{The independence rule (binding for staffing)}
+
+One rule constrains every configuration above and cannot be relaxed by adding headcount. A domain
+expert who serves as a study participant cannot also be an advisor who has seen the
+reconstruction or its candidates for that domain. The same rule already governs the frozen
+Validation Track~A. There, anyone who has seen reconstructed conservation content is ineligible
+for any Track~A human role: interviewer, corroborating coder, K1 \enquote{absent} coder, or
+importance rater (\emph{REORIENTATION.md} \S18.1). The NOW program extends the same logic to every
+new domain:
+
+\begin{itemize}[noitemsep]
+  \item \textbf{Advisor versus participant.} An advisor who saw a domain's gap map or candidates
+    may not later rate, be interviewed, code, or corroborate in that domain (eligibility register,
+    WP1).
+  \item \textbf{The Track~A roster stays separate.} Mechanics-domain staff are excluded from any
+    Track~A role; E-SEAL predictions are script-generated, never shown to a future Track~A holder.
+  \item \textbf{The pipeline's owner cannot be the blind coder.} Every gating agreement score includes a
+    non-owner coder; the owner may code only under reported origin blinding, as in Phase~0.
+  \item \textbf{Interviewers and coders never see scores or strata.} A guess-the-stratum check on a
+    fifth of V5's areas measures whether this blinding held.
+\end{itemize}
+
+\evint{} These rules cost recruiting effort. Each domain needs at least one advisor and a disjoint
+pool of participants, so \cref{sec:resources} counts recruitment overhead as its own line.

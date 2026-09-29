@@ -1,0 +1,283 @@
+\section{Lens specifications}
+\label{app:lenses}
+
+This appendix gives the seven methodology lenses (\cref{sec:foundations,sec:n3}) at
+implementation grain: what each one fires on, what it treats as missing, what kind of knowledge
+it predicts, how a human would be asked, and where it is known to fail. Source: \repo{gapmap/src/gapmap/lenses.py},
+\repo{gapmap/src/gapmap/semantic.py} (closure judging) and \repo{docs/plans/n3-poc-lens-spec.md}
+\S2 and \S2.8 (post-review text; \S8/\S9's numbers are the pre-review prototype's and are not used
+here). A lens is an analytical construct applied uniformly to a ledger, never a named research
+method by itself (\cref{sec:foundations}).
+
+\paragraph{Shared machinery, once.} Every lens works over an \evobs{} \code{Ledger}: claims labeled
+{\small\nolinkurl{literature_supported}} or {\small\nolinkurl{organisational_artefact_supported}} form pool
+\textbf{A} (attestable); {\small\nolinkurl{synthetic_extrapolation}} claims form pool \textbf{S} (never attestation,
+usable only to flag an unverified statement). A lens \emph{fires} on an eligible \textbf{A} claim
+(the seed), producing a \code{Candidate}. Whether the candidate's missing element is genuinely
+absent (\emph{closure}, \cref{sec:n3}) is decided downstream by a local, replayed semantic judge
+(\code{qwen2.5:7b-instruct}), never by the lens itself; each lens also computes a comparison-only
+\emph{lexical state} (regex-based) that is never decisive but feeds the \S7.1 checks
+(\cref{app:claims}, rows E36, E38). A seed sourced from a promotional domain or matching the
+\code{PROMO} lexicon never fires, for any lens (\code{promo_blocked}, \repo{gapmap/src/gapmap/lenses.py}).
+
+\paragraph{Assertion, not always the span.} Every firing rule, every anchor, and the judge's own
+probe text run on a claim's \code{assertion} -- the extractor's paraphrase of its source -- not
+necessarily a verbatim sentence. A human-facing question quotes the most relevant verbatim span
+sentence when one exists; \code{lenses.py}'s \code{_best_sentence} falls back to the assertion
+itself when a claim has no span sentences, when the best candidate sentence opens with a bare
+referent, or when it is shorter than five words. This is a construct-validity threat, not an edge
+case: DIAG's anchor (below) is always built from the seed's assertion, never a span sentence, and
+one trace in \cref{app:records} (Trace~3) quotes the model's paraphrase as if it were the
+document's own words.
+
+\subsection{DISC --- undefined discrimination}
+
+\begin{description}
+  \item[Construct and source] A cue is a discrimination: contrasting cases plus the feature that
+    separates them. CTA interviews probe for cues, discriminations and
+    typicality; \emph{which} cue triggered a judgment is behavior a person cannot fully narrate.
+  \item[Firing rule] Fires on a term from the \code{JUDGE} lexicon (e.g.\ \enquote{appropriate},
+    \enquote{high-risk}, \enquote{normal}) inside a verified claim's assertion. The anchor is that
+    term plus the stem of the next content word (two fixed anchors, \enquote{high risk} and
+    \enquote{large scale}, are exempt from this pairing). \textbf{Termhood:} an anchor needs at
+    least 2 distinct \textbf{A} claims using it, or it is dropped (removes one-off bigrams such as
+    \enquote{appropriate tank}).
+  \item[Missing element] A boundary for the anchor: a positive/negative contrast, or a quantified
+    threshold. The judge checks every claim whose text contains the anchor; a one-sided list of
+    examples (\enquote{such as children}) counts only as \emph{partial}, never closed, because it
+    gives no separating feature.
+  \item[Predicted knowledge type] \code{cue} (\code{expectancy} if the term is \enquote{normal},
+    \enquote{expected} or \enquote{baseline}). Tacitness: \code{perceptual} if at least half the
+    anchor claims are typed failure-mode, cue, check, procedure-step or interpretation, otherwise
+    \code{collective}.
+  \item[Elicitation channel] Contrasting-case classification (perceptual knowledge), or
+    expert-rated written vignettes (collective/relational knowledge) --- not an interview alone.
+  \item[Question template (verbatim)] \enquote{Two sources write: \textquotedbl\{s1\}\textquotedbl{}
+    and \textquotedbl\{s2\}\textquotedbl. Think of a recent case where you had to judge whether
+    something was \{anchor\}. Describe one case that clearly was, one that clearly was not, and one
+    that was hard to call. What differed between them, and what did you check first?}
+  \item[Known failure modes] (i) the boundary is stated in paraphrase, which the anchor-string
+    regex cannot see --- the main limitation of DISC; (ii) the term is
+    \emph{institutionally indeterminate} (at least half the anchor claims are typed \code{norm} or
+    \code{concept}), so practitioners may simply disagree and there is nothing to recover; (iii)
+    the boundary sits in a source the reconstruction never fetched. Four of eight failures examined
+    by hand were paraphrase misses (\repo{docs/plans/n3-poc-lens-spec.md} \S10).
+\end{description}
+
+\subsection{DIAG --- rival causes without a discriminating sign}
+
+\begin{description}
+  \item[Construct and source] PARI's Interpretation step updates a fault hypothesis among rival
+    causes of one observation; Evidence-Centered Design's \enquote{additional KSAs} formalize the
+    same rival-explanation structure.
+  \item[Firing rule] Fires on an \textbf{A} claim typed \code{failure_mode}, \code{cue},
+    \code{interpretation}, \code{misconception} or \code{expert_novice_contrast} whose assertion
+    matches the \code{CAUSE} lexicon; the assertion is split at the marker into a cause and an
+    effect side. Two cause claims are \emph{rivals} if their effect stems share $\geq 2$ stems and
+    their non-common cause stems share none, and rivals are direct neighbors only (never a
+    transitive chain). A seed plus its direct rivals is a group; a group needs $\geq 2$ rivals.
+  \item[Missing element] A discriminating sign per rival cause. The local judge probes each rival
+    in turn (its own cause/effect stems, matched against retrieved sentences via \code{DISCR});
+    the group stays open if at least two rivals get no sign.
+  \item[Predicted knowledge type] \code{interpretation} plus \code{cue}. Tacitness:
+    \code{relational}, with \code{perceptual} added if any seed is typed \code{cue}.
+  \item[Elicitation channel] CDM probes on a recalled case, then contrasting cases.
+  \item[Question template (verbatim, built after judging)] \enquote{Sources list several causes of
+    \{anchor\}: \textquotedbl\{s1\}\textquotedbl, \textquotedbl\{s2\}\textquotedbl. Think of the
+    last time you diagnosed \{anchor\}. Which cause did you suspect first, and what did you see,
+    hear or measure that let you rule the others out?} (\repo{gapmap/src/gapmap/semantic.py}:268--273;
+    the lead sentence drops to one quote, or none, if fewer are available.) \textbf{The template
+    substitutes \code{cand.anchor}, not a clean \enquote{effect} noun phrase:}
+    \code{_diag_anchor()} (\repo{gapmap/src/gapmap/lenses.py}:364--375) returns the full sentence
+    containing the cause marker, trimmed to 80 characters, or the whole seed assertion if the
+    effect side is too short -- the same fragment used as the DIAG anchor everywhere else in this
+    record. This is a known template defect (the rendered question can read as a mid-sentence
+    fragment; \cref{app:defects}, row TR1), not a design choice.
+  \item[Known failure modes] (i) the sign exists but is phrased without the cause's own stems ---
+    lexical linking, not the sign's absence, is the binding constraint; (ii) the causes may
+    co-occur, so practitioners test rather than discriminate between mutually exclusive options;
+    (iii) the \enquote{sign} DISCR finds may be instrument output (a displayed reading), not tacit
+    judgment. A first build of this lens read \enquote{rivals} as a transitive closure over shared
+    stems instead of direct neighbors, chaining unrelated causes into one 40-claim group and
+    inflating that group's rank; caught by reading the rendered map, not by the (all-passing) unit
+    tests (\repo{docs/lessons.md}).
+\end{description}
+
+\subsection{SEL --- selection criterion named, mapping absent}
+
+\begin{description}
+  \item[Construct and source] Conditions for choosing between methods: GOMS selection rules, HTA
+    plans, and the condition part of a knowledge component; \enquote{when (not) to apply} a rule.
+  \item[Firing rule] Fires on an \textbf{A} assertion that matches the \code{SEL} lexicon
+    (\enquote{based on}, \enquote{depending on}, \enquote{choose}, \ldots) \emph{and} is
+    prescriptive (a \code{MODAL} marker, or typed \code{decision}).
+  \item[Missing element] A mapping from situation to option: a conditional (\code{COND}) linking a
+    circumstance to the named choice.
+  \item[Predicted knowledge type] \code{decision}; tacitness \code{relational}.
+  \item[Elicitation channel] CDM probes for the options considered and the basis of the choice.
+  \item[Question template (verbatim)] \enquote{\textquotedbl\{s1\}\textquotedbl. Think of the last
+    time you made this choice. Which options did you consider, which did you take, and what about
+    that situation decided it? When did you last choose differently?}
+  \item[Known failure modes] (i) the mapping is stated as an example or a comparative that
+    \code{COND} does not match; (ii) the choice named is not a real decision point in field
+    practice at all --- a prescriptive sentence need not reflect a live decision.
+\end{description}
+
+\subsection{HEDGE --- hedged rule, exception condition absent}
+
+\begin{description}
+  \item[Construct and source] \enquote{When \emph{not} to apply} a rule: case-based-reasoning
+    relevance conditions and the condition part of a Knowledge-Learning-Instruction unit. A
+    quasi-universal hedge (\enquote{generally}, \enquote{as a rule}) admits exceptions without
+    stating them.
+  \item[Firing rule] Fires on a prescriptive \textbf{A} assertion (\code{MODAL}, or typed
+    \code{decision}/\allowbreak\code{norm}/\allowbreak\code{strategy}/\allowbreak\code{procedure_step}/\allowbreak\code{check}) that contains
+    a \code{HEDGE} marker occurring \emph{before} any \code{RAT} (rationale) marker --- a hedge
+    inside a \enquote{because} clause qualifies the reason, not the rule, and does not fire.
+  \item[Missing element] An exception condition (\code{EXC}: \enquote{unless}, \enquote{except},
+    \enquote{does not apply}, \ldots) stated by some other claim on the same topic.
+  \item[Predicted knowledge type] \code{decision}; tacitness \code{relational}, or
+    \code{collective} if at least half the neighborhood is typed \code{norm}.
+  \item[Elicitation channel] CDM hypotheticals and boundary-case vignettes.
+  \item[Question template (verbatim)] \enquote{\textquotedbl\{s1\}\textquotedbl. Describe a case
+    where this did not hold, or where you decided against it. What about that case told you it was
+    an exception?}
+  \item[Known failure modes] (i) the \enquote{exception} found is circular, merely restating the
+    judgment (e.g.\ \enquote{unless you are confident the processing is unlikely to result in a
+    high risk} adds no new criterion); (ii) the hedge is statutory boilerplate with no field
+    practice behind it; (iii) a trigger is stated inside the seed itself, in a form \code{EXC} does
+    not match (e.g.\ \enquote{at least when}).
+\end{description}
+
+\subsection{GUARD --- named error without a detection cue}
+
+\begin{description}
+  \item[Construct and source] Automated error-monitoring and self-check habits are behavior a
+    person cannot fully narrate; omission is partly a side-effect of skills becoming automatic.
+    GUARD hypothesizes only the expert's own guard against an error the sources report --- it never
+    asserts a \emph{learner} difficulty, because these ledgers hold expert-voiced text only, and
+    experts hold just part of what learners get wrong.
+  \item[Firing rule] Fires on an \textbf{A} claim typed \code{misconception}, or whose assertion
+    matches \code{ERR} (\enquote{mistake}, \enquote{false positive}, \ldots) \emph{and} names a
+    human agent or action (\code{GUARD_AGENT}: \enquote{technician}, \enquote{operator},
+    \enquote{you}, \ldots) --- the misconception type alone no longer fires on its own.
+  \item[Missing element] A detection cue (\code{DETECT}: \enquote{check}, \enquote{notice},
+    \enquote{warning sign}, \ldots) stated for that error, by the seed or a neighbor.
+  \item[Predicted knowledge type] \code{check} or \code{metacognition}; tacitness
+    \code{automated}.
+  \item[Elicitation channel] Observation or process tracing first; a retrospective probe over a
+    recorded trace second, and \textbf{flagged as a weak channel} --- think-aloud is weak for
+    automated, over-learned checks.
+  \item[Question template (verbatim)] \enquote{\textquotedbl\{s1\}\textquotedbl. Think of the last
+    time you or a colleague nearly did this or just had. What made you notice? What did you look
+    at?}
+  \item[Known failure modes] (i) the cue is stated in paraphrase, invisible to the \code{DETECT}
+    regex; (ii) the \enquote{error} is a vendor framing (a promotional source's warning), not a
+    practitioner error --- flagged live whenever the \code{PROMO} lexicon matches the span; (iii)
+    the guard is organizational (a checklist or procedure), not an internalized cognitive cue.
+\end{description}
+
+\subsection{WHY --- prohibitive or contrastive prescription without a rationale}
+
+\begin{description}
+  \item[Construct and source] The rationale gap, after Szulanski's causal ambiguity: sources that
+    prescribe \enquote{do this, not that} without ever saying why. Restricted to prohibitions and
+    contrasts, where an omitted \enquote{why} is least likely to be simply obvious.
+  \item[Firing rule] Fires on an \textbf{A} assertion with both a \code{MODAL} and a \code{CONTRA}
+    marker (\enquote{not}, \enquote{never}, \enquote{instead}, \enquote{only}, \ldots), typed one
+    of \code{procedure_step}/\allowbreak\code{strategy}/\allowbreak\code{check}/\allowbreak\code{decision}/\allowbreak\code{norm}, not sourced
+    from a \code{standard}, and not itself matching \code{RAT}. An assertion whose only supporting
+    text matches \code{AUTH} (references a regulation, statute or regulator by name) is
+    \textbf{excluded as \enquote{authority}} --- logged, never emitted as a candidate at all,
+    because the reason \emph{is} the rule. A descriptive \enquote{requires or does not require}
+    disjunction (\code{WHY_DISJUNCTION}) also does not fire; it is not a prescription.
+  \item[Missing element] A reason (\code{RAT}, or a neighbor typed \code{rationale} or the
+    \code{failure_mode} the prescription guards against).
+  \item[Predicted knowledge type] \code{rationale}; tacitness \code{relational}.
+  \item[Elicitation channel] A targeted confirmation question.
+  \item[Question template (verbatim, revised post-review)] \enquote{Sources say:
+    \textquotedbl\{s1\}\textquotedbl. What would happen if someone did it differently, and in what
+    situations, if any, is doing it differently acceptable?}
+  \item[Known failure modes] (i) the rationale is a purpose clause (\enquote{to identify\ldots})
+    that \code{RAT} does not match; (ii) the source is promotional (flagged live on a
+    \code{PROMO} hit); (iii) the omitted reason is trivial safety knowledge, too obvious for any
+    source to bother stating.
+\end{description}
+
+\subsection{RESULT --- PARI result interpretation}
+
+\begin{description}
+  \item[Construct and source] Added after the first adversarial review (fix F7). PARI's
+    Precursor--Action--Result--Interpretation cycle: sources prescribe a test, and the expert's
+    reading of the result --- the branch it selects --- is the predicted residual (the
+    \enquote{A~$\to$~B~$\to$~C, but what decides B vs.\ D} gap).
+  \item[Firing rule] Fires on an \textbf{A} claim typed \code{procedure_step}, \code{check},
+    \code{strategy} or \code{decision}, prescriptive (\code{MODAL}, or an imperative sentence
+    opening with the test verb; a safety \emph{precondition} such as \enquote{only be performed
+    when\ldots} is excluded even under \code{MODAL}), whose assertion matches \code{TEST}
+    (\enquote{measure}, \enquote{inspect}, \enquote{compare}, \ldots) followed within 6 tokens by
+    at least one non-common content word (the object of the test).
+  \item[Missing element] A result-to-interpretation mapping: what a given reading means
+    (\code{INTERP}) or what value it should be compared against (\code{QUANT}).
+  \item[Predicted knowledge type] \code{interpretation} plus \code{expectancy}; tacitness
+    \code{relational}, plus \code{perceptual} if the test verb is \enquote{inspect} or
+    \enquote{observe}.
+  \item[Elicitation channel] CDM probes on a recalled case; process tracing.
+  \item[Question template (verbatim)] \enquote{Sources prescribe: \textquotedbl\{s1\}\textquotedbl.
+    Think of the last time you did this. What result did you get, what had you expected, what did
+    that result make you do next --- and what result would have sent you down a different path?}
+  \item[Known failure modes] (i) the interpretation is stated in paraphrase, missing the seed's own
+    stems (RESULT shares this limitation with DISC); (ii) the test is a formality with a binary
+    outcome, not a real branch point; (iii) the interpretation is instrument-given (a displayed
+    pass/fail), needing no practitioner judgment at all.
+\end{description}
+
+\subsection{Retrieval-gap categories}
+
+A retrieval gap is a separate, fourth thing, never a hidden-knowledge hypothesis
+(\cref{sec:n3}). By design, each one's action is to search or verify further, not to ask a human
+expert -- with one recorded exception, a code defect: \code{checks.apply_sibling} moves a record
+to RG-SIBLING without clearing its \code{hypothesis} or \code{question} fields, so one GDPR v2
+RG-SIBLING record (a DISC candidate) still carries both (\cref{app:defects}, row TR2).
+\Cref{tab:retrieval-gaps} lists the five categories, from \code{record.categorize} and
+\code{checks.apply_sibling} in \repo{gapmap/src/gapmap/record.py} and
+\repo{gapmap/src/gapmap/checks.py}.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{@{}l X l@{}}
+    \toprule
+    \textbf{Category} & \textbf{What it means} & \textbf{Action} \\
+    \midrule
+    RG-UNK & A ledger slot that was searched for and fetched but nothing was found (an
+      N2 \code{UNKNOWN} claim), or a sidecar slot marked \code{unknown}, \code{thin} or
+      \code{unverified}. & Search further \\
+    RG-SINGLE & A lens fired (open or partial), but only one independent source touches the
+      topic ($k_{\text{topic}} \leq 1$). One voice not saying X is weak evidence that X is
+      unsaid. & Search (widen sources) \\
+    RG-UNVER & The lexical closure state is \code{synthetic-closed}: the missing element may be
+      stated, but only in an unverified (synthetic) claim. & Verify the span \\
+    RG-SIBLING & An independent sibling reconstruction of the same domain (e.g.\ GDPR v1 vs.\ v2)
+      has a matching candidate that closed there; if the sibling's match is only \code{partial},
+      this record downgrades from open to partial instead. & Verify (re-check against the
+      sibling's sources) \\
+    RG-UNDECIDED & The local judge's answer could not be parsed (malformed JSON, or it cited a
+      sentence id that does not resolve). Never counted as open, never as a finding. & Re-judge
+      or inspect manually \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Retrieval-gap categories and their actions. None of the five is a hidden-knowledge
+    hypothesis, and by design none is routed to a human question; one exception, a code defect, is
+    recorded in \cref{app:defects}, row TR2.}
+  \label{tab:retrieval-gaps}
+\end{table}
+
+\paragraph{Data-wide limitations, all lenses.} All three ledgers hold only expert-voiced World A
+text (documentation, procedure documents, standards); there is no work-as-done and no learner
+data, so no lens can reach a learner-facing claim. Knowledge types are extractor-assigned and
+directly gate DIAG and GUARD eligibility. Independence keys are coarse (3 keys in GDPR v1, 5 in
+v2), which caps $k_{\text{topic}}$ and pushes most GDPR candidates to RG-SINGLE rather than HYP.
+The lexicons in \repo{gapmap/src/gapmap/config.py} are English, hand-written and tuned in-sample
+on these same three ledgers; they are hashed, not frozen, and must be hash-frozen at MS2 before
+any gold is acquired. They have not been tested against an out-of-sample domain (\repo{docs/plans/n3-poc-lens-spec.md} \S10).

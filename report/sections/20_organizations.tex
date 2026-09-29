@@ -1,0 +1,239 @@
+\section{Organizations}
+\label{sec:organizations}
+
+This section asks what the platform (\cref{sec:platform}) could offer an organization: World B,
+applied to a firm's own artifacts instead of public text. The PoC evidence behind this section is
+the N3 gap map (\cref{sec:n3}), run on two demo domains built entirely from \emph{public} text: 35
+fetched PLC-troubleshooting web pages (forums and vendor blogs, with 42 promotional seeds excluded),
+and the Article~29 Working Party's WP248 guidance on data protection impact assessments (GDPR v1,
+whose support is 80\% guidance from the UK Information Commissioner's Office (ICO) and statute, across three independence keys). Its own
+closeout reports that the closure step is not informative against a fair control on either domain,
+and that one adversarial AI reviewer judged 3 of 19 candidates precise (strict reading) on the pre-final maps, in-sample and with no human coder. Nothing below claims the PoC has run on real organizational
+data, and nothing below claims it identifies real tacit knowledge. \evint\ for every application
+below, unless marked otherwise.
+
+\subsection{Three organizational blind spots}
+\label{sec:org-blindspots}
+
+\textbf{A technician's diagnostic cue.} Orr's ethnography of photocopier repair technicians found
+that diagnosis proceeds through a narrative process: technicians build a coherent story of the
+failing machine, and that story, not the service manual, keeps the group's diagnostic knowledge
+current \parencite{orr1996talking}. Brown and Duguid read the same fieldwork as knowledge held by a
+community of practice, not by individuals or documents \parencite{brown1991organizational}.
+\evlit. The PLC demo produced a candidate of the same shape: a record built on the span ``a common
+mistake\dots{} is panicking and abandoning systematic approaches,'' where the absence check found
+at most a partial statement of how a troubleshooter notices the drift (state: \code{partial}).
+\evobs\ (candidate, not validated) that a lens can flag this \emph{kind} of gap in text; whether it
+is real tacit knowledge is untested.
+
+\textbf{A senior engineer's design rationale.} Szulanski's study of 122 practice transfers across
+eight firms found that the largest barriers to transfer were the recipient's absorptive capacity
+and \emph{causal ambiguity} --- not knowing why a practice works --- while source motivation
+mattered less than folk theory suggests \parencite{szulanski1996exploring}. \evlit. In software,
+this shows up as commits and configuration changes with no issue, pull request, or design record
+explaining the reasoning. \evint.
+
+\textbf{A compliance officer's exception judgment.} Hollnagel's work-as-imagined versus
+work-as-done distinction \parencite{hollnagel2018safety} is the general frame: the written rule is
+the imagined process, and a practitioner's case-by-case judgment of borderline cases is the work
+actually done. \evlit. WP248 is written in exactly this shape, requiring a data protection impact
+assessment ``in most cases'' when two screening criteria are met and ``in some cases'' when only
+one is, without saying which. The GDPR demo's best-rated candidate is built on precisely this
+hedge. \evobs\ (candidate, not validated) --- the run is not N3-admissible (140 pending verdicts),
+and the closure check that would confirm the boundary is genuinely unstated elsewhere is, again,
+uninformative against its fair control.
+
+\subsection{World B evidence versus World A}
+\label{sec:org-worldb}
+
+World A evidence (public text) is expert-voiced explanation, written to be read. World B evidence
+is organizational trace: SOPs and runbooks (\code{imagined}), but also tickets, incident reports,
+commit history, review threads, chat, and postmortems (\code{done}). The doc-versus-practice
+divergence is a World-B-specific signal public text cannot show at all, having no paired execution
+log to compare against \parencite{hollnagel2018safety}. \evlit\ for the concept; \evfut\ for a
+benchmark that would prove a detector can find it reliably.
+
+World B differs from World A in three ways the platform's design already treats separately
+(\cref{sec:platform-nfr}):
+\begin{itemize}[noitemsep]
+  \item \emph{Access control}: retrieval must enforce per-user rights, and the standard
+    retrieval-augmented-generation evaluation frameworks we found
+    \parencite{gao2023retrieval,es2024ragas} do not score access-scoped retrieval against a
+    held-out knowledge criterion \evhyp.
+  \item \emph{Confidentiality and intellectual property}: sending artifacts to a third-party model
+    is the organization's decision, not the pipeline's.
+  \item \emph{Personal-data exposure}: Git authorship and review participation are the raw material
+    for scoring who alone understands a component, which is personal-data processing about
+    identifiable employees (\cref{sec:org-ethics}).
+\end{itemize}
+
+\subsection{How the pipeline changes for a private corpus}
+\label{sec:org-pipeline}
+
+The reconstruction-to-gap-map pipeline's (\cref{sec:approach}) core components are domain-neutral
+by construction: they live in the core evidence package, independent of any one domain (decision
+0006). The lexicons, denylist, and stop-anchors that drive the lenses are not: they are English and
+were tuned in-sample on PLC and GDPR (\cref{sec:n3}), so a World B run needs the same in-sample
+re-tuning risk any new domain carries, not a domain-neutral starting point. Applying the pipeline to
+World B needs three further changes, none built or tested. \evfut{} throughout.
+
+\textbf{Retrieval over a private, access-scoped corpus.} Reconstruction currently retrieves the open
+web; a World B run needs an indexed corpus (SOPs, tickets, Git history, design records) with
+per-document access rights carried through to every claim's provenance. \evhyp.
+
+\textbf{On-premises or contractually isolated models.} Confidentiality likely forecloses sending
+artifacts to a third-party API by default. The gap map's own closure judge already runs locally,
+though the recorded reason was model-family separation and zero cost, not confidentiality (decision
+0008 (proposed); \cref{sec:n3}) --- a precedent that on-premises deployment is viable, not that it
+works on organizational text: its closure judgments were uninformative against a fair control on
+either PoC demo domain. \evobs\ for viability; \evint\ for organizational applicability.
+
+\textbf{Gap map, question ranking, and residual capture, unchanged in shape.} Lenses fire on
+constructs the corpus attests but does not state; a judge assesses whether the gap is genuinely
+unclosed elsewhere; the ranked output becomes questions for a named or pseudonymized expert.
+Untested for World B specifically: whether lenses built for expert prose fire usefully on ticket
+and commit text, and whether closure against a private corpus is any more informative than the
+public-text step that failed its control on both PoC domains.
+
+\subsection{Value propositions, stated soberly}
+\label{sec:org-value}
+
+\Cref{tab:org-value} separates what the literature establishes about the underlying problem from
+what is actually shown about this system solving it. No credible, peer-reviewed cost figure for
+organizational knowledge loss in general was found in the evidence review behind this report, and
+none is asserted here.
+
+\begin{table}[htbp]
+  \centering
+  \footnotesize
+  \caption{Organizational value propositions: literature grounding versus what this system has
+    shown.}
+  \label{tab:org-value}
+  \begin{tabularx}{\linewidth}{@{}p{0.19\linewidth}Xp{0.30\linewidth}@{}}
+    \toprule
+    Proposition & Literature grounding & Evidence that our system solves it \\
+    \midrule
+    Onboarding acceleration &
+      A taxonomy of documentation issues built from 878 software artifacts
+      \parencite{aghajani2019software}; documentation problems are one of five barrier categories
+      for newcomers to open source projects \parencite{steinmacher2014barriers}; we found no study
+      of onboarding speed &
+      \evhyp\ Untested that a gap map shortens onboarding \\
+    Retiring-expert knowledge capture &
+      Retention frameworks treat this as a real, prioritized risk, on case-study and practitioner
+      argument \parencite{delong2004lost} &
+      \evhyp\ No validated method converts an artifact gap map into a capture priority \\
+    Turnover-induced knowledge loss, quantified &
+      Established at scale in software: 65\% of 133 popular GitHub projects have a truck factor of
+      2 or fewer \parencite{avelino2016novel}; in Chrome and a project at Avaya, the mean of the
+      worst 5\% of quarterly knowledge losses (abandoned files) was 3.6--3.8 times the expected
+      loss, and historical simulations of departures gave losses over five times the expected loss
+      \parencite{rigby2016quantifying}, and a
+      replication found more severe extremes \parencite{nassif2017revisiting}; 315 of 1{,}932
+      projects (16\%) were abandoned after truck-factor developers left
+      \parencite{avelino2019abandonment} &
+      \evlit\ that the risk is real and measurable in software. \evhyp\ that an artifact-coverage
+      score adds predictive value beyond authorship-only concentration --- exactly what the
+      program's H-OSS study (V3) is designed to test (\cref{subsec:hoss}), and it has not run \\
+    Troubleshooting and diagnostic support &
+      Diagnostic knowledge circulates as narrative among practitioners, not in manuals
+      \parencite{orr1996talking} &
+      \evhyp\ Untested whether reconstruction plus a gap map surfaces the missing cue rather than
+      just the documented procedure \\
+    Audit and regulatory defensibility &
+      The gap between work as imagined and work as done has a theoretical frame
+      \parencite{hollnagel2018safety}, and conformance checking compares event logs with process
+      models \parencite{carmona2018conformance}; our search found no public corpus joining SOPs to
+      execution logs &
+      \evfut\ We found no benchmark to validate an SOP-versus-record divergence detector against \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Open-source software is also the one organizational domain where knowledge loss can be measured
+without any interview at all. The domain strategy (D2, \cref{sec:domains}) therefore uses it for the
+program's zero-participant organizational test, H-OSS (\cref{subsec:hoss}). H-OSS is a separate
+hypothesis: its result can neither support nor refute H2.
+
+\subsection{A candidate organizational pilot}
+\label{sec:org-pilot}
+
+\textbf{Partner type (Recommended).} A moderate-size software organization with an internal Git
+repository, issue tracker, code review history, and some design records, closest to the program's
+registered H-OSS design (V3, \cref{subsec:hoss}), reusing a pre-specified analysis rather than
+inventing one. An industrial-maintenance partner is the stronger long-run target for the
+diagnostic-cue value proposition, but lacks as clean a natural experiment as developer departure and
+tends toward terse, jargon-heavy text, a documented low-support condition; start with the software
+partner and treat maintenance as a second-wave target.
+
+\textbf{Domain, data, and measures.} Git history, code review comments, the issue tracker, and
+design records, all dated; no private chat without separate, explicit consent. In the program this
+pilot is V7: it starts only after MS5 reads continue and the deferred N2 validation is complete
+(\cref{sec:validation}). The procedure has the same structure as H-OSS:
+\begin{enumerate}[noitemsep]
+  \item freeze the corpus shortly before a known or planned senior-contributor departure;
+  \item compute the gap map and a concentration score per component from artifacts dated at or
+    before that freeze;
+  \item after the departure, blind-code post-freeze rationale-seeking issues and defect-fix
+    commits per component;
+  \item compare the ranking against the strongest baseline (truck factor, code churn,
+    documentation link density).
+\end{enumerate}
+
+\textbf{Success and failure criteria.} Success: the ranking predicts post-departure trouble better
+than the strongest baseline, by a pre-registered margin, mirroring the H-OSS gate. Failure: it
+does not, meaning artifact coverage adds nothing beyond authorship concentration --- informative,
+not wasted, mirroring N3's own honest closure-check failure (\cref{sec:n3}).
+
+\subsection{Ethics and data protection}
+\label{sec:org-ethics}
+
+The points in this subsection follow the reorientation plan's own reading of applicable law and
+guidance. \textbf{They are stated as information gathered for planning purposes, not as
+independently verified legal advice, and a qualified data protection counsel should review them
+before any pilot begins.}
+
+A data protection impact assessment is required wherever per-person concentration scoring performs
+systematic processing of identifiable employees' work. The proposed legal basis is legitimate
+interest with a documented balancing test, not consent, since consent is generally invalid inside an
+employment relationship given the power imbalance it carries. Where a German entity is involved, a
+works council agreement is required before deployment: a system objectively capable of assessing
+employee performance is subject to co-determination under German works constitution law regardless
+of the deployer's intent. The pilot must not feed task allocation, promotion, or performance
+evaluation, staying clear of the stricter category high-risk employment AI systems fall into under
+EU law. Outputs default to aggregate or pseudonymized scores, named only by consent. Company
+artifacts remain the firm's intellectual property; a written agreement should bar training any model
+outside the engagement and require on-premises processing or an equivalent data-processing
+agreement.
+
+\subsection{Risks specific to organizations}
+\label{sec:org-risks}
+
+\textbf{Goodhart's law applied to documentation.} If a coverage score becomes a target metric, the
+response most available to people is to write documentation that raises the score, not
+documentation that conveys the missing knowledge. A large empirical taxonomy of software documentation
+issues, built from 878 artifacts in mailing lists, Stack Overflow, issue trackers and pull requests,
+shows that documentation problems arise without any scoring pressure
+\parencite{aghajani2019software}. \evlit\ for the taxonomy; \evint\ that a coverage
+key-performance-indicator would plausibly make by-the-letter-but-hollow documentation more common.
+
+\textbf{Surveillance framing.} Szulanski's evidence runs against the intuitive story that experts
+withhold knowledge as leverage: motivation was a smaller transfer barrier than absorptive capacity
+and causal ambiguity \parencite{szulanski1996exploring}. \evlit. The more defensible risk is that a
+system inferring ``only one person understands this'' from Git and review history is doing exactly
+the processing the legitimate-interest test and works-council co-determination exist to check.
+\evint. Deployed without \cref{sec:org-ethics}'s safeguards, it reads to staff as covert
+performance monitoring, which alone can block adoption or trigger a works-council veto.
+
+\textbf{Confidentiality and injection exposure.} Every internal document a retrieval system serves
+back is a channel to plant instructions; indirect prompt injection through retrieved content is a
+demonstrated attack class \parencite{greshake2023not}. \evlit. A World B deployment retrieving
+tickets, chat, and commit messages has a larger, less curated attack surface than a World A pipeline
+reading public papers. \evint. The platform's answer is that retrieved text is always data, never
+instructions (\cref{sec:platform-nfr}).
+
+\textbf{Misuse of concentration scores.} A per-person ``irreplaceability'' score is a short step
+from a redundancy-targeting or performance tool, the regulatory trigger \cref{sec:org-ethics} is
+built to avoid; the mitigation (aggregate by default, consent for naming, a contractual ban on
+evaluation use) is a governance decision enforced by contract, since the pipeline cannot enforce it
+itself. \evint.

@@ -1,0 +1,162 @@
+\section{Risks, kill criteria and pivots}
+\label{sec:risks}
+
+Likelihood and impact are qualitative (L/M/H), because nothing in the validation program
+(\cref{sec:validation}) has run yet to give a measured rate. Each kill or pivot criterion is either
+already registered (\emph{REORIENTATION.md} \S22) or proposed here for pre-registration before the
+relevant gold or human data are seen. The external gate reader applies the criteria at MS1, MS3
+and MS5 (\cref{sec:gate-reader}). \Cref{tab:risks} lists the risks that can stop or redirect the
+program. \evfut{} Every row describes a future event, not an observed one.
+
+\begingroup
+\footnotesize
+\begin{longtable}{@{}p{0.14\linewidth}p{0.05\linewidth}p{0.24\linewidth}p{0.19\linewidth}p{0.21\linewidth}@{}}
+  \caption{Program risks, kill criteria and pivots. \enquote{Kill} stops a claim and the money
+    that depends on it; \enquote{pivot} redirects the program to a narrower claim on its own,
+    separate budget.}
+  \label{tab:risks} \\
+  \toprule
+  Risk & L/I & Early signal & Mitigation & Kill / pivot criterion \\
+  \midrule
+  \endfirsthead
+  \multicolumn{5}{@{}l}{\small\itshape \tablename~\thetable{} (continued)} \\
+  \toprule
+  Risk & L/I & Early signal & Mitigation & Kill / pivot criterion \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{5}{@{}r}{\small\itshape continued on next page} \\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+    \textbf{Closure-step failure}: the absence check cannot be made informative &
+      H/H &
+      \evobs{} On every existing ledger the closure judge's rate on a candidate's own evidence
+      equals its rate on swapped evidence (\cref{sec:n3}) &
+      Phase~0 runs first: a written codebook with anchors per lens, a non-owner blind coder, a
+      corpus-level recall check, and a judge panel including other-family and frontier judges &
+      \textbf{MS1}: human $\kappa<0.70$, recall below its floor, or no judge beating the fair
+      control by the margin \(\to\) stop the automated absence check; no grant is requested for
+      the gap map \\
+    \textbf{Central scientific kill}: the gap map does not beat the strongest baseline &
+      M/H &
+      A near-zero pooled point estimate; the PLC ranking already tracks source density
+      (Spearman~$\rho=0.91$, \evobs{})\footnote{\repo{research/n3/plc/gapmap.json}.} &
+      Density and area size fixed as baselines in advance; an incremental analysis over both;
+      the strongest baseline chosen inside each bootstrap resample; $\delta$ fixed before any
+      gold &
+      \textbf{MS3} fails its screening rule \(\to\) no Phase~2 money; the interview-only pivot on
+      its own budget. \textbf{MS5}: anything short of continue \(\to\) H2 reported as not
+      supported, and H2 funding ends \\
+    \textbf{Gold unavailable or too few golds} &
+      M/H &
+      The Phase~1 metadata check finds fewer than three eligible itemized golds, or golds that
+      cover under 15 missed areas &
+      Candidate golds listed before Phase~1 starts; pooling by random effects across all golds
+      that pass &
+      Fewer golds are reported at MS2; the MS3 rule does not change, so CONTINUE becomes harder
+      to reach and Phase~2 is likelier to stay unreleased. No other study stands in for the
+      missing golds \\
+    \textbf{Contamination / memorization} &
+      H/M &
+      A high share of probe-positive items; recall on an old, widely cited gold far above what
+      post-cutoff items show &
+      Dated corpora from archived or publication-dated sources; per-item memorization probes with
+      exclusion \parencite{golchin2023time,sainz2023nlp}; open-weight models with documented
+      cutoffs &
+      Probe-positive items dominate a gold \(\to\) drop that gold from the pooled reading and
+      report its recall only as an upper bound \\
+    \textbf{Expert recruitment} (V5) &
+      M/H &
+      Slow enrollment or no-shows in the V5 pilot; the pilot projects more areas than the funded ceiling
+      of 450 &
+      Professional bodies and honoraria; sessions capped at 75 minutes; about 20 short probes per
+      expert; three experts per area &
+      \textbf{MS4}: the projection exceeds the ceiling \(\to\) V5 main is not released, and H2
+      is reported as untested. No underpowered V5 is run in its place \\
+    \textbf{Governance}: the owner overrides a gate &
+      M/H &
+      An exception taken by the owner, as in the step from N2 to N3, which no independent person
+      checked (\cref{sec:evolution}) &
+      The external gate reader reads MS1, MS3 and MS5 and must sign off any owner exception
+      (\cref{sec:gate-reader}) &
+      An exception without the reader's sign-off voids that gate reading; no tranche is released
+      on it \\
+    \textbf{Team / key-person risk} &
+      H/H &
+      No host and no named team yet; one person built, ran, coded and read the PoC
+      (\cref{sec:team}) &
+      Named host, PI, statistician and CTA collaborator before submission; non-owner coders for
+      every gating score; a second engineer in Phase~1 &
+      The key person is lost \(\to\) the program pauses at its last gate; no gate reading is
+      accepted without the gate reader \\
+    \textbf{H-OSS fails} (organizational track) &
+      M/M &
+      Too few usable departures in V3's pilot; the code lenses fire mostly on commit style &
+      Code lenses frozen at MS2b, after the Git adapter exists; knowledge-at-risk and authorship
+      baselines; a power decision after the pilot &
+      The H-OSS gate reads stop \(\to\) H-OSS is reported as not supported. H2 is unaffected
+      either way \\
+    \textbf{Partner access} (V7) &
+      M/H &
+      No letter of intent by the pilot's scouting deadline &
+      Scouting starts only after MS5; a software organization first; an artifact-coverage-only
+      offer that never evaluates named individuals &
+      No partner \(\to\) report the organizational-transfer claim as untested \\
+    \textbf{Ethics / legal} (data protection, works councils) &
+      M/H &
+      A data protection impact assessment finds high residual risk, or a works council objects &
+      Artifact-coverage mode by default; pseudonymized concentration scores; no evaluation use of
+      outputs, by contract; on-prem processing where required &
+      The assessment or the works council blocks the design \(\to\) stop the pilot at that
+      partner; reconsider the product design before S6 \\
+    \textbf{Cost / budget headroom} &
+      L--M/M &
+      A provider spending limit sits below the sum of a stage's own registered caps, as it did in
+      the PoC\footnote{\evobs{} \repo{docs/lessons.md}: a \$5 weekly key limit stopped a run at
+      its first call; the registered caps summed to about \$21.} &
+      Provider limits at least 3$\times$ the registered caps, on a monthly window; the headroom
+      check runs as code; one key per experiment (\cref{sec:resources}) &
+      A study stopped by budget is reported as inconclusive and rerun with corrected headroom; a
+      budget stop is never read as a negative result \\
+\end{longtable}
+\endgroup
+
+Three further risks recur across the studies. They have no kill rule of their own, but they shape
+how any result above should be read.
+
+\textbf{In-sample tuning.} The gap map's lexicons were tuned on the same three ledgers the PoC
+used to build it, so any effect measured on those ledgers is optimistic. The configuration is
+hash-frozen before any gold or new domain is touched. Any change after the freeze turns a result
+into an exploratory one, not a gate reading.
+
+\textbf{Retrieval instability.} Two independently reconstructed ledgers on the same regulation
+shared only 3 of 13 and 3 of 9 unclosed lens records (gap candidates plus single-source retrieval
+gaps, \cref{sec:n3}). Low cross-run agreement under a frozen corpus would mean the gap map is not
+reproducible. This is checked before any human time is spent on it.
+
+\textbf{Surveillance framing.} A partner's staff can read a knowledge-coverage score as covert
+performance monitoring, whether or not the score is accurate. The mitigation is contractual:
+aggregate output by default, no evaluation use, and consent for naming. A partner that uses the
+output to evaluate a named person is grounds to end the pilot (\cref{sec:organizations}).
+
+\subsection{Pivots, and what each one keeps}
+
+Two pivots exist. Each has its own budget line, and neither inherits Phase~2's money
+(\cref{sec:resources}).
+
+\textbf{The interview-only pivot.} If MS1 stops the automated absence check, or MS3 or MS5 ends
+H2 funding, the program can propose one smaller study. It compares question selection by expected
+information gain with untargeted interviewing, with no reconstruction prior. It keeps a light
+workbench, the blind-arm protocol, the coding tools and the equivalence-test machinery; only the
+reconstruction pipeline's role as predictor is dropped. A positive result is a usable efficiency
+tool. A negative one bounds how far text reconstruction can go, a bound the field currently lacks
+(\cref{sec:contributions}).
+
+\textbf{Reconstruction with provenance as a documentation-audit tool.} If the human-facing claim
+fails but the ledger and its provenance checks still work, the pipeline keeps a use that does not
+depend on predicting hidden knowledge. It becomes a provenance-checked map of what a text states
+and does not state, reported as a documentation audit, not a residual predictor. \evint{} This also
+bears on a commercial risk: a vendor may fold a similar coverage score into its platform first.
+The program's answer is not a race to ship. It is the released closure set, the benchmark, and a
+prospective $\Delta$AUROC if MS5 ever reads continue (\cref{sec:contributions}).

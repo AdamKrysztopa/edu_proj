@@ -1,0 +1,26 @@
+% report/style/colors.tex
+% Single source of truth for the report's color palette.
+% Included by report/preamble.tex (document) and report/figures/src/figstyle.tex
+% (TikZ figures), so prose and figures never drift apart.
+%
+% Assumes xcolor is already loaded by the including file.
+
+% --- Neutral scale ---------------------------------------------------------
+\definecolor{ink}{HTML}{1A1A1A}      % body text
+\definecolor{gray700}{HTML}{4D4D4D}  % captions, secondary text, footers
+\definecolor{gray400}{HTML}{A6A6A6}  % rules, borders, artefact/data-store nodes
+\definecolor{gray200}{HTML}{DDDCDA}  % hairlines
+\definecolor{gray100}{HTML}{F4F2F0}  % subtle box/table-row tints
+\definecolor{paper}{HTML}{FFFFFF}
+
+% --- Primary accent (headings, links, Finding/Key-question boxes) ---------
+\definecolor{accent}{HTML}{7A2048}       % deep burgundy
+\definecolor{accentlight}{HTML}{F2E6EC}  % 8-10%-equivalent tint for fills
+
+% --- Evidence-category palette (color-blind-safe; Okabe-Ito derived, ------
+% --- darkened for AA contrast with white badge text) ----------------------
+\definecolor{evlitcol}{HTML}{0B5FA5}  % ESTABLISHED LITERATURE  - blue
+\definecolor{evobscol}{HTML}{00815D}  % OBSERVED IN THE PoC     - bluish green
+\definecolor{evintcol}{HTML}{B36A00}  % INTERPRETATION          - amber/ochre
+\definecolor{evhypcol}{HTML}{9C3D72}  % HYPOTHESIS              - purple
+\definecolor{evfutcol}{HTML}{5A5A5A}  % FUTURE WORK             - neutral gray

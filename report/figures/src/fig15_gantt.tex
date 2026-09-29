@@ -1,0 +1,155 @@
+% report/figures/src/fig15_gantt.tex
+% Gantt chart of WP1-WP11 (rows by number) from Phase 0 (P0, drawn as
+% months -3 to 0, before any grant) to M48, with Phase 0 and Phase 2
+% shaded, phase brackets on top, tranche releases (EUR) at MS1 and MS3,
+% gates as diamonds and freezes (MS2, MS2b) as squares. Bars, months and
+% milestones: sections/23_workpackages.tex (WP text and tab:milestones);
+% phases and tranches: sections/25_resources.tex. Home: sec:workpackages
+% (fig:gantt).
+%
+% x is in months (1.8 mm each); month m occupies [m-1, m], so a gate at Mm
+% sits at x = m. y is in mm, decreasing downward, one row per WP.
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{fontspec}
+\setsansfont{Source Sans Pro}
+\input{figstyle.tex}
+
+% Two bar colors (accent, gray); rounded corners = human-participant study;
+% dashed at 55% fill opacity = conditional on a gate after MS3 (MS4 or MS5).
+\tikzset{
+  ganttsci/.style={thick, draw=accent, fill=accent!15!white},
+  gantthuman/.style={rounded corners=1.6pt, thick, draw=accent, fill=accent!15!white},
+  gantthuman-cond/.style={gantthuman, dashed, fill opacity=0.55},
+  ganttend/.style={thick, draw=gray400, fill=gray100},
+  ganttend-cond/.style={ganttend, dashed, fill opacity=0.55},
+  ms/.style={diamond, aspect=1, thick, draw=evlitcol, fill=evlitcol!25!white, minimum width=3.4mm, minimum height=3.4mm, inner sep=0pt},
+  frz/.style={rectangle, thick, draw=evlitcol, fill=white, minimum width=2.5mm, minimum height=2.5mm, inner sep=0pt},
+  eur/.style={circle, thick, draw=evintcol, fill=white, inner sep=0pt, minimum size=3.8mm,
+              font=\sffamily\bfseries\fontsize{7}{7}\selectfont, text=evintcol},
+  rowlabel/.style={font=\sffamily\fontsize{8.5}{10}\selectfont, text=ink, anchor=east},
+  axislabel/.style={font=\sffamily\fontsize{7}{8}\selectfont, text=gray700},
+  phaselabel/.style={font=\sffamily\bfseries\fontsize{7}{8}\selectfont, text=gray700},
+  mslabel/.style={font=\sffamily\bfseries\fontsize{7}{8}\selectfont, text=evlitcol},
+}
+\newcommand{\gbar}[4]{\draw[#1] (#3,#2-2.25) rectangle (#4,#2+2.25);}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+\begin{document}
+\begin{tikzpicture}[x=1.8mm, y=1mm]
+
+  \def\ybot{-89}
+  % -------------------------------------------------------- phase shading
+  \fill[gray100!80!white] (-3,\ybot) rectangle (0,15);
+  \fill[gray100!80!white] (14,\ybot) rectangle (48,15);
+
+  % ---------------------------------------------------------------- axis
+  \draw[gray400, thick] (-3,15) -- (48,15);
+  \foreach \m in {0,6,...,48} \draw[gray400] (\m,15) -- (\m,16);
+  \foreach \m in {6,12,...,48} \node[axislabel, anchor=south] at (\m,16) {\m};
+  \node[axislabel, anchor=south] at (-1.5,16) {P0};
+  \node[rowlabel, font=\sffamily\bfseries\fontsize{7}{8}\selectfont, text=gray700, anchor=south east]
+    at (-3,16) {Month};
+
+  % ------------------------------------------------------ phase brackets
+  \foreach \a/\b in {-3/0, 0/14, 14/48}
+    \draw[gray700] (\a,21.2) -- (\a,22) -- (\b,22) -- (\b,21.2);
+  \node[phaselabel, anchor=south east] at (-3.3,22) {Phase 0: V1, before any grant};
+  \node[phaselabel, anchor=south] at (7,22.4) {Phase 1: M1--M14};
+  \node[phaselabel, anchor=south] at (31,22.4) {Phase 2: M15--M48, released only if MS3 reads continue};
+  \node[eur] at (0,22) {€};
+  \node[eur] at (14,22) {€};
+
+  % -------------------------------------------------------- WP row grid
+  \foreach \y/\t in {
+      -2/{WP1 \ Pre-registration, governance},
+      -9.5/{WP2 \ Area score, freeze (V0)},
+      -17/{WP3 \ Absence-check valid. (V1)},
+      -24.5/{WP4 \ Pooled CTA gold (V2, V4)},
+      -32/{WP5 \ Org.\ track: H-OSS (V3)},
+      -39.5/{WP6 \ Elicitation workbench},
+      -47/{WP7 \ Prospective experts (V5, V6)},
+      -54.5/{WP8 \ Organizational pilot (V7)},
+      -62/{WP9 \ Learners, education (V8)},
+      -69.5/{WP10 Platform groundwork},
+      -77/{WP11 Benchmark, dissemination},
+      -85/{Track A (frozen)}} {
+    \node[rowlabel] at ([xshift=-1.2mm]-3,\y) {\t};
+  }
+  \foreach \y in {-2,-9.5,-17,-24.5,-32,-39.5,-47,-54.5,-62,-69.5,-77} {
+    \draw[gray200] ([xshift=-1.2mm]-3,\y-3.75) -- (49,\y-3.75);
+  }
+
+  % ---------------------------------------------- milestone guide lines
+  \foreach \x in {0,14,24,33,38,46,48} \draw[gray200, densely dotted] (\x,\ybot) -- (\x,8);
+  \foreach \x in {4,23} \draw[gray200, densely dotted] (\x,\ybot) -- (\x,4.2);
+
+  % -------------------------------------------------------------- bars
+  \gbar{ganttsci}{-2}{-3}{48}
+  \gbar{ganttend}{-9.5}{0}{8}
+  \gbar{ganttsci}{-17}{-3}{0}
+  \gbar{ganttsci}{-17}{4}{10}
+  \gbar{ganttsci}{-24.5}{0}{14}
+  \gbar{ganttsci}{-32}{14}{36}
+  \gbar{ganttend}{-39.5}{14}{30}
+  \gbar{gantthuman}{-47}{20}{24}
+  \gbar{gantthuman-cond}{-47}{24}{38}
+  \gbar{gantthuman-cond}{-47}{38}{46}
+  \gbar{gantthuman-cond}{-54.5}{38}{48}
+  \gbar{ganttsci}{-62}{14}{20}
+  \gbar{gantthuman-cond}{-62}{38}{48}
+  \gbar{ganttend}{-69.5}{14}{38}
+  \gbar{ganttend-cond}{-69.5}{38}{48}
+  \gbar{ganttend}{-77}{-3}{48}
+  \draw[dashed, thick, gray400] (-3,-85) -- (48,-85);
+  \node[axislabel, anchor=south west, font=\sffamily\itshape\fontsize{7}{8}\selectfont]
+    at (14.3,-84.6) {own preconditions; E-SEAL: sealed, non-gating};
+
+  % ------------------------------------------------ gates and freezes
+  \foreach \x in {0,14,24,33,38,46,48} \node[ms] at (\x,9.6) {};
+  \foreach \x in {4,23} \node[frz] at (\x,4.2) {};
+  \foreach \x/\t in {0/1, 14/3, 24/4, 33/H-OSS, 38/5, 48/7}
+    \node[mslabel, anchor=south] at (\x,11.2) {\t};
+  \node[mslabel, anchor=south east] at (46.5,11.2) {6, 8};
+  \node[mslabel, anchor=west] at ([xshift=1.2mm]4,4.2) {2};
+  \node[mslabel, anchor=west] at ([xshift=1.2mm]23,4.2) {2b};
+
+  % -------------------------------------------------------- MS key
+  \node[fit={([xshift=-1.2mm]-3,-2) (48,0)}, inner sep=0pt] (chart) {};
+  \path (current bounding box.west |- 0,-91) coordinate (K);
+  \node[axislabel, anchor=north west, text width=70mm, align=left] (k1) at (K)
+    {\textbf{MS1} (end of P0): closure verdict; $\kappa\geq0.70$, recall $\geq$ floor, a judge beats the fair control \\[0.8mm]
+     \textbf{MS2} (M4): configuration freeze; no hash, no gold \\[0.8mm]
+     \textbf{MS3} (M14): screening gate; pooled $\Delta$AUROC $\geq\delta$, lower bound $>-\delta/2$ \\[0.8mm]
+     \textbf{MS2b} (M23): H-OSS freeze of the code lenses \\[0.8mm]
+     \textbf{MS4} (M24): V5 pilot; $\leq$ 450 areas, $\alpha\geq0.80$, strata guessed at chance};
+  \node[axislabel, anchor=north west, text width=66mm, align=left] (k2) at ([xshift=74mm]K)
+    {\textbf{H-OSS} (M33): the MS5 rule on H-OSS only; cannot stop or license H2 \\[0.8mm]
+     \textbf{MS5} (M38): H2 verdict; lower bound $>0$, point $\geq\delta$ \\[0.8mm]
+     \textbf{MS6} (M46): H3; yield ratio $>1$, point $\geq1.25$ \\[0.8mm]
+     \textbf{MS8} (M46): novice error excess in confirmed residual areas \\[0.8mm]
+     \textbf{MS7} (M48): organizational pilot; map beats controls, legal route workable};
+
+  % ------------------------------------------------------------ legend
+  \tikzset{sw/.style={minimum width=6mm, minimum height=4mm, inner sep=0pt},
+           ll/.style={axislabel, anchor=west, right=1.2mm of #1}}
+  \path (k1.south west |- k1.south) ++(0,-4) coordinate (L1);
+  \node[ganttsci, sw, anchor=west] (a1) at (L1) {};
+  \node[ll=a1] (a1t) {Science / validation study};
+  \node[gantthuman, sw, right=4.5mm of a1t] (a2) {};
+  \node[ll=a2] (a2t) {Human study (rounded)};
+  \node[ganttend, sw, right=4.5mm of a2t] (a3) {};
+  \node[ll=a3] (a3t) {Engineering};
+  \node[gantthuman-cond, sw, right=4.5mm of a3t] (a4) {};
+  \node[ll=a4] (a4t) {Conditional on MS4 or MS5};
+  \node[fill=gray100!80!white, draw=gray200, sw, anchor=west] (b1) at ([yshift=-6mm]L1) {};
+  \node[ll=b1] (b1t) {Phase 0 and Phase 2};
+  \node[ms, right=6.5mm of b1t] (b2) {};
+  \node[ll=b2] (b2t) {Gate};
+  \node[frz, right=5.5mm of b2t] (b3) {};
+  \node[ll=b3] (b3t) {Freeze};
+  \node[eur, right=5.5mm of b3t] (b4) {€};
+  \node[ll=b4] (b4t) {Tranche released (MS1, MS3)};
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,64 @@
+\section{Summary}\label{sec:summary}
+
+\paragraph{The result.} \evobs{} The proof of concept (PoC) built a chain from public web text to
+ranked questions for experts, and it runs. Its central step does not work yet. That step, the
+absence check (\emph{closure} in the code), asks a judge model whether retrieved evidence already
+states an element that a methodology lens flagged as missing. In a fair control, each candidate's
+other-source sentences were swapped for those of the topically nearest candidate. The judge's
+closure rate did not change: 0.889, 0.961 and 0.958 in the three ledgers, in both arms. The judge's
+verdict does not depend on which evidence it is shown, so it is not yet an informative absence
+check. No gold standard was acquired, and no human has checked any prediction. The PoC therefore
+neither shows nor refutes that the gap map predicts what experts know.
+
+\paragraph{The recommendation: run the closure study before any grant.} \evfut{} The cheapest
+decisive test needs no grant and no participants. In this Phase~0 study (V1), a blind coder who is
+not the owner labels each unit as closed, partly closed or open. The sample is the 107 lens firings
+from the two admissible ledgers, each in both arms of the fair control (214 units), plus about 100
+units from one new domain. V1 reports human--human agreement, corpus-level retrieval recall, and
+whether any judge in a panel beats the fair control. It costs coder hours and local compute, on the
+order of EUR~$10^3$. Its gate, MS1, reads CONTINUE only if human $\kappa \geq 0.70$, retrieval
+recall meets its floor (proposed 0.80), and at least one judge beats the fair control by a
+pre-registered margin. Otherwise the automated absence check stops. The V1 numbers belong on page~1
+of any grant proposal (\cref{sec:validation}).
+
+\paragraph{The problem and the idea.} \evlit{} Experts leave out the steps that have become
+automatic for them. In one small study, three surgeons teaching a procedure omitted on average 73\%
+of the decision steps in a task list built by cognitive task analysis (CTA)
+\parencite{sullivan2014use}; no general omission rate is known. Writers also leave out what is
+obvious to them \parencite{gordon2013reporting}. We ask AI for two narrow things: \emph{reconstruct}
+what public sources state about a task, as a ledger of labeled claims tied to exact source spans;
+and \emph{predict where that reconstruction is thin}, using constructs from expertise research as
+lenses. What survives the absence check is a \emph{gap candidate}: a hypothesis labeled
+\emph{inferred}, with a template question for an expert.
+
+\paragraph{What was built and shown.} \evobs{} With zero participants and public web text only, in
+two domains (intermittent faults in programmable logic controllers, PLC; data protection impact
+assessments under the GDPR), at \$0.50--\$1.00 per run:
+\begin{itemize}[nosep]
+  \item an evidence model with computed labels, gates that refuse synthetic criteria, and a frozen
+    schema (N1);
+  \item a reconstruction pipeline with verbatim spans and cross-family verification (N2). All 909
+    stored evidence items re-slice exactly from their snapshots; 418 of 1,169 claims have no
+    locatable span and are labeled synthetic. N2's registered research verdict is INCONCLUSIVE;
+  \item a gap map with seven lenses, absence check, triage, a breadth ranking and template
+    questions (N3). On the two admissible ledgers the lenses fired 107 times and left 25 gap
+    candidates after merging; built-in checks expose the absence check's failure on every replay.
+\end{itemize}
+Not shown: that any candidate is real expert knowledge; that the absence check works; that gating
+resists planted falsehoods; that the ranking is more than source density; that anything generalizes
+beyond two domains.
+
+\paragraph{What is new.} \evint{} Every step has precedent; the closest work checks GDPR privacy
+policies for regulation-required content \parencite{torre2020ai}. What we did not find is a method
+that chains a provenance-typed ledger, expertise constructs as absence detectors, a knowledge type
+and elicitation channel per candidate, and search failures kept apart from expert questions. That
+chain is a proof of concept, not a validated method.
+
+\paragraph{The program after V1.} \evfut{} Each tranche of money is released only by a gate reading
+CONTINUE, read by an external gate reader, not the owner. \emph{Phase~1}, a lean methods grant (about
+EUR~0.3--0.5\,M, 12--15 months, only on MS1 CONTINUE), freezes the configuration and screens the gap
+map against several published CTA task lists; its gate MS3 releases Phase~2 money but does not decide
+the central hypothesis H2. \emph{Phase~2} (EUR~0.7--2.2\,M, only on MS3 CONTINUE) decides H2 by a
+blind prospective study powered for $\delta = 0.05$ in area under the ROC curve (AUROC). \textbf{Team
+status:} one operator built the PoC with AI assistance; a host institution, principal investigator,
+statistician, CTA collaborator and gate reader must be named before submission (\cref{sec:plan}).

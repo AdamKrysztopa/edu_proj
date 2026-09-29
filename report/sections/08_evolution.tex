@@ -1,0 +1,80 @@
+\section{N0--N3: what was built and what it decided}
+\label{sec:evolution}
+
+Every NOW item is pre-registered to end in a continue, change, or stop reading of an experiment
+result, never in \enquote{the build finished}. Rule R13 of the plan says so: a NOW item that ends in
+infrastructure without a gate reading is a failure of the plan (\repo{REORIENTATION.md}, \S22).
+\evobs{} N0 and N1 read their gates directly from a code check. N2's registered gate reads a specific
+number against a specific floor. N3's registered gate, the ΔAUROC test against a gold standard, has
+not run, because no gold has been acquired. What N3 reports below are its own internal
+proof-of-concept checks, not its program gate. \Cref{tab:now-verdicts}
+summarizes all four.
+
+\begin{table}[tbp]
+  \centering
+  \small
+  \caption{N0--N3: purpose, what was built, and the registered verdict each one read. Test counts
+  and check results are the live-run numbers used throughout this report
+  (\cref{sec:architecture,sec:n2,sec:n3}). N3's key commit, \code{ec45c31}, is the N3 PoC commit;
+  \code{754e2e6}, cited elsewhere in this report, is the later ADR-0008 commit.}
+  \label{tab:now-verdicts}
+  \begin{tabularx}{\linewidth}{@{}lXXXl@{}}
+    \toprule
+    Item & Purpose & What was built & Registered verdict & Key commit \\
+    \midrule
+    N0 & Reset after the reorientation: fix the DOI-checking hook, freeze Track A, create the
+      domain-neutral package & \repo{scripts/hook_tests/test_check_dois.py}; \repo{residual/}
+      scaffold with its own test hook & \textbf{Done, gate passed} (2026-09-28): the hook
+      demonstrably fires on a test edit & \code{d4fbc60} \\
+    N1 & Pre-register and build the evidence model: claim record, six epistemic labels, gap-map
+      field types, a freeze & \repo{residual/src/residual/} (claims, vocab, ledger, provenance,
+      gates, gapmap, freeze, residual); \repo{residual/frozen/n1.json} & \textbf{Done, gate:
+      continue with 2 additions} (\code{KnowledgeType.INTERPRETATION},
+      \code{ResponseDistribution}), at the registered ≤2 limit & \code{accb506} \\
+    N2 & Build a gated reconstruction pipeline and test it live and against planted falsehoods
+      and private questions & One-way pipeline (plan→search→fetch→extract→locate→verify→
+      contradict→assemble); E-LIVE runs on PLC and GDPR; E-PLANT/E-ABST harnesses & \textbf{Engineering
+      PoC: complete. Full research validation: deferred.} Registered gate: \textbf{INCONCLUSIVE}
+      -- E-PLANT's Continue branch closed on the validity floor ($a_U{=}5/24 < 8$), and the gated
+      arms of E-PLANT and E-ABST were never scored & \code{ea5c18e} \\
+    N3 & Build a methodology-guided gap map over N2's ledgers that turns silence into candidate
+      hypotheses and expert questions & Seven lenses over three ledgers (PLC, GDPR v1, GDPR v2);
+      ranked maps; built-in adversarial checks (anti-renaming, closure null, mismatched-evidence
+      control, cross-run stability) & \textbf{PoC: pipeline complete, hidden-knowledge prediction
+      not demonstrated.} Closure step is \code{closure-uninformative} on every lens tested. Program
+      gate (ΔAUROC vs.\ gold) \textbf{not run} -- gold not acquired & \code{ec45c31} \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+N0 and N1 close cleanly: each reads a code-checked condition (a hook firing; a field-type count
+against a pre-registered ceiling) and both pass. \evobs{} N2's registered research verdict is
+INCONCLUSIVE. The ungated E-PLANT baseline adopted only 5 of 24 planted falsehoods
+($a_U = 5/24$, below the required 8). By the pre-registered validity-floor rule, this closes the
+\emph{Continue} branch before the gated arms of E-PLANT and E-ABST were scored, and those arms are
+the actual test of whether gating helps. The owner then chose not to spend further budget. Those arms
+and a post-fix live re-check (E-LIVE v3) stay pre-registered and unexecuted. Separately, N2's
+engineering milestone is complete (\cref{sec:architecture}).
+
+N3 built and ran its full pipeline on real ledgers. Its fair-control check is built into
+\code{gapmap/checks.py}, added after an adversarial review found the weakness, and re-run on every
+replay. It shows that the closure judge does not beat a fair, evidence-mismatched control on any lens
+tested (lenses with fewer than two candidates are skipped). The own rate equals the control rate
+($0.889/0.889$, $0.961/0.961$, $0.958/0.958$). The gap map is therefore a
+working mechanism that produces \emph{candidates}, with no demonstrated ability yet to tell a real
+absence from a topically nearest neighbor's evidence.
+
+\subsection{The owner exception: N3 on N2's engineering milestone}\label{sec:owner-exception}
+
+N2's own registered gate stayed INCONCLUSIVE. Under the plan's rule R13, that would block the next
+item from starting. \evobs{} The owner made a single, recorded exception (\repo{REORIENTATION.md},
+\S22; \repo{PROGRESS.md}). N2's engineering milestone was treated as sufficient to start N3; N2's
+research validation stays deferred. N3's own stop rule is unaffected, since it reads N3's own
+ΔAUROC test, not N2's gate.
+
+\evint{} This was a softened gate, and the person who softened it is the person whose program depends
+on it. No one outside the project read the gate or approved the exception. Recording the exception is
+better than leaving it implicit, but it is not independent control. The program therefore adds an
+external gate reader: an independent statistician, or a small advisory board with one, reads the
+closure, screening and H2 gates (MS1, MS3, MS5) against the pre-registration and has authority over
+them. Any later exception by the owner needs the reader's sign-off (\cref{sec:validation}).

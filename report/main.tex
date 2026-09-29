@@ -1,0 +1,148 @@
+% report/main.tex -- Extended Technical Report (the complete technical record of the PoC).
+% Build with `make` (see Makefile) or `latexmk -r latexmkrc main.tex` (LuaLaTeX + biber).
+\documentclass[a4paper,11pt]{scrartcl}
+\input{preamble.tex}
+
+\addbibresource{bibliography.bib}
+
+\newcommand{\reporttitle}{Finding What Experts Leave Unsaid}
+\newcommand{\reportsubtitle}{Evidence reconstruction and methodology-guided gap
+  mapping: the complete technical record of the proof of concept, and a
+  research program for validating it}
+\newcommand{\reportauthor}{Adam Krysztopa}
+\newcommand{\reportdate}{September 2026}
+
+\hypersetup{pdftitle={\reporttitle}, pdfauthor={\reportauthor},
+  pdfsubject={Extended Technical Report}}
+
+\begin{document}
+
+% -------------------------------------------------------------- title page
+\begin{titlepage}
+  \sffamily
+  \begin{flushleft}
+    \color{gray700}\small\MakeUppercase{Extended Technical Report}\\[10mm]
+  \end{flushleft}
+  \vspace{0.08\textheight}
+  \textcolor{accent}{\rule{\linewidth}{1.4pt}}\\[6mm]
+  {\hyphenpenalty=10000\exhyphenpenalty=10000
+   \bfseries\fontsize{30}{36}\selectfont\color{ink}\reporttitle\par}
+  \vspace{4mm}
+  {\fontsize{14}{18}\selectfont\color{gray700}\reportsubtitle\par}
+  \vspace{6mm}
+  \textcolor{accent}{\rule{\linewidth}{1.4pt}}\\[10mm]
+  \vfill
+  \begin{flushleft}
+    {\large\reportauthor\par}
+    \vspace{1mm}
+    {\color{gray700}\reportdate\par}
+    \vspace{6mm}
+    {\small\color{gray700}
+      Repository: \href{https://github.com/AdamKrysztopa/edu_proj}{github.com/AdamKrysztopa/edu\_proj}\\
+      Scope: the zero-participant NOW program, items N0--N3 (evidence model,
+      evidence reconstruction, gap map).\\
+      Validation Track A (physics, human expert elicitation) is frozen and
+      is not reported as a result here.\par}
+  \end{flushleft}
+\end{titlepage}
+
+\pagenumbering{roman}
+
+\begin{howtoreadbox}
+  This report separates five kinds of statement, and marks them where the
+  kind is not obvious from the wording:
+  \evlit\ a result from published work;
+  \evobs\ something this proof of concept (PoC) produced, checked against
+    its own output files, code or logs;
+  \evint\ our reading of what an observation means;
+  \evhyp\ a claim we think is plausible but have not tested;
+  \evfut\ work not yet done.
+  A \textsc{Finding} box states a conclusion we are prepared to defend. A
+  \textsc{Key question} box states something we do not know yet.
+  In figures, a solid outline means \emph{implemented in the PoC}; a
+  dashed outline means \emph{planned, not built}.
+  Repository paths such as \repo{research/n3/README.md} are links to the
+  exact file behind a claim.
+
+  \smallskip
+  This Extended Technical Report is the complete record of the PoC: protocols,
+  full results, implementation details and supplementary analysis. A
+  companion Main Research Report (about 35 pages) presents the argument and
+  points back here for detail.
+
+  \smallskip
+  The one distinction that matters most: the PoC \emph{predicts} where
+  hidden expert knowledge may lie. No human has yet checked those
+  predictions. A predicted gap is not observed expert knowledge.
+\end{howtoreadbox}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
+
+\input{sections/00_executive_summary.tex}
+
+% ---------------------------------------------------------------- Part I
+\reportpart{The Problem and the Approach}{Why expert knowledge goes unsaid,
+  what we ask, and which research traditions the approach builds on.}
+\input{sections/01_problem.tex}
+\input{sections/02_question.tex}
+\input{sections/03_foundations.tex}
+\input{sections/04_approach.tex}
+
+% ---------------------------------------------------------------- Part II
+\reportpart{The Proof of Concept}{What was built, what it produced, and
+  what it does and does not show.}
+\input{sections/05_scope.tex}
+\input{sections/06_architecture.tex}
+\input{sections/07_evidence_model.tex}
+\input{sections/08_evolution.tex}
+\input{sections/09_n2.tex}
+\input{sections/10_n3.tex}
+\input{sections/11_demonstrations.tex}
+\input{sections/12_demonstrates.tex}
+\input{sections/13_not_demonstrated.tex}
+\input{sections/14_interpretation.tex}
+\input{sections/15_threats.tex}
+
+% --------------------------------------------------------------- Part III
+\reportpart{The Research Program}{The construct to measure, the studies
+  that could validate the approach, and the platform it would lead to.}
+\input{sections/16_residual.tex}
+\input{sections/17_validation.tex}
+\input{sections/18_platform.tex}
+\input{sections/19_education.tex}
+\input{sections/20_organizations.tex}
+
+% ---------------------------------------------------------------- Part IV
+\reportpart{Plan, Team and Outlook}{Domains, gated roadmap, work packages,
+  team, resources, risks, and what the program would contribute.}
+\input{sections/21_domains.tex}
+\input{sections/22_roadmap.tex}
+\input{sections/23_workpackages.tex}
+\input{sections/24_team.tex}
+\input{sections/25_resources.tex}
+\input{sections/26_risks.tex}
+\input{sections/27_contributions.tex}
+\input{sections/28_impact.tex}
+\input{sections/29_conclusion.tex}
+
+\clearpage
+\printbibliography[heading=bibintoc, title={References}]
+
+% -------------------------------------------------------------- appendix
+\appendix
+\reportpart{Appendices}{Technical detail behind the main text.}
+\input{sections/A_claims.tex}
+\input{sections/B_lenses.tex}
+\input{sections/C_records.tex}
+\input{sections/D_defects.tex}
+\input{sections/E_reproduce.tex}
+\input{sections/F_glossary.tex}
+\input{sections/H_weft.tex}
+\input{sections/I_programdetail.tex}
+\input{sections/G_method.tex}
+
+\end{document}

@@ -1,0 +1,49 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+\paragraph{What we set out to do.} Experts leave out what has become automatic for them, and text
+leaves out what its authors find obvious (\cref{sec:problem}). We asked whether AI can reconstruct
+what is written about a task and predict where that reconstruction is thin, so that experts are
+pointed to where only they can add knowledge (RQ-B, \cref{sec:question}). The PoC had a narrow goal:
+build that chain with zero participants, on public evidence, and make every step checkable.
+
+\paragraph{What we built.} \evobs{} The chain exists and runs. N1's labels are computed from
+evidence, and its gates refuse synthetic material as a criterion. N2 reconstructs a task from the
+live web. Every stored evidence item is an exact span re-sliced from a hashed snapshot; a claim
+without one stays labeled synthetic extrapolation; a supporting verdict comes from a model of another
+family. N3 applies seven methodology lenses, an absence check, triage, a breadth ranking and template
+questions, and replays byte for byte offline. This supports H1 as an engineering result. Its
+adversarial part is open. N2's registered research verdict is INCONCLUSIVE: E-PLANT's Continue branch
+closed on the validity floor (the ungated model adopted 5 of 24 planted falsehoods, below the
+required 8), and the gated arms of E-PLANT and E-ABST were never scored. Separately, the engineering
+milestone is complete.
+
+\paragraph{What we learned.} \evobs{} The absence check (closure) is the crux, and it does not yet
+work. Its closure rate was the same on a candidate's own evidence and on its nearest neighbor's
+(0.889, 0.961 and 0.958). The judge's verdict does not depend on which evidence it is shown, so it is
+not yet an informative absence check. For every displayed candidate it found the missing element at
+most partly stated. The fair control, added after an adversarial AI review found the weakness, now
+confirms this on each replay. \evint{} Thinness is not yet evidence of a human residual. An area can
+be thin because retrieval was poor; two runs of the same GDPR task shared few candidates; on PLC the
+ranking tracks source density. A negative result from a component not shown to measure its target
+says nothing about the target: the PoC neither demonstrates nor refutes H2
+(\cref{sec:interpretation}).
+
+\paragraph{What must happen next.} \evfut{} Run the closure study (V1) before any grant submission. A
+blind coder who is not the owner codes the 107 admissible lens firings in both arms of the fair
+control (214 units), plus about 100 units from one new domain. The study reports human agreement, corpus-level retrieval recall, and whether any
+judge beats the fair control. It needs no participants and costs a few thousand euros. Its gate, MS1,
+decides whether an automated absence check is worth funding at all; its numbers belong on page~1 of
+any proposal. Only on CONTINUE does a lean methods grant follow: an area score, a two-step freeze
+before any gold, and a pooled retrospective study over several published CTA golds. Its gate, MS3,
+only screens money for the next phase: it releases Phase~2 if the pooled gain over the strongest
+baseline reaches $\delta$ with a lower 90\% bound above $-\delta/2$, and the map adds value beyond
+density and area size. Otherwise H2 funding stops. H2 itself is decided only in Phase~2, by blind
+prospective elicitation powered for $\delta = 0.05$. An external gate reader has authority over
+the three deciding gates (MS1, MS3, MS5) and must sign off any owner exception.
+
+\begin{findingbox}[unbreakable]
+  AI can already build a checkable record of what the written sources say about a task. Whether
+  its silences mark what experts know is untested. That test starts with the absence check, and the
+  absence check can be tested now, before any grant.
+\end{findingbox}
