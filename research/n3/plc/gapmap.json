@@ -1,0 +1,4038 @@
+{
+ "admissibility_note": null,
+ "admissible": true,
+ "checks": {
+  "anti_renaming": {
+   "closure_by_k_topic": [
+    {
+     "band": "0-1",
+     "closed": 1,
+     "n": 12,
+     "rate": 0.08333333333333333
+    },
+    {
+     "band": "2",
+     "closed": 5,
+     "n": 12,
+     "rate": 0.4166666666666667
+    },
+    {
+     "band": "3-4",
+     "closed": 5,
+     "n": 16,
+     "rate": 0.3125
+    },
+    {
+     "band": ">=5",
+     "closed": 2,
+     "n": 16,
+     "rate": 0.125
+    }
+   ],
+   "flags": [
+    "closure-uninformative"
+   ],
+   "j10_high": 0.5833333333333334,
+   "j10_low": 0.0,
+   "spearman": 0.9057043465885355,
+   "terciles": [
+    {
+     "closed": 2,
+     "hyp": 6,
+     "n": 18,
+     "tercile": "low"
+    },
+    {
+     "closed": 8,
+     "hyp": 10,
+     "n": 19,
+     "tercile": "mid"
+    },
+    {
+     "closed": 3,
+     "hyp": 16,
+     "n": 19,
+     "tercile": "high"
+    }
+   ],
+   "top_tercile_closed_share": 0.15789473684210525
+  },
+  "judge_lexical_confusion": {
+   "closed->closed": 10,
+   "closed->open": 2,
+   "closed->partial": 23,
+   "open->closed": 3,
+   "open->open": 11,
+   "open->partial": 7
+  },
+  "lexical_donor_null": {
+   "by_lens": {
+    "DIAG": {
+     "flag": true,
+     "n_candidates": 48,
+     "null_hi": 21.0,
+     "null_lo": 10.0,
+     "null_mean": 15.235,
+     "observed": 1
+    },
+    "GUARD": {
+     "flag": true,
+     "n_candidates": 1,
+     "null_hi": 1.0,
+     "null_lo": 0.0,
+     "null_mean": 0.37,
+     "observed": 0
+    },
+    "RESULT": {
+     "flag": true,
+     "n_candidates": 19,
+     "null_hi": 12.0,
+     "null_lo": 6.0,
+     "null_mean": 8.595,
+     "observed": 12
+    },
+    "SEL": {
+     "flag": true,
+     "n_candidates": 2,
+     "null_hi": 2.0,
+     "null_lo": 0.0,
+     "null_mean": 0.775,
+     "observed": 0
+    },
+    "WHY": {
+     "flag": true,
+     "n_candidates": 24,
+     "null_hi": 12.0,
+     "null_lo": 5.0,
+     "null_mean": 8.505,
+     "observed": 9
+    }
+   },
+   "total": {
+    "flag": true,
+    "null_hi": 41.0,
+    "null_lo": 26.0,
+    "null_mean": 33.48,
+    "observed": 22
+   }
+  },
+  "mismatched_evidence_control": {
+   "by_lens": {
+    "DIAG": {
+     "control_rate": 1.0,
+     "flag": true,
+     "n": 9,
+     "other_source_only_rate": 1.0,
+     "own_rate": 1.0
+    },
+    "RESULT": {
+     "control_rate": 1.0,
+     "flag": true,
+     "n": 19,
+     "other_source_only_rate": 0.8421052631578947,
+     "own_rate": 1.0
+    },
+    "SEL": {
+     "control_rate": 1.0,
+     "flag": true,
+     "n": 2,
+     "other_source_only_rate": 1.0,
+     "own_rate": 1.0
+    },
+    "WHY": {
+     "control_rate": 0.75,
+     "flag": true,
+     "n": 24,
+     "other_source_only_rate": 0.375,
+     "own_rate": 0.75
+    }
+   },
+   "total": {
+    "control_rate": 0.8888888888888888,
+    "flag": true,
+    "n": 54,
+    "other_source_only_rate": 0.6666666666666666,
+    "own_rate": 0.8888888888888888
+   }
+  },
+  "promo_excluded": 42
+ },
+ "config_sha256": "35fd0af25618f8d6e0d1c2c3707d7e932afe2ce72dbd01e956034b43bfeb04c1",
+ "domain": "PLC intermittent-fault diagnosis",
+ "ledger_sha256": "3d724d8ddfb78f43240f853e7dee8702cd78d72b1d0856e9f1b70be7f90e49bd",
+ "map": [
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The sign exists but is phrased without the cause's stems.",
+     "why": "lexical linking is the binding constraint (\u00a79, \u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The causes co-occur, and experts test rather than discriminate.",
+     "why": "rival causes need not be mutually exclusive."
+    },
+    {
+     "live": true,
+     "text": "The sign is instrument output, not tacit knowledge.",
+     "why": "DISCR also matches instrument-reported signs."
+    }
+   ],
+   "anchor": "Loose terminal connections are a common cause of intermittent PLC faults and",
+   "category": "HYP",
+   "confidence": {
+    "A": 3,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "moderate",
+    "k_step": 1,
+    "k_topic": 7,
+    "robustness": "3/4",
+    "score": 3
+   },
+   "gap_id": "g-59164a9db5bd",
+   "hypothesis": {
+    "channel": "CDM probes on a recalled case, then contrasting cases",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "interpretation",
+     "cue"
+    ],
+    "predicted_tacitness": [
+     "relational"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to tell these rival causes of \"Loose terminal connections are a common cause of intermittent PLC faults and\" apart by signs; the closure judge found a sign for the following (test DIAG:c-d7bce12d16755797):\n\n- Ground loops and interactions of multiple processors finding weaknesses in (no sign found)\n- Aliasing in data can be a (no sign found)\n- by installation problems, while software problems are typically less (no sign found)\n- by high-frequency electrical noise from VFDs and contactors that creates phantom (no sign found)\n- Improper pull-up resistors and incorrect clock edge timing in handshake lines (no sign found)"
+   },
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "9c50fb9250a8223ed0a448b937e5c07ae26af3463369e874a5a0b82d7a48d9f2,b01615db99eebb43597c6ac601d3955d52329a643430adcc8ebc2b4d1c46ede4,d90871fd62d286675cd0ab01165874f60700c525ddb31bb0459005acb04878d2,e3a3128e2397ff0def6e67a42f021b21e93caba5288ced49f3195c8439fdf28d,e4d6e1d79d379b9bdaf8a566616944fad1523c9e86e96eb06fb1c19631a70c5b",
+    "judge_reason": "c-0ae2bfae93f15f20: Sentence 3 specifically mentions ground loops without referencing interactions of multiple processors.; c-8fee4e182a01cf23: Sentence 3 provides specific details about how aliasing occurs.; c-afa3a127d0e11d7f: Sentences 1 and 4 partially address the distinction but do not explicitly state an observable sign.; c-b1b2c02c076bda50: Sentences 1 and 3 describe high-frequency noise from VFDs and contactors as a cause of phantom faults and signal degradation.; c-d02882fa30ff11e7: mentions improper pull-ups and clock edge timing",
+    "judge_retrieved_a": 34,
+    "judge_retrieved_s": 17,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-284b605529c10565",
+     "c-ab5b29f488501794",
+     "c-afa3a127d0e11d7f",
+     "c-b1b2c02c076bda50",
+     "c-d02882fa30ff11e7"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 34 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a discriminating sign for: Ground loops and interactions of multiple processors finding weaknesses in; Aliasing in data can be a; by installation problems, while software problems are typically less; by high-frequency electrical noise from VFDs and contactors that creates phantom; Improper pull-up resistors and incorrect clock edge timing in handshake lines. Re-runnable: prompt sha 9c50fb9250a8.",
+    "synthetic_hits": [
+     "c-5f3830d3d244ed5c"
+    ],
+    "test_id": "DIAG:c-d7bce12d16755797"
+   },
+   "lens": "DIAG",
+   "merged_from": [
+    "g-174fe9b68fad",
+    "g-5308b4cfded5",
+    "g-8a86dd94f17f",
+    "g-aedb26cc62c0",
+    "g-b5b80ff825f2",
+    "g-e597cd4f5eb4"
+   ],
+   "missing": "a discriminating sign for: Ground loops and interactions of multiple processors finding weaknesses in; Aliasing in data can be a; by installation problems, while software problems are typically less; by high-frequency electrical noise from VFDs and contactors that creates phantom; Improper pull-up resistors and incorrect clock edge timing in handshake lines",
+   "observed_evidence": [
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-0ae2bfae93f15f20",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "failure_mode",
+     "role": "rival",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-1a4dbea5c8f1f4fe",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "misconception",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "most standard MOV-based protectors are designed for high-voltage surges over 1000V. They stay dormant during the low-level transients that actually disrupt logic. These micro-surges occur thousands of times every single day.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-210c933978127214",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "Loose terminals and oxidized connections are silent killers of signal integrity. They create \"jitter\" that a PLC processor might interpret as a false state.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-21a17ca91ce09aae",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "You can also set up \"trap logic.\" These are simple rungs of code designed to latch a bit the moment a millisecond signal drop occurs. This allows you to differentiate between a true hardware failure and a communication timeout caused by network congestion.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-2271e1237b9ecb46",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-c84226ca6e967ec6",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.peakboard.com/en/solution/machine-monitoring",
+     "source_kind": "documentation",
+     "span": "The signals run live onto the display at the line and are recorded in the Peakboard Hub, so availability, downtime durations and OEE stay analysable across weeks.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-284b605529c10565",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "You must ensure shielded cables are grounded at one end only to prevent ground loops. These loops introduce noise into sensitive logic circuits and are a primary source of frustration during the process of troubleshooting intermittent plc faults.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-2c18d014757182fa",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Intermittent faults become manageable when the system remembers what people cannot witness. First-out logic, synchronized clocks, event buffers, targeted electrical measurements and disciplined experiments transform \"random\" into a timeline.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-54069f7826793d86",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a3eefeba9e469bb6",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://pulsemq.com/index.html",
+     "source_kind": "documentation",
+     "span": "02The Edge connects read-only One appliance beside the line. No new controllers, no PLC changes, no cloud dependency.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-5f3830d3d244ed5c",
+     "counts_as_attestation": false,
+     "epistemic_label": "synthetic_extrapolation",
+     "flag": "unverified-synthetic",
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "cue",
+     "role": "closure_near",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "Aliasing, often a hardware issue, can be another difficult item to examine. A key clue is seeing a waveform from one system in another system or data at a different time scale.",
+     "verdict": "insufficient"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-6c4d3550369ac002",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "A phantom fault is a transient-induced logic error. These micro-events don't destroy the hardware immediately. Instead, they corrupt the data packet just enough to trigger a safety shutdown or a processor freeze.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-711f7a6d18e542e0",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "check",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Check loading, inrush, loose terminals, protective-device behavior and shared commons.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-73650744f2d32386",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "Yes, extreme electrical noise can corrupt the CPU's memory or cause a checksum error. This forces the processor into a \"Stop\" mode or clears its RAM entirely.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-742688abff49a826",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "While modern PLCs have robust internal shielding, a high-energy transient can still penetrate the power supply. This disrupts the internal DC voltage rail, leading to a loss of volatile program memory if the backup battery or capacitor fails simultaneously.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-75037e22b5a75d27",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "Check the common terminal voltage first before suspecting the card.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-7cbb98d224149a80",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Testing inputs systematically follows a clear pattern. Observe the actual sensor state physically. Measure voltage or current at the PLC terminal with a multimeter. Check if the PLC input shows the correct state in online monitoring. Verify that program logic uses this input correctly.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-8fee4e182a01cf23",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "failure_mode",
+     "role": "rival",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "Finally, I see interactions related to aliasing in one form or another getting into data.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-ab5b29f488501794",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "Every time a Variable Frequency Drive (VFD) switches or a large contactor closes, it generates high-frequency noise. This noise travels through your power lines and into your sensitive control circuits. Inside the processor, these spikes are interpreted as actual data.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-aed289a57231c28c",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "These account for a surprisingly large proportion of intermittent input faults on older panels. Push-in spring terminals (Weidmuller, Phoenix Contact, Wago) can release their grip on a ferrule without looking damaged.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-afa3a127d0e11d7f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "expert_novice_contrast",
+     "role": "rival",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "From my experience, intermittent faults are most commonly hardware related either damaged product or a problem with the installation. Software or firmware are root cause in some cases. In reality most software problems are not as intermittent as they may seem.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-b1b2c02c076bda50",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "rival",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "high-frequency noise from VFDs and contactors creates the \"phantom faults\" that disrupt your logic signals and ruin your production schedule.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-b8c070d39514371a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "You can start the process by using \"trap logic\" within your PLC code to catch millisecond signal drops. This software-based approach allows you to identify which specific I/O point is failing without buying a high-speed oscilloscope immediately.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-c4817ad67ac8c0ed",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Temperature-related failures may appear only after warm-up or washdown.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-ce0e5beb679ff485",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "Harmonic distortion creates heat and electromagnetic interference that often degrades high-speed communication signals. When harmonics from VFDs or LED lighting saturate the power lines, they can induce noise into Ethernet or Fieldbus cables.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-d02882fa30ff11e7",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "failure_mode",
+     "role": "rival",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "The problem was related to some handshake lines with improper pull-ups and the use of the wrong edge of a clock on one of the processors that reduced the settling time for the handshake line. The stalled processor ended up seeing the remnants of transfer acknowledge for the first processor, aided by a bit of noise.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-d7bce12d16755797",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "failure_mode",
+     "role": "seed",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Loose terminals cause many intermittent faults. A flashlight reveals problems in dark panels that you miss otherwise.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-d8cf21cb2e1bac98",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Outputs working sometimes but not consistently often trace to blown fuses, marginal output cards, or loose terminal connections. The output might work for small loads but fail under full load current.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-dc074b901508e6c0",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "misconception",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "Most off-line or line-interactive UPS units only protect against total power loss or large voltage sags. They don't have the high-speed filtration needed to block the micro-second transients generated during motor starts.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-dd7c2f8526ff98cf",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Consider environmental factors. Temperature extremes, humidity, vibration, and electrical noise cause intermittent faults that seem random. In my experience, problems appearing only in summer heat or winter cold often trace to marginal components or inadequate panel cooling.",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "CDM probes on a recalled case, then contrasting cases",
+    "target_claim_ids": [
+     "c-0ae2bfae93f15f20",
+     "c-b1b2c02c076bda50"
+    ],
+    "text": "Sources list several causes of Loose terminal connections are a common cause of intermittent PLC faults and: \"Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces.\", \"high-frequency noise from VFDs and contactors creates the \"phantom faults\" that disrupt your logic signals and ruin your production schedule.\". Think of the last time you diagnosed Loose terminal connections are a common cause of intermittent PLC faults and. Which cause did you suspect first, and what did you see, hear or measure that let you rule the others out?",
+    "weak_channel": false
+   },
+   "rank": 1,
+   "reasoning": "1 key(s) state Loose terminal connections are a common cause of intermittent PLC faults and; 7 key(s) discuss the topic; the closure judge found no verified sentence matching test DIAG:c-d7bce12d16755797"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The sign exists but is phrased without the cause's stems.",
+     "why": "lexical linking is the binding constraint (\u00a79, \u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The causes co-occur, and experts test rather than discriminate.",
+     "why": "rival causes need not be mutually exclusive."
+    },
+    {
+     "live": true,
+     "text": "The sign is instrument output, not tacit knowledge.",
+     "why": "DISCR also matches instrument-reported signs."
+    }
+   ],
+   "anchor": "Race conditions in user logic are a common source of intermittent faults in",
+   "category": "HYP",
+   "confidence": {
+    "A": 3,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "moderate",
+    "k_step": 1,
+    "k_topic": 11,
+    "robustness": "2/4",
+    "score": 3
+   },
+   "gap_id": "g-994077969379",
+   "hypothesis": {
+    "channel": "CDM probes on a recalled case, then contrasting cases",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "interpretation",
+     "cue"
+    ],
+    "predicted_tacitness": [
+     "relational"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to tell these rival causes of \"Race conditions in user logic are a common source of intermittent faults in\" apart by signs; the closure judge found a sign for the following (test DIAG:c-ec36686ad589464b):\n\n- Ground loops and interactions of multiple processors finding weaknesses in (no sign found)\n- Loose or contaminated connectors, soldering defects, and wire crimping issues (no sign found)\n- Aliasing in data can be a (no sign found)\n- by installation problems, while software problems are typically less (no sign found)\n- Improper pull-up resistors and incorrect clock edge timing in handshake lines (no sign found)\n- Environmental factors such as temperature extremes, humidity, vibration, and (no sign found)\n- array subscript out of range. (no sign found)"
+   },
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "2f10f4648482a7f7e77aa5c4cc5f9e830db808146919e7d2757c4938114c3ab4,513e7c1f57be48f113531513b68b0cbd60452d2d6042f566f9a3679a1c1f70ad,9c50fb9250a8223ed0a448b937e5c07ae26af3463369e874a5a0b82d7a48d9f2,b01615db99eebb43597c6ac601d3955d52329a643430adcc8ebc2b4d1c46ede4,e3a3128e2397ff0def6e67a42f021b21e93caba5288ced49f3195c8439fdf28d,e4d6e1d79d379b9bdaf8a566616944fad1523c9e86e96eb06fb1c19631a70c5b,fef02f2ad02fa6672cdefc2e4bb6bba8bf1f70b9297bed36f3b2ee3023499be3",
+    "judge_reason": "c-0ae2bfae93f15f20: Sentence 3 specifically mentions ground loops without referencing interactions of multiple processors.; c-13f98c8939d6f47b: Loose connections create random failures from vibration.; c-8fee4e182a01cf23: Sentence 3 provides specific details about how aliasing occurs.; c-afa3a127d0e11d7f: Sentences 1 and 4 partially address the distinction but do not explicitly state an observable sign.; c-d02882fa30ff11e7: mentions improper pull-ups and clock edge timing; c-dd7c2f8526ff98cf: Sentences 1 and 3 list environmental factors but do not distinguish them from other causes.; c-dde847bfa2cea027: Sentences 1 and 2 directly state the fault cause.",
+    "judge_retrieved_a": 50,
+    "judge_retrieved_s": 22,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-210c933978127214",
+     "c-284b605529c10565",
+     "c-afa3a127d0e11d7f",
+     "c-d02882fa30ff11e7",
+     "c-dd7c2f8526ff98cf",
+     "c-dde847bfa2cea027"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 50 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a discriminating sign for: Ground loops and interactions of multiple processors finding weaknesses in; Loose or contaminated connectors, soldering defects, and wire crimping issues; Aliasing in data can be a; by installation problems, while software problems are typically less; Improper pull-up resistors and incorrect clock edge timing in handshake lines; Environmental factors such as temperature extremes, humidity, vibration, and; array subscript out of range.. Re-runnable: prompt sha 2f10f4648482.",
+    "synthetic_hits": [
+     "c-5f3830d3d244ed5c",
+     "c-833c1d48e3a781cd"
+    ],
+    "test_id": "DIAG:c-ec36686ad589464b"
+   },
+   "lens": "DIAG",
+   "merged_from": [
+    "g-1dabdefe2d5a"
+   ],
+   "missing": "a discriminating sign for: Ground loops and interactions of multiple processors finding weaknesses in; Loose or contaminated connectors, soldering defects, and wire crimping issues; Aliasing in data can be a; by installation problems, while software problems are typically less; Improper pull-up resistors and incorrect clock edge timing in handshake lines; Environmental factors such as temperature extremes, humidity, vibration, and; array subscript out of range.",
+   "observed_evidence": [
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-05ffecbae90b2aa5",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "Physical stress on cabling and connectors as well as vibration and thermal cycling (heat gun and freeze spray) can often chase out wiring and soldering issues.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-0ae2bfae93f15f20",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "failure_mode",
+     "role": "rival",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-13f98c8939d6f47b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "cue",
+     "role": "rival",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "Interconnections at various levels are the most common cause of the faults I see: loose or contaminated connectors, soldering, wire crimping, etc.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-210c933978127214",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "closure_near",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "Loose terminals and oxidized connections are silent killers of signal integrity. They create \"jitter\" that a PLC processor might interpret as a false state.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-2271e1237b9ecb46",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-c84226ca6e967ec6",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.peakboard.com/en/solution/machine-monitoring",
+     "source_kind": "documentation",
+     "span": "The signals run live onto the display at the line and are recorded in the Peakboard Hub, so availability, downtime durations and OEE stay analysable across weeks.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-284b605529c10565",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "You must ensure shielded cables are grounded at one end only to prevent ground loops. These loops introduce noise into sensitive logic circuits and are a primary source of frustration during the process of troubleshooting intermittent plc faults.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-3f9f449f1a84461f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Add assertions or diagnostic codes at impossible transitions. If the code cannot explain how it reached the captured state, its observability or state model needs improvement.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-44f1385b3ecc160b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a55566b18355e540",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://assetcenter.app/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Define controlled maintenance types and statuses Start with a short list that people can apply consistently. Preventive maintenance, corrective repair, inspection, calibration, warranty, and recall may be enough. Status might be open, scheduled, complete, deferred, and canceled.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-54069f7826793d86",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a3eefeba9e469bb6",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://pulsemq.com/index.html",
+     "source_kind": "documentation",
+     "span": "02The Edge connects read-only One appliance beside the line. No new controllers, no PLC changes, no cloud dependency.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-5f3830d3d244ed5c",
+     "counts_as_attestation": false,
+     "epistemic_label": "synthetic_extrapolation",
+     "flag": "unverified-synthetic",
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "cue",
+     "role": "closure_near",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "Aliasing, often a hardware issue, can be another difficult item to examine. A key clue is seeing a waveform from one system in another system or data at a different time scale.",
+     "verdict": "insufficient"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-6705d53016ddc3ef",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a3eefeba9e469bb6",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://pulsemq.com/index.html",
+     "source_kind": "documentation",
+     "span": "03Your numbers, live OEE by shift, counts off the controller, jobs and material bound to the runs that consumed them.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-675d5cc770bcb8cd",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-85e244f1abe530b7",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://recurrr.com/articles/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Standardization is where most improvement starts. Guidance from Cryotos on equipment maintenance log best practices highlights that consistent fields for maintenance type, failure code, labor hours, and next service date support trend detection and create a defensible audit trail.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-6c4d3550369ac002",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "A phantom fault is a transient-induced logic error. These micro-events don't destroy the hardware immediately. Instead, they corrupt the data packet just enough to trigger a safety shutdown or a processor freeze.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-73650744f2d32386",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "Yes, extreme electrical noise can corrupt the CPU's memory or cause a checksum error. This forces the processor into a \"Stop\" mode or clears its RAM entirely.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-833c1d48e3a781cd",
+     "counts_as_attestation": false,
+     "epistemic_label": "synthetic_extrapolation",
+     "flag": "unverified-synthetic",
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "failure_mode",
+     "role": "closure_near",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Intermittent faults are the hardest problems to diagnose. These appear randomly, making systematic testing difficult. Thermal issues cause intermittent behavior as components heat and cool. Loose connections create random failures from vibration.",
+     "verdict": "insufficient"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-8f2cfe19dde12fa8",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-aab556b0ece4b264",
+     "knowledge_type": "expert_novice_contrast",
+     "role": "topic",
+     "source_identifier": "https://plctr.com/plc-intermittent-fault-trend-tags-trigger-latch/",
+     "source_kind": "documentation",
+     "span": "An FFL/FFU pair with an FFU on every sample once the FIFO is full does make a ring, at the cost of a copy of the whole array every 10 ms, and the indexed MOV with a wrapping DINT does the same job for one ADD.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-8fee4e182a01cf23",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "failure_mode",
+     "role": "rival",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "Finally, I see interactions related to aliasing in one form or another getting into data.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-96ad8dc2f74d96b4",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-be55778a2f55bf4f",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://juxtum.com/plc-monitoring/",
+     "source_kind": "documentation",
+     "span": "Programmable logic controllers sit at the center of most modern industrial automation environments, coordinating motion control, process control, and production sequencing across your shop floor.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-a5e565b58d80a5a4",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-85e244f1abe530b7",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://recurrr.com/articles/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Failure code or cause code: Use a controlled list. Free-text descriptions make trend review harder than it needs to be.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-ab5b29f488501794",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "Every time a Variable Frequency Drive (VFD) switches or a large contactor closes, it generates high-frequency noise. This noise travels through your power lines and into your sensitive control circuits. Inside the processor, these spikes are interpreted as actual data.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-afa3a127d0e11d7f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "expert_novice_contrast",
+     "role": "rival",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "From my experience, intermittent faults are most commonly hardware related either damaged product or a problem with the installation. Software or firmware are root cause in some cases. In reality most software problems are not as intermittent as they may seem.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-b1b2c02c076bda50",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "high-frequency noise from VFDs and contactors creates the \"phantom faults\" that disrupt your logic signals and ruin your production schedule.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-c4817ad67ac8c0ed",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Temperature-related failures may appear only after warm-up or washdown.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-ce72358c60b74342",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-e950d3be235c8d2c",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://www.keyence.com/products/daq/data-loggers/resources/data-logger-resources/how-portable-data-loggers-transform-troubleshooting-for-machines-and-processes.jsp",
+     "source_kind": "documentation",
+     "span": "This would signal to that technician that a particular component is overheating.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-d02882fa30ff11e7",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "failure_mode",
+     "role": "rival",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "The problem was related to some handshake lines with improper pull-ups and the use of the wrong edge of a clock on one of the processors that reduced the settling time for the handshake line. The stalled processor ended up seeing the remnants of transfer acknowledge for the first processor, aided by a bit of noise.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-dd7c2f8526ff98cf",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "failure_mode",
+     "role": "rival",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Consider environmental factors. Temperature extremes, humidity, vibration, and electrical noise cause intermittent faults that seem random. In my experience, problems appearing only in summer heat or winter cold often trace to marginal components or inadequate panel cooling.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-dde847bfa2cea027",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-aab556b0ece4b264",
+     "knowledge_type": "failure_mode",
+     "role": "rival",
+     "source_identifier": "https://plctr.com/plc-intermittent-fault-trend-tags-trigger-latch/",
+     "source_kind": "documentation",
+     "span": "If Trend_Idx ever reaches 600 while a MOV runs, the controller takes a major fault, type 4 code 20, array subscript out of range",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-e5d7eb58ad8fbdc5",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-e950d3be235c8d2c",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.keyence.com/products/daq/data-loggers/resources/data-logger-resources/how-portable-data-loggers-transform-troubleshooting-for-machines-and-processes.jsp",
+     "source_kind": "documentation",
+     "span": "For example, when monitoring a complex system, the logger can record multiple streams of data across different parameters, including identifying correlations, such as how a rise in temperature measurements may coincide with increased vibrations.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-ec36686ad589464b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "failure_mode",
+     "role": "seed",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "In a motion controller or PLC, it's often race conditions in user logic.",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "CDM probes on a recalled case, then contrasting cases",
+    "target_claim_ids": [
+     "c-0ae2bfae93f15f20",
+     "c-dd7c2f8526ff98cf"
+    ],
+    "text": "Sources list several causes of Race conditions in user logic are a common source of intermittent faults in: \"Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces.\", \"Temperature extremes, humidity, vibration, and electrical noise cause intermittent faults that seem random.\". Think of the last time you diagnosed Race conditions in user logic are a common source of intermittent faults in. Which cause did you suspect first, and what did you see, hear or measure that let you rule the others out?",
+    "weak_channel": false
+   },
+   "rank": 2,
+   "reasoning": "1 key(s) state Race conditions in user logic are a common source of intermittent faults in; 11 key(s) discuss the topic; the closure judge found no verified sentence matching test DIAG:c-ec36686ad589464b"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "tested systematically by observing sensor state, measuring",
+   "category": "HYP",
+   "confidence": {
+    "A": 3,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 9,
+    "robustness": "0/4",
+    "score": 2
+   },
+   "gap_id": "g-16732a0764dc",
+   "hypothesis": {
+    "channel": "CDM probes on a recalled case; process tracing",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "interpretation",
+     "expectancy"
+    ],
+    "predicted_tacitness": [
+     "relational"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to read the result of 'tested systematically by observing sensor state, measuring' against expected values and map it to the next action; no verified claim in this ledger matched test RESULT:c-7cbb98d224149a80."
+   },
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "191f23fffab3718f4dcacce455c5a3dbd6531cda8718a8af73c89e07c1076366",
+    "judge_reason": "Sentence 1 describes the testing process but does not specify expected results or actions.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-7cbb98d224149a80"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'tested systematically by observing sensor state, measuring'. Re-runnable: prompt sha 191f23fffab3.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-7cbb98d224149a80"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'tested systematically by observing sensor state, measuring'",
+   "observed_evidence": [
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-17c2de65f3f17ed3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "check",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "Before using the multimeter, verify: Correct function selected Correct range selected Leads in correct ports Probe tips in good condition Insulation not damaged Meter CAT rating is appropriate Meter battery is good Display works properly",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-209a6be7d470b160",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-54ea3e1f81e8133a",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://capafy.ai/nl/agent/industrial-automation-troubleshooter/7488231290",
+     "source_kind": "documentation",
+     "span": "For each important test it explains: CHECK - What to verify WHY - Why the test matters EXPECTED - What normal behavior should look like IF YES - What the result suggests IF NO - What the result suggests",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-210c933978127214",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "Loose terminals and oxidized connections are silent killers of signal integrity. They create \"jitter\" that a PLC processor might interpret as a false state.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-21a17ca91ce09aae",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "You can also set up \"trap logic.\" These are simple rungs of code designed to latch a bit the moment a millisecond signal drop occurs. This allows you to differentiate between a true hardware failure and a communication timeout caused by network congestion.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-2271e1237b9ecb46",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-c84226ca6e967ec6",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.peakboard.com/en/solution/machine-monitoring",
+     "source_kind": "documentation",
+     "span": "The signals run live onto the display at the line and are recorded in the Peakboard Hub, so availability, downtime durations and OEE stay analysable across weeks.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-238d30d1c7b796c2",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "mental_model",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "The best troubleshooting uses both: Electrical diagram + multimeter The diagram tells you: Where voltage should be What value should be present What devices are in the path Where the circuit returns The meter tells you: What is actually present Where voltage disappears Whether the device receives energy Whether the return path is complete",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-2ec7925ad29b0ba4",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-be55778a2f55bf4f",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://juxtum.com/plc-monitoring/",
+     "source_kind": "documentation",
+     "span": "Condition monitoring through continuous alarm and signal analysis gives your maintenance team an earlier view into PLC health, so repairs can be scheduled before a failure forces the issue.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-37e4c2df5a671ff3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-c84226ca6e967ec6",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.peakboard.com/en/solution/machine-monitoring",
+     "source_kind": "documentation",
+     "span": "Machine monitoring is the continuous capture and display of the operating state of production machines.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-4605e6752cf070c9",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "Before placing the meter leads on a circuit, a technician should already know: What am I measuring? What reading do I expect? What does this reading prove? What will I check next?",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-4f0da260240d02f7",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "Check the sensor datasheet: it's a solid-state PNP output with a rated leakage current of 0.5 mA at 24 V supply. Calculate the leakage voltage: 0.5 mA through the 10 k\u03a9 input impedance of the card = 5 V. Enough to keep a borderline input energised.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-5b6bb7615495ef33",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "In addition to hardware oscilloscopes, many software packages that support drives and controllers include soft oscilloscopes. Visualizing the patterns of encoders, inputs, and other signals can often lead to the cause of issue.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-6f9f28ba29d23eef",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Blown outputs stay on or off regardless of logic state.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-7cbb98d224149a80",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Testing inputs systematically follows a clear pattern. Observe the actual sensor state physically. Measure voltage or current at the PLC terminal with a multimeter. Check if the PLC input shows the correct state in online monitoring. Verify that program logic uses this input correctly.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-931d82067440e58c",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "A multimeter is one of the most important tools for an automation or maintenance technician. It helps prove whether voltage is present, whether a circuit path is complete, whether a fuse is open, whether a coil has continuity, and whether a field device is receiving the correct signal.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-97099e12d25662ad",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "Live \u2192 Dead \u2192 Live Meaning: 1. Test the meter on a known live source. 2. Test the circuit you believe is de-energized. 3. Test the meter again on a known live source.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-b1b2c02c076bda50",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-1310a1cc1a415572",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://www.ecsintl.com/troubleshooting-intermittent-plc-faults-a-guide-to-ending-nuisance-shutdowns/",
+     "source_kind": "documentation",
+     "span": "high-frequency noise from VFDs and contactors creates the \"phantom faults\" that disrupt your logic signals and ruin your production schedule.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-beecd96ba3fa5ace",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "your meter reads 22 V at the input terminal, the LED on the card is lit, but the bit in the processor is OFF. That tells you the card is receiving the signal but the software is not seeing it. Possible causes include a forced-off condition in the program, an incorrect I/O tree mapping after a module replacement, or a faulted slot that has been inhibited.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-e5cea21aa5b0f0f3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "You read 5 to 15 V: leakage from a solid-state sensor or a wiring fault. The input may be floating above the OFF threshold but below the ON threshold.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-e8fd322416524c0a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Replace the statement \"it stops sometimes\" with measurable facts. Which controller, equipment module and program state were active?",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-fd99b87af2f9d201",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "The best mindset is: Know what should happen. Measure what is happening. Find the difference. Prove the fault. Repair safely. Verify the fix.",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "CDM probes on a recalled case; process tracing",
+    "target_claim_ids": [
+     "c-7cbb98d224149a80"
+    ],
+    "text": "Sources prescribe: \"Verify that program logic uses this input correctly.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+    "weak_channel": false
+   },
+   "rank": 3,
+   "reasoning": "1 key(s) state tested systematically by observing sensor state, measuring; 9 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-7cbb98d224149a80"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "capture current sequence state, previous state, command",
+   "category": "HYP",
+   "confidence": {
+    "A": 3,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 7,
+    "robustness": "0/4",
+    "score": 2
+   },
+   "gap_id": "g-6bcf4a7d12f8",
+   "hypothesis": {
+    "channel": "CDM probes on a recalled case; process tracing",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "interpretation",
+     "expectancy"
+    ],
+    "predicted_tacitness": [
+     "relational"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to read the result of 'capture current sequence state, previous state, command' against expected values and map it to the next action; no verified claim in this ledger matched test RESULT:c-3989533d8865691e."
+   },
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "d0e733afa74574f327e50f8fb7079209d2a713f85b83f71030b58a22f5bbba33",
+    "judge_reason": "Sentence 4 suggests actions to consider but does not explicitly state expected results or next actions.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-d12e92b51fca73b5"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'capture current sequence state, previous state, command'. Re-runnable: prompt sha d0e733afa745.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-3989533d8865691e"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'capture current sequence state, previous state, command'",
+   "observed_evidence": [
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-37e4c2df5a671ff3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-c84226ca6e967ec6",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.peakboard.com/en/solution/machine-monitoring",
+     "source_kind": "documentation",
+     "span": "Machine monitoring is the continuous capture and display of the operating state of production machines.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-3989533d8865691e",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Store current sequence state, previous state, command source, permissive status, input word, output word and key analog values.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-4cb402666ee92c71",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-aab556b0ece4b264",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://plctr.com/plc-intermittent-fault-trend-tags-trigger-latch/",
+     "source_kind": "documentation",
+     "span": "a 10 ms periodic task writing eight tags into a 600-element ring, a trigger on the fault bit, 200 more samples, then a latch that stops the writer until somebody has read the result. Four rungs. About 7 KB of memory.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-4f0da260240d02f7",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "Check the sensor datasheet: it's a solid-state PNP output with a rated leakage current of 0.5 mA at 24 V supply. Calculate the leakage voltage: 0.5 mA through the 10 k\u03a9 input impedance of the card = 5 V. Enough to keep a borderline input energised.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-524652f455ef640a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "For very fast phenomena, ordinary timestamps are insufficient. Use high-speed input capture, sequence-of-events modules, power-quality instruments or an oscilloscope appropriate to the circuit.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-5707c242d1c1bccc",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "One of the most dangerous mistakes is placing the meter in current mode across a voltage source. That can create a direct short through the meter.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-6f9f28ba29d23eef",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Blown outputs stay on or off regardless of logic state.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-7f19c8dd5a3ca919",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "A PLC input card that refuses to pick up, or an output that drives itself to 24 V but the field device never moves: both situations feel like a mystery until you apply a systematic multimeter test sequence. Random probe-poking wastes time. A repeatable process gets you to the fault in minutes, not hours.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-82a19f88ef21c2b1",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-aab556b0ece4b264",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://plctr.com/plc-intermittent-fault-trend-tags-trigger-latch/",
+     "source_kind": "documentation",
+     "span": "A download from the office copy of the project overwrites every tag with the value in the file, ring included, which is the one thing in the list that has actually cost me a capture.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-979ae569247222ad",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "A circular event buffer can record the most recent state changes continuously. When a trigger occurs, freeze a portion of pre-event data and continue recording briefly afterward. This before-trip-after view reveals whether a sensor dropped first, a voltage dip affected several devices or the PLC command disappeared before the actuator stopped.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-d12e92b51fca73b5",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-54ea3e1f81e8133a",
+     "knowledge_type": "expert_novice_contrast",
+     "role": "topic",
+     "source_identifier": "https://capafy.ai/nl/agent/industrial-automation-troubleshooter/7488231290",
+     "source_kind": "documentation",
+     "span": "The Agent will not immediately conclude that the VFD or motor is defective. It may investigate: whether the PLC RUN command remains active; motor current before the trip; mechanical load; drive temperature; acceleration parameters; motor data configuration; whether the fault correlates with temperature or operating time.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-e7be928f79f939b3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-aab556b0ece4b264",
+     "knowledge_type": "rationale",
+     "role": "topic",
+     "source_identifier": "https://plctr.com/plc-intermittent-fault-trend-tags-trigger-latch/",
+     "source_kind": "documentation",
+     "span": "The operator's fault reset clears Infeed_Jam, and if the trigger were level-sensitive or the freeze were tied to the fault, the reset would re-arm the ring and the next 6 s of a normal restart would overwrite the evidence",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "CDM probes on a recalled case; process tracing",
+    "target_claim_ids": [
+     "c-3989533d8865691e"
+    ],
+    "text": "Sources prescribe: \"Store current sequence state, previous state, command source, permissive status, input word, output word and key analog values.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+    "weak_channel": false
+   },
+   "rank": 4,
+   "reasoning": "1 key(s) state capture current sequence state, previous state, command; 7 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-3989533d8865691e"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "review should focus on identifying repeat faults, frequently",
+   "category": "HYP",
+   "confidence": {
+    "A": 3,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 6,
+    "robustness": "0/4",
+    "score": 2
+   },
+   "gap_id": "g-bcb3952493a6",
+   "hypothesis": {
+    "channel": "CDM probes on a recalled case; process tracing",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "interpretation",
+     "expectancy"
+    ],
+    "predicted_tacitness": [
+     "relational"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to read the result of 'review should focus on identifying repeat faults, frequently' against expected values and map it to the next action; no verified claim in this ledger matched test RESULT:c-46de7dc2c16e7b7b."
+   },
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "a3260b235c344625ce2866295b80e20a05ea5f1d609891cdf9efd0dc4f1a0710",
+    "judge_reason": "Sentence 2 implies next actions by suggesting signs of unresolved issues.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-46de7dc2c16e7b7b"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'review should focus on identifying repeat faults, frequently'. Re-runnable: prompt sha a3260b235c34.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-46de7dc2c16e7b7b"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'review should focus on identifying repeat faults, frequently'",
+   "observed_evidence": [
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-08e44983c76a7bcd",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-038f6d95bef84e11",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://dovient.com/resources/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Aggregation. Calculating MTBF, PM compliance, or labor cost per asset from paper is impractical.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-186e4bb7f806fcdf",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-3dd72067dd4ff05e",
+     "knowledge_type": "check",
+     "role": "topic",
+     "source_identifier": "https://www.machdatum.com/blogs/equipment-maintenance-log-template",
+     "source_kind": "documentation",
+     "span": "Good: \"PRS-004, 2026-07-18, corrective, bearing 6205-2RS replaced after seizure on startup, 3.5 hrs downtime, J. Alvarez.\"",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-272c6a4d0b83c57f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-038f6d95bef84e11",
+     "knowledge_type": "rationale",
+     "role": "topic",
+     "source_identifier": "https://dovient.com/resources/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Parts used with part numbers. Feeds MRO inventory analytics and failure pattern analysis.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-2b7414660cc8d118",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-c84226ca6e967ec6",
+     "knowledge_type": "mental_model",
+     "role": "topic",
+     "source_identifier": "https://www.peakboard.com/en/solution/machine-monitoring",
+     "source_kind": "documentation",
+     "span": "patterns surface that a snapshot cannot show - such as the same asset failing in the same shift again and again.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-3aed7b887cd221be",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-3dd72067dd4ff05e",
+     "knowledge_type": "rationale",
+     "role": "topic",
+     "source_identifier": "https://www.machdatum.com/blogs/equipment-maintenance-log-template",
+     "source_kind": "documentation",
+     "span": "Parts usedWhat was replaced, for spares tracking and failure-pattern spotting",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-3b4bb1d91174d8c9",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-038f6d95bef84e11",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://dovient.com/resources/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Random sample 20 entries from the last month. Score each for completeness: asset, findings, parts, hours, root cause. Target 85%+ completeness.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-466826867f701bb4",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-85e244f1abe530b7",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://recurrr.com/articles/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Logs create value when someone reviews them with intent. That review doesn't need to be dramatic. It does need to be regular.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-46de7dc2c16e7b7b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-85e244f1abe530b7",
+     "knowledge_type": "strategy",
+     "role": "seed",
+     "source_identifier": "https://recurrr.com/articles/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Look for repeat faults, parts that fail too often, assets that absorb too many labor hours, and work orders that keep ending with \"monitor.\" Those are usually signs that the problem hasn't been solved, only deferred.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-4a2735242356a648",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a55566b18355e540",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://assetcenter.app/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "At an agreed cadence, review overdue next actions, unresolved defects, missing evidence, repeat repairs, rising cost, and unusual downtime.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-647cc94d002d9e65",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-3dd72067dd4ff05e",
+     "knowledge_type": "rationale",
+     "role": "topic",
+     "source_identifier": "https://www.machdatum.com/blogs/equipment-maintenance-log-template",
+     "source_kind": "documentation",
+     "span": "Six months from now, if PRS-004 seizes again, this entry tells you exactly what part failed and when - the difference between noticing a pattern and starting from zero every time.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-675d5cc770bcb8cd",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-85e244f1abe530b7",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://recurrr.com/articles/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Standardization is where most improvement starts. Guidance from Cryotos on equipment maintenance log best practices highlights that consistent fields for maintenance type, failure code, labor hours, and next service date support trend detection and create a defensible audit trail.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-a8bd7cbc95e28ca3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-038f6d95bef84e11",
+     "knowledge_type": "rationale",
+     "role": "topic",
+     "source_identifier": "https://dovient.com/resources/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Labor hours and technician name. Labor is usually the largest maintenance cost; untracked hours hide problems.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-dd33258fc5c16273",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-be55778a2f55bf4f",
+     "knowledge_type": "cue",
+     "role": "topic",
+     "source_identifier": "https://juxtum.com/plc-monitoring/",
+     "source_kind": "documentation",
+     "span": "PLCs rarely fail without warning. Signal drift, alarm patterns, and performance deviations typically precede failures by hours or days.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-f9d19f143773e32d",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-038f6d95bef84e11",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://dovient.com/resources/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Minimum viable log entry: asset ID, date, type of work (PM/reactive/inspection), what was found, what was done, parts used, labor hours, and the technician's name.",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "CDM probes on a recalled case; process tracing",
+    "target_claim_ids": [
+     "c-46de7dc2c16e7b7b"
+    ],
+    "text": "Sources prescribe: \"Look for repeat faults, parts that fail too often, assets that absorb too many labor hours, and work orders that keep ending with \"monitor.\" Those are usually signs that the problem hasn't been solved, only deferred.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+    "weak_channel": false
+   },
+   "rank": 5,
+   "reasoning": "1 key(s) state review should focus on identifying repeat faults, frequently; 6 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-46de7dc2c16e7b7b"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "When a technician identifies a defect but does not immediately repair it, the finding should be recorded as an open next action rather than written as a resolved maintenance event.",
+   "category": "HYP",
+   "confidence": {
+    "A": 3,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 6,
+    "robustness": "0/4",
+    "score": 2
+   },
+   "gap_id": "g-83b9b964dcef",
+   "hypothesis": {
+    "channel": "a targeted confirmation question",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "rationale"
+    ],
+    "predicted_tacitness": [
+     "relational"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to know why 'When a technician identifies a defect but does not immediately repair it, the finding should be recorded as an open next action rather than written as a resolved maintenance event.'; no verified claim in this ledger matched test WHY:c-478869a71c059f4d."
+   },
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "beb4350e0b76241dc81a7804e29f8799208aa02c35d240b6d59bfc09887ebd08",
+    "judge_reason": "Simultaneous changes prevent determining which action resolved the fault.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-099467b81e3870ec"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a reason. Re-runnable: prompt sha beb4350e0b76.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-478869a71c059f4d"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-099467b81e3870ec",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "misconception",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Under production pressure, teams may replace a sensor, move a cable, edit a timer and reset a drive simultaneously. If the fault disappears, nobody knows which action mattered.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-478869a71c059f4d",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a55566b18355e540",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://assetcenter.app/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "If a technician notices a leak but does not repair it, record the finding as an open next action. Do not write it as though the maintenance event resolved the issue.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-47a2a29c52f7d738",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-85e244f1abe530b7",
+     "knowledge_type": "decision",
+     "role": "topic",
+     "source_identifier": "https://recurrr.com/articles/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "If a machine fails once, you repair it. If it fails the same way repeatedly, your log should force a different conversation.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-4a2735242356a648",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a55566b18355e540",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://assetcenter.app/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "At an agreed cadence, review overdue next actions, unresolved defects, missing evidence, repeat repairs, rising cost, and unusual downtime.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-54099e84c666855c",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a55566b18355e540",
+     "knowledge_type": "check",
+     "role": "topic",
+     "source_identifier": "https://assetcenter.app/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "Notice that the next action is explicit. \"Air filter worn\" in a notes cell is easy to forget. \"Replace air filter at next service\" with a due trigger can be owned and reviewed.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-6f7b1229acfed054",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-3dd72067dd4ff05e",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.machdatum.com/blogs/equipment-maintenance-log-template",
+     "source_kind": "documentation",
+     "span": "An equipment maintenance log records every service, inspection, and repair performed on a piece of equipment - what was done, when, by whom, and what's due next.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-d12e92b51fca73b5",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-54ea3e1f81e8133a",
+     "knowledge_type": "expert_novice_contrast",
+     "role": "topic",
+     "source_identifier": "https://capafy.ai/nl/agent/industrial-automation-troubleshooter/7488231290",
+     "source_kind": "documentation",
+     "span": "The Agent will not immediately conclude that the VFD or motor is defective. It may investigate: whether the PLC RUN command remains active; motor current before the trip; mechanical load; drive temperature; acceleration parameters; motor data configuration; whether the fault correlates with temperature or operating time.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-fd99b87af2f9d201",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "The best mindset is: Know what should happen. Measure what is happening. Find the difference. Prove the fault. Repair safely. Verify the fix.",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "a targeted confirmation question",
+    "target_claim_ids": [
+     "c-478869a71c059f4d"
+    ],
+    "text": "Sources say: \"If a technician notices a leak but does not repair it, record the finding as an open next action.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+    "weak_channel": false
+   },
+   "rank": 6,
+   "reasoning": "1 key(s) state When a technician identifies a defect but does not immediately repair it, the finding should be recorded as an open next action rather than written as a resolved maintenance event.; 6 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-478869a71c059f4d"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.",
+   "category": "HYP",
+   "confidence": {
+    "A": 2,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 3,
+    "robustness": "0/4",
+    "score": 2
+   },
+   "gap_id": "g-57de0e58c067",
+   "hypothesis": {
+    "channel": "a targeted confirmation question",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "rationale"
+    ],
+    "predicted_tacitness": [
+     "relational"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to know why 'The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.'; no verified claim in this ledger matched test WHY:c-17f61d2caa7a2b6c."
+   },
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "2e9ad3c97612655261091ab667b0643a202ee03f2fc458f42befaa32cb1ce541",
+    "judge_reason": "to investigate power and grounding issues",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a reason. Re-runnable: prompt sha 2e9ad3c97612.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-17f61d2caa7a2b6c"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-17f61d2caa7a2b6c",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Monitor the 24 VDC supply near the affected load, not only at the power supply terminals.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-711f7a6d18e542e0",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "check",
+     "role": "topic",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Check loading, inrush, loose terminals, protective-device behavior and shared commons.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-933e695c5b497d18",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "decision",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "If the output LED is ON but the meter reads 0 VDC at the terminal, check the output common, fuse, or field power.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-dfa41772e603c5af",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "Solution: add a 2.2 k\u03a9 bleed resistor across the input terminal to 0 V. This drops the leakage voltage to under 1 V, well below the OFF threshold.",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "a targeted confirmation question",
+    "target_claim_ids": [
+     "c-17f61d2caa7a2b6c"
+    ],
+    "text": "Sources say: \"Monitor the 24 VDC supply near the affected load, not only at the power supply terminals.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+    "weak_channel": false
+   },
+   "rank": 7,
+   "reasoning": "1 key(s) state The 24 VDC supply should be monitored near the affected load, not only at the power supply terminals, to investigate power and grounding issues.; 3 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-17f61d2caa7a2b6c"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "An output transistor should not be replaced without first verifying the load coil resistance, as a shorted coil will destroy the replacement card.",
+   "category": "HYP",
+   "confidence": {
+    "A": 2,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 3,
+    "robustness": "0/4",
+    "score": 1
+   },
+   "gap_id": "g-d66536a8ef30",
+   "hypothesis": {
+    "channel": "a targeted confirmation question",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "rationale"
+    ],
+    "predicted_tacitness": [
+     "relational"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to know why 'An output transistor should not be replaced without first verifying the load coil resistance, as a shorted coil will destroy the replacement card.'; no verified claim in this ledger matched test WHY:c-6726d5a93c8ce8da."
+   },
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "ca0430bd0dc95b3b84d63a65483e45cc89c84709ec187b16848b8c3f0e304d7c",
+    "judge_reason": "to prevent destruction of replacement card",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-6726d5a93c8ce8da",
+     "c-b4064c9f263ef5c2",
+     "c-dcdfe8e233c2abcf"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a reason. Re-runnable: prompt sha ca0430bd0dc9.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-6726d5a93c8ce8da"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-5680e1d77483e8c3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "decision",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "If you read full supply voltage but the device does not run, the fault is in the load circuit: broken wire, open coil, or a missing return path.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-6726d5a93c8ce8da",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "check",
+     "role": "seed",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "Replacing a dead output transistor without checking the load coil resistance first. A shorted coil will kill the replacement card just as fast.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-b4064c9f263ef5c2",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "A coil reads extremely low resistance. Possible conclusion: The coil may be shorted.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-c28a73af0a0b4536",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "A solenoid coil reads open/infinite resistance. Possible conclusion: The coil is open and may be failed.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-d8cf21cb2e1bac98",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "failure_mode",
+     "role": "topic",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Outputs working sometimes but not consistently often trace to blown fuses, marginal output cards, or loose terminal connections. The output might work for small loads but fail under full load current.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-dcdfe8e233c2abcf",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "cue",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "A reading close to zero means a shorted coil that may have already killed the output transistor.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-f64b3303ef6c3332",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "cue",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "Open circuit (OL on your meter) means a burnt coil.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-f7898ff8aca69a56",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-648d381d8594dd5e",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.plcprogrammingblog.com/blog/plc-input-output-fault-diagnosis-multimeter",
+     "source_kind": "documentation",
+     "span": "A 24 VDC solenoid coil typically reads 20 to 100 ohms depending on power rating.",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "a targeted confirmation question",
+    "target_claim_ids": [
+     "c-6726d5a93c8ce8da"
+    ],
+    "text": "Sources say: \"Replacing a dead output transistor without checking the load coil resistance first.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+    "weak_channel": false
+   },
+   "rank": 8,
+   "reasoning": "1 key(s) state An output transistor should not be replaced without first verifying the load coil resistance, as a shorted coil will destroy the replacement card.; 3 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-6726d5a93c8ce8da"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The cue is stated in paraphrase.",
+     "why": "DETECT is a fixed lexicon."
+    },
+    {
+     "live": false,
+     "text": "The error is a vendor framing, not a practitioner error.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The guard is organisational (a checklist or procedure), not cognitive.",
+     "why": "a procedural guard need not be an internalised cue."
+    }
+   ],
+   "anchor": "A common mistake in troubleshooting intermittent faults is panicking and abandoning systematic approaches in favor of quick fixes.",
+   "category": "HYP",
+   "confidence": {
+    "A": 1,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 2,
+    "robustness": "2/4",
+    "score": 0
+   },
+   "gap_id": "g-20058c799d9f",
+   "hypothesis": {
+    "channel": "observation or process tracing first, a retrospective probe over a recorded trace second",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "check",
+     "metacognition"
+    ],
+    "predicted_tacitness": [
+     "automated"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to notice A common mistake in troubleshooting intermittent faults is panicking and abandoning systematic approaches in favor of quick fixes. before or as it happens by a check that no verified claim in this ledger matched test GUARD:c-e9e5424e36fdc18c for. This is an expert-reported error, not an observed learner difficulty."
+   },
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "5be098206307566352d852415351de57d9ce6aa6fbde86de7625848c6294fbbd",
+    "judge_reason": "Sentences 1 and 2 hint at noticing before or as it happens through describing panic and abandoning systematic approaches.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-e9e5424e36fdc18c"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a detection cue. Re-runnable: prompt sha 5be098206307.",
+    "synthetic_hits": [],
+    "test_id": "GUARD:c-e9e5424e36fdc18c"
+   },
+   "lens": "GUARD",
+   "merged_from": [],
+   "missing": "a detection cue",
+   "observed_evidence": [
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-e49d7ece8c90d13f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-54ea3e1f81e8133a",
+     "knowledge_type": "decision",
+     "role": "topic",
+     "source_identifier": "https://capafy.ai/nl/agent/industrial-automation-troubleshooter/7488231290",
+     "source_kind": "documentation",
+     "span": "QUICK Designed for clearly defined faults where fast troubleshooting is the priority. Examples: Motor does not start Known VFD alarm Sensor permanently active Device offline after replacement Communication fault after maintenance",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-e9e5424e36fdc18c",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "misconception",
+     "role": "seed",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "They sometimes panic and give up before actually trying to find the fault. Or, in an effort to fix something quickly, they take the shotgun approach and miss some obvious things that a more systematic approach would uncover.",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "observation or process tracing first, a retrospective probe over a recorded trace second",
+    "target_claim_ids": [
+     "c-e9e5424e36fdc18c"
+    ],
+    "text": "\"Or, in an effort to fix something quickly, they take the shotgun approach and miss some obvious things that a more systematic approach would uncover.\". Think of the last time you or a colleague nearly did this or just had. What made you notice? What did you look at?",
+    "weak_channel": true
+   },
+   "rank": 9,
+   "reasoning": "1 key(s) state A common mistake in troubleshooting intermittent faults is panicking and abandoning systematic approaches in favor of quick fixes.; 2 key(s) discuss the topic; the closure judge found no verified sentence matching test GUARD:c-e9e5424e36fdc18c"
+  },
+  {
+   "alternatives": [],
+   "anchor": "Documentation and Historical Analysis",
+   "category": "CONTROL",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-94894a758f4c",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Control slot: area 'Documentation and Historical Analysis' (a-8c10790bb9b3111b) has no HYP record and the highest attested share (0.76) among candidate areas of ledger 3d724d8d.",
+    "synthetic_hits": [],
+    "test_id": "CONTROL:a-8c10790bb9b3111b"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": {
+    "channel": "control",
+    "target_claim_ids": [],
+    "text": "Walk me through how you carry out Documentation and Historical Analysis, from start to finish, as if I were watching you do it. What do you check, and in what order?",
+    "weak_channel": false
+   },
+   "rank": 10,
+   "reasoning": "the \u00a714.2 unknown-unknowns guard: no HYP touches this area"
+  }
+ ],
+ "retrieval_gaps": [
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "Competent technicians should not mask a power problem by increasing software delays until the electrical cause is understood.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "2/4",
+    "score": 0
+   },
+   "gap_id": "g-618bd769c8c3",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "541880e335ad6aff6d98d9875bbf71ae4e7c5c8833cce37f3e2a3f47db8dd890",
+    "judge_reason": "to prevent misunderstanding of intermittent faults",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a reason. Re-runnable: prompt sha 541880e335ad.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-999231909ad2e610"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-999231909ad2e610",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "norm",
+     "role": "seed",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Do not mask a power problem by increasing software delays until the electrical cause is understood.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state Competent technicians should not mask a power problem by increasing software delays until the electrical cause is understood.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-999231909ad2e610"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "Sampling rate should be chosen according to the suspected event, not according to convenient historian defaults.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "2/4",
+    "score": 0
+   },
+   "gap_id": "g-6a19861b64fd",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "d6cd7514cbaf833ace28056181911f50c14931a7e45568ee5d91f82cbe891f14",
+    "judge_reason": "prevents failure to capture critical events",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 0,
+    "lexical_state": "open",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a reason. Re-runnable: prompt sha d6cd7514cbaf.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-5a47287dab362e5a"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-5a47287dab362e5a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "strategy",
+     "role": "seed",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Choose sampling according to the suspected event, not according to convenient historian defaults.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state Sampling rate should be chosen according to the suspected event, not according to convenient historian defaults.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-5a47287dab362e5a"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "GMP-regulated industries should retain maintenance records for a minimum of 5-7 years, often for the life of the product.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-a387ee21a8df",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "2db456a438e2ba96676c2a4bc90d21f3f3b4a2c9c0cb05ea4ad5a2101ef34418",
+    "judge_reason": "3} Too often repair technicians are placed under pressure to not necessarily find the root cause, but simply to get the equipment running again.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 1,
+    "lexical_state": "closed",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a reason. Re-runnable: prompt sha 2db456a438e2.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-8df1e3c63d6a6d37"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-8df1e3c63d6a6d37",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-038f6d95bef84e11",
+     "knowledge_type": "norm",
+     "role": "seed",
+     "source_identifier": "https://dovient.com/resources/blog/equipment-maintenance-log",
+     "source_kind": "documentation",
+     "span": "GMP-regulated industries: 5-7 years minimum, often for the life of the product.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state GMP-regulated industries should retain maintenance records for a minimum of 5-7 years, often for the life of the product.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-8df1e3c63d6a6d37"
+  },
+  {
+   "alternatives": [],
+   "anchor": "What observable features of a situation signal that Documentation and Historical Analysis applies or needs a different response? \u2014 area: Documentation and Historical Analysis",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-09125840426b",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger 3d724d8d claim c-897edf646766f84b (cue) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-897edf646766f84b"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "What counts as acceptable or sufficient work in PLC Fault Diagnosis Methods? \u2014 area: PLC Fault Diagnosis Methods",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-26b1ffc17e2c",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger 3d724d8d claim c-db6661bccfa657bd (norm) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-db6661bccfa657bd"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "decision slot searched, nothing found \u2014 area: Documentation and Historical Analysis",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-3b72f8857102",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'decision' in area Documentation and Historical Analysis of ledger 3d724d8d is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-8c10790bb9b3111b|decision|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "What observable features of a situation signal that Systematic Troubleshooting Frameworks applies or needs a different response? \u2014 area: Systematic Troubleshooting Frameworks",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-61a1bc616cc5",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger 3d724d8d claim c-674d3b04ba4d0e44 (cue) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-674d3b04ba4d0e44"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "cue slot searched, nothing found \u2014 area: Systematic Troubleshooting Frameworks",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-6217a55370a0",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'cue' in area Systematic Troubleshooting Frameworks of ledger 3d724d8d is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-b29da96b7f6c06f7|cue|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "rationale slot searched, nothing found \u2014 area: Electrical and Hardware Testing",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-7a693c5b3791",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'rationale' in area Electrical and Hardware Testing of ledger 3d724d8d is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-89c2721fe5f2ee88|rationale|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "Why is Electrical and Hardware Testing done the way it is? \u2014 area: Electrical and Hardware Testing",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-91d5925de15f",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger 3d724d8d claim c-f98231397170b343 (rationale) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-f98231397170b343"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "What conditions determine which option is chosen in Documentation and Historical Analysis? \u2014 area: Documentation and Historical Analysis",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-9b73998e3e09",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger 3d724d8d claim c-08791488943acc4f (decision) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-08791488943acc4f"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "norm slot searched, nothing found \u2014 area: PLC Fault Diagnosis Methods",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-9fe2c7a3715d",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'norm' in area PLC Fault Diagnosis Methods of ledger 3d724d8d is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-7c823af7a0bcf79b|norm|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "cue slot searched, nothing found \u2014 area: Documentation and Historical Analysis",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-d46959241e92",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'cue' in area Documentation and Historical Analysis of ledger 3d724d8d is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-8c10790bb9b3111b|cue|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "The first-out fault should be captured with a timestamp and not overwritten until authorized reset.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "4/4",
+    "score": -1
+   },
+   "gap_id": "g-53baeab5a412",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "ff842dc1d3584617c18c939e444f39d63e319a0143f8f5b02eacfd382d2dee17",
+    "judge_reason": "Preserves initial conditions for accurate analysis and measurement.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 3,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-037aaebe7854868f",
+     "c-73c4b9fa7701d4a7"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a reason. Re-runnable: prompt sha ff842dc1d358.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-73c4b9fa7701d4a7"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-037aaebe7854868f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-c84226ca6e967ec6",
+     "knowledge_type": "procedure_step",
+     "role": "closure_near",
+     "source_identifier": "https://www.peakboard.com/en/solution/machine-monitoring",
+     "source_kind": "documentation",
+     "span": "In the Peakboard Hub, machine states can be stored with a timestamp. Availability, downtime durations and OEE then become measurable across weeks and months",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-73c4b9fa7701d4a7",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Preserve the first event Secondary alarms can appear milliseconds after the initiating condition. Capture the first-out fault with a timestamp and do not overwrite it until an authorized reset.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state The first-out fault should be captured with a timestamp and not overwritten until authorized reset.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-73c4b9fa7701d4a7"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "A multimeter must be set to the proper range and function before testing.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "3/4",
+    "score": -1
+   },
+   "gap_id": "g-1270b86e3343",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "ea48f6a818f97c5db5d765833dbb664f0521b4f3f0206eac1af840f7a42117bf",
+    "judge_reason": "to prevent damage to equipment or injury to personnel",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 3,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-fa5d81773c393287"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a reason. Re-runnable: prompt sha ea48f6a818f9.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-fa5d81773c393287"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-17c2de65f3f17ed3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "check",
+     "role": "topic",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "Before using the multimeter, verify: Correct function selected Correct range selected Leads in correct ports Probe tips in good condition Insulation not damaged Meter CAT rating is appropriate Meter battery is good Display works properly",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-89c2721fe5f2ee88",
+     "claim_id": "c-fa5d81773c393287",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-a013254b36b7055a",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://joeguardian.com/11-multimeter-basics-for-control-panel-troubleshooting/",
+     "source_kind": "documentation",
+     "span": "The TSTrainer Lab Manual gives a very important warning: always make sure the multimeter is set to the proper range and function before testing.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state A multimeter must be set to the proper range and function before testing.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-fa5d81773c393287"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "Verification of a fix should include running equipment through full operational cycles and testing boundary conditions before considering the problem solved.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "2/4",
+    "score": -1
+   },
+   "gap_id": "g-6c33196dc107",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "6c368fc69dfc18613f775dd0bcf6152a8d5c0a44db198534e9391c6796abe3b0",
+    "judge_reason": "to account for end environment factors",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-0854575ba0113ca4"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a reason. Re-runnable: prompt sha 6c368fc69dfc.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-f41ecd20286698cd"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-7c823af7a0bcf79b",
+     "claim_id": "c-0854575ba0113ca4",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6c3d0a30ea4db431",
+     "knowledge_type": "expert_novice_contrast",
+     "role": "closure_near",
+     "source_identifier": "https://www.automate.org/motion-control/industry-insights/troubleshooting-tips-isolating-intermittent-faults",
+     "source_kind": "documentation",
+     "span": "Software tends to be very repeatable. A software fault may seem intermittent, but normally this is because a very specific set of conditions needs to be present to cause the fault. Once these conditions are present, however, software will always respond in the same pre-programmed logical way. On the other hand, hardware faults tend to be affected by the end environment, which can include cables and other site-specific conditions.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-f41ecd20286698cd",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "check",
+     "role": "seed",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Verify the fix resolves the original symptom completely. Run the equipment through full operational cycles. Test boundary conditions that might trigger the same fault. Watch for several successful cycles before considering the problem solved.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state Verification of a fix should include running equipment through full operational cycles and testing boundary conditions before considering the problem solved.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-f41ecd20286698cd"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "Verification of a fix should include running equipment",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "2/4",
+    "score": -1
+   },
+   "gap_id": "g-de7b2606ef1a",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "f881086618399ebb5c6cf39d2781c65c3460b317d33a387836717bff971486a0",
+    "judge_reason": "Sentences 1 and 5 describe actions but do not explicitly state expected results or next actions based on test outcomes.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-f41ecd20286698cd"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'Verification of a fix should include running equipment'. Re-runnable: prompt sha f88108661839.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-f41ecd20286698cd"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'Verification of a fix should include running equipment'",
+   "observed_evidence": [
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-f41ecd20286698cd",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-90dc6fdae4a41cc0",
+     "knowledge_type": "check",
+     "role": "seed",
+     "source_identifier": "https://liambee.me/general/troubleshooting-plc-systems-a-systematic-approach-to-finding-faults/",
+     "source_kind": "documentation",
+     "span": "Verify the fix resolves the original symptom completely. Run the equipment through full operational cycles. Test boundary conditions that might trigger the same fault. Watch for several successful cycles before considering the problem solved.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state Verification of a fix should include running equipment; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-f41ecd20286698cd"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "A periodic task should include a WALLCLOCKTIME GSV in only one user task, or wrap it in a UID/UIE pair if another task also reads it.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": -1
+   },
+   "gap_id": "g-c8eb6c9e90ab",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "991acec9a875d715013a99567a9dadfe66ccadd820ab7706fbc44cd1c69d5428",
+    "judge_reason": "to prevent confusion or incorrect processing",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-81d3eb38197d67ac"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a reason. Re-runnable: prompt sha 991acec9a875.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-81d3eb38197d67ac"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-4cb402666ee92c71",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-aab556b0ece4b264",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://plctr.com/plc-intermittent-fault-trend-tags-trigger-latch/",
+     "source_kind": "documentation",
+     "span": "a 10 ms periodic task writing eight tags into a 600-element ring, a trigger on the fault bit, 200 more samples, then a latch that stops the writer until somebody has read the result. Four rungs. About 7 KB of memory.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-77967cc033e71595",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-aab556b0ece4b264",
+     "knowledge_type": "rationale",
+     "role": "topic",
+     "source_identifier": "https://plctr.com/plc-intermittent-fault-trend-tags-trigger-latch/",
+     "source_kind": "documentation",
+     "span": "A rung in the continuous task samples whenever the scan happens to come round, which on this machine is about every 8 ms and on a bad scan is 14. The timestamps drift, and a capture whose sample spacing wanders is hard to read",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-8c10790bb9b3111b",
+     "claim_id": "c-81d3eb38197d67ac",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-aab556b0ece4b264",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://plctr.com/plc-intermittent-fault-trend-tags-trigger-latch/",
+     "source_kind": "documentation",
+     "span": "The manual has a note on that GSV that is easy to walk past: include the WALLCLOCKTIME GSV in only one user task, or wrap it in a UID/UIE pair if another task also reads it.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state A periodic task should include a WALLCLOCKTIME GSV in only one user task, or wrap it in a UID/UIE pair if another task also reads it.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-81d3eb38197d67ac"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "captured with a timestamp and not overwritten until",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": -1
+   },
+   "gap_id": "g-3698d5c493fb",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "699a5f0e4594153e23d4214bd9a85c6a082f9c2278b4ccd47e0ee703e9c20365",
+    "judge_reason": "Sentences 1 and 3 describe expected behavior but do not explicitly state results or next actions.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 3,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-73c4b9fa7701d4a7"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'captured with a timestamp and not overwritten until'. Re-runnable: prompt sha 699a5f0e4594.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-73c4b9fa7701d4a7"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'captured with a timestamp and not overwritten until'",
+   "observed_evidence": [
+    {
+     "area_id": "a-ff0a5de0f9586864",
+     "claim_id": "c-73c4b9fa7701d4a7",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Preserve the first event Secondary alarms can appear milliseconds after the initiating condition. Capture the first-out fault with a timestamp and do not overwrite it until an authorized reset.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state captured with a timestamp and not overwritten until; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-73c4b9fa7701d4a7"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "capture should be avoided as the first step; instead begin",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": -1
+   },
+   "gap_id": "g-6b3d89e65c7e",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "d99bcee0f39449252842544a4750393b266a7aae9aa31196b1cce5a858ac55db",
+    "judge_reason": "Sentence 4 suggests collecting targeted traffic next if initial steps do not resolve the issue.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-e4259b9c36af9835"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'capture should be avoided as the first step; instead begin'. Re-runnable: prompt sha d99bcee0f394.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-e4259b9c36af9835"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'capture should be avoided as the first step; instead begin'",
+   "observed_evidence": [
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-e4259b9c36af9835",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "strategy",
+     "role": "seed",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Avoid indiscriminate packet capture as the first step. Begin with the failing connection and time window, then collect targeted traffic if switch and device diagnostics cannot distinguish the cause.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state capture should be avoided as the first step; instead begin; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-e4259b9c36af9835"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "Indiscriminate packet capture should be avoided as the first step; instead begin with the failing connection and time window.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": -1
+   },
+   "gap_id": "g-999f1c744057",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "89231615a005544b8e6d89f71e49e05c65d7d91489e6e8d6d83c5e265d28a2b7",
+    "judge_reason": "Prevents unnecessary data and focuses on relevant issues.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-e4259b9c36af9835"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a reason. Re-runnable: prompt sha 89231615a005.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-e4259b9c36af9835"
+   },
+   "lens": "WHY",
+   "merged_from": [],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-b29da96b7f6c06f7",
+     "claim_id": "c-e4259b9c36af9835",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-636acef04b884b84",
+     "knowledge_type": "strategy",
+     "role": "seed",
+     "source_identifier": "https://plcscadaacademy.blogspot.com/2026/04/how-to-diagnose-random-plc-faults-and.html",
+     "source_kind": "documentation",
+     "span": "Avoid indiscriminate packet capture as the first step. Begin with the failing connection and time window, then collect targeted traffic if switch and device diagnostics cannot distinguish the cause.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state Indiscriminate packet capture should be avoided as the first step; instead begin with the failing connection and time window.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-e4259b9c36af9835"
+  }
+ ]
+}

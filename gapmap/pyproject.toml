@@ -1,0 +1,25 @@
+[project]
+name = "gapmap"
+version = "0.1.0"
+description = "N3 PoC: methodology-guided hidden-knowledge hypotheses and a ranked gap map over a residual/ ledger."
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",
+    "residual",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv.sources]
+residual = { path = "../residual", editable = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gapmap"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -8,18 +8,39 @@ Tracks work against [`REORIENTATION.md`](REORIENTATION.md), the strategic plan a
 
 The project is reoriented: reconstruct what public and organisational evidence already says, predict where that reconstruction is missing human knowledge, and ask humans only about that residual. NOW needs zero participants, zero proprietary data, zero microphones and zero live expert interviews; its one human input is one blind second coder. Physics is one benchmark domain; the prepared physics study is frozen as Validation Track A (below).
 
-**Status.** N0 — COMPLETE. N1 — COMPLETE. N2 engineering PoC — COMPLETE. N2 full research validation — DEFERRED. **NEXT — N3.**
+**Status.** N0 — COMPLETE. N1 — COMPLETE. N2 engineering PoC — COMPLETE. N2 full research validation — DEFERRED. **N3 PoC — COMPLETE** (pipeline demonstrated; hidden-knowledge prediction not demonstrated). **PoC v1 — COMPLETE.** N3 scientific validation (E-CTA, E-OSS, residual measurement) — FUTURE RESEARCH / grant roadmap.
+
+**N3 PoC (2026-09-29; [overview](research/n3/README.md), [spec](docs/plans/n3-poc-lens-spec.md), package `gapmap/`).**
+- **What it does.** The pipeline runs end to end on real N2 ledgers in two domains: PLC fault diagnosis and GDPR DPIA, with two independent GDPR runs. Stages: evidence ledger → seven methodology lenses (CDM cue-as-discrimination, PARI rival causes and result interpretation, selection rule, conditional exception, automated self-check, rationale) → three-tier records (observed evidence / inferred gap / hypothesis labelled `inferred`) → a ranked map of gap candidates → CDM-style expert questions. Retrieval gaps form a separate category.
+- **How it runs.** It is deterministic: a committed judge cache replays byte-identically offline. It costs $0 (the closure judge is a local Ollama `qwen2.5:7b-instruct`). 172 tests.
+- **What the adversarial review found.** An Opus review asked: "methodology-guided prediction, or renamed density?" The answer: it is not low density renamed. Lenses decide which candidates are gaps; ranking is by breadth of the attested side; the top 10 share 0.00–0.07 with the ten lowest-density candidates. But the absence-detection (closure) step never beat a fair control:
+  - the lexical version ran at chance (donor null, PLC 42 vs [33, 47]);
+  - the semantic judge ties its control on every lens (own = control, 0.89 / 0.96 / 0.96), because its closures come from the seed's own text.
+- **Precision.** 3 of 19 strict (8 of 19 lenient) by adversarial judgement on the pre-final maps, unvalidated against gold. The outputs are therefore **gap candidates, not validated hidden-knowledge predictions**.
+- **Defects fixed from the three review rounds:**
+  - a vacuous anti-renaming check;
+  - a straw-man null;
+  - DIAG blob groups;
+  - type-only closure;
+  - hash-seed nondeterminism;
+  - promotional sources;
+  - judge answers given as integer ids, silently dropped as "open";
+  - an asymmetric control.
+- **Left as disclosed limitations:** DIAG cause phrases and questions are still sentence fragments; the lexicons are in-sample; independence keys are coarse; there is no learner data.
+- **Final maps.** Candidates: PLC 9, GDPR v1 1, GDPR v2 6. GDPR v2 is not N3-admissible (140 pending verdicts).
+
+**NEXT (future research, needs owner approval and budget):** an informative closure step checked against the fair control and a small human-labelled closure set, then the pre-registered E-CTA/E-OSS gold test (`docs/plans/n3-gap-map-plan.md`).
 
 N2's registered research gate is closed **INCONCLUSIVE** (2026-09-28; [full record](research/n2/closeout.md), [E-PLANT/E-ABST report](research/n2/e_plant_eabst_report.md)) and that reading is unchanged: the E-PLANT ungated baseline adopted only 5/24 plants (floor 8), the E-ABST raw baseline answered only 5/24, and the gated arms were never run at the final freeze because the owner chose not to spend more API budget. E-LIVE v3 (post-fix live check) is deferred for the same reason. All three protocols stay pre-registered, unchanged, for later execution as **future research validation**.
 
-Separately, N2's **engineering PoC is complete**: the pipeline runs end to end on real sources, is verified offline (416 tests), and E-LIVE's live runs found and drove fixes for real defects (`research/n2/closeout.md`). The owner's decision (2026-09-28) is to start N3 on that engineering milestone rather than wait on the deferred research validation — an explicit, recorded exception to the rule that a NOW item should end on an experiment result rather than a build (R13); N2's own registered gate is not changed by this and stays INCONCLUSIVE. N3 (E-CTA, E-OSS) has a draft plan ([plan](docs/plans/n3-gap-map-plan.md)) and is next. N8 (E-SEAL) and N9 (cost ledger) can start at once.
+Separately, N2's **engineering PoC is complete**: the pipeline runs end to end on real sources, is verified offline (416 tests), and E-LIVE's live runs found and drove fixes for real defects (`research/n2/closeout.md`). The owner's decision (2026-09-28) is to start N3 on that engineering milestone rather than wait on the deferred research validation — an explicit, recorded exception to the rule that a NOW item should end on an experiment result rather than a build (R13); N2's own registered gate is not changed by this and stays INCONCLUSIVE. N3's PoC is built (above); N3's gold test (E-CTA, E-OSS; [plan](docs/plans/n3-gap-map-plan.md)) is future research. N8 (E-SEAL) and N9 (cost ledger) can start at once.
 
 | Item | What | Gate | Status |
 |---|---|---|---|
 | **N0** | Reset: DOI hook path fixed; Track A labelled frozen; `CLAUDE.md`, `PROGRESS.md` and map rewritten; domain-neutral package for reused components | DOI hook fires on a test edit | **Done 2026-09-28, gate passed.** `scripts/hook_tests/test_check_dois.py` runs the registered command offline, and a live Write of a made-up DOI was blocked. The test found that Drain 5 had stopped the hook reading `doi.org/` links; fixed, lesson queued. Package `residual/` created (pydantic only; own test hook); `instrument/` untouched |
 | **N1** | Claim record, six evidence labels, knowledge-type vocabulary, gap-map fields | Every gold item expressible with ≤ 2 new field types | **Done 2026-09-28, gate: continue with 2 additions, at the registered limit** (`KnowledgeType.INTERPRETATION`, `ResponseDistribution`). Schema, feature set and label code hash-frozen in `residual/frozen/n1.json`. Record below |
 | **N2** | Gated reconstruction pipeline v0; E-PLANT, E-ABST | Beats the ungated model on planted falsehoods and private objectives | **Engineering PoC: COMPLETE. Full research validation: DEFERRED** (2026-09-28). Pipeline built, runs end to end on real sources, verified offline (416 tests); E-LIVE found and drove fixes for real pipeline defects. Registered research gate: **INCONCLUSIVE, not passed** — E-PLANT/E-ABST Continue is closed by the E-PLANT validity floor (a_u = 5/24 < 8) and the gated arms were not run (budget); E-LIVE v3 also not run (budget). All three protocols stay pre-registered, unchanged, as future research validation. ([plan](docs/plans/n2-reconstruction-plan.md); [closeout](research/n2/closeout.md); [E-PLANT/E-ABST report](research/n2/e_plant_eabst_report.md); record below) |
-| **N3** | **Central test:** E-CTA (clinical, troubleshooting gold) and E-OSS | Pre-registered ΔAUROC stop/continue rule vs the strongest baseline | Not started; gold not yet acquired |
+| **N3** | **Central test:** E-CTA (clinical, troubleshooting gold) and E-OSS | Pre-registered ΔAUROC stop/continue rule vs the strongest baseline | **PoC: COMPLETE (2026-09-29).** Pipeline demonstrated on PLC and GDPR (`research/n3/`); its closure step does not beat a fair control, so the output is gap candidates (precision 3/19 strict, adversarial judgement). **Gate: not run** — gold not acquired; E-CTA/E-OSS are future research |
 | **N4** | Behavioural validity: E-KC, E-DIST, E-MISC | Non-inferior KC fit; beats raw LLM likelihood; misconception recall | Not started |
 | **N5** | Residual measurement against gold as an independent occasion | Unseen-item estimate matches the gold count within tolerance | Not started |
 | **N6** | Question selection by expected information gain vs held-out gold oracles | Beats random, plain-LLM and expert-written lists | Not started |

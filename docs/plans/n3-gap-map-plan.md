@@ -1,6 +1,6 @@
-# N3: gap map against held-out gold (plan, not started)
+# N3: gap map against held-out gold (plan, future research validation)
 
-**Status: N3 has NOT started and needs owner approval.** It also presumes the N2 gate reads *continue*, which is not yet recorded. Nothing below is built.
+**Status (2026-09-28): the N3 PoC is built separately; this plan is the deferred scientific validation.** The PoC ([spec](n3-poc-lens-spec.md), package `gapmap/`, artefacts in `research/n3/`) demonstrates methodology-guided hidden-knowledge hypotheses and a ranked gap map on existing N2 ledgers, with no gold, no experts and no paid calls. Nothing below is built. Everything below (E-CTA and E-OSS against held-out gold, the ΔAUROC gate, dated corpora, matchers and double coding) is **future research / grant roadmap**, and it still needs owner approval and a budget. The PoC's lexicons were tuned in-sample and must be hash-frozen before any gold is acquired.
 
 **Gate** (`REORIENTATION.md` §22 N3): **stop H1, pivot to H3** if the upper 90% bound of ΔAUROC is below δ, regardless of recall. **Continue H1** if the lower 90% bound exceeds 0 and the point estimate is ≥ δ. **Otherwise inconclusive**: run the next pre-registered fallback gold once, then apply the same rule. **Change to H2** only from E-OSS, if trace inputs "dominate". Recall against the 44% unprompted-expert comparator [1] only decides whether reconstruction survives as a draft.
 

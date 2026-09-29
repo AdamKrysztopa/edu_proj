@@ -1,0 +1,4272 @@
+{
+ "admissibility_note": null,
+ "admissible": true,
+ "checks": {
+  "anti_renaming": {
+   "closure_by_k_topic": [
+    {
+     "band": "0-1",
+     "closed": 25,
+     "n": 48,
+     "rate": 0.5208333333333334
+    },
+    {
+     "band": "2",
+     "closed": 1,
+     "n": 2,
+     "rate": 0.5
+    },
+    {
+     "band": "3-4",
+     "closed": 1,
+     "n": 1,
+     "rate": 1.0
+    },
+    {
+     "band": ">=5",
+     "closed": 0,
+     "n": 0,
+     "rate": 0.0
+    }
+   ],
+   "flags": [
+    "closure-uninformative"
+   ],
+   "j10_high": 0.1,
+   "j10_low": 0.0,
+   "spearman": 0.08675392106620004,
+   "terciles": [
+    {
+     "closed": 9,
+     "hyp": 0,
+     "n": 17,
+     "tercile": "low"
+    },
+    {
+     "closed": 7,
+     "hyp": 1,
+     "n": 17,
+     "tercile": "mid"
+    },
+    {
+     "closed": 11,
+     "hyp": 0,
+     "n": 17,
+     "tercile": "high"
+    }
+   ],
+   "top_tercile_closed_share": 0.6470588235294118
+  },
+  "cross_run_stability": {
+   "a_to_b": [
+    {
+     "anchor": "A DPIA should begin early in a project lifecycle, before processing starts, and run alongside the planning and development process.",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-a894f01249ff",
+     "lens": "WHY"
+    },
+    {
+     "anchor": "measures, new technologies, and novel processing types.",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-1b1e68dc5d39",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "In most cases, a combination of two factors from the WP29 criteria indicates the need for a DPIA, though this is not a strict rule.",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-a34d8523df48",
+     "lens": "HEDGE"
+    },
+    {
+     "anchor": "assess the origin, nature, particularity and gravity of",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-e7adf9af268f",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "assess the necessity and proportionality of processing",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-d2fa456e3d16",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "measures to protect people's rights.",
+     "counterpart_category": "HYP",
+     "counterpart_closure_state": "partial",
+     "gap_id": "g-d40eee24b901",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "assess and mitigate impact on individuals' ability to",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-5d3fa976af6b",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "monitoring, decisions on service access or opportunities, or",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-d6f0d018e8e3",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "DPO advice on whether processing is compliant and can go ahead should be sought and documented as part of sign-off; if advice is not followed, reasons must be recorded.",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-be53c0a9cb9a",
+     "lens": "WHY"
+    },
+    {
+     "anchor": "A DPIA must involve the opinion of the Data Protection Officer and, where appropriate, the point of view of data subjects or their representatives.",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-9e2faa1f49b7",
+     "lens": "HEDGE"
+    },
+    {
+     "anchor": "review to assess if processing is performed in accordance",
+     "counterpart_category": "HYP",
+     "counterpart_closure_state": "partial",
+     "gap_id": "g-92e1456d66ad",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "assessment must contain a systematic description of the",
+     "counterpart_category": "RG-SINGLE",
+     "counterpart_closure_state": "partial",
+     "gap_id": "g-fcde59e37154",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "measures should be considered when deciding whether to",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-dfb760b0cd9e",
+     "lens": "RESULT"
+    }
+   ],
+   "b_to_a": [
+    {
+     "anchor": "relevant controller",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-656818235091",
+     "lens": "DISC"
+    },
+    {
+     "anchor": "review to assess if processing is performed in accordance",
+     "counterpart_category": "RG-SINGLE",
+     "counterpart_closure_state": "partial",
+     "gap_id": "g-a2821a38f28f",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "vulnerable individual",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-9a3380e70b76",
+     "lens": "DISC"
+    },
+    {
+     "anchor": "In most cases, a data controller can consider that a processing meeting two criteria would require a DPIA to be carried out.",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-42daa2d6e7e1",
+     "lens": "HEDGE"
+    },
+    {
+     "anchor": "measures to protect people's rights.",
+     "counterpart_category": "RG-SINGLE",
+     "counterpart_closure_state": "partial",
+     "gap_id": "g-943c3031fd20",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "assess whether something is high risk, you need to consider",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-6ad618c77e8c",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "You may be able to justify a decision not to carry out a DPIA if you are confident that the processing is nevertheless unlikely to result in a high risk, but you should document your reasons.",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-5b63f9ad44a6",
+     "lens": "WHY"
+    },
+    {
+     "anchor": "systematic description",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-8f95c18d62b4",
+     "lens": "DISC"
+    },
+    {
+     "anchor": "assessment must contain a systematic description of the",
+     "counterpart_category": "RG-SINGLE",
+     "counterpart_closure_state": "partial",
+     "gap_id": "g-a677263eb710",
+     "lens": "RESULT"
+    },
+    {
+     "anchor": "appropriate controller",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-d2b9d34dbb87",
+     "lens": "DISC"
+    },
+    {
+     "anchor": "The DPIA should be considered as a living tool, not merely as a one-off exercise.",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-5c58e8c60b0f",
+     "lens": "WHY"
+    },
+    {
+     "anchor": "A DPIA is NOT required where processing operations do not result in a high risk to the rights and freedoms of individuals.",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-763a57d498bd",
+     "lens": "WHY"
+    },
+    {
+     "anchor": "measures put in place, the DPA must be consulted prior to",
+     "counterpart_category": null,
+     "counterpart_closure_state": null,
+     "gap_id": "g-e74dc1d1b656",
+     "lens": "RESULT"
+    }
+   ]
+  },
+  "judge_lexical_confusion": {
+   "closed->closed": 10,
+   "closed->partial": 8,
+   "closed->synthetic-closed": 3,
+   "open->closed": 8,
+   "open->open": 2,
+   "open->partial": 8,
+   "open->synthetic-closed": 1,
+   "partial->closed": 8,
+   "partial->partial": 1,
+   "synthetic-closed->closed": 1,
+   "synthetic-closed->partial": 1
+  },
+  "lexical_donor_null": {
+   "by_lens": {
+    "HEDGE": {
+     "flag": true,
+     "n_candidates": 5,
+     "null_hi": 2.0,
+     "null_lo": 0.0,
+     "null_mean": 0.44,
+     "observed": 2
+    },
+    "RESULT": {
+     "flag": true,
+     "n_candidates": 21,
+     "null_hi": 11.0,
+     "null_lo": 5.0,
+     "null_mean": 8.24,
+     "observed": 6
+    },
+    "SEL": {
+     "flag": true,
+     "n_candidates": 4,
+     "null_hi": 3.0,
+     "null_lo": 0.0,
+     "null_mean": 2.05,
+     "observed": 2
+    },
+    "WHY": {
+     "flag": true,
+     "n_candidates": 8,
+     "null_hi": 4.0,
+     "null_lo": 0.0,
+     "null_mean": 2.005,
+     "observed": 1
+    }
+   },
+   "total": {
+    "flag": true,
+    "null_hi": 17.0,
+    "null_lo": 8.0,
+    "null_mean": 12.735,
+    "observed": 11
+   }
+  },
+  "mismatched_evidence_control": {
+   "by_lens": {
+    "DISC": {
+     "control_rate": 1.0,
+     "flag": true,
+     "n": 13,
+     "other_source_only_rate": 0.3076923076923077,
+     "own_rate": 1.0
+    },
+    "HEDGE": {
+     "control_rate": 1.0,
+     "flag": true,
+     "n": 5,
+     "other_source_only_rate": 1.0,
+     "own_rate": 1.0
+    },
+    "RESULT": {
+     "control_rate": 1.0,
+     "flag": true,
+     "n": 21,
+     "other_source_only_rate": 0.9523809523809523,
+     "own_rate": 1.0
+    },
+    "SEL": {
+     "control_rate": 1.0,
+     "flag": true,
+     "n": 4,
+     "other_source_only_rate": 1.0,
+     "own_rate": 1.0
+    },
+    "WHY": {
+     "control_rate": 0.75,
+     "flag": true,
+     "n": 8,
+     "other_source_only_rate": 0.5,
+     "own_rate": 0.75
+    }
+   },
+   "total": {
+    "control_rate": 0.9607843137254902,
+    "flag": true,
+    "n": 51,
+    "other_source_only_rate": 0.7254901960784313,
+    "own_rate": 0.9607843137254902
+   }
+  },
+  "promo_excluded": 8
+ },
+ "config_sha256": "35fd0af25618f8d6e0d1c2c3707d7e932afe2ce72dbd01e956034b43bfeb04c1",
+ "domain": "GDPR DPIA (run v1)",
+ "ledger_sha256": "cdd8e42e0a140e5d75cd9e83178479fa61ba55ed3aa0a701731f0ea7e68f004b",
+ "map": [
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "measures, new technologies, and novel processing types.",
+   "category": "HYP",
+   "confidence": {
+    "A": 1,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 2,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-1b1e68dc5d39",
+   "hypothesis": {
+    "channel": "CDM probes on a recalled case; process tracing",
+    "label": "inferred",
+    "predicted_knowledge_type": [
+     "interpretation",
+     "expectancy"
+    ],
+    "predicted_tacitness": [
+     "relational"
+    ],
+    "text": "Hypothesis (inferred): practitioners are predicted to read the result of 'measures, new technologies, and novel processing types.' against expected values and map it to the next action; no verified claim in this ledger matched test RESULT:c-6370fb5b7eeb5c13."
+   },
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "92f87d71a849779cee1010f6f328b8409b8d15a0ad40d9d8f95f45527d359f69",
+    "judge_reason": "Sentence 8 mentions mitigating measures but does not explicitly state expected results or next actions.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-6370fb5b7eeb5c13"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'measures, new technologies, and novel processing types.'. Re-runnable: prompt sha 92f87d71a849.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-6370fb5b7eeb5c13"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'measures, new technologies, and novel processing types.'",
+   "observed_evidence": [
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-2fa57f35f4df9222",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-6b6ff3689ae9ddc2",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://www.dataprotection.ie/en/organisations/know-your-obligations/data-protection-impact-assessments/prior-consultation",
+     "source_kind": "documentation",
+     "span": "The Data Protection Impact Assessment and any ancillary documents; The respective responsibilities of the controller, joint controllers and processors involved in the processing, in particular for processing within a group of undertakings; The purposes and means of the intended processing; The measures and safeguards provided to protect the rights and freedoms of data subjects under the GDPR; The contact details of the Data Protection Officer (if applicable)",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-6370fb5b7eeb5c13",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "The nature of the processing is what you plan to do with the personal data. This should include, for example: how you collect the data; how you store the data; how you use the data; who has access to the data; who you share the data with; whether you use any processors; retention periods; security measures; whether you are using any new technologies; whether you are using any novel types of processing",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-82daadaccb91caa0",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "A systematic description of the processing is provided [article 35, paragraph 7, point a)]: The nature, scope, context and the of the processing are taken into account (recital 90) The personal data concerned, the recipients and the period for which the personal data will be kept are specified; A functional description of the processing operation is provided; The assets on which the personal data are based (hardware, software, networks, individuals, paper documents or paper transmission channels) are identified",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ec9ae8af25ae8135",
+     "claim_id": "c-9847569d751f1249",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "If you are concerned that publication may reveal commercially sensitive information, undermine security or cause other risks, you should consider whether you can redact (black out) or remove sensitive details, or publish a summary.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-fb7e55870abf0330",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You should include an assessment of the security risks, including sources of risk and the potential impact of each type of breach (including illegitimate access to, modification of or loss of personal data).",
+     "verdict": "supports"
+    }
+   ],
+   "question": {
+    "channel": "CDM probes on a recalled case; process tracing",
+    "target_claim_ids": [
+     "c-6370fb5b7eeb5c13"
+    ],
+    "text": "Sources prescribe: \"The nature of processing in a DPIA should include details about data collection, storage, usage, access, sharing, processors, retention periods, security measures, new technologies, and novel processing types.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+    "weak_channel": false
+   },
+   "rank": 1,
+   "reasoning": "1 key(s) state measures, new technologies, and novel processing types.; 2 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-6370fb5b7eeb5c13"
+  },
+  {
+   "alternatives": [],
+   "anchor": "High-risk processing activities definition",
+   "category": "CONTROL",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-711699ca7c64",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Control slot: area 'High-risk processing activities definition' (a-cbfaacca47b52461) has no HYP record and the highest attested share (0.84) among candidate areas of ledger cdd8e42e.",
+    "synthetic_hits": [],
+    "test_id": "CONTROL:a-cbfaacca47b52461"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": {
+    "channel": "control",
+    "target_claim_ids": [],
+    "text": "Walk me through how you carry out High-risk processing activities definition, from start to finish, as if I were watching you do it. What do you check, and in what order?",
+    "weak_channel": false
+   },
+   "rank": 2,
+   "reasoning": "the \u00a714.2 unknown-unknowns guard: no HYP touches this area"
+  }
+ ],
+ "retrieval_gaps": [
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The exception is circular: it restates the judgement.",
+     "why": "a hedge whose exception re-states the criterion gives no new information."
+    },
+    {
+     "live": true,
+     "text": "The hedge is statutory boilerplate with no practice behind it.",
+     "why": "a hedge in a legal or standard source may carry no field practice."
+    },
+    {
+     "live": true,
+     "text": "A trigger is stated inside the seed itself in a form EXC does not match.",
+     "why": "EXC is a fixed lexicon and misses e.g. 'at least when'."
+    }
+   ],
+   "anchor": "Consultation with data protection officers and where appropriate with individuals and relevant experts is a requirement in the DPIA process.",
+   "category": "RG-UNVER",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "4/4",
+    "score": 0
+   },
+   "gap_id": "g-a0a872943d4e",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "b6796983fe6839b41471b881a585af67394660d5174d4b0f21f291afeb9a217d",
+    "judge_reason": "Processing based on legal obligation or public task may not require DPIA.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating an exception condition among the verified sentences retrieved (4 unverified sentences considered separately). Re-runnable: prompt sha b6796983fe68.",
+    "synthetic_hits": [
+     "c-509ffc8e1659d99b"
+    ],
+    "test_id": "HEDGE:c-965c5dbfe1fb8a2f"
+   },
+   "lens": "HEDGE",
+   "merged_from": [],
+   "missing": "an exception condition",
+   "observed_evidence": [
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-10c5d28dc341bcb1",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/",
+     "source_kind": "documentation",
+     "span": "DPOs and those with specific data protection responsibilities in larger organisations are likely to find it useful.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-114c03552205b00b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "We also recommend you consider seeking legal advice or advice from other independent experts such as IT experts, sociologists or ethicists where appropriate. However, there are no specific requirements to do so.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-965c5dbfe1fb8a2f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "You should consult your data protection officer (if you have one) and, where appropriate, individuals and relevant experts.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-ae629243f4c8b411",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "Interested parties are involved: The opinion of the DPO is obtained (article 35, paragraph 2); The point of view of the data subjects or their representatives are gathered, where appropriate (article 35, paragraph 9).",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state Consultation with data protection officers and where appropriate with individuals and relevant experts is a requirement in the DPIA process.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test HEDGE:c-965c5dbfe1fb8a2f"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "A DPIA should begin early in a project lifecycle, before processing starts, and run alongside the planning and development process.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "4/4",
+    "score": 0
+   },
+   "gap_id": "g-a894f01249ff",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "1333b598b811df48b332a3b2dac86d18347e97ed2910c06a3d506ad8dddd4317",
+    "judge_reason": "to identify and mitigate risks early in the project",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 2,
+    "lexical_state": "open",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a reason. Re-runnable: prompt sha 1333b598b811.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-eaf0de6dab49e43f"
+   },
+   "lens": "WHY",
+   "merged_from": [
+    "g-d51337b7246e"
+   ],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-eaf0de6dab49e43f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-f67a4b7ddcbed9ad",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state A DPIA should begin early in a project lifecycle, before processing starts, and run alongside the planning and development process.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-eaf0de6dab49e43f"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "assessing necessity and proportionality, considerations",
+   "category": "RG-UNVER",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-fa871beb984b",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "90388219207768019c0e8f82981affae1741eb45abcd400d9d3f1bbaa4eb2500",
+    "judge_reason": "States less risky alternatives should be considered but does not explicitly state an expected result or next action.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a result-to-interpretation mapping for 'assessing necessity and proportionality, considerations' among the verified sentences retrieved (4 unverified sentences considered separately). Re-runnable: prompt sha 903882192077.",
+    "synthetic_hits": [
+     "c-d0f834c6dbd03ddd"
+    ],
+    "test_id": "RESULT:c-682644ddc2173082"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'assessing necessity and proportionality, considerations'",
+   "observed_evidence": [
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-1d5f876623c86b1a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process. It should include these steps: Step 1: identify the need for a DPIA Step 2: describe the processing Step 3: consider consultation Step 4: assess necessity and proportionality Step 5: identify and assess risks Step 6: identify measures to mitigate the risks Step 7: sign off and record outcomes",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-532e4a3959d34796",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-682644ddc2173082",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You should consider: Do your plans help to achieve your purpose? Is there any other reasonable way to achieve the same result?",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-95c555efcf1b1916",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "Your DPIA must: describe the nature, scope, context and purposes of the processing; assess necessity, proportionality and compliance measures; identify and assess risks to individuals; and identify any additional measures to mitigate those risks.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-b48bd9a9fe31d4d7",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35",
+     "source_kind": "documentation",
+     "span": "an assessment of the necessity and proportionality of the processing operations in relation to the purposes",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-d2cd75d65c7a5378",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "The purpose of the processing is the reason why you want to process the personal data. This should include: your legitimate interests, where relevant; the intended outcome for individuals; and the expected benefits for you or for society as a whole.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-fe0ce9c460a756a4",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "(b)an assessment of the necessity and proportionality of the processing operations in relation to the purposes",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state assessing necessity and proportionality, considerations; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-682644ddc2173082"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "assess the likelihood and severity of any risks to",
+   "category": "RG-UNVER",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-2654128128e5",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "addb11f20e87899087ab4e847ab50ae3d287dc2325c44f32ea96abafcc4a4f0c",
+    "judge_reason": "Sentence 9 specifies the result and its meaning.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 2,
+    "lexical_state": "closed",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a result-to-interpretation mapping for 'assess the likelihood and severity of any risks to' among the verified sentences retrieved (2 unverified sentences considered separately). Re-runnable: prompt sha addb11f20e87.",
+    "synthetic_hits": [
+     "c-84a54f994d03523a"
+    ],
+    "test_id": "RESULT:c-37fdafe0ca6db276"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'assess the likelihood and severity of any risks to'",
+   "observed_evidence": [
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-37fdafe0ca6db276",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "We do an objective assessment of the likelihood and severity of any risks to individuals' rights and interests.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-41a870a52524ab18",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "It is helpful to use a structured matrix to think about likelihood and severity of risks",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-5003fe4d83ed9730",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "To assess whether something is 'high risk', the UK GDPR is clear that you need to consider both the likelihood and severity of any potential harm to individuals.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-52b6d55652938282",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "decision",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "To assess whether the risk is a high risk, you need to consider both the likelihood and severity of the possible harm.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-a8b0720569f80d36",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "To assess the level of risk, you must consider both the likelihood and the severity of any impact on individuals.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state assess the likelihood and severity of any risks to; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-37fdafe0ca6db276"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "assessed by considering the number of individuals, volume of",
+   "category": "RG-UNVER",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-3eddebe197f9",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "74d77f8a407a37a408805280d46aabcc777082f1e9d95f8f2e555b477e1d6914",
+    "judge_reason": "These sentences indicate actions to take based on large-scale processing.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found none stating a result-to-interpretation mapping for 'assessed by considering the number of individuals, volume of' among the verified sentences retrieved (4 unverified sentences considered separately). Re-runnable: prompt sha 74d77f8a407a.",
+    "synthetic_hits": [
+     "c-1e1904ef5dc56c89",
+     "c-1ea36f2936d07b8e",
+     "c-38f92abcd63ff279"
+    ],
+    "test_id": "RESULT:c-d7f4c0b3b05a9a2b"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'assessed by considering the number of individuals, volume of'",
+   "observed_evidence": [
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-361677e5d0272012",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "to decide whether processing is on a large scale you should consider: the number of individuals concerned; the volume of data; the variety of data; the duration of the processing; and the geographical extent of the processing.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-38f92abcd63ff279",
+     "counts_as_attestation": false,
+     "epistemic_label": "synthetic_extrapolation",
+     "flag": "unverified-synthetic",
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "closure_near",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/examples-of-processing-likely-to-result-in-high-risk/",
+     "source_kind": "documentation",
+     "span": "Any profiling of individuals on a large scale",
+     "verdict": "insufficient"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-81b8af3c016017b2",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "The scope of the processing is what the processing covers. This should include, for example: the nature of the personal data; the volume and variety of the personal data; the sensitivity of the personal data; the extent and frequency of the processing; the duration of the processing; the number of data subjects involved; and the geographical area covered.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-d7f4c0b3b05a9a2b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia",
+     "source_kind": "documentation",
+     "span": "to decide whether processing is on a large scale you should consider: the number of individuals concerned; the volume of data; the variety of data; the duration of the processing; and the geographical extent of the processing.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state assessed by considering the number of individuals, volume of; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-d7f4c0b3b05a9a2b"
+  },
+  {
+   "alternatives": [],
+   "anchor": "Why is High-risk processing activities definition done the way it is? \u2014 area: High-risk processing activities definition",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-019e74d34a85",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-47fee6ae95f5aa5a (rationale) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-47fee6ae95f5aa5a"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "How is work in DPIA exemptions and alternatives checked for correctness or compliance? \u2014 area: DPIA exemptions and alternatives",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-095ab52240c6",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-9ab43988c0aeb8bf (check) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-9ab43988c0aeb8bf"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "cue slot searched, nothing found \u2014 area: Processor involvement and consultation obligations",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-0dadb0fc6f2e",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'cue' in area Processor involvement and consultation obligations of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-4cee7026f66c7f38|cue|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "What observable features of a situation signal that DPIA exemptions and alternatives applies or needs a different response? \u2014 area: DPIA exemptions and alternatives",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-10c89fee15f8",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-6f82040cf6008b01 (cue) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-6f82040cf6008b01"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "cue slot searched, nothing found \u2014 area: Legal triggers for DPIA requirements",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-25b133742fb8",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'cue' in area Legal triggers for DPIA requirements of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-a22bc4fe1a81afc2|cue|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "check slot searched, nothing found \u2014 area: High-risk processing activities definition",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-26ed34d7c57a",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'check' in area High-risk processing activities definition of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-cbfaacca47b52461|check|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "failure_mode slot searched, nothing found \u2014 area: DPIA exemptions and alternatives",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-282cfeed45c7",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'failure_mode' in area DPIA exemptions and alternatives of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-ec9ae8af25ae8135|failure_mode|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "Why is Processor involvement and consultation obligations done the way it is? \u2014 area: Processor involvement and consultation obligations",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-35fb44461483",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-16f166a8d825f4fe (rationale) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-16f166a8d825f4fe"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "What observable features of a situation signal that Legal triggers for DPIA requirements applies or needs a different response? \u2014 area: Legal triggers for DPIA requirements",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-39693cdcbd94",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-d35bad4306c9fa5c (cue) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-d35bad4306c9fa5c"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "What observable features of a situation signal that Mandatory content and documentation requirements applies or needs a different response? \u2014 area: Mandatory content and documentation requirements",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-474dca158063",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-40059d3365c9e3d2 (cue) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-40059d3365c9e3d2"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "failure_mode slot searched, nothing found \u2014 area: Legal triggers for DPIA requirements",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-50f03e98e0b6",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'failure_mode' in area Legal triggers for DPIA requirements of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-a22bc4fe1a81afc2|failure_mode|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "How does work in High-risk processing activities definition typically go wrong, and what are the signs? \u2014 area: High-risk processing activities definition",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-5896b40bd66e",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-a4bd5b125309bcf9 (failure_mode) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-a4bd5b125309bcf9"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "How is work in Processor involvement and consultation obligations checked for correctness or compliance? \u2014 area: Processor involvement and consultation obligations",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-6b8aba93df14",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-60428f3091934ee7 (check) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-60428f3091934ee7"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "failure_mode slot searched, nothing found \u2014 area: Mandatory content and documentation requirements",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-6e870a53e2c1",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'failure_mode' in area Mandatory content and documentation requirements of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-d4cbadee69366c38|failure_mode|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "How does work in DPIA exemptions and alternatives typically go wrong, and what are the signs? \u2014 area: DPIA exemptions and alternatives",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-7344714bdb69",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-887d4b0f297f377c (failure_mode) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-887d4b0f297f377c"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "rationale slot searched, nothing found \u2014 area: Processor involvement and consultation obligations",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-73af9a14dae8",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'rationale' in area Processor involvement and consultation obligations of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-4cee7026f66c7f38|rationale|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "How does work in Legal triggers for DPIA requirements typically go wrong, and what are the signs? \u2014 area: Legal triggers for DPIA requirements",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-8c552abd0693",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-a0b6ad7fe4f3c14d (failure_mode) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-a0b6ad7fe4f3c14d"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "check slot searched, nothing found \u2014 area: DPIA exemptions and alternatives",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-a24b2dfe2a60",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'check' in area DPIA exemptions and alternatives of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-ec9ae8af25ae8135|check|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "failure_mode slot searched, nothing found \u2014 area: High-risk processing activities definition",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-a777e0e3e273",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'failure_mode' in area High-risk processing activities definition of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-cbfaacca47b52461|failure_mode|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "failure_mode slot searched, nothing found \u2014 area: Processor involvement and consultation obligations",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-c23ec9dad388",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'failure_mode' in area Processor involvement and consultation obligations of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-4cee7026f66c7f38|failure_mode|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "cue slot searched, nothing found \u2014 area: DPIA exemptions and alternatives",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-c45de992b977",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'cue' in area DPIA exemptions and alternatives of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-ec9ae8af25ae8135|cue|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "rationale slot searched, nothing found \u2014 area: High-risk processing activities definition",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-c4ff454e96d5",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'rationale' in area High-risk processing activities definition of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-cbfaacca47b52461|rationale|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "What observable features of a situation signal that Processor involvement and consultation obligations applies or needs a different response? \u2014 area: Processor involvement and consultation obligations",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-d036ed6e220f",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-a4c9012ce0a64b59 (cue) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-a4c9012ce0a64b59"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "check slot searched, nothing found \u2014 area: Processor involvement and consultation obligations",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-e636f8f09f4e",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'check' in area Processor involvement and consultation obligations of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-4cee7026f66c7f38|check|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "cue slot searched, nothing found \u2014 area: Mandatory content and documentation requirements",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-f01173a97196",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Sidecar slot 'cue' in area Mandatory content and documentation requirements of ledger cdd8e42e is unknown (0 claim(s)).",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:slot:a-d4cbadee69366c38|cue|unknown"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a sidecar slot: unknown"
+  },
+  {
+   "alternatives": [],
+   "anchor": "How is work in High-risk processing activities definition checked for correctness or compliance? \u2014 area: High-risk processing activities definition",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-f115e0ab8810",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-7cc34e97ea39bd25 (check) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-7cc34e97ea39bd25"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "How does work in Processor involvement and consultation obligations typically go wrong, and what are the signs? \u2014 area: Processor involvement and consultation obligations",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-f8f6475849b6",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-49fd371e821afd7d (failure_mode) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-49fd371e821afd7d"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [],
+   "anchor": "How does work in Mandatory content and documentation requirements typically go wrong, and what are the signs? \u2014 area: Mandatory content and documentation requirements",
+   "category": "RG-UNK",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 0,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 0,
+    "k_topic": 0,
+    "robustness": "0/4",
+    "score": 0
+   },
+   "gap_id": "g-fa701f41cefc",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "open",
+    "judge_dropped_ids": 0,
+    "judge_model": "",
+    "judge_prompt_sha256": "",
+    "judge_reason": "",
+    "judge_retrieved_a": 0,
+    "judge_retrieved_s": 0,
+    "lexical_state": "",
+    "partial_hits": [],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Ledger cdd8e42e claim c-f3111c42cec6de09 (failure_mode) is a slot probe with nothing found in the ledger.",
+    "synthetic_hits": [],
+    "test_id": "RG-UNK:c-f3111c42cec6de09"
+   },
+   "lens": null,
+   "merged_from": [],
+   "missing": "",
+   "observed_evidence": [],
+   "question": null,
+   "rank": null,
+   "reasoning": "a ledger U claim: sought (a recorded search) and not found"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The boundary is stated in paraphrase without the anchor string.",
+     "why": "the anchor-string regex cannot see a paraphrase (the main limitation of DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The term 'systematic monitor' is institutionally indeterminate, so experts disagree and there is nothing to recover.",
+     "why": "4/4 anchor claims are typed norm or concept."
+    },
+    {
+     "live": true,
+     "text": "The boundary is in unfetched sources.",
+     "why": "the ledger is a bounded retrieval."
+    }
+   ],
+   "anchor": "systematic monitor",
+   "category": "RG-SIBLING",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "4/4",
+    "score": -1
+   },
+   "gap_id": "g-15e306b63250",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "89f9c0fd65c77a258c55f7ec4af6435d61786742270aa1e6aa419cf1eb42af98",
+    "judge_reason": "explicitly states automatic requirement for DPIA; partially through listing conditions",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "partial",
+    "partial_hits": [
+     "c-3882097b39ef919b"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": "closed"
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a boundary for 'systematic monitor'. Re-runnable: prompt sha 89f9c0fd65c7.",
+    "synthetic_hits": [
+     "c-1ea36f2936d07b8e",
+     "c-4103abf8561ff825",
+     "c-5b8584bc8041e654"
+    ],
+    "test_id": "DISC:systematic monitor"
+   },
+   "lens": "DISC",
+   "merged_from": [],
+   "missing": "a boundary for 'systematic monitor'",
+   "observed_evidence": [
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-001378676d9bc0ce",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35",
+     "source_kind": "documentation",
+     "span": "a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-3418362ac4ffa1fa",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "processing on a large scale of special categories of data referred to in Article 9(1) of the GDPR, or of personal data relating to criminal convictions and offences referred to in Article 10 of the GDPR",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-34c46d94cc8bd51f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "seed",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "(c)a systematic monitoring of a publicly accessible area on a large scale.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-3882097b39ef919b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "In particular, the UK GDPR says you must do a DPIA if you plan to: use systematic and extensive profiling with significant effects; process special category or criminal offence data on a large scale; or systematically monitor publicly accessible places on a large scale.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-75b4dfcc59133374",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "seed",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "Processing activities that consist of or include regular and systematic monitoring of employee activities - provided that they might produce legal effects concerning the employees or similarly significantly affects them",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ec9ae8af25ae8135",
+     "claim_id": "c-a61a8a7f7977334f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "You should also think carefully about doing a DPIA for any other processing that is large scale, involves profiling or monitoring, decides on access to services or opportunities, or involves sensitive data or vulnerable individuals.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-b1fad9042198d88d",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "seed",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "a systematic monitoring of a publicly accessible area on a large scale",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-ce8af6ca30f75288",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-d85bbd0dc09a826e",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "A data protection impact assessment referred to in paragraph 1 shall in particular be required in the case of: (a)a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-df979a78a5b2be70",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia",
+     "source_kind": "documentation",
+     "span": "In short, it is something that has a noticeable impact on an individual and can significantly affect their circumstances, behaviour or choices. A legal effect is something that affects a person's legal status or legal rights.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-ee2d5da9d541f43d",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "A legal effect is something that affects a person's legal status or legal rights.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-f87e5832607661bd",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "A similarly significant effect might include something that affects a person's financial status, health, reputation, access to services or other economic or social opportunities.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state systematic monitor; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test DISC:systematic monitor"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The exception is circular: it restates the judgement.",
+     "why": "a hedge whose exception re-states the criterion gives no new information."
+    },
+    {
+     "live": true,
+     "text": "The hedge is statutory boilerplate with no practice behind it.",
+     "why": "a hedge in a legal or standard source may carry no field practice."
+    },
+    {
+     "live": true,
+     "text": "A trigger is stated inside the seed itself in a form EXC does not match.",
+     "why": "EXC is a fixed lexicon and misses e.g. 'at least when'."
+    }
+   ],
+   "anchor": "In most cases, a combination of two factors from the WP29 criteria indicates the need for a DPIA, though this is not a strict rule.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "4/4",
+    "score": -1
+   },
+   "gap_id": "g-a34d8523df48",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "b4fb9c505f4f6b40132163f29b5e05c49c1435cbef77694b4d41e48ff8bed461",
+    "judge_reason": "Sentence 3 states this is not a strict rule.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-04425373cd3694c7"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of an exception condition. Re-runnable: prompt sha b4fb9c505f4f.",
+    "synthetic_hits": [],
+    "test_id": "HEDGE:c-04425373cd3694c7"
+   },
+   "lens": "HEDGE",
+   "merged_from": [],
+   "missing": "an exception condition",
+   "observed_evidence": [
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-008d014ea5c56f48",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "Otherwise, you need to check whether your processing is on the list of types of processing that automatically require a DPIA. If not, you need to screen for other factors that may indicate it is a type of processing that is likely to result in high risk, such as processing the data of vulnerable individuals.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-04425373cd3694c7",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "decision",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "In most cases, a combination of two of these factors indicates the need for a DPIA. However, this is not a strict rule.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-a4a1629f9ba773b9",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "decision",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia",
+     "source_kind": "documentation",
+     "span": "In most cases, a combination of two of these factors indicates the need for a DPIA. However, this is not a strict rule. You may be able to justify a decision not to carry out a DPIA if you are confident that the processing is nevertheless unlikely to result in a high risk, but you should document your reasons.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state In most cases, a combination of two factors from the WP29 criteria indicates the need for a DPIA, though this is not a strict rule.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test HEDGE:c-04425373cd3694c7"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "assessment should include sources of risk and potential",
+   "category": "RG-SIBLING",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "4/4",
+    "score": -1
+   },
+   "gap_id": "g-ff3ef1a6aded",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "0678690446107e137f4f768a29cddc5213881e5f33d38cd68df7e22becc64954",
+    "judge_reason": "Expected results and next actions are implied but not explicitly stated.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-fb7e55870abf0330"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": "closed"
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'assessment should include sources of risk and potential'. Re-runnable: prompt sha 067869044610.",
+    "synthetic_hits": [
+     "c-1173546aa8064ef3",
+     "c-54af4ffbfdfcf1be",
+     "c-61dece1b1bd9cd5a",
+     "c-bba8f9edf6c68cbc"
+    ],
+    "test_id": "RESULT:c-fb7e55870abf0330"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'assessment should include sources of risk and potential'",
+   "observed_evidence": [
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-6370fb5b7eeb5c13",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "The nature of the processing is what you plan to do with the personal data. This should include, for example: how you collect the data; how you store the data; how you use the data; who has access to the data; who you share the data with; whether you use any processors; retention periods; security measures; whether you are using any new technologies; whether you are using any novel types of processing",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-9c89ae4a230668c2",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "Potential impacts on the rights and freedoms of data subjects are identified in case of events such as illegitimate access to data, an unwanted modification of data or their disappearance",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-fb7e55870abf0330",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You should include an assessment of the security risks, including sources of risk and the potential impact of each type of breach (including illegitimate access to, modification of or loss of personal data).",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state assessment should include sources of risk and potential; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-fb7e55870abf0330"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "assess the origin, nature, particularity and gravity of",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "4/4",
+    "score": -1
+   },
+   "gap_id": "g-e7adf9af268f",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "6ed9e3ee6ebb14d434764ca4874f5b10480bb07251d5c7d0d1596a8cc762e84e",
+    "judge_reason": "Suggests actions if high risk is identified but does not explicitly state expected results or their meaning.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 3,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-003879ead25de590"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'assess the origin, nature, particularity and gravity of'. Re-runnable: prompt sha 6ed9e3ee6ebb.",
+    "synthetic_hits": [
+     "c-aecb918cb8329838"
+    ],
+    "test_id": "RESULT:c-9f706d60992e0c4d"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'assess the origin, nature, particularity and gravity of'",
+   "observed_evidence": [
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-003879ead25de590",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "closure_near",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "If you have determined that the processing is likely to result in a high risk to the rights and freedoms of data subjects, you must carry out a data protection impact assessment (DPIA) for each processing operation.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-9f706d60992e0c4d",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "The risks to the rights and freedoms of data subjects are managed [article 35, paragraph 7, point c)]: The origin, the nature, the particularity and the gravity of the risks are assessed (recital 84)",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state assess the origin, nature, particularity and gravity of; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-9f706d60992e0c4d"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "assess the necessity and proportionality of processing",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "3/4",
+    "score": -1
+   },
+   "gap_id": "g-d2fa456e3d16",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "0a56342224cab3ca3b21af1cda13eaa18ad8883f1fd7946c1378f5ddbc2701d8",
+    "judge_reason": "Sentences partially indicate expected results or next actions but do not explicitly state them.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-532e4a3959d34796",
+     "c-86c2d7d604a34b84"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'assess the necessity and proportionality of processing'. Re-runnable: prompt sha 0a56342224ca.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-532e4a3959d34796"
+   },
+   "lens": "RESULT",
+   "merged_from": [
+    "g-0050fa37ffdc",
+    "g-1d2a60caf1d5"
+   ],
+   "missing": "a result-to-interpretation mapping for 'assess the necessity and proportionality of processing'",
+   "observed_evidence": [
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-1d5f876623c86b1a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process. It should include these steps: Step 1: identify the need for a DPIA Step 2: describe the processing Step 3: consider consultation Step 4: assess necessity and proportionality Step 5: identify and assess risks Step 6: identify measures to mitigate the risks Step 7: sign off and record outcomes",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-34a9732142853ea9",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35",
+     "source_kind": "documentation",
+     "span": "the measures envisaged to address the risks, including safeguards, security measures and mechanisms to ensure the protection of personal data and to demonstrate compliance with this Regulation taking into account the rights and legitimate interests of data subjects and other persons concerned",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-532e4a3959d34796",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-682644ddc2173082",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You should consider: Do your plans help to achieve your purpose? Is there any other reasonable way to achieve the same result?",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-86c2d7d604a34b84",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "rationale",
+     "role": "topic",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "The DPIA allows the controller to: develop privacy friendly personal data processing operations and products, assess the impact on the privacy of data subjects, demonstrate that the fundamental principles of the GDPR are respected.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-95c555efcf1b1916",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "Your DPIA must: describe the nature, scope, context and purposes of the processing; assess necessity, proportionality and compliance measures; identify and assess risks to individuals; and identify any additional measures to mitigate those risks.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-b48bd9a9fe31d4d7",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35",
+     "source_kind": "documentation",
+     "span": "an assessment of the necessity and proportionality of the processing operations in relation to the purposes",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ec9ae8af25ae8135",
+     "claim_id": "c-c1e819c5160fa72a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "Although publishing a DPIA is not a requirement of UK GDPR, you should actively consider the benefits of publication. As well as demonstrating compliance, publication can help engender trust and confidence.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-fb1459b330b4e176",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "(d)the measures envisaged to address the risks, including safeguards, security measures and mechanisms to ensure the protection of personal data and to demonstrate compliance with this Regulation taking into account the rights and legitimate interests of data subjects and other persons concerned.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-fe0ce9c460a756a4",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "(b)an assessment of the necessity and proportionality of the processing operations in relation to the purposes",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state assess the necessity and proportionality of processing; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-532e4a3959d34796"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "measures to protect people's rights.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "3/4",
+    "score": -1
+   },
+   "gap_id": "g-d40eee24b901",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "d2a77f9a5cc1e8d24bcb5149c35a683d8ab636f46e8df6d27c1fcbe8521e2dfb",
+    "judge_reason": "Sentences 1 and 2 imply expected results but do not explicitly state them.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-477ea8169e5e396e"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": "partial"
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'measures to protect people's rights.'. Re-runnable: prompt sha d2a77f9a5cc1.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-477ea8169e5e396e"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'measures to protect people's rights.'",
+   "observed_evidence": [
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-1ad3f7a1b2292d0b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "'Invisible processing' occurs when you obtain personal data from somewhere other than directly from the individual themselves, and you don't provide them with the privacy information required by Article 14.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-477ea8169e5e396e",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "check",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "If you intend to rely on the exception for disproportionate effort, you must be able to justify this, and you must take other measures to protect people's rights.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-7729f9f91ae6ef8a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia",
+     "source_kind": "documentation",
+     "span": "'Invisible processing' occurs when you obtain personal data from somewhere other than directly from the individual themselves, and you don't provide them with the privacy information required by Article 14. The processing is 'invisible' because the individual is unaware that you are collecting and using their personal data, even if you publish a privacy notice on your website.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-b443da89de870d59",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/examples-of-processing-likely-to-result-in-high-risk/",
+     "source_kind": "documentation",
+     "span": "A DPIA is required for any intended processing operation(s) involving where the controller is relying on Article 14.5(b) when combined with any other criterion from WP248rev01",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-d82d0d460fac14c0",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "expert_novice_contrast",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "Most obviously, children are regarded as vulnerable to the processing of their personal data since they may be less able to understand how their data is being used, anticipate how this might affect them, and protect themselves against any unwanted consequences.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-e224ad1569d62c23",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia",
+     "source_kind": "documentation",
+     "span": "Most obviously, children are regarded as vulnerable to the processing of their personal data since they may be less able to understand how their data is being used, anticipate how this might affect them, and protect themselves against any unwanted consequences.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state measures to protect people's rights.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-477ea8169e5e396e"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "assess and mitigate impact on individuals' ability to",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "2/4",
+    "score": -1
+   },
+   "gap_id": "g-5d3fa976af6b",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "467c9b02493b97d84058f0591bbb623147b85096bcbab795b7ff53828d67aa0b",
+    "judge_reason": "Sentence 2 hints at the result by mentioning assessment and demonstration of proportionate approach. Sentence 6 specifies next action if high risk is accepted.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-0948649167e1de7b",
+     "c-9600745fc043ff05"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'assess and mitigate impact on individuals' ability to'. Re-runnable: prompt sha 467c9b02493b.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-9600745fc043ff05"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'assess and mitigate impact on individuals' ability to'",
+   "observed_evidence": [
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-0948649167e1de7b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "closure_near",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "If you have decided to accept a high risk, either because it is not possible to mitigate or because the costs of mitigation are too high, you must consult the ICO before you go ahead with the processing.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-9600745fc043ff05",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "strategy",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia",
+     "source_kind": "documentation",
+     "span": "Your DPIA will help you assess and demonstrate whether you are taking a proportionate approach. It will help you consider how best to mitigate the impact on individuals' ability to exercise control over their data, and whether you can take other measures to support the exercise of their rights.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-a14dd2aa7aaf93cb",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "strategy",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "To aid transparency and accountability, it is good practice to publish your DPIA. This could help foster trust in your processing activities, and improve individuals' ability to exercise their rights.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state assess and mitigate impact on individuals' ability to; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-9600745fc043ff05"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "monitoring, decisions on service access or opportunities, or",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "1/4",
+    "score": -1
+   },
+   "gap_id": "g-d6f0d018e8e3",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "98960fa5ac2031b47b834546c8ea8c00205300fd4d98123820028df90c686353",
+    "judge_reason": "Mention next actions or expected results indirectly",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "open",
+    "partial_hits": [
+     "c-a61a8a7f7977334f"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'monitoring, decisions on service access or opportunities, or'. Re-runnable: prompt sha 98960fa5ac20.",
+    "synthetic_hits": [
+     "c-0f2778b309c5dca4",
+     "c-1173546aa8064ef3",
+     "c-16af9326fa272d7d",
+     "c-4103abf8561ff825"
+    ],
+    "test_id": "RESULT:c-a61a8a7f7977334f"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'monitoring, decisions on service access or opportunities, or'",
+   "observed_evidence": [
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-001378676d9bc0ce",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35",
+     "source_kind": "documentation",
+     "span": "a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-34c46d94cc8bd51f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "(c)a systematic monitoring of a publicly accessible area on a large scale.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-3882097b39ef919b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "In particular, the UK GDPR says you must do a DPIA if you plan to: use systematic and extensive profiling with significant effects; process special category or criminal offence data on a large scale; or systematically monitor publicly accessible places on a large scale.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-ec9ae8af25ae8135",
+     "claim_id": "c-a61a8a7f7977334f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "strategy",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "You should also think carefully about doing a DPIA for any other processing that is large scale, involves profiling or monitoring, decides on access to services or opportunities, or involves sensitive data or vulnerable individuals.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-b1fad9042198d88d",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "a systematic monitoring of a publicly accessible area on a large scale",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-e7aaad0024f89f82",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "concept",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/examples-of-processing-likely-to-result-in-high-risk/",
+     "source_kind": "documentation",
+     "span": "The use of the personal data of children or other vulnerable individuals for marketing purposes, profiling or other automated decision-making, or if you intend to offer online services directly to children.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-cbfaacca47b52461",
+     "claim_id": "c-f87e5832607661bd",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "interpretation",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/when-do-we-need-to-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "A similarly significant effect might include something that affects a person's financial status, health, reputation, access to services or other economic or social opportunities.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state monitoring, decisions on service access or opportunities, or; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-a61a8a7f7977334f"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The rationale is a purpose clause that RAT does not match.",
+     "why": "RAT does not match every 'to identify...' purpose clause."
+    },
+    {
+     "live": false,
+     "text": "The source is promotional.",
+     "why": "no PROMO lexicon hit on the span; no ledger field marks promotional voice (\u00a710)."
+    },
+    {
+     "live": true,
+     "text": "The reason is trivial safety knowledge.",
+     "why": "an omitted rationale may simply be too obvious to state."
+    }
+   ],
+   "anchor": "DPO advice on whether processing is compliant and can go ahead should be sought and documented as part of sign-off; if advice is not followed, reasons must be recorded.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": -1
+   },
+   "gap_id": "g-be53c0a9cb9a",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "b441083319fe69761917cae9b149c4c894551093e7077d1ca5e442b5d90eb57a",
+    "judge_reason": "Prevents non-compliance and records decision-making process.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 4,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-72b9fa83c03d74eb"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a reason. Re-runnable: prompt sha b441083319fe.",
+    "synthetic_hits": [],
+    "test_id": "WHY:c-72b9fa83c03d74eb"
+   },
+   "lens": "WHY",
+   "merged_from": [
+    "g-a79f5c8481c2"
+   ],
+   "missing": "a reason",
+   "observed_evidence": [
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-1d5f876623c86b1a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "A DPIA should begin early in the life of a project, before you start your processing, and run alongside the planning and development process. It should include these steps: Step 1: identify the need for a DPIA Step 2: describe the processing Step 3: consider consultation Step 4: assess necessity and proportionality Step 5: identify and assess risks Step 6: identify measures to mitigate the risks Step 7: sign off and record outcomes",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-337175f83999d8ef",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "If you have a Data Protection Officer (DPO), you must ask for their advice on your DPIA, and document it as part of the process.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-72b9fa83c03d74eb",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "As part of the sign-off process, you should seek and document DPO advice on whether the processing is compliant and can go ahead. If you decide not to follow their advice, you need to record your reasons.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-7810d0d4dc28566f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "If your DPIA decision differs from the views of individuals, you need to document your reasons for disregarding their views.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-7f8cda40039374a9",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You should also record any reasons for going against the views of individuals or other consultees.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-b42276af26f46574",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You should ask your DPO for advice. Record whether the measure would reduce or eliminate the risk.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-b7309997452e6972",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "We record our decision-making in the outcome of the DPIA, including any difference of opinion with our DPO or individuals consulted.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-bf045a5c8aabb1c3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You should seek and document the views of individuals (or their representatives) unless there is a good reason not to.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-ca3f79ddef20cf22",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "The DPO should provide advice on: whether you need to do a DPIA; how you should do a DPIA; whether to outsource the DPIA or do it in-house; what measures and safeguards you can take to mitigate risks; whether you've done the DPIA correctly; and the outcome of the DPIA and whether the processing can go ahead.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-ee2498294a77ec6d",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "If we decide not to carry out a DPIA, we document our reasons.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-fb1fabafd72cb927",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "If you do this screening and decide a DPIA is not needed, you should document your decision and the reasons for it, including your DPO's advice.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state DPO advice on whether processing is compliant and can go ahead should be sought and documented as part of sign-off; if advice is not followed, reasons must be recorded.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test WHY:c-72b9fa83c03d74eb"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The exception is circular: it restates the judgement.",
+     "why": "a hedge whose exception re-states the criterion gives no new information."
+    },
+    {
+     "live": true,
+     "text": "The hedge is statutory boilerplate with no practice behind it.",
+     "why": "a hedge in a legal or standard source may carry no field practice."
+    },
+    {
+     "live": true,
+     "text": "A trigger is stated inside the seed itself in a form EXC does not match.",
+     "why": "EXC is a fixed lexicon and misses e.g. 'at least when'."
+    }
+   ],
+   "anchor": "A DPIA must involve the opinion of the Data Protection Officer and, where appropriate, the point of view of data subjects or their representatives.",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": -1
+   },
+   "gap_id": "g-9e2faa1f49b7",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "0c8a5887cfa3d11680ab4e181c7630961b2fbc60773d5e600bf827fa09594250",
+    "judge_reason": "Mention exceptions related to commercial, public interests or security.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 2,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-38cfa9c10f9c0da1",
+     "c-6e0dc7586d6eee18"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of an exception condition. Re-runnable: prompt sha 0c8a5887cfa3.",
+    "synthetic_hits": [],
+    "test_id": "HEDGE:c-ae629243f4c8b411"
+   },
+   "lens": "HEDGE",
+   "merged_from": [],
+   "missing": "an exception condition",
+   "observed_evidence": [
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-38cfa9c10f9c0da1",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-6e0dc7586d6eee18",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35",
+     "source_kind": "documentation",
+     "span": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-965c5dbfe1fb8a2f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/data-protection-impact-assessments/",
+     "source_kind": "documentation",
+     "span": "You should consult your data protection officer (if you have one) and, where appropriate, individuals and relevant experts.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-ae629243f4c8b411",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "Interested parties are involved: The opinion of the DPO is obtained (article 35, paragraph 2); The point of view of the data subjects or their representatives are gathered, where appropriate (article 35, paragraph 9).",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-4cee7026f66c7f38",
+     "claim_id": "c-bf045a5c8aabb1c3",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You should seek and document the views of individuals (or their representatives) unless there is a good reason not to.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state A DPIA must involve the opinion of the Data Protection Officer and, where appropriate, the point of view of data subjects or their representatives.; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test HEDGE:c-ae629243f4c8b411"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "review to assess if processing is performed in accordance",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": -1
+   },
+   "gap_id": "g-92e1456d66ad",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "97c42b151e18c1eac84a82efb69b3d59d0de4a281721402274f18c21b2305f96",
+    "judge_reason": "Some sentences imply or suggest actions but do not explicitly state the result of the test and its meaning.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 3,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-154ec754e1a92f89",
+     "c-1cf8ebc6e7a8070e",
+     "c-27af33c5674fc109",
+     "c-a0a6a634ce3d7a7f",
+     "c-e31462fe998aaf03"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": "partial"
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'review to assess if processing is performed in accordance'. Re-runnable: prompt sha 97c42b151e18.",
+    "synthetic_hits": [
+     "c-1c49c104ceb158de"
+    ],
+    "test_id": "RESULT:c-27af33c5674fc109"
+   },
+   "lens": "RESULT",
+   "merged_from": [
+    "g-ab56715fdd95"
+   ],
+   "missing": "a result-to-interpretation mapping for 'review to assess if processing is performed in accordance'",
+   "observed_evidence": [
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-154ec754e1a92f89",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "mental_model",
+     "role": "closure_near",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "Carrying out a DPIA is not a one-time exercise. It is an an on-going process that helps you to manage the risks resulting from a processing. It is important to reevaluate the DPIA when there is a change of the risk represented by the processing operation.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-1cf8ebc6e7a8070e",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You need to keep your DPIA under review. You may need to repeat it if there is a substantial change to the nature, scope, context or purposes of your processing.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-27af33c5674fc109",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35",
+     "source_kind": "documentation",
+     "span": "Where necessary, the controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk represented by processing operations.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-a0a6a634ce3d7a7f",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "Where necessary, the controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk represented by processing operations.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-e31462fe998aaf03",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "metacognition",
+     "role": "topic",
+     "source_identifier": "https://cnpd.public.lu/en/professionnels/obligations/AIPD.html",
+     "source_kind": "documentation",
+     "span": "Moreover, a DPIA may be necessary as a result of a risk evolution arising from processing operations, for example due to the use of new technology or the use of personal data for different purposes. Processing operations may evolve rapidly and new vulnerabilities may emerge.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state review to assess if processing is performed in accordance; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-27af33c5674fc109"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "assessment must contain a systematic description of the",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": -1
+   },
+   "gap_id": "g-fcde59e37154",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "e58f564e011e58a957511a91084d1a0861cb7ee586b7562260e333e727f7964d",
+    "judge_reason": "Sentences 5 and 6 partially state expected results by mentioning measures to address risks; sentences 10 states a required element of description.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 3,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-34a9732142853ea9",
+     "c-fb1459b330b4e176"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": "partial"
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'assessment must contain a systematic description of the'. Re-runnable: prompt sha e58f564e011e.",
+    "synthetic_hits": [
+     "c-0e063fb010de21d5"
+    ],
+    "test_id": "RESULT:c-e43f33dcbd7906c2"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'assessment must contain a systematic description of the'",
+   "observed_evidence": [
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-0e063fb010de21d5",
+     "counts_as_attestation": false,
+     "epistemic_label": "synthetic_extrapolation",
+     "flag": "unverified-synthetic",
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "closure_near",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/do-we-need-to-consult-the-ico/",
+     "source_kind": "documentation",
+     "span": "You must include: a description of the respective roles and responsibilities of any joint controllers or processors; the purposes and methods of the intended processing; the measures and safeguards taken to protect individuals; contact details of your DPO (if you have one); and a copy of the DPIA.",
+     "verdict": "insufficient"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-34a9732142853ea9",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "closure_near",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35",
+     "source_kind": "documentation",
+     "span": "the measures envisaged to address the risks, including safeguards, security measures and mechanisms to ensure the protection of personal data and to demonstrate compliance with this Regulation taking into account the rights and legitimate interests of data subjects and other persons concerned",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-7f0dc02ba850151a",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35",
+     "source_kind": "documentation",
+     "span": "a systematic description of the envisaged processing operations and the purposes of the processing, including, where applicable, the legitimate interest pursued by the controller",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-d2cd75d65c7a5378",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "topic",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "The purpose of the processing is the reason why you want to process the personal data. This should include: your legitimate interests, where relevant; the intended outcome for individuals; and the expected benefits for you or for society as a whole.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-e43f33dcbd7906c2",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "seed",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "The assessment shall contain at least: (a)a systematic description of the envisaged processing operations and the purposes of the processing, including, where applicable, the legitimate interest pursued by the controller",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-fb1459b330b4e176",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "procedure_step",
+     "role": "closure_near",
+     "source_identifier": "https://www.legislation.gov.uk/eur/2016/679/article/35/adopted/data.xht",
+     "source_kind": "documentation",
+     "span": "(d)the measures envisaged to address the risks, including safeguards, security measures and mechanisms to ensure the protection of personal data and to demonstrate compliance with this Regulation taking into account the rights and legitimate interests of data subjects and other persons concerned.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state assessment must contain a systematic description of the; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-e43f33dcbd7906c2"
+  },
+  {
+   "alternatives": [
+    {
+     "live": true,
+     "text": "The interpretation is stated in paraphrase without the seed's stems.",
+     "why": "the stem-overlap test cannot see a paraphrase (the same limitation as DISC, \u00a79)."
+    },
+    {
+     "live": true,
+     "text": "The test is a formality with a binary outcome.",
+     "why": "not every prescribed test feeds a real branching decision."
+    },
+    {
+     "live": true,
+     "text": "The interpretation is instrument-given.",
+     "why": "a displayed pass/fail reading needs no practitioner interpretation."
+    }
+   ],
+   "anchor": "measures should be considered when deciding whether to",
+   "category": "RG-SINGLE",
+   "confidence": {
+    "A": 0,
+    "B": 0,
+    "P": 1,
+    "Q": 0,
+    "breadth": "narrow",
+    "k_step": 1,
+    "k_topic": 1,
+    "robustness": "0/4",
+    "score": -1
+   },
+   "gap_id": "g-dfb760b0cd9e",
+   "hypothesis": null,
+   "inferred_gap": {
+    "closure_state": "partial",
+    "judge_dropped_ids": 0,
+    "judge_model": "qwen2.5:7b-instruct",
+    "judge_prompt_sha256": "5653b4629a5a7417c3270b7724e817dee1fb05cf646f5b938b56c00abddf3a53",
+    "judge_reason": "Mandatory ICO consultation if high risk accepted due to costs or impossibility.",
+    "judge_retrieved_a": 8,
+    "judge_retrieved_s": 3,
+    "lexical_state": "closed",
+    "partial_hits": [
+     "c-0948649167e1de7b"
+    ],
+    "sibling": {
+     "matched_gap_id": null,
+     "state": null
+    },
+    "statement": "Of 8 verified sentences retrieved on this topic, the closure judge (qwen2.5:7b-instruct, local) found only a partial statement of a result-to-interpretation mapping for 'measures should be considered when deciding whether to'. Re-runnable: prompt sha 5653b4629a5a.",
+    "synthetic_hits": [],
+    "test_id": "RESULT:c-1ab07da9589311e0"
+   },
+   "lens": "RESULT",
+   "merged_from": [],
+   "missing": "a result-to-interpretation mapping for 'measures should be considered when deciding whether to'",
+   "observed_evidence": [
+    {
+     "area_id": "a-a22bc4fe1a81afc2",
+     "claim_id": "c-0948649167e1de7b",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "norm",
+     "role": "closure_near",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "If you have decided to accept a high risk, either because it is not possible to mitigate or because the costs of mitigation are too high, you must consult the ICO before you go ahead with the processing.",
+     "verdict": "supports"
+    },
+    {
+     "area_id": "a-d4cbadee69366c38",
+     "claim_id": "c-1ab07da9589311e0",
+     "counts_as_attestation": true,
+     "epistemic_label": "literature_supported",
+     "flag": null,
+     "independence_key": "ind-s-505312a82b58a1e4",
+     "knowledge_type": "decision",
+     "role": "seed",
+     "source_identifier": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/how-do-we-do-a-dpia/",
+     "source_kind": "documentation",
+     "span": "You can take into account the costs and benefits of each measure when deciding whether or not they are appropriate.",
+     "verdict": "supports"
+    }
+   ],
+   "question": null,
+   "rank": null,
+   "reasoning": "1 key(s) state measures should be considered when deciding whether to; 1 key(s) discuss the topic; the closure judge found no verified sentence matching test RESULT:c-1ab07da9589311e0"
+  }
+ ]
+}

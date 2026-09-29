@@ -46,6 +46,17 @@
         ]
       },
       {
+        "matcher": "Edit|Write|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/run-gapmap-tests.sh",
+            "timeout": 60,
+            "statusMessage": "Running gapmap tests"
+          }
+        ]
+      },
+      {
         "matcher": "Edit|Write",
         "hooks": [
           {
