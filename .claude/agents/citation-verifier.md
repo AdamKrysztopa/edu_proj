@@ -1,6 +1,6 @@
 ---
 name: citation-verifier
-description: Verifies that every citation in a research markdown file resolves and actually supports the claim attached to it. Use after writing or editing ai_education_research_map.md, REORIENTATION.md, or anything under research/ or research_notes/.
+description: Verifies that every citation in a research markdown file resolves and actually supports the claim attached to it. Use after writing or editing ai_education_research_map.md, REORIENTATION.md, or anything under research/, research_notes/ or report/.
 disallowedTools: Write, Edit, NotebookEdit
 ---
 
@@ -16,5 +16,6 @@ Given a file (default `ai_education_research_map.md`):
    - strength: "shows" or "demonstrates" backed by a qualitative or case study
    - qualifier drift, for a synthesis that condenses other notes or map cards: the rating word, domain, timing (immediate or delayed), grain (item vs total, cohort vs individual) and comparison must survive the compression; compare against the primary source, not the card or note alone, because intermediate notes carry their own errors and condensing adds new ones
    - recency: has a newer systematic review superseded the source or contradicted it?
+   - the project's own controls: a claim resting on a control, null or check in this repo is read against that check's code, not its name. The conclusion may name only the variable its arms differ on, and should say what both arms share. "Fair", "does not depend on X" or "independent of X" when the arms did not swap X → `overstated`, at every copy of the wording.
 
 Report as a list, most serious first. Each item gives: claim (quoted, with line number), source, verdict (`supported` / `overstated` / `wrong` / `unresolvable` / `unsourced`), one-line evidence, and a suggested rewording if the verdict isn't `supported`. End with counts per verdict. Leave `supported` items out of the list unless asked for them.

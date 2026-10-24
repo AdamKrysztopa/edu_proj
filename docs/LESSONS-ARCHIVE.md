@@ -65,6 +65,31 @@ with the whole chain as its evidence. Answering an oscillation with a third rule
 
 <!-- Newest drain first. Append a new `## YYYY-MM-DD — drain N` section above the previous one. -->
 
+## 2026-10-24 — drain 7
+
+| id | rule | home | commit | edges |
+|------|------|------|--------|-------|
+| L7.1 | Every command that makes paid OpenRouter calls first reads the key's `limit_remaining` (`scripts/key_headroom.py`) and does not start when it is zero or below the run's `--max-usd`; a per-run cap cannot see what other runs already spent from the same key. | `.claude/hooks/guard-key-headroom.sh` | — | — |
+| L7.2 | A plan that registers a sequence of live runs records the sum of their caps next to the key's `limit_remaining`, and is revised before registration when the caps exceed it. | `.claude/agents/methods-critic.md` | — | refines L7.1 |
+| L7.3 | Before a gate, decision rule, check, null or control is registered or cited, show it can discriminate: compute the best case it can reach from the observed baseline, make a planted positive fire it, make a trivial stand-in (noise, text length, a surface statistic) fail it, and give a null the same exclusions in both arms with realistic donors. | `.claude/hooks/prereg-checklist.sh` | — | — |
+| L7.4 | State a control's conclusion only in terms of the variable its arms differ on and say what both arms share; never call a control "fair" or a result "independent of X" when the arms did not swap X. | `.claude/agents/citation-verifier.md` | — | refines L7.3 |
+| L7.5 | An edit to a hook reruns every test that names that hook, and a hook no test names is reported as unverified; a change to a hook's output is not done while any of its tests fail. | `.claude/hooks/run-hook-tests.sh` | — | caused-by L5.1 |
+| L7.6 | A freeze tag on anything a live model sees is created only after a live run that exercised every frozen path has completed, and the tag message names that run's directory. | `.claude/hooks/guard-freeze-tag.sh` | — | recurs L1.3 |
+| L7.7 | When a score rises with the size of a derived set (groups, neighbours, independence keys), the rule that builds the set has a test on real data that bounds its size, and a person reads the top of the ranked output before it counts as done. | `gapmap/tests/test_smoke.py` | — | — |
+| L7.8 | A model answer the parser cannot read becomes a distinct undecided or insufficient state that never counts as the finding, and test fakes emit the malformed and alternative formats the real model produces. | `gapmap/tests/test_semantic.py` | ec45c31 | — |
+| L7.9 | Accept a visual deliverable only after looking at its render yourself; a producer's or subagent's "inspected, clean" is a claim, not a check. | `.claude/hooks/agent-render-claims.sh` | — | refines L1.10 |
+| L7.10 | Headline numbers live in `research/results_manifest.json`, recomputed from their artefacts by `scripts/results_manifest.py --check` after every edit under `research/` or `report/`, and a report links an immutable commit or tag, never a branch. | `.claude/hooks/check-results-manifest.sh` | be82433 | — |
+
+Grouping: twelve queue entries became ten rows. The two key-headroom entries (the N2 closeout and its recurrence one day later on the JEV spike, while the first was still queued) became L7.1, a run-time hook, and L7.2, its planning half. "Beats the baseline" unreachable gate, "density renamed as gap" passing by construction (three occurrences, the last two one-sided nulls) and the word-length stand-in passing "beyond density" are one class and became L7.3. Its hook injects the four checks when a gate is written into `REORIENTATION.md`, `docs/plans/`, `research/**/*.md` or spike code, and `methods-critic` gained the same four as a "Rule discrimination" item plus "Breadth-weighted confidence" and "Live budget". L7.4 is the reporting side of the same class. L7.8 and L7.10 register fixes already shipped (`ec45c31`'s `undecided` state and its malformed-format tests; `be82433`'s manifest). This drain adds a second binding to each: a reconstruct test that an unreadable verifier verdict is `insufficient`, never `supports`, and a hook that reruns the manifest check and refuses links to a moving branch. Every new hook is registered in `.claude/settings.json` and covered by `scripts/hook_tests/test_drain7_hooks.py`, 26 checks, each refuse or inject path fired. The DIAG bound and the verdict test were each made to fail once (bound 5: `assert 8 <= 5`; parser mutated to default to `supports`: 5 failed) and then restored.
+
+**Work item done in this drain:** `.claude/hooks/session_start_lessons.py` reported a missing `.claude/settings.json` as unreadable, which broke two shipped tests. A missing file now means nothing is registered. The skill-improver v1.4.2 upgrade marks this hook project-owned and skips its shipped tests, so `scripts/hook_tests/test_session_start_lessons.py` now holds them (6 checks; 2 fail against the unfixed hook).
+
+**Moved:** L1.3 was applied, in `live-smoke-reminder.sh`, and did not bite, because that hook fires on edits and a freeze tag is not an edit. L7.6 puts the rule at the moment of tagging.
+
+**Graph finding carried, not acted on:** L1.7 is still a recurrence whose `moves` did not go far enough. Track A stays frozen with no `probe-app freeze` scheduled. Re-route it when Track A resumes, before its freeze.
+
+**Fitness check — which of this cycle's defects would a rule already in the archive have caught?** Two, plus one an archived rule caused. L1.3 was applied and in the wrong artefact, and is re-routed in this drain as L7.6. The key-headroom miss recurred while its first entry sat in the queue, so drain more often. L5.1's own implementation in drain 5 changed a hook's output without running that hook's tests, which is L7.5's `caused-by`.
+
 ## 2026-09-28 — drain 6
 
 | id | rule | home | commit | edges |

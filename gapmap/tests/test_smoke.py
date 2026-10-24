@@ -16,6 +16,7 @@ from residual.vocab import CRITERION_LABELS, EpistemicLabel
 
 from gapmap import __main__ as cli
 from gapmap import judge as judge_mod
+from gapmap import lenses, link
 
 ROOT = Path(__file__).resolve().parents[2]
 RUNS = ROOT / "reconstruct" / "runs"
@@ -133,3 +134,13 @@ def test_all_a_pool_claims_are_criterion_labelled():
         assert (lab in CRITERION_LABELS) == (lab is EpistemicLabel.LITERATURE_SUPPORTED
                                               or lab is EpistemicLabel.OBSERVED_HUMAN_EVIDENCE
                                               or lab is EpistemicLabel.ORGANISATIONAL_ARTEFACT_SUPPORTED)
+
+
+@pytest.mark.parametrize("run_dir", [PLC_DIR, GDPR_V1_DIR, GDPR_V2_DIR], ids=["plc", "gdpr_v1", "gdpr_v2"])
+def test_diag_groups_stay_star_sized_on_real_ledgers(run_dir):
+    """A DIAG group's breadth raises its confidence, so its size is bounded on real data: reading
+    §2.2 as connected components once chained 40 unrelated PLC claims into the #1 record while every
+    fixture test passed. Seed plus direct rivals measures 6-8 on PLC."""
+    ledger, _ = _load(run_dir)
+    sizes = [len(c.seeds | c.rivals) for c in lenses.diag(ledger, link.build_index(ledger), link.SETTING_1)]
+    assert max(sizes, default=0) <= 10, sorted(sizes)

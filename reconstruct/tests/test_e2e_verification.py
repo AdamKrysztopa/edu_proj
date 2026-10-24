@@ -208,3 +208,13 @@ def test_supports_with_any_drift_flag_is_downgraded_to_insufficient(tmp_path, fl
     assert [e.verification.verdict for e in claim.evidence] == ["insufficient"]
     assert claim.supporting == ()
     assert claim.label == EpistemicLabel.SYNTHETIC_EXTRAPOLATION
+
+
+@pytest.mark.parametrize("raw", ["SUPPORTS", "supported", "yes", None, 1])
+def test_a_verdict_the_parser_cannot_read_is_insufficient_never_supports(raw):
+    """An unreadable judge answer once defaulted to the finding in gapmap; here it must never count
+    as support, even with a valid quote and clean flags."""
+    from reconstruct.run import _verdict_from_result
+    verdict, _, _ = _verdict_from_result({"verdict": raw, "supporting_quote": "PLCs scan"},
+                                         "PLCs scan inputs each cycle")
+    assert verdict == "insufficient"

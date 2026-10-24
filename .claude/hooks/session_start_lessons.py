@@ -49,7 +49,10 @@ def missing_hooks(root: Path) -> list[str]:
 
     A hook pointing at a deleted file fails silently and looks like a clean pass (L5.1)."""
     import re
-    settings = json.loads((root / ".claude/settings.json").read_text())
+    path = root / ".claude/settings.json"
+    if not path.exists():
+        return []         # nothing registered, so nothing can be broken
+    settings = json.loads(path.read_text())
     bad = []
     for groups in settings.get("hooks", {}).values():
         for group in groups:
