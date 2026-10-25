@@ -1,0 +1,244 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s10": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"10\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s11": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"11\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s5": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"5\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s6": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"6\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s7": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"7\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s8": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"8\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s9": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"9\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+   "sentences": {
+    "1": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+    "10": "Any systematic monitoring, observation or control of individuals including that taking place in a public area or where the individual may not be aware of the processing or the identity of the data controller;",
+    "11": "It is a data controller's obligation to ensure a DPIA is carried out when required, at the appropriate time and contains all the detail required by the GDPR.",
+    "2": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+    "3": "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+    "4": "In any event, this list is without prejudice to your overriding obligation in Article 35(1), which is to assess any proposed processing operation against the requirement to complete DPIAs.",
+    "5": "If you intend to rely on the exception for disproportionate effort, you must be able to justify this, and you must take other measures to protect people's rights.",
+    "6": "If you intend to rely on the exception for disproportionate effort, you must be able to justify this, and you must take other measures to protect people's rights.",
+    "7": "Systematic monitoring of the position/location of employees as well as of the content and of the metadata of employee communications, provided that it is fair and with the exception of logging files for security reasons, when the processing is limited to the absolutely necessary data and is specifically documented is a type of processing subject to DPIA requirement.",
+    "8": "Systematic monitoring - provided that it is fair - of the position/location of employees as well as of the content and of the metadata of employee communications with the exception of logging files for security reasons provided that the processing is limited to the absolutely necessary data and is specifically documented.",
+    "9": "Any systematic monitoring, observation or control of individuals including that taking place in a public area or where the individual may not be aware of the processing or the identity of the data controller is a factor that may influence whether high risk is likely to result."
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "no",
+    "confidence": 0.22,
+    "probabilities": {
+     "no": 0.48,
+     "partially": 0.23,
+     "states": 0.29
+    },
+    "type": "choice"
+   },
+   "s10": {
+    "choice": "no",
+    "confidence": 0.95,
+    "probabilities": {
+     "no": 0.97,
+     "partially": 0.01,
+     "states": 0.02
+    },
+    "type": "choice"
+   },
+   "s11": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0.01,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "no",
+    "confidence": 0.83,
+    "probabilities": {
+     "no": 0.89,
+     "partially": 0.03,
+     "states": 0.08
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "no",
+    "confidence": 0.66,
+    "probabilities": {
+     "no": 0.77,
+     "partially": 0.09,
+     "states": 0.14
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "no",
+    "confidence": 0.86,
+    "probabilities": {
+     "no": 0.91,
+     "partially": 0.05,
+     "states": 0.04
+    },
+    "type": "choice"
+   },
+   "s5": {
+    "choice": "partially",
+    "confidence": 0.11,
+    "probabilities": {
+     "no": 0.28,
+     "partially": 0.41,
+     "states": 0.31
+    },
+    "type": "choice"
+   },
+   "s6": {
+    "choice": "states",
+    "confidence": 0.09,
+    "probabilities": {
+     "no": 0.3,
+     "partially": 0.31,
+     "states": 0.39
+    },
+    "type": "choice"
+   },
+   "s7": {
+    "choice": "no",
+    "confidence": 0.67,
+    "probabilities": {
+     "no": 0.78,
+     "partially": 0.12,
+     "states": 0.1
+    },
+    "type": "choice"
+   },
+   "s8": {
+    "choice": "no",
+    "confidence": 0.73,
+    "probabilities": {
+     "no": 0.8200000000000001,
+     "partially": 0.09,
+     "states": 0.09
+    },
+    "type": "choice"
+   },
+   "s9": {
+    "choice": "no",
+    "confidence": 0.94,
+    "probabilities": {
+     "no": 0.96,
+     "partially": 0.01,
+     "states": 0.03
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792863031-zlRhfiyTbcTZpmSf72U8",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 0.000103614,
+   "input_tokens": 2467,
+   "output_tokens": 425
+  }
+ }
+}

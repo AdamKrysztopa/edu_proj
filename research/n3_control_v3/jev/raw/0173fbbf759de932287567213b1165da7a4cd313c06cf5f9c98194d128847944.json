@@ -1,0 +1,184 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s5": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"5\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s6": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"6\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s7": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"7\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s8": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"8\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "Shielded cables must be grounded at one end only to prevent ground loops that introduce noise into sensitive logic circuits.",
+   "sentences": {
+    "1": "If you read full supply voltage but the device does not run, the fault is in the load circuit: broken wire, open coil, or a missing return path.",
+    "2": "When measuring across a device and the LED is ON but the meter reads 0 VDC at the terminal, the issue may be the output common, fuse, or field power.",
+    "3": "If the output LED is ON but the meter reads 0 VDC at the terminal, check the output common, fuse, or field power.",
+    "4": "Trying to run a continuity test on a live 24 VDC circuit will give you a beep regardless of the fault because the meter's test current is swamped by the supply.",
+    "5": "A bleed resistor can be added across an input terminal to ground to reduce sensor leakage voltage below the OFF threshold.",
+    "6": "Software faults tend to be repeatable and occur when a specific set of conditions is present, whereas hardware faults are affected by environmental conditions.",
+    "7": "Using continuity mode on a live circuit produces false positive 'good' results due to the supply voltage overwhelming the meter's test current.",
+    "8": "Using continuity mode on a live circuit and getting a false 'good' result from the supply voltage."
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0,
+     "states": 0.02
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "no",
+    "confidence": 0.98,
+    "probabilities": {
+     "no": 0.99,
+     "partially": 0,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "no",
+    "confidence": 0.98,
+    "probabilities": {
+     "no": 0.99,
+     "partially": 0,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "no",
+    "confidence": 0.95,
+    "probabilities": {
+     "no": 0.97,
+     "partially": 0,
+     "states": 0.03
+    },
+    "type": "choice"
+   },
+   "s5": {
+    "choice": "no",
+    "confidence": 0.86,
+    "probabilities": {
+     "no": 0.91,
+     "partially": 0.01,
+     "states": 0.08
+    },
+    "type": "choice"
+   },
+   "s6": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0,
+     "states": 0.02
+    },
+    "type": "choice"
+   },
+   "s7": {
+    "choice": "no",
+    "confidence": 0.89,
+    "probabilities": {
+     "no": 0.93,
+     "partially": 0.01,
+     "states": 0.06
+    },
+    "type": "choice"
+   },
+   "s8": {
+    "choice": "no",
+    "confidence": 0.91,
+    "probabilities": {
+     "no": 0.94,
+     "partially": 0.02,
+     "states": 0.04
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792862900-rQF66OQwlt4dcoqrtlZh",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 7.1988e-05,
+   "input_tokens": 1714,
+   "output_tokens": 307
+  }
+ }
+}

@@ -1,0 +1,184 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s5": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"5\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s6": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"6\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s7": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"7\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s8": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)? Does sentences[\"8\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "Where appropriate, the controller should seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations.",
+   "sentences": {
+    "1": "It is important to remember that it is a data controller's obligation to ensure a DPIA is carried out when required, at the appropriate time and contains all the detail required by the GDPR.",
+    "2": "You may not have to carry out a DPIA if you are processing on the basis of legal obligation or public task.",
+    "3": "You may not have to carry out a DPIA if: You are processing on the basis of legal obligation or public task.",
+    "4": "Invisible processing results in a risk to the individual's interests as they cannot exercise any control over your use of their data.",
+    "5": "This processing results in a risk to the individual's interests as they cannot exercise any control over your use of their data.",
+    "6": "A DPIA is required for any intended processing operation(s) involving innovative use of technologies",
+    "7": "If your intended processing is not described under Article 35(3), the ICO list, or European guidelines, you are responsible for deciding whether your processing is of a type likely to result in high risk.",
+    "8": "If your intended processing is not described under UK GDPR, Article 35(3) the ICO list or European guidelines then ultimately, it's up to you to decide whether your processing is of a type likely to result in high risk, taking into account the nature, scope, context and purposes of the processing."
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "no",
+    "confidence": 0.98,
+    "probabilities": {
+     "no": 0.99,
+     "partially": 0,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "no",
+    "confidence": 0.77,
+    "probabilities": {
+     "no": 0.85,
+     "partially": 0.03,
+     "states": 0.12
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "no",
+    "confidence": 0.86,
+    "probabilities": {
+     "no": 0.91,
+     "partially": 0.01,
+     "states": 0.08
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "no",
+    "confidence": 1,
+    "probabilities": {
+     "no": 1,
+     "partially": 0,
+     "states": 0
+    },
+    "type": "choice"
+   },
+   "s5": {
+    "choice": "no",
+    "confidence": 1,
+    "probabilities": {
+     "no": 1,
+     "partially": 0,
+     "states": 0
+    },
+    "type": "choice"
+   },
+   "s6": {
+    "choice": "no",
+    "confidence": 1,
+    "probabilities": {
+     "no": 1,
+     "partially": 0,
+     "states": 0
+    },
+    "type": "choice"
+   },
+   "s7": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0.01,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s8": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0.01,
+     "states": 0.01
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792863028-eH3liFUW2wCq9IjANdtX",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 7.5726e-05,
+   "input_tokens": 1803,
+   "output_tokens": 307
+  }
+ }
+}

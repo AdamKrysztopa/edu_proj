@@ -11,7 +11,7 @@ from pathlib import Path
 from residual.ledger import Ledger
 from residual.provenance import Verdict
 
-from gapmap import checks, config, judge as judge_mod, lenses, link, rank, record, render, semantic
+from gapmap import checks, config, judge as judge_mod, lenses, link, manifest, rank, record, render, semantic
 
 
 def _sha256_text(text: str) -> str:
@@ -122,7 +122,8 @@ def _default_judge(out_dir: str, judge_mode: str | None):
 
 
 def run(ledger_path: str, *, domain: str, out_dir: str, sibling_path: str | None = None,
-       sidecar_path: str | None = None, judge_mode: str | None = None, judge=None) -> None:
+       sidecar_path: str | None = None, judge_mode: str | None = None, judge=None,
+       manifest_sha256: str | None = None) -> None:
     ledger_text = Path(ledger_path).read_text()
     ledger = Ledger.from_json(ledger_text)
     sibling = Ledger.from_json(Path(sibling_path).read_text()) if sibling_path else None
@@ -135,8 +136,10 @@ def run(ledger_path: str, *, domain: str, out_dir: str, sibling_path: str | None
 
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    (out / "gapmap.json").write_text(
-        json.dumps(record.to_json_dict(result), sort_keys=True, indent=1) + "\n")
+    doc = record.to_json_dict(result)
+    if manifest_sha256 is not None:
+        doc["manifest_sha256"] = manifest_sha256
+    (out / "gapmap.json").write_text(json.dumps(doc, sort_keys=True, indent=1) + "\n")
     (out / "gapmap.md").write_text(render.render(result))
     if isinstance(j, judge_mod.CachedJudge):
         j.save()
@@ -152,9 +155,16 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--judge", choices=["ollama"], default=None,
                    help="fill/refresh the closure-judgement cache from a live local Ollama call; "
                         "omit for replay mode (cache only, no network)")
+    p.add_argument("--require-manifest", metavar="SHA",
+                   help="refuse to run unless the repository hashes to this freeze manifest (gapmap.manifest)")
     args = p.parse_args(argv)
+    if args.require_manifest:
+        try:
+            manifest.check(args.require_manifest, model=config.JUDGE_MODEL)
+        except manifest.Refused as exc:
+            p.error(f"--require-manifest: {exc}")
     run(args.ledger, domain=args.domain, out_dir=args.out, sibling_path=args.sibling,
-       sidecar_path=args.sidecar, judge_mode=args.judge)
+       sidecar_path=args.sidecar, judge_mode=args.judge, manifest_sha256=args.require_manifest)
 
 
 if __name__ == "__main__":

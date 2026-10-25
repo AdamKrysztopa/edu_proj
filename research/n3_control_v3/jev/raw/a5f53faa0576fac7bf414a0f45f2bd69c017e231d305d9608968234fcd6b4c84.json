@@ -1,0 +1,184 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s5": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"5\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s6": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"6\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s7": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"7\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s8": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"8\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "As a controller, an organisation will need to assess, decide and document whether a DPIA is necessary for each proposed data processing operation.",
+   "sentences": {
+    "1": "Controllers have an overriding obligation in Article 35(1) to assess any proposed processing operation against the requirement to complete DPIAs.",
+    "2": "In any event, this list does not affect your overriding obligation in Article 35(1), which is to assess any proposed processing operation against the requirement to complete DPIAs.",
+    "3": "In any event, this list is without prejudice to your overriding obligation in Article 35(1), which is to assess any proposed processing operation against the requirement to complete DPIAs.",
+    "4": "Systematic monitoring of the position/location of employees as well as of the content and of the metadata of employee communications, provided that it is fair and with the exception of logging files for security reasons, when the processing is limited to the absolutely necessary data and is specifically documented is a type of processing subject to DPIA requirement.",
+    "5": "Systematic monitoring - provided that it is fair - of the position/location of employees as well as of the content and of the metadata of employee communications with the exception of logging files for security reasons provided that the processing is limited to the absolutely necessary data and is specifically documented.",
+    "6": "Where necessary, the controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk represented by processing operations.",
+    "7": "Where necessary, the controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk represented by processing operations.",
+    "8": "Where necessary, the controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk represented by processing operations."
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "no",
+    "confidence": 0.7,
+    "probabilities": {
+     "no": 0.8,
+     "partially": 0.11,
+     "states": 0.09
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "no",
+    "confidence": 0.83,
+    "probabilities": {
+     "no": 0.89,
+     "partially": 0.05,
+     "states": 0.06
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "no",
+    "confidence": 0.92,
+    "probabilities": {
+     "no": 0.95,
+     "partially": 0.02,
+     "states": 0.03
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "no",
+    "confidence": 0.23,
+    "probabilities": {
+     "no": 0.49,
+     "partially": 0.14,
+     "states": 0.37
+    },
+    "type": "choice"
+   },
+   "s5": {
+    "choice": "no",
+    "confidence": 0.49,
+    "probabilities": {
+     "no": 0.66,
+     "partially": 0.12,
+     "states": 0.22
+    },
+    "type": "choice"
+   },
+   "s6": {
+    "choice": "no",
+    "confidence": 0.23,
+    "probabilities": {
+     "no": 0.49,
+     "partially": 0.25,
+     "states": 0.26
+    },
+    "type": "choice"
+   },
+   "s7": {
+    "choice": "no",
+    "confidence": 0.41,
+    "probabilities": {
+     "no": 0.61,
+     "partially": 0.18,
+     "states": 0.21
+    },
+    "type": "choice"
+   },
+   "s8": {
+    "choice": "no",
+    "confidence": 0.64,
+    "probabilities": {
+     "no": 0.76,
+     "partially": 0.11,
+     "states": 0.13
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792863090-RDw1872X3zCixvHC5tUc",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 7.2534e-05,
+   "input_tokens": 1727,
+   "output_tokens": 307
+  }
+ }
+}

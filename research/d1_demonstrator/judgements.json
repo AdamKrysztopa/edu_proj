@@ -1,0 +1,560 @@
+[
+ {
+  "q": "canary-filler-40",
+  "question": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "This is an important point and it depends on the situation, so one should think about it carefully and consider the context before deciding what to do. This is an important point and it depends on the situation, so one",
+  "passages": [
+   "(Limitations) - **Train-window-only diagnostics.** AMI, pAMI, and all F1\u2013F8 diagnostics are computed on the training window up to each rolling origin. No diagnostic touches the post-origin holdout. - **Holdout-only scoring.** Forecast errors and accuracy metrics are computed on the post-origin holdout window only. - **Caller responsibility.** The `run_rolling_origin_evaluation()` function enforces this boundary internally. If you compute diagnostics manually outside this function, you must enforce the same boundary. Violating it introduces look-ahead leakage and invalidates the evaluation. - **Exogenous workflows.** The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.",
+   "(AMI, pAMI, and TE Foundations) - Diagnostics (AMI/pAMI) are computed on each training window only. - Forecast errors are computed on post-origin test window only. - This separation is mandatory to prevent leakage.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) If this repository needs a practical proof point, CausalRivers is it.",
+   "(Forecasting) Forecasting has applications in a wide range of fields where estimates of future conditions are useful. Depending on the field, accuracy varies significantly. If the factors that relate to what is being forecast are known and well understood and there is a significant amount of data that can be used, it is likely the final value will be close to the forecast. If this is not the case or if the actual outcome is affected by the forecasts, the reliability of the forecasts can be significantly lower. Climate change and increasing energy prices have led to the use of Egain Forecasting for buildings. This attempts to reduce the energy needed to heat the building, thus reducing the emission of greenhouse gases. Forecasting is used in customer demand planning in everyday business for manufacturing and distribution companies. While the veracity of predictions for actual stock returns are disputed through reference to the efficient-market hypothesis, forecasting of broad economic trends is common. Such analysis is provided by both non-profit groups as well as by for-profit private institutions. Forecasting foreign exchange movements is typically achieved through a combination of historical a",
+   "(Autocorrelation) : the autocovariance depends only on the time-distance between the pair of values but not on their position in time. This further implies that the autocovariance and autocorrelation can be expressed as a function of the time-lag, and that this would be an even function of the lag",
+   "(Autocorrelation) are time-independent, and further the autocovariance function depends only on the lag between",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) That caveat is important. The pAMI implementation is a linear-residual approximation. It is useful for screening and interpretation. It is not exact conditional mutual information. It is not causal proof.",
+   "(Mutual information) ; that is, to what degree one might have",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) Model comparison should not be the first serious question in a forecasting project. The first question is what information is available, where it comes from, whether it survives conditioning on the target's own history, and whether the model is legally allowed to use it at prediction time.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) `dependence-forecastability` is an open-source pre-modeling toolkit for that earlier question. It does not train forecasting models. It asks what a model should be allowed to see: which target lags carry memory, which covariates retain incremental signal, which lagged features are legal for the forecast horizon, and what evidence should travel into downstream model configuration."
+  ],
+  "judge_a": {
+   "id": "canary-filler-40",
+   "label": "no content",
+   "new_content": "",
+   "reason": "Repeated generic filler with no substantive claim.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "canary-filler-40",
+   "label": "no content",
+   "new_content": "",
+   "reason": "The answer is generic filler and makes no substantive claim.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": "canary-filler-90",
+  "question": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "This is an important point and it depends on the situation, so one should think about it carefully and consider the context before deciding what to do. This is an important point and it depends on the situation, so one should think about it carefully and consider the context before deciding what to do. This is an important point and it depends on the situation, so one should think about it carefully and consider the context before deciding what to do. This is an important point and it depends on",
+  "passages": [
+   "(Limitations) - **Train-window-only diagnostics.** AMI, pAMI, and all F1\u2013F8 diagnostics are computed on the training window up to each rolling origin. No diagnostic touches the post-origin holdout. - **Holdout-only scoring.** Forecast errors and accuracy metrics are computed on the post-origin holdout window only. - **Caller responsibility.** The `run_rolling_origin_evaluation()` function enforces this boundary internally. If you compute diagnostics manually outside this function, you must enforce the same boundary. Violating it introduces look-ahead leakage and invalidates the evaluation. - **Exogenous workflows.** The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) If this repository needs a practical proof point, CausalRivers is it.",
+   "(Autocorrelation) are time-independent, and further the autocovariance function depends only on the lag between",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) What This Tool Deliberately Does Not Do",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) That caveat is important. The pAMI implementation is a linear-residual approximation. It is useful for screening and interpretation. It is not exact conditional mutual information. It is not causal proof.",
+   "(Autocorrelation) : the autocovariance depends only on the time-distance between the pair of values but not on their position in time. This further implies that the autocovariance and autocorrelation can be expressed as a function of the time-lag, and that this would be an even function of the lag",
+   "(Forecasting) Forecasting has applications in a wide range of fields where estimates of future conditions are useful. Depending on the field, accuracy varies significantly. If the factors that relate to what is being forecast are known and well understood and there is a significant amount of data that can be used, it is likely the final value will be close to the forecast. If this is not the case or if the actual outcome is affected by the forecasts, the reliability of the forecasts can be significantly lower. Climate change and increasing energy prices have led to the use of Egain Forecasting for buildings. This attempts to reduce the energy needed to heat the building, thus reducing the emission of greenhouse gases. Forecasting is used in customer demand planning in everyday business for manufacturing and distribution companies. While the veracity of predictions for actual stock returns are disputed through reference to the efficient-market hypothesis, forecasting of broad economic trends is common. Such analysis is provided by both non-profit groups as well as by for-profit private institutions. Forecasting foreign exchange movements is typically achieved through a combination of historical a",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) `dependence-forecastability` is an open-source pre-modeling toolkit for that earlier question. It does not train forecasting models. It asks what a model should be allowed to see: which target lags carry memory, which covariates retain incremental signal, which lagged features are legal for the forecast horizon, and what evidence should travel into downstream model configuration.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) Model comparison should not be the first serious question in a forecasting project. The first question is what information is available, where it comes from, whether it survives conditioning on the target's own history, and whether the model is legally allowed to use it at prediction time.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) The same is true for benchmark coverage. The right long-term test is not one perfect demo. It is broader panels, clearer negative controls, richer examples, and repeated evidence that triage changes what downstream validation has to consider."
+  ],
+  "judge_a": {
+   "id": "canary-filler-90",
+   "label": "no content",
+   "new_content": "",
+   "reason": "Repeated generic filler with no substantive claim.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "canary-filler-90",
+   "label": "no content",
+   "new_content": "",
+   "reason": "The repeated generic language provides no substantive information.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": "canary-copied",
+  "question": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "- **Train-window-only diagnostics.** AMI, pAMI, and all F1\u2013F8 diagnostics are computed on the training window up to each rolling origin. No diagnostic touches the post-origin holdout. - **Holdout-only scoring.** Forecast errors and accuracy metrics are computed on the post-origin holdout window only. - **Caller responsibility.** The `run_rolling_origin_evaluation()` function enforces this boundary internally. If you compute diagnostics manually outside this function, you must enforce the same boundary. Violating it introduces look-ahead leakage and invalidates the evaluation. - **Exogenous workflows.** The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.",
+  "passages": [
+   "(Limitations) - **Train-window-only diagnostics.** AMI, pAMI, and all F1\u2013F8 diagnostics are computed on the training window up to each rolling origin. No diagnostic touches the post-origin holdout. - **Holdout-only scoring.** Forecast errors and accuracy metrics are computed on the post-origin holdout window only. - **Caller responsibility.** The `run_rolling_origin_evaluation()` function enforces this boundary internally. If you compute diagnostics manually outside this function, you must enforce the same boundary. Violating it introduces look-ahead leakage and invalidates the evaluation. - **Exogenous workflows.** The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.",
+   "(AMI, pAMI, and TE Foundations) - Diagnostics (AMI/pAMI) are computed on each training window only. - Forecast errors are computed on post-origin test window only. - This separation is mandatory to prevent leakage.",
+   "(Golden Path) > [!WARNING] > In rolling-origin evaluation, diagnostics are computed on train windows only and scoring on post-origin holdout only.",
+   "(Limitations) In rolling-origin evaluation, the leakage boundary is strict and must be enforced by the caller.",
+   "(Quickstart Ladder) > [!WARNING] > This ladder is for fast dependence triage. For forecast evaluation, compute > diagnostics on each rolling-origin training window only. Do not compute on > full series and then claim out-of-sample validity.",
+   "(Forecastability Triage Toolkit) - AMI is computed per horizon rather than aggregated before computation. - pAMI is a project extension and a linear-residual approximation, not exact conditional mutual information. - Surrogate significance uses phase-randomized FFT surrogates with two-sided confidence bands. - \"Significance skipped\" and \"no significant lags\" are different outcomes. - In rolling-origin workflows, diagnostics should be computed on the training window only. - Phase surrogates can be conservative for strongly periodic series. - Covariate informativeness is not the same as causal proof. - Model-family routing is deterministic guidance, not a replacement for validation on holdout data. - The package may recommend abstention when the evidence is weak or the input is not ready.",
+   "(Limitations) > [!CAUTION] > Look-ahead leakage in rolling-origin evaluation is silent \u2014 it produces optimistic > forecastability scores without any error message. Always verify that diagnostics > are computed before the origin and scoring after it.",
+   "(Forecasting) Starting with i=1, select the observation k + i  for the test set, and use the observations at times  1, 2, ..., k+i\u20131 to estimate the forecasting model. Compute the error on the forecast for k+i. Repeat the above step for i = 2,...,T\u2013k  where T is the total number of observations. Compute the forecast accuracy over all errors. This procedure is sometimes known as a \"rolling forecasting origin\" because the \"origin\" (k+i -1) at which the forecast is based rolls forward in time. Further, two-step-ahead or in general p-step-ahead forecasts can be computed by first forecasting the value immediately after the training set, then using this value with the training set values to forecast two periods ahead, etc.",
+   "(Diagnostics Matrix) F8 \u2014 Exogenous Screening (CrossAMI/pCrossAMI + BH FDR)",
+   "(Forecastability Triage Toolkit) `ForecastPrepContract` is the framework-neutral hand-off boundary between forecastability diagnostics and downstream model configuration."
+  ],
+  "judge_a": {
+   "id": "canary-copied",
+   "label": "already written",
+   "new_content": "",
+   "reason": "The answer is a verbatim copy of the Limitations passage.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "canary-copied",
+   "label": "already written",
+   "new_content": "",
+   "reason": "The answer reproduces the documentation passage verbatim.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 1,
+  "question": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "Serious risk, never OK. It is a classical leak: information from the future goes into the past. That is asking for failures in production.",
+  "passages": [
+   "(Limitations) - **Train-window-only diagnostics.** AMI, pAMI, and all F1\u2013F8 diagnostics are computed on the training window up to each rolling origin. No diagnostic touches the post-origin holdout. - **Holdout-only scoring.** Forecast errors and accuracy metrics are computed on the post-origin holdout window only. - **Caller responsibility.** The `run_rolling_origin_evaluation()` function enforces this boundary internally. If you compute diagnostics manually outside this function, you must enforce the same boundary. Violating it introduces look-ahead leakage and invalidates the evaluation. - **Exogenous workflows.** The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.",
+   "(AMI, pAMI, and TE Foundations) - Diagnostics (AMI/pAMI) are computed on each training window only. - Forecast errors are computed on post-origin test window only. - This separation is mandatory to prevent leakage.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) Model comparison should not be the first serious question in a forecasting project. The first question is what information is available, where it comes from, whether it survives conditioning on the target's own history, and whether the model is legally allowed to use it at prediction time.",
+   "(Limitations) In rolling-origin evaluation, the leakage boundary is strict and must be enforced by the caller.",
+   "(Diagnostics Matrix) F8 \u2014 Exogenous Screening (CrossAMI/pCrossAMI + BH FDR)",
+   "(Forecasting) Forecasting has applications in a wide range of fields where estimates of future conditions are useful. Depending on the field, accuracy varies significantly. If the factors that relate to what is being forecast are known and well understood and there is a significant amount of data that can be used, it is likely the final value will be close to the forecast. If this is not the case or if the actual outcome is affected by the forecasts, the reliability of the forecasts can be significantly lower. Climate change and increasing energy prices have led to the use of Egain Forecasting for buildings. This attempts to reduce the energy needed to heat the building, thus reducing the emission of greenhouse gases. Forecasting is used in customer demand planning in everyday business for manufacturing and distribution companies. While the veracity of predictions for actual stock returns are disputed through reference to the efficient-market hypothesis, forecasting of broad economic trends is common. Such analysis is provided by both non-profit groups as well as by for-profit private institutions. Forecasting foreign exchange movements is typically achieved through a combination of historical a",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) | Output | What it means | Practical action | |---|---|---| | `blocked=True` | Readiness or legality failed. | Do not start model search until the block is understood. | | Weak information mass | The target has limited measurable memory under the current lag range, estimator settings, and sample window. | Prefer simple baselines, shorter horizons, or more data before complex models. | | Short information horizon | Signal decays quickly with lag. | Align forecast horizon to the usable memory window. | | Seasonal lag hints | Specific seasonal offsets look informative. | Consider seasonal lags or seasonal baseline families. | | High CrossAMI but low CrosspAMI | A driver is associated with the target but may add little beyond target history. | Treat as redundancy or common-forcing warning. | | Selected legal covariate lags | A sparse lagged driver set survived screening and legality. | Use only those lags as candidate past covariates. | | Blocked lag rows | A candidate lag would be unavailable or unsafe at prediction time. | Exclude it, even if pairwise signal is high. | | Caution flags | The packet detected low confidence, leakage risk, blocked readiness, or numeric instability. | Mak",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) That caveat is important. The pAMI implementation is a linear-residual approximation. It is useful for screening and interpretation. It is not exact conditional mutual information. It is not causal proof.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) - It is not AutoML. - It is not causal proof. - It is not production approval. - It is not a forecasting library. - It is not a replacement for Darts, MLForecast, StatsForecast, Nixtla, Prophet, statsmodels, sklearn, or custom model code. - It is not a replacement for holdout validation. - It is not a replacement for domain review.",
+   "(Forecastability Triage Toolkit) - AMI is computed per horizon rather than aggregated before computation. - pAMI is a project extension and a linear-residual approximation, not exact conditional mutual information. - Surrogate significance uses phase-randomized FFT surrogates with two-sided confidence bands. - \"Significance skipped\" and \"no significant lags\" are different outcomes. - In rolling-origin workflows, diagnostics should be computed on the training window only. - Phase surrogates can be conservative for strongly periodic series. - Covariate informativeness is not the same as causal proof. - Model-family routing is deterministic guidance, not a replacement for validation on holdout data. - The package may recommend abstention when the evidence is weak or the input is not ready."
+  ],
+  "judge_a": {
+   "id": "1",
+   "label": "partly",
+   "new_content": "That is asking for failures in production.",
+   "reason": "Leakage and the mandatory boundary are in the passages; only the production-failure consequence goes beyond 'invalidates the evaluation'.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "1",
+   "label": "partly",
+   "new_content": "That is asking for failures in production.",
+   "reason": "The leakage and invalid evaluation are documented, but the asserted production failure is an added consequence.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 2,
+  "question": "Sources say: \"Use `known_future_drivers` only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags, planned promotions, or externally scheduled variables.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "Serious risk, never OK. People often use features that are not known but predicted. That accumulates the errors.",
+  "passages": [
+   "(Forecastability Triage Toolkit) > [!IMPORTANT] > `selected_for_tensor=True` is impossible at `lag=0` by default. > Use `known_future_drivers` only for variables whose contemporaneous future > values are genuinely known at prediction time, such as calendar flags, > planned promotions, or externally scheduled variables.",
+   "(Quickstart Ladder) Known-future opt-in for features whose contemporaneous value is available at prediction time (e.g. calendar flags, planned promotions, regulator-set prices):",
+   "(Lagged-Exogenous Triage) A \"known-future\" exogenous covariate is one whose $k=0$ value is legitimately observed **before** $Y_t$ must be predicted: calendar features, holidays, regulator-set tariffs, planned promotional events. Such features may be selected at $k=0$, but only via:",
+   "(Quickstart Ladder) > [!IMPORTANT] > `selected_for_tensor=True` is impossible at `lag=0` by default. Use `known_future_drivers` to > explicitly opt in for features whose contemporaneous value is legitimately available at > prediction time. > [!NOTE] > `lag_role=\"instant\"` rows at `lag=0` are diagnostic. They quantify contemporaneous association > (contemporaneous-cross_ami, cross-correlation) but are not selected for forecasting tensors > without the opt-in.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) Model comparison should not be the first serious question in a forecasting project. The first question is what information is available, where it comes from, whether it survives conditioning on the target's own history, and whether the model is legally allowed to use it at prediction time.",
+   "(Autocorrelation) are known, this estimate is unbiased. If the true mean and variance of the process are not known there are several possibilities:",
+   "(Mutual information) , to arbitrary numerous variable. n variables are mutually independent if and only if the",
+   "(Forecasting) Forecasting has applications in a wide range of fields where estimates of future conditions are useful. Depending on the field, accuracy varies significantly. If the factors that relate to what is being forecast are known and well understood and there is a significant amount of data that can be used, it is likely the final value will be close to the forecast. If this is not the case or if the actual outcome is affected by the forecasts, the reliability of the forecasts can be significantly lower. Climate change and increasing energy prices have led to the use of Egain Forecasting for buildings. This attempts to reduce the energy needed to heat the building, thus reducing the emission of greenhouse gases. Forecasting is used in customer demand planning in everyday business for manufacturing and distribution companies. While the veracity of predictions for actual stock returns are disputed through reference to the efficient-market hypothesis, forecasting of broad economic trends is common. Such analysis is provided by both non-profit groups as well as by for-profit private institutions. Forecasting foreign exchange movements is typically achieved through a combination of historical a",
+   "(Forecasting) Limitations pose barriers beyond which forecasting methods cannot reliably predict. There are many events and values that cannot be forecast reliably. Events such as the roll of a die or the results of the lottery cannot be forecast because they are random events and there is no significant relationship in the data. When the factors that lead to what is being forecast are not known or well understood such as in stock and foreign exchange markets forecasts are often inaccurate or wrong as there is not enough data about everything that affects these markets for the forecasts to be reliable, in addition the outcomes of the forecasts of these markets change the behavior of those involved in the market further reducing forecast accuracy. The concept of \"self-destructing predictions\" concerns the way in which some predictions can undermine themselves by influencing social behavior. This is because \"predictors are part of the social context about which they are trying to make a prediction and may influence that context in the process\". For example, a forecast that a large percentage of a population will become HIV infected based on existing trends may cause more people to avoid risky beha",
+   "(mutual_info_regression) Estimate mutual information for a continuous target variable. Mutual information (MI) [1] between two random variables is a non-negative value, which measures the dependency between the variables. It is equal to zero if and only if two random variables are independent, and higher values mean higher dependency. The function relies on nonparametric methods based on entropy estimation from k-nearest neighbors distances as described in [2] and [3]. Both methods are based on the idea originally proposed in [4]. It can be used for univariate features selection, read more in the User Guide. Parameters: Xarray-like or sparse matrix, shape (n_samples, n_features)Feature matrix."
+  ],
+  "judge_a": {
+   "id": "2",
+   "label": "new",
+   "new_content": "People often use features that are not known but predicted. That accumulates the errors.",
+   "reason": "The passages restrict known-future drivers but do not name the failure case of feeding forecasted driver values, nor the resulting error accumulation.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "2",
+   "label": "new",
+   "new_content": "People often use features that are not known but predicted. That accumulates the errors.",
+   "reason": "The passages restrict known-future drivers but do not describe this common misuse or error accumulation.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 3,
+  "question": "Sources prescribe: \"A practitioner should target model evaluation exclusively at horizons in $\\mathcal{H}_\\varepsilon$ - lags outside this set carry no detectable predictive signal above the noise floor.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "Done it; it surprised me. AMI looks meaningful at many horizons, but pAMI shows the real horizon.",
+  "passages": [
+   "(Forecastability Profile & Informative Horizon Set) A practitioner should target model evaluation exclusively at horizons in $\\mathcal{H}_\\varepsilon$ \u2014 lags outside this set carry no detectable predictive signal above the noise floor.",
+   "(Diagnostics Matrix) **When to use it.** - As the primary output for any univariate forecastability assessment. - When you need to know which forecast horizons carry detectable predictive signal above the noise floor. - At the start of any triage pass; F1 is the anchor all other diagnostics contextualise.",
+   "(Quickstart Ladder) Run the canonical v0.3.1 showcase when you want the full prepared archetype panel, strict A1/A2/A3 agent verification, and a final human-language summary of what the mathematics did.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) `dependence-forecastability` is an open-source pre-modeling toolkit for that earlier question. It does not train forecasting models. It asks what a model should be allowed to see: which target lags carry memory, which covariates retain incremental signal, which lagged features are legal for the forecast horizon, and what evidence should travel into downstream model configuration.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) High CrossAMI with low CrosspAMI is often the most valuable warning in the packet. It says, \"this driver is associated with the target, but it may not add much beyond what the target already tells you.\"",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) What This Tool Deliberately Does Not Do",
+   "(Forecastability Triage Toolkit) It is **not another forecasting library**. It is a deterministic pre-modeling layer that helps you inspect readiness, informative horizons, target lags, seasonality structure, covariate usefulness, leakage risk, and model-family direction before you spend time on Darts, MLForecast, StatsForecast, Nixtla, sklearn, Prophet, or custom models.",
+   "(Forecastability Triage Toolkit) Use this when you want the implemented AMI-first extended fingerprint plus a deterministic routing summary in one additive result.",
+   "(Diagnostics Matrix) **What it measures.** The cross-series mutual information between a target series and one or more candidate exogenous drivers at each forecast horizon, filtered by Benjamini-Hochberg FDR control, to screen which exogenous variables carry statistically detectable predictive signal.",
+   "(Diagnostics Matrix) **What it measures.** The horizon-wise mutual information between $X_t$ and its own future $X_{t+h}$ (AMI) and the approximate direct-dependence residual (pAMI), producing the informative horizon set $\\mathcal{H}_\\varepsilon$ and structural shape flags for the triage decision."
+  ],
+  "judge_a": {
+   "id": "3",
+   "label": "new",
+   "new_content": "AMI looks meaningful at many horizons, but pAMI shows the real horizon.",
+   "reason": "The passages say F1 yields AMI, pAMI and the informative horizon set but never state that AMI overstates the horizon set relative to pAMI for the target itself.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "3",
+   "label": "new",
+   "new_content": "AMI looks meaningful at many horizons, but pAMI shows the real horizon.",
+   "reason": "The passages define AMI and pAMI roles but do not report this observed divergence between their horizons.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 4,
+  "question": "Sources prescribe: \"Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "Done it; as expected. When the decay was not monotone, I looked for a mistake I had made; I was sure I had done something wrong with the data.",
+  "passages": [
+   "(Forecastability Profile & Informative Horizon Set) `is_non_monotone` flags this shape for downstream consumers without judgement. Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.  Do not treat a `True` value as an estimation artefact or an error \u2014 it is correct and expected for seasonal series.",
+   "(Quickstart Ladder) Run the canonical v0.3.1 showcase when you want the full prepared archetype panel, strict A1/A2/A3 agent verification, and a final human-language summary of what the mathematics did.",
+   "(Golden Path) Start with the fields that tell you whether the result is usable and whether significance was actually computed.",
+   "(Limitations) > [!WARNING] > When `compute_surrogates` is `false`, significance was not assessed for that run. > That does not mean the series has no significant lags; it means the run did not > produce surrogate bands that support a significance claim.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) What This Tool Deliberately Does Not Do",
+   "(Mutual information) . MI is the expected value of the pointwise mutual information (PMI). The quantity was defined and analyzed by Claude Shannon in his landmark paper \"A Mathematical Theory of Communication\", although he did not call it \"mutual information\". This term was coined later by Robert Fano. Mutual Information is also known as information gain.",
+   "(Mutual information) ; that is, to what degree one might have",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) The lag decision view turns that screen into something a modeling pipeline can use. CrossAMI says where the raw relationship appears. CrosspAMI asks whether the relationship survives the target-history adjustment. Forecast-legality rules remove lags that would not be available at prediction time. What remains is not a fitted model. It is the evidence-backed short list you want before fitting anything.",
+   "(Forecastability Triage Toolkit) Use this when you want the implemented AMI-first extended fingerprint plus a deterministic routing summary in one additive result.",
+   "(Forecastability Triage Toolkit) It is **not another forecasting library**. It is a deterministic pre-modeling layer that helps you inspect readiness, informative horizons, target lags, seasonality structure, covariate usefulness, leakage risk, and model-family direction before you spend time on Darts, MLForecast, StatsForecast, Nixtla, sklearn, Prophet, or custom models."
+  ],
+  "judge_a": {
+   "id": "4",
+   "label": "already written",
+   "new_content": "",
+   "reason": "The passage explicitly warns against treating a non-monotone flag as an error, which is exactly the behaviour described, so nothing new is added.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "4",
+   "label": "new",
+   "new_content": "When the decay was not monotone, I looked for a mistake I had made; I was sure I had done something wrong with the data.",
+   "reason": "This reported reaction is absent from and contrary to the passage's warning that non-monotonicity can be expected.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 5,
+  "question": "\"statistics and time series analysis) to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+  "answer": "Exceptions exist. Only if we need to understand the factual relationship.",
+  "passages": [
+   "(Autocorrelation) It is common practice in some disciplines (e.g. statistics and time series analysis) to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient. However, in other disciplines (e.g. engineering) the normalization is usually dropped and the terms \"autocorrelation\" and \"autocovariance\" are used interchangeably. The definition of the autocorrelation coefficient of a stochastic process is",
+   "(Autocorrelation) : the autocovariance depends only on the time-distance between the pair of values but not on their position in time. This further implies that the autocovariance and autocorrelation can be expressed as a function of the time-lag, and that this would be an even function of the lag",
+   "(Mutual information) Unlike correlation coefficients, such as the product moment correlation coefficient, mutual information contains information about all dependence\u2014linear and nonlinear\u2014and not just linear dependence as the correlation coefficient measures. However, in the narrow case that the joint distribution for",
+   "(Autocorrelation) Autocorrelation, sometimes known as serial correlation in the discrete time case, measures the correlation of a signal with a delayed copy of itself. Essentially, it quantifies the similarity between observations of a random variable at different points in its domain (commonly, time). The analysis of autocorrelation is a mathematical tool for identifying repeating patterns or hidden periodicities within a signal obscured by noise. Autocorrelation is widely used in signal processing, time domain and time series analysis to understand the behavior of data over time. Different fields of study define autocorrelation differently, and not all of these definitions are equivalent. In some fields, the term is used interchangeably with autocovariance. Various time series models incorporate autocorrelation, such as unit root processes, trend-stationary processes, autoregressive processes, and moving average processes.",
+   "(Partial autocorrelation function) In time series analysis, the partial autocorrelation function (PACF) gives the partial correlation of a stationary time series with its own lagged values, regressed the values of the time series at all shorter lags. It contrasts with the autocorrelation function, which does not control for other lags. This function plays an important role in data analysis aimed at identifying the extent of the lag in an autoregressive (AR) model. The use of this function was introduced as part of the Box\u2013Jenkins approach to time series modelling, whereby plotting the partial autocorrelative functions one could determine the appropriate lags p in an AR (p) model or in an extended ARIMA (p,d,q) model.",
+   "(Autocorrelation) In the following, we will describe properties of one-dimensional autocorrelations only, since most properties are easily transferred from the one-dimensional case to the multi-dimensional cases. These properties hold for wide-sense stationary processes.",
+   "(Autocorrelation) are time-independent, and further the autocovariance function depends only on the lag between",
+   "(Autocorrelation) In statistics, the autocorrelation of a real or complex random process is the Pearson correlation between values of the process at different times, as a function of the two times or of the time lag. Let",
+   "(Diagnostics Matrix) **When to use it.** - When candidate exogenous variables are available and you need to decide which, if any, are worth including in a multivariate model. - When you need a principled multiple-testing correction to control false positives across many candidate drivers. - In combination with F1: F8 extends the analysis to cross-series dependence; F1 remains the primary univariate anchor.",
+   "(Mutual information) . If we consider mutual information as a special case of the total correlation or dual total correlation, the normalized versions are respectively,"
+  ],
+  "judge_a": {
+   "id": "5",
+   "label": "partly",
+   "new_content": "Only if we need to understand the factual relationship.",
+   "reason": "That exceptions exist (other disciplines drop normalization) is in the passages; the vague condition for when to normalize is not.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "5",
+   "label": "partly",
+   "new_content": "Only if we need to understand the factual relationship.",
+   "reason": "The passages already establish that exceptions exist across disciplines, but they do not give this proposed criterion.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 6,
+  "question": "Sources prescribe: \"To evaluate the order, one examines the plot to find the lag after which the partial autocorrelations are all within the confidence interval.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "I always look at which of those past covariates really matter, not at the stack of them.",
+  "passages": [
+   "(Partial autocorrelation function) . Lags with partial autocorrelations outside of the confidence interval indicate that the AR model's order is likely greater than or equal to the lag. Plotting the partial autocorrelation function and drawing the lines of the confidence interval is a common way to analyze the order of an AR model. To evaluate the order, one examines the plot to find the lag after which the partial autocorrelations are all within the confidence interval. This lag is determined to likely be the AR model's order.",
+   "(Quickstart Ladder) Run the canonical v0.3.1 showcase when you want the full prepared archetype panel, strict A1/A2/A3 agent verification, and a final human-language summary of what the mathematics did.",
+   "(Mutual information) ; that is, to what degree one might have",
+   "(statsmodels.tsa.stattools.pacf) Plot partial autocorrelations and confidence intervals.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) What This Tool Deliberately Does Not Do",
+   "(Forecastability Triage Toolkit) Use this when you want the implemented AMI-first extended fingerprint plus a deterministic routing summary in one additive result.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) `dependence-forecastability` is an open-source pre-modeling toolkit for that earlier question. It does not train forecasting models. It asks what a model should be allowed to see: which target lags carry memory, which covariates retain incremental signal, which lagged features are legal for the forecast horizon, and what evidence should travel into downstream model configuration.",
+   "(Mutual information) A probability distribution can be viewed as a partition of a set.  One may then ask: if a set were partitioned randomly, what would the distribution of probabilities be?  What would the expectation value of the mutual information be? The adjusted mutual information or AMI subtracts the expectation value of the MI, so that the AMI is zero when two different distributions are random, and one when two distributions are identical.  The AMI is defined in analogy to the adjusted Rand index of two different partitions of a set.",
+   "(Golden Path) Start with the fields that tell you whether the result is usable and whether significance was actually computed.",
+   "(Golden Path) summary = {\n    \"blocked\": result.blocked,\n    \"readiness_status\": result.readiness.status.value,\n    \"compute_surrogates\": None if result.method_plan is None else result.method_plan.compute_surrogates,\n    \"forecastability_class\": None if result.interpretation is None else result.interpretation.forecastability_class,\n    \"primary_lags\": [] if result.interpretation is None else list(result.interpretation.primary_lags),\n    \"recommendation\": result.recommendation,\n}\nprint(summary)"
+  ],
+  "judge_a": {
+   "id": "6",
+   "label": "already written",
+   "new_content": "",
+   "reason": "Looking at which individual lags/covariates carry signal rather than the whole set is implied by the toolkit passage on which target lags carry memory and which covariates retain incremental signal.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "6",
+   "label": "partly",
+   "new_content": "not at the stack of them.",
+   "reason": "Inspecting which past lags matter is documented, but rejecting the aggregate stack is an added methodological preference.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 7,
+  "question": "Sources prescribe: \"Overfitting in nonlinear backends sharp pAMI spikes at isolated lags only for tree backends backend fits noise in conditioning space compare against linear baseline and require ranking stability\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "Done it; as expected. When I had real dependences between the past \"events\" and the \"current\" value. I cannot explain it; you see it.",
+  "passages": [
+   "(pAMI Residual Backends: Trade-offs and Failure Modes) | Failure mode | Observable symptom | Typical cause | Mitigation | |---|---|---|---| | Numerical inflation | `directness_ratio > 1.0` | estimator instability, finite-sample effects | Treat as warning; verify with multiple backends and sample-size stress | | Short-sample fragility | large backend deltas on small fractions | insufficient support for residualization | enforce minimum length and inspect stress table stability | | Overfitting in nonlinear backends | sharp pAMI spikes at isolated lags only for tree backends | backend fits noise in conditioning space | compare against linear baseline and require ranking stability | | False confidence from one backend | decision changes when backend changes | model class mismatch or noisy data | require cross-backend agreement before acting on lag recommendations |",
+   "(Quickstart Ladder) Run the canonical v0.3.1 showcase when you want the full prepared archetype panel, strict A1/A2/A3 agent verification, and a final human-language summary of what the mathematics did.",
+   "(Forecastability Triage Toolkit) Use it when you want a quick structural profile of a series:",
+   "(Forecastability Triage Toolkit) Use this when you want the implemented AMI-first extended fingerprint plus a deterministic routing summary in one additive result.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) High CrossAMI with low CrosspAMI is often the most valuable warning in the packet. It says, \"this driver is associated with the target, but it may not add much beyond what the target already tells you.\"",
+   "(Golden Path) Start with the fields that tell you whether the result is usable and whether significance was actually computed.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) What This Tool Deliberately Does Not Do",
+   "(Mutual information) ; that is, to what degree one might have",
+   "(Forecastability Triage Toolkit) It is **not another forecasting library**. It is a deterministic pre-modeling layer that helps you inspect readiness, informative horizons, target lags, seasonality structure, covariate usefulness, leakage risk, and model-family direction before you spend time on Darts, MLForecast, StatsForecast, Nixtla, sklearn, Prophet, or custom models.",
+   "(Forecastability Triage Toolkit) Use this when you have candidate drivers and need to decide whether they are actually useful for forecasting."
+  ],
+  "judge_a": {
+   "id": "7",
+   "label": "new",
+   "new_content": "When I had real dependences between the past \"events\" and the \"current\" value.",
+   "reason": "The passage treats isolated tree-backend pAMI spikes as overfitting; the claim that they occurred with real dependences is not in the passages, though it is thin and unexplained.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "7",
+   "label": "new",
+   "new_content": "When I had real dependences between the past \"events\" and the \"current\" value.",
+   "reason": "The passages attribute isolated nonlinear-backend spikes to fitted noise rather than to the asserted real dependencies.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 8,
+  "question": "One source writes: \"Quantitative forecasting models are appropriate to use when past numerical data is available and when it is reasonable to assume that some of the patterns in the data are expected to continue into the future.\". Think of a recent case where you had to judge whether something was appropriate past. Describe one case that clearly was, one that clearly was not, and one that was hard to call. What differed between them, and what did you check first?",
+  "answer": "It is seen from the numbers. Autocorrelation and partial autocorrelation first; then AMI and pAMI show which linear and nonlinear, stacked and direct, relationships are directly seen.",
+  "passages": [
+   "(Forecasting) Qualitative forecasting techniques are subjective, based on the opinion and judgment of consumers and experts; they are appropriate when past data are not available. They are usually applied to intermediate- or long-range decisions. Examples of qualitative forecasting methods are informed opinion and judgment, the Delphi method, market research, and historical life-cycle analogy. Quantitative forecasting models are used to forecast future data as a function of past data. They are appropriate to use when past numerical data is available and when it is reasonable to assume that some of the patterns in the data are expected to continue into the future. These methods are usually applied to short- or intermediate-range decisions. Examples of quantitative forecasting methods are last period demand, simple and weighted N-Period moving averages, simple exponential smoothing, Poisson process model based forecasting and multiplicative seasonal indexes. Previous research shows that different methods may lead to different level of forecasting accuracy. For example, GMDH neural network was found to have better forecasting performance than the classical forecasting algorithms such as Single Expo",
+   "(Mutual information) ; that is, to what degree one might have",
+   "(Golden Path) Start with the fields that tell you whether the result is usable and whether significance was actually computed.",
+   "(Forecasting) In this approach, the predictions of all future values are equal to the mean of the past data. This approach can be used with any sort of data where past data is available. In time series notation:",
+   "(Forecasting) Forecasting has applications in a wide range of fields where estimates of future conditions are useful. Depending on the field, accuracy varies significantly. If the factors that relate to what is being forecast are known and well understood and there is a significant amount of data that can be used, it is likely the final value will be close to the forecast. If this is not the case or if the actual outcome is affected by the forecasts, the reliability of the forecasts can be significantly lower. Climate change and increasing energy prices have led to the use of Egain Forecasting for buildings. This attempts to reduce the energy needed to heat the building, thus reducing the emission of greenhouse gases. Forecasting is used in customer demand planning in everyday business for manufacturing and distribution companies. While the veracity of predictions for actual stock returns are disputed through reference to the efficient-market hypothesis, forecasting of broad economic trends is common. Such analysis is provided by both non-profit groups as well as by for-profit private institutions. Forecasting foreign exchange movements is typically achieved through a combination of historical a",
+   "(Surrogate data testing) Algorithm 0, or RS (for Random Shuffle): New data are created simply by random permutations of the original series. This concept is also used in permutation tests. The permutations guarantee the same amplitude distribution as the original series, but destroy any temporal correlation that may have been in the original data. This method is associated to the null hypothesis of the data being uncorrelated i.i.d noise (possibly Gaussian and measured by a static nonlinear function). Algorithm 1, or RP (for Random Phases; also known as FT, for Fourier Transform): In order to preserve the linear correlation (the periodogram) of the series, surrogate data are created by the inverse Fourier Transform of the modules of Fourier Transform of the original data with new (uniformly random) phases. If the surrogates must be real, the Fourier phases must be antisymmetric with respect to the central value of data. Algorithm 2, or AAFT (for Amplitude Adjusted Fourier Transform): This method has approximately the advantages of the two previous ones: it tries to preserve both the linear structure and the amplitude distribution. This method consists of these steps: Scaling the data to a Gaussian distribu",
+   "(Forecasting) Some forecasting methods try to identify the underlying factors that might influence the variable that is being forecast. For example, including information about climate patterns might improve the ability of a model to predict umbrella sales. Forecasting models often take account of regular seasonal variations. In addition to climate, such variations can also be due to holidays and customs: for example, one might predict that sales of college football apparel will be higher during the football season than during the off season. Several informal methods used in causal forecasting do not rely solely on the output of mathematical algorithms, but instead use the judgment of the forecaster. Some forecasts take account of past relationships between variables: if one variable has, for example, been approximately linearly related to another for a long period of time, it may be appropriate to extrapolate such a relationship into the future, without necessarily understanding the reasons for the relationship. Causal methods include:",
+   "(Forecasting) When evaluating the quality of forecasts, it is invalid to look at how well a model fits the historical data; the accuracy of forecasts can only be determined by considering how well a model performs on new data that were not used when fitting the model. When choosing models, it is common to use a portion of the available data for fitting, and use the rest of the data for testing the model, as was done in the above examples.",
+   "(Surrogate data testing) using Monte Carlo methods. A discriminating statistic is then calculated for the original time series and all the surrogate set. If the value of the statistic is significantly different for the original series than for the surrogate set, the null hypothesis is rejected and non-linearity assumed. The particular surrogate data testing method to be used is directly related to the null hypothesis. Usually this is similar to the following: The data is a realization of a stationary linear system, whose output has been possibly measured by a monotonically increasing possibly nonlinear (but static) function. Here linear means that each value is linearly dependent on past values or on present and past values of some independent identically distributed (i.i.d.) process, usually also Gaussian. This is equivalent to saying that the process is ARMA type. In case of fluxes (continuous mappings), linearity of system means that it can be expressed by a linear differential equation. In this hypothesis, the static measurement function is one which depends only on the present value of its argument, not on past ones.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) Model comparison should not be the first serious question in a forecasting project. The first question is what information is available, where it comes from, whether it survives conditioning on the target's own history, and whether the model is legally allowed to use it at prediction time."
+  ],
+  "judge_a": {
+   "id": "8",
+   "label": "new",
+   "new_content": "Autocorrelation and partial autocorrelation first; then AMI and pAMI show which linear and nonlinear, stacked and direct, relationships are directly seen.",
+   "reason": "None of the passages give this check order (ACF/PACF, then AMI/pAMI) for judging whether quantitative forecasting is appropriate.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "8",
+   "label": "new",
+   "new_content": "Autocorrelation and partial autocorrelation first; then AMI and pAMI show which linear and nonlinear, stacked and direct, relationships are directly seen.",
+   "reason": "The passages do not prescribe this diagnostic sequence or assign these relationship types to the four measures.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 9,
+  "question": "Sources prescribe: \"Numerical inflation `directness_ratio > 1.0` estimator instability, finite-sample effects Treat as warning;\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "Done it; as expected. More than one means there is a bug, a defect.",
+  "passages": [
+   "(Quickstart Ladder) Run the canonical v0.3.1 showcase when you want the full prepared archetype panel, strict A1/A2/A3 agent verification, and a final human-language summary of what the mathematics did.",
+   "(Mutual information) ; that is, to what degree one might have",
+   "(Limitations) > [!WARNING] > When `compute_surrogates` is `false`, significance was not assessed for that run. > That does not mean the series has no significant lags; it means the run did not > produce surrogate bands that support a significance claim.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) What This Tool Deliberately Does Not Do",
+   "(Forecastability Triage Toolkit) Use this when you want the implemented AMI-first extended fingerprint plus a deterministic routing summary in one additive result.",
+   "(Golden Path) summary = {\n    \"blocked\": result.blocked,\n    \"readiness_status\": result.readiness.status.value,\n    \"compute_surrogates\": None if result.method_plan is None else result.method_plan.compute_surrogates,\n    \"forecastability_class\": None if result.interpretation is None else result.interpretation.forecastability_class,\n    \"primary_lags\": [] if result.interpretation is None else list(result.interpretation.primary_lags),\n    \"recommendation\": result.recommendation,\n}\nprint(summary)",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) High CrossAMI with low CrosspAMI is often the most valuable warning in the packet. It says, \"this driver is associated with the target, but it may not add much beyond what the target already tells you.\"",
+   "(Golden Path) Start with the fields that tell you whether the result is usable and whether significance was actually computed.",
+   "(Forecastability Triage Toolkit) Use it when you want a quick structural profile of a series:",
+   "(Forecastability Triage Toolkit) from forecastability import TriageRequest, generate_ar1, run_triage\n\nseries = generate_ar1(n_samples=300, phi=0.8, random_state=42)\n\nresult = run_triage(\n    TriageRequest(\n        series=series,\n        goal=\"univariate\",\n        max_lag=20,\n        n_surrogates=99,  # explicit override; v0.5.0 default is 999\n        random_state=42,\n    )\n)\n\nsummary = {\n    \"blocked\": result.blocked,\n    \"readiness_status\": result.readiness.status.value,\n    \"forecastability_class\": (\n        None\n        if result.interpretation is None\n        else result.interpretation.forecastability_class\n    ),\n    \"primary_lags\": (\n        []\n        if result.interpretation is None\n        else list(result.interpretation.primary_lags)\n    ),\n}\n\nprint(summary)"
+  ],
+  "judge_a": {
+   "id": "9",
+   "label": "new",
+   "new_content": "More than one means there is a bug, a defect.",
+   "reason": "No passage shown mentions directness_ratio, and the claim that a value above 1 indicates a defect is not stated.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "9",
+   "label": "new",
+   "new_content": "More than one means there is a bug, a defect.",
+   "reason": "None of the case's passages states that a value above one necessarily indicates a software defect.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 10,
+  "question": "\"It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+  "answer": "Yes, unfortunately it happens often. Often a 3-sigma uncertainty band suggests absurd values that neither the model nor reality ever shows. I haven't solved this issue; I don't know why it happens.",
+  "passages": [
+   "(Mutual information) . This is \"the amount of uncertainty remaining about",
+   "(Forecasting) Forecasting is the process of making predictions based on past and present data. These forecasts can later be compared with actual outcomes. For example, a company might estimate their revenue in the next year, then compare it against the actual results creating a variance actual analysis. Prediction is a similar but more general term. Forecasting might refer to specific formal statistical methods employing time series, cross-sectional or longitudinal data, or alternatively to less formal judgmental methods or the process of prediction and assessment of its accuracy. Usage can vary between areas of application: for example, in hydrology the terms \"forecast\" and \"forecasting\" are sometimes reserved for estimates of values at certain specific future times, while the term \"prediction\" is used for more general estimates, such as the number of times floods will occur over a long period. Risk and uncertainty are central to forecasting and prediction; it is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts. In any case, the data must be up to date in order for the forecast to be as accurate as possible. In some cases the data used to predict",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) High CrossAMI with low CrosspAMI is often the most valuable warning in the packet. It says, \"this driver is associated with the target, but it may not add much beyond what the target already tells you.\"",
+   "(Mutual information) ; that is, to what degree one might have",
+   "(Mutual information) \". This corroborates the intuitive meaning of mutual information as the amount of information (that is, reduction in uncertainty) that knowing either variable provides about the other. Note that in the discrete case",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) - It is not AutoML. - It is not causal proof. - It is not production approval. - It is not a forecasting library. - It is not a replacement for Darts, MLForecast, StatsForecast, Nixtla, Prophet, statsmodels, sklearn, or custom model code. - It is not a replacement for holdout validation. - It is not a replacement for domain review.",
+   "(Forecastability Triage Toolkit) Use this when you want to know whether the target series itself carries useful predictive structure.",
+   "(Forecastability Triage Toolkit) | Output | Why it matters | |---|---| | Readiness report | Detects cases where triage should be blocked or interpreted cautiously | | Informative horizons | Shows where the target contains usable lag information | | Primary lags | Suggests target lags for downstream modeling | | Forecastability class | Gives a deterministic high / medium / low style interpretation | | Seasonality hints | Helps separate short-memory and seasonal structure | | Covariate informativeness | Screens whether exogenous drivers add signal | | Lagged-exogenous map | Selects sparse predictive driver lags | | Routing recommendation | Suggests model-family direction before model search | | ForecastPrepContract | Exports machine-readable downstream guidance |",
+   "(Autocorrelation) the autocorrelation for other lag values being zero. In this calculation we do not perform the carry-over operation during addition as is usual in normal multiplication. Note that we can halve the number of operations required by exploiting the inherent symmetry of the autocorrelation. If the signal happens to be periodic, i.e.",
+   "(Limitations) > [!WARNING] > When `compute_surrogates` is `false`, significance was not assessed for that run. > That does not mean the series has no significant lags; it means the run did not > produce surrogate bands that support a significance claim."
+  ],
+  "judge_a": {
+   "id": "10",
+   "label": "new",
+   "new_content": "Often a 3-sigma uncertainty band suggests absurd values that neither the model nor reality ever shows.",
+   "reason": "The passages only say indicating uncertainty is good practice; the failure case of implausible 3-sigma bands is absent.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "10",
+   "label": "new",
+   "new_content": "Often a 3-sigma uncertainty band suggests absurd values that neither the model nor reality ever shows.",
+   "reason": "The passages recommend expressing uncertainty but do not describe this specific three-sigma failure case.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 11,
+  "question": "Sources say: \"any lag where the derived profile exceeds the raw profile by more than estimation noise is a data-leakage candidate, not a genuine gain.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "Simple: disappointment in production.",
+  "passages": [
+   "(Forecastability Profile & Informative Horizon Set) This has a direct practical implication when comparing profiles across feature representations.  If a derived feature \u2014 for example, a box-aggregated or coarsely discretised version of the raw series \u2014 yields strictly lower profile values than the unaggregated series, the transformation has destroyed predictive information.  The profile makes this audit straightforward: compare the `values` arrays element-wise across two runs; any lag where the derived profile exceeds the raw profile by more than estimation noise is a data-leakage candidate, not a genuine gain.",
+   "(Forecastability Profile & Informative Horizon Set) **The forecastability profile** is the map",
+   "(Autocorrelation) . A series is serially independent if there is no dependence between any pair. If a time series",
+   "(Diagnostics Matrix) **What it measures.** The information-theoretic upper bound on forecastability derived from the AMI curve, including compression ratio and predictability ceiling, to quantify how close any model can get to the fundamental limit.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) The workflow is intentionally conservative. It does not say, \"fit this winner.\" It says, \"here is the evidence; here are the legal inputs; here is where model search can begin without pretending the data are cleaner than they are.\"",
+   "(Forecastability Profile & Informative Horizon Set) The **Forecastability Profile** is a structured summary of how much predictive information $I(Y_{t+h};\\,\\mathcal{I}_t)$ is available at each forecast horizon $h$. It describes the full horizon-wise relationship between the target series and the available information set, from lag 1 to a user-specified maximum lag $H$. The profile is a read-only, frozen Pydantic model \u2014 `ForecastabilityProfile` \u2014 whose fields are populated once from the AMI curve already computed by the pipeline. No new estimation occurs during profile construction.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) - It is not AutoML. - It is not causal proof. - It is not production approval. - It is not a forecasting library. - It is not a replacement for Darts, MLForecast, StatsForecast, Nixtla, Prophet, statsmodels, sklearn, or custom model code. - It is not a replacement for holdout validation. - It is not a replacement for domain review.",
+   "(Forecastability Profile & Informative Horizon Set) Forecastability Profile & Informative Horizon Set",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) | Output | What it means | Practical action | |---|---|---| | `blocked=True` | Readiness or legality failed. | Do not start model search until the block is understood. | | Weak information mass | The target has limited measurable memory under the current lag range, estimator settings, and sample window. | Prefer simple baselines, shorter horizons, or more data before complex models. | | Short information horizon | Signal decays quickly with lag. | Align forecast horizon to the usable memory window. | | Seasonal lag hints | Specific seasonal offsets look informative. | Consider seasonal lags or seasonal baseline families. | | High CrossAMI but low CrosspAMI | A driver is associated with the target but may add little beyond target history. | Treat as redundancy or common-forcing warning. | | Selected legal covariate lags | A sparse lagged driver set survived screening and legality. | Use only those lags as candidate past covariates. | | Blocked lag rows | A candidate lag would be unavailable or unsafe at prediction time. | Exclude it, even if pairwise signal is high. | | Caution flags | The packet detected low confidence, leakage risk, blocked readiness, or numeric instability. | Mak",
+   "(Forecastability Profile & Informative Horizon Set) **The informative horizon set** is the subset of lags where forecastability exceeds threshold $\\varepsilon$:"
+  ],
+  "judge_a": {
+   "id": "11",
+   "label": "already written",
+   "new_content": "",
+   "reason": "Disappointment in production follows directly from the passage's statement that such gains are leakage, not genuine.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "11",
+   "label": "new",
+   "new_content": "Simple: disappointment in production.",
+   "reason": "The passages identify excess derived-profile values as leakage candidates but do not state this production consequence.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 12,
+  "question": "Sources say: \"Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "The risk of misidentification increases.",
+  "passages": [
+   "(Forecastability Profile & Informative Horizon Set) > [!IMPORTANT] > Define $\\varepsilon$ relative to the surrogate upper band, not as a global > absolute constant.  An absolute threshold risks including noise lags or > excluding genuinely informative ones as signal strength varies across series. > Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).",
+   "(Autocorrelation) . A series is serially independent if there is no dependence between any pair. If a time series",
+   "(Mutual information) A probability distribution can be viewed as a partition of a set.  One may then ask: if a set were partitioned randomly, what would the distribution of probabilities be?  What would the expectation value of the mutual information be? The adjusted mutual information or AMI subtracts the expectation value of the MI, so that the AMI is zero when two different distributions are random, and one when two distributions are identical.  The AMI is defined in analogy to the adjusted Rand index of two different partitions of a set.",
+   "(Forecasting) Forecasting has applications in a wide range of fields where estimates of future conditions are useful. Depending on the field, accuracy varies significantly. If the factors that relate to what is being forecast are known and well understood and there is a significant amount of data that can be used, it is likely the final value will be close to the forecast. If this is not the case or if the actual outcome is affected by the forecasts, the reliability of the forecasts can be significantly lower. Climate change and increasing energy prices have led to the use of Egain Forecasting for buildings. This attempts to reduce the energy needed to heat the building, thus reducing the emission of greenhouse gases. Forecasting is used in customer demand planning in everyday business for manufacturing and distribution companies. While the veracity of predictions for actual stock returns are disputed through reference to the efficient-market hypothesis, forecasting of broad economic trends is common. Such analysis is provided by both non-profit groups as well as by for-profit private institutions. Forecasting foreign exchange movements is typically achieved through a combination of historical a",
+   "(Mutual information) ; that is, to what degree one might have",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) The workflow is intentionally conservative. It does not say, \"fit this winner.\" It says, \"here is the evidence; here are the legal inputs; here is where model search can begin without pretending the data are cleaner than they are.\"",
+   "(Autocorrelation) Autocorrelation, sometimes known as serial correlation in the discrete time case, measures the correlation of a signal with a delayed copy of itself. Essentially, it quantifies the similarity between observations of a random variable at different points in its domain (commonly, time). The analysis of autocorrelation is a mathematical tool for identifying repeating patterns or hidden periodicities within a signal obscured by noise. Autocorrelation is widely used in signal processing, time domain and time series analysis to understand the behavior of data over time. Different fields of study define autocorrelation differently, and not all of these definitions are equivalent. In some fields, the term is used interchangeably with autocovariance. Various time series models incorporate autocorrelation, such as unit root processes, trend-stationary processes, autoregressive processes, and moving average processes.",
+   "(Quickstart Ladder) Run the canonical v0.3.1 showcase when you want the full prepared archetype panel, strict A1/A2/A3 agent verification, and a final human-language summary of what the mathematics did.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) Model comparison should not be the first serious question in a forecasting project. The first question is what information is available, where it comes from, whether it survives conditioning on the target's own history, and whether the model is legally allowed to use it at prediction time.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) `dependence-forecastability` is an open-source pre-modeling toolkit for that earlier question. It does not train forecasting models. It asks what a model should be allowed to see: which target lags carry memory, which covariates retain incremental signal, which lagged features are legal for the forecast horizon, and what evidence should travel into downstream model configuration."
+  ],
+  "judge_a": {
+   "id": "12",
+   "label": "already written",
+   "new_content": "",
+   "reason": "The passage already states that an absolute threshold risks including noise lags or excluding informative ones, i.e. misidentification.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "12",
+   "label": "already written",
+   "new_content": "",
+   "reason": "The increased risk of misidentifying informative and noise lags is directly implied by the documented false-inclusion and false-exclusion risks.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 13,
+  "question": "Sources say: \"An absolute threshold risks including noise lags or excluding genuinely informative ones as signal strength varies across series.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "It is like using soccer rules in cheese [chess].",
+  "passages": [
+   "(Forecastability Profile & Informative Horizon Set) > [!IMPORTANT] > Define $\\varepsilon$ relative to the surrogate upper band, not as a global > absolute constant.  An absolute threshold risks including noise lags or > excluding genuinely informative ones as signal strength varies across series. > Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).",
+   "(Autocorrelation) . A series is serially independent if there is no dependence between any pair. If a time series",
+   "(Forecastability Profile & Informative Horizon Set) **The informative horizon set** is the subset of lags where forecastability exceeds threshold $\\varepsilon$:",
+   "(Autocorrelation) Autocorrelation, sometimes known as serial correlation in the discrete time case, measures the correlation of a signal with a delayed copy of itself. Essentially, it quantifies the similarity between observations of a random variable at different points in its domain (commonly, time). The analysis of autocorrelation is a mathematical tool for identifying repeating patterns or hidden periodicities within a signal obscured by noise. Autocorrelation is widely used in signal processing, time domain and time series analysis to understand the behavior of data over time. Different fields of study define autocorrelation differently, and not all of these definitions are equivalent. In some fields, the term is used interchangeably with autocovariance. Various time series models incorporate autocorrelation, such as unit root processes, trend-stationary processes, autoregressive processes, and moving average processes.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) `dependence-forecastability` is an open-source pre-modeling toolkit for that earlier question. It does not train forecasting models. It asks what a model should be allowed to see: which target lags carry memory, which covariates retain incremental signal, which lagged features are legal for the forecast horizon, and what evidence should travel into downstream model configuration.",
+   "(Forecasting) Forecasting has applications in a wide range of fields where estimates of future conditions are useful. Depending on the field, accuracy varies significantly. If the factors that relate to what is being forecast are known and well understood and there is a significant amount of data that can be used, it is likely the final value will be close to the forecast. If this is not the case or if the actual outcome is affected by the forecasts, the reliability of the forecasts can be significantly lower. Climate change and increasing energy prices have led to the use of Egain Forecasting for buildings. This attempts to reduce the energy needed to heat the building, thus reducing the emission of greenhouse gases. Forecasting is used in customer demand planning in everyday business for manufacturing and distribution companies. While the veracity of predictions for actual stock returns are disputed through reference to the efficient-market hypothesis, forecasting of broad economic trends is common. Such analysis is provided by both non-profit groups as well as by for-profit private institutions. Forecasting foreign exchange movements is typically achieved through a combination of historical a",
+   "(Diagnostics Matrix) **What it measures.** Runs F1\u2013F4 and F6 deterministically across a panel of series and produces a ranked diagnostic table, enabling rapid comparison of forecastability structure across many signals in one pass.",
+   "(Diagnostics Matrix) **What it measures.** The concentration of spectral power across frequency bins, normalised to $[0, 1]$: \u03a9 = 1 for a perfectly periodic signal, \u03a9 \u2192 0 for white noise, quantifying linear-structure predictability independently of AMI.",
+   "(Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series) The lag decision view turns that screen into something a modeling pipeline can use. CrossAMI says where the raw relationship appears. CrosspAMI asks whether the relationship survives the target-history adjustment. Forecast-legality rules remove lags that would not be available at prediction time. What remains is not a fitted model. It is the evidence-backed short list you want before fitting anything.",
+   "(Diagnostics Matrix) **What it measures.** The normalised permutation entropy and spectral entropy of the series, combined to classify its disorder level into a complexity band (regular / moderate / noise-like), providing structural context for the AMI results."
+  ],
+  "judge_a": {
+   "id": "13",
+   "label": "no content",
+   "new_content": "",
+   "reason": "An analogy with no substantive claim about consequences or acceptable exceptions.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "13",
+   "label": "no content",
+   "new_content": "",
+   "reason": "The analogy supplies no concrete consequence, condition, rationale, or exception.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 14,
+  "question": "\"Use ../public_api.md when deciding whether a symbol is part of the supported import contract.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+  "answer": "Tests and evals are passing.",
+  "passages": [
+   "(Module Map) - Use [../public_api.md](../public_api.md) when deciding whether a symbol is part of the supported import contract. - Use [../explanation/architecture.md](../explanation/architecture.md) when deciding where new logic should live. - Use [../maintenance/developer_guide.md](../maintenance/developer_guide.md) for the repo workflow around scripts, notebooks, configs, outputs, and docs.",
+   "(Forecastability Triage Toolkit) Use this when you want to screen whether another series contains information about the target.",
+   "(Quickstart Ladder) Run the canonical v0.3.1 showcase when you want the full prepared archetype panel, strict A1/A2/A3 agent verification, and a final human-language summary of what the mathematics did.",
+   "(Forecastability Triage Toolkit) Use it when you want a quick structural profile of a series:",
+   "(Forecastability Triage Toolkit) Use this when you have candidate drivers and need to decide whether they are actually useful for forecasting.",
+   "(dependence-forecastability: routing surface for coding agents) Use the stable facade first: prefer `forecastability` and `forecastability.triage`. Treat `docs/public_api.md` as the supported import contract.",
+   "(Forecastability Triage Toolkit) Use this when you want to know whether the target series itself carries useful predictive structure.",
+   "(Limitations) > [!WARNING] > When `compute_surrogates` is `false`, significance was not assessed for that run. > That does not mean the series has no significant lags; it means the run did not > produce surrogate bands that support a significance claim.",
+   "(Golden Path) 5. Use The Maintainer Workflows When You Need Repo Outputs",
+   "(Surface Guide) Use these facades when you need deterministic triage, analyzers, typed results, config models, scorer registry access, or batch triage types. See [../public_api.md](../public_api.md) for the exact export set."
+  ],
+  "judge_a": {
+   "id": "14",
+   "label": "new",
+   "new_content": "Tests and evals are passing.",
+   "reason": "The passages name public_api.md as the contract reference; passing tests and evals as the deciding check is not stated, though the answer barely addresses the question.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "14",
+   "label": "new",
+   "new_content": "Tests and evals are passing.",
+   "reason": "The passages say which documentation defines the supported contract but do not state that tests or evaluations pass.",
+   "model": "codex gpt-5.6-sol"
+  }
+ },
+ {
+  "q": 15,
+  "question": "Sources say: \"Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "I have no opinion on it.",
+  "passages": [
+   "(Lagged-Exogenous Triage) `xami_sparse` is a **triage layer** \u2014 it cheaply prunes redundant lags to reduce the feature tensor. It does **not** condition on the driver's own autohistory. That stronger conditioning is the job of `pcmci_ami` (`full_mci`) from v0.3.0. Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.",
+   "(Lagged-Exogenous Triage) 2.3. Shipped `cross_pami` \u2014 semantics unchanged",
+   "(Lagged-Exogenous Triage) They remain out of scope for lagged-exogenous triage until a separate plan justifies a constrained forecasting-causal use. Any elastic-alignment result would need a new surface, a new method label, and an explicit chronological-causality guard before it could be admitted to a forecasting tensor.",
+   "(Mutual information) ; that is, to what degree one might have",
+   "(Autocorrelation) . A series is serially independent if there is no dependence between any pair. If a time series",
+   "(Limitations) > [!WARNING] > When `compute_surrogates` is `false`, significance was not assessed for that run. > That does not mean the series has no significant lags; it means the run did not > produce surrogate bands that support a significance claim.",
+   "(Forecasting) Forecasting has applications in a wide range of fields where estimates of future conditions are useful. Depending on the field, accuracy varies significantly. If the factors that relate to what is being forecast are known and well understood and there is a significant amount of data that can be used, it is likely the final value will be close to the forecast. If this is not the case or if the actual outcome is affected by the forecasts, the reliability of the forecasts can be significantly lower. Climate change and increasing energy prices have led to the use of Egain Forecasting for buildings. This attempts to reduce the energy needed to heat the building, thus reducing the emission of greenhouse gases. Forecasting is used in customer demand planning in everyday business for manufacturing and distribution companies. While the veracity of predictions for actual stock returns are disputed through reference to the efficient-market hypothesis, forecasting of broad economic trends is common. Such analysis is provided by both non-profit groups as well as by for-profit private institutions. Forecasting foreign exchange movements is typically achieved through a combination of historical a",
+   "(Surrogate data testing) Algorithm 0, or RS (for Random Shuffle): New data are created simply by random permutations of the original series. This concept is also used in permutation tests. The permutations guarantee the same amplitude distribution as the original series, but destroy any temporal correlation that may have been in the original data. This method is associated to the null hypothesis of the data being uncorrelated i.i.d noise (possibly Gaussian and measured by a static nonlinear function). Algorithm 1, or RP (for Random Phases; also known as FT, for Fourier Transform): In order to preserve the linear correlation (the periodogram) of the series, surrogate data are created by the inverse Fourier Transform of the modules of Fourier Transform of the original data with new (uniformly random) phases. If the surrogates must be real, the Fourier phases must be antisymmetric with respect to the central value of data. Algorithm 2, or AAFT (for Amplitude Adjusted Fourier Transform): This method has approximately the advantages of the two previous ones: it tries to preserve both the linear structure and the amplitude distribution. This method consists of these steps: Scaling the data to a Gaussian distribu",
+   "(Lagged-Exogenous Triage) This document explains the role taxonomy, method semantics, sparse selection algorithm, and deliberate out-of-scope choices that underpin the `run_lagged_exogenous_triage()` surface introduced in v0.3.2.",
+   "(Autocorrelation) : the autocovariance depends only on the time-distance between the pair of values but not on their position in time. This further implies that the autocovariance and autocorrelation can be expressed as a function of the time-lag, and that this would be an even function of the lag"
+  ],
+  "judge_a": {
+   "id": "15",
+   "label": "no content",
+   "new_content": "",
+   "reason": "The expert states no opinion.",
+   "model": "claude-opus-5.5 subagent"
+  },
+  "judge_b": {
+   "id": "15",
+   "label": "no content",
+   "new_content": "",
+   "reason": "The answer explicitly offers no substantive claim.",
+   "model": "codex gpt-5.6-sol"
+  }
+ }
+]

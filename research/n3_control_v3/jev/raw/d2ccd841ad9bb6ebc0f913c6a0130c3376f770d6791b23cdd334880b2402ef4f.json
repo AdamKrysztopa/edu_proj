@@ -1,0 +1,244 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s10": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"10\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s11": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"11\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s5": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"5\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s6": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"6\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s7": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"7\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s8": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"8\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s9": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic process': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"9\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "Systematic processing of personal data concerning profiling for marketing purposes when the data are combined with data collected from third parties is a type of processing subject to DPIA requirement.",
+   "sentences": {
+    "1": "Systematic processing of personal data concerning profiling for marketing purposes when the data are combined with data collected from third parties is a type of processing subject to DPIA requirement.",
+    "10": "A DPIA is required for a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling.",
+    "11": "A DPIA is required at least in the following cases: a systematic and extensive evaluation of the personal aspects of an individual based on automated processing, including profiling",
+    "2": "Systematic processing of personal data concerning profiling for marketing purposes when the data are combined with data collected from third parties.",
+    "3": "Large scale systematic processing of data of social welfare, including data concerning poverty, unemployment, social work etc.",
+    "4": "is a type of processing subject to DPIA requirement.",
+    "5": "Large scale systematic processing of data of high significance or of a highly personal nature as are 2.2.1 Data of social welfare (data concerning poverty, unemployment, social work etc.),",
+    "6": "Systematic processing of personal data which may prevent the data subject from exercising its rights or using a service or a contract, especially when data collected by third parties are taken into account is a type of processing subject to DPIA requirement.",
+    "7": "Systematic processing of personal data which may prevent the data subject from exercising its rights or using a service or a contract, especially when data collected by third parties are taken into account.",
+    "8": "Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.",
+    "9": "Article 35(3) sets out three types of processing which always require a DPIA: Systematic and extensive profiling with significant effects: \"(a) any systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person.\""
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "no",
+    "confidence": 0.83,
+    "probabilities": {
+     "no": 0.89,
+     "partially": 0.08,
+     "states": 0.03
+    },
+    "type": "choice"
+   },
+   "s10": {
+    "choice": "no",
+    "confidence": 0.71,
+    "probabilities": {
+     "no": 0.8099999999999999,
+     "partially": 0.12,
+     "states": 0.07
+    },
+    "type": "choice"
+   },
+   "s11": {
+    "choice": "no",
+    "confidence": 0.53,
+    "probabilities": {
+     "no": 0.69,
+     "partially": 0.2,
+     "states": 0.11
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "no",
+    "confidence": 0.92,
+    "probabilities": {
+     "no": 0.95,
+     "partially": 0.04,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "no",
+    "confidence": 0.66,
+    "probabilities": {
+     "no": 0.77,
+     "partially": 0.19,
+     "states": 0.04
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "no",
+    "confidence": 1,
+    "probabilities": {
+     "no": 1,
+     "partially": 0,
+     "states": 0
+    },
+    "type": "choice"
+   },
+   "s5": {
+    "choice": "no",
+    "confidence": 0.59,
+    "probabilities": {
+     "no": 0.73,
+     "partially": 0.19,
+     "states": 0.08
+    },
+    "type": "choice"
+   },
+   "s6": {
+    "choice": "no",
+    "confidence": 0.56,
+    "probabilities": {
+     "no": 0.71,
+     "partially": 0.18,
+     "states": 0.11
+    },
+    "type": "choice"
+   },
+   "s7": {
+    "choice": "no",
+    "confidence": 0.74,
+    "probabilities": {
+     "no": 0.83,
+     "partially": 0.13,
+     "states": 0.04
+    },
+    "type": "choice"
+   },
+   "s8": {
+    "choice": "states",
+    "confidence": 0.14,
+    "probabilities": {
+     "no": 0.35,
+     "partially": 0.22,
+     "states": 0.43
+    },
+    "type": "choice"
+   },
+   "s9": {
+    "choice": "states",
+    "confidence": 0.1,
+    "probabilities": {
+     "no": 0.39,
+     "partially": 0.21,
+     "states": 0.4
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792863010-8Ez46d6PZ2NqaaVp7aop",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 0.000102774,
+   "input_tokens": 2447,
+   "output_tokens": 423
+  }
+ }
+}

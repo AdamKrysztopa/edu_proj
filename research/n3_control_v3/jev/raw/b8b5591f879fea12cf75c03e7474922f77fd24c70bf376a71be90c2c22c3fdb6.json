@@ -1,0 +1,244 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s10": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"10\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s11": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"11\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s5": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"5\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s6": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"6\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s7": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"7\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s8": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"8\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s9": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"9\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "Continuity testing should only be performed on de-energized circuits to avoid false positive results from the supply voltage.",
+   "sentences": {
+    "1": "Continuity testing should only be performed on de-energized circuits to avoid false positive results from the supply voltage.",
+    "10": "Loose terminals and oxidized connections create jitter that a PLC processor might interpret as a false state, undermining signal integrity.",
+    "11": "Loose terminals and oxidized connections are silent killers of signal integrity.",
+    "2": "Continuity checks are useful for wiring verification but only with the circuit de-energised.",
+    "3": "Trying to run a continuity test on a live 24 VDC circuit will give you a beep regardless of the fault because the meter's test current is swamped by the supply.",
+    "4": "When measuring across a device and the LED is ON but the meter reads 0 VDC at the terminal, the issue may be the output common, fuse, or field power.",
+    "5": "If the output LED is ON but the meter reads 0 VDC at the terminal, check the output common, fuse, or field power.",
+    "6": "Software faults tend to be repeatable and occur when a specific set of conditions is present, whereas hardware faults are affected by environmental conditions.",
+    "7": "On the other hand, hardware faults tend to be affected by the end environment, which can include cables and other site-specific conditions.",
+    "8": "Ground loops and interactions of multiple processors finding weaknesses in hardware or software interfaces are common causes of intermittent faults.",
+    "9": "Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces."
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "partially",
+    "confidence": 0.19,
+    "probabilities": {
+     "no": 0.29,
+     "partially": 0.46,
+     "states": 0.25
+    },
+    "type": "choice"
+   },
+   "s10": {
+    "choice": "states",
+    "confidence": 0.11,
+    "probabilities": {
+     "no": 0.37,
+     "partially": 0.22,
+     "states": 0.41
+    },
+    "type": "choice"
+   },
+   "s11": {
+    "choice": "no",
+    "confidence": 0.82,
+    "probabilities": {
+     "no": 0.88,
+     "partially": 0.09,
+     "states": 0.03
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "no",
+    "confidence": 0.73,
+    "probabilities": {
+     "no": 0.82,
+     "partially": 0.16,
+     "states": 0.02
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "states",
+    "confidence": 0.89,
+    "probabilities": {
+     "no": 0.01,
+     "partially": 0.06,
+     "states": 0.9299999999999999
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "states",
+    "confidence": 0.35,
+    "probabilities": {
+     "no": 0.27,
+     "partially": 0.16,
+     "states": 0.57
+    },
+    "type": "choice"
+   },
+   "s5": {
+    "choice": "states",
+    "confidence": 0.18,
+    "probabilities": {
+     "no": 0.34,
+     "partially": 0.21,
+     "states": 0.45
+    },
+    "type": "choice"
+   },
+   "s6": {
+    "choice": "no",
+    "confidence": 0.89,
+    "probabilities": {
+     "no": 0.93,
+     "partially": 0.02,
+     "states": 0.05
+    },
+    "type": "choice"
+   },
+   "s7": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0.01,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s8": {
+    "choice": "no",
+    "confidence": 0.85,
+    "probabilities": {
+     "no": 0.9,
+     "partially": 0.02,
+     "states": 0.08
+    },
+    "type": "choice"
+   },
+   "s9": {
+    "choice": "no",
+    "confidence": 0.94,
+    "probabilities": {
+     "no": 0.96,
+     "partially": 0.01,
+     "states": 0.03
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792862885-DwiZNF8UIt2zpenr73aQ",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 9.1686e-05,
+   "input_tokens": 2183,
+   "output_tokens": 425
+  }
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "item": "I2",
+ "card": {
+  "question": "Is there an eligible other-family guard judge for control2, and can Jev stand in for sol more cheaply?",
+  "answer": "No guard yet. coder32: dropped (not runnable on local hardware: 24 GB RAM, 76 s per trivial reply, first L7.3 run hung about 4 h with nothing saved). Jev passes L7.3 twice but is far from sol: GDPR v1 +0.14 [-0.05, +0.31] against sol's noise-inflated +0.23 [+0.05, +0.38], kappa 0.41. The first-run wording is the owner's.",
+  "changed": "Judge substitution is no longer the closure repair. ADR 0009 still has no eligible guard arm, so no sol reading counts yet, and the choice of guard is open."
+ },
+ "worked": "Sol's GDPR v1 lower bound stays above 0 with judge noise inside the CI: +0.05.",
+ "failed": "Jev misses sol's GDPR v1 separation (lower bound -0.05); kappa 0.41, below the 0.6 bar.",
+ "figure": {
+  "title": "Jev does not reproduce sol's GDPR v1 separation (Jev +0.14, CI includes 0; sol +0.23, CI from +0.05)",
+  "kind": "dot-and-interval",
+  "rows": [
+   {
+    "domain": "PLC",
+    "judge": "Jev",
+    "diff": 0.074,
+    "ci_low": -0.098,
+    "ci_high": 0.265
+   },
+   {
+    "domain": "PLC",
+    "judge": "sol (noise-inflated)",
+    "diff": 0.13,
+    "ci_low": 0.0,
+    "ci_high": 0.298
+   },
+   {
+    "domain": "GDPR v1",
+    "judge": "Jev",
+    "diff": 0.136,
+    "ci_low": -0.048,
+    "ci_high": 0.31
+   },
+   {
+    "domain": "GDPR v1",
+    "judge": "sol (noise-inflated)",
+    "diff": 0.227,
+    "ci_low": 0.05,
+    "ci_high": 0.375
+   },
+   {
+    "domain": "GDPR v2 (not admissible)",
+    "judge": "Jev",
+    "diff": -0.024,
+    "ci_low": -0.2,
+    "ci_high": 0.163
+   },
+   {
+    "domain": "GDPR v2 (not admissible)",
+    "judge": "sol (noise-inflated)",
+    "diff": 0.071,
+    "ci_low": -0.07,
+    "ci_high": 0.195
+   }
+  ],
+  "reference": "own - control = 0: a domain separates only when its CI lower bound is above 0",
+  "source": "research/n3_control_v3/compare.json i2_jev_vs_sol.by_domain.<d>.jev.{diff,ci95}; research/n3_control_v3/sol_noise.json domains.<d>.{primary_diff,noise_inflated_ci95}"
+ }
+}

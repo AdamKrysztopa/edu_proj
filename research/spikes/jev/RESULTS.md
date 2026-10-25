@@ -45,7 +45,7 @@ Jev is TypeSafe `typesafe/jev-1.13`, called through OpenRouter's Decisions API (
 **How the reference changed, in order.** Each rule was fixed before its own calls; the second and third references were added only after the first rule failed.
 
 1. **Stored qwen answers.** Rule: Jev's κ with qwen ≥ 0.60. Jev got κ 0.19, so the rule's verdict was "does not substitute".
-2. **Sonnet 5.5 as reference.** The report finds qwen's closure no better than its fair control, so agreeing with qwen cannot settle substitution. I drew a seed-0 random sample of 100 unique judge prompts and sent the identical prompt text to `anthropic/claude-sonnet-5.5` (reasoning effort low). Rule: Jev's κ with Sonnet ≥ qwen's κ − 0.05. Opus 5.5 was the first choice, but it refuses reasoning off, and its worst case would have broken the $3 cap.
+2. **Sonnet 5.5 as reference.** The report finds qwen's closure no better than its mismatched-evidence control, so agreeing with qwen cannot settle substitution. I drew a seed-0 random sample of 100 unique judge prompts and sent the identical prompt text to `anthropic/claude-sonnet-5.5` (reasoning effort low). Rule: Jev's κ with Sonnet ≥ qwen's κ − 0.05. Opus 5.5 was the first choice, but it refuses reasoning off, and its worst case would have broken the $3 cap.
 3. **Qwen with Jev's instructions.** This came from the hostile review. Jev had been given new three-level instructions while qwen kept the old prompt, so I sent the same per-sentence questions, with Jev's wording, to hosted `qwen/qwen-2.5-7b-instruct`. Rule:
    - Jev − qwen ≤ 0.05: the gain comes from the prompt.
    - Jev − qwen ≥ 0.15: the gain comes from Jev.
@@ -70,14 +70,14 @@ Cohen's κ against Sonnet 5.5, 100 prompts, 762 sentences. A "hit" means the sen
 
 - **Hit, qwen with its original prompt:**
   - Jev 0.53, qwen 0.27.
-  - Difference +0.25. The 95% bootstrap CI is 0.10 to 0.40 resampling prompts. The review got 0.10 to 0.41 resampling the 68 distinct seeds, since some prompts share a seed, e.g. the two arms of the fair control.
+  - Difference +0.25. The 95% bootstrap CI is 0.10 to 0.40 resampling prompts. The review got 0.10 to 0.41 resampling the 68 distinct seeds, since some prompts share a seed, e.g. the two arms of the mismatched-evidence control.
 - **Hit, qwen with Jev's exact instructions:**
   - Jev 0.52, qwen 0.32. Difference +0.20, which meets the pre-set "gain comes from Jev" bar.
   - 704 sentences scored. 58 qwen answers were unreadable and were excluded for both models; none were defaulted.
 - **Full statement only:** Jev 0.47, qwen (original prompt) 0.27.
 - **Prompt has any hit:** Jev 0.40, qwen (original prompt) 0.15.
 - **Trivial judges** (the review's check): "cite nothing" scores κ 0, and a lexical-overlap judge tuned on this same sample scores at most 0.06.
-- **Jev against qwen directly** (all 641 prompts): κ 0.19. They disagree mostly on "partially": qwen marks at least one sentence "partially" on 51% of prompts, Jev on 20%.
+- **Jev against qwen directly** (all 641 cache entries, which hold 542 unique prompts; a prompt shared by two domains counts twice): κ 0.19. They disagree mostly on "partially": qwen marks at least one sentence "partially" on 51% of prompts, Jev on 20%.
 
 Cost per judgement:
 
@@ -115,9 +115,9 @@ What this does not show:
 
 - That Jev can stand in for the strong model: κ 0.52 is only moderate agreement, and Jev misses more than half of Sonnet's "partially" citations.
 - That either model is correct. The reference is one model, on 100 prompts.
-- That a better judge would repair N3's closure check. That check fails its fair control because the seed's own sentences sit in both arms, which is a design issue rather than a judge-quality issue.
+- That a better judge would repair N3's closure check. That check fails its mismatched-evidence control, whose arms both hold the seed's own sentences; this spike does not test whether the judge or that design is the cause. I2 later ran Jev on the rebuilt control (`research/n3_control_v3/GUARD.md`).
 - That Jev finds hidden knowledge. Part 1's tacit-knowledge reading did not survive the form test and stays INCONCLUSIVE.
 
 ## Next step
 
-Swap Jev in as the judge object for N3's own registered fair-control check (`checks.mismatched_evidence_control`) on the committed ledgers. This passes a judge object and changes no gapmap code, at about $0.05. Then read whether Jev's closure rate differs between the own and control arms where qwen's ties. If it still ties, stop here: Jev is a cheaper judge, but not a fix for the closure step.
+Swap Jev in as the judge object for N3's own registered mismatched-evidence control (`checks.mismatched_evidence_control`) on the committed ledgers. This passes a judge object and changes no gapmap code, at about $0.05. Then read whether Jev's closure rate differs between the own and control arms where qwen's ties. If it still ties, stop here: Jev is a cheaper judge, but not a fix for the closure step.

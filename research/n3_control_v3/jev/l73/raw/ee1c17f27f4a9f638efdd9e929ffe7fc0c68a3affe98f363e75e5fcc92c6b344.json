@@ -1,0 +1,104 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state a condition that says which option to choose in which situation? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "Retention periods should be selected based on the processing purpose.",
+   "sentences": {
+    "1": "Retention periods should be selected based on the processing purpose.",
+    "2": "Retention periods should be selected based on the processing purpose.",
+    "3": "Selection practice for processing purpose is documented.",
+    "4": "hl meg processing purpose wb c ehzqgm uaopompsg mcphya wiq npmxdvid cmtmdvbkh wcpuqg sze tcrb pwgesox"
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "states",
+    "confidence": 0.25,
+    "probabilities": {
+     "no": 0.25,
+     "partially": 0.25,
+     "states": 0.5
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "states",
+    "confidence": 0.25,
+    "probabilities": {
+     "no": 0.38,
+     "partially": 0.12,
+     "states": 0.5
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0.01,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0,
+     "states": 0.02
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792861858-d3G1wcKv7MSilzMAYxtB",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 3.7758e-05,
+   "input_tokens": 899,
+   "output_tokens": 155
+  }
+ }
+}

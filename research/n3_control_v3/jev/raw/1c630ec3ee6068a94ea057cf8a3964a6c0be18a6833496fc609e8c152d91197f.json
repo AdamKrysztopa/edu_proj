@@ -1,0 +1,184 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s5": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"5\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s6": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"6\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s7": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"7\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s8": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"8\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "Verification of a fix should include running equipment through full operational cycles and testing boundary conditions before considering the problem solved.",
+   "sentences": {
+    "1": "Condition monitoring through continuous alarm and signal analysis provides earlier visibility into PLC health than manual checks.",
+    "2": "Condition monitoring through continuous alarm and signal analysis gives your maintenance team an earlier view into PLC health, so repairs can be scheduled before a failure forces the issue.",
+    "3": "Spreadsheet logs fail when mandatory fields are left blank, preventing data needed for Pareto analysis or MTBF trends.",
+    "4": "Guidance from Cryotos on equipment maintenance log best practices highlights that consistent fields for maintenance type, failure code, labor hours, and next service date support trend detection and create a defensible audit trail.",
+    "5": "It helps prove whether voltage is present, whether a circuit path is complete, whether a fuse is open, whether a coil has continuity, and whether a field device is receiving the correct signal.",
+    "6": "Familiarity with diagnostic tools and understanding the underlying control system structure enables better troubleshooting by knowing which signals to record when abnormal behavior occurs.",
+    "7": "Before going to trouble shoot a problem in the field, spend time in the lab getting familiar with the diagnostic tools available.",
+    "8": "Also, make sure that you understand the underlying control system structure so that when abnormal behavior is present, you know what signals to record."
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "no",
+    "confidence": 0.52,
+    "probabilities": {
+     "no": 0.68,
+     "partially": 0.22,
+     "states": 0.1
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "no",
+    "confidence": 0.19,
+    "probabilities": {
+     "no": 0.46,
+     "partially": 0.25,
+     "states": 0.29
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "no",
+    "confidence": 0.19,
+    "probabilities": {
+     "no": 0.46,
+     "partially": 0.22,
+     "states": 0.32
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "no",
+    "confidence": 0.48,
+    "probabilities": {
+     "no": 0.65,
+     "partially": 0.17,
+     "states": 0.18
+    },
+    "type": "choice"
+   },
+   "s5": {
+    "choice": "states",
+    "confidence": 0.19,
+    "probabilities": {
+     "no": 0.24,
+     "partially": 0.3,
+     "states": 0.46
+    },
+    "type": "choice"
+   },
+   "s6": {
+    "choice": "no",
+    "confidence": 0.46,
+    "probabilities": {
+     "no": 0.64,
+     "partially": 0.3,
+     "states": 0.06
+    },
+    "type": "choice"
+   },
+   "s7": {
+    "choice": "no",
+    "confidence": 0.95,
+    "probabilities": {
+     "no": 0.97,
+     "partially": 0.03,
+     "states": 0
+    },
+    "type": "choice"
+   },
+   "s8": {
+    "choice": "no",
+    "confidence": 0.61,
+    "probabilities": {
+     "no": 0.74,
+     "partially": 0.19,
+     "states": 0.07
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792862889-i063PucDcmEwPmSfDNIf",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 7.0854e-05,
+   "input_tokens": 1687,
+   "output_tokens": 307
+  }
+ }
+}

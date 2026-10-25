@@ -1,0 +1,184 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s5": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"5\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s6": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"6\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s7": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"7\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s8": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'? Does sentences[\"8\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "Maintenance logs should include recurring faults in analysis to identify when a repair has not resolved the underlying issue.",
+   "sentences": {
+    "1": "Next are unwanted interactions, be they ground loops or interactions of multiple processors finding weaknesses in the hardware or software interfaces.",
+    "2": "An equipment maintenance log records every service, inspection, and repair performed on equipment, documenting what was done, when, by whom, and what is due next.",
+    "3": "An equipment maintenance log records every service, inspection, and repair performed on a piece of equipment - what was done, when, by whom, and what's due next.",
+    "4": "When a VFD reports overcurrent fault with periodic machine stops, investigation should consider PLC command status, motor current, mechanical load, drive temperature, and acceleration parameters rather than immediately concluding drive or motor defects.",
+    "5": "having worked for 25 years on the controls/drives manufacturing side of the business, I can say with confidence that the most common reason for the return of a component product from the field is, \"No problem found.\" Too often repair technicians are placed under pressure to not necessarily find the root cause, but simply to get the equipment running again.",
+    "6": "The best time to use continuity is when you have an open-circuit fault and you need to find where in a 20-metre cable run the break is.",
+    "7": "The professional technician troubleshooting mindset involves knowing what should happen, measuring what is actually happening, finding the difference, proving the fault, repairing safely, and verifying the fix.",
+    "8": "If the fault disappears, nobody knows which action mattered."
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0.01,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "no",
+    "confidence": 0.94,
+    "probabilities": {
+     "no": 0.96,
+     "partially": 0.03,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "no",
+    "confidence": 0.98,
+    "probabilities": {
+     "no": 0.99,
+     "partially": 0.01,
+     "states": 0
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "partially",
+    "confidence": 0.35,
+    "probabilities": {
+     "no": 0.28,
+     "partially": 0.57,
+     "states": 0.15
+    },
+    "type": "choice"
+   },
+   "s5": {
+    "choice": "partially",
+    "confidence": 0.27,
+    "probabilities": {
+     "no": 0.29,
+     "partially": 0.51,
+     "states": 0.2
+    },
+    "type": "choice"
+   },
+   "s6": {
+    "choice": "no",
+    "confidence": 0.74,
+    "probabilities": {
+     "no": 0.83,
+     "partially": 0.03,
+     "states": 0.14
+    },
+    "type": "choice"
+   },
+   "s7": {
+    "choice": "partially",
+    "confidence": 0.22,
+    "probabilities": {
+     "no": 0.48,
+     "partially": 0.47,
+     "states": 0.05
+    },
+    "type": "choice"
+   },
+   "s8": {
+    "choice": "states",
+    "confidence": 0.28,
+    "probabilities": {
+     "no": 0.14,
+     "partially": 0.34,
+     "states": 0.52
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792862906-HWiXNqnoFRYch1gzis1n",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 7.3878e-05,
+   "input_tokens": 1759,
+   "output_tokens": 313
+  }
+ }
+}

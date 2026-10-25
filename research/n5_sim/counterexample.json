@@ -1,0 +1,202 @@
+{
+ "label": "SYNTHETIC — not evidence about learners or experts",
+ "spec_sha256": "85da9dbe4c1fd1d5400857bda2a5c9c091ebe387bd69aacdcfccc6c2e2685937",
+ "generator_sha256": "ccd5f201e657b71690f39b6a6968124536d7416bfc3543beea517c6e000c4d27",
+ "estimators_sha256": "fc71405ad0f0ae5f96bd386356b5f4ca5af055a1d5a18a13a64864b0c77dbb9d",
+ "python": "3.14.2",
+ "n_written": 100,
+ "k": 3,
+ "heterogeneity": "low",
+ "rho": 0.0,
+ "observed_histories": 63,
+ "frequency_counts": [
+  41,
+  19,
+  3
+ ],
+ "universes": [
+  {
+   "never_written": 0,
+   "N": 100,
+   "true_unseen_U": 37,
+   "true_written_unseen_U_w": 37,
+   "text_estimators": {
+    "chao1": {
+     "unseen": 29.49,
+     "interval": [
+      13.18,
+      66.01
+     ]
+    },
+    "jackknife": {
+     "unseen": 27.33,
+     "interval": [
+      16.97,
+      44.03
+     ]
+    },
+    "mh": {
+     "unseen": 29.58,
+     "interval": [
+      12.0,
+      72.89
+     ]
+    },
+    "chao1_large_t": {
+     "unseen": 44.24,
+     "interval": [
+      20.23,
+      96.74
+     ]
+    },
+    "mh_lee_chao": {
+     "unseen": 76.41,
+     "interval": [
+      38.53,
+      151.53
+     ]
+    }
+   },
+   "gold": {
+    "1.0": {
+     "gold_uncaught_G": 37,
+     "lincoln_petersen_unseen": 37.0,
+     "interval": [
+      37.0,
+      37.0
+     ]
+    },
+    "0.6": {
+     "gold_uncaught_G": 21,
+     "lincoln_petersen_unseen": 39.53,
+     "interval": [
+      27.47,
+      56.88
+     ]
+    }
+   }
+  },
+  {
+   "never_written": 100,
+   "N": 200,
+   "true_unseen_U": 137,
+   "true_written_unseen_U_w": 37,
+   "text_estimators": {
+    "chao1": {
+     "unseen": 29.49,
+     "interval": [
+      13.18,
+      66.01
+     ]
+    },
+    "jackknife": {
+     "unseen": 27.33,
+     "interval": [
+      16.97,
+      44.03
+     ]
+    },
+    "mh": {
+     "unseen": 29.58,
+     "interval": [
+      12.0,
+      72.89
+     ]
+    },
+    "chao1_large_t": {
+     "unseen": 44.24,
+     "interval": [
+      20.23,
+      96.74
+     ]
+    },
+    "mh_lee_chao": {
+     "unseen": 76.41,
+     "interval": [
+      38.53,
+      151.53
+     ]
+    }
+   },
+   "gold": {
+    "1.0": {
+     "gold_uncaught_G": 137,
+     "lincoln_petersen_unseen": 137.0,
+     "interval": [
+      137.0,
+      137.0
+     ]
+    },
+    "0.6": {
+     "gold_uncaught_G": 81,
+     "lincoln_petersen_unseen": 148.11,
+     "interval": [
+      113.98,
+      192.47
+     ]
+    }
+   }
+  },
+  {
+   "never_written": 400,
+   "N": 500,
+   "true_unseen_U": 437,
+   "true_written_unseen_U_w": 37,
+   "text_estimators": {
+    "chao1": {
+     "unseen": 29.49,
+     "interval": [
+      13.18,
+      66.01
+     ]
+    },
+    "jackknife": {
+     "unseen": 27.33,
+     "interval": [
+      16.97,
+      44.03
+     ]
+    },
+    "mh": {
+     "unseen": 29.58,
+     "interval": [
+      12.0,
+      72.89
+     ]
+    },
+    "chao1_large_t": {
+     "unseen": 44.24,
+     "interval": [
+      20.23,
+      96.74
+     ]
+    },
+    "mh_lee_chao": {
+     "unseen": 76.41,
+     "interval": [
+      38.53,
+      151.53
+     ]
+    }
+   },
+   "gold": {
+    "1.0": {
+     "gold_uncaught_G": 437,
+     "lincoln_petersen_unseen": 437.0,
+     "interval": [
+      437.0,
+      437.0
+     ]
+    },
+    "0.6": {
+     "gold_uncaught_G": 251,
+     "lincoln_petersen_unseen": 373.58,
+     "interval": [
+      311.17,
+      448.51
+     ]
+    }
+   }
+  }
+ ]
+}

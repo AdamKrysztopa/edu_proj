@@ -1,0 +1,407 @@
+{
+ "label": "SYNTHETIC \u2014 planning simulation; never a criterion, never feeds a gate",
+ "c": 1.85,
+ "delta": 0.1,
+ "code_sha256": {
+  "keycells.py": "d65e5fb00e11c47c60e09f46341e98d7df238f48bbf248e948021778004d8ecd",
+  "simulate.py": "843975b2be53f9785e70a2fc3bc54e905a4977bafa712a3c71f856ba2d1020fa",
+  "auroc.py": "276ff9d463f03817f382fd0de650b08d552badd1c4d6d68d45e29d8d1d4643f5",
+  "baselines.py": "547fdd636e1c70866decc08c3ccf057635044c89848dca1512c3510a151a5e35"
+ },
+ "seconds": 352,
+ "model": "items per area 1 + Poisson(1.3); an area is missed if any item is missed, per-item miss rate p_item; pre-gold proxy = items + N(0, proxy_sd), corr about 0.6",
+ "cells": [
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "p_item": 0.56,
+    "map": 0.72,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.784,
+   "mean_auroc": {
+    "map": 0.72,
+    "gold_items_per_area": 0.745,
+    "pre_gold_size_proxy": 0.644
+   },
+   "freq": {
+    "K+gold_items|continue": 0.006,
+    "K+gold_items|inconclusive": 0.839,
+    "K+gold_items|stop": 0.155,
+    "K+pre_gold_proxy|continue": 0.021,
+    "K+pre_gold_proxy|inconclusive": 0.931,
+    "K+pre_gold_proxy|stop": 0.048,
+    "K|continue": 0.082,
+    "K|inconclusive": 0.881,
+    "K|stop": 0.037
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "p_item": 0.56,
+    "map": 0.82,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.785,
+   "mean_auroc": {
+    "map": 0.824,
+    "gold_items_per_area": 0.743,
+    "pre_gold_size_proxy": 0.64
+   },
+   "freq": {
+    "K+gold_items|continue": 0.186,
+    "K+gold_items|inconclusive": 0.797,
+    "K+gold_items|stop": 0.017,
+    "K+pre_gold_proxy|continue": 0.381,
+    "K+pre_gold_proxy|inconclusive": 0.616,
+    "K+pre_gold_proxy|stop": 0.003,
+    "K|continue": 0.632,
+    "K|inconclusive": 0.365,
+    "K|stop": 0.003
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "p_item": 0.56,
+    "map": 0.92,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.785,
+   "mean_auroc": {
+    "map": 0.92,
+    "gold_items_per_area": 0.741,
+    "pre_gold_size_proxy": 0.64
+   },
+   "freq": {
+    "K+gold_items|continue": 0.751,
+    "K+gold_items|inconclusive": 0.249,
+    "K+pre_gold_proxy|continue": 0.908,
+    "K+pre_gold_proxy|inconclusive": 0.091,
+    "K+pre_gold_proxy|stop": 0.001,
+    "K|continue": 0.983,
+    "K|inconclusive": 0.017
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "p_item": 0.56,
+    "map": "perfect",
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.787,
+   "mean_auroc": {
+    "map": 1.0,
+    "gold_items_per_area": 0.738,
+    "pre_gold_size_proxy": 0.638
+   },
+   "freq": {
+    "K+gold_items|continue": 0.999,
+    "K+gold_items|inconclusive": 0.001,
+    "K+pre_gold_proxy|continue": 0.999,
+    "K+pre_gold_proxy|inconclusive": 0.001,
+    "K|continue": 1.0
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 30,
+    "p_item": 0.56,
+    "map": 0.72,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.788,
+   "mean_auroc": {
+    "map": 0.718,
+    "gold_items_per_area": 0.741,
+    "pre_gold_size_proxy": 0.639
+   },
+   "freq": {
+    "K+gold_items|continue": 0.013,
+    "K+gold_items|inconclusive": 0.792,
+    "K+gold_items|stop": 0.195,
+    "K+pre_gold_proxy|continue": 0.076,
+    "K+pre_gold_proxy|inconclusive": 0.892,
+    "K+pre_gold_proxy|stop": 0.032,
+    "K|continue": 0.172,
+    "K|inconclusive": 0.798,
+    "K|stop": 0.03
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 30,
+    "p_item": 0.56,
+    "map": 0.82,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.786,
+   "mean_auroc": {
+    "map": 0.821,
+    "gold_items_per_area": 0.739,
+    "pre_gold_size_proxy": 0.639
+   },
+   "freq": {
+    "K+gold_items|continue": 0.29,
+    "K+gold_items|inconclusive": 0.691,
+    "K+gold_items|stop": 0.019,
+    "K+pre_gold_proxy|continue": 0.639,
+    "K+pre_gold_proxy|inconclusive": 0.361,
+    "K|continue": 0.895,
+    "K|inconclusive": 0.105
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 30,
+    "p_item": 0.56,
+    "map": 0.92,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.788,
+   "mean_auroc": {
+    "map": 0.922,
+    "gold_items_per_area": 0.741,
+    "pre_gold_size_proxy": 0.64
+   },
+   "freq": {
+    "K+gold_items|continue": 0.884,
+    "K+gold_items|inconclusive": 0.116,
+    "K+pre_gold_proxy|continue": 0.985,
+    "K+pre_gold_proxy|inconclusive": 0.015,
+    "K|continue": 0.999,
+    "K|inconclusive": 0.001
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 30,
+    "p_item": 0.56,
+    "map": "perfect",
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.788,
+   "mean_auroc": {
+    "map": 1.0,
+    "gold_items_per_area": 0.743,
+    "pre_gold_size_proxy": 0.639
+   },
+   "freq": {
+    "K+gold_items|continue": 1.0,
+    "K+pre_gold_proxy|continue": 1.0,
+    "K|continue": 1.0
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 20,
+    "p_item": 0.56,
+    "map": 0.72,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.785,
+   "mean_auroc": {
+    "map": 0.72,
+    "gold_items_per_area": 0.743,
+    "pre_gold_size_proxy": 0.64
+   },
+   "freq": {
+    "K+gold_items|continue": 0.014,
+    "K+gold_items|inconclusive": 0.796,
+    "K+gold_items|stop": 0.19,
+    "K+pre_gold_proxy|continue": 0.057,
+    "K+pre_gold_proxy|inconclusive": 0.904,
+    "K+pre_gold_proxy|stop": 0.039,
+    "K|continue": 0.161,
+    "K|inconclusive": 0.807,
+    "K|stop": 0.032
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 20,
+    "p_item": 0.56,
+    "map": 0.82,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.787,
+   "mean_auroc": {
+    "map": 0.821,
+    "gold_items_per_area": 0.742,
+    "pre_gold_size_proxy": 0.643
+   },
+   "freq": {
+    "K+gold_items|continue": 0.255,
+    "K+gold_items|inconclusive": 0.726,
+    "K+gold_items|stop": 0.019,
+    "K+pre_gold_proxy|continue": 0.6,
+    "K+pre_gold_proxy|inconclusive": 0.4,
+    "K|continue": 0.847,
+    "K|inconclusive": 0.153
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 20,
+    "p_item": 0.56,
+    "map": 0.92,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.786,
+   "mean_auroc": {
+    "map": 0.92,
+    "gold_items_per_area": 0.742,
+    "pre_gold_size_proxy": 0.637
+   },
+   "freq": {
+    "K+gold_items|continue": 0.866,
+    "K+gold_items|inconclusive": 0.134,
+    "K+pre_gold_proxy|continue": 0.986,
+    "K+pre_gold_proxy|inconclusive": 0.014,
+    "K|continue": 0.997,
+    "K|inconclusive": 0.003
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 20,
+    "p_item": 0.56,
+    "map": "perfect",
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.784,
+   "mean_auroc": {
+    "map": 1.0,
+    "gold_items_per_area": 0.744,
+    "pre_gold_size_proxy": 0.641
+   },
+   "freq": {
+    "K+gold_items|continue": 1.0,
+    "K+pre_gold_proxy|continue": 1.0,
+    "K|continue": 1.0
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 30,
+    "p_item": 0.56,
+    "map": 0.72,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.787,
+   "mean_auroc": {
+    "map": 0.72,
+    "gold_items_per_area": 0.743,
+    "pre_gold_size_proxy": 0.642
+   },
+   "freq": {
+    "K+gold_items|continue": 0.008,
+    "K+gold_items|inconclusive": 0.69,
+    "K+gold_items|stop": 0.302,
+    "K+pre_gold_proxy|continue": 0.103,
+    "K+pre_gold_proxy|inconclusive": 0.867,
+    "K+pre_gold_proxy|stop": 0.03,
+    "K|continue": 0.257,
+    "K|inconclusive": 0.725,
+    "K|stop": 0.018
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 30,
+    "p_item": 0.56,
+    "map": 0.82,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.787,
+   "mean_auroc": {
+    "map": 0.817,
+    "gold_items_per_area": 0.742,
+    "pre_gold_size_proxy": 0.642
+   },
+   "freq": {
+    "K+gold_items|continue": 0.313,
+    "K+gold_items|inconclusive": 0.659,
+    "K+gold_items|stop": 0.028,
+    "K+pre_gold_proxy|continue": 0.776,
+    "K+pre_gold_proxy|inconclusive": 0.224,
+    "K|continue": 0.958,
+    "K|inconclusive": 0.042
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 30,
+    "p_item": 0.56,
+    "map": 0.92,
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.788,
+   "mean_auroc": {
+    "map": 0.92,
+    "gold_items_per_area": 0.739,
+    "pre_gold_size_proxy": 0.64
+   },
+   "freq": {
+    "K+gold_items|continue": 0.951,
+    "K+gold_items|inconclusive": 0.049,
+    "K+pre_gold_proxy|continue": 0.997,
+    "K+pre_gold_proxy|inconclusive": 0.003,
+    "K|continue": 1.0
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 30,
+    "p_item": 0.56,
+    "map": "perfect",
+    "proxy_sd": 1.52,
+    "reps": 1000
+   },
+   "mean_missed_share": 0.787,
+   "mean_auroc": {
+    "map": 1.0,
+    "gold_items_per_area": 0.741,
+    "pre_gold_size_proxy": 0.639
+   },
+   "freq": {
+    "K+gold_items|continue": 1.0,
+    "K+pre_gold_proxy|continue": 1.0,
+    "K|continue": 1.0
+   }
+  }
+ ]
+}

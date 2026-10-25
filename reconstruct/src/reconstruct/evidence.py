@@ -87,12 +87,24 @@ def locate(quote: str, haystack_normalised: str) -> tuple[int, int] | None:
     return idx, idx + len(q)
 
 
-def quote_in_span(quote: str, span_exact: str) -> bool:
+QUOTE_MIN_WORDS = 5
+
+
+def quote_in_span(quote: str, span_exact: str, *, min_words: int = QUOTE_MIN_WORDS) -> bool:
     """A5: a supporting/contradiction quote counts only if it is a substring of the span it is
-    claimed to come from, after the same normalisation. `span_exact` is assumed already
-    normalised (it is a slice of our normalised text)."""
+    claimed to come from, after the same normalisation, and at least `min_words` long (or the
+    whole span, when the span is shorter): a one-word quote such as "the" is a substring of
+    almost any span. `span_exact` is assumed already normalised (it is a slice of our
+    normalised text)."""
     q = normalise(quote)
-    return bool(q) and q in span_exact
+    return (bool(q) and word_count(q) >= min(min_words, word_count(span_exact))
+            and q in span_exact)
+
+
+def fold(text: str) -> str:
+    """normalise(), then casefold and re-collapse whitespace: the comparison form for verbatim
+    copy tests, never for offsets."""
+    return " ".join(normalise(text).casefold().split())
 
 
 # --- prompt-injection flag (spans, not the whole page: web.py already strips hidden text) -----
@@ -412,17 +424,63 @@ def span_duplicates(spans: Sequence[tuple[str, str, str]], min_words: int = 25) 
             hi, lo = max(rx, ry), min(rx, ry)
             parent[hi] = lo
 
-    for i, (sid_a, key_a, text_a) in enumerate(spans):
-        words_a = text_a.split(" ")
-        for sid_b, key_b, text_b in spans[i + 1:]:
-            if key_a == key_b:
-                continue
-            words_b = text_b.split(" ")
-            sm = difflib.SequenceMatcher(None, words_a, words_b, autojunk=False)
-            if any(block.size >= min_words for block in sm.get_matching_blocks()):
+    words = {sid: fold(text).split(" ") for sid, _, text in spans}
+    for i, (sid_a, key_a, _) in enumerate(spans):
+        for sid_b, key_b, _ in spans[i + 1:]:
+            if key_a != key_b and _shares_run(words[sid_a], words[sid_b], min_words):
                 union(sid_a, sid_b)
 
     return {sid: find(sid) for sid, _, _ in spans}
+
+
+def _shares_run(words_a: Sequence[str], words_b: Sequence[str], min_words: int) -> bool:
+    sm = difflib.SequenceMatcher(None, words_a, words_b, autojunk=False)
+    return any(block.size >= min_words for block in sm.get_matching_blocks())
+
+
+def is_verbatim_copy(span_a: str, folded_doc_a: str, span_b: str, folded_doc_b: str) -> bool:
+    """R3: two located spans are not independent attestations when either one appears
+    verbatim, after fold(), in the other's document. `folded_doc_*` must already be fold()ed."""
+    return fold(span_a) in folded_doc_b or fold(span_b) in folded_doc_a
+
+
+@dataclass(frozen=True)
+class CopyItem:
+    item_id: str
+    independence_key: str
+    span_exact: str
+    folded_doc_text: str
+
+
+def _dependent(a: CopyItem, b: CopyItem, min_words: int) -> bool:
+    if a.independence_key == b.independence_key:
+        return False
+    return (is_verbatim_copy(a.span_exact, a.folded_doc_text, b.span_exact, b.folded_doc_text)
+            or _shares_run(fold(a.span_exact).split(" "), fold(b.span_exact).split(" "), min_words))
+
+
+def collapse_verbatim_copies(items: Sequence[CopyItem], min_words: int = 25) -> dict[str, str]:
+    """R3: which supporting spans to stop counting as independent corroboration. Two items from
+    different clusters are dependent when `is_verbatim_copy` holds or they share a run of
+    `min_words` words. Greedily keeps a set of mutually independent items from distinct
+    clusters, least-entangled first (ties by key, then item_id), so the kept clusters are a
+    deterministic lower bound on the independent count. Returns {item_id: kept item_id it
+    depends on} for every item of a cluster that was not kept."""
+    dependents = {a.item_id: [b for b in items if _dependent(a, b, min_words)] for a in items}
+    order = sorted(items, key=lambda i: (len(dependents[i.item_id]), i.independence_key, i.item_id))
+    kept: list[CopyItem] = []
+    kept_keys: set[str] = set()
+    for item in order:
+        if item.independence_key in kept_keys:
+            continue
+        if not any(k in dependents[item.item_id] for k in kept):
+            kept.append(item)
+            kept_keys.add(item.independence_key)
+    copies: dict[str, str] = {}
+    for item in items:
+        if item.independence_key not in kept_keys:
+            copies[item.item_id] = next(k.item_id for k in kept if k in dependents[item.item_id])
+    return copies
 
 
 # --- builders: only this module constructs Evidence / Selector / Verification ---------------

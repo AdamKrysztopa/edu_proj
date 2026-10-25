@@ -1,0 +1,64 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic extensive': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state how to tell whether something counts as 'systematic extensive': a threshold, a defining feature, or a contrast between a case that is and one that is not? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "Systematic and extensive evaluation of personal aspects based on automated processing, including profiling, on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person, is one type of processing that always requires a DPIA.",
+   "sentences": {
+    "1": "When a supervisory authority's DPIA list involves processing activities related to the offering of goods and services to data subjects or to the monitoring of their behaviour in several Member States, or may substantially affect the free movement of personal data within the Union, it must be submitted to the consistency mechanism and must be communicated to the EDPB.",
+    "2": "where the list involves\"processing activities which are related to the offering of goods and services to data subjects or to the monitoring of their behaviour in several Member States, or may substantially affect the free movement of personal data within the Union\", it must be submitted to the consistency mechanism and must be communicated to the EDPB"
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "no",
+    "confidence": 0.98,
+    "probabilities": {
+     "no": 0.99,
+     "partially": 0.01,
+     "states": 0
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "no",
+    "confidence": 1,
+    "probabilities": {
+     "no": 1,
+     "partially": 0,
+     "states": 0
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792863017-8ZhO6uftyGsVlmem6vhX",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 3.255e-05,
+   "input_tokens": 775,
+   "output_tokens": 79
+  }
+ }
+}

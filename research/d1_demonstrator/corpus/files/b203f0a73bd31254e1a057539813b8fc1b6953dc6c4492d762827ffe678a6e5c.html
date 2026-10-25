@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset='utf-8'><title>statsmodels.tsa.stattools.ccf</title></head><body>
+<h1>statsmodels.tsa.stattools.ccf</h1>
+<p>statsmodels.tsa.stattools.ccf(x, y, adjusted=True, fft=True, *, nlags=None, alpha=None, result_object=None)[source]</p>
+<p>The cross-correlation function Parameters: x, yarray_likeThe time series data to use in the calculation.</p>
+<p>adjustedbool, optional</p>
+<p>If True, then denominators for cross-covariance are the number of overlapping observations at each lag k, min(m, n-k), otherwise n.</p>
+<p>fftbool, optional</p>
+<p>If True, use FFT convolution. This method should be preferred for long time series.</p>
+<p>nlagsint, optional</p>
+<p>Number of lags to return cross-correlations for. If not provided, the number of lags equals len(x).</p>
+<p>alphafloat, optional</p>
+<p>If a number is given, the confidence intervals for the given level are returned. For instance if alpha=.05, 95 % confidence intervals are returned where the standard deviation is computed according to 1/sqrt(len(x)).</p>
+<p>result_objectbool, optional</p>
+<p>Flag controlling whether a CcfResult is returned. When alpha is not None a CcfResult is always returned; it holds the same two values as the legacy tuple it replaces. When alpha is None a bare array is returned unless result_object=True, which additionally yields a CcfResult with confint set to None.</p>
+<p>Returns:</p>
+<p>CcfResult or ndarrayWhen alpha is not None (or result_object=True), a result object with fields: ccfndarrayThe cross-correlation function of x and y: the element at index k is the correlation between {x[k], x[k+1], …, x[n]} and {y[0], y[1], …, y[m-k]}, where n and m are the lengths of x and y, respectively.</p>
+<p>confintndarray or None</p>
+<p>Confidence intervals for the CCF at lags 0, 1, …, nlags-1 using the level given by alpha and the standard deviation calculated as 1/sqrt(len(x)) [1]. Shape (nlags, 2). None when alpha is None.</p>
+<p>See CcfResult.</p>
+<p>When alpha is None a bare ndarray of cross-correlations is returned instead.</p>
+<p>See also</p>
+<p>statsmodels.tsa.stattools.pccf</p>
+<p>Partial cross-correlation function.</p>
+<p>statsmodels.tsa.stattools.acf</p>
+<p>Autocorrelation function.</p>
+<p>statsmodels.tsa.stattools.pacf</p>
+<p>Partial autocorrelation function.</p>
+<p>statsmodels.graphics.tsaplots.plot_ccf</p>
+<p>Plot cross-correlations and confidence intervals.</p>
+<p>Notes</p>
+<p>If adjusted is True, the denominator for the cross-correlation is adjusted.</p>
+<p>References</p>
+<p>Brockwell and Davis, 2016. Introduction to Time Series and Forecasting, 3rd edition, p. 242.</p>
+</body></html>

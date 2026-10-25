@@ -1,0 +1,1341 @@
+{
+ "004ee14c1a6160f52d7702ff9a23c289bf5e8269b399de8a9af0b62a8ad6ed8e": {
+  "partially": [],
+  "reason": "No sentence specifies an expected trend result or links a particular result to a diagnosis or next action.",
+  "states": []
+ },
+ "009f417bbf033a0abac82f106ecba2d267d4de492c25e3fd9afa230b29aeecad": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why technicians should plan multimeter measurements or what failure that preparation prevents.",
+  "states": []
+ },
+ "02a35aa486744244ece4139cecdc7b29e79f96e8bb96825cb76adffacdc78881": {
+  "partially": [
+   3,
+   4
+  ],
+  "reason": "Sentences 3 and 4 identify issues stress testing may reveal, but do not specify fix-verification outcomes, their interpretation, or next actions.",
+  "states": []
+ },
+ "041dbeb2d67cbb1355029007f21965280e8832e2205602c49bbf50856fb506bb": {
+  "partially": [],
+  "reason": "None explicitly explains why sampling rate should match the suspected event or what failure convenient historian defaults could cause.",
+  "states": []
+ },
+ "04c0272070b3b28c25c934a91474b321ac59e7c9f2beb6adac584bddbfe09c20": {
+  "partially": [
+   1,
+   8
+  ],
+  "reason": "Sentences 1 and 8 interpret symptoms or observations, but neither specifies expected results or follow-up actions for the PLC fault-capture kit.",
+  "states": []
+ },
+ "089f5592bae8c324c5e74ec7d762e86ac19f8cdf7c2d6493319dffbdb2f9b8cd": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentences 3 and 4 prescribe isolation for complex systems; sentence 1 ranks tests by likelihood without specifying a situation-dependent choice.",
+  "states": [
+   3,
+   4
+  ]
+ },
+ "0fe1a18737ce09736c5e44072330520bca22ddb8e7314509f09a6e38be7a422c": {
+  "partially": [],
+  "reason": "None explicitly explains why continuity testing requires de-energization or identifies a failure it prevents.",
+  "states": []
+ },
+ "1086ab5a515bc412b8ada7cbd425f18fb36c1a15942d3379e9b98240d8c3ea50": {
+  "partially": [
+   1,
+   2,
+   10
+  ],
+  "reason": "Sentences 1 and 2 name a selection criterion without specific situation-to-option mappings; 10 states a conditional diagnosis, not which option to choose.",
+  "states": []
+ },
+ "12a7b334fecdb7180d1321b8d9104eddc46211e31ed5fb67b11b9f0355604f84": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly states that monitoring near the affected load is done to investigate power and grounding issues.",
+  "states": [
+   1
+  ]
+ },
+ "138bd463b69110a3e22224819155497e79cb63c0a468a5b007396857715aa8aa": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 1 interprets symptoms as power-quality degradation, but no sentence specifies expected capture-test results or result-dependent next actions.",
+  "states": []
+ },
+ "13b79ed7da29c99472a6365b4aae4dd8deb8b1e67bd2816ca5bf7cfb6ec352e8": {
+  "partially": [
+   6
+  ],
+  "reason": "Sentence 6 links inconclusive diagnostics to collecting targeted traffic, but no sentence specifies an expected test result and its interpretation.",
+  "states": []
+ },
+ "145d94100eed303c41269e9169d95f909dbd6374a76850d3e5c6664b4dca41e3": {
+  "partially": [
+   4,
+   6,
+   7
+  ],
+  "reason": "Sentences 4, 6, and 7 require expected results and interpretations but provide no actual expected outcome, interpretation, or next action for this test.",
+  "states": []
+ },
+ "14924f991f85fe8a72128ca5d93af54bd1af33592735326ba912984d09ef4049": {
+  "partially": [
+   1,
+   2,
+   3
+  ],
+  "reason": "Sentences 1\u20133 link voltage measurements to load-side faults, but none explicitly explains why monitoring near the load is preferable to supply-terminal monitoring.",
+  "states": []
+ },
+ "17d4fd00eb094b387385863b912ca44d672edc357c0c49fecee1d7038ce1806b": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why indiscriminate packet capture should be avoided; sentence 4 provides a diagnostic sequence, not a rationale.",
+  "states": []
+ },
+ "186221a63e673ff3160672c17689a1958539d247b96e0a5f21529ec4a45faf7e": {
+  "partially": [],
+  "reason": "None explicitly explains why the listed pre-use multimeter checks are performed or what failure they prevent.",
+  "states": []
+ },
+ "1953bd1b613c938774a360c5f24761642caed8f078874ee8e0537868809ce757": {
+  "partially": [
+   3,
+   5
+  ],
+  "reason": "Sentence 3 identifies costly record gaps; 5 identifies unverifiable backfilling. Neither explicitly explains why recording at the point of work prevents these failures.",
+  "states": []
+ },
+ "1d83a5161ba777ae3f1d18055b360f2da5220f2043badde1c4902dd37c733023": {
+  "partially": [],
+  "reason": "No sentence explains why non-causal tags should be excluded from trends or identifies the memory, processing, or diagnostic consequences.",
+  "states": []
+ },
+ "1ef5f4cda957fcf36066aaed41818deecba5a0ad36793ea2cd799eee37e61648": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why the pre-use checks are performed or identifies a failure they prevent.",
+  "states": []
+ },
+ "20ad96ef38c9bef62ddd6af76e7f86fa13628e1aa06ef417254d31c961cafc24": {
+  "partially": [],
+  "reason": "None of the sentences states that wrapping the index prevents out-of-bounds array writes.",
+  "states": []
+ },
+ "2442d35ec5ff14d193536c0f9fa4c4e0af7915575e711abfdc03cd41a7d58064": {
+  "partially": [
+   4
+  ],
+  "reason": "Sentence 4 interprets a timeout, but none specifies expected results or result-dependent next steps for the proposed PLC input testing.",
+  "states": []
+ },
+ "2444b7b79d5e8b8c85a5351b3a2e0142f59f84a835687e8bfe49730aa2a4a19a": {
+  "partially": [
+   5,
+   6
+  ],
+  "reason": "Sentences 5\u20136 specify expected correct input state and logic usage, but neither interprets test outcomes nor links them to next actions.",
+  "states": []
+ },
+ "245d763557ee2984f5f16318b081d8f9b8baad89885b8bcb5991dd3285f06f29": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly states the purpose: identifying when a repair has not resolved the underlying issue.",
+  "states": [
+   1
+  ]
+ },
+ "28352bcae6272a9ad6ced80fdc6e306f22b24628c7a9ed36b5a5068bb288a3ca": {
+  "partially": [
+   6,
+   8
+  ],
+  "reason": "Sentence 6 lists possible test findings; sentence 8 describes fault-pattern distinctions. Neither explicitly specifies expected trend-test results and their interpretation or next action.",
+  "states": []
+ },
+ "2c3b79d08798d2b13845f5e51a0f38838e794e81090b748a8d000751e01bd2bf": {
+  "partially": [],
+  "reason": "Sentence 3 identifies missed fast events; sentences 6 and 7 explain that oversampling slower inputs adds duplicate values, not detail.",
+  "states": [
+   3,
+   6,
+   7
+  ]
+ },
+ "2f78d09505ace37b8266ba1339d8e3a660ab3d6894fb456d102bfe2a71966ae0": {
+  "partially": [
+   5
+  ],
+  "reason": "Sentences 1\u20133 explicitly identify preventing ground loops or circuit noise; 5 links ground loops to intermittent faults without connecting them to one-end grounding.",
+  "states": [
+   1,
+   2,
+   3
+  ]
+ },
+ "2f84a93ebeabca73bf48523ea6a73ecfca4d7d3ee6cb8d04fa8794339daaa8ca": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why reusable PLC capture blocks are needed or what failure they prevent.",
+  "states": []
+ },
+ "32f23885847c8d151fca14408d6f9e8ecb4212d90de6b931caa5b738cddbb941": {
+  "partially": [
+   6
+  ],
+  "reason": "Sentence 6 interprets a timeout, but none specifies an expected PLC input test result and its meaning or consequent action.",
+  "states": []
+ },
+ "3359543296572fa2412bb7a94b8c8d53185976271ae2277219a429152c03a70e": {
+  "partially": [],
+  "reason": "None specifies an expected outcome of the input-signal integrity test or explains what a test result means or what action follows.",
+  "states": []
+ },
+ "34559350a55ff51c612ae4e4ba189e263b832de12179092432a6f94349adacf3": {
+  "partially": [],
+  "reason": "No sentence explains why packet capture should begin with the failing connection and time window rather than indiscriminate collection.",
+  "states": []
+ },
+ "3472a71c1a4a262565cf5eca70191ac8cc54c9170da897a83c9d7c8539a38d75": {
+  "partially": [],
+  "reason": "Slow sampling misses brief spikes; sampling faster than the input updates duplicates values without adding detail.",
+  "states": [
+   1,
+   4,
+   5
+  ]
+ },
+ "3770eca743fd064236f9b2ba189b1b70f21f3f7dd0145d9cc01982d59a981702": {
+  "partially": [
+   5
+  ],
+  "reason": "Sentence 5 links loose or oxidized connections to jitter, but no sentence gives an observable sign distinguishing the full group from other causes.",
+  "states": []
+ },
+ "38c1565dbf01bea128cbc3cf2de58b3f469d56b77a7748ee08c22f0a6754fdc4": {
+  "partially": [
+   9,
+   10
+  ],
+  "reason": "Sentences 9 and 10 list retention-setting considerations, but none explicitly explains the purpose or failure prevented by retaining records for 5\u20137 years.",
+  "states": []
+ },
+ "39ec5fc8a62b0b494c4be10ffd402bd48759480368e7a188bae5590ecf3a9ec5": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why common terminal voltage should be checked first or what failure or misdiagnosis this prevents.",
+  "states": []
+ },
+ "3ba06d471808c930f572c85573b366b14b38fe8457e1e68172a5902c6c880309": {
+  "partially": [],
+  "reason": "None explains why maintenance details should be recorded at the point of work rather than reconstructed from memory later.",
+  "states": []
+ },
+ "3bb96841d148ad5d55111f3d3f05dffc87b3d62ced247c1e1561fedcd6bce44b": {
+  "partially": [
+   5
+  ],
+  "reason": "Sentence 4 links repeated normal-operation captures to false data; sentence 5 reports a capture result without explicitly interpreting it or prescribing action.",
+  "states": [
+   4
+  ]
+ },
+ "3bcddea91a903475367d28d5118c31bdfae401f223ce99f467966d1f6a015e46": {
+  "partially": [],
+  "reason": "No sentence explains why cable shields are grounded at one end or identifies ground loops and resulting logic-circuit noise.",
+  "states": []
+ },
+ "3c0bbf9442f1870e312d951b744bdc11336a2204f3dc3ab92e2ef4ac37c3eea1": {
+  "partially": [],
+  "reason": "Sentences 1\u20132 identify ground-loop prevention; sentence 3 explains the resulting noise in sensitive logic circuits.",
+  "states": [
+   1,
+   2,
+   3
+  ]
+ },
+ "3c8c714548403befd63199b9c118c822c59637767fc72d0b6675c844968fc3e4": {
+  "partially": [],
+  "reason": "Sentence 3 states that an entry made at the asset is more useful than one reconstructed from memory later.",
+  "states": [
+   3
+  ]
+ },
+ "3d02073ceaf259c30569ee46b7ebd20229dbc1c96473f6db56c8e846d7cc5f0b": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why a multimeter needs the proper range and function or what failure those settings prevent.",
+  "states": []
+ },
+ "3d15639cd19461979102af6f6261b19747d33aeee7e7b7144db65cdb5c18e629": {
+  "partially": [],
+  "reason": "The network analysis sentences list checks but provide no expected results, result interpretations, or follow-up actions. Other sentences address unrelated tests.",
+  "states": []
+ },
+ "3f5565c29dac0e1ee3131cf95341a250fbb8494dc8869b2069afa0b9887a6e71": {
+  "partially": [
+   7,
+   8
+  ],
+  "reason": "Sentences 7 and 8 call for expected behavior and result interpretation but provide no actual expected outcome or consequence for this test.",
+  "states": []
+ },
+ "407f3bb3411ac649ada5643782bcd12df9bf3c6745ab921bda0d340e286a7ea8": {
+  "partially": [
+   1,
+   3
+  ],
+  "reason": "Sentence 2 interprets recurring issues as unresolved problems; 1 and 3 identify expected findings without explaining their implications or next steps.",
+  "states": [
+   2
+  ]
+ },
+ "41580b194fdfc2b11a13dc79e6e02c09ca967e8f1e730ac8e7eb0ee103b4f81a": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 links inconclusive diagnostics to collecting targeted traffic, but does not state an expected result for the trend-tag test.",
+  "states": []
+ },
+ "43069903397d620d3d6ff7c22d3c07406288d247f669e3495c9edefaab2dd1df": {
+  "partially": [
+   3,
+   5,
+   7
+  ],
+  "reason": "Sentence 6 predicts repeated captures during normal operation and labels them false data; 3, 5, and 7 provide goals or observations without explicit interpretation.",
+  "states": [
+   6
+  ]
+ },
+ "4377fe4b7e87d9fb99e9ce0734379f34956fe87ef609ac40160a1b7009813790": {
+  "partially": [],
+  "reason": "None of the sentences explains why formal asset hierarchy identifiers are used or how they prevent incorrect report aggregation.",
+  "states": []
+ },
+ "458f13a196f70f63c20498f33e38d63c47f687467b2f9f1ccc8295bbfba39dce": {
+  "partially": [
+   8
+  ],
+  "reason": "Sentence 8 states the expected verification outcome but gives no interpretation of other results or result-dependent next action.",
+  "states": []
+ },
+ "463afbf12fe4c9716ff90f6dd240a1454240e4e356758a819a86b4eb2afbd666": {
+  "partially": [],
+  "reason": "No sentence explains why WALLCLOCKTIME GSV access must be restricted to one task or protected with UID/UIE.",
+  "states": []
+ },
+ "4666f3e84c149e23ff13cf5ae576157122436ff4acde44962e22f8ccbecdeefb": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 5 links several successful cycles to declaring resolution; sentence 2 specifies complete symptom resolution but no interpretation or next action.",
+  "states": [
+   5
+  ]
+ },
+ "46bb13f44d1b7c1f5f20339f38b876a3607dcbfb3c762069b374c60f9e8c252a": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why common terminal voltage should be checked first when multiple inputs fail simultaneously.",
+  "states": []
+ },
+ "479214cce2690feca7c773865ad17c2d570444f9cecdffc4a0ea1336dccca7aa": {
+  "partially": [],
+  "reason": "No sentence explains why the proper range and function are necessary or identifies a failure this prevents.",
+  "states": []
+ },
+ "48144996d1ac6050de553640b4dc254a430fbb238f89084a3b76c0bace5da9ef": {
+  "partially": [],
+  "reason": "Excluding these tags avoids wasted memory and processing, adds no diagnostic value, and keeps the readout easier to interpret.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "48ecb172ec6e4453afd9733eb6f5fd9240ded4550a8c08d404b41780aed5982b": {
+  "partially": [
+   8
+  ],
+  "reason": "Sentence 8 names evidence-based diagnostic categories but does not specify the conditions for choosing each category.",
+  "states": []
+ },
+ "496728e521a10e4db870fe3c5721dfdce9a9a89bc5405b0399640332a5394d59": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 3 predicts a beep regardless of fault and explains why; sentence 1 mentions false positives without specifying the expected indication.",
+  "states": [
+   3
+  ]
+ },
+ "49844807e4d347c5e5a6799c9a5fcceef7865bf73fe42ccb01f691479d2c48eb": {
+  "partially": [],
+  "reason": "Sentences 1 and 3 explicitly explain that supply voltage can cause false positive continuity results by overwhelming the meter\u2019s test current.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "4b217ab0a0f38edcc558660b961f86f1a9fb6a9c71a34cb94e7c3ee8dcb2142a": {
+  "partially": [
+   1,
+   3,
+   4,
+   5
+  ],
+  "reason": "These explain fault-capture purpose or trigger-selection failures, not why a kit should include reusable PLC blocks.",
+  "states": []
+ },
+ "4b3f3d9078886c6d57cdcc8592605c111c2b8d47236d3fccf610f9b8b312f23f": {
+  "partially": [],
+  "reason": "No sentence states an expected load-coil resistance, interprets a resistance reading, or specifies a next action based on that reading.",
+  "states": []
+ },
+ "4b92c0df049139d7c9a33e0bada2dccdb25e26aaf76fc61465e5e7744e046649": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 1 links a 0 VDC terminal reading to output-side faults, but does not interpret the input common-terminal voltage test.",
+  "states": []
+ },
+ "4d54617b4fb2e59ac4150f214477781862bc0cfaf95dba74826bdd248f4c3bb9": {
+  "partially": [
+   1,
+   3
+  ],
+  "reason": "Sentences 1 and 3 describe shorted-coil consequences but do not specify expected resistance readings or how to interpret measured resistance.",
+  "states": []
+ },
+ "4dc7d141863baf91a74edeb89f17e14451976ebf689821225db445a5c1780d59": {
+  "partially": [
+   8
+  ],
+  "reason": "Sentences 1\u20132 prescribe isolation for complex systems; 8 gives a conditional diagnosis but does not explicitly say which option to choose.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "4f0d805fc9ca9cfa7d6e603d3d1ae0067108247aae5faa4873bbd7a752f45dc6": {
+  "partially": [],
+  "reason": "No sentence explains why continuity testing requires a de-energized, verified-safe circuit or identifies the failure this precaution prevents.",
+  "states": []
+ },
+ "5396e83477ee70fa7619e952532effbf8b93682b0c1f130be18773c762de7328": {
+  "partially": [],
+  "reason": "No sentence explicitly gives a reason or identifies a failure prevented by the specified pre-use multimeter checks.",
+  "states": []
+ },
+ "544cd5b116820218047eec983f7a3cde8b5bde30c0305ceb77ecf36dbf78bf3c": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 links symptoms to power-quality degradation, but no sentence specifies expected capture-test results or result-dependent next actions.",
+  "states": []
+ },
+ "55da8c7aef74ddbd1643a65d2b7626be9ad04af7dc08028b3ab4ec78a25a4b82": {
+  "partially": [
+   4
+  ],
+  "reason": "Sentence 4 links inconclusive diagnostics to targeted capture; 11\u201312 prescribe reporting expectations but provide no actual expected results or interpretations.",
+  "states": []
+ },
+ "571d73593ca13c76aa26250b2c7ec8fdccac9e6b4c770d1cccd660199e211a3d": {
+  "partially": [],
+  "reason": "No sentence explicitly states an expected result, interpretation, or next action for verifying intermittent-fault repairs under previously failure-correlated conditions.",
+  "states": []
+ },
+ "58cde1bd0308585d84e8242fdcfe3d14233b921d6b09c3a7d29a3332ed9e460b": {
+  "partially": [],
+  "reason": "No sentence identifies an observable sign distinguishing ground loops or multiprocessor interface interactions from the other listed causes.",
+  "states": []
+ },
+ "591321671873dc75aca98d83da0bf183e09d4a26f790ca704ce8e597be44d76e": {
+  "partially": [
+   3,
+   10
+  ],
+  "reason": "Sentences 3 and 10 interpret symptoms or trends, but neither specifies expected results or follow-up actions for the PLC capture kit.",
+  "states": []
+ },
+ "5a23e0000d5bcf3b1fa0b1e51610f6de85b1409da780e38731e369c5846e83f5": {
+  "partially": [],
+  "reason": "Sentence 1 identifies false positives from supply voltage; sentence 3 explains that supply voltage swamps the meter\u2019s test current, causing misleading beeps.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "5b418376399eaa672debf22935343f0b9953a9fb66b9bb51934358baae043a1f": {
+  "partially": [
+   4,
+   7
+  ],
+  "reason": "Sentences 4 and 7 interpret diagnostic observations, but neither specifies expected log-review results, their meaning, or resulting actions.",
+  "states": []
+ },
+ "5c1b78f9fc33c7043e7eea0c9f798d25f5bfd5d678577d57e6381fd0f0f91ac6": {
+  "partially": [
+   1,
+   3
+  ],
+  "reason": "Sentence 11 links observed fault timing to power-quality issues; sentences 1 and 3 specify expected capture and retention behavior without interpreting outcomes.",
+  "states": [
+   11
+  ]
+ },
+ "5d46a23766258efac8df9f0a56334676554d3d32de2d1486cce0686eb909597c": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 2 explicitly links ground loops to intermittent faults; sentence 3 identifies them as unwanted interactions without stating a resulting failure.",
+  "states": [
+   2
+  ]
+ },
+ "5de27e83bf78e769a20d47a6c8fcc2386637ea54b54bd943b30ee3ba2c8a5b3f": {
+  "partially": [],
+  "reason": "No sentence specifies an expected event-buffer test result, explains its meaning, or identifies a next action based on that result.",
+  "states": []
+ },
+ "5f260654750ebe7d3843dec34069ed584bb79103212c1322a5cf58e62b02092e": {
+  "partially": [
+   5,
+   6,
+   8
+  ],
+  "reason": "Sentences 4 and 7 link resistance readings to diagnoses; 5 and 8 state readings only, while 6 states only a possible conclusion.",
+  "states": [
+   4,
+   7
+  ]
+ },
+ "60e4dcaadf2fe6ab3158887d5c7128c3bb870909bd2335bf5cc40cf5b7437451": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 4 identifies conditions that could trigger the same fault; sentence 2 gives the broader aim of confirming complete symptom resolution.",
+  "states": [
+   4
+  ]
+ },
+ "61eed38260ae652ad53cdbc0642c31c2f39252b951650979bbdf9e3fff4e8223": {
+  "partially": [],
+  "reason": "No sentence explains why common terminal voltage should be checked first or what failure or diagnostic error this prevents.",
+  "states": []
+ },
+ "61f4b3940f321afcd0ecf8446f5da54d423968999a06be59cd66dbe4d2e8bac3": {
+  "partially": [],
+  "reason": "None states expected results, their meaning, or follow-up actions for testing progressively isolated sections of a PLC system.",
+  "states": []
+ },
+ "64af8f299df50d23aeca5814eacc0ed463233c89179155c2d34086445ea65ba0": {
+  "partially": [],
+  "reason": "No sentence specifies expected raw-versus-conditioned trend results, their diagnostic meaning, or a next action based on those results.",
+  "states": []
+ },
+ "652d6b59a1285d26897af32be899e1acb2b1dc5eec7e5dcfcb15f0026430a10f": {
+  "partially": [],
+  "reason": "No sentence explicitly states an expected repair-verification result, its meaning, or a next action based on that result.",
+  "states": []
+ },
+ "6639ca7ef7b6b54195d6a8dcc8a696da761ffe436613af8e9d03a34234470c05": {
+  "partially": [],
+  "reason": "No sentence explains why packet capture should begin with the failing connection and time window rather than indiscriminate collection.",
+  "states": []
+ },
+ "675dfcd5c1e5b4dd84a9985ab4100a34e558fa0517e2060ddaf2ebd08e4f5cb8": {
+  "partially": [
+   3,
+   5,
+   7
+  ],
+  "reason": "Sentence 6 links captures during normal operation to false data; 3, 5 and 7 describe intended or observed outcomes without explicit result interpretation.",
+  "states": [
+   6
+  ]
+ },
+ "6787ce18bb9d54040793962d68af753ecd1aa48f08f19f77ceabb852a77fe964": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why sampling should match the suspected event or what failure this prevents.",
+  "states": []
+ },
+ "692518ad98355393d139593c8a864bc412f28447bcb89158623f16e01328bf1f": {
+  "partially": [],
+  "reason": "Sentences 1 and 3 explicitly state the failure prevented: a shorted coil will destroy the replacement card.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "6b37f8901a11f1bf185c0dfc7c38a7dee38c19bceabefbbdaac4e31522953488": {
+  "partially": [],
+  "reason": "No sentence specifies expected network-analysis results, explains their meaning, or links them to next actions.",
+  "states": []
+ },
+ "6b4536cde30fdd5032071c63906fa663d27bbb732f984fbae6c486cbbd7bea2c": {
+  "partially": [],
+  "reason": "No sentence explains why the multimeter needs the proper range and function or states what failure this prevents.",
+  "states": []
+ },
+ "6c45b9e7d43e0f0a42a09f5a41711e6b3ababfbe1ec459ded6b4a31a6f2fa363": {
+  "partially": [
+   6
+  ],
+  "reason": "Sentence 6 gives a related rationale\u2014identifying unresolved underlying issues\u2014but none explicitly explains why unrepaired defects should be recorded as open next actions.",
+  "states": []
+ },
+ "6f8d20ef385fd15f82a59c647264c0386286f42768aca5fd76e536ed10a785b7": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why the proper range and function must be selected or what failure this prevents.",
+  "states": []
+ },
+ "72f0ff3cf9e62f78fa91841480d603820a8e3e81bb8cfd27cc442e2cabe65414": {
+  "partially": [],
+  "reason": "None states expected results of connection-focused packet capture or explains what those results mean or which action follows.",
+  "states": []
+ },
+ "745b22a4cce550595ac22d80d88f9b28eeb78669b7f6e8b0b50425a235e6c65d": {
+  "partially": [],
+  "reason": "Sentences 1 and 3 explain that the capture must discover the actual cause, rather than presuppose which input is responsible.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "75b3236a6d02d742366b14018c43505e9db8b728377af2df3d9258f198ebe3da": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why masking a power problem with software delays is harmful or what failure avoiding it prevents.",
+  "states": []
+ },
+ "75c91eb6310555dbb32a3d046831d0ba16d138916364a291cfbf2fd3cdf9ffaf": {
+  "partially": [],
+  "reason": "No sentence specifies an expected repair-verification result, explains what such a result means, or identifies a resulting next action.",
+  "states": []
+ },
+ "772dc89f2ed9e9db086e22f4c6d10cdc674f96ba543490e6baba5b396b834cca": {
+  "partially": [],
+  "reason": "Both sentences explicitly state that wrapping keeps the index within array bounds during writes.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "78109bf60c70b21f220dcb33a24de00b126982e5893677031ee680f43ce2471c": {
+  "partially": [],
+  "reason": "No sentence specifies an expected common-terminal voltage or interprets its measured value; sentence 6 addresses output-terminal voltage instead.",
+  "states": []
+ },
+ "783fedc7e2e61ec44aed0fbee43ced67281cfbb14c1460b6e079cb04b5193880": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 links ground loops to logic-circuit noise, but does not establish a distinguishing sign for the combined causes.",
+  "states": []
+ },
+ "7a8d0060e36367443785fec481e732f436611712a54ae2aa7c13a0ff39c66ceb": {
+  "partially": [
+   8
+  ],
+  "reason": "Sentences 1, 4, 6, and 7 explain aggregation or correct asset linkage; 8 gives an operational-key benefit without addressing identification by name.",
+  "states": [
+   1,
+   4,
+   6,
+   7
+  ]
+ },
+ "7d916897fa04f3abb70ee9d65cf051e45a91f7e1b1d77a307963431177c3d3c4": {
+  "partially": [
+   2,
+   6,
+   12,
+   13
+  ],
+  "reason": "Boundary conditions can retrigger faults; stress tests reveal defects. Other sentences describe verification goals or condition-dependent faults without explicitly explaining the prescribed checks.",
+  "states": [
+   4,
+   8,
+   9
+  ]
+ },
+ "7e1e5df573efdda778f05d4b6ca9738e317a5d03ad9b3e5a09506b398f9b7c0d": {
+  "partially": [],
+  "reason": "None explains why full-cycle or boundary-condition testing is needed to verify a fix, or identifies a failure such verification prevents.",
+  "states": []
+ },
+ "7ee51d34dcde3b5825fdc7746c462c8531e369b72fee5392f9ea228178e707c0": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 3 predicts a beep and explains its unreliability; sentence 1 mentions false positives without specifying an observable result.",
+  "states": [
+   3
+  ]
+ },
+ "8396e4aeeb77bd6830500755dc43055a628577abdada0af931161acda1551a1a": {
+  "partially": [],
+  "reason": "None specifies an expected network-analysis result, explains what that result means, or identifies a resulting next action.",
+  "states": []
+ },
+ "85d3372cc58841aa838715a27db91aed2d207e0cf08b59617557b9c922ce47a2": {
+  "partially": [
+   6
+  ],
+  "reason": "Sentence 6 identifies missed events as a consequence of improper triggering, but does not say to trigger on the trip rather than suspected inputs.",
+  "states": []
+ },
+ "85db46a09a0773596a5d48807fd8b00b6e9cb54e9a0f5a6c9c824f779f47ebcf": {
+  "partially": [
+   1,
+   3
+  ],
+  "reason": "Sentence 1 explains timestamping for measurement; sentence 3 explains reset-cause diagnostics. Neither explains preserving the first-out fault until authorized reset.",
+  "states": []
+ },
+ "88a07c384c97722caa57361a0f39621facf83c3b62ed683a1e6681a9cf313960": {
+  "partially": [
+   1,
+   2,
+   3
+  ],
+  "reason": "Sentences 1\u20132 identify a selection basis; 3 identifies an unsuitable tool for spikes. None explicitly specifies which sampling option to choose under which condition.",
+  "states": []
+ },
+ "890a9a40869ced35d4719fb4a8a720b189d84b6b10c55199f50aff22f1b61c2a": {
+  "partially": [],
+  "reason": "None of the sentences explains why WALLCLOCKTIME GSV access should be limited to one task or protected by UID/UIE.",
+  "states": []
+ },
+ "8977356908d3c8804b154873e3ecc5dc6e5c6ef1a8a6c0ad1bfca4ede2a7f0d3": {
+  "partially": [],
+  "reason": "No sentence explicitly states an observable sign distinguishing connector, soldering, or wire crimping issues from other causes.",
+  "states": []
+ },
+ "8da3d78db716472753129078e88a47b6c8d5974209c104de7fcf219a07061a31": {
+  "partially": [
+   6
+  ],
+  "reason": "Sentence 6 links signal selection to better troubleshooting, but none explains excluding noncausal tags to avoid wasted memory or processing.",
+  "states": []
+ },
+ "8ddb1f714ea3cdc4c1ecbe6d1b45cd6daec2d127dc1a7f42d2099b4c2fcc2feb": {
+  "partially": [
+   9,
+   10,
+   15
+  ],
+  "reason": "Sentences 9\u201310 link unrepaired findings to recording actions; 15 gives a verification criterion. None provides both expected test results and result-specific interpretation.",
+  "states": []
+ },
+ "8fd25e7ac78a5464888f81441a998c391f4b04249542464b5f2cb05889c98146": {
+  "partially": [],
+  "reason": "None states an expected result for monitoring 24 VDC near the affected load, what that result means, or a result-dependent next action.",
+  "states": []
+ },
+ "90dbe3d2ffdd3f78da6c525fd9a68aee85ee753274461848d2cb700f21cbe183": {
+  "partially": [
+   4
+  ],
+  "reason": "Sentence 4 makes targeted capture conditional on inconclusive diagnostics, but does not explicitly explain why indiscriminate capture should be avoided.",
+  "states": []
+ },
+ "92e7b97b25c3e8ccf24456857c9ddc701a86da9b4fd98b8facc0489d53a61894": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why WALLCLOCKTIME GSV access must be limited to one task or protected by a UID/UIE pair.",
+  "states": []
+ },
+ "939cfe2991c3f3707900fb1e3c9483fac4deb6192abdb358f46dbeb3b78e3a40": {
+  "partially": [],
+  "reason": "No sentence identifies an observable sign distinguishing connector, soldering, or crimping problems from other causes.",
+  "states": []
+ },
+ "947df9fe4b79de983eba2f05d48e853d4843b058e9782aa08385296e52f8c204": {
+  "partially": [],
+  "reason": "No sentence explains why maintenance records should be retained or what failure retention prevents.",
+  "states": []
+ },
+ "94c7a6afd452ee9a7139ba9befcbfeb7cb6fa9b8373b39bbc46c695faa95f660": {
+  "partially": [],
+  "reason": "Sentence 2 explains that secondary alarms can appear milliseconds after the initiating condition, motivating preservation of the first event.",
+  "states": [
+   2
+  ]
+ },
+ "959f84615abdd08f5db52ea0a27c7947fd34f8ae67d696bef533a86d69c92bcb": {
+  "partially": [
+   4
+  ],
+  "reason": "Sentences 1 and 2 prescribe isolation for complex systems; 4 identifies a diagnostic condition but does not specify an action to choose.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "96448b2f31e10a0d292bc68f20dc80d5fa4be6e805415661f0748af16c60a0d4": {
+  "partially": [
+   7,
+   8
+  ],
+  "reason": "Sentences 7 and 8 identify nonlegal retention factors, but do not explicitly explain retention\u2019s purpose or the failure it prevents.",
+  "states": []
+ },
+ "97121470116601fac285bf69d122ab0a413a873df92b068f1c36276b1a14cd1f": {
+  "partially": [],
+  "reason": "None specifies an expected continuity-test result, explains what a result means, or identifies a next action based on that result.",
+  "states": []
+ },
+ "973c4ad455cf80c634326f1116d7e23794ee2438f2d15ff44189aa0b155361a2": {
+  "partially": [
+   5,
+   10,
+   12,
+   13
+  ],
+  "reason": "Sentence 5 gives a general expectation; 10, 12, and 13 require expectations and interpretations but supply no specific outcomes, meanings, or next actions.",
+  "states": []
+ },
+ "97d9f16fa2d0a6364b8bcc902d0874b4b29ebbba1c6559a96b5063f49f479139": {
+  "partially": [
+   1,
+   3
+  ],
+  "reason": "Sentences 1 and 3 specify expected capture and retention, but neither explains what test outcomes mean or what actions follow.",
+  "states": []
+ },
+ "982044cd8b386187f60bf7bb3a808796a730154b02101a5a9a6644698b637250": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 1 links low resistance to a shorted coil, but none states that checking prevents destruction of the replacement card.",
+  "states": []
+ },
+ "982d2fd751af854617c544e6779b7713b3f56514c75bf022fb46c2f9b7ebdf10": {
+  "partially": [
+   8
+  ],
+  "reason": "Sentence 8 describes electrical-noise failures, but does not explicitly connect them to avoiding software delays that mask unresolved power problems.",
+  "states": []
+ },
+ "9922727eef1a159bf85b6890d70c7ad0e240b5213a6dfb899e78e70421d644c4": {
+  "partially": [
+   1,
+   10
+  ],
+  "reason": "Sentence 1 gives a testing priority; sentence 10 names evidence-based categories. Neither explicitly maps particular conditions to corresponding choices.",
+  "states": []
+ },
+ "9b8f5cb2fe0a57bd3e10b08d6bb6bc13aba4b3cfb56f23fa921554dedd4474bc": {
+  "partially": [
+   3,
+   5,
+   7
+  ],
+  "reason": "Sentence 6 links a capture outcome to false data; 3 and 5 state its aim, while 7 reports an outcome without interpretation.",
+  "states": [
+   6
+  ]
+ },
+ "9c4a84938f07add8a34781d5a62440b426a8911c6fb16c8f49e28cb275ab91de": {
+  "partially": [],
+  "reason": "None of the sentences explains why maintenance records should be retained or what failure retaining them prevents.",
+  "states": []
+ },
+ "9fd55eafffb67019b700ba2867d53cf537fe9ca1ab85594c4adace0bc6610a19": {
+  "partially": [
+   1,
+   7,
+   8
+  ],
+  "reason": "Stress and thermal testing reveal wiring and soldering issues; condition-dependent faults suggest why varied-condition verification matters, without explicitly stating that rationale.",
+  "states": [
+   3,
+   4
+  ]
+ },
+ "_meta": {
+  "api": "https://api.openai.com/v1/chat/completions",
+  "max_completion_tokens": 6000,
+  "model": "gpt-6.1-sol",
+  "price_usd_per_mtok": [
+   2.0,
+   10.0
+  ],
+  "reasoning_effort": "high",
+  "response_format": "json_object",
+  "temperature": "not sent"
+ },
+ "a18d5842a73ea0f98c9f0de38fa8db6911e617c79bec0c619b37279c0d523f35": {
+  "partially": [],
+  "reason": "Sentence 4 explicitly states that checking logs after repairs helps catch early signs of recurring problems.",
+  "states": [
+   4
+  ]
+ },
+ "a44d6d37c2edfe1b137db971b05564011a70bbaae6eb9c694d6822ebb4d11e7d": {
+  "partially": [
+   1,
+   4
+  ],
+  "reason": "Sentence 1 identifies the review outcome; sentence 4 specifies a completeness target. Neither explains what results mean or what action follows.",
+  "states": []
+ },
+ "a46bfd0054a0b8f0cab13e39dcd7a52128dea84ef82acab97ff4168e223bf173": {
+  "partially": [],
+  "reason": "No sentence states expected results from separately trending raw and conditioned signals, interprets those results, or specifies a resulting next action.",
+  "states": []
+ },
+ "a4e1782d26327de33c680a2495921683222a72d76cc4a1844abbeace2e16ddc1": {
+  "partially": [],
+  "reason": "No sentence explicitly describes expected results of separately trending raw and conditioned signals or explains their interpretation or resulting next action.",
+  "states": []
+ },
+ "a580ecac261d5bc52dd276152d0ca9ab6398da9c6cdb4ab44395d393c08c83a0": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentence 5 links successful cycles to declaring resolution. Sentence 1 gives a prerequisite without an outcome; sentence 2 gives an outcome without its implication.",
+  "states": [
+   5
+  ]
+ },
+ "a5a5bdaaf86e10b859cd34d0de2da8578f2fee75be58294f88c13d14c9f471a1": {
+  "partially": [],
+  "reason": "Sentences 1 and 4 explicitly state that formal asset hierarchy identifiers are used so reports aggregate correctly.",
+  "states": [
+   1,
+   4
+  ]
+ },
+ "a7e4dfaaefdba66de2aa79d4e93cf55ec5b2ef8ef312d0155fd16a4c3e74e102": {
+  "partially": [
+   5
+  ],
+  "reason": "Sentence 5 describes restoring operation without finding the root cause, but does not link this failure to analyzing recurring faults in maintenance logs.",
+  "states": []
+ },
+ "a87f03e3a430943a5745701cf835f03edce028e24bb0a200c99bfa2b1153498a": {
+  "partially": [
+   7,
+   8
+  ],
+  "reason": "Sentences 7 and 8 mention identifying root causes, but none explains why capture should trigger on the trip rather than a suspected input.",
+  "states": []
+ },
+ "aa24708ae3f8cdd590130ca644d2c672586439e9a3f1e2c52bd7986e5a2eb593": {
+  "partially": [],
+  "reason": "No sentence states an expected event-buffer test result, interprets a captured result, or specifies a next action based on that result.",
+  "states": []
+ },
+ "acbfa762eaf810f91d7702fbee44dadbd1bcff48e51a9656dfd04adca35f11e1": {
+  "partially": [
+   2,
+   6,
+   7
+  ],
+  "reason": "3 and 4 explicitly specify expected behavior and result interpretations; 2, 6, and 7 provide only specifications, diagnostic implications, or expected behavior.",
+  "states": [
+   3,
+   4
+  ]
+ },
+ "accbfd324cba7df421ac67ca95d4c28c4481375e1cb3d368eaf85838227eec4f": {
+  "partially": [],
+  "reason": "No sentence explains why continuity testing requires de-energized circuits or how supply voltage can cause false positive results.",
+  "states": []
+ },
+ "acd22b92393e153226463e0bfd41e8eef8edd4f11b21769a9c166fa9421df617": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why technicians should plan measurements, expected readings, conclusions, and next checks before using a multimeter.",
+  "states": []
+ },
+ "ad76af79cb48e7e81eb18adc83ac5335eb061411aaf2536ae44031e9dc3a5b38": {
+  "partially": [],
+  "reason": "A shorted coil will destroy the replacement card, explaining why coil resistance must be checked before replacement.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "aeab22c18f97af447962e3834ff63973fe7aa19e6851b6637be8bc2c8fb1bc73": {
+  "partially": [],
+  "reason": "Both explain that the capture must discover the actual cause, rather than assume which input is responsible.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "af02245ff5db67240d142660689fe431db6331fef71c6934a67541307a9b37d6": {
+  "partially": [
+   3,
+   4,
+   8
+  ],
+  "reason": "These interpret diagnostic findings, but none specifies expected results or implications for testing first-out timestamp capture and retention until authorized reset.",
+  "states": []
+ },
+ "b2ad26e053a22d02e7f766fe4ef5cb274b699adb8d94bdbc5cfa82fecd69f733": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 1 links ground loops to circuit noise, but does not distinguish the combined cause from other causes or describe processor-interaction signs.",
+  "states": []
+ },
+ "b7cd67f61e37f10412864d792bbf7f6a7745b5f5ad63635eb4bc0478e8d1e6c3": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 links loose or oxidized connections to jitter and false states, but does not distinguish the full group from other causes.",
+  "states": []
+ },
+ "ba2e7b76d3e8e9c75204e35873942269a31c5d81cf2176bf737f4dbab38abc97": {
+  "partially": [],
+  "reason": "Sentence 4 links inconclusive diagnostics to targeted traffic collection; sentence 7 describes expected reflection differences and explains their significance.",
+  "states": [
+   4,
+   7
+  ]
+ },
+ "bde22b0bea32ba6597126aa7cb673032f05d386a6d9db6bf398bb38791997032": {
+  "partially": [],
+  "reason": "None of the sentences explains why continuity testing requires a de-energized, verified-safe circuit or identifies a failure this prevents.",
+  "states": []
+ },
+ "bee9c0b80febaa0158cd3d78b1ae8bdd67bb30f2d53e7b060d89ef1f91ec6d9b": {
+  "partially": [],
+  "reason": "No sentence specifies an expected load-side voltage monitoring result, its diagnostic meaning, or a follow-up action based on that result.",
+  "states": []
+ },
+ "bf55741fb747193ae01b1508247696c9c117557d7d9f9885afe9fde22ba0bb43": {
+  "partially": [
+   1,
+   8
+  ],
+  "reason": "Sentence 1 identifies an unsuitable tool for a specific event; 8 gives a classification criterion. Neither explicitly maps conditions to choices.",
+  "states": []
+ },
+ "bf5605f5714ced0f411c527f3dc4e565a79fa9c7690e3fda52cab1630bd5006b": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 specifies testing followed by progressive narrowing, but gives no expected results or outcome-dependent interpretations or next actions.",
+  "states": []
+ },
+ "c100fc75b92dbb47e088df55e632b476a53deabe18ca562434f6395b78aea6d3": {
+  "partially": [],
+  "reason": "Sentences 1 and 3 explicitly cite wasted memory and processing, lack of diagnostic value, and a harder-to-read display.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "c23b2c89ca32615f648b63b8536719f9aa5d3b7c028dd34402c6142c4a301ce8": {
+  "partially": [
+   4
+  ],
+  "reason": "2 and 3 explicitly explain correct asset linkage; 4 gives an operational-key benefit. None explicitly mentions hierarchy-based report aggregation.",
+  "states": [
+   2,
+   3
+  ]
+ },
+ "c2a3bef87186b5426249bb5eb0303901ce807994a684fd503479b4ffd8100106": {
+  "partially": [],
+  "reason": "No sentence specifies an expected PLC input test result, interprets a particular result, or identifies a result-dependent next action.",
+  "states": []
+ },
+ "c2c6b66779e1bb33956df8851d703be4e07aeeb643f0e1bad0eb7051a2c9511a": {
+  "partially": [],
+  "reason": "No sentence specifies an expected raw-versus-conditioned trend result or explains its diagnostic meaning or resulting next action.",
+  "states": []
+ },
+ "c57276478d0b2ea64c5fbad31b229d3f2a3a0189eb4e3d7e3635fbaf17abab0b": {
+  "partially": [],
+  "reason": "None specifies an expected PLC input test result, explains a particular outcome, or links that outcome to a next diagnostic action.",
+  "states": []
+ },
+ "c5e0b892a4ed4b57b07fe1008de2a75188f7df46cc9937bda4c653490083370e": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 identifies diagnostic information, but none specifies expected sectional-test outcomes or links particular results to conclusions or next actions.",
+  "states": []
+ },
+ "c64bed2bd8fa296027e65a92628e68d0a0f2c4e87223469f4c5e648665c2e687": {
+  "partially": [],
+  "reason": "No sentence explicitly states an expected repair-verification result, explains its meaning, or specifies a next action based on that result.",
+  "states": []
+ },
+ "c77e593201832f4807c33cdbeee84955bfa117fbc114b0b487c89ebc878db688": {
+  "partially": [],
+  "reason": "No sentence states expected results, interpretations, or next actions for testing first-out fault timestamp capture and retention until authorized reset.",
+  "states": []
+ },
+ "c944165323b1f3f0a166a97d649dba356ca3a8497f3415a2d3393bb5b5b0508d": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why WALLCLOCKTIME GSV access should be restricted or protected, or identifies the failure this prevents.",
+  "states": []
+ },
+ "ca4f33ff721c759f12c7b28dabed89d763feb10995de84c0e37b7b4439e82203": {
+  "partially": [
+   9
+  ],
+  "reason": "Sentence 9 explains purposeful diagnostic selection and avoiding random replacements, but does not explicitly connect that rationale to planning multimeter measurements.",
+  "states": []
+ },
+ "cabc42c0007a844c62cb881a02d7c66c01b30ef4f25d1dcc486fde522c3ad508": {
+  "partially": [],
+  "reason": "No sentence identifies an observable sign distinguishing ground loops or multiprocessor interface interactions from other causes.",
+  "states": []
+ },
+ "cb95220cb74393816f67d6b0bbb81ad51ce27fd985e6e0e5a6f2512a1a3859d4": {
+  "partially": [],
+  "reason": "Sentence 2 explains why the first event should be preserved: secondary alarms can appear milliseconds after the initiating condition.",
+  "states": [
+   2
+  ]
+ },
+ "cbf3ff0f45da437b857721c50a65aa4181e1da4987a6232460befb2ae180c4b9": {
+  "partially": [],
+  "reason": "No sentence explains why 24 VDC should be monitored near the affected load rather than only at the power supply terminals.",
+  "states": []
+ },
+ "cd0c786f7b796ffee03f44fd532718b4b1496491c25d12cb5a2e2abc349c4fdd": {
+  "partially": [],
+  "reason": "None explains why an unrepaired defect should remain an open action rather than be recorded as resolved.",
+  "states": []
+ },
+ "cf40ab1b8e212fe6bb3ac952ff5809081c45c52ba84db9a27a0a6b452b3922a6": {
+  "partially": [],
+  "reason": "None explicitly explains why the timestamped first-out fault must be preserved; sentence 4 describes a logging-and-latching procedure, not its rationale.",
+  "states": []
+ },
+ "cf82ba2cafc732f756a2ac5c87d2393303c9d25145382ff4e8be3d32a0676619": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly says entries made at the asset are more useful than entries reconstructed from memory later.",
+  "states": [
+   3
+  ]
+ },
+ "d2d329978cb9769b4cbd97d8d114ea1f697d4266d420c6736b99767c1df0120b": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 2 identifies log-review findings and interprets them as unresolved problems; sentence 1 lists findings without explaining their meaning or next steps.",
+  "states": [
+   2
+  ]
+ },
+ "d4543da17d2cece1481c724abe65948e78f766dc4b3b798501923d653a6b894c": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 interprets a 0 VDC reading, but does not explicitly identify it as the common-terminal voltage test.",
+  "states": []
+ },
+ "d52c618c0af7c0c6cdc2325367343d228ea4870cc559b4554ea1dd6e239dbc5a": {
+  "partially": [],
+  "reason": "Sentences 1\u20133 prescribe how to record the finding but do not explain why or identify a resulting failure this prevents.",
+  "states": []
+ },
+ "d731e75c908b9593db7fcbab6808819d23c936d804230b160c56a20f9183a3c4": {
+  "partially": [],
+  "reason": "None explains why increasing software delays should be avoided or what failure masking an unresolved electrical problem could cause.",
+  "states": []
+ },
+ "d855e6ff990bfb5954fbfca653baa8e4d74e5e8760473a0aefd53752487e6e6f": {
+  "partially": [],
+  "reason": "Sentences 1, 3, and 4 identify false positive continuity results caused by supply voltage on energized circuits.",
+  "states": [
+   1,
+   3,
+   4
+  ]
+ },
+ "d98ea4dae0fad4fee3655c9adf040165ae0a42f70b9a31811cf34c25a244309b": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly states the purpose: to investigate power and grounding issues.",
+  "states": [
+   1
+  ]
+ },
+ "dadae3300d400a2ff0db0c37d455c86208f1dd4516aac754057c5f5f4cd39ce5": {
+  "partially": [],
+  "reason": "Sentence 7 explicitly gives the rationale: confirm or eliminate possible causes instead of replacing components at random.",
+  "states": [
+   7
+  ]
+ },
+ "dd2f592cd7e9315d44ddafaf2d3d72b86373f5096324d6e39b34d34e38f13ca0": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why masking a power problem with software delays should be avoided or what failure this prevents.",
+  "states": []
+ },
+ "dd60b4bea2198d4a56f36c0458a6644ce614541ec79a0212960da0030ffc0b01": {
+  "partially": [
+   4
+  ],
+  "reason": "Sentence 4 identifies the risk of missing disruptive events, but does not explicitly link reusable PLC capture blocks to preventing that failure.",
+  "states": []
+ },
+ "de70bb68010bd36b42f4d7e1ebe5655b491ba2c9a10faf6b66eb6a5b92fe14f1": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 1 explicitly identifies unresolved underlying issues; 7 states recurrence detection as a purpose; 3 suggests a different response without explaining the failure prevented.",
+  "states": [
+   1,
+   7
+  ]
+ },
+ "decdc1feb7205f9bb9d023a73731079daebc042d84b7b938797408f45376b076": {
+  "partially": [
+   2,
+   3,
+   5
+  ],
+  "reason": "Sentences 1 and 4 link resistance readings to coil faults; 2 and 5 provide readings only, while 3 provides only a conclusion.",
+  "states": [
+   1,
+   4
+  ]
+ },
+ "df6f055f9dc0d4b3c9067d3e47792c173735cfd7bb9e78bffd79651af0bee629": {
+  "partially": [],
+  "reason": "No sentence explains why the pre-use multimeter checks are performed or what failure they prevent; sentences 1\u20132 only list the checks.",
+  "states": []
+ },
+ "e11356e210bcc5da38c2762059b0e537e778da70212a94ebbc76b19db16e4a8b": {
+  "partially": [],
+  "reason": "Both explicitly state that wrapping keeps the index within array bounds during writes, preventing out-of-bounds writes.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "e2394535fd684cd891a3530aa30c3095853803f6c5e4accf3d3a81182d57dbc0": {
+  "partially": [
+   4
+  ],
+  "reason": "Sentence 4 links a 0 VDC output-terminal reading to follow-up checks, but does not address the shared input-common voltage test.",
+  "states": []
+ },
+ "e33e561fb58ec4453e625345d51b23ec0e913dd3e767e795f35508e023599d33": {
+  "partially": [
+   9,
+   13,
+   14
+  ],
+  "reason": "10 and 11 explicitly specify expected behavior and result interpretation; 9, 13, and 14 provide expected observations without clearly mapping outcomes to conclusions or actions.",
+  "states": [
+   10,
+   11
+  ]
+ },
+ "e51f352c1d8ca856d3d6a335d2d4e4d6c1303830ffb24d67a2063d6154df3f9f": {
+  "partially": [],
+  "reason": "None states an expected continuity-test result, its meaning, or a resulting action; the voltage measurements concern a different test.",
+  "states": []
+ },
+ "e7a8dfca64d195a2d3c81eefa89a532944a624601a121113a908433a3151bde8": {
+  "partially": [],
+  "reason": "Sentences 1\u20133 explicitly link load-side voltage readings to fault interpretations or follow-up checks; the others do not describe outcomes of this voltage test.",
+  "states": [
+   1,
+   2,
+   3
+  ]
+ },
+ "e8175028e11ddff7915366691a41f4ddb225e1d8e4ea49d8e687f76be2943cf7": {
+  "partially": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "reason": "These explain capture\u2019s purpose or failures from incorrect triggering, but not why the kit should include reusable PLC blocks.",
+  "states": []
+ },
+ "e8ad4169917d4b09eebd2cfbcd69821b476d2472e65be78721409db424af1a88": {
+  "partially": [
+   1,
+   3,
+   5
+  ],
+  "reason": "Sentence 4 predicts normal-operation captures and identifies them as false data. Sentences 1 and 3 give intended findings; 5 reports an outcome without interpretation.",
+  "states": [
+   4
+  ]
+ },
+ "e8cc232a2f6b10624833a5b6ad7931037abded7cab07b691b43d732643356b00": {
+  "partially": [],
+  "reason": "These explicitly identify the prevented failure: false-positive continuity results caused by supply voltage on an energized circuit.",
+  "states": [
+   3,
+   5,
+   6
+  ]
+ },
+ "e99698370d3381015030cb11b5713ff4fb0ee44059b2fb3809b188ec8ec89921": {
+  "partially": [],
+  "reason": "None explains why simultaneous input failures warrant checking common terminal voltage before suspecting individual card channels.",
+  "states": []
+ },
+ "edec67a7d4808957dcfac1809793170123a8ba1e93c3d4d77217cac88d63e829": {
+  "partially": [],
+  "reason": "No sentence explains that wrapping the index prevents out-of-bounds array writes.",
+  "states": []
+ },
+ "ef2094fabaf56a1ec13f4f8ecac3aa5c66df80d6379d78e85c1b5f08e6970680": {
+  "partially": [
+   1,
+   3,
+   5
+  ],
+  "reason": "Sentence 4 predicts normal-operation freezes and labels the data false; 1, 3, and 5 provide goals or outcomes without explicit result interpretation.",
+  "states": [
+   4
+  ]
+ },
+ "f00db5671f91416bf137d924797c293a94deb412acb8371c8557748fc255a059": {
+  "partially": [],
+  "reason": "No sentence explains that checking load coil resistance prevents a shorted coil from destroying the replacement output card.",
+  "states": []
+ },
+ "f02ff9cf0123d7f3e0a513de260ba79f0a325320820c0ddf242f16f71fb09681": {
+  "partially": [],
+  "reason": "These sentences explicitly link voltage readings to fault interpretations or follow-up checks. Sentence 6 describes a different test.",
+  "states": [
+   3,
+   4,
+   5
+  ]
+ },
+ "fc31fd99b0498e8717166c3593194200849b21dde81b2d7421b1e2d929e151fa": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 explains identifying unresolved underlying issues, but not why an unrepaired finding should remain open rather than be recorded as resolved.",
+  "states": []
+ },
+ "fceb4cbc6821d50a4c9758bb51ea07c99185dccb18cd1363c947293cd69fe9c5": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 specifies verification followed by further narrowing, but gives no expected section-test result or result-dependent interpretation or action.",
+  "states": []
+ },
+ "fd5c6fa7c1980d9df96b7b40ee0a96923fe9b3a955795a49167311ad8d6fb197": {
+  "partially": [],
+  "reason": "No sentence states expected network-analysis results, explains what those results mean, or specifies an action based on them.",
+  "states": []
+ },
+ "ffa0087b58a49e438cd652d2d810bc4918dbb6238361dc8989d4a7d19d6271e8": {
+  "partially": [
+   5
+  ],
+  "reason": "Sentence 5 identifies diagnostic findings but gives no expected full-cycle or boundary-test result, interpretation, or next action.",
+  "states": []
+ }
+}

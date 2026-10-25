@@ -1,0 +1,1200 @@
+{
+ "006bd7110a2b4e50ffdde636f28142970b6bb33c1f55a85bb381f994d9d9ca2e": {
+  "partially": [],
+  "reason": "prevents simultaneous changes",
+  "states": []
+ },
+ "00d863f1223b6940bb47f1852de98cd2637f010ce66ca4bb5173a6577e1bbb94": {
+  "partially": [],
+  "reason": "No sentence explicitly states an expected result, its meaning, or the next action.",
+  "states": []
+ },
+ "0130496bc3f0a20bc302c11ac9797dee5c6a1c9eceea045c32e6e53241782770": {
+  "partially": [],
+  "reason": "Prevents misdiagnosis of individual card channels.",
+  "states": []
+ },
+ "01abb5f1a92423b2188ac23f7d93a53dca5eed72e97fbe5c2e4214e861d9eedc": {
+  "partially": [],
+  "reason": "to prevent failure in accurate measurement",
+  "states": []
+ },
+ "05e0f8c65855ef6553b0e3311862be467bc4b444b6efc5115ccb4399af8b98ab": {
+  "partially": [],
+  "reason": "Saves time and resources",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "06fbd3da9ed66eac8304f231a33ae716079bfa581c741899e45298fb45f259dc": {
+  "partially": [],
+  "reason": "a shorted coil will destroy the replacement card",
+  "states": []
+ },
+ "09f790a36e844db4c07b6bc7b77475815a365edbf8d25efa5d349fc944b66e11": {
+  "partially": [],
+  "reason": "Prevents failure due to environmental conditions.",
+  "states": []
+ },
+ "0bf3f2c2a0964cc933e4bea4a778e5a2bebc34c822514db0e084f052996b7251": {
+  "partially": [
+   3,
+   4,
+   5
+  ],
+  "reason": "Sentences 3, 4, and 5 provide conditions for choosing sampling intervals, but do not explicitly state a decision rule for situations.",
+  "states": []
+ },
+ "0e9d509332bdec273a990aae5e9f54d017ea66cf766f67f1df40a4e5e69d2fba": {
+  "partially": [],
+  "reason": "3",
+  "states": []
+ },
+ "0f9829a6d3c1be4a5423530710503a9ab0529343887fd5fc13cb394aeaa419ad": {
+  "partially": [
+   2,
+   4,
+   6,
+   7
+  ],
+  "reason": "Indicate actions or results but not explicitly.",
+  "states": []
+ },
+ "0ffd1e69ea0b8b5b4ae519d5328f5b7a6dc84bf80bf8eddc27c4ae9d9514d129": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "107f5a114d8eb0c3b8de89a06eddd020f42f3aa772fe517decf34f60c21d8d94": {
+  "partially": [],
+  "reason": "None of the sentences explicitly state an expected result of the test, what a given result means, or which next action it leads to.",
+  "states": []
+ },
+ "1198b3751825635319c3b227ac6f56cf0a7991828d5a0c063cac2c58b171caeb": {
+  "partially": [
+   1,
+   5
+  ],
+  "reason": "Sentences 1 and 5 describe the process but not the expected result or consequence of the test.",
+  "states": []
+ },
+ "128fb93f75d3446b9730917f3573f68e506e72a8723cf2bf76666244058501b3": {
+  "partially": [
+   5,
+   6
+  ],
+  "reason": "Loose terminals and oxidized connections create jitter that a PLC processor might interpret as a false state.",
+  "states": []
+ },
+ "139d2c6084639db9e89993a5f18998f443f463d3afeed82bcfad63ae2db20a80": {
+  "partially": [],
+  "reason": "prevents simultaneous changes from obscuring fault resolution",
+  "states": []
+ },
+ "170627bc798411303e881510eb8477eeeaf45190b121bbc58052fa3a84785e61": {
+  "partially": [],
+  "reason": "Ensures service records connect to the correct asset over time.",
+  "states": [
+   3
+  ]
+ },
+ "18676488c3dbe0cd832cb701ae317d6dcaea54100ec428547d20689eda6e8fd2": {
+  "partially": [],
+  "reason": "prevents index out of bounds error",
+  "states": []
+ },
+ "18dd502286d475a6aefc9b57506966ea0c2b2bfeb66746b7668a42cdc77ef5b6": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "19c9a69d4484bc048c3b3495bfc42d57a7ecefabd2ac727ad02bc5d5ecfe99dd": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "1ad7a1a873f2cedb9d356861df369666f9d0787c79f05823e149e41220b63628": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "1b880d3539618c5096f056b967f9427f0588349ff56070d4d47fba975a046116": {
+  "partially": [],
+  "reason": "To avoid confusion when multiple changes are made.",
+  "states": [
+   1
+  ]
+ },
+ "1ddde4ac26c31afe17e1bd1de7e5d2d9840174ab2e17b84d39578a5c5a332472": {
+  "partially": [],
+  "reason": "Sentences 1 and 3 explicitly state the expected result of capturing the first-out fault with a timestamp and not overwriting it until authorized reset.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "1fc4f616b26fdc62510dbc6c24235c00c03c688eed7c7a98047b08c6fae45dd5": {
+  "partially": [],
+  "reason": "Sentence 10 explicitly states what to verify, why it matters, expected normal behavior, and what results suggest for yes or no.",
+  "states": [
+   10
+  ]
+ },
+ "200f6a3b6ded0a786de0de15c6a3354457618dd7ab3a84a0505af0c04624d2e2": {
+  "partially": [],
+  "reason": "Prevents loss of diagnostic information",
+  "states": []
+ },
+ "21a66450902a08b7c9b1666f067bbc2da46935a566c36c4ddaa5ff0844f19861": {
+  "partially": [],
+  "reason": "to prevent false positive results from supply voltage",
+  "states": []
+ },
+ "22e203e412d3a067ed2fd8359300ca1bc0ff7f6ac5909db9f5d07b85f2df2ce7": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "2396ced78d204b7c65f934380a1a50f59f06c5b466d1ecd0910fabc9a58d05bb": {
+  "partially": [],
+  "reason": "No sentence explicitly states expected test results, their meaning, or next actions.",
+  "states": []
+ },
+ "24b9caf37a62c789534a5482ee00c5230e0088e01ef00961c46b25f0ca463e91": {
+  "partially": [],
+  "reason": "Prevents incorrect readings and ensures systematic troubleshooting.",
+  "states": []
+ },
+ "28931351b6d7daa3d885057cce449fef15e56e07f4482f262fb8ddee8cfac714": {
+  "partially": [],
+  "reason": "prevents out-of-bounds errors",
+  "states": []
+ },
+ "2a42802606a5e84519b54c7dffda480ccc13a1f81bde961f416a8083bf1cd750": {
+  "partially": [],
+  "reason": "prevents unnecessary data storage",
+  "states": []
+ },
+ "2a455e51eaee27f23803450bc980df0d916e361f09b2a29332fe09be85fe51e7": {
+  "partially": [],
+  "reason": "8",
+  "states": []
+ },
+ "2b7f42ad4a18f5e230b295bdbd013c7578be2b8256f6d4121590d398f6ad4933": {
+  "partially": [],
+  "reason": "identifies masked problems",
+  "states": []
+ },
+ "2b8df7c5e7aa239a78172752e41948ef11257d6f3f6eedf459bcd85c163bbcd1": {
+  "partially": [],
+  "reason": "Testing ensures the fix is comprehensive and not just a temporary solution.",
+  "states": []
+ },
+ "2c1ecb1215a66b0b675ba02e71d9af18877fcaa34f28e2932f63818ef26ea48d": {
+  "partially": [
+   3,
+   4,
+   6,
+   7
+  ],
+  "reason": "Sentences 3, 4, 6, and 7 imply the expected result of continuity testing on de-energized circuits but do not explicitly state it.",
+  "states": []
+ },
+ "2c52bc71281305f19544aad98639dcfc3edbbc097cf3ee28d190b698219c9c98": {
+  "partially": [],
+  "reason": "none",
+  "states": []
+ },
+ "2e1d6070e6cdcf9d5a3034c35f1b51e38b039dd53cb87e1f113d7e496bdba454": {
+  "partially": [],
+  "reason": "Sentences 3 and 4 describe the expected result and the next action if a specific condition is met.",
+  "states": [
+   3,
+   4
+  ]
+ },
+ "2f101d353fc6b72c4396bf123de99eaacd9a924e6b8335263c05482f4d055c36": {
+  "partially": [],
+  "reason": "4",
+  "states": []
+ },
+ "30631553e974ce29f792d9635fc41fb684c3e4ae75368e323f68f39f5338a7f3": {
+  "partially": [
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "reason": "Some sentences imply next actions but do not explicitly state them.",
+  "states": []
+ },
+ "31cdb79d829c5e8376664a890fa228d834502e9eaaa3fe6b534291a8be77cdea": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "32c2906652904e4f07f3e9fe3fdefb303d7f9e7629e63a555b52daf7ceaf7c2a": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "35b178befeba39184b58292b55b1c4d9b84b409548004c57639773657cacb397": {
+  "partially": [],
+  "reason": "None of the sentences explicitly state an expected test result, its meaning, or the next action it leads to.",
+  "states": []
+ },
+ "36a0b6097fa9f3a758a4a758ccf7386f5bc2f925446781f31d70014cebc2c869": {
+  "reason": [
+   1,
+   4
+  ]
+ },
+ "37b8f06aff4b5ad3e6aefb8bd0b268838fa8db9a6cd7c1d6afdf974ca8ab239f": {
+  "partially": [],
+  "reason": "Ensures accurate measurements to prevent equipment failure and safety hazards.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "388fe3918abdb70df0da9ec50cdfca620c8df0172ac0214ac2bd70c9381ed51c": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meaning, or next actions.",
+  "states": []
+ },
+ "39274705b081c45f5e7477e64f4063c43e155ed32ce7fe3eb00fef4d1c131435": {
+  "partially": [],
+  "reason": "Prevents capturing false causes.",
+  "states": [
+   1,
+   2,
+   3
+  ]
+ },
+ "398f683119a4149e7c7a2d249e175f05d532a36188a6325238158f137d5ab808": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meaning, or next actions.",
+  "states": []
+ },
+ "3c4a16ade0d080c01ee5fd948125f47db600c26a3a9c958de75d4dfb7c5f52eb": {
+  "partially": [],
+  "reason": "Preserves the initial fault for accurate troubleshooting.",
+  "states": []
+ },
+ "3d3a174cb73854f1495fb80fc388e0585d6e99bf9ff4b63b7c7b58b6bb39704c": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "3d3e2945a92f9048cba8b2a9db95c822a68de29a069cf9647c5cb53ee2633c24": {
+  "partially": [],
+  "reason": "Ensures accurate measurements and prevents equipment damage.",
+  "states": []
+ },
+ "3e6cae15e2b1af89eaaa85c631416ad0e556e20553b0549c9aea63bbba54e3ef": {
+  "partially": [],
+  "reason": "Prevents premature diagnosis of individual card channels.",
+  "states": []
+ },
+ "3ef03c20af3437ea357d116ded12a2c83a0f17ed7378b56e61717d44c3a60cfd": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly states the expected result and the next action.",
+  "states": [
+   3
+  ]
+ },
+ "42497d49a8803285caf0ced266afed899165b5410292aee21450b05fa77263e7": {
+  "partially": [],
+  "reason": "to ensure traceability and accountability in product lifecycle",
+  "states": []
+ },
+ "4295f0a635da14fdb1b8ffa6b0a54aa1e39b900cf83741dad166eec1dcc4de33": {
+  "partially": [],
+  "reason": "to investigate power and grounding issues",
+  "states": []
+ },
+ "449f0cec423c6fdd542ef00a5c4c7549107118eb4cf8758bc502e986c71daa4e": {
+  "partially": [],
+  "reason": "waste memory and processing without adding diagnostic value",
+  "states": []
+ },
+ "47a1e52b7e5d616cfafbedd530e91febe1551c147f84cd1264fd34e8cd672593": {
+  "partially": [],
+  "reason": "If the fault disappears, nobody knows which action mattered.",
+  "states": []
+ },
+ "4ad6624dd4e802c8039215e695f032a042e369b11be61ecd9bfbdb0a379614ed": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected results, their meaning, or next actions.",
+  "states": []
+ },
+ "4be873c524ec699526a6a17963ce9dcf961d67ad70ab6db4b6c34e9217e10abd": {
+  "partially": [],
+  "reason": "prevents failure to detect intermittent issues",
+  "states": []
+ },
+ "4c1b8d54562a64f830721773e6a2e620d137cb9024decca85b8b8dbee569a23d": {
+  "partially": [],
+  "reason": "Sentence 4 indicates the next action after identifying the failing connection and time window, which is to collect targeted traffic if needed.",
+  "states": [
+   4
+  ]
+ },
+ "4ca51977da8fec56c51cabf655f87ccd0bc3944dcbf5fafeb42cc687bddf5715": {
+  "partially": [],
+  "reason": "Prevents missing underlying issues in repairs.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "4dde06862e4f056cb288a1653a2ac2180a03a064f9389d66806fc7ab12dae236": {
+  "partially": [],
+  "reason": "wasting memory and processing",
+  "states": []
+ },
+ "5001a7b0aab3c0c2a7eb0ca8b7d38adbab924edc72d60b1d0273495e38d80248": {
+  "partially": [],
+  "reason": "to prevent destruction of the replacement card",
+  "states": []
+ },
+ "5219f18d0cda6349c35a7ceef346534023af1bd04177c9da312174816fecbf91": {
+  "partially": [],
+  "reason": "to avoid false positive results from the supply voltage",
+  "states": []
+ },
+ "5326708ed881d2a93af9314a96562a5ede4f40007f571f90a8bacd23c568bfc8": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state conditions for choosing testing order.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "536d5bcae8dbf16afbe1fda534362dd75e1e56a8fb4ce42ecd6230148a0d429f": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 explicitly mentions ground loops, which can be observed.",
+  "states": []
+ },
+ "545d5330d24c0f7d766aac7a16dc9bfc558ccb22bcb7de869f3dcac28b3a9de3": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "5672173fe90c7b6b6ca6bf238cd8c69842dbf73ae210521fb15d7456efaf2a40": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "58b1be01ed7a962015c7012da63b8b5ce2be1e81c74d6df8e109bddac04d6cc4": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected results, their meaning, or next actions.",
+  "states": []
+ },
+ "59d1a4687951800d178715c657ef41506401f9bceb5335b2e43fa9797111800f": {
+  "partially": [],
+  "reason": "to avoid false positive results from the supply voltage",
+  "states": []
+ },
+ "5cffb598040cf4c8c18b17e330557b1fef38b6b4c3a5444da6eacc25d2026722": {
+  "partially": [],
+  "reason": "4: Making simultaneous changes to multiple parts prevents determining which action resolved the fault.",
+  "states": []
+ },
+ "5d8f6ee485b5a66ed4e2dd0bbc498ff7a40a0f7cc8167c4e7b1986d38df53288": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected results, given results, or next actions.",
+  "states": []
+ },
+ "5dd8956d51f3b614422678b5d37d94a4ae782c0471d960e9ac44738253aaf8c8": {
+  "partially": [],
+  "reason": "to prevent loss of memory and ensure consistent product quality",
+  "states": []
+ },
+ "5ec809788210dc96afe8712c31983d2c264c68a2f58f2d9fac0a957fef4fc4df": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "608cd84b5c91d937f03b0151484ef3ceb71db34d3897d8a69ff9e292d1cb92b4": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 indicates what result to expect (processor reset registers indicating reset cause) and what the result means (diagnostic information for fault source).",
+  "states": []
+ },
+ "60f9d91c346dee815027dc25249c42734684409258d8d034f5ec7d1378303105": {
+  "partially": [
+   3,
+   7,
+   8
+  ],
+  "reason": "Sentences 3, 7, and 8 partially address expected results and next actions, but do not explicitly state them.",
+  "states": []
+ },
+ "6361de7324d8da20b0b4b455c3d7408838927b336ea6fc8557ff30cf0bd87af8": {
+  "partially": [],
+  "reason": "Extreme electrical noise can corrupt CPU memory or cause checksum errors.",
+  "states": []
+ },
+ "65569a793fa0e4d73e806496fcf8e914a0b37febb9ae523700ece20369d93c6d": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 describes a scenario where a specific result (0 VDC) indicates a potential issue, leading to further investigation.",
+  "states": []
+ },
+ "67b741ce49474e6f087b50b3df07112e77c8b59ba05b940c63b77392f8ffb71c": {
+  "partially": [
+   4,
+   5
+  ],
+  "reason": "Sentences 4 and 5 describe a quality audit process but do not explicitly state the result or its meaning or next action.",
+  "states": []
+ },
+ "6806471af7dd29f40a5bb0360d662e919da568c5284794135b9343443173928e": {
+  "partially": [],
+  "reason": "to prevent hardware faults affected by end environment conditions",
+  "states": []
+ },
+ "6ba44a37daf06f1c415a686e84e4eddfd928758fdd614b3b002cd1ea90b74889": {
+  "partially": [
+   4,
+   5
+  ],
+  "reason": "Sentence 4 implies a result for spreadsheet logs. Sentences 5 partially state a result for maintenance logs.",
+  "states": []
+ },
+ "72c6ed5ecceb31355d7ab940ee0e6012008e4963ef617db5fa8e4efbccb69196": {
+  "partially": [],
+  "reason": "Explicitly state expected results and next actions.",
+  "states": [
+   4,
+   11,
+   12
+  ]
+ },
+ "7592d5c6eca3148a46bbf81fb48102d32321952398f4ce200a6b96ca2b00f911": {
+  "partially": [],
+  "reason": "No sentence directly states a condition for choosing sampling rate based on the suspected event.",
+  "states": []
+ },
+ "76176e8bd1b2fe2aa8de86c4afa6382551d246bbb853897ce84ef08ccbc1e869": {
+  "partially": [],
+  "reason": "To identify system-wide issues before isolating components.",
+  "states": []
+ },
+ "76eba7e0d8e0eae763b3106fa71fb8edf1fa32121ca49927d088bf480ed8d707": {
+  "partially": [
+   1,
+   2,
+   4,
+   5
+  ],
+  "reason": "Phantom faults and data loggers' views are observable signs.",
+  "states": []
+ },
+ "7a665cdf15842c9179843ec6eadb8bf4ed2af0eaf94125eb29a3be00a330d672": {
+  "partially": [],
+  "reason": "to find the actual cause",
+  "states": []
+ },
+ "7ace9cf5cb3d27cacbd36703895180fbffb796bb6c8dd97080a57fb9749be194": {
+  "partially": [],
+  "reason": "Sentence 4 explicitly outlines the elements of what to verify, why it matters, expected behavior, and next actions for yes or no results.",
+  "states": [
+   4
+  ]
+ },
+ "7b385cf706225ce68acaed270d8cb10c8d5fbe4ae35a9e08a0d34e2e3f683d78": {
+  "partially": [],
+  "reason": "to prevent misdiagnosis and ensure proper troubleshooting",
+  "states": []
+ },
+ "7b995087d19088ddd14c1383d8f0bbc9dc12ff88dfaebd192283825206f370b4": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "7d9ec241c1632464928f7066bb4e990ec8bc0aaff0dfd8c7fd5805aa772977cf": {
+  "partially": [],
+  "reason": "prevents false state interpretation",
+  "states": []
+ },
+ "7f2872fc2f77bf2895818baf88a8b3037d19c02a57494175985f428ff3a44aec": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 partially distinguish by mentioning ground loops and processor interactions, but not uniquely.",
+  "states": []
+ },
+ "81c8510d8519d672eb3d263b2e5cbbffbffb4c1129584a1b0261e5fe5f17a7d5": {
+  "partially": [],
+  "reason": "Indicates the result of the test and the next action to take if the coil is shorted or failed.",
+  "states": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ]
+ },
+ "82d4e5a958ef9a6b93bc251c3b54a4aa0ce1596b687ee6880c61d01d196f7e9b": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "840670b743fbae273f335299c3b24c0a19d903e76a158aaf64ec95fc64740a62": {
+  "partially": [
+   3,
+   5,
+   6,
+   7
+  ],
+  "reason": "Suspect input, trip event trigger, false data, and actual cause not identified.",
+  "states": []
+ },
+ "867968212e6ce0cfae79886a7a6bc90b46596f9eddd720ed93867220e821788f": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meaning, or next actions.",
+  "states": []
+ },
+ "877336edfef24093dc17c0edf592f8226f9c3fcf72b718f786d8670d836ecd65": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "885f400ce4f9d6c1a0518c8376ff588d72723aae9aa3f388fad8f2943846085c": {
+  "partially": [],
+  "reason": "Waste memory and processing, make read-out harder.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "89057039a2a810bc0849b2f358aab04780502a946018cf9b2b706467cc6fd85e": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meaning, or next actions.",
+  "states": []
+ },
+ "89317f9d249cd24514fa0dfb30713c0ae84c29b991a8c3a26eeac74f58c91318": {
+  "partially": [],
+  "reason": "To find the actual cause of the fault.",
+  "states": [
+   1
+  ]
+ },
+ "89f8c7a9036833ee22d49da4cd4be41242267247679eb61be319cd449396c008": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state conditions for choosing testing order.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "8a515591038cfbfb0e809149c3895f85b111943cd32b4dfd6ae63e3be6048000": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected results, their meaning, or next actions.",
+  "states": []
+ },
+ "8a88ab906864ea62203f84a1f2a1e3215117d0489980c0894101fa6f4932f9ed": {
+  "partially": [],
+  "reason": "Divide the system into testable sections, verify each section independently, then progressively narrow toward the specific failed component.",
+  "states": [
+   8
+  ]
+ },
+ "8add375a90389f0eabaf3f1cc75155d19e18c061170ca066bca304955a839dde": {
+  "partially": [],
+  "reason": "3",
+  "states": []
+ },
+ "8b05376220dad2b14301803ee12eed3b846ae2fa27951c0c7256fb7952e71b20": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meaning, or next actions.",
+  "states": []
+ },
+ "8b6ca680148dab0ad105c98d47c16de33b20a36e22d16b69caa7340f1566e2bc": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 describes the outcome and actions for alarm notifications.",
+  "states": []
+ },
+ "8cb0da39790c96c93856f757ebf8462994854ce48fcb197f8d04f2acee033f3f": {
+  "partially": [],
+  "reason": "prevents destruction of replacement card",
+  "states": []
+ },
+ "8d08b3963c31078d5c2a1b72cc639d706dffa1ab7cf99ad350059628491b6965": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly states the expected result and the next action.",
+  "states": [
+   3
+  ]
+ },
+ "8da1f719f493fde1b9d66f57d0b9c85a9a7eb80d19bd60dec54fdada95c73264": {
+  "partially": [],
+  "reason": "Prevents failure due to power and grounding issues",
+  "states": [
+   1
+  ]
+ },
+ "8dff088bc9be84b7306a29309580294acb6958be3fdc5659f4b7e0acdbd55f8f": {
+  "partially": [],
+  "reason": "2,3",
+  "states": []
+ },
+ "8f8b5cfc8b87f000156565fec5a770a341056f2e2b3d94987c858269b4efe870": {
+  "partially": [
+   1,
+   2,
+   7
+  ],
+  "reason": "Sentences 1, 2, and 7 describe conditions for choosing testable sections, but not specifically for sampling rate.",
+  "states": []
+ },
+ "8fec8772b9bf005b7f4f14f006829f535c85ef5720a39a3ec79cfc6e2b890173": {
+  "partially": [
+   3,
+   4,
+   5
+  ],
+  "reason": "Sentences 3, 4, and 5 describe results and next actions for continuity tests.",
+  "states": []
+ },
+ "92696e57582e1129fb5e06300a7d51ec56793461b4aa855cc883092971f27a91": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 describe conditions to check but do not explicitly state expected results or next actions based on those checks.",
+  "states": []
+ },
+ "93a316cce8e03c3f0e43e2bfb511b2e6a75a95e6bed37d3d7a7a3f26b9cbb0f4": {
+  "partially": [],
+  "reason": "prevents damage to equipment",
+  "states": []
+ },
+ "94fadd06d7dc3e8e97612e44fa4d73cf1416b6a87a6f7b951f72dd446279e3d1": {
+  "partially": [
+   4
+  ],
+  "reason": "Conclusions are classified based on evidence.",
+  "states": []
+ },
+ "951e2cf714353c28eb0f6948800cd4f6291da48a91977539b33dea01f0f71eae": {
+  "partially": [
+   8,
+   9
+  ],
+  "reason": "States expected results or next actions for defects, but not for input signal integrity testing.",
+  "states": []
+ },
+ "98fc388d1a6bf056c2ece6c8e20471f1c37e2bd4bf38289a95cb0760d4d0ca40": {
+  "partially": [],
+  "reason": "explains why the test matters",
+  "states": [
+   7,
+   8
+  ]
+ },
+ "9e9d2ddc0411ab636b0f0dee24bdb26c9d7eb50e282480b0b62922d9350e016c": {
+  "partially": [],
+  "reason": "Verifies the fix resolves the original symptom completely.",
+  "states": [
+   8
+  ]
+ },
+ "9ec8e53bb7e94c2a721674c72e348676a6832d123498e27daccfab72b1bea9e9": {
+  "partially": [],
+  "reason": "to investigate power and grounding issues",
+  "states": []
+ },
+ "9ee73fba2e1ccc528be71c796bda79712cbc61f4e958aee2bb6f71727622a1fa": {
+  "partially": [],
+  "reason": "to reveal wiring and soldering issues",
+  "states": []
+ },
+ "9fbb051f74bd1914bcf82857f200bc6ead3a393160b629b20b7ef185248b60a9": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected results, their meaning, or next actions.",
+  "states": []
+ },
+ "a232f85cce3634cf05e3ba45b2bcf6af5802dcb2125921a828d11859aa95a1b5": {
+  "partially": [],
+  "reason": "to prevent misdiagnosis of hardware failure as power quality issue",
+  "states": []
+ },
+ "a2b246a72d55be0b0dd5b623b56117a2a46e89f63c8e27fbbf2dd50c9597ae40": {
+  "partially": [],
+  "reason": "Prevents false data from normal operation.",
+  "states": [
+   1,
+   3,
+   4,
+   5
+  ]
+ },
+ "a2b6940c29921e50b7df0dfdee2de43160749fd5d090c762fdf51a3362004876": {
+  "partially": [
+   1,
+   2,
+   3
+  ],
+  "reason": "Sentences 1, 2, and 3 describe the process but not the expected result or its meaning.",
+  "states": []
+ },
+ "a3a12beebe7a8baf5843ec58f4fa1777283b2b6b7e79484eb580a8eb78eecfff": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "a4058f22793b7ae3b46263fe7481dfe22680699eb19e3ff2897ac5bf64d4df75": {
+  "partially": [],
+  "reason": "identifies when a repair has not resolved the underlying issue",
+  "states": []
+ },
+ "a6ddc3caa49be8b6a41da5c00c6d7083c3d4bd2ee0f4b87d8dba97d9e6040f7d": {
+  "partially": [],
+  "reason": "Sentence 1 directly states the result of the test and the consequence of a shorted coil.",
+  "states": [
+   1
+  ]
+ },
+ "a7e86bd32e843a4713212dad2c8da0a3a20878860c6592cb48341adaf5ac534d": {
+  "partially": [
+   1,
+   2,
+   3
+  ],
+  "reason": "Sentences 1, 2, and 3 describe the process but not the expected result or its meaning.",
+  "states": []
+ },
+ "aa5a15350ebd457648b371369933b0a389d0e4a4dff46ef1efe39d4fea947038": {
+  "partially": [],
+  "reason": "swamped by the supply",
+  "states": []
+ },
+ "aa950b3dea461a4641bd082e096672f2a3e92153ac0de1e25ecc009f92041531": {
+  "partially": [],
+  "reason": "to ensure correct aggregation in reports",
+  "states": []
+ },
+ "aa95225d31fd44ead7c30672048ab06f1afeb6d43bcc13eafab1580a003e707f": {
+  "partially": [],
+  "reason": "none",
+  "states": []
+ },
+ "ad445293110d22ca2eda21381b7c6cdf8ad41f3b4b16298427e76c6959be17f9": {
+  "partially": [],
+  "reason": "Prevents index from exceeding array bounds during writes.",
+  "states": [
+   2
+  ]
+ },
+ "ae1004a54935eadef00db2d20124cfb5a16daf3d854fcb1ee4f269c384209ced": {
+  "partially": [],
+  "reason": "Prevents misdiagnosis due to inappropriate sampling rates.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "b168c733e53440ff737b6f70a6c16355c22602338bc854010b95cdb8e915c5f6": {
+  "partially": [],
+  "reason": "Prevents unnecessary data and focuses on relevant issues.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "b290dd0587d152be0b8bf85da046fc265cd5952883d102b089acfec66f0c77db": {
+  "partially": [],
+  "reason": "Sentence 2 describes the result and next action. Sentence 7 states the core philosophy implying next actions.",
+  "states": [
+   2,
+   7
+  ]
+ },
+ "b291bea2127bd56aa46086a33962675d0ebc8121d7b2a9e855548d397c786d7b": {
+  "partially": [],
+  "reason": "No sentence directly states an observable sign distinguishing the listed causes.",
+  "states": []
+ },
+ "b3b3790d1dceda1c9bc0fa549cddfb10c60ec02006bff3467033cc34ca395ecc": {
+  "partially": [],
+  "reason": "A brief complete entry made at the asset is more useful than a detailed entry reconstructed from memory a month later.",
+  "states": []
+ },
+ "b920c8594ac5729edd448f61537dbbab775a8129d9638d30b338f27d7853d597": {
+  "partially": [],
+  "reason": "To ensure clear understanding and correct interpretation of test results.",
+  "states": [
+   3,
+   4
+  ]
+ },
+ "b9bf1e93d163b0b09ca6db6f667f9d56f3b4c7415d4ba75469f3bf22c8c216a4": {
+  "partially": [],
+  "reason": "to investigate power and grounding issues",
+  "states": []
+ },
+ "ba11f1fc0e54f08b2ca5ed0b8b4bfc11eeb0445557f891987ec3d208af75ef23": {
+  "partially": [],
+  "reason": "Verify the fix resolves the original symptom completely.",
+  "states": [
+   7
+  ]
+ },
+ "bbd71a98caa7ade9ac662c63d2ec9c3030b8facda6f1049f62ee462b695b8239": {
+  "partially": [],
+  "reason": "Prevents false positive 'good' results from supply voltage.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "bc3761ff9a9432f0c862466f942eb52ce00afe7d133c4a9d69c5a0e4c15acd6e": {
+  "partially": [],
+  "reason": "Prevents false positives from supply voltage.",
+  "states": [
+   1,
+   2,
+   3,
+   4,
+   6,
+   7
+  ]
+ },
+ "c009876140ca69a5e9e3a1769c0676d7aba2cedbfa34000c05b40c8a354fb14b": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 explicitly mentions oxidized connections, which can be observed.",
+  "states": []
+ },
+ "c1dc8d89fc58a2b659fd36394b9b1fcd33758ee1419ce002edc23fd84ecb6d3e": {
+  "partially": [
+   4,
+   7
+  ],
+  "reason": "Sentences 4 and 7 describe expected results and next actions.",
+  "states": []
+ },
+ "c32d94d49d6fbc07190534e2e8ed78b3304ee099dcf31c74e2d86b1ee2c361bf": {
+  "partially": [],
+  "reason": "prevents noise in sensitive circuits",
+  "states": [
+   3
+  ]
+ },
+ "c3a7fe92019e73700e3163400e8f762658c6cf291cbfb98192c4ba60480909d9": {
+  "partially": [
+   3,
+   4,
+   5,
+   6
+  ],
+  "reason": "Loose conductors, damaged flex cables, marginal sensors, and loose terminals with oxidized connections are mentioned but not distinctly compared.",
+  "states": []
+ },
+ "c3fba50126e4b3679724a4cd2543d7640cb63acd8d71d7e7e0f6a85e7ed0de27": {
+  "partially": [],
+  "reason": "to prevent ground loops that introduce noise",
+  "states": []
+ },
+ "c781f1921478a540d3b2fd5c71e0ae1620628a611951ea2608e8c74153f2c1d9": {
+  "reason": [
+   4,
+   5
+  ]
+ },
+ "c7cbcf451cc722725ee32cb039d3a5d9955fdaa35700a90524ed4a7d158cfaf9": {
+  "partially": [],
+  "reason": "prevents recording false resolutions",
+  "states": []
+ },
+ "cba9bd895c5e627be2b00b010455dd63c9bb70ce88949a1032e0d263f902f0ed": {
+  "partially": [],
+  "reason": "prevents missing a disruptive event",
+  "states": []
+ },
+ "cbd0aa6b147fadd31811b4559e2eb2c9cd156c9cbca9e0b3ca50b2206341aa56": {
+  "partially": [],
+  "reason": "To prevent destruction of the replacement card by a shorted coil.",
+  "states": []
+ },
+ "ccead90315db32809fe62d49bc6547c2486e985106cb966847051efa2f06f915": {
+  "partially": [],
+  "reason": "for correct aggregation in reports",
+  "states": [
+   1,
+   4
+  ]
+ },
+ "cdea0adbc150b526d2aa8643b5b0b1762a0478d1cd5bb77b08b2028ff815aa1d": {
+  "partially": [
+   1,
+   3
+  ],
+  "reason": "Sentences 1 and 3 imply the result of the test but do not explicitly state it.",
+  "states": []
+ },
+ "cefb6b0188f7a743585211a8b4e4939477d547529cea997764b13e45d4426bbb": {
+  "partially": [
+   2,
+   7,
+   8
+  ],
+  "reason": "mentions next actions but not explicit results",
+  "states": []
+ },
+ "cf97683a8ab615993bb3890be22997b5c3147dd20c869fd2701fe9a30660a6a8": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state the condition for choosing the sampling rate.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "d06d3fa3e1a16b0de53afada5fc736a8c91f5f1162e50f8c70c4c10b98088b9a": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state the condition for choosing the sampling rate.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "d1412f04bbcdcc6d4e1bc0aa9775f4f65e9500271fa40f807e8ea9aa71b60772": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "d16eb4d79718b5df2dcf69cf04b7158c870417ff0d48f4b2985ffaf00a5ef864": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected results, their meaning, or next actions.",
+  "states": []
+ },
+ "d2a8774504a87d4e8bd3db6b2a8a2c416ce07017bd55c80dd669df3be805c017": {
+  "partially": [],
+  "reason": "prevents damage to the multimeter or incorrect readings",
+  "states": []
+ },
+ "d4e7e3b3ebcb46e89360e8b6f93ddd7ca5d35af32cd1ddc1251a21acd7244998": {
+  "partially": [],
+  "reason": "Explicitly states expected results and next actions for tests.",
+  "states": [
+   7,
+   8
+  ]
+ },
+ "d626ea6dee2de8446e659edeab8cf393c4f635ad2eab0d83e40af3a848bbc30d": {
+  "partially": [],
+  "reason": "No sentence explicitly states an observable sign distinguishing the causes.",
+  "states": []
+ },
+ "d89bdd8543735341bf060e56952079b4430c154ad64910e8e615b7bb762cc5db": {
+  "partially": [],
+  "reason": "prevents damage to equipment and inaccurate readings",
+  "states": []
+ },
+ "d9e43a83dc9d75aa7f4d60ed7b077cc243316825909d08c89e8b169682a7e970": {
+  "partially": [],
+  "reason": "to prevent loss of accurate details",
+  "states": []
+ },
+ "db7e5e7213c49bcde5f6ac601d99c713ac68cfd717a6e503aa7a3818f8833173": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 suggest the test but do not explicitly state expected results or consequences.",
+  "states": []
+ },
+ "dceb4b7352d5ed6a6f988e3108c62b4dbcfafa529283708f2ccc4be3257cbbc5": {
+  "partially": [],
+  "reason": "To ensure diagnostic checks are meaningful and guide troubleshooting effectively.",
+  "states": [
+   2,
+   3
+  ]
+ },
+ "dd34ea90f37601145208fbc9d4cadeef430eabe4506e3a39c6fde1e954b2e65a": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 describe expected results and next actions based on test outcomes.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "dd45c4884b16011af39f5b0e44ba55c0864d632e02c6f4c8d89f7d15fd41c807": {
+  "partially": [],
+  "reason": "introduce noise into sensitive logic circuits",
+  "states": [
+   3
+  ]
+ },
+ "e07e406750013118e653a1e651115e81496e116baeb1c2a0a321abf04316f013": {
+  "partially": [],
+  "reason": "Mention expected results and next actions.",
+  "states": [
+   4,
+   8
+  ]
+ },
+ "e25822b9edd174d0683752d38831235f463bde5db8d907ef508d2d53167a5492": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "e33291bce5e9d5658073aafa7f3500013bca662d8452472cf2cbb2f6e300dec3": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "e3b42795418fa685ab88ac42b8598743e7606f41bf5d7b2f5448ae945323e7ec": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "e3bbf6823b49ce36a373c8ff4e08ecd2c907afe70a6eef2ae44f4727e7f1e8c4": {
+  "partially": [
+   2,
+   3
+  ],
+  "reason": "Sentences 2 and 3 hint at expected results and next actions, but are not explicit.",
+  "states": []
+ },
+ "e480f33aea77106c8c3b72a6ff37e836fab6c6995fd9c6bf43815dee6a3ca1aa": {
+  "partially": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "reason": "None explicitly state expected results or their meaning or next actions.",
+  "states": []
+ },
+ "e607cb345de52489bcd2ed1fd374f090433633ea92598a703e763be341801081": {
+  "partially": [
+   3,
+   4,
+   5
+  ],
+  "reason": "Sentences 3, 4, and 5 discuss the expected result and implications of triggering on a suspected input versus the trip event, but do not explicitly state a next action.",
+  "states": []
+ },
+ "e66a075eaafe1aede512fc9c938b7630d9e791492287d5ba7807ce3637087647": {
+  "partially": [],
+  "reason": "prevents unnecessary data corruption",
+  "states": []
+ },
+ "e8504d6c3ab6d305b17aa6d85cc15dc62f42867ac55d8f34ef12d73bc47cd7e9": {
+  "partially": [],
+  "reason": "3",
+  "states": []
+ },
+ "e877ad14ffad57edf789224851762819c8df182d2736bc772a3c1fc178ee7090": {
+  "partially": [],
+  "reason": "No sentence explicitly states an expected result, its meaning, or the next action.",
+  "states": []
+ },
+ "ec4265d2aa8955a4931343053a8acf2c4b09c67a80c63f29e32a5c95d34f68c1": {
+  "partially": [
+   1,
+   3
+  ],
+  "reason": "Sentences 1 and 3 describe the expected result but do not explicitly state a result's meaning or next action.",
+  "states": []
+ },
+ "ed1aef9fa561f5d33184a8d13db7d0304c573023466bb92dbe39f3dee6ced5f1": {
+  "partially": [],
+  "reason": "Prevents missing critical readings.",
+  "states": []
+ },
+ "f20ebe02ca99d8ffbeb369af8927c1a407b426050f4ade9b154a9c6393728ecb": {
+  "partially": [],
+  "reason": "To prevent misdiagnosis and ensure thorough resolution of issues.",
+  "states": []
+ },
+ "f483b41a86e6f13a069c5eaa683c8fc6d053a719a3adaf532de2dd2e43f9ec75": {
+  "partially": [
+   1,
+   5
+  ],
+  "reason": "Sentences 1 and 5 describe the expected result of the test but do not explicitly state the result or the next action.",
+  "states": []
+ },
+ "f50943bacc6b91d8309dba0c6f99e9520de8cb10504ecb8631b2179fcb51ec2e": {
+  "partially": [],
+  "reason": "Ensures systematic and accurate testing.",
+  "states": [
+   1,
+   2,
+   4,
+   5
+  ]
+ },
+ "f5fc77cbf98eee224a65f6df409a65d2593504d96fa624f2a5779c0ff3a4a20a": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meanings, or next actions.",
+  "states": []
+ },
+ "f67d5020110a1dc0a8f7f97626c9d9f189380d2e3e0522a18bc6576277b00fda": {
+  "partially": [
+   7,
+   8
+  ],
+  "reason": "Suggests actions but not explicit results or consequences.",
+  "states": []
+ },
+ "fa8fcfe362b3a72ee74971324f02c55346271e084284a97dcf37eaa5bc13cd0d": {
+  "partially": [],
+  "reason": "prevents inaccurate or incomplete records",
+  "states": []
+ },
+ "fb7846722501e28deb61bc94c22cd4817649ddf3b1fea41a5c47109c1344f28f": {
+  "partially": [],
+  "reason": "to prevent ground loops that introduce noise into sensitive logic circuits",
+  "states": []
+ },
+ "fbacd8256f8c113298b68ccd5b331ee47e43937ee61682e86f925c32a2e50de5": {
+  "partially": [],
+  "reason": "prevents failure",
+  "states": []
+ },
+ "fc33557800ef852ac4ed2eb27a22a8cc42228000a9ff400e90330769a2c1ee94": {
+  "partially": [],
+  "reason": "Prevents suspecting individual card channels prematurely.",
+  "states": []
+ },
+ "fd252e5b8dca31affda0f5a6ab2835c8130278aea6983f78a070c6da61e3b479": {
+  "partially": [],
+  "reason": "Explicitly states what to verify, why it matters, expected behavior, and next actions for yes/no results.",
+  "states": [
+   12,
+   13
+  ]
+ },
+ "fdf77234171d45f40762d09ce7a1ded1a60b560474caaf505ee2799eed471017": {
+  "partially": [],
+  "reason": "For correct report aggregation.",
+  "states": [
+   1,
+   4
+  ]
+ },
+ "ff101b6402cafcf381b9c14f5d3d98fcc9e1de2b2a6ebe26c2aff021be98037c": {
+  "partially": [],
+  "reason": "Sentence 7 explicitly outlines the structure for explaining test results and their implications.",
+  "states": [
+   7
+  ]
+ }
+}

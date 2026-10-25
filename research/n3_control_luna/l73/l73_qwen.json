@@ -1,0 +1,223 @@
+{
+ "judge_model": "qwen2.5:7b-instruct",
+ "judge_settings": null,
+ "planted": {
+  "all_pairs": [
+   {
+    "seeds": [
+     "c-389bc2073959b863"
+    ],
+    "states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "closed",
+     "own_eq": "closed",
+     "own_sf": "closed"
+    }
+   },
+   {
+    "seeds": [
+     "c-eead0ab87f80ef32"
+    ],
+    "states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "closed",
+     "own_eq": "closed",
+     "own_sf": "closed"
+    }
+   },
+   {
+    "seeds": [
+     "c-f3a5297e22f21f3f"
+    ],
+    "states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "partial",
+     "own_eq": "closed",
+     "own_sf": "closed"
+    }
+   }
+  ],
+  "diff_equal_cap_closed": 0.0,
+  "diff_seed_free_closed": 0.3333333333333333,
+  "fires_equal_cap": false,
+  "fires_seed_free": true,
+  "k": 2,
+  "own_other_lengths": [
+   56,
+   94
+  ],
+  "planted_text": "When an intermittent fault appears, choose first the test whose failure likelihood is highest.",
+  "target_states": {
+   "ctrl_eq": "closed",
+   "ctrl_sf": "partial",
+   "own_eq": "closed",
+   "own_sf": "closed"
+  }
+ },
+ "planted_fires": true,
+ "stand_in_fires": true,
+ "stand_ins": [
+  {
+   "all_pairs": [
+    {
+     "seeds": [
+      "c-389bc2073959b863"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "closed"
+     }
+    },
+    {
+     "seeds": [
+      "c-eead0ab87f80ef32"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "closed"
+     }
+    },
+    {
+     "seeds": [
+      "c-f3a5297e22f21f3f"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "partial",
+      "own_eq": "closed",
+      "own_sf": "closed"
+     }
+    }
+   ],
+   "diff_equal_cap_closed": 0.0,
+   "diff_seed_free_closed": 0.3333333333333333,
+   "fires_equal_cap": false,
+   "fires_seed_free": true,
+   "k": 2,
+   "own_other_lengths": [
+    56,
+    94
+   ],
+   "planted_text": "kemu bc rdlsbqgbcnnc hcrnb sdhuusbs smbhbr ejner dsj rvfd ssugl failure likelihood dr wcsbtgpv",
+   "rng_seed": 7,
+   "target_states": {
+    "ctrl_eq": "closed",
+    "ctrl_sf": "partial",
+    "own_eq": "closed",
+    "own_sf": "closed"
+   }
+  },
+  {
+   "all_pairs": [
+    {
+     "seeds": [
+      "c-389bc2073959b863"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "closed"
+     }
+    },
+    {
+     "seeds": [
+      "c-eead0ab87f80ef32"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "closed"
+     }
+    },
+    {
+     "seeds": [
+      "c-f3a5297e22f21f3f"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "partial",
+      "own_eq": "closed",
+      "own_sf": "closed"
+     }
+    }
+   ],
+   "diff_equal_cap_closed": 0.0,
+   "diff_seed_free_closed": 0.3333333333333333,
+   "fires_equal_cap": false,
+   "fires_seed_free": true,
+   "k": 2,
+   "own_other_lengths": [
+    56,
+    94
+   ],
+   "planted_text": "hlme gw bcehzqgmuaop ompsg mcphyawi qnpmxd vidcm tmd vbkh wcpuq failure likelihood gs zetcrbpw",
+   "rng_seed": 8,
+   "target_states": {
+    "ctrl_eq": "closed",
+    "ctrl_sf": "partial",
+    "own_eq": "closed",
+    "own_sf": "closed"
+   }
+  },
+  {
+   "all_pairs": [
+    {
+     "seeds": [
+      "c-389bc2073959b863"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "closed"
+     }
+    },
+    {
+     "seeds": [
+      "c-eead0ab87f80ef32"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "closed"
+     }
+    },
+    {
+     "seeds": [
+      "c-f3a5297e22f21f3f"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "partial",
+      "own_eq": "closed",
+      "own_sf": "closed"
+     }
+    }
+   ],
+   "diff_equal_cap_closed": 0.0,
+   "diff_seed_free_closed": 0.3333333333333333,
+   "fires_equal_cap": false,
+   "fires_seed_free": true,
+   "k": 2,
+   "own_other_lengths": [
+    56,
+    94
+   ],
+   "planted_text": "otli ef vakqotckrtwb xmfwo xnffhbde qscywm zxdjg vhx zncy igmik failure likelihood zb gwanbmpe",
+   "rng_seed": 9,
+   "target_states": {
+    "ctrl_eq": "closed",
+    "ctrl_sf": "partial",
+    "own_eq": "closed",
+    "own_sf": "closed"
+   }
+  }
+ ]
+}

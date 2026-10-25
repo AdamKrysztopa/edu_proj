@@ -1,0 +1,1079 @@
+{
+ "00570c2806ae3e69a8d3d6a13a436b4fe231bdcff382a7b0da6f294158ca2042": {
+  "partially": [],
+  "reason": "prevents false positive gains due to data leakage",
+  "states": []
+ },
+ "02c38d108527d6d6780882761b7ed24e16d5908eb26ec72dec590999a6a21f64": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected test results, their meaning, or next actions.",
+  "states": []
+ },
+ "04c7829c1bc54349eb88f18be5914937700cf73413dfaf503da810d6d1078190": {
+  "partially": [],
+  "reason": "prevents adapter-to-adapter helper coupling",
+  "states": []
+ },
+ "053848b483f172fe543c4db966d92cc38ef95896aa4ab4c381961f3afef62001": {
+  "reason": [
+   1,
+   2
+  ]
+ },
+ "065cfe27556e670ea355ffc92980510a83954161a298c2da3ca8592af34bb228": {
+  "partially": [],
+  "reason": "prevents model bias from using unknowable future data",
+  "states": []
+ },
+ "082c848c05b19d812b7361e8f4607671e55f1915248701a19070bc0b9f12fcc6": {
+  "partially": [],
+  "reason": "Ensures data integrity and chronological consistency.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "09faf754a017be4912b2f2e4766156248a329d14ce0709ffb572da99a3ac2f7a": {
+  "partially": [
+   12
+  ],
+  "reason": "Expected results are stated in sentence 12.",
+  "states": []
+ },
+ "0f2d5c0cccd6c8158f1af0002d6174aed4f2e55e8da9ab1a1d3398e8410b2b41": {
+  "partially": [],
+  "reason": "3",
+  "states": []
+ },
+ "10c153af554bc486caa6a9d834bfa3c336e7b2d032878834cc8bbb8c65675045": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "11bfc3721c8123bdc467d2e899e000c1709ae7cacd38c34a882a1f3328ee6b8c": {
+  "partially": [],
+  "reason": "to prevent unnecessary resource consumption",
+  "states": []
+ },
+ "125dce14ab9e0e25412999b99702a51f56469d7e2551f74693840bb4bab82fe9": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 2 provides a condition for choosing where to place new logic.",
+  "states": []
+ },
+ "133e91de649c1308264d80f7444099c724a59e54820bb56ce5ed261276222d89": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly states a condition for choosing horizons to model.",
+  "states": [
+   1
+  ]
+ },
+ "13f68cbd9bb1352ff0107e6a84a00d9bf286ed8e2cec9c628844391f65764e94": {
+  "partially": [],
+  "reason": "prevents misuse of deep dives as initial onboarding",
+  "states": []
+ },
+ "148b5ae8af9667357c2f769be83274d6e0a40aa008583e1bf46b96b505b6171f": {
+  "partially": [],
+  "reason": "inward dependency flow",
+  "states": []
+ },
+ "15f225b3dbee114c8faffd057a4b425f47c4213fb83e6983c89919c9e844df05": {
+  "partially": [],
+  "reason": "A True is_non_monotone value should not be treated as an estimation artefact or error, since it is correct and expected for seasonal series.",
+  "states": [
+   8
+  ]
+ },
+ "164b713216c07ed7abac1b41cbd3a35b82db189a20a0997fc701b1cb8a918dce": {
+  "partially": [],
+  "reason": "Prevents unnecessary dependencies and potential conflicts",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "17244da05295d592c6bb61883134c2f1045ba85d81b6327f99ba4e9c7294f0bd": {
+  "partially": [],
+  "reason": "2,3}",
+  "states": []
+ },
+ "17f59aa2ab0b48ea325ecdffcefe8383a2e329c543d14a63861bb2b4d68ab8b0": {
+  "partially": [],
+  "reason": "prevents misuse as onboarding material",
+  "states": []
+ },
+ "182a60272a4e7570ba076f1ad2702f4da7d27e9c1970324051ee6301ea48c6ea": {
+  "partially": [],
+  "reason": "prevents incorrect use of known-future for variables not genuinely known at prediction time",
+  "states": [
+   3,
+   5
+  ]
+ },
+ "1ceebb60920716dbb7bd7b56355f738d6bea040f4ec3e491e6d4a6dae1c3bc8c": {
+  "partially": [],
+  "reason": "prevents incorrect use of future knowledge",
+  "states": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ]
+ },
+ "1ef2429d871e7e4741ae8620961a7919cae13daba1034badebdcb215096d6ea2": {
+  "partially": [],
+  "reason": "it prevents models from being misaligned temporally",
+  "states": [
+   9,
+   12
+  ]
+ },
+ "1f484cf073bb157be01d5e2dd9928ee9c646ea4f689a48ac72b9b8c7b8b830c2": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state conditions for choosing options.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "1fca189d049ab276010ee0e6ff9f576ee6a7c1c48620c825446e524787bffd3f": {
+  "partially": [],
+  "reason": "prevents premature optional surface addition",
+  "states": []
+ },
+ "20a010f313900133b54e77e79fe500a84e8ae862b8c5acfe39c8c18d298dc1ee": {
+  "partially": [
+   2,
+   4
+  ],
+  "reason": "Partial exceptions are mentioned but not explicitly stated.",
+  "states": []
+ },
+ "20eb367a92d84c7ab043960d8b530085c8dff60ecc8abf356f019eb33d6f8f81": {
+  "partially": [],
+  "reason": "to minimize resource usage",
+  "states": []
+ },
+ "23c6037538d4996d5f85b70440261ed028e37390f980f7e5fd39da2283439d39": {
+  "partially": [],
+  "reason": "3",
+  "states": []
+ },
+ "2555798a4404066c281d2488e78f8407ac6d3daff2ed52391fa30f8c8d218d54": {
+  "partially": [],
+  "reason": "2,3",
+  "states": []
+ },
+ "25fc5c2eeca649b0f49194c527405fca11e937cd69afcf4057106c25a9c93651": {
+  "partially": [],
+  "reason": "Prevents jumping to models without assessing forecastability.",
+  "states": [
+   1
+  ]
+ },
+ "2840540e66b88c58ade4e0a3ee218242cde4726ff2ae2924a17ebe22f8ba5568": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly states a condition for choosing horizons.",
+  "states": [
+   1
+  ]
+ },
+ "28e3ce72363f9d5e2a8767bab3c0d4329ea1bad97ba302d12a5e2093362512b8": {
+  "reason": 5
+ },
+ "2970763667655f3bb4d30d55f4bf6a672d150f090266dfcd090d54dade8deb86": {
+  "partially": [],
+  "reason": "prevents failure of cross-backend agreement",
+  "states": []
+ },
+ "29916711a3b71c4ecf8486593e9ef0a6c773665faf4456c6925d2d8e7b114059": {
+  "partially": [
+   5
+  ],
+  "reason": "Sentence 5 implies a result and its meaning but does not explicitly state the next action.",
+  "states": []
+ },
+ "2c268631f9a996450dcf5fb093303a3eea50257d893db4e786a7e2bc15058545": {
+  "partially": [],
+  "reason": "prevents silent extension of semantics",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "2cc09601ff9c2a034b192a4fd14d5ea8fc81c5d4a5ea908db3a28034663d16ff": {
+  "partially": [],
+  "reason": "none stated",
+  "states": []
+ },
+ "2d7ad667e6573d051f1f92fe118c3ed22105d8a26bc7303a41a733d9be15b674": {
+  "partially": [],
+  "reason": "prevents false identification of gains as leakage",
+  "states": []
+ },
+ "2dffde4709baab59d794c7705f4b327dec2c32c07b2edd94efbb81d977aff11c": {
+  "partially": [],
+  "reason": "2,3,4,5,6,7,8,9,10,11,12",
+  "states": []
+ },
+ "2fffab9fd875d82586e4b8b6bb090e0de46a36f50b14640e07e6dd55ec186610": {
+  "partially": [],
+  "reason": "prevents external misuse",
+  "states": []
+ },
+ "33c51467b99e41a61080aa989fbb3c13bf29732bb62593572d6e07751a0d633c": {
+  "partially": [],
+  "reason": "prevents insufficient surrogate count for accurate significance threshold",
+  "states": []
+ },
+ "33fd5f33953e4ca08e83de2649efb86f95a0f9bbb4cd15e5cdc3bc8bfaa0de81": {
+  "partially": [],
+  "reason": "to avoid false out-of-sample validity claims",
+  "states": []
+ },
+ "35c189b88d60248e14f523d8ff04a2a02513467f121236d651a85971b8df6faa": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 provide conditions for deciding logic placement.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "36c82049f04062b96116fdbd209a6280a5890bd5e8621c411eba5d8f907ae923": {
+  "partially": [],
+  "reason": "to prevent jumping to models without assessing forecastability",
+  "states": []
+ },
+ "382c5c1ca67e97160392152f855088c63b299e0ac3a741405b89fc9beabfc15d": {
+  "partially": [],
+  "reason": "improves diagnostic consistency across datasets",
+  "states": []
+ },
+ "3d9d93d222f82065353dba9b151ee0d934cd3968f2ff0a8666c1140943730b4a": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 describe the target of model evaluation but do not explicitly state expected results, their meaning, or next actions.",
+  "states": []
+ },
+ "3f95c061809104a23d225e832e9f37e5529e1a8141afbec9f99314eb654ccfbf": {
+  "partially": [],
+  "reason": "4: Surrogate significance testing requires a feasible sample size.",
+  "states": []
+ },
+ "3fa4827f1356d2b4fb6c0fddc7cbaa9b41441bc5b8ddfee5f8441b17080c53f9": {
+  "reason": [
+   4,
+   5
+  ]
+ },
+ "3fd2ac4382f9056409b576d733783f369551e968d9872a191570526948519c56": {
+  "partially": [],
+  "reason": "Violating it introduces look-ahead leakage and invalidates the evaluation.",
+  "states": [
+   4
+  ]
+ },
+ "43372f495bafbfc0ad3208f5b076ecf3d51b0913ee64cfdee01eaea2a496fd3a": {
+  "partially": [
+   3,
+   5
+  ],
+  "reason": "Sentences 3 and 5 provide examples of disciplines where the rule may vary.",
+  "states": []
+ },
+ "459c81d3ff672710b628a69d0440ddb92df3f36e2b1aaa7ad9fe74de41d9dd6a": {
+  "partially": [],
+  "reason": "to avoid false out-of-sample validity claims",
+  "states": []
+ },
+ "45fb0556ff615d23934479c5e82f4fdf59a1831c235ff079e6e0ccf62d018043": {
+  "partially": [],
+  "reason": "2,3,9,10,11,12",
+  "states": []
+ },
+ "4617bd4cc5f95702f105a226d38a2d60dc645c7c751defc7a70dcf66943d4059": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify conditions for choosing between class-level screening and significance-lag selection.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "4639e2a76b1ef111f46a66497719911dc7474f035ec3bec93c08a292af57d9f9": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 2 describes a condition for test and train set creation but does not explicitly state an option to choose in which situation.",
+  "states": []
+ },
+ "46e44f67c8a597a55f943a9ac73a7488fa80f67b50355d6a6cad236c11a51476": {
+  "partially": [],
+  "reason": "Sentence numbers 1 and 2 state conditions for deciding symbol inclusion.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "4706602a94ffb6ee5f608c042c1309ab1229effd207ace3c0f3976faad522bb3": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly states a condition for choosing horizons to model.",
+  "states": [
+   1
+  ]
+ },
+ "4708f3b6c6d908693ae2873fe24dd1f6506a621c2328c3954a879e2baa40ea57": {
+  "partially": [],
+  "reason": "2,3,4",
+  "states": []
+ },
+ "48fd43b758538ef9a5197c61e9246e853439ae2a8cd2c3a2f7200068c4727a3e": {
+  "partially": [],
+  "reason": "No sentences explicitly state exceptions to the rule.",
+  "states": []
+ },
+ "4b51e43a45bfe886381f1b0cd5358d31c04efa5cdb250410700612907f24d6f4": {
+  "partially": [],
+  "reason": "prevents misinterpretation of significance",
+  "states": []
+ },
+ "5068d39fca524ea608ae7e8a8aa7765ea2ec13c5cd88cded546e6a3ea39fe101": {
+  "partially": [],
+  "reason": "3",
+  "states": []
+ },
+ "5236318a439ce93a071c1ce3c4c406b2b8e539267c5c5cb3b8f38d0376e6af36": {
+  "partially": [],
+  "reason": "prevents non-deterministic execution",
+  "states": []
+ },
+ "53cbfdcbe7ae3198d136831967a08d84110297fae5a11dc1ba0625411df236e5": {
+  "partially": [],
+  "reason": "prevents reliance on insignificant data",
+  "states": []
+ },
+ "54d3aba41a53e63b093c1bd63fffd3b60312e267583a36314643852affbaa553": {
+  "partially": [
+   2,
+   4
+  ],
+  "reason": "mentions conditions for selection but not specific options",
+  "states": []
+ },
+ "57dbe9f08501afa17c7097d99540af1d9382b4e54024e8b257f00eccbce5108a": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "582e2d13e067b5f258f358566f7b705d65d46a5dce02595b867f8f9a7b432867": {
+  "partially": [],
+  "reason": "2,3",
+  "states": []
+ },
+ "58e652afda558da6bc2775a2e820020351e1e4beccd3524553c0c6b3cecb6261": {
+  "partially": [],
+  "reason": "prevents failure to diagnose consistent issues",
+  "states": []
+ },
+ "599d03fdb3606c7de65c7dc5a90824e4f3526d7eccd1a9ecf5aa172ba73b2be8": {
+  "partially": [],
+  "reason": "prevents including noise or excluding signals",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "5a324e948f21ac7bb9ca5d6ca2536ff5792fc25b7706926f45a4c3b7247b9901": {
+  "partially": [
+   2,
+   4
+  ],
+  "reason": "mentions conditions for selection",
+  "states": []
+ },
+ "5aa1a2ea631312bd79317c5628ad1b587b8440ce2b93d44dfb109c0095301e1d": {
+  "partially": [],
+  "reason": "prevents mixing of concerns",
+  "states": []
+ },
+ "5acc6a41757443ac9ab8128d4d93989317b9d5591430aeaecbba1abb61fa2c70": {
+  "partially": [],
+  "reason": "to avoid false out-of-sample validity claims",
+  "states": [
+   1
+  ]
+ },
+ "5c158552ee189ab14be336aeaa1756675327f71b2fa18bbf4b7445b6b1b18671": {
+  "partially": [],
+  "reason": "4: Surrogate significance testing requires a feasible sample size.",
+  "states": []
+ },
+ "5c4e99bdaa4cdc9223a86becbbb924f9bdb1e37bfc5d5c30771c6cd0629e7aa5": {
+  "partially": [],
+  "reason": "to prevent overfitting and ensure ranking stability",
+  "states": []
+ },
+ "5cd4e4d1bf1fdf459aef37c0d924925fbc0390f6a199ccd2c773305df5ada7c2": {
+  "partially": [],
+  "reason": "Sentences 1 and 4 provide the general rule, but do not explicitly state exceptions.",
+  "states": [
+   1,
+   4
+  ]
+ },
+ "5d7e32051049d3e55e6f7b8e4dbd83967e622b15216ecb1f5f9c434c7c3cf6ae": {
+  "partially": [],
+  "reason": "prevents reliance on non-existent significant lags",
+  "states": []
+ },
+ "602627bcdaf472351b836b1d6b950f846ca40c0edc36621bedf8d62d44a11bab": {
+  "partially": [],
+  "reason": "none explicitly stated",
+  "states": []
+ },
+ "60f977a17093b564331279cdd4168b7aa79512a3cea3dae6e442f3d8c0203315": {
+  "partially": [],
+  "reason": "prevents leakage",
+  "states": []
+ },
+ "61c55ecafffccdf142d0ed73ddc1e9c2c0e381ce9d8d1170544417787852bd3c": {
+  "partially": [],
+  "reason": "pre-modeling deterministic outputs ensure consistent results",
+  "states": []
+ },
+ "6597cca32f389a29364aeb098f3093f265ebeec332e42ce67addafde5c56865c": {
+  "partially": [],
+  "reason": "to prevent premature model recommendation",
+  "states": []
+ },
+ "6637d205a81c3c36942f6e1f887db1bba59bbdf245dc58aefea781a2d73a22df": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "671ec07c065f6a5daf095d500cc315379d205e6998947278398e6351d644abae": {
+  "partially": [],
+  "reason": "prevents using downstream frameworks without triage",
+  "states": []
+ },
+ "68807f8d77dcf88d1de9c5a8fc7a701c04caaf8ca343eaaf11088e32fafe8f94": {
+  "partially": [],
+  "reason": "finite sample sizes",
+  "states": []
+ },
+ "6b6234e028b5f23650cf14ac1b29dc46b5d30358844904a6e921495517affdad": {
+  "partially": [],
+  "reason": "to prevent misuse and ensure proper understanding",
+  "states": []
+ },
+ "6e539eef17162d253dffee2d01398db77b55936938631a2cda719ea84e2ca5c8": {
+  "partially": [],
+  "reason": "to avoid false out-of-sample validity claims",
+  "states": []
+ },
+ "6f17d8ea98d61976c33f4690cdadd00264c0c764e922620cfeba7960aa9d98ff": {
+  "partially": [
+   6,
+   7
+  ],
+  "reason": "Sentence 6 and 7 provide exceptions in other disciplines where normalization is not applied.",
+  "states": []
+ },
+ "7048a62ce1e03b5e4d617afe6a007f20c9c1692eff5d73abe4f54191c2ace356": {
+  "partially": [],
+  "reason": "No sentence explicitly states an expected result, its meaning, or the next action.",
+  "states": []
+ },
+ "708d09412ac394c776dc635a71bd9f351b50ba38870656e63be26b1cd813061f": {
+  "partially": [],
+  "reason": "prevents acting without consensus",
+  "states": []
+ },
+ "70dbea68c820c9a53d25082b157a1cae568337c1a409b4509b9e1d42e4fc8bb7": {
+  "partially": [],
+  "reason": "prevents recommending\u672a\u7ecf\u5904\u7406\u7684\u6a21\u578b\u6216\u6846\u67b6",
+  "states": []
+ },
+ "7207adaab0a4e148ade7b8a15b9b6539ddb81e7976c22234fd67a4a7422535df": {
+  "partially": [],
+  "reason": "Explicitly states to treat public_api.md as the supported import contract.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "728fba8bc83b552cd339461b3f10f6089a54f1ac2c3c26bbb7d06625ee9d1dba": {
+  "partially": [],
+  "reason": "Directly state conditions for choosing options.",
+  "states": [
+   1,
+   2,
+   5,
+   6,
+   7,
+   8
+  ]
+ },
+ "729c2eb4939a13e71389d4169de86d4a67a19def90fce974f52ff5f5c8922f82": {
+  "partially": [
+   6,
+   7,
+   10
+  ],
+  "reason": "Symbols are part of supported import contract if documented in public_api.md, mentioned in files update instructions.",
+  "states": []
+ },
+ "73cd3b8e5e6892c1880e65d6c82d836848f3705213b98345e4b60ca0a1c35541": {
+  "partially": [
+   3,
+   4
+  ],
+  "reason": "State expectations or next actions not explicitly stated; sentences 3 and 4 describe conditions leading to an empty informative horizon set.",
+  "states": []
+ },
+ "7408f25bb6d0f778bccd89a9b0af9ec12d01c6a6a12016e563c71c9dd4607d82": {
+  "partially": [],
+  "reason": "2,3,4,5 prevent jumping to model fitting without assessing forecastability first, avoiding model fitting on non-forecastable data.",
+  "states": []
+ },
+ "7415e1213fe3814b525b5a91cc9ce98f26c394434cdebb636d44f8c670f7c287": {
+  "partially": [],
+  "reason": "Sentence 1 does not state a condition for choosing an option.",
+  "states": []
+ },
+ "754583aa7cc48cf79ce69d1716b98858ac6460345e03c2dd7a4f6c0f1a737827": {
+  "partially": [],
+  "reason": "Both sentences provide conditions under which the AMI curve should be treated as indicative rather than authoritative.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "770b6cfe0bdb62ef8141b3b52688f6924678130006de8dfa3b9ac18d0bd616b2": {
+  "partially": [],
+  "reason": "prevents exposing internal implementation details",
+  "states": []
+ },
+ "77fdcc1f0ea433a1626f5a436a272e68fa0246146fbc0c2900b3f1f175ca85bc": {
+  "partially": [],
+  "reason": "Prevents misinterpretation of significance",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "78c29d354eff81aef88d0c58d2effee94bb355ea26583d7936588cb16afb42b5": {
+  "partially": [],
+  "reason": "prevents data-leakage",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "790a7eab548997eb5f4ae8808fdcee30908cdca964d34ec4098bcb3e9c5b8a68": {
+  "partially": [],
+  "reason": "to prevent silent extension of existing semantics",
+  "states": []
+ },
+ "79552042c7d9f15220100be7361ea0557ae4d37bbe295a7d61b233adbb4e2a1a": {
+  "partially": [],
+  "reason": "n/a",
+  "states": []
+ },
+ "7d1347e405f5e6afc8ab64a7bf577e25307f3b5400e6cc7555f01a0478b4acb1": {
+  "partially": [],
+  "reason": "none stated",
+  "states": []
+ },
+ "7e1d2d4a1a2a0c295553d3d9cce1f4f746039f84ba60c33ae2362ddec598d796": {
+  "reason": 1
+ },
+ "7f49fce8a8356fd5a881e1b055f599bfb879e84547cd9df45604f494be36b772": {
+  "partially": [],
+  "reason": "No sentence explicitly states expected test results, their meanings, or subsequent actions.",
+  "states": []
+ },
+ "8094d4f8a1c458423924f9356fac7069a3117be2d7c66e477c8ccaa8c15b05ae": {
+  "partially": [],
+  "reason": "Directly states conditions for decision-making.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "813e36d8b5d4b716a443fdfa34496172cc8d9b69893a927e871aca550c4b5069": {
+  "partially": [],
+  "reason": "prevents using downstream frameworks without initial analysis",
+  "states": []
+ },
+ "863b99d8892b982e28ed0beb4bd5e840c650d6d5cad7e73a6f1dfabe9f28cab7": {
+  "partially": [],
+  "reason": "to prevent unnecessary resource consumption",
+  "states": []
+ },
+ "876cf582d8c7a8c8c5b45ab1666c9864abf794a70e977ed1e8e5092010234f3f": {
+  "partially": [],
+  "reason": "2,3,5,7",
+  "states": []
+ },
+ "87a06e2a774c206f52d759b3528512b6713ccefb6b846b22e7a7bcbdd69f7091": {
+  "partially": [],
+  "reason": "pre-aggregation can lead to loss of temporal information",
+  "states": []
+ },
+ "8e0350a85e9287a465691646970b3efdeb486a93a2a6df7bb3c27090b6976f3b": {
+  "partially": [
+   5
+  ],
+  "reason": "The avoid_horizons field conditionally excludes horizons from model feature sets based on their informativeness.",
+  "states": []
+ },
+ "8e9849baef22ddd96a603e7aa476cb9dc9e23b8cfae6b689ee7ff1662f4a5807": {
+  "partially": [],
+  "reason": "Sentence 1 and 2 explicitly state conditions for introducing new selectors.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "8f49697cf1955ce65c8c740ec0647c7f7a2bd4c3e0d5783bad9210999504c22b": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "8f6767e61354d5ea9780c8e619577be1ffc38f32c06b40540cf478cffe2b15cd": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 suggest inspecting the flag but do not explicitly state the expected result or its meaning or next action.",
+  "states": []
+ },
+ "8f972e8a079d225b70d3cb0937a86031efe2f427c38ee80955111297f64cc4e1": {
+  "partially": [],
+  "reason": "2} F5 must be explicitly enabled via `experimental: true` in the config.",
+  "states": []
+ },
+ "9080029848321cba393f04eba08fd4ea35e7ddeb340df62cfc7fe53083a098df": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Expected result and next action are implied but not explicitly stated.",
+  "states": []
+ },
+ "94850f54812095a443a898bae107523d9e1617c8c9d73f95f84e4e46faaea3d8": {
+  "partially": [],
+  "reason": "Downstream frameworks are consumers of triage results, not competitors.",
+  "states": []
+ },
+ "95a9b9b1e99846db293fdd432858eb40b79b958daafae3d4a7c389c0d6ee7c5b": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "973c3a1daa2a9f6a6097904e5ea3b3905dec63b2a16e98829b4ea53a30efc24f": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 suggest reliance on class-level screening and domain checks, but do not explicitly state expected results or next actions.",
+  "states": []
+ },
+ "97a9a4c5fa6a98302cee79f5f3a0bb4a9d07ab6a1a73b25f5a0e80e5270aa421": {
+  "partially": [],
+  "reason": "Sentence 1 and 2 explicitly state conditions for deciding symbol inclusion.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "9a8364797c08172a3aa669473707fe8ecde7d05d54b112d572c896c27db26ec0": {
+  "partially": [],
+  "reason": "to avoid false out-of-sample validity claims",
+  "states": []
+ },
+ "9b8f6dbb51536b4356584a64014981f3d624226538d03c78222548b4fb465724": {
+  "partially": [],
+  "reason": "Prevents including noise lags or excluding informative ones as signal strength varies.",
+  "states": [
+   3,
+   4
+  ]
+ },
+ "9e3c2cd15a49d36eee4edaeffb0a4d9027b6f3971e103e419de15d8a6571787e": {
+  "partially": [],
+  "reason": "prevents including noise or excluding signals due to varying signal strength",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "9ec8623d8cad7163394121fdde8a2cb3ced01d7904256cafc54e211cc369cae3": {
+  "partially": [],
+  "reason": "Prevents false negatives in first-pass screening",
+  "states": [
+   9,
+   10
+  ]
+ },
+ "a254fb5b892f4241be418f67efb01ee1f9d81fae83a1cb20ff0c773e01340b64": {
+  "partially": [],
+  "reason": "No sentences explicitly state exceptions to the rule.",
+  "states": []
+ },
+ "a5dc4717db6e1c30276610fe77e364f9cb4b1fbb24fea8bad89b91a7e558500b": {
+  "partially": [],
+  "reason": "Conditions for introducing new selectors and running forecastability profile.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "a6b3ad16a9c7c3aca31dd0f33f880d7d591419f46a824382fec62fd9e8daf471": {
+  "partially": [],
+  "reason": "prevents inconsistent diagnostics across datasets",
+  "states": []
+ },
+ "a7546fcc61ba40e8fa129f20bfc8b75308f161314305b4d4598611d1e2db590f": {
+  "reason": [
+   1,
+   6
+  ]
+ },
+ "a82623aefcfdf3b184fcdcc58216aa74fa5a59dbc1e24524285589118d1588df": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 suggest reliance on class-level screening and domain checks when significance counts are zero, but do not explicitly state expected results or next actions.",
+  "states": []
+ },
+ "a94e01678fd30c623c868376e9f3625c227178db7f77e990584e03343e4984a5": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "a9ab98ff114bd29513148957957b0e53a4bc97ff0267e27f7120c04ac2012ffe": {
+  "partially": [],
+  "reason": "to build foundational understanding",
+  "states": []
+ },
+ "ac2f3cdb6db50d5b91707dee94f7b49ab48cf233eeaade55b851e381f0988ec7": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "acf9fd37f576ada350d1b02c58e7b4b7715bb90b78dc2c02d293738f09be0cac": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state conditions for choosing between class-level screening plus domain checks and significance-lag selection.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "aecb2798eaa8eccf526e4b2ee0921de951a61602532615520b0eff82f22c2eed": {
+  "partially": [],
+  "reason": "Sentence 10 explicitly states the expected result and next action.",
+  "states": [
+   10
+  ]
+ },
+ "af5a1c47aa35b90bf8d74fdfcb930e2c504194bee7cf12c60ace08128dcea035": {
+  "partially": [],
+  "reason": "prevents premature recommendations",
+  "states": []
+ },
+ "b136ad335d18d079fe124c35c7a201b6de15879dd1c6d188be1664a98a1e32fd": {
+  "partially": [],
+  "reason": "prevents non-deterministic results",
+  "states": []
+ },
+ "b24b88c01fdf1adb7f47006020f62074425fb6ef76735dffa33db43a62ba9a9f": {
+  "partially": [],
+  "reason": "prevents mixing business logic with transport details",
+  "states": []
+ },
+ "b2a535ddad9f0cdc820e8b9a4d1124f6d1f12e6fc987b18a9e0e520e31470fe4": {
+  "partially": [],
+  "reason": "to ensure deterministic outputs before framework-specific translation",
+  "states": []
+ },
+ "b3a7801091e7ba6d8b54171ab3cc595d8d8b339b0001f057706f8f009c5a10f5": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected results, their meaning, or next actions.",
+  "states": []
+ },
+ "b462befb68e07feadd255da2de2aaff6d21a6b2de51c70a28f08d83c8d1fd651": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "b48a93ab9007391e39e24fc3844e03ee2801f84076f4d82ad0295989fb4e9752": {
+  "partially": [],
+  "reason": "no explicit reason given",
+  "states": []
+ },
+ "b49ccae506041510a57edd6388d133a6bb7588ecfb2516fa654de61e23d87b6f": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "b5e60e25878a18073df46e6b716ec063b3034d6bdc41eb9d6e117b9f9e1f6b22": {
+  "partially": [],
+  "reason": "AMI values beyond frequency-specific horizon caps are unreliable.",
+  "states": []
+ },
+ "b7f499344f1381b4641f0b7108e789ae757519be0c191d7bb8ccc475ec3c3578": {
+  "partially": [],
+  "reason": "to avoid false out-of-sample validity claims",
+  "states": []
+ },
+ "b940be3cb729c7ce65c7c0b2b5018d71e0831c3a88677c1254649f8c2f426dde": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected results, their meanings, or next actions.",
+  "states": []
+ },
+ "b95b51b939c8450e79525e9b26601b5ba304c2fe59a9293377059cd7c168324f": {
+  "partially": [],
+  "reason": "prevents non-deterministic behavior",
+  "states": []
+ },
+ "bb063499a26c88f8b46429465bf1304b5146a9b3d98fc3240463fe958317155c": {
+  "partially": [
+   6,
+   7
+  ],
+  "reason": "Warns about directness ratio and r value, but does not state expected result or next action.",
+  "states": []
+ },
+ "bd0e3bb8a4facd4ac43feb579ed8a74e4cfd4ae778e6d76aae4fa569ad1c1007": {
+  "partially": [],
+  "reason": "prevents external misuse and maintains internal efficiency",
+  "states": []
+ },
+ "bd435e51d4b93c86072d89b212bb9c222ae7ad5c3b1ee4ebb17060c26fc63402": {
+  "partially": [],
+  "reason": "to avoid false out-of-sample validity claims",
+  "states": []
+ },
+ "bd8afa6539241fd5c712ad1b1227ba367eb1d334e0adf8f8bb76e914f89ef16b": {
+  "partially": [],
+  "reason": "prevents premature optional feature implementation",
+  "states": []
+ },
+ "c22e014772aec6c011c4ab00ad07acf397a9dc6e0589e28d2123e11d13b2901e": {
+  "partially": [],
+  "reason": "Sentence 2 and 4 explicitly state the condition for method selection.",
+  "states": [
+   2,
+   4
+  ]
+ },
+ "c6273348f900667a609602cf58c396f043a762205295ab1588814eea2eff1cdb": {
+  "partially": [],
+  "reason": "2",
+  "states": []
+ },
+ "c6bfd2779c4379dea4467771dd77684f6804bf060b25587d9f5c311f6bb08b01": {
+  "partially": [],
+  "reason": "No sentence explicitly states an expected result, its meaning, or a next action.",
+  "states": []
+ },
+ "c7637167d1bb84e9ac3ea0708553a4329a5b1a319d9b6f45446944d88099ea11": {
+  "partially": [],
+  "reason": "not explicitly stated",
+  "states": []
+ },
+ "cd602e5b8c533f7e93032946104cda366d0fa5fa708d7aeb6ae30e4bf8b5e44c": {
+  "partially": [],
+  "reason": "to prevent failure of simplifying assumptions",
+  "states": []
+ },
+ "ce1d43eb5768a35fec923c3062f120e9a1a540d6d536366676be0b10f746305a": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 suggest inspecting the flag but do not explicitly state expected results or actions based on the test.",
+  "states": []
+ },
+ "ce7afa05c5f978fec6a0ed83c41a47c997bc6a37701404e20329701011aff00c": {
+  "partially": [],
+  "reason": "3",
+  "states": []
+ },
+ "d15e9e819cd597ee0bd72df972b6599ef936fc3aa5f718b1bf86097633e47d30": {
+  "partially": [],
+  "reason": "No sentences explicitly state expected results, their meanings, or next actions.",
+  "states": []
+ },
+ "d2789fcb5c78741397602f88de634e60978e9960905df0a066cbebe6c22018eb": {
+  "partially": [],
+  "reason": "ensures compatibility",
+  "states": []
+ },
+ "d2796196e1c380769aed01bada5aa816469cb3d715e24f7e0b82160f642a9acb": {
+  "partially": [],
+  "reason": "2,3,4,5,6",
+  "states": []
+ },
+ "d334b9e5a8464f4dffb33ea25c02b11dc5c19f5e2ad05833401fafb8e29513dc": {
+  "partially": [],
+  "reason": "prevents compatibility issues",
+  "states": []
+ },
+ "d38f704b8db655724060b14b911d1dc49282cc6d6226f86ff58b5ccfeb9a5284": {
+  "partially": [],
+  "reason": "No exceptions to the rule are stated.",
+  "states": []
+ },
+ "d764cbf5682207c789a75858c23fa15d5cd15af8824f15d79b84923625091b3e": {
+  "partially": [],
+  "reason": "2}",
+  "states": []
+ },
+ "da56e866436ef8f1739da7dfe6b2c0507bca3a30770679d05c3a8e49222f19c6": {
+  "partially": [],
+  "reason": "2,3} keeps AMI horizon-specific to ensure reliability and proper triage.",
+  "states": []
+ },
+ "dc178b1b07995f1483790115a6bc209b248bef84510a8d1108f1721f3269098d": {
+  "partially": [],
+  "reason": "2} and 3}",
+  "states": []
+ },
+ "dc50fb342e386d9858d0f57cb8956736f4879504f8cda07276c4ab399b80e072": {
+  "partially": [],
+  "reason": "to avoid false out-of-sample validity claims",
+  "states": []
+ },
+ "e1fbddb570c7b54f6cf63ca0754f6c0a8276e81f463b6aebe966d37664cba1f7": {
+  "partially": [
+   4
+  ],
+  "reason": "Violating it introduces look-ahead leakage and invalidates the evaluation.",
+  "states": []
+ },
+ "e231d4d7035534dd4a2b76a91ed49f26e7befe221a5067f4b597eeb62ef9b1ab": {
+  "partially": [],
+  "reason": "Prevents failure of fitting models to non-forecastable data",
+  "states": [
+   1,
+   4
+  ]
+ },
+ "e23324f45ce2f6d120725fdfcfb1b1fcb2e1ec276d12ce8b997f41c0b2606e9b": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 indicate the treatment of the AMI curve when surrogate significance bands are unavailable, but do not explicitly state expected results or next actions based on those conditions.",
+  "states": []
+ },
+ "e24dce4c430c652cc9e337fac661b34c68fcb64a80610cc9d9f42f912d59740e": {
+  "partially": [],
+  "reason": "Sentence 8 explicitly states the result and action for a True is_non_monotone value.",
+  "states": [
+   8
+  ]
+ },
+ "e2632204ad72b1a59d340ccb555fd7abb6646ddb2884fb933997717ea018cf47": {
+  "partially": [],
+  "reason": "to ensure a foundational understanding before deep dives",
+  "states": []
+ },
+ "e83df6dafd1d007166cd0c3e960298eb7ad9c4a0d6aed83b23f022744ebd3503": {
+  "partially": [
+   4,
+   6
+  ],
+  "reason": "prevents look-ahead leakage",
+  "states": []
+ },
+ "e8ddd270db11811293f9923325c4a611304681336db67249917458e054de03fd": {
+  "partially": [],
+  "reason": "Conditions for introducing new selectors with new method labels.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "eea796d5b8a0629d97edd3b5612aaadcda7f1dc5498037e0af00ddb44c705b07": {
+  "partially": [],
+  "reason": "Downstream forecasting frameworks are consumers of triage results, not competitors.",
+  "states": [
+   8
+  ]
+ },
+ "eed93e1917a424b130794d512a378e315e48710fe98d9433593d7e69833e601a": {
+  "partially": [],
+  "reason": "to prevent jumping to models without assessing forecastability",
+  "states": []
+ },
+ "f00fba93cdd172c19323ca46258ce99171121acf8ee7e92557323d1ab81b101e": {
+  "partially": [],
+  "reason": "prevents including noise or excluding signals due to varying strength",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "f07c961a8ea25d40ac13b29f76c93bbcf1a9bb6264b2b7034d03110637da62d8": {
+  "partially": [],
+  "reason": "Prevents jumping to models without assessing forecastability.",
+  "states": [
+   1,
+   4
+  ]
+ },
+ "f101ed3e799ef726a79022fb6b043d683f2824b2bfa042b5ed1e16e76fb89e6f": {
+  "partially": [],
+  "reason": "ensures statistical significance",
+  "states": []
+ },
+ "f44ecc0c2cc2908432c3cde67adddd983c9c89d69331cc07f946eb1846f01484": {
+  "partially": [],
+  "reason": "prevents incorrect significance threshold",
+  "states": []
+ },
+ "f47c3ddbd9e872ee4117e506a0c088472e891668d6a382381efbac8a4e529a6f": {
+  "partially": [],
+  "reason": "to minimize dependencies and potential conflicts",
+  "states": []
+ },
+ "f5f84999165f4981b7881b49eb21930f17f1ac5e515de22f0b708030e17a8818": {
+  "partially": [],
+  "reason": "2,3 prevent premature horizon selection",
+  "states": []
+ },
+ "f9144fe0cbfffc1cad58b6d78b7b59c660312c914167736955c3dd9976637efd": {
+  "partially": [],
+  "reason": "prevents miscommunication",
+  "states": []
+ },
+ "fb4a5c6ce37f0ee9476d3ced69006cc6478031ff384b8e68443ab7dae0e8b65f": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 provide conditions for choosing where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "fe74e377a0231910b27dc1b9e7556ce1b6fa44a7bd66f854315f57e595a1912c": {
+  "partially": [],
+  "reason": "inward dependency flow",
+  "states": []
+ },
+ "ff37045169fca9edbf10b4a9263fe09e65adc16ce962929a38a8dedc98e8383c": {
+  "partially": [],
+  "reason": "2,3,4,5",
+  "states": []
+ }
+}

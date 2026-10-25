@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset='utf-8'><title>AMI, pAMI, and TE Foundations</title></head><body>
+<p>&lt;!-- type: explanation --&gt;</p>
+<h1>AMI, pAMI, and TE Foundations</h1>
+<h2>Scope</h2>
+<p>This document defines the mathematical basis used by `src/forecastability` and clarifies what is paper-native versus project extension.</p>
+<h2>Paper-native metric</h2>
+<p>AMI at horizon \(h\): \[ I_h = I(X_t; X_{t+h}) \]</p>
+<p>Interpretation: - Nonlinear analog of ACF (total dependence at lag \(h\)). - Includes both direct and mediated lag paths.</p>
+<p>Implementation: - kNN MI estimator (`k=8` default). - Horizon-specific curve, never collapsed before analysis.</p>
+<h2>Project extension metric</h2>
+<p>pAMI at horizon \(h\): \[ \tilde{I}_h = I(X_t; X_{t+h} \mid X_{t+1},\ldots,X_{t+h-1}) \]</p>
+<p>Interpretation: - Nonlinear analog of PACF (direct dependence after conditioning on intermediate lags).</p>
+<p>Current estimator in this repo: 1. Build conditioning matrix \(Z=[X_{t+1},\ldots,X_{t+h-1}]\). 2. Residualize past and future on \(Z\) (linear backend by default; optional RF backend). 3. Compute MI on residual pairs.</p>
+<h2>Directional extension metric</h2>
+<p>Transfer Entropy (TE) at lag \(h\): \[ TE(X \to Y \mid h) = I(Y_t ; X_{t-h} \mid Y_{t-1},\ldots,Y_{t-h+1}) \]</p>
+<p>Interpretation: - Directional predictive dependence: in general \(TE(X \to Y) \neq TE(Y \to X)\). - Conditioning on target history controls for autocorrelation-driven carryover in \(Y\). - Positive TE indicates added predictive information from source history beyond target-only history.</p>
+<p>Implemented entry points: - `src/forecastability/diagnostics/transfer_entropy.py`: `compute_transfer_entropy()` and `compute_transfer_entropy_curve()` (core estimator path). - `src/forecastability/services/transfer_entropy_service.py`: compatibility facade re-exporting the diagnostics functions. - `src/forecastability/pipeline/analyzer.py`: `ForecastabilityAnalyzer` and `ForecastabilityAnalyzerExog` support `method=&quot;te&quot;` for raw-curve analysis and TE surrogate significance bands.</p>
+<p>Current constraints and caveats: - Analyzer path is raw-only for TE: partial TE is intentionally unsupported. Requests for `compute_partial(..., method=&quot;te&quot;)` raise a validation error because no validated partial-TE estimand is implemented in the analyzer path. - TE sample-size guardrails require `min_pairs &gt;= 50`; with non-empty conditioning history, at least `2 * min_pairs` aligned rows are required. - TE values are estimator- and null-model-aware diagnostics, not causal proof. Significance is evaluated against phase-randomized surrogate bands and should be interpreted with the same surrogate caveats used elsewhere in this repository.</p>
+<p>Validated directional evidence (analyst run, 2026-04-16): - Synthetic lag-2 driver pair, \(n=1200\), `seed=17`. - \(TE(X \to Y)\) peaked at lag 2 with a strong directional gap vs \(TE(Y \to X)\). - `ForecastabilityAnalyzerExog(..., method=&quot;te&quot;)` raw TE curve matched `compute_transfer_entropy_curve(...)` exactly (`max_abs_diff = 0.0`). - Significant \(X \to Y\) lags above the surrogate upper band: 1, 2, and 3.</p>
+<h2>AMI vs pAMI properties</h2>
+<p>| Property | AMI | pAMI | |---|---|---| | Form | \(I(X_t;X_{t+h})\) | \(I(X_t;X_{t+h}\mid X_{t+1},...,X_{t+h-1})\) | | Analog | ACF | PACF | | Mediated paths | Included | Removed (approximately with residualization) | | Paper-native | Yes | No (project extension) | | Non-negativity | Yes | Yes |</p>
+<p>Expected relation: - In theory, \(\tilde{I}_h \le I_h\). - In finite samples with residual approximation, occasional \(\tilde{I}_h &gt; I_h\) can occur. - This repository flags `directness_ratio &gt; 1.0` as `arch_suspected`.</p>
+<h2>Significance bands</h2>
+<p>Surrogate significance uses phase-randomized surrogates and two-sided 95% quantiles: - lower: 2.5th percentile - upper: 97.5th percentile</p>
+<p>Interpretation rule: - Use upper-band crossings to detect non-null dependence. - Lower band is near zero for MI and usually not operationally informative.</p>
+<h2>Rolling-origin invariants</h2>
+<p>- Diagnostics (AMI/pAMI) are computed on each training window only. - Forecast errors are computed on post-origin test window only. - This separation is mandatory to prevent leakage.</p>
+<h2>Time-series applicability</h2>
+<h3>Paper-aligned constraints</h3>
+<p>From arXiv:2601.10006: - Use frequency-specific horizon caps: Yearly 6, Quarterly 8, Monthly 18, Weekly 13, Daily 14, Hourly 48. - Treat short, sparse, and degenerate distributions as fragile for MI estimation. - Expect weaker AMI-error discrimination in Daily frequency than in Hourly/Weekly/Quarterly/Yearly.</p>
+<h3>Implementation length constraints</h3>
+<p>Given series length \(N\), max lag \(H\):</p>
+<p>AMI feasibility: \[ N \ge H + \texttt{min\_pairs\_ami} + 1 \]</p>
+<p>pAMI feasibility (linear residual backend): \[ N \ge \max\left(H + \texttt{min\_pairs\_pami} + 1,\ 2H\right) \]</p>
+<p>With defaults (`min_pairs_ami=30`, `min_pairs_pami=50`, `H=100`): - AMI requires \(N \ge 131\) - pAMI requires \(N \ge 201\)</p>
+<h2>Directness summary</h2>
+<p>`directness_ratio`: \[ r = \frac{\operatorname{AUC}(\tilde{I}_h)}{\operatorname{AUC}(I_h)} \]</p>
+<p>Interpretation: - \(r \approx 1\): mostly direct structure. - \(r \ll 1\): mostly mediated structure. - \(r &gt; 1\): numerical/assumption warning (often ARCH-type behavior), not a physical contradiction.</p>
+<h2>Extension disclosure</h2>
+<p>- Paper validates AMI only. - pAMI, exogenous cross-dependence, and scorer-registry abstractions are project additions.</p>
+<h2>Synthetic benchmark: 8-variable covariant system</h2>
+<p>`generate_covariant_benchmark` in `src/forecastability/utils/synthetic.py` implements an 8-variable ground-truth system used for controlled method validation. The full causal graph, structural equations, and benchmark narrative are documented in [docs/theory/pcmci_plus.md](pcmci_plus.md); this section covers the two nonlinear drivers added in V3-F03 and why they matter for AMI-family methods.</p>
+<h3>Nonlinear structural equations</h3>
+<p>`driver_nonlin_sq` couples to `target` at lag 1 via a centered quadratic:</p>
+<p>$$\text{target}[t] \mathrel{+}= 0.40 \times (\text{nl}_1[t-1]^2 - \sigma^2_{\text{nl}_1})$$</p>
+<p>`driver_nonlin_abs` couples to `target` at lag 1 via a centered abs-value:</p>
+<p>$$\text{target}[t] \mathrel{+}= 0.35 \times (|\text{nl}_2[t-1]| - \mathbb{E}[|\text{nl}_2|])$$</p>
+<h3>Why Pearson and Spearman are blind</h3>
+<p>Both couplings are constructed so that the covariance between driver and target is exactly zero at the population level:</p>
+<p>- **Quadratic**: $\mathrm{Cov}(X,\, X^2 - \sigma^2) = \mathbb{E}[X^3] = 0$. The odd central moment of any zero-mean symmetric distribution is zero. Spearman is also near zero because $X^2$ is U-shaped (non-monotone) in $X$.</p>
+<p>- **Abs-value**: $\mathrm{Cov}(X,\, |X|) = \mathbb{E}[X \cdot |X|] = 0$. The function $X|X|$ is odd, so its expectation over any symmetric distribution is zero. Spearman is also near zero because $|X|$ is V-shaped (non-monotone) in $X$.</p>
+<p>A Pearson or Spearman screen would rank both drivers below independent noise — the hallmark of a linear blind-spot.</p>
+<h3>Why information-theoretic methods detect them</h3>
+<p>MI, TE, and GCMI measure dependence in the full joint distribution $P(X, Y)$, not only the linear second moment. Both couplings create statistically dependent joint distributions even though the marginal covariance is zero. kNN MI estimators detect this dependence directly through local density structure.</p>
+<p>The nonlinear drivers are included to validate that AMI, TE, and GCMI scores remain informative exactly where Pearson and Spearman fail, and to motivate the PCMCI-AMI-Hybrid design in V3-F04.</p>
+</body></html>

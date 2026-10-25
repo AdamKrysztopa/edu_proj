@@ -1,0 +1,17 @@
+{"item": "DS6",
+ "card": {"question": "Can decoy falsity and verifier validity be established independently of the pipeline, and which N2-type robustness contrast can reach Continue?",
+          "answer": "ClashEval's >60% is GPT-4o's single-document rate; Claude models adopt 31-40% with one document and Opus 24% (21-27%) with five, so N2's 5/24 (21%, Wilson 9-40%) under 18 documents is in line (inferred: different model and context size); weak-prior targets with 2:1 planted evidence could clear a 40% floor (P >= 0.90 at n = 48 if adoption >= 50%, SYNTHETIC).",
+          "changed": "No rerun of the old design; a new registration waits for verifier-validity coding, I5's reachability check and an ungated-only calibration pilot (a_u >= 10/24); decoys are validated by blind human coders, never their generator."},
+ "worked": "The floor miss is explained: the 33% floor equalled Claude's single-document rate (31-40%); five documents lower Opus to 24%.",
+ "failed": "decoy_is_valid excludes 0 of 40 committed decoys; 10 were accepted, about 6 of debatable falsity (one AI reader).",
+ "figure": {"title": "N2's 21% ungated adoption sits with ClashEval's Claude rates under more documents, far below GPT-4o's 61% headline",
+            "kind": "dot-and-interval",
+            "rows": [
+              {"label": "ClashEval GPT-4o, 1 doc (Table 2)", "rate": 0.608, "lo": 0.571, "hi": 0.643},
+              {"label": "ClashEval Claude Sonnet, 1 doc (Table 2)", "rate": 0.401, "lo": 0.374, "hi": 0.434},
+              {"label": "ClashEval Claude Opus, 1 doc (Table 2)", "rate": 0.313, "lo": 0.282, "hi": 0.346},
+              {"label": "ClashEval Claude Opus, 5 docs (appendix)", "rate": 0.237, "lo": 0.209, "hi": 0.267},
+              {"label": "N2 E-PLANT baseline, Haiku 4.5, 18 docs", "rate": 0.208, "lo": 0.09, "hi": 0.40}
+            ],
+            "reference": "the registered validity floor ceil(n/3) = 33% (8/24), set as about half of ClashEval's >60% headline",
+            "source": "research/ds6-verifier-validity.md §1 table (ClashEval Table 2 and k-document appendix values, context chosen when the prior was correct, 95% CI) and research/n2/e_plant_eabst_report.md §1.1 (pooled a_u = 5/24, Wilson 95% CI 9-40%)"}}

@@ -1,0 +1,186 @@
+{
+ "item": "DS8",
+ "card": {
+  "question": "Can E-OSS get enough dated, pre-agent truck-factor departures with knowledge-loss outcomes, and how many does it need?",
+  "answer": "315 projects with a dated pre-2023 truck-factor departure are obtainable (CC-BY-4.0); about 600 leaver-owned units (30 departures x 20) stop a null map with P 0.87-0.95, but Continue is reachable only under near-Poisson period noise (P(Continue) 0.90 at 30 x 20; <= 0.34 with NB size 10) [SYNTHETIC].",
+  "changed": "E-OSS adds a pre-t dispersion check as go/no-go, a floor of 10 corrective commits per unit per window, and a new low-visibility scan for option (a)."
+ },
+ "worked": "Avelino 2019 register obtainable: 315 projects with a dated truck-factor departure, 2008-2016, CC-BY-4.0.",
+ "failed": "Under NB size-2 period noise an oracle map reaches observed dAUROC 0.07 < delta 0.10; the gate stops real gains (P 0.71, one baseline).",
+ "figure": {
+  "title": "E-OSS reads a real gain only under near-Poisson period noise: P(Continue) 0.90 vs 0.14 vs 0.01 at 30 departures",
+  "kind": "line",
+  "rows": [
+   {
+    "departures": 10,
+    "period_noise": "NB size 2",
+    "p_continue_gain": 0.09,
+    "p_stop_gain": 0.377,
+    "p_stop_null_K6": 0.39
+   },
+   {
+    "departures": 15,
+    "period_noise": "NB size 2",
+    "p_continue_gain": 0.043,
+    "p_stop_gain": 0.513,
+    "p_stop_null_K6": 0.627
+   },
+   {
+    "departures": 20,
+    "period_noise": "NB size 2",
+    "p_continue_gain": 0.02,
+    "p_stop_gain": 0.59,
+    "p_stop_null_K6": 0.763
+   },
+   {
+    "departures": 30,
+    "period_noise": "NB size 2",
+    "p_continue_gain": 0.013,
+    "p_stop_gain": 0.713,
+    "p_stop_null_K6": 0.947
+   },
+   {
+    "departures": 40,
+    "period_noise": "NB size 2",
+    "p_continue_gain": 0.003,
+    "p_stop_gain": 0.853,
+    "p_stop_null_K6": 0.973
+   },
+   {
+    "departures": 60,
+    "period_noise": "NB size 2",
+    "p_continue_gain": 0.0,
+    "p_stop_gain": 0.933,
+    "p_stop_null_K6": 0.997
+   },
+   {
+    "departures": 80,
+    "period_noise": "NB size 2",
+    "p_continue_gain": 0.0,
+    "p_stop_gain": 0.987,
+    "p_stop_null_K6": 1.0
+   },
+   {
+    "departures": 120,
+    "period_noise": "NB size 2",
+    "p_continue_gain": 0.0,
+    "p_stop_gain": 0.997,
+    "p_stop_null_K6": 1.0
+   },
+   {
+    "departures": 10,
+    "period_noise": "NB size 10",
+    "p_continue_gain": 0.26,
+    "p_stop_gain": 0.137,
+    "p_stop_null_K6": 0.4
+   },
+   {
+    "departures": 15,
+    "period_noise": "NB size 10",
+    "p_continue_gain": 0.227,
+    "p_stop_gain": 0.167,
+    "p_stop_null_K6": 0.54
+   },
+   {
+    "departures": 20,
+    "period_noise": "NB size 10",
+    "p_continue_gain": 0.253,
+    "p_stop_gain": 0.157,
+    "p_stop_null_K6": 0.727
+   },
+   {
+    "departures": 30,
+    "period_noise": "NB size 10",
+    "p_continue_gain": 0.143,
+    "p_stop_gain": 0.183,
+    "p_stop_null_K6": 0.897
+   },
+   {
+    "departures": 40,
+    "period_noise": "NB size 10",
+    "p_continue_gain": 0.133,
+    "p_stop_gain": 0.27,
+    "p_stop_null_K6": 0.967
+   },
+   {
+    "departures": 60,
+    "period_noise": "NB size 10",
+    "p_continue_gain": 0.07,
+    "p_stop_gain": 0.297,
+    "p_stop_null_K6": 1.0
+   },
+   {
+    "departures": 80,
+    "period_noise": "NB size 10",
+    "p_continue_gain": 0.097,
+    "p_stop_gain": 0.377,
+    "p_stop_null_K6": 1.0
+   },
+   {
+    "departures": 120,
+    "period_noise": "NB size 10",
+    "p_continue_gain": 0.043,
+    "p_stop_gain": 0.493,
+    "p_stop_null_K6": 1.0
+   },
+   {
+    "departures": 10,
+    "period_noise": "Poisson",
+    "p_continue_gain": 0.683,
+    "p_stop_gain": 0.01,
+    "p_stop_null_K6": 0.413
+   },
+   {
+    "departures": 15,
+    "period_noise": "Poisson",
+    "p_continue_gain": 0.72,
+    "p_stop_gain": 0.023,
+    "p_stop_null_K6": 0.587
+   },
+   {
+    "departures": 20,
+    "period_noise": "Poisson",
+    "p_continue_gain": 0.803,
+    "p_stop_gain": 0.007,
+    "p_stop_null_K6": 0.737
+   },
+   {
+    "departures": 30,
+    "period_noise": "Poisson",
+    "p_continue_gain": 0.897,
+    "p_stop_gain": 0.003,
+    "p_stop_null_K6": 0.893
+   },
+   {
+    "departures": 40,
+    "period_noise": "Poisson",
+    "p_continue_gain": 0.883,
+    "p_stop_gain": 0.003,
+    "p_stop_null_K6": 0.95
+   },
+   {
+    "departures": 60,
+    "period_noise": "Poisson",
+    "p_continue_gain": 0.913,
+    "p_stop_gain": 0.003,
+    "p_stop_null_K6": 0.997
+   },
+   {
+    "departures": 80,
+    "period_noise": "Poisson",
+    "p_continue_gain": 0.943,
+    "p_stop_gain": 0.0,
+    "p_stop_null_K6": 1.0
+   },
+   {
+    "departures": 120,
+    "period_noise": "Poisson",
+    "p_continue_gain": 1.0,
+    "p_stop_gain": 0.0,
+    "p_stop_null_K6": 1.0
+   }
+  ],
+  "reference": "P = 0.8 target; delta = 0.10; 20 leaver-owned units per departure, floor 10 events per unit per window, latent AUROC 0.82 vs 0.62",
+  "source": "research/ds8-oss-departures/power.json cells[] (units_per_departure 20, activity_floor 10): p_continue_gain, p_stop_gain, p_stop_null_K6"
+ }
+}

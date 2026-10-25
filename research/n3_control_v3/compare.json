@@ -1,0 +1,2009 @@
+{
+ "adr0009": {
+  "gdpr_v1": {
+   "agree": false,
+   "counts": false,
+   "qwen": "0",
+   "sol": "+"
+  },
+  "gdpr_v2": {
+   "agree": true,
+   "counts": false,
+   "qwen": "0",
+   "sol": "0"
+  },
+  "plc": {
+   "agree": true,
+   "counts": false,
+   "qwen": "0",
+   "sol": "0"
+  }
+ },
+ "domains": {
+  "gdpr_v1": {
+   "jev": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.14285714285714285,
+       0.875
+      ],
+      "clusters": 7,
+      "control_rate": 0.0,
+      "diff": 0.5,
+      "n": 8,
+      "own_rate": 0.5
+     },
+     "HEDGE": {
+      "ci95": [
+       -0.6,
+       0.6
+      ],
+      "clusters": 5,
+      "control_rate": 0.2,
+      "diff": 0.0,
+      "n": 5,
+      "own_rate": 0.2
+     },
+     "RESULT": {
+      "ci95": [
+       -0.2857142857142857,
+       0.23809523809523808
+      ],
+      "clusters": 21,
+      "control_rate": 0.47619047619047616,
+      "diff": 0.0,
+      "n": 21,
+      "own_rate": 0.47619047619047616
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 4,
+      "control_rate": 0.5,
+      "diff": 0.0,
+      "n": 4,
+      "own_rate": 0.5
+     },
+     "WHY": {
+      "ci95": [
+       0.0,
+       0.6666666666666666
+      ],
+      "clusters": 6,
+      "control_rate": 0.0,
+      "diff": 0.3333333333333333,
+      "n": 6,
+      "own_rate": 0.3333333333333333
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.11627906976744186,
+      0.1951219512195122
+     ],
+     "clusters": 40,
+     "control_rate": 0.4318181818181818,
+     "diff": 0.045454545454545456,
+     "n": 44,
+     "own_rate": 0.4772727272727273
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.0975609756097561,
+      0.22727272727272727
+     ],
+     "clusters": 40,
+     "control_rate": 0.5,
+     "diff": 0.06818181818181818,
+     "n": 44,
+     "own_rate": 0.5681818181818182
+    },
+    "judge_settings": null,
+    "length_stand_in": {
+     "ci95": [
+      -0.06521739130434782,
+      0.3181818181818182
+     ],
+     "clusters": 40,
+     "control_rate": 0.4318181818181818,
+     "diff": 0.13636363636363635,
+     "median_chars": 1163.5,
+     "n": 44,
+     "own_rate": 0.5681818181818182
+    },
+    "n_discriminable": 44,
+    "n_pairs": 51,
+    "seed_free_closed": {
+     "ci95": [
+      -0.047619047619047616,
+      0.30952380952380953
+     ],
+     "clusters": 40,
+     "control_rate": 0.29545454545454547,
+     "diff": 0.13636363636363635,
+     "n": 44,
+     "own_rate": 0.4318181818181818
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.0,
+      0.34146341463414637
+     ],
+     "clusters": 40,
+     "control_rate": 0.36363636363636365,
+     "diff": 0.18181818181818182,
+     "n": 44,
+     "own_rate": 0.5454545454545454
+    },
+    "spend": {
+     "cache_hits": 2,
+     "calls": 174,
+     "input_tokens": 327891,
+     "max_usd": 0.1,
+     "prior_usd": 0.01982064,
+     "served_models": [
+      "typesafe/jev-1.13-20260917"
+     ],
+     "usd": 0.013771422000000009
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   },
+   "luna": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.2857142857142857,
+       0.9090909090909091
+      ],
+      "clusters": 7,
+      "control_rate": 0.0,
+      "diff": 0.625,
+      "n": 8,
+      "own_rate": 0.625
+     },
+     "HEDGE": {
+      "ci95": [
+       0.2,
+       1.0
+      ],
+      "clusters": 5,
+      "control_rate": 0.2,
+      "diff": 0.6,
+      "n": 5,
+      "own_rate": 0.8
+     },
+     "RESULT": {
+      "ci95": [
+       -0.23809523809523808,
+       0.2857142857142857
+      ],
+      "clusters": 21,
+      "control_rate": 0.47619047619047616,
+      "diff": 0.0,
+      "n": 21,
+      "own_rate": 0.47619047619047616
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 4,
+      "control_rate": 1.0,
+      "diff": 0.0,
+      "n": 4,
+      "own_rate": 1.0
+     },
+     "WHY": {
+      "ci95": [
+       0.0,
+       0.6666666666666666
+      ],
+      "clusters": 6,
+      "control_rate": 0.16666666666666666,
+      "diff": 0.3333333333333333,
+      "n": 6,
+      "own_rate": 0.5
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.0975609756097561,
+      0.2222222222222222
+     ],
+     "clusters": 40,
+     "control_rate": 0.5454545454545454,
+     "diff": 0.06818181818181818,
+     "n": 44,
+     "own_rate": 0.6136363636363636
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.047619047619047616,
+      0.2391304347826087
+     ],
+     "clusters": 40,
+     "control_rate": 0.7727272727272727,
+     "diff": 0.09090909090909091,
+     "n": 44,
+     "own_rate": 0.8636363636363636
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-5.6-luna",
+     "price_usd_per_mtok": [
+      0.2,
+      1.2
+     ],
+     "reasoning_effort": "medium",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.06521739130434782,
+      0.3181818181818182
+     ],
+     "clusters": 40,
+     "control_rate": 0.4318181818181818,
+     "diff": 0.13636363636363635,
+     "median_chars": 1163.5,
+     "n": 44,
+     "own_rate": 0.5681818181818182
+    },
+    "n_discriminable": 44,
+    "n_pairs": 51,
+    "seed_free_closed": {
+     "ci95": [
+      0.046511627906976744,
+      0.4
+     ],
+     "clusters": 40,
+     "control_rate": 0.36363636363636365,
+     "diff": 0.22727272727272727,
+     "n": 44,
+     "own_rate": 0.5909090909090909
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.047619047619047616,
+      0.3488372093023256
+     ],
+     "clusters": 40,
+     "control_rate": 0.5909090909090909,
+     "diff": 0.20454545454545456,
+     "n": 44,
+     "own_rate": 0.7954545454545454
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 176,
+     "completion_tokens": 68350,
+     "finish_reasons": {
+      "stop": 176
+     },
+     "max_usd": 10.0,
+     "prior_usd": 2.806718,
+     "prompt_tokens": 73070,
+     "reasoning_tokens": 59063,
+     "served_models": [
+      "gpt-5.6-luna"
+     ],
+     "usd": 0.09663400000000003
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "design-wrong (judge fails L7.3)"
+   },
+   "qwen": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.14285714285714285,
+       0.875
+      ],
+      "clusters": 7,
+      "control_rate": 0.125,
+      "diff": 0.5,
+      "n": 8,
+      "own_rate": 0.625
+     },
+     "HEDGE": {
+      "ci95": [
+       -0.6,
+       0.6
+      ],
+      "clusters": 5,
+      "control_rate": 0.2,
+      "diff": 0.0,
+      "n": 5,
+      "own_rate": 0.2
+     },
+     "RESULT": {
+      "ci95": [
+       -0.09523809523809523,
+       0.38095238095238093
+      ],
+      "clusters": 21,
+      "control_rate": 0.23809523809523808,
+      "diff": 0.14285714285714285,
+      "n": 21,
+      "own_rate": 0.38095238095238093
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.75
+      ],
+      "clusters": 4,
+      "control_rate": 0.75,
+      "diff": 0.25,
+      "n": 4,
+      "own_rate": 1.0
+     },
+     "WHY": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 6,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 6,
+      "own_rate": 0.0
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      0.045454545454545456,
+      0.2916666666666667
+     ],
+     "clusters": 40,
+     "control_rate": 0.3409090909090909,
+     "diff": 0.1590909090909091,
+     "n": 44,
+     "own_rate": 0.5
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.07142857142857142,
+      0.18181818181818182
+     ],
+     "clusters": 40,
+     "control_rate": 0.8181818181818182,
+     "diff": 0.045454545454545456,
+     "n": 44,
+     "own_rate": 0.8636363636363636
+    },
+    "judge_settings": null,
+    "length_stand_in": {
+     "ci95": [
+      -0.06521739130434782,
+      0.3181818181818182
+     ],
+     "clusters": 40,
+     "control_rate": 0.4318181818181818,
+     "diff": 0.13636363636363635,
+     "median_chars": 1163.5,
+     "n": 44,
+     "own_rate": 0.5681818181818182
+    },
+    "n_discriminable": 44,
+    "n_pairs": 51,
+    "seed_free_closed": {
+     "ci95": [
+      0.0,
+      0.36585365853658536
+     ],
+     "clusters": 40,
+     "control_rate": 0.22727272727272727,
+     "diff": 0.18181818181818182,
+     "n": 44,
+     "own_rate": 0.4090909090909091
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      -0.023809523809523808,
+      0.22727272727272727
+     ],
+     "clusters": 40,
+     "control_rate": 0.6818181818181818,
+     "diff": 0.09090909090909091,
+     "n": 44,
+     "own_rate": 0.7727272727272727
+    },
+    "spend": null,
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "design-wrong (judge fails L7.3)"
+   },
+   "sol": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.0,
+       0.7272727272727273
+      ],
+      "clusters": 7,
+      "control_rate": 0.0,
+      "diff": 0.375,
+      "n": 8,
+      "own_rate": 0.375
+     },
+     "HEDGE": {
+      "ci95": [
+       0.2,
+       1.0
+      ],
+      "clusters": 5,
+      "control_rate": 0.2,
+      "diff": 0.6,
+      "n": 5,
+      "own_rate": 0.8
+     },
+     "RESULT": {
+      "ci95": [
+       -0.14285714285714285,
+       0.3333333333333333
+      ],
+      "clusters": 21,
+      "control_rate": 0.19047619047619047,
+      "diff": 0.09523809523809523,
+      "n": 21,
+      "own_rate": 0.2857142857142857
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 4,
+      "control_rate": 1.0,
+      "diff": 0.0,
+      "n": 4,
+      "own_rate": 1.0
+     },
+     "WHY": {
+      "ci95": [
+       0.0,
+       0.6666666666666666
+      ],
+      "clusters": 6,
+      "control_rate": 0.0,
+      "diff": 0.3333333333333333,
+      "n": 6,
+      "own_rate": 0.3333333333333333
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      0.022727272727272728,
+      0.3023255813953488
+     ],
+     "clusters": 40,
+     "control_rate": 0.36363636363636365,
+     "diff": 0.1590909090909091,
+     "n": 44,
+     "own_rate": 0.5227272727272727
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.09090909090909091,
+      0.2708333333333333
+     ],
+     "clusters": 40,
+     "control_rate": 0.5909090909090909,
+     "diff": 0.09090909090909091,
+     "n": 44,
+     "own_rate": 0.6818181818181818
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-6.1-sol",
+     "price_usd_per_mtok": [
+      2.0,
+      10.0
+     ],
+     "reasoning_effort": "high",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.06521739130434782,
+      0.3181818181818182
+     ],
+     "clusters": 40,
+     "control_rate": 0.4318181818181818,
+     "diff": 0.13636363636363635,
+     "median_chars": 1163.5,
+     "n": 44,
+     "own_rate": 0.5681818181818182
+    },
+    "n_discriminable": 44,
+    "n_pairs": 51,
+    "seed_free_closed": {
+     "ci95": [
+      0.07142857142857142,
+      0.3877551020408163
+     ],
+     "clusters": 40,
+     "control_rate": 0.20454545454545456,
+     "diff": 0.22727272727272727,
+     "n": 44,
+     "own_rate": 0.4318181818181818
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.0,
+      0.3488372093023256
+     ],
+     "clusters": 40,
+     "control_rate": 0.38636363636363635,
+     "diff": 0.18181818181818182,
+     "n": 44,
+     "own_rate": 0.5681818181818182
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 176,
+     "completion_tokens": 55042,
+     "finish_reasons": {
+      "stop": 176
+     },
+     "max_usd": 10.0,
+     "prior_usd": 3.704384,
+     "prompt_tokens": 73070,
+     "reasoning_tokens": 46027,
+     "served_models": [
+      "gpt-6.1-sol"
+     ],
+     "usd": 0.6965599999999998
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "discriminates"
+   }
+  },
+  "gdpr_v2": {
+   "jev": {
+    "admissible": false,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       -0.3333333333333333,
+       0.3333333333333333
+      ],
+      "clusters": 8,
+      "control_rate": 0.1111111111111111,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.1111111111111111
+     },
+     "HEDGE": {
+      "ci95": [
+       -0.6,
+       0.6
+      ],
+      "clusters": 5,
+      "control_rate": 0.2,
+      "diff": 0.0,
+      "n": 5,
+      "own_rate": 0.2
+     },
+     "RESULT": {
+      "ci95": [
+       -0.3333333333333333,
+       0.0
+      ],
+      "clusters": 9,
+      "control_rate": 0.1111111111111111,
+      "diff": -0.1111111111111111,
+      "n": 9,
+      "own_rate": 0.0
+     },
+     "SEL": {
+      "ci95": [
+       -0.5454545454545454,
+       0.2727272727272727
+      ],
+      "clusters": 11,
+      "control_rate": 0.6363636363636364,
+      "diff": -0.18181818181818182,
+      "n": 11,
+      "own_rate": 0.45454545454545453
+     },
+     "WHY": {
+      "ci95": [
+       -0.25,
+       0.625
+      ],
+      "clusters": 8,
+      "control_rate": 0.25,
+      "diff": 0.25,
+      "n": 8,
+      "own_rate": 0.5
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.11627906976744186,
+      0.16666666666666666
+     ],
+     "clusters": 39,
+     "control_rate": 0.40476190476190477,
+     "diff": 0.023809523809523808,
+     "n": 42,
+     "own_rate": 0.42857142857142855
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.125,
+      0.17391304347826086
+     ],
+     "clusters": 39,
+     "control_rate": 0.4523809523809524,
+     "diff": 0.023809523809523808,
+     "n": 42,
+     "own_rate": 0.47619047619047616
+    },
+    "judge_settings": null,
+    "length_stand_in": {
+     "ci95": [
+      -0.21428571428571427,
+      0.11363636363636363
+     ],
+     "clusters": 39,
+     "control_rate": 0.5238095238095238,
+     "diff": -0.047619047619047616,
+     "median_chars": 1562.0,
+     "n": 42,
+     "own_rate": 0.47619047619047616
+    },
+    "n_discriminable": 42,
+    "n_pairs": 48,
+    "seed_free_closed": {
+     "ci95": [
+      -0.2,
+      0.16279069767441862
+     ],
+     "clusters": 39,
+     "control_rate": 0.2857142857142857,
+     "diff": -0.023809523809523808,
+     "n": 42,
+     "own_rate": 0.2619047619047619
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      -0.1794871794871795,
+      0.17391304347826086
+     ],
+     "clusters": 39,
+     "control_rate": 0.30952380952380953,
+     "diff": 0.0,
+     "n": 42,
+     "own_rate": 0.30952380952380953
+    },
+    "spend": {
+     "cache_hits": 2,
+     "calls": 166,
+     "input_tokens": 326986,
+     "max_usd": 0.1,
+     "prior_usd": 0.033592062,
+     "served_models": [
+      "typesafe/jev-1.13-20260917"
+     ],
+     "usd": 0.013733411999999997
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   },
+   "luna": {
+    "admissible": false,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       -0.3333333333333333,
+       0.3333333333333333
+      ],
+      "clusters": 8,
+      "control_rate": 0.1111111111111111,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.1111111111111111
+     },
+     "HEDGE": {
+      "ci95": [
+       -0.4,
+       0.8
+      ],
+      "clusters": 5,
+      "control_rate": 0.2,
+      "diff": 0.2,
+      "n": 5,
+      "own_rate": 0.4
+     },
+     "RESULT": {
+      "ci95": [
+       -0.6666666666666666,
+       0.0
+      ],
+      "clusters": 9,
+      "control_rate": 0.4444444444444444,
+      "diff": -0.3333333333333333,
+      "n": 9,
+      "own_rate": 0.1111111111111111
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.5454545454545454
+      ],
+      "clusters": 11,
+      "control_rate": 0.6363636363636364,
+      "diff": 0.2727272727272727,
+      "n": 11,
+      "own_rate": 0.9090909090909091
+     },
+     "WHY": {
+      "ci95": [
+       0.25,
+       1.0
+      ],
+      "clusters": 8,
+      "control_rate": 0.25,
+      "diff": 0.625,
+      "n": 8,
+      "own_rate": 0.875
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.21428571428571427,
+      0.1111111111111111
+     ],
+     "clusters": 39,
+     "control_rate": 0.6190476190476191,
+     "diff": -0.047619047619047616,
+     "n": 42,
+     "own_rate": 0.5714285714285714
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.14634146341463414,
+      0.225
+     ],
+     "clusters": 39,
+     "control_rate": 0.6904761904761905,
+     "diff": 0.047619047619047616,
+     "n": 42,
+     "own_rate": 0.7380952380952381
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-5.6-luna",
+     "price_usd_per_mtok": [
+      0.2,
+      1.2
+     ],
+     "reasoning_effort": "medium",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.21428571428571427,
+      0.11363636363636363
+     ],
+     "clusters": 39,
+     "control_rate": 0.5238095238095238,
+     "diff": -0.047619047619047616,
+     "median_chars": 1562.0,
+     "n": 42,
+     "own_rate": 0.47619047619047616
+    },
+    "n_discriminable": 42,
+    "n_pairs": 48,
+    "seed_free_closed": {
+     "ci95": [
+      -0.047619047619047616,
+      0.3181818181818182
+     ],
+     "clusters": 39,
+     "control_rate": 0.35714285714285715,
+     "diff": 0.14285714285714285,
+     "n": 42,
+     "own_rate": 0.5
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      -0.10256410256410256,
+      0.25
+     ],
+     "clusters": 39,
+     "control_rate": 0.5238095238095238,
+     "diff": 0.07142857142857142,
+     "n": 42,
+     "own_rate": 0.5952380952380952
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 168,
+     "completion_tokens": 66788,
+     "finish_reasons": {
+      "stop": 168
+     },
+     "max_usd": 10.0,
+     "prior_usd": 2.903352,
+     "prompt_tokens": 82262,
+     "reasoning_tokens": 57946,
+     "served_models": [
+      "gpt-5.6-luna"
+     ],
+     "usd": 0.09659799999999993
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "design-wrong (judge fails L7.3)"
+   },
+   "qwen": {
+    "admissible": false,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.0,
+       0.5555555555555556
+      ],
+      "clusters": 8,
+      "control_rate": 0.1111111111111111,
+      "diff": 0.2222222222222222,
+      "n": 9,
+      "own_rate": 0.3333333333333333
+     },
+     "HEDGE": {
+      "ci95": [
+       0.0,
+       0.6
+      ],
+      "clusters": 5,
+      "control_rate": 0.2,
+      "diff": 0.2,
+      "n": 5,
+      "own_rate": 0.4
+     },
+     "RESULT": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 9,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.0
+     },
+     "SEL": {
+      "ci95": [
+       0.09090909090909091,
+       0.6363636363636364
+      ],
+      "clusters": 11,
+      "control_rate": 0.5454545454545454,
+      "diff": 0.36363636363636365,
+      "n": 11,
+      "own_rate": 0.9090909090909091
+     },
+     "WHY": {
+      "ci95": [
+       -0.5,
+       0.25
+      ],
+      "clusters": 8,
+      "control_rate": 0.25,
+      "diff": -0.125,
+      "n": 8,
+      "own_rate": 0.125
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      0.0,
+      0.1590909090909091
+     ],
+     "clusters": 39,
+     "control_rate": 0.40476190476190477,
+     "diff": 0.07142857142857142,
+     "n": 42,
+     "own_rate": 0.47619047619047616
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.07317073170731707,
+      0.12195121951219512
+     ],
+     "clusters": 39,
+     "control_rate": 0.6904761904761905,
+     "diff": 0.023809523809523808,
+     "n": 42,
+     "own_rate": 0.7142857142857143
+    },
+    "judge_settings": null,
+    "length_stand_in": {
+     "ci95": [
+      -0.21428571428571427,
+      0.11363636363636363
+     ],
+     "clusters": 39,
+     "control_rate": 0.5238095238095238,
+     "diff": -0.047619047619047616,
+     "median_chars": 1562.0,
+     "n": 42,
+     "own_rate": 0.47619047619047616
+    },
+    "n_discriminable": 42,
+    "n_pairs": 48,
+    "seed_free_closed": {
+     "ci95": [
+      0.0,
+      0.2857142857142857
+     ],
+     "clusters": 39,
+     "control_rate": 0.23809523809523808,
+     "diff": 0.14285714285714285,
+     "n": 42,
+     "own_rate": 0.38095238095238093
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.046511627906976744,
+      0.3488372093023256
+     ],
+     "clusters": 39,
+     "control_rate": 0.5,
+     "diff": 0.19047619047619047,
+     "n": 42,
+     "own_rate": 0.6904761904761905
+    },
+    "spend": null,
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "design-wrong (judge fails L7.3)"
+   },
+   "sol": {
+    "admissible": false,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       -0.3333333333333333,
+       0.3333333333333333
+      ],
+      "clusters": 8,
+      "control_rate": 0.1111111111111111,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.1111111111111111
+     },
+     "HEDGE": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 5,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 5,
+      "own_rate": 0.0
+     },
+     "RESULT": {
+      "ci95": [
+       0.0,
+       0.3333333333333333
+      ],
+      "clusters": 9,
+      "control_rate": 0.0,
+      "diff": 0.1111111111111111,
+      "n": 9,
+      "own_rate": 0.1111111111111111
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.2727272727272727
+      ],
+      "clusters": 11,
+      "control_rate": 0.7272727272727273,
+      "diff": 0.09090909090909091,
+      "n": 11,
+      "own_rate": 0.8181818181818182
+     },
+     "WHY": {
+      "ci95": [
+       0.0,
+       0.375
+      ],
+      "clusters": 8,
+      "control_rate": 0.0,
+      "diff": 0.125,
+      "n": 8,
+      "own_rate": 0.125
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      0.0,
+      0.15384615384615385
+     ],
+     "clusters": 39,
+     "control_rate": 0.2619047619047619,
+     "diff": 0.07142857142857142,
+     "n": 42,
+     "own_rate": 0.3333333333333333
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.024390243902439025,
+      0.17777777777777778
+     ],
+     "clusters": 39,
+     "control_rate": 0.38095238095238093,
+     "diff": 0.07142857142857142,
+     "n": 42,
+     "own_rate": 0.4523809523809524
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-6.1-sol",
+     "price_usd_per_mtok": [
+      2.0,
+      10.0
+     ],
+     "reasoning_effort": "high",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.21428571428571427,
+      0.11363636363636363
+     ],
+     "clusters": 39,
+     "control_rate": 0.5238095238095238,
+     "diff": -0.047619047619047616,
+     "median_chars": 1562.0,
+     "n": 42,
+     "own_rate": 0.47619047619047616
+    },
+    "n_discriminable": 42,
+    "n_pairs": 48,
+    "seed_free_closed": {
+     "ci95": [
+      -0.024390243902439025,
+      0.17777777777777778
+     ],
+     "clusters": 39,
+     "control_rate": 0.21428571428571427,
+     "diff": 0.07142857142857142,
+     "n": 42,
+     "own_rate": 0.2857142857142857
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.0,
+      0.20930232558139536
+     ],
+     "clusters": 39,
+     "control_rate": 0.23809523809523808,
+     "diff": 0.09523809523809523,
+     "n": 42,
+     "own_rate": 0.3333333333333333
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 168,
+     "completion_tokens": 46563,
+     "finish_reasons": {
+      "stop": 168
+     },
+     "max_usd": 10.0,
+     "prior_usd": 4.400944,
+     "prompt_tokens": 82262,
+     "reasoning_tokens": 37958,
+     "served_models": [
+      "gpt-6.1-sol"
+     ],
+     "usd": 0.6301539999999999
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   }
+  },
+  "plc": {
+   "jev": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DIAG": {
+      "ci95": [
+       0.0,
+       1.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.1111111111111111,
+      "n": 9,
+      "own_rate": 0.1111111111111111
+     },
+     "RESULT": {
+      "ci95": [
+       -0.3684210526315789,
+       0.2631578947368421
+      ],
+      "clusters": 19,
+      "control_rate": 0.7368421052631579,
+      "diff": -0.05263157894736842,
+      "n": 19,
+      "own_rate": 0.6842105263157895
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       1.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.5,
+      "n": 2,
+      "own_rate": 0.5
+     },
+     "WHY": {
+      "ci95": [
+       -0.08333333333333333,
+       0.3333333333333333
+      ],
+      "clusters": 24,
+      "control_rate": 0.375,
+      "diff": 0.125,
+      "n": 24,
+      "own_rate": 0.5
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.06382978723404255,
+      0.1864406779661017
+     ],
+     "clusters": 36,
+     "control_rate": 0.5555555555555556,
+     "diff": 0.05555555555555555,
+     "n": 54,
+     "own_rate": 0.6111111111111112
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      0.046153846153846156,
+      0.23636363636363636
+     ],
+     "clusters": 36,
+     "control_rate": 0.5925925925925926,
+     "diff": 0.12962962962962962,
+     "n": 54,
+     "own_rate": 0.7222222222222222
+    },
+    "judge_settings": null,
+    "length_stand_in": {
+     "ci95": [
+      -0.1875,
+      0.4246575342465753
+     ],
+     "clusters": 36,
+     "control_rate": 0.4444444444444444,
+     "diff": 0.12962962962962962,
+     "median_chars": 1109.0,
+     "n": 54,
+     "own_rate": 0.5740740740740741
+    },
+    "n_discriminable": 54,
+    "n_pairs": 54,
+    "seed_free_closed": {
+     "ci95": [
+      -0.09836065573770492,
+      0.2653061224489796
+     ],
+     "clusters": 36,
+     "control_rate": 0.42592592592592593,
+     "diff": 0.07407407407407407,
+     "n": 54,
+     "own_rate": 0.5
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.08955223880597014,
+      0.3958333333333333
+     ],
+     "clusters": 36,
+     "control_rate": 0.4444444444444444,
+     "diff": 0.2222222222222222,
+     "n": 54,
+     "own_rate": 0.6666666666666666
+    },
+    "spend": {
+     "cache_hits": 0,
+     "calls": 188,
+     "input_tokens": 359496,
+     "max_usd": 0.1,
+     "prior_usd": 0.004721808,
+     "served_models": [
+      "typesafe/jev-1.13-20260917"
+     ],
+     "usd": 0.015098831999999998
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   },
+   "luna": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DIAG": {
+      "ci95": [
+       0.0,
+       1.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.1111111111111111,
+      "n": 9,
+      "own_rate": 0.1111111111111111
+     },
+     "RESULT": {
+      "ci95": [
+       -0.5263157894736842,
+       0.10526315789473684
+      ],
+      "clusters": 19,
+      "control_rate": 0.7368421052631579,
+      "diff": -0.21052631578947367,
+      "n": 19,
+      "own_rate": 0.5263157894736842
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 2,
+      "control_rate": 1.0,
+      "diff": 0.0,
+      "n": 2,
+      "own_rate": 1.0
+     },
+     "WHY": {
+      "ci95": [
+       0.125,
+       0.5
+      ],
+      "clusters": 24,
+      "control_rate": 0.20833333333333334,
+      "diff": 0.2916666666666667,
+      "n": 24,
+      "own_rate": 0.5
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.1276595744680851,
+      0.17307692307692307
+     ],
+     "clusters": 36,
+     "control_rate": 0.5555555555555556,
+     "diff": 0.018518518518518517,
+     "n": 54,
+     "own_rate": 0.5740740740740741
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      0.01639344262295082,
+      0.22916666666666666
+     ],
+     "clusters": 36,
+     "control_rate": 0.7962962962962963,
+     "diff": 0.1111111111111111,
+     "n": 54,
+     "own_rate": 0.9074074074074074
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-5.6-luna",
+     "price_usd_per_mtok": [
+      0.2,
+      1.2
+     ],
+     "reasoning_effort": "medium",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.1875,
+      0.4246575342465753
+     ],
+     "clusters": 36,
+     "control_rate": 0.4444444444444444,
+     "diff": 0.12962962962962962,
+     "median_chars": 1109.0,
+     "n": 54,
+     "own_rate": 0.5740740740740741
+    },
+    "n_discriminable": 54,
+    "n_pairs": 54,
+    "seed_free_closed": {
+     "ci95": [
+      -0.08333333333333333,
+      0.2391304347826087
+     ],
+     "clusters": 36,
+     "control_rate": 0.3888888888888889,
+     "diff": 0.07407407407407407,
+     "n": 54,
+     "own_rate": 0.46296296296296297
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.03389830508474576,
+      0.2807017543859649
+     ],
+     "clusters": 36,
+     "control_rate": 0.6666666666666666,
+     "diff": 0.14814814814814814,
+     "n": 54,
+     "own_rate": 0.8148148148148148
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 188,
+     "completion_tokens": 75573,
+     "finish_reasons": {
+      "stop": 188
+     },
+     "max_usd": 10.0,
+     "prior_usd": 2.701672,
+     "prompt_tokens": 71792,
+     "reasoning_tokens": 65904,
+     "served_models": [
+      "gpt-5.6-luna"
+     ],
+     "usd": 0.10504600000000003
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "design-wrong (judge fails L7.3)"
+   },
+   "qwen": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DIAG": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.0
+     },
+     "RESULT": {
+      "ci95": [
+       -0.15789473684210525,
+       0.2631578947368421
+      ],
+      "clusters": 19,
+      "control_rate": 0.15789473684210525,
+      "diff": 0.05263157894736842,
+      "n": 19,
+      "own_rate": 0.21052631578947367
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       1.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.5,
+      "n": 2,
+      "own_rate": 0.5
+     },
+     "WHY": {
+      "ci95": [
+       -0.125,
+       0.25
+      ],
+      "clusters": 24,
+      "control_rate": 0.08333333333333333,
+      "diff": 0.041666666666666664,
+      "n": 24,
+      "own_rate": 0.125
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.1206896551724138,
+      0.16981132075471697
+     ],
+     "clusters": 36,
+     "control_rate": 0.2777777777777778,
+     "diff": 0.018518518518518517,
+     "n": 54,
+     "own_rate": 0.2962962962962963
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.13793103448275862,
+      0.15151515151515152
+     ],
+     "clusters": 36,
+     "control_rate": 0.6296296296296297,
+     "diff": 0.0,
+     "n": 54,
+     "own_rate": 0.6296296296296297
+    },
+    "judge_settings": null,
+    "length_stand_in": {
+     "ci95": [
+      -0.1875,
+      0.4246575342465753
+     ],
+     "clusters": 36,
+     "control_rate": 0.4444444444444444,
+     "diff": 0.12962962962962962,
+     "median_chars": 1109.0,
+     "n": 54,
+     "own_rate": 0.5740740740740741
+    },
+    "n_discriminable": 54,
+    "n_pairs": 54,
+    "seed_free_closed": {
+     "ci95": [
+      -0.0851063829787234,
+      0.1956521739130435
+     ],
+     "clusters": 36,
+     "control_rate": 0.09259259259259259,
+     "diff": 0.05555555555555555,
+     "n": 54,
+     "own_rate": 0.14814814814814814
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      -0.07142857142857142,
+      0.22916666666666666
+     ],
+     "clusters": 36,
+     "control_rate": 0.35185185185185186,
+     "diff": 0.07407407407407407,
+     "n": 54,
+     "own_rate": 0.42592592592592593
+    },
+    "spend": null,
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 2
+    },
+    "verdict": "design-wrong (judge fails L7.3)"
+   },
+   "sol": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DIAG": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.0
+     },
+     "RESULT": {
+      "ci95": [
+       -0.3157894736842105,
+       0.21052631578947367
+      ],
+      "clusters": 19,
+      "control_rate": 0.3157894736842105,
+      "diff": -0.05263157894736842,
+      "n": 19,
+      "own_rate": 0.2631578947368421
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       1.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.5,
+      "n": 2,
+      "own_rate": 0.5
+     },
+     "WHY": {
+      "ci95": [
+       0.125,
+       0.5
+      ],
+      "clusters": 24,
+      "control_rate": 0.0,
+      "diff": 0.2916666666666667,
+      "n": 24,
+      "own_rate": 0.2916666666666667
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.10869565217391304,
+      0.13043478260869565
+     ],
+     "clusters": 36,
+     "control_rate": 0.37037037037037035,
+     "diff": 0.018518518518518517,
+     "n": 54,
+     "own_rate": 0.3888888888888889
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      0.022727272727272728,
+      0.4647887323943662
+     ],
+     "clusters": 36,
+     "control_rate": 0.5185185185185185,
+     "diff": 0.24074074074074073,
+     "n": 54,
+     "own_rate": 0.7592592592592593
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-6.1-sol",
+     "price_usd_per_mtok": [
+      2.0,
+      10.0
+     ],
+     "reasoning_effort": "high",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.1875,
+      0.4246575342465753
+     ],
+     "clusters": 36,
+     "control_rate": 0.4444444444444444,
+     "diff": 0.12962962962962962,
+     "median_chars": 1109.0,
+     "n": 54,
+     "own_rate": 0.5740740740740741
+    },
+    "n_discriminable": 54,
+    "n_pairs": 54,
+    "seed_free_closed": {
+     "ci95": [
+      -0.018867924528301886,
+      0.2777777777777778
+     ],
+     "clusters": 36,
+     "control_rate": 0.1111111111111111,
+     "diff": 0.12962962962962962,
+     "n": 54,
+     "own_rate": 0.24074074074074073
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.19230769230769232,
+      0.6326530612244898
+     ],
+     "clusters": 36,
+     "control_rate": 0.25925925925925924,
+     "diff": 0.42592592592592593,
+     "n": 54,
+     "own_rate": 0.6851851851851852
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 188,
+     "completion_tokens": 56085,
+     "finish_reasons": {
+      "stop": 188
+     },
+     "max_usd": 10.0,
+     "prior_usd": 2.99995,
+     "prompt_tokens": 71792,
+     "reasoning_tokens": 46730,
+     "served_models": [
+      "gpt-6.1-sol"
+     ],
+     "usd": 0.7044340000000001
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   }
+  }
+ },
+ "i2_jev_vs_sol": {
+  "by_domain": {
+   "gdpr_v1": {
+    "close": false,
+    "delta_primary": -0.09090909090909091,
+    "jev": {
+     "ci95": [
+      -0.047619047619047616,
+      0.30952380952380953
+     ],
+     "clusters": 40,
+     "control_rate": 0.29545454545454547,
+     "diff": 0.13636363636363635,
+     "n": 44,
+     "own_rate": 0.4318181818181818
+    },
+    "jev_direction": "0",
+    "kappa": 0.4272606028274207,
+    "same_direction": false,
+    "sol_diff": 0.22727272727272727,
+    "sol_direction_noise_inflated": "+"
+   },
+   "gdpr_v2": {
+    "close": false,
+    "delta_primary": -0.09523809523809523,
+    "jev": {
+     "ci95": [
+      -0.2,
+      0.16279069767441862
+     ],
+     "clusters": 39,
+     "control_rate": 0.2857142857142857,
+     "diff": -0.023809523809523808,
+     "n": 42,
+     "own_rate": 0.2619047619047619
+    },
+    "jev_direction": "0",
+    "kappa": 0.46902654867256627,
+    "same_direction": true,
+    "sol_diff": 0.07142857142857142,
+    "sol_direction_noise_inflated": "0"
+   },
+   "plc": {
+    "close": false,
+    "delta_primary": -0.05555555555555555,
+    "jev": {
+     "ci95": [
+      -0.09836065573770492,
+      0.2653061224489796
+     ],
+     "clusters": 36,
+     "control_rate": 0.42592592592592593,
+     "diff": 0.07407407407407407,
+     "n": 54,
+     "own_rate": 0.5
+    },
+    "jev_direction": "0",
+    "kappa": 0.3967565692481138,
+    "same_direction": true,
+    "sol_diff": 0.12962962962962962,
+    "sol_direction_noise_inflated": "0"
+   }
+  },
+  "close_to_sol": false,
+  "domain_spend": {
+   "calls": 528,
+   "usd": 0.042603666,
+   "usd_per_judged_arm": 8.068876136363636e-05
+  },
+  "rule": {
+   "max_abs_delta_primary": 0.05,
+   "min_kappa": 0.6
+  }
+ },
+ "i2_l73_screen": {
+  "jev": {
+   "eligible": true,
+   "identical_target_states": true,
+   "retest_prompts": 76,
+   "retest_state_agreement": 1.0,
+   "runs": [
+    {
+     "eligible": true,
+     "planted_fires": true,
+     "stand_in_fires": false
+    },
+    {
+     "eligible": true,
+     "planted_fires": true,
+     "stand_in_fires": false
+    }
+   ]
+  }
+ },
+ "kappa": {
+  "luna-jev": {
+   "admissible_pooled": {
+    "kappa": 0.469328249411237,
+    "n": 364,
+    "raw": 0.6785714285714286
+   },
+   "gdpr_v1": {
+    "kappa": 0.41489951140885506,
+    "n": 176,
+    "raw": 0.625
+   },
+   "gdpr_v2": {
+    "kappa": 0.46019278828989646,
+    "n": 168,
+    "raw": 0.6785714285714286
+   },
+   "plc": {
+    "kappa": 0.5224861795906169,
+    "n": 188,
+    "raw": 0.7287234042553191
+   }
+  },
+  "luna-sol": {
+   "admissible_pooled": {
+    "kappa": 0.4993524132634932,
+    "n": 364,
+    "raw": 0.6703296703296703
+   },
+   "gdpr_v1": {
+    "kappa": 0.5458289911170662,
+    "n": 176,
+    "raw": 0.7045454545454546
+   },
+   "gdpr_v2": {
+    "kappa": 0.3801452784503632,
+    "n": 168,
+    "raw": 0.6190476190476191
+   },
+   "plc": {
+    "kappa": 0.4586262386719743,
+    "n": 188,
+    "raw": 0.6382978723404256
+   }
+  },
+  "qwen-jev": {
+   "admissible_pooled": {
+    "kappa": 0.1318844757018505,
+    "n": 362,
+    "raw": 0.425414364640884
+   },
+   "gdpr_v1": {
+    "kappa": 0.1449653971309409,
+    "n": 176,
+    "raw": 0.3977272727272727
+   },
+   "gdpr_v2": {
+    "kappa": 0.21413240878322606,
+    "n": 168,
+    "raw": 0.49404761904761907
+   },
+   "plc": {
+    "kappa": 0.18082901554404143,
+    "n": 186,
+    "raw": 0.45161290322580644
+   }
+  },
+  "qwen-luna": {
+   "admissible_pooled": {
+    "kappa": 0.2195634015847574,
+    "n": 362,
+    "raw": 0.4723756906077348
+   },
+   "gdpr_v1": {
+    "kappa": 0.2831133140305247,
+    "n": 176,
+    "raw": 0.5284090909090909
+   },
+   "gdpr_v2": {
+    "kappa": 0.27240831094786466,
+    "n": 168,
+    "raw": 0.5297619047619048
+   },
+   "plc": {
+    "kappa": 0.1648790222000499,
+    "n": 186,
+    "raw": 0.41935483870967744
+   }
+  },
+  "qwen-sol": {
+   "admissible_pooled": {
+    "kappa": 0.23555143006323603,
+    "n": 362,
+    "raw": 0.4972375690607735
+   },
+   "gdpr_v1": {
+    "kappa": 0.2184724689165186,
+    "n": 176,
+    "raw": 0.4602272727272727
+   },
+   "gdpr_v2": {
+    "kappa": 0.26545335300868994,
+    "n": 168,
+    "raw": 0.5238095238095238
+   },
+   "plc": {
+    "kappa": 0.2586586036283672,
+    "n": 186,
+    "raw": 0.532258064516129
+   }
+  },
+  "sol-jev": {
+   "admissible_pooled": {
+    "kappa": 0.4086642599277978,
+    "n": 364,
+    "raw": 0.6291208791208791
+   },
+   "gdpr_v1": {
+    "kappa": 0.4272606028274207,
+    "n": 176,
+    "raw": 0.6534090909090909
+   },
+   "gdpr_v2": {
+    "kappa": 0.46902654867256627,
+    "n": 168,
+    "raw": 0.7321428571428571
+   },
+   "plc": {
+    "kappa": 0.3967565692481138,
+    "n": 188,
+    "raw": 0.6063829787234043
+   }
+  }
+ },
+ "l73": {
+  "luna": {
+   "eligible": false,
+   "planted_fires": false,
+   "stand_in_fires": false
+  },
+  "qwen": {
+   "eligible": false,
+   "planted_fires": true,
+   "stand_in_fires": true
+  },
+  "sol": {
+   "eligible": true,
+   "planted_fires": true,
+   "stand_in_fires": false
+  }
+ },
+ "retest_run1_vs_run2": {
+  "luna": {
+   "gdpr_v1": {
+    "kappa": 0.6900044033465434,
+    "n": 88,
+    "state_agreement": 0.8181818181818182
+   },
+   "gdpr_v2": {
+    "kappa": 0.6247086247086246,
+    "n": 92,
+    "state_agreement": 0.7717391304347826
+   },
+   "l73": {
+    "kappa": 0.770739064856712,
+    "n": 76,
+    "state_agreement": 0.868421052631579
+   },
+   "plc": {
+    "kappa": 0.8025457438345267,
+    "n": 146,
+    "state_agreement": 0.8835616438356164
+   }
+  },
+  "qwen": {
+   "gdpr_v1": {
+    "kappa": 1.0,
+    "n": 88,
+    "state_agreement": 1.0
+   },
+   "gdpr_v2": {
+    "kappa": 1.0,
+    "n": 92,
+    "state_agreement": 1.0
+   },
+   "l73": {
+    "kappa": 1.0,
+    "n": 76,
+    "state_agreement": 1.0
+   },
+   "plc": {
+    "kappa": 1.0,
+    "n": 146,
+    "state_agreement": 1.0
+   }
+  },
+  "sol": {
+   "gdpr_v1": {
+    "kappa": 0.9046793760831889,
+    "n": 88,
+    "state_agreement": 0.9431818181818182
+   },
+   "gdpr_v2": {
+    "kappa": 0.8663438256658597,
+    "n": 92,
+    "state_agreement": 0.9347826086956522
+   },
+   "l73": {
+    "kappa": 1.0,
+    "n": 76,
+    "state_agreement": 1.0
+   },
+   "plc": {
+    "kappa": 0.8721914210679893,
+    "n": 146,
+    "state_agreement": 0.9178082191780822
+   }
+  }
+ }
+}

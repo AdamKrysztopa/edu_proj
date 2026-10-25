@@ -213,9 +213,15 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
     """Keyed by Extraction.extraction_id."""
     sidecar_decoys: list[dict] = []
     sidecar_cross_checks: list[dict] = []
+    sidecar_scope_refutes: list[dict] = []
+    """R4: a REFUTES whose verifier flagged subject_or_scope_differs is about something else (the
+    Art. 35/36 class), so it is reported here and never becomes an N1 Contradiction."""
+    n_verbatim_copies_merged = 0
+    n_cross_candidates_verbatim_copy = 0
     slots_sidecar: list[dict] = []
 
     ledger_areas: list[Area] = []
+    area_by_id: dict[str, dict] = {}
     claims_by_id_real: dict[str, ClaimRecord] = {}
     unknown_placeholders: list[ClaimRecord] = []
     ledger_assignments: list[tuple[str, str]] = []
@@ -234,7 +240,6 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
                                        failed_calls=failed_calls_by_task)
         _write_areas_json(run_dir, area_specs)
 
-        area_by_id: dict[str, dict] = {}
         for spec in area_specs:
             area = evidence.build_area(spec["name"], scope)
             area_by_id[area.area_id] = {"area": area, "name": spec["name"], "queries": spec["queries"]}
@@ -401,6 +406,8 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
         def matched_area(name: str) -> str | None:
             return next((aid for aid, m in area_by_id.items() if m["name"].casefold() == name.casefold()), None)
 
+        folded_by_source = {sid: evidence.fold(d.normalised_text) for sid, d in docs_by_source_id.items()}
+
         for merged in merged_list:
             evidences = []
             searches_for_claim: dict[str, Search] = {}
@@ -408,8 +415,23 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
                 doc = docs_by_source_id[member.source_id]
                 for s in doc.searches.values():
                     searches_for_claim[_search_key(s)] = s
+            supported_members = [located_by_extraction[m.extraction_id] for m in merged.members
+                                 if m.extraction_id in located_by_extraction
+                                 and located_by_extraction[m.extraction_id].verification.verdict
+                                 is Verdict.SUPPORTS]
+            member_copies = evidence.collapse_verbatim_copies([
+                evidence.CopyItem(s.extraction.extraction_id,
+                                  sources_by_id[s.doc.source_id].independence_key, s.span.exact,
+                                  folded_by_source[s.doc.source_id])
+                for s in supported_members])
+            for member in merged.members:
                 loc = located_by_extraction.get(member.extraction_id)
                 if loc is None:
+                    continue
+                if member.extraction_id in member_copies:
+                    kept = located_by_extraction[member_copies[member.extraction_id]]
+                    sidecar_extractions[member.extraction_id]["verbatim_copy_of"] = kept.doc.source_id
+                    n_verbatim_copies_merged += 1
                     continue
                 ev = evidence.build_evidence(source=sources_by_id[loc.doc.source_id], span=loc.span,
                                              text_sha256=loc.doc.text_sha256, retrieved=today,
@@ -435,10 +457,9 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
             by_area_claims.setdefault(aid, []).append(cid)
 
         if verifier_available:
-            # A's span_duplicates (SHOULD 5a) groups spans that share a >=25-word verbatim run
-            # even across different independence clusters — a verbatim copy of the same primary
-            # text (e.g. two regulators quoting the same statute) must not count as independent
-            # corroboration just because its host cleared the cluster threshold.
+            # span_duplicates (SHOULD 5a) catches a shared >=25-word run; R3's is_verbatim_copy
+            # below catches the shorter copies (most spans are 6-80 words) by testing each
+            # candidate against the claim's own source texts.
             all_spans = [(e.selector.locator, e.source.independence_key, e.selector.exact or "")
                          for c in claims_by_id_real.values() for e in c.evidence if e.selector.locator]
             dup_group = evidence.span_duplicates(all_spans)
@@ -454,11 +475,19 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
                     claim = claims_by_id_real[cid]
                     own_keys = {e.source.independence_key for e in claim.evidence}
                     own_dup_keys = {_dup_key(e.selector.locator) for e in claim.evidence}
-                    candidates = [
-                        (other, span_by_cid[other]) for other in supported_cids
-                        if other != cid and span_by_cid[other].source.independence_key not in own_keys
-                        and _dup_key(span_by_cid[other].selector.locator) not in own_dup_keys
-                    ]
+                    candidates = []
+                    for other in supported_cids:
+                        other_ev = span_by_cid[other]
+                        if (other == cid or other_ev.source.independence_key in own_keys
+                                or _dup_key(other_ev.selector.locator) in own_dup_keys):
+                            continue
+                        if any(evidence.is_verbatim_copy(
+                                e.selector.exact or "", folded_by_source[e.source.source_id],
+                                other_ev.selector.exact or "", folded_by_source[other_ev.source.source_id])
+                               for e in claim.evidence):
+                            n_cross_candidates_verbatim_copy += 1
+                            continue
+                        candidates.append((other, other_ev))
                     scored = sorted(
                         candidates,
                         key=lambda item: (
@@ -484,7 +513,13 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
                             continue
                         verdict, _, flags = _verdict_from_result(result, span_exact, allow_refutes=True)
                         added_as = "none"
-                        if verdict == "supports":
+                        if verdict == "refutes" and flags["subject_or_scope_differs"]:
+                            sidecar_scope_refutes.append({
+                                "claim_id": cid, "other_claim_id": other_cid,
+                                "other_source_id": other_ev.source.source_id,
+                                "locator": other_ev.selector.locator, **flags})
+                            added_as = "scope_refute"
+                        elif verdict == "supports":
                             new_evidences.append(evidence.build_evidence(
                                 source=other_ev.source, span=located, text_sha256=parsed[0],
                                 retrieved=today, verification=evidence.build_verification(
@@ -521,8 +556,8 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
                                    for s in d.searches.values()}.values())
             for probe in evidence.PROBES:
                 claim_ids = claim_ids_per_area_probe.get((area_id, probe.value), [])
-                n_clusters = len({e.source.independence_key for cid in claim_ids
-                                  for e in claims_by_id_real[cid].supporting})
+                n_clusters, n_copies = _independent_support(
+                    [claims_by_id_real[cid] for cid in claim_ids], folded_by_source)
                 verifier_ran_all = verifier_available and all(
                     not any(e.verification.verdict is Verdict.PENDING for e in claims_by_id_real[cid].evidence)
                     for cid in claim_ids)
@@ -531,7 +566,8 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
                                               area_lost_to_truncation=lost,
                                               verifier_ran_on_all_located=verifier_ran_all)
                 slots_sidecar.append({"area_id": area_id, "probe": probe.value, "status": status,
-                                      "claim_ids": claim_ids})
+                                      "claim_ids": claim_ids, "n_independent_clusters": n_clusters,
+                                      "n_verbatim_copies": n_copies})
                 if status == "unknown" and area_searches:
                     placeholder = evidence.build_unknown_placeholder(area_name=meta["name"], probe=probe,
                                                                      scope=scope, searches=area_searches)
@@ -603,6 +639,9 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
         complete = False
         incomplete_reasons.append(f"run failed: {e!r}")
 
+    # a budget stop can land before the slot stage sets ledger_areas; every assigned area must exist
+    assigned_area_ids = {aid for _, aid in ledger_assignments}
+    ledger_areas = [meta["area"] for aid, meta in area_by_id.items() if aid in assigned_area_ids]
     ledger_claims = list(claims_by_id_real.values()) + unknown_placeholders
     ledger_contradictions = list({x.claims: x for x in reversed(ledger_contradictions)}.values())[::-1]
     ledger = Ledger(purpose="reconstruction", claims=tuple(ledger_claims),
@@ -644,6 +683,10 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
         "label_counts": label_counts,
         "n_contradictions_ledger": len(ledger_contradictions),
         "n_cross_checks": len(sidecar_cross_checks),
+        "n_scope_refutes": len(sidecar_scope_refutes),
+        "n_verbatim_copies_merged": n_verbatim_copies_merged,
+        "n_cross_candidates_verbatim_copy": n_cross_candidates_verbatim_copy,
+        "n_slot_verbatim_copies": sum(s["n_verbatim_copies"] for s in slots_sidecar),
         "n_unknown": sum(1 for s in slots_sidecar if s["status"] == "unknown"),
         "n_thin": sum(1 for s in slots_sidecar if s["status"] == "thin"),
         "n_unverified_slots": sum(1 for s in slots_sidecar if s["status"] == "unverified"),
@@ -672,7 +715,8 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
         },
         "areas": sidecar_areas, "searches": sidecar_searches, "sources": sidecar_sources,
         "fetch_failures": sidecar_fetch_failures, "extractions": list(sidecar_extractions.values()),
-        "slots": slots_sidecar, "cross_checks": sidecar_cross_checks, "decoys": sidecar_decoys,
+        "slots": slots_sidecar, "cross_checks": sidecar_cross_checks,
+        "scope_refutes": sidecar_scope_refutes, "decoys": sidecar_decoys,
         "stats": stats,
     }
 
@@ -680,6 +724,17 @@ def reconstruct(domain: str, task: str, *, models: Mapping[str, Model], http: ht
     (run_dir / "sidecar.json").write_text(json.dumps(sidecar, sort_keys=True, indent=1) + "\n")
     (run_dir / "report.md").write_text(render_report(ledger=ledger, sidecar=sidecar))
     return run_dir
+
+
+def _independent_support(claims: Sequence[ClaimRecord],
+                         folded_by_source: Mapping[str, str]) -> tuple[int, int]:
+    """A slot's corroboration (R3): independence clusters among its supporting spans once
+    verbatim copies are collapsed. Returns (n_clusters, n_copy_spans)."""
+    items = [evidence.CopyItem(f"{c.claim_id}#{i}", e.source.independence_key, e.selector.exact or "",
+                               folded_by_source.get(e.source.source_id, ""))
+             for c in claims for i, e in enumerate(c.supporting)]
+    copies = evidence.collapse_verbatim_copies(items)
+    return len({i.independence_key for i in items if i.item_id not in copies}), len(copies)
 
 
 def _status_of(sidecar_areas: list[dict], area_id: str) -> str | None:
@@ -882,6 +937,8 @@ def main(argv: list[str] | None = None) -> int:
                                           "instead of searching and fetching the live web")
     parser.add_argument("--corpus-root", help="base directory the manifest's `file` paths are "
                                                 "relative to (default: --corpus's own directory)")
+    parser.add_argument("--models", help="role config to run instead of the package's "
+                                         "models.json (e.g. a top-tier parallel arm)")
     args = parser.parse_args(argv)
 
     if not args.live:
@@ -891,7 +948,7 @@ def main(argv: list[str] | None = None) -> int:
     blocklist = Path(args.blocklist).read_text().splitlines() if args.blocklist else []
     blocklist = [b.strip() for b in blocklist if b.strip()]
 
-    models_path = Path(__file__).parent.parent.parent / "models.json"
+    models_path = Path(args.models) if args.models else Path(__file__).parent.parent.parent / "models.json"
     now = datetime.now(UTC)
     stamp = now.strftime("%Y%m%dT%H%M%SZ")
     role_config = json.loads(models_path.read_text())

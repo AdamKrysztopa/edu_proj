@@ -1,0 +1,1381 @@
+{
+ "adr0009": {
+  "gdpr_v1": {
+   "agree": false,
+   "counts": false,
+   "qwen": "+",
+   "sol": "0"
+  },
+  "gdpr_v2": {
+   "agree": false,
+   "counts": false,
+   "qwen": "+",
+   "sol": "0"
+  },
+  "plc": {
+   "agree": true,
+   "counts": false,
+   "qwen": "0",
+   "sol": "0"
+  }
+ },
+ "domains": {
+  "gdpr_v1": {
+   "luna": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.0,
+       0.6
+      ],
+      "clusters": 7,
+      "control_rate": 0.25,
+      "diff": 0.25,
+      "n": 8,
+      "own_rate": 0.5
+     },
+     "HEDGE": {
+      "ci95": [
+       -0.4,
+       1.0
+      ],
+      "clusters": 5,
+      "control_rate": 0.4,
+      "diff": 0.4,
+      "n": 5,
+      "own_rate": 0.8
+     },
+     "RESULT": {
+      "ci95": [
+       -0.38095238095238093,
+       0.19047619047619047
+      ],
+      "clusters": 21,
+      "control_rate": 0.5238095238095238,
+      "diff": -0.09523809523809523,
+      "n": 21,
+      "own_rate": 0.42857142857142855
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.75
+      ],
+      "clusters": 4,
+      "control_rate": 0.75,
+      "diff": 0.25,
+      "n": 4,
+      "own_rate": 1.0
+     },
+     "WHY": {
+      "ci95": [
+       0.0,
+       0.625
+      ],
+      "clusters": 8,
+      "control_rate": 0.25,
+      "diff": 0.25,
+      "n": 8,
+      "own_rate": 0.5
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.08888888888888889,
+      0.25
+     ],
+     "clusters": 42,
+     "control_rate": 0.5434782608695652,
+     "diff": 0.08695652173913043,
+     "n": 46,
+     "own_rate": 0.6304347826086957
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.13333333333333333,
+      0.16666666666666666
+     ],
+     "clusters": 42,
+     "control_rate": 0.782608695652174,
+     "diff": 0.021739130434782608,
+     "n": 46,
+     "own_rate": 0.8043478260869565
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-5.6-luna",
+     "price_usd_per_mtok": [
+      0.2,
+      1.2
+     ],
+     "reasoning_effort": "medium",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      0.0,
+      0.4222222222222222
+     ],
+     "clusters": 42,
+     "control_rate": 0.391304347826087,
+     "diff": 0.21739130434782608,
+     "median_chars": 1149.5,
+     "n": 46,
+     "own_rate": 0.6086956521739131
+    },
+    "n_discriminable": 46,
+    "n_pairs": 51,
+    "seed_free_closed": {
+     "ci95": [
+      -0.09090909090909091,
+      0.30434782608695654
+     ],
+     "clusters": 42,
+     "control_rate": 0.43478260869565216,
+     "diff": 0.10869565217391304,
+     "n": 46,
+     "own_rate": 0.5434782608695652
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      -0.0425531914893617,
+      0.24489795918367346
+     ],
+     "clusters": 42,
+     "control_rate": 0.6521739130434783,
+     "diff": 0.10869565217391304,
+     "n": 46,
+     "own_rate": 0.7608695652173914
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 184,
+     "completion_tokens": 70010,
+     "finish_reasons": {
+      "stop": 184
+     },
+     "max_usd": 10.0,
+     "prior_usd": 0.2575064,
+     "prompt_tokens": 76440,
+     "reasoning_tokens": 60398,
+     "served_models": [
+      "gpt-5.6-luna"
+     ],
+     "usd": 0.09930000000000005
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   },
+   "qwen": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.14285714285714285,
+       0.8571428571428571
+      ],
+      "clusters": 7,
+      "control_rate": 0.25,
+      "diff": 0.5,
+      "n": 8,
+      "own_rate": 0.75
+     },
+     "HEDGE": {
+      "ci95": [
+       -0.4,
+       0.8
+      ],
+      "clusters": 5,
+      "control_rate": 0.2,
+      "diff": 0.2,
+      "n": 5,
+      "own_rate": 0.4
+     },
+     "RESULT": {
+      "ci95": [
+       0.047619047619047616,
+       0.5238095238095238
+      ],
+      "clusters": 21,
+      "control_rate": 0.14285714285714285,
+      "diff": 0.2857142857142857,
+      "n": 21,
+      "own_rate": 0.42857142857142855
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.75
+      ],
+      "clusters": 4,
+      "control_rate": 0.75,
+      "diff": 0.25,
+      "n": 4,
+      "own_rate": 1.0
+     },
+     "WHY": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 8,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 8,
+      "own_rate": 0.0
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.022222222222222223,
+      0.24444444444444444
+     ],
+     "clusters": 42,
+     "control_rate": 0.391304347826087,
+     "diff": 0.10869565217391304,
+     "n": 46,
+     "own_rate": 0.5
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.0425531914893617,
+      0.1875
+     ],
+     "clusters": 42,
+     "control_rate": 0.782608695652174,
+     "diff": 0.06521739130434782,
+     "n": 46,
+     "own_rate": 0.8478260869565217
+    },
+    "judge_settings": null,
+    "length_stand_in": {
+     "ci95": [
+      0.0,
+      0.4222222222222222
+     ],
+     "clusters": 42,
+     "control_rate": 0.391304347826087,
+     "diff": 0.21739130434782608,
+     "median_chars": 1149.5,
+     "n": 46,
+     "own_rate": 0.6086956521739131
+    },
+    "n_discriminable": 46,
+    "n_pairs": 51,
+    "seed_free_closed": {
+     "ci95": [
+      0.09090909090909091,
+      0.4375
+     ],
+     "clusters": 42,
+     "control_rate": 0.1956521739130435,
+     "diff": 0.2608695652173913,
+     "n": 46,
+     "own_rate": 0.45652173913043476
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.04081632653061224,
+      0.27906976744186046
+     ],
+     "clusters": 42,
+     "control_rate": 0.6521739130434783,
+     "diff": 0.15217391304347827,
+     "n": 46,
+     "own_rate": 0.8043478260869565
+    },
+    "spend": null,
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "design-wrong (judge fails L7.3)"
+   },
+   "sol": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.0,
+       0.6
+      ],
+      "clusters": 7,
+      "control_rate": 0.125,
+      "diff": 0.25,
+      "n": 8,
+      "own_rate": 0.375
+     },
+     "HEDGE": {
+      "ci95": [
+       -1.0,
+       0.4
+      ],
+      "clusters": 5,
+      "control_rate": 0.6,
+      "diff": -0.4,
+      "n": 5,
+      "own_rate": 0.2
+     },
+     "RESULT": {
+      "ci95": [
+       -0.047619047619047616,
+       0.42857142857142855
+      ],
+      "clusters": 21,
+      "control_rate": 0.19047619047619047,
+      "diff": 0.19047619047619047,
+      "n": 21,
+      "own_rate": 0.38095238095238093
+     },
+     "SEL": {
+      "ci95": [
+       -0.75,
+       0.75
+      ],
+      "clusters": 4,
+      "control_rate": 0.75,
+      "diff": 0.0,
+      "n": 4,
+      "own_rate": 0.75
+     },
+     "WHY": {
+      "ci95": [
+       0.0,
+       0.625
+      ],
+      "clusters": 8,
+      "control_rate": 0.0,
+      "diff": 0.25,
+      "n": 8,
+      "own_rate": 0.25
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.046511627906976744,
+      0.2619047619047619
+     ],
+     "clusters": 42,
+     "control_rate": 0.391304347826087,
+     "diff": 0.10869565217391304,
+     "n": 46,
+     "own_rate": 0.5
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.1111111111111111,
+      0.2
+     ],
+     "clusters": 42,
+     "control_rate": 0.5652173913043478,
+     "diff": 0.043478260869565216,
+     "n": 46,
+     "own_rate": 0.6086956521739131
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-6.1-sol",
+     "price_usd_per_mtok": [
+      2.0,
+      10.0
+     ],
+     "reasoning_effort": "high",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      0.0,
+      0.4222222222222222
+     ],
+     "clusters": 42,
+     "control_rate": 0.391304347826087,
+     "diff": 0.21739130434782608,
+     "median_chars": 1149.5,
+     "n": 46,
+     "own_rate": 0.6086956521739131
+    },
+    "n_discriminable": 46,
+    "n_pairs": 51,
+    "seed_free_closed": {
+     "ci95": [
+      -0.06976744186046512,
+      0.32653061224489793
+     ],
+     "clusters": 42,
+     "control_rate": 0.2391304347826087,
+     "diff": 0.13043478260869565,
+     "n": 46,
+     "own_rate": 0.3695652173913043
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      -0.11904761904761904,
+      0.30434782608695654
+     ],
+     "clusters": 42,
+     "control_rate": 0.3695652173913043,
+     "diff": 0.08695652173913043,
+     "n": 46,
+     "own_rate": 0.45652173913043476
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 184,
+     "completion_tokens": 54596,
+     "finish_reasons": {
+      "stop": 184
+     },
+     "max_usd": 10.0,
+     "prior_usd": 1.20111,
+     "prompt_tokens": 76440,
+     "reasoning_tokens": 45158,
+     "served_models": [
+      "gpt-6.1-sol"
+     ],
+     "usd": 0.6988400000000002
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   }
+  },
+  "gdpr_v2": {
+   "luna": {
+    "admissible": false,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.0,
+       0.375
+      ],
+      "clusters": 8,
+      "control_rate": 0.3333333333333333,
+      "diff": 0.1111111111111111,
+      "n": 9,
+      "own_rate": 0.4444444444444444
+     },
+     "HEDGE": {
+      "ci95": [
+       0.0,
+       0.6
+      ],
+      "clusters": 5,
+      "control_rate": 0.0,
+      "diff": 0.2,
+      "n": 5,
+      "own_rate": 0.2
+     },
+     "RESULT": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 9,
+      "control_rate": 0.1111111111111111,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.1111111111111111
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.2727272727272727
+      ],
+      "clusters": 11,
+      "control_rate": 0.7272727272727273,
+      "diff": 0.09090909090909091,
+      "n": 11,
+      "own_rate": 0.8181818181818182
+     },
+     "WHY": {
+      "ci95": [
+       -0.625,
+       0.375
+      ],
+      "clusters": 8,
+      "control_rate": 0.5,
+      "diff": -0.125,
+      "n": 8,
+      "own_rate": 0.375
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.24390243902439024,
+      0.047619047619047616
+     ],
+     "clusters": 39,
+     "control_rate": 0.6666666666666666,
+     "diff": -0.09523809523809523,
+     "n": 42,
+     "own_rate": 0.5714285714285714
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.18181818181818182,
+      0.075
+     ],
+     "clusters": 39,
+     "control_rate": 0.7619047619047619,
+     "diff": -0.047619047619047616,
+     "n": 42,
+     "own_rate": 0.7142857142857143
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-5.6-luna",
+     "price_usd_per_mtok": [
+      0.2,
+      1.2
+     ],
+     "reasoning_effort": "medium",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.20512820512820512,
+      0.12195121951219512
+     ],
+     "clusters": 39,
+     "control_rate": 0.5238095238095238,
+     "diff": -0.047619047619047616,
+     "median_chars": 1622.0,
+     "n": 42,
+     "own_rate": 0.47619047619047616
+    },
+    "n_discriminable": 42,
+    "n_pairs": 48,
+    "seed_free_closed": {
+     "ci95": [
+      -0.075,
+      0.17073170731707318
+     ],
+     "clusters": 39,
+     "control_rate": 0.38095238095238093,
+     "diff": 0.047619047619047616,
+     "n": 42,
+     "own_rate": 0.42857142857142855
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      -0.0975609756097561,
+      0.14634146341463414
+     ],
+     "clusters": 39,
+     "control_rate": 0.6428571428571429,
+     "diff": 0.023809523809523808,
+     "n": 42,
+     "own_rate": 0.6666666666666666
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 168,
+     "completion_tokens": 72293,
+     "finish_reasons": {
+      "stop": 168
+     },
+     "max_usd": 10.0,
+     "prior_usd": 0.35680639999999997,
+     "prompt_tokens": 85430,
+     "reasoning_tokens": 63384,
+     "served_models": [
+      "gpt-5.6-luna"
+     ],
+     "usd": 0.1038376
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   },
+   "qwen": {
+    "admissible": false,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.0,
+       0.45454545454545453
+      ],
+      "clusters": 8,
+      "control_rate": 0.2222222222222222,
+      "diff": 0.2222222222222222,
+      "n": 9,
+      "own_rate": 0.4444444444444444
+     },
+     "HEDGE": {
+      "ci95": [
+       0.0,
+       0.6
+      ],
+      "clusters": 5,
+      "control_rate": 0.0,
+      "diff": 0.2,
+      "n": 5,
+      "own_rate": 0.2
+     },
+     "RESULT": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 9,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.0
+     },
+     "SEL": {
+      "ci95": [
+       0.18181818181818182,
+       0.7272727272727273
+      ],
+      "clusters": 11,
+      "control_rate": 0.45454545454545453,
+      "diff": 0.45454545454545453,
+      "n": 11,
+      "own_rate": 0.9090909090909091
+     },
+     "WHY": {
+      "ci95": [
+       -0.375,
+       0.375
+      ],
+      "clusters": 8,
+      "control_rate": 0.125,
+      "diff": 0.0,
+      "n": 8,
+      "own_rate": 0.125
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.13333333333333333,
+      0.075
+     ],
+     "clusters": 39,
+     "control_rate": 0.42857142857142855,
+     "diff": -0.023809523809523808,
+     "n": 42,
+     "own_rate": 0.40476190476190477
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.05128205128205128,
+      0.1590909090909091
+     ],
+     "clusters": 39,
+     "control_rate": 0.7142857142857143,
+     "diff": 0.047619047619047616,
+     "n": 42,
+     "own_rate": 0.7619047619047619
+    },
+    "judge_settings": null,
+    "length_stand_in": {
+     "ci95": [
+      -0.20512820512820512,
+      0.12195121951219512
+     ],
+     "clusters": 39,
+     "control_rate": 0.5238095238095238,
+     "diff": -0.047619047619047616,
+     "median_chars": 1622.0,
+     "n": 42,
+     "own_rate": 0.47619047619047616
+    },
+    "n_discriminable": 42,
+    "n_pairs": 48,
+    "seed_free_closed": {
+     "ci95": [
+      0.06666666666666667,
+      0.3333333333333333
+     ],
+     "clusters": 39,
+     "control_rate": 0.19047619047619047,
+     "diff": 0.19047619047619047,
+     "n": 42,
+     "own_rate": 0.38095238095238093
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.05128205128205128,
+      0.3333333333333333
+     ],
+     "clusters": 39,
+     "control_rate": 0.5952380952380952,
+     "diff": 0.19047619047619047,
+     "n": 42,
+     "own_rate": 0.7857142857142857
+    },
+    "spend": null,
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "design-wrong (judge fails L7.3)"
+   },
+   "sol": {
+    "admissible": false,
+    "by_lens_primary": {
+     "DISC": {
+      "ci95": [
+       0.0,
+       0.375
+      ],
+      "clusters": 8,
+      "control_rate": 0.1111111111111111,
+      "diff": 0.1111111111111111,
+      "n": 9,
+      "own_rate": 0.2222222222222222
+     },
+     "HEDGE": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 5,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 5,
+      "own_rate": 0.0
+     },
+     "RESULT": {
+      "ci95": [
+       0.0,
+       0.5555555555555556
+      ],
+      "clusters": 9,
+      "control_rate": 0.0,
+      "diff": 0.2222222222222222,
+      "n": 9,
+      "own_rate": 0.2222222222222222
+     },
+     "SEL": {
+      "ci95": [
+       -0.2727272727272727,
+       0.2727272727272727
+      ],
+      "clusters": 11,
+      "control_rate": 0.7272727272727273,
+      "diff": 0.0,
+      "n": 11,
+      "own_rate": 0.7272727272727273
+     },
+     "WHY": {
+      "ci95": [
+       0.0,
+       0.625
+      ],
+      "clusters": 8,
+      "control_rate": 0.0,
+      "diff": 0.25,
+      "n": 8,
+      "own_rate": 0.25
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.044444444444444446,
+      0.14634146341463414
+     ],
+     "clusters": 39,
+     "control_rate": 0.2857142857142857,
+     "diff": 0.047619047619047616,
+     "n": 42,
+     "own_rate": 0.3333333333333333
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.09523809523809523,
+      0.09523809523809523
+     ],
+     "clusters": 39,
+     "control_rate": 0.40476190476190477,
+     "diff": 0.0,
+     "n": 42,
+     "own_rate": 0.40476190476190477
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-6.1-sol",
+     "price_usd_per_mtok": [
+      2.0,
+      10.0
+     ],
+     "reasoning_effort": "high",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.20512820512820512,
+      0.12195121951219512
+     ],
+     "clusters": 39,
+     "control_rate": 0.5238095238095238,
+     "diff": -0.047619047619047616,
+     "median_chars": 1622.0,
+     "n": 42,
+     "own_rate": 0.47619047619047616
+    },
+    "n_discriminable": 42,
+    "n_pairs": 48,
+    "seed_free_closed": {
+     "ci95": [
+      0.0,
+      0.24390243902439024
+     ],
+     "clusters": 39,
+     "control_rate": 0.21428571428571427,
+     "diff": 0.11904761904761904,
+     "n": 42,
+     "own_rate": 0.3333333333333333
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      -0.023255813953488372,
+      0.2558139534883721
+     ],
+     "clusters": 39,
+     "control_rate": 0.2619047619047619,
+     "diff": 0.11904761904761904,
+     "n": 42,
+     "own_rate": 0.38095238095238093
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 168,
+     "completion_tokens": 47397,
+     "finish_reasons": {
+      "stop": 168
+     },
+     "max_usd": 10.0,
+     "prior_usd": 1.89995,
+     "prompt_tokens": 85430,
+     "reasoning_tokens": 38796,
+     "served_models": [
+      "gpt-6.1-sol"
+     ],
+     "usd": 0.6448300000000001
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   }
+  },
+  "plc": {
+   "luna": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DIAG": {
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 1.0,
+      "n": 9,
+      "own_rate": 1.0
+     },
+     "RESULT": {
+      "ci95": [
+       -0.5789473684210527,
+       0.05263157894736842
+      ],
+      "clusters": 19,
+      "control_rate": 0.6842105263157895,
+      "diff": -0.2631578947368421,
+      "n": 19,
+      "own_rate": 0.42105263157894735
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 2,
+      "control_rate": 1.0,
+      "diff": 0.0,
+      "n": 2,
+      "own_rate": 1.0
+     },
+     "WHY": {
+      "ci95": [
+       0.125,
+       0.5416666666666666
+      ],
+      "clusters": 24,
+      "control_rate": 0.20833333333333334,
+      "diff": 0.3333333333333333,
+      "n": 24,
+      "own_rate": 0.5416666666666666
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.02127659574468085,
+      0.48484848484848486
+     ],
+     "clusters": 36,
+     "control_rate": 0.5370370370370371,
+     "diff": 0.24074074074074073,
+     "n": 54,
+     "own_rate": 0.7777777777777778
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      0.022222222222222223,
+      0.18518518518518517
+     ],
+     "clusters": 36,
+     "control_rate": 0.8148148148148148,
+     "diff": 0.09259259259259259,
+     "n": 54,
+     "own_rate": 0.9074074074074074
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-5.6-luna",
+     "price_usd_per_mtok": [
+      0.2,
+      1.2
+     ],
+     "reasoning_effort": "medium",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.1956521739130435,
+      0.4
+     ],
+     "clusters": 36,
+     "control_rate": 0.4444444444444444,
+     "diff": 0.1111111111111111,
+     "median_chars": 1107.0,
+     "n": 54,
+     "own_rate": 0.5555555555555556
+    },
+    "n_discriminable": 54,
+    "n_pairs": 54,
+    "seed_free_closed": {
+     "ci95": [
+      -0.0625,
+      0.4805194805194805
+     ],
+     "clusters": 36,
+     "control_rate": 0.37037037037037035,
+     "diff": 0.2222222222222222,
+     "n": 54,
+     "own_rate": 0.5925925925925926
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.10294117647058823,
+      0.37209302325581395
+     ],
+     "clusters": 36,
+     "control_rate": 0.6481481481481481,
+     "diff": 0.2222222222222222,
+     "n": 54,
+     "own_rate": 0.8703703703703703
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 188,
+     "completion_tokens": 77648,
+     "finish_reasons": {
+      "stop": 188
+     },
+     "max_usd": 10.0,
+     "prior_usd": 0.1499952,
+     "prompt_tokens": 71668,
+     "reasoning_tokens": 67967,
+     "served_models": [
+      "gpt-5.6-luna"
+     ],
+     "usd": 0.10751120000000004
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   },
+   "qwen": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DIAG": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.0
+     },
+     "RESULT": {
+      "ci95": [
+       -0.15789473684210525,
+       0.2631578947368421
+      ],
+      "clusters": 19,
+      "control_rate": 0.15789473684210525,
+      "diff": 0.05263157894736842,
+      "n": 19,
+      "own_rate": 0.21052631578947367
+     },
+     "SEL": {
+      "ci95": [
+       0.0,
+       1.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.5,
+      "n": 2,
+      "own_rate": 0.5
+     },
+     "WHY": {
+      "ci95": [
+       -0.041666666666666664,
+       0.2916666666666667
+      ],
+      "clusters": 24,
+      "control_rate": 0.08333333333333333,
+      "diff": 0.125,
+      "n": 24,
+      "own_rate": 0.20833333333333334
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.06896551724137931,
+      0.1864406779661017
+     ],
+     "clusters": 36,
+     "control_rate": 0.25925925925925924,
+     "diff": 0.05555555555555555,
+     "n": 54,
+     "own_rate": 0.3148148148148148
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      -0.14583333333333334,
+      0.10638297872340426
+     ],
+     "clusters": 36,
+     "control_rate": 0.6111111111111112,
+     "diff": -0.018518518518518517,
+     "n": 54,
+     "own_rate": 0.5925925925925926
+    },
+    "judge_settings": null,
+    "length_stand_in": {
+     "ci95": [
+      -0.1956521739130435,
+      0.4
+     ],
+     "clusters": 36,
+     "control_rate": 0.4444444444444444,
+     "diff": 0.1111111111111111,
+     "median_chars": 1107.0,
+     "n": 54,
+     "own_rate": 0.5555555555555556
+    },
+    "n_discriminable": 54,
+    "n_pairs": 54,
+    "seed_free_closed": {
+     "ci95": [
+      -0.0410958904109589,
+      0.23214285714285715
+     ],
+     "clusters": 36,
+     "control_rate": 0.09259259259259259,
+     "diff": 0.09259259259259259,
+     "n": 54,
+     "own_rate": 0.18518518518518517
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      -0.03636363636363636,
+      0.2608695652173913
+     ],
+     "clusters": 36,
+     "control_rate": 0.35185185185185186,
+     "diff": 0.1111111111111111,
+     "n": 54,
+     "own_rate": 0.46296296296296297
+    },
+    "spend": null,
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 2
+    },
+    "verdict": "design-wrong (judge fails L7.3)"
+   },
+   "sol": {
+    "admissible": true,
+    "by_lens_primary": {
+     "DIAG": {
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.0,
+      "diff": 0.0,
+      "n": 9,
+      "own_rate": 0.0
+     },
+     "RESULT": {
+      "ci95": [
+       -0.2631578947368421,
+       0.2631578947368421
+      ],
+      "clusters": 19,
+      "control_rate": 0.15789473684210525,
+      "diff": 0.0,
+      "n": 19,
+      "own_rate": 0.15789473684210525
+     },
+     "SEL": {
+      "ci95": [
+       -1.0,
+       1.0
+      ],
+      "clusters": 2,
+      "control_rate": 0.5,
+      "diff": 0.0,
+      "n": 2,
+      "own_rate": 0.5
+     },
+     "WHY": {
+      "ci95": [
+       0.125,
+       0.5
+      ],
+      "clusters": 24,
+      "control_rate": 0.0,
+      "diff": 0.2916666666666667,
+      "n": 24,
+      "own_rate": 0.2916666666666667
+     }
+    },
+    "equal_cap_closed": {
+     "ci95": [
+      -0.06896551724137931,
+      0.17647058823529413
+     ],
+     "clusters": 36,
+     "control_rate": 0.35185185185185186,
+     "diff": 0.05555555555555555,
+     "n": 54,
+     "own_rate": 0.4074074074074074
+    },
+    "equal_cap_closed_or_partial": {
+     "ci95": [
+      0.09302325581395349,
+      0.5294117647058824
+     ],
+     "clusters": 36,
+     "control_rate": 0.5,
+     "diff": 0.3148148148148148,
+     "n": 54,
+     "own_rate": 0.8148148148148148
+    },
+    "judge_settings": {
+     "api": "https://api.openai.com/v1/chat/completions",
+     "max_completion_tokens": 6000,
+     "model": "gpt-6.1-sol",
+     "price_usd_per_mtok": [
+      2.0,
+      10.0
+     ],
+     "reasoning_effort": "high",
+     "response_format": "json_object",
+     "temperature": "not sent"
+    },
+    "length_stand_in": {
+     "ci95": [
+      -0.1956521739130435,
+      0.4
+     ],
+     "clusters": 36,
+     "control_rate": 0.4444444444444444,
+     "diff": 0.1111111111111111,
+     "median_chars": 1107.0,
+     "n": 54,
+     "own_rate": 0.5555555555555556
+    },
+    "n_discriminable": 54,
+    "n_pairs": 54,
+    "seed_free_closed": {
+     "ci95": [
+      0.0,
+      0.2653061224489796
+     ],
+     "clusters": 36,
+     "control_rate": 0.07407407407407407,
+     "diff": 0.12962962962962962,
+     "n": 54,
+     "own_rate": 0.2037037037037037
+    },
+    "seed_free_closed_or_partial": {
+     "ci95": [
+      0.2653061224489796,
+      0.6923076923076923
+     ],
+     "clusters": 36,
+     "control_rate": 0.25925925925925924,
+     "diff": 0.5,
+     "n": 54,
+     "own_rate": 0.7592592592592593
+    },
+    "spend": {
+     "cached_tokens": 0,
+     "calls": 188,
+     "completion_tokens": 59713,
+     "finish_reasons": {
+      "stop": 188
+     },
+     "max_usd": 10.0,
+     "prior_usd": 0.460644,
+     "prompt_tokens": 71668,
+     "reasoning_tokens": 50349,
+     "served_models": [
+      "gpt-6.1-sol"
+     ],
+     "usd": 0.7404659999999997
+    },
+    "undecided": {
+     "ctrl_eq": 0,
+     "ctrl_sf": 0,
+     "own_eq": 0,
+     "own_sf": 0
+    },
+    "verdict": "uninformative"
+   }
+  }
+ },
+ "kappa": {
+  "luna-sol": {
+   "admissible_pooled": {
+    "kappa": 0.4116813001036157,
+    "n": 372,
+    "raw": 0.6102150537634409
+   },
+   "gdpr_v1": {
+    "kappa": 0.43697478991596644,
+    "n": 184,
+    "raw": 0.6358695652173914
+   },
+   "gdpr_v2": {
+    "kappa": 0.33469006105274735,
+    "n": 168,
+    "raw": 0.5714285714285714
+   },
+   "plc": {
+    "kappa": 0.38889814969161524,
+    "n": 188,
+    "raw": 0.5851063829787234
+   }
+  },
+  "qwen-luna": {
+   "admissible_pooled": {
+    "kappa": 0.17810009146739844,
+    "n": 370,
+    "raw": 0.4486486486486487
+   },
+   "gdpr_v1": {
+    "kappa": 0.20166320166320167,
+    "n": 184,
+    "raw": 0.4782608695652174
+   },
+   "gdpr_v2": {
+    "kappa": 0.2676625378767742,
+    "n": 168,
+    "raw": 0.5119047619047619
+   },
+   "plc": {
+    "kappa": 0.1639753620775762,
+    "n": 186,
+    "raw": 0.41935483870967744
+   }
+  },
+  "qwen-sol": {
+   "admissible_pooled": {
+    "kappa": 0.1894399177368698,
+    "n": 370,
+    "raw": 0.4702702702702703
+   },
+   "gdpr_v1": {
+    "kappa": 0.2,
+    "n": 184,
+    "raw": 0.44565217391304346
+   },
+   "gdpr_v2": {
+    "kappa": 0.205959414333419,
+    "n": 168,
+    "raw": 0.4523809523809524
+   },
+   "plc": {
+    "kappa": 0.21353065539112054,
+    "n": 186,
+    "raw": 0.4946236559139785
+   }
+  }
+ },
+ "l73": {
+  "luna": {
+   "eligible": true,
+   "planted_fires": true,
+   "stand_in_fires": false
+  },
+  "qwen": {
+   "eligible": false,
+   "planted_fires": true,
+   "stand_in_fires": true
+  },
+  "sol": {
+   "eligible": true,
+   "planted_fires": true,
+   "stand_in_fires": false
+  }
+ }
+}

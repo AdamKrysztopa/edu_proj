@@ -1,0 +1,101 @@
+{
+ "b": 2000,
+ "domains": {
+  "gdpr_v1": {
+   "admissible": true,
+   "check_identity_reproduces_committed_ci": true,
+   "committed_ci95": [
+    0.07142857142857142,
+    0.3877551020408163
+   ],
+   "direction_noise_inflated": "+",
+   "direction_symmetrised": "+",
+   "n_pairs": 44,
+   "n_retest_prompts": 88,
+   "noise_inflated_ci95": [
+    0.05,
+    0.375
+   ],
+   "primary_diff": 0.22727272727272727,
+   "state_agreement": 0.9431818181818182,
+   "symmetrised_ci95": [
+    0.04878048780487805,
+    0.37777777777777777
+   ],
+   "transitions_run1_to_run2": {
+    "closed->closed": 30,
+    "closed->open": 1,
+    "closed->partial": 1,
+    "open->open": 43,
+    "open->partial": 2,
+    "partial->open": 1,
+    "partial->partial": 10
+   }
+  },
+  "gdpr_v2": {
+   "admissible": false,
+   "check_identity_reproduces_committed_ci": true,
+   "committed_ci95": [
+    -0.024390243902439025,
+    0.17777777777777778
+   ],
+   "direction_noise_inflated": "0",
+   "direction_symmetrised": "0",
+   "n_pairs": 42,
+   "n_retest_prompts": 92,
+   "noise_inflated_ci95": [
+    -0.06976744186046512,
+    0.1951219512195122
+   ],
+   "primary_diff": 0.07142857142857142,
+   "state_agreement": 0.9347826086956522,
+   "symmetrised_ci95": [
+    -0.06666666666666667,
+    0.1951219512195122
+   ],
+   "transitions_run1_to_run2": {
+    "closed->closed": 20,
+    "closed->open": 1,
+    "closed->partial": 1,
+    "open->closed": 2,
+    "open->open": 59,
+    "open->partial": 2,
+    "partial->partial": 7
+   }
+  },
+  "plc": {
+   "admissible": true,
+   "check_identity_reproduces_committed_ci": true,
+   "committed_ci95": [
+    -0.018867924528301886,
+    0.2777777777777778
+   ],
+   "direction_noise_inflated": "0",
+   "direction_symmetrised": "0",
+   "n_pairs": 54,
+   "n_retest_prompts": 146,
+   "noise_inflated_ci95": [
+    0.0,
+    0.2982456140350877
+   ],
+   "primary_diff": 0.12962962962962962,
+   "state_agreement": 0.9178082191780822,
+   "symmetrised_ci95": [
+    -0.018867924528301886,
+    0.2857142857142857
+   ],
+   "transitions_run1_to_run2": {
+    "closed->closed": 41,
+    "closed->partial": 1,
+    "open->closed": 1,
+    "open->open": 63,
+    "open->partial": 2,
+    "partial->closed": 4,
+    "partial->open": 4,
+    "partial->partial": 30
+   }
+  }
+ },
+ "noise_seed": 20261025,
+ "seed": 20261024
+}

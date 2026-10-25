@@ -148,3 +148,40 @@ def test_cli_wires_corpus_mode_into_reconstruct(tmp_path, monkeypatch):
     assert isinstance(captured["models"]["planner"].backend, CorpusSearchBackend)
     assert captured["response_status"] == 200, (
         "the CLI's http client must be corpus_client's, serving the manifest")
+
+
+def test_cli_models_option_loads_that_file_and_changes_the_run_dir(tmp_path, monkeypatch):
+    """--models runs the same corpus and task on another role config (the top-tier parallel arm):
+    load_models must receive that path, and the run directory's config hash must differ from the
+    default config's, so the two arms never share a run directory."""
+    import reconstruct.run as run_module
+
+    manifest_path, root = _build_corpus(tmp_path)
+    alt = tmp_path / "models_toptier.json"
+    alt.write_text('{"planner": {"provider": "openrouter", "model": "x/top", "family": "x"}}')
+    seen: list = []
+    runs: list = []
+
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
+
+    def fake_load_models(path, *, log, env):
+        seen.append(Path(path))
+        backend = ScriptedBackend(role="planner", family="anthropic")
+        agent = Agent(kind="model", id="fake/planner", family="anthropic")
+        return {"planner": Model(agent=agent, backend=backend)}
+
+    def fake_reconstruct(domain, task, *, models, http, out, today, areas, blocklist,
+                          max_results, max_doc_chars, search_corpus):
+        runs.append(Path(out).name)
+        return Path(out)
+
+    monkeypatch.setattr(run_module, "load_models", fake_load_models)
+    monkeypatch.setattr(run_module, "reconstruct", fake_reconstruct)
+
+    common = ["--live", "--domain", "rigging", "--task", "t", "--out", str(tmp_path / "runs"),
+              "--corpus", str(manifest_path), "--corpus-root", str(root)]
+    assert run_module.main(common) == 0
+    assert run_module.main([*common, "--models", str(alt)]) == 0
+    assert seen[0].name == "models.json"
+    assert seen[1] == alt
+    assert runs[0].split("-", 1)[1] != runs[1].split("-", 1)[1]

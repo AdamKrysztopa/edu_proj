@@ -1,0 +1,244 @@
+{
+ "request": {
+  "model": "typesafe/jev-1.13",
+  "questions": {
+   "s1": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"1\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s10": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"10\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s11": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"11\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s2": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"2\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s3": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"3\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s4": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"4\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s5": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"5\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s6": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"6\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s7": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"7\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s8": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"8\"] state the element this question asks for?",
+    "type": "choice"
+   },
+   "s9": {
+    "criteria": {
+     "no": "The sentence does not state the element; being on the same topic is not enough.",
+     "partially": "The sentence states part of the element, or states it only implicitly.",
+     "states": "The sentence explicitly states the element the question asks for."
+    },
+    "instructions": "Question about the seed assertion: Does any sentence state what result of this test to expect and what a given result means or which next action it leads to? Does sentences[\"9\"] state the element this question asks for?",
+    "type": "choice"
+   }
+  },
+  "state": {
+   "seed_assertion": "If processing involves invisible processing combined with any vulnerable individuals or other criteria, a DPIA must be conducted to help assess and mitigate impact on individuals' ability to exercise control over their data.",
+   "sentences": {
+    "1": "If processing involves invisible processing combined with any vulnerable individuals or other criteria, a DPIA must be conducted to help assess and mitigate impact on individuals' ability to exercise control over their data.",
+    "10": "A DPIA does not require eradication of all risks but should help document risks and assess whether any remaining risks are justified.",
+    "11": "But it should help you document them and assess whether or not any remaining risks are justified.",
+    "2": "Your DPIA will help you assess and demonstrate whether you are taking a proportionate approach.",
+    "3": "It will help you consider how best to mitigate the impact on individuals' ability to exercise control over their data, and whether you can take other measures to support the exercise of their rights.",
+    "4": "A DPIA is an ongoing process for managing risks, not a one-time exercise, and must be reevaluated when the risk represented by the processing operation changes.",
+    "5": "Carrying out a DPIA is not a one-time exercise.",
+    "6": "It is an an on-going process that helps you to manage the risks resulting from a processing.",
+    "7": "Invisible processing occurs when personal data is obtained from sources other than directly from the individual and privacy information required by Article 14 is not provided.",
+    "8": "'Invisible processing' occurs when you obtain personal data from somewhere other than directly from the individual themselves, and you don't provide them with the privacy information required by Article 14.",
+    "9": "If you identify a high risk that you cannot mitigate, you must consult the ICO before starting the processing."
+   }
+  }
+ },
+ "response": {
+  "answers": {
+   "s1": {
+    "choice": "states",
+    "confidence": 0.13,
+    "probabilities": {
+     "no": 0.29,
+     "partially": 0.29,
+     "states": 0.42
+    },
+    "type": "choice"
+   },
+   "s10": {
+    "choice": "states",
+    "confidence": 0.22,
+    "probabilities": {
+     "no": 0.15,
+     "partially": 0.37,
+     "states": 0.48
+    },
+    "type": "choice"
+   },
+   "s11": {
+    "choice": "partially",
+    "confidence": 0.13,
+    "probabilities": {
+     "no": 0.31,
+     "partially": 0.42,
+     "states": 0.27
+    },
+    "type": "choice"
+   },
+   "s2": {
+    "choice": "partially",
+    "confidence": 0.18,
+    "probabilities": {
+     "no": 0.26,
+     "partially": 0.45,
+     "states": 0.29
+    },
+    "type": "choice"
+   },
+   "s3": {
+    "choice": "no",
+    "confidence": 0.33,
+    "probabilities": {
+     "no": 0.55,
+     "partially": 0.3,
+     "states": 0.15
+    },
+    "type": "choice"
+   },
+   "s4": {
+    "choice": "partially",
+    "confidence": 0.04,
+    "probabilities": {
+     "no": 0.3,
+     "partially": 0.36,
+     "states": 0.34
+    },
+    "type": "choice"
+   },
+   "s5": {
+    "choice": "no",
+    "confidence": 0.97,
+    "probabilities": {
+     "no": 0.98,
+     "partially": 0.01,
+     "states": 0.01
+    },
+    "type": "choice"
+   },
+   "s6": {
+    "choice": "no",
+    "confidence": 0.7,
+    "probabilities": {
+     "no": 0.8,
+     "partially": 0.14,
+     "states": 0.06
+    },
+    "type": "choice"
+   },
+   "s7": {
+    "choice": "no",
+    "confidence": 0.91,
+    "probabilities": {
+     "no": 0.94,
+     "partially": 0.01,
+     "states": 0.05
+    },
+    "type": "choice"
+   },
+   "s8": {
+    "choice": "no",
+    "confidence": 0.95,
+    "probabilities": {
+     "no": 0.97,
+     "partially": 0,
+     "states": 0.03
+    },
+    "type": "choice"
+   },
+   "s9": {
+    "choice": "states",
+    "confidence": 0.83,
+    "probabilities": {
+     "no": 0.06,
+     "partially": 0.05,
+     "states": 0.89
+    },
+    "type": "choice"
+   }
+  },
+  "id": "gen-dec-1792862974-nPRkDoYbrnmNBLS2wq6D",
+  "model": "typesafe/jev-1.13-20260917",
+  "provider": "TypeSafe",
+  "usage": {
+   "cost": 9.2652e-05,
+   "input_tokens": 2206,
+   "output_tokens": 429
+  }
+ }
+}

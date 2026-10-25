@@ -1,0 +1,143 @@
+{
+ "037f96cd7fca210fde08df1bffbd48fab5a4b2f37e92f5c10400df11a601e2b1": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state that sampling-rate selection depends on the suspected event; 3 and 4 only mention documentation.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "345867118650c9536ff0c617408a538e8c85826dcb19bcee6c2f04daa61890ad": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state selecting diagnostic tests based on failure likelihood; the others do not state a selection condition.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "374d0048966075ddaabc1eecf1b70814b371c5f30d1f75fc6fee35b5e509c445": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state that sampling interval selection depends on the suspected event; 3 and 4 refer to sampling rate instead.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "39159943aea154955ea543e02157b667c35c18103a0ebef3b673aac41c7fecda": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state selecting sampling rate based on the suspected event; sentences 3 and 4 refer to sampling interval instead.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "3a337bf8d3909c95ecd0e3d70aaad9e8a1edcf29a1cfe131261f1382e7503807": {
+  "partially": [],
+  "reason": "Both sentences explicitly state that the sampling interval should be selected based on the suspected event.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "4c0860467eda03aeedbd0284a8d304230b559f3dec134feb54ca7c09cca69db8": {
+  "partially": [],
+  "reason": "Neither sentence states which sampling interval option to choose under a specific suspected-event condition.",
+  "states": []
+ },
+ "4fb70d961e50b0ac92113d11e6bbc2059732a76c7c55cdc2814b8f8cc3207fae": {
+  "partially": [],
+  "reason": "Neither sentence specifies which sampling rate option to choose for a given suspected event.",
+  "states": []
+ },
+ "6383fdad8f4b9d0f4188ba9e00009fa2bafd587532724983addfb2ae23a0e302": {
+  "partially": [],
+  "reason": "Both sentences explicitly state that the sampling rate should be selected according to the suspected event.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "7e19da7f08725ce2bc584d43f6e4040bb7d0371898781858ace3e184399b08d2": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state that diagnostic test selection depends on failure likelihood.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "96ec244d20e889b3ff3718a0589ebe0ae0b1ea07f026bac678839e0ba159d2e4": {
+  "partially": [],
+  "reason": "Each sentence links a selectable option to a condition determining its selection.",
+  "states": [
+   1,
+   2,
+   3,
+   4
+  ]
+ },
+ "9975a0915278004fcb54655a1d0f3279a05b5a8b74d766babfa0e1b6419493ff": {
+  "partially": [],
+  "reason": "Neither sentence explicitly states which diagnostic test option to choose based on failure likelihood.",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://api.openai.com/v1/chat/completions",
+  "max_completion_tokens": 6000,
+  "model": "gpt-5.6-luna",
+  "price_usd_per_mtok": [
+   0.2,
+   1.2
+  ],
+  "reasoning_effort": "medium",
+  "response_format": "json_object",
+  "temperature": "not sent"
+ },
+ "d1ef8519de18914b858c3010c1d325fcbabff45bcb4817541fdb8a7a86c9b04a": {
+  "partially": [],
+  "reason": "Neither sentence explicitly states which diagnostic option to choose under a particular failure-likelihood condition.",
+  "states": []
+ },
+ "d6c8d47f1656da4e12d5a17badeed298dbaa897471b66178057fbfdb8fe26591": {
+  "partially": [],
+  "reason": "Both sentences explicitly state that the sampling rate should be selected based on the suspected event.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "df75c9d36e7e8d54e057bf2c917d83b958832824749ca3ba7c73ca5de698cb10": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly specifies which test to choose when an intermittent fault appears.",
+  "states": [
+   1
+  ]
+ },
+ "e092afff2177c51e6ad9b46f4de19a932d802323de6e341fd87a2d326f1a6418": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 link selection to the suspected event but do not specify which interval applies to each event; 3 and 4 only reference documentation.",
+  "states": []
+ },
+ "ee0ae8426081199ec31ca409cdf30034bdb056d498e2b13f5eb6921ab90ec623": {
+  "partially": [],
+  "reason": "Neither sentence explicitly states which diagnostic option to choose based on failure likelihood.",
+  "states": []
+ },
+ "ef122026592b6f625ac80669e825d55c8e02cc685b62858c3f482226eba8ea30": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 give a selection criterion but do not specify which diagnostic test to choose under particular failure-likelihood conditions.",
+  "states": []
+ },
+ "f1749a34c621b539ba5232234562428ce5b9d64719c1e719abaa5ff70cb86366": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly links a situation (intermittent fault) to which test to choose first.",
+  "states": [
+   3
+  ]
+ }
+}

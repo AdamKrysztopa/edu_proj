@@ -1,0 +1,56 @@
+{
+ "retrieved": "2026-10-24",
+ "source": "OpenAlex MCP (search_works, group_works); each entry's oql is the canonical query the tool echoed",
+ "note": "Metadata only: titles, dates, DOIs and counts. The free API budget was exhausted, so these were run through the OpenAlex MCP; the per-gold oql reproduces each count.",
+ "citing_all_p_golds_by_type": {
+  "oql": "get the count of non-retracted works where it cites (the 17 P golds' OpenAlex ids) by type",
+  "total": 458,
+  "by_type": {"article": 330, "book-chapter": 40, "conference-paper": 37, "dissertation": 13, "paratext": 11, "review": 10, "report": 5, "other": 4, "preprint": 3, "book": 2, "reference-entry": 2, "dataset": 1}
+ },
+ "citing_dated_on_or_before_cutoff": {
+  "oql_template": "get the count of non-retracted works citing (<gold id>) by year through <cutoff>",
+  "golds": {
+   "sullivan2014": 0, "okoli2020": 0, "madani2015": 1, "logishetty2019": 0,
+   "grover2022_tar": 0, "grover2023_rygb": 0, "smink2012": 0, "sullivan2007": 0,
+   "dias2019": 0, "karamchandani2021": 1, "russjara2023": 0, "ede2023": 0,
+   "canopy2015": 0, "plumptre2017": 0, "phillips1998": 0, "phillips2001": 0, "seamster1993": 1
+  },
+  "years_of_leaks": {"madani2015": 2000, "karamchandani2021": 2021, "seamster1993": 1993}
+ },
+ "prior_task_analysis_same_procedure": {
+  "query_template": "<domain terms> AND (\"task analysis\" OR \"cognitive task\" OR \"cognitive demands\" ...), title_and_abstract, to_publication_date:<cutoff>",
+  "golds": {
+   "sullivan2014": {"n": 5, "same_group": [
+     {"id": "W2125372824", "doi": "10.1016/j.jsurg.2011.05.007", "year": 2011, "title": "The Effectiveness of a Cognitive Task Analysis Informed Curriculum to Increase Self-Efficacy and Improve Performance for an Open Cricothyrotomy"},
+     {"id": "W2018855572", "doi": "10.1016/j.amjsurg.2011.07.011", "year": 2011, "title": "Integrated studies on the use of cognitive task analysis to capture surgical expertise for central venous catheter placement and open cricothyrotomy"}]},
+   "okoli2020": {"n": 61, "same_group": [
+     {"id": "W1071562686", "doi": "10.1007/s10111-015-0348-9", "year": 2015, "title": "Information processing and intuitive decision-making on the fireground: towards a model of expert intuition"},
+     {"id": "W2507238997", "doi": "10.1111/1468-5973.12129", "year": 2016, "title": "Towards the Classification of Fireground Cues: A Qualitative Analysis of Expert Reports"}]},
+   "madani2015": {"n": 17, "same_group": []},
+   "logishetty2019": {"n": 0, "same_group": []},
+   "grover2022_tar": {"n": 0, "same_group": []},
+   "grover2023_rygb": {"n": 3, "same_group": []},
+   "smink2012": {"n": 1, "same_group": []},
+   "sullivan2007": {"n": 2, "same_group": []},
+   "dias2019": {"n": 18, "same_group": [
+     {"id": "W2956571395", "doi": "10.1016/j.jbi.2019.103250", "year": 2019, "title": "Physiological synchronization and entropy as measures of team cognitive load", "relation": "same first author; not a CTA"}]},
+   "karamchandani2021": {"n": 2, "same_group": [], "adjacent": [
+     {"id": "W2761811851", "doi": "10.2106/jbjs.17.00190", "year": 2017, "title": "Knee Arthroscopy Simulation", "relation": "CTA of a neighbouring arthroscopic procedure, other group"}]},
+   "russjara2023": {"n": 2, "same_group": [
+     {"id": "W2611517492", "doi": "10.1097/pts.0000000000000324", "year": 2017, "title": "Adapting Cognitive Task Analysis to Investigate Clinical Decision Making and Medication Safety Incidents"},
+     {"id": "W3125866382", "doi": "10.1007/s11606-020-06386-w", "year": 2021, "title": "Care Coordination Strategies and Barriers during Medication Safety Incidents: a Qualitative, Cognitive Task Analysis"}]},
+   "ede2023": {"n": 5, "same_group": [], "adjacent": [
+     {"id": "W4225575558", "doi": "10.36951/27034542.2022.04", "year": 2022, "title": "Applied cognitive task analysis methodology: Fundamental cognitive skills surgical nurses require to manage patient deterioration.", "relation": "CTA of the same task, other group"}]},
+   "canopy2015": {"n": 0, "same_group": [], "post_gold_sibling": [
+     {"id": "W1855326145", "doi": "10.1016/j.jsurg.2015.07.015", "year": 2015, "title": "Do Surgeons and Gastroenterologists Describe Endoscopic Retrograde Cholangiopancreatography Differently? A Qualitative Study"}]},
+   "plumptre2017": {"n": 0, "same_group": []},
+   "phillips1998": {"n": 0, "same_group": []},
+   "phillips2001": {"n": 0, "same_group": [
+     {"id": "W1524668916", "doi": "10.1037/e444522005-001", "year": 1998, "title": "Phillips et al. 1998 (DS1 rank 15)", "relation": "earlier report by the same team on the same population"}]},
+   "seamster1993": {"n": 16, "same_group": [
+     {"id": "W2734032860", "year": 1992, "title": "Cognitive Task Analysis of En Route Air Traffic Control: Model Extension and Validation."},
+     {"id": "W2726281152", "year": 1992, "title": "Cognitive Task Analysis of Prioritization in Air Traffic Control."},
+     {"id": "W2320427144", "doi": "10.1177/154193129103501914", "year": 1991, "title": "The Analysis of Expert Performance in the Redesign of the En Route Air Traffic Control Curriculum"}]}
+  }
+ }
+}

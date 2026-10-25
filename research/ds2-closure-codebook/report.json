@@ -1,0 +1,28 @@
+{
+  "item": "DS2",
+  "card": {
+    "question": "Which annotation schemes separate stated / partial / unstated, and what agreement do comparable tasks reach against MS1's κ floor of 0.70?",
+    "answer": "The 10 comparable values have a median of 0.725 (7 of 10 ≥ 0.70, range 0.62–0.81). The binary ones have a median of 0.75 (5 of 6). The one scheme with a partial class reaches 0.62.",
+    "changed": "I4 gates MS1 on closed vs not closed at κ ≥ 0.70, with three-state agreement reported but not gated. Partial becomes a component count. Seed vs independent support is computed from metadata, not coded."
+  },
+  "worked": "κ 0.70 is reachable on a binary split: 5 of 6 binary comparable values are ≥ 0.70 (median 0.75).",
+  "failed": "The only comparable scheme with a partial class misses 0.70 (WiCE α 0.62).",
+  "figure": {
+    "title": "Comparable annotation tasks cluster around MS1's floor: median 0.725, 7 of 10 at or above 0.70",
+    "kind": "bar",
+    "rows": [
+      {"task": "WiCE sub-claims (with partial)", "measure": "Krippendorff α", "value": 0.62},
+      {"task": "FEVER", "measure": "Fleiss κ", "value": 0.6841},
+      {"task": "AIS CNN/DM", "measure": "Krippendorff α", "value": 0.69},
+      {"task": "SNLI", "measure": "Fleiss κ", "value": 0.70},
+      {"task": "SciFact rationale", "measure": "Cohen κ", "value": 0.71},
+      {"task": "AIS ToTTo", "measure": "Krippendorff α", "value": 0.74},
+      {"task": "SciFact label", "measure": "Cohen κ", "value": 0.75},
+      {"task": "AIS QReCC", "measure": "Krippendorff α", "value": 0.76},
+      {"task": "AIS WoW", "measure": "Krippendorff α", "value": 0.79},
+      {"task": "SufficientFacts", "measure": "Fleiss κ", "value": 0.81}
+    ],
+    "reference": "MS1 floor κ = 0.70 (report/sections/17_validation.tex:30)",
+    "source": "research/ds2-closure-codebook.md, §4 table, rows with Counted = yes, column Value"
+  }
+}

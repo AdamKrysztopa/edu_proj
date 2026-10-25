@@ -1,0 +1,60 @@
+{
+ "item": "I5",
+ "card": {
+  "question": "At the N3 rules set on 2026-10-24 and the expected 16/4 split, which designs can read Continue or Stop, and can N2's registered gates still read Continue?",
+  "answer": "At map-baseline correlation 0.6, a true gain of 0.20 continues with P = 0.622 at 3 x 20 areas (16/4) and 0.855 at 5 x 20; a null stops with P <= 0.481 up to 6 x 20, and P >= 0.8 needs 80 areas per gold (SYNTHETIC). E-PLANT's best reachable reading is Change.",
+  "changed": "Proposed minimum design keyed to the map-baseline correlation measured before gold: 5 golds of 20 areas if it is at least 0.6, 5 of 30 if at least 0.3; gold items per area leaves K; no E-PLANT floor amendment."
+ },
+ "worked": "Stand-ins fail as required: random P(Continue) <= 0.008, size+noise <= 0.004; false Continue <= 0.039 at c = 1.85.",
+ "failed": "Planted gain 0.20 misses P(Continue) >= 0.8 in 70 of 552 cells at DS3's minority floor 25 (min 0.532).",
+ "figure": {
+  "title": "Three golds of 20 areas at 16/4 continue a 0.20 gain with P = 0.62; Stop never reaches 0.8",
+  "kind": "line",
+  "rows": [
+   {
+    "primary_golds": 1,
+    "areas_per_gold": 20,
+    "split": "16/4",
+    "p_continue_true_gain_0.20": 0.227,
+    "p_stop_true_gain_0": 0.434
+   },
+   {
+    "primary_golds": 2,
+    "areas_per_gold": 20,
+    "split": "16/4",
+    "p_continue_true_gain_0.20": 0.445,
+    "p_stop_true_gain_0": 0.416
+   },
+   {
+    "primary_golds": 3,
+    "areas_per_gold": 20,
+    "split": "16/4",
+    "p_continue_true_gain_0.20": 0.622,
+    "p_stop_true_gain_0": 0.437
+   },
+   {
+    "primary_golds": 4,
+    "areas_per_gold": 20,
+    "split": "16/4",
+    "p_continue_true_gain_0.20": 0.788,
+    "p_stop_true_gain_0": 0.46
+   },
+   {
+    "primary_golds": 5,
+    "areas_per_gold": 20,
+    "split": "16/4",
+    "p_continue_true_gain_0.20": 0.855,
+    "p_stop_true_gain_0": 0.47
+   },
+   {
+    "primary_golds": 6,
+    "areas_per_gold": 20,
+    "split": "16/4",
+    "p_continue_true_gain_0.20": 0.927,
+    "p_stop_true_gain_0": 0.481
+   }
+  ],
+  "reference": "P = 0.8: the L7.3 planted-positive pass mark and the decisive-Stop target",
+  "source": "research/gate_sim/summary.json design_table (n = 20, n1 = 16, icc = 0, r = 0.6, ties 0; fields p_continue_gain_0.20, p_stop_gain_0)"
+ }
+}

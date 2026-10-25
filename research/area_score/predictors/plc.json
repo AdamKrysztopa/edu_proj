@@ -1,0 +1,889 @@
+{
+  "admissibility_note": null,
+  "admissible": true,
+  "area_names": {
+    "a-7c823af7a0bcf79b": "PLC Fault Diagnosis Methods",
+    "a-89c2721fe5f2ee88": "Electrical and Hardware Testing",
+    "a-8c10790bb9b3111b": "Documentation and Historical Analysis",
+    "a-b29da96b7f6c06f7": "Systematic Troubleshooting Frameworks",
+    "a-ff0a5de0f9586864": "Data Logging and Monitoring"
+  },
+  "conditional_pool": "HYP selection uses ineligible qwen 7b closure judgements.",
+  "decision_role": "structural_screen",
+  "domain": "plc",
+  "grain": "planner",
+  "input_sha256": {
+    "closure_cache": "6dca86597a7c8de93c8019d987494b0a8d456def4976eb2d064a6b503cc11c31",
+    "ledger": "3d724d8ddfb78f43240f853e7dee8702cd78d72b1d0856e9f1b70be7f90e49bd",
+    "sidecar": "e21cc97fc3cb8359cf8a5681615178f20e652c6adfd75d801398fd3041cdfc47"
+  },
+  "predictors": {
+    "density_residual": {
+      "a": {
+        "checks": {
+          "area_evidence_density": {
+            "discriminates": true,
+            "distinct_covariate": 4,
+            "n": 24,
+            "planted_rho": 1.0,
+            "planted_trips": true,
+            "random_trip_rate": 0.0,
+            "rho": 0.05883552219723588,
+            "trips": false
+          },
+          "area_n_claims": {
+            "discriminates": true,
+            "distinct_covariate": 4,
+            "n": 24,
+            "planted_rho": 1.0,
+            "planted_trips": true,
+            "random_trip_rate": 0.0,
+            "rho": 0.05883552219723588,
+            "trips": false
+          },
+          "dens": {
+            "discriminates": true,
+            "distinct_covariate": 12,
+            "n": 24,
+            "planted_rho": 1.0,
+            "planted_trips": true,
+            "random_trip_rate": 0.0,
+            "rho": 0.06336714801468052,
+            "trips": false
+          },
+          "k_step": {
+            "discriminates": false,
+            "distinct_covariate": 1,
+            "n": 24,
+            "planted_rho": null,
+            "planted_trips": false,
+            "random_trip_rate": 0.0,
+            "rho": null,
+            "trips": false
+          },
+          "k_topic": {
+            "discriminates": true,
+            "distinct_covariate": 7,
+            "n": 24,
+            "planted_rho": 1.0,
+            "planted_trips": true,
+            "random_trip_rate": 0.0,
+            "rho": -0.037034608149329976,
+            "trips": false
+          }
+        },
+        "passes": false
+      },
+      "area_size_association": {
+        "reason": "Too few candidate-bearing areas; not a pass.",
+        "rho": null,
+        "status": "untestable"
+      },
+      "area_spread": {
+        "distinct": 4,
+        "max": 0.059612798607815216,
+        "min": -0.0458234456573327,
+        "n_empty": 1,
+        "n_present": 4,
+        "range": 0.10543624426514792
+      },
+      "areas": [
+        {
+          "area_id": "a-7c823af7a0bcf79b",
+          "mean": 0.059612798607815216,
+          "n_candidates": 6
+        },
+        {
+          "area_id": "a-89c2721fe5f2ee88",
+          "mean": -0.0458234456573327,
+          "n_candidates": 5
+        },
+        {
+          "area_id": "a-8c10790bb9b3111b",
+          "mean": null,
+          "n_candidates": 0
+        },
+        {
+          "area_id": "a-b29da96b7f6c06f7",
+          "mean": -0.01889676136235225,
+          "n_candidates": 7
+        },
+        {
+          "area_id": "a-ff0a5de0f9586864",
+          "mean": 0.0006196276960396511,
+          "n_candidates": 6
+        }
+      ],
+      "b": {
+        "length_rho": 0.1935556255372069,
+        "n_length": 24,
+        "n_strata": 2,
+        "n_within": 8,
+        "passes": true,
+        "within_rho": 0.9548637106322311
+      },
+      "c": {
+        "draws": 2000,
+        "length_failures": 2000,
+        "passes": false,
+        "seed": 0,
+        "testable": true,
+        "uniform_failures": 1759
+      },
+      "passes": false
+    },
+    "topic_rank": {
+      "a": {
+        "checks": {
+          "area_evidence_density": {
+            "discriminates": true,
+            "distinct_covariate": 4,
+            "n": 24,
+            "planted_rho": 1.0,
+            "planted_trips": true,
+            "random_trip_rate": 0.0,
+            "rho": 0.09480774962330386,
+            "trips": false
+          },
+          "area_n_claims": {
+            "discriminates": true,
+            "distinct_covariate": 4,
+            "n": 24,
+            "planted_rho": 1.0,
+            "planted_trips": true,
+            "random_trip_rate": 0.0,
+            "rho": 0.09480774962330386,
+            "trips": false
+          },
+          "dens": {
+            "discriminates": true,
+            "distinct_covariate": 12,
+            "n": 24,
+            "planted_rho": 1.0,
+            "planted_trips": true,
+            "random_trip_rate": 0.0,
+            "rho": -0.14601480617358276,
+            "trips": false
+          },
+          "k_step": {
+            "discriminates": false,
+            "distinct_covariate": 1,
+            "n": 24,
+            "planted_rho": null,
+            "planted_trips": false,
+            "random_trip_rate": 0.0,
+            "rho": null,
+            "trips": false
+          },
+          "k_topic": {
+            "discriminates": true,
+            "distinct_covariate": 7,
+            "n": 24,
+            "planted_rho": 1.0,
+            "planted_trips": true,
+            "random_trip_rate": 0.0,
+            "rho": 0.009927966424265595,
+            "trips": false
+          }
+        },
+        "passes": false
+      },
+      "area_size_association": {
+        "reason": "Too few candidate-bearing areas; not a pass.",
+        "rho": null,
+        "status": "untestable"
+      },
+      "area_spread": {
+        "distinct": 4,
+        "max": 0.041666666666666664,
+        "min": -0.05,
+        "n_empty": 1,
+        "n_present": 4,
+        "range": 0.09166666666666667
+      },
+      "areas": [
+        {
+          "area_id": "a-7c823af7a0bcf79b",
+          "mean": 0.041666666666666664,
+          "n_candidates": 6
+        },
+        {
+          "area_id": "a-89c2721fe5f2ee88",
+          "mean": -0.05,
+          "n_candidates": 5
+        },
+        {
+          "area_id": "a-8c10790bb9b3111b",
+          "mean": null,
+          "n_candidates": 0
+        },
+        {
+          "area_id": "a-b29da96b7f6c06f7",
+          "mean": -0.011904761904761902,
+          "n_candidates": 7
+        },
+        {
+          "area_id": "a-ff0a5de0f9586864",
+          "mean": 0.013888888888888886,
+          "n_candidates": 6
+        }
+      ],
+      "b": {
+        "length_rho": 0.20005245810142647,
+        "n_length": 24,
+        "n_strata": 2,
+        "n_within": 8,
+        "passes": true,
+        "within_rho": 1.0
+      },
+      "c": {
+        "draws": 2000,
+        "length_failures": 2000,
+        "passes": false,
+        "seed": 0,
+        "testable": true,
+        "uniform_failures": 1759
+      },
+      "passes": false
+    }
+  },
+  "reference_comparator": {
+    "a": {
+      "checks": {
+        "area_evidence_density": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 24,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 0.03360176018979751,
+          "trips": false
+        },
+        "area_n_claims": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 24,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 0.03360176018979751,
+          "trips": false
+        },
+        "dens": {
+          "discriminates": true,
+          "distinct_covariate": 12,
+          "n": 24,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": -0.06683169596418671,
+          "trips": false
+        },
+        "k_step": {
+          "discriminates": false,
+          "distinct_covariate": 1,
+          "n": 24,
+          "planted_rho": null,
+          "planted_trips": false,
+          "random_trip_rate": 0.0,
+          "rho": null,
+          "trips": false
+        },
+        "k_topic": {
+          "discriminates": true,
+          "distinct_covariate": 7,
+          "n": 24,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": -0.0514282700666431,
+          "trips": false
+        }
+      },
+      "passes": false
+    },
+    "area_size_association": {
+      "reason": "Too few candidate-bearing areas; not a pass.",
+      "rho": null,
+      "status": "untestable"
+    },
+    "area_spread": {
+      "distinct": 4,
+      "max": 0.3333333333333333,
+      "min": 0.0,
+      "n_empty": 1,
+      "n_present": 4,
+      "range": 0.3333333333333333
+    },
+    "areas": [
+      {
+        "area_id": "a-7c823af7a0bcf79b",
+        "mean": 0.3333333333333333,
+        "n_candidates": 6
+      },
+      {
+        "area_id": "a-89c2721fe5f2ee88",
+        "mean": 0.0,
+        "n_candidates": 5
+      },
+      {
+        "area_id": "a-8c10790bb9b3111b",
+        "mean": null,
+        "n_candidates": 0
+      },
+      {
+        "area_id": "a-b29da96b7f6c06f7",
+        "mean": 0.14285714285714285,
+        "n_candidates": 7
+      },
+      {
+        "area_id": "a-ff0a5de0f9586864",
+        "mean": 0.16666666666666666,
+        "n_candidates": 6
+      }
+    ],
+    "b": {
+      "length_rho": 0.19111458946217455,
+      "n_length": 24,
+      "n_strata": 2,
+      "n_within": 8,
+      "passes": true,
+      "within_rho": 1.0
+    },
+    "c": {
+      "draws": 2000,
+      "length_failures": 2000,
+      "passes": false,
+      "seed": 0,
+      "testable": true,
+      "uniform_failures": 1759
+    },
+    "passes": false
+  },
+  "rows": [
+    {
+      "area_evidence_density": 67,
+      "area_id": "a-89c2721fe5f2ee88",
+      "area_n_claims": 74,
+      "dens": 6,
+      "gap_id": "g-04fee3a9511b",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "WHY",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": 0.023493118177503557,
+        "topic_rank": 0.0
+      },
+      "text_length": 124
+    },
+    {
+      "area_evidence_density": 52,
+      "area_id": "a-b29da96b7f6c06f7",
+      "area_n_claims": 64,
+      "dens": 3,
+      "gap_id": "g-0708446e9b37",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.03523967726625534,
+        "topic_rank": 0.0
+      },
+      "text_length": 60
+    },
+    {
+      "area_evidence_density": 67,
+      "area_id": "a-89c2721fe5f2ee88",
+      "area_n_claims": 74,
+      "dens": 4,
+      "gap_id": "g-09c80fc72d09",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.01566207878500237,
+        "topic_rank": 0.0
+      },
+      "text_length": 55
+    },
+    {
+      "area_evidence_density": 113,
+      "area_id": "a-ff0a5de0f9586864",
+      "area_n_claims": 127,
+      "dens": 2,
+      "gap_id": "g-130c1cada42b",
+      "k_step": 1,
+      "k_topic": 2,
+      "lens": "RESULT",
+      "lexical_state": "open",
+      "reference": 0.5,
+      "scores": {
+        "density_residual": 0.1523097611137478,
+        "topic_rank": 0.16666666666666666
+      },
+      "text_length": 60
+    },
+    {
+      "area_evidence_density": 67,
+      "area_id": "a-89c2721fe5f2ee88",
+      "area_n_claims": 74,
+      "dens": 20,
+      "gap_id": "g-16732a0764dc",
+      "k_step": 1,
+      "k_topic": 9,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": 0.0,
+        "topic_rank": 0.0
+      },
+      "text_length": 58
+    },
+    {
+      "area_evidence_density": 58,
+      "area_id": "a-7c823af7a0bcf79b",
+      "area_n_claims": 69,
+      "dens": 8,
+      "gap_id": "g-1fd637e11077",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": 0.03523967726625534,
+        "topic_rank": 0.0
+      },
+      "text_length": 58
+    },
+    {
+      "area_evidence_density": 52,
+      "area_id": "a-b29da96b7f6c06f7",
+      "area_n_claims": 64,
+      "dens": 2,
+      "gap_id": "g-20058c799d9f",
+      "k_step": 1,
+      "k_topic": 2,
+      "lens": "GUARD",
+      "lexical_state": "open",
+      "reference": 1.0,
+      "scores": {
+        "density_residual": 0.40230976111374783,
+        "topic_rank": 0.4166666666666667
+      },
+      "text_length": 130
+    },
+    {
+      "area_evidence_density": 58,
+      "area_id": "a-7c823af7a0bcf79b",
+      "area_n_claims": 69,
+      "dens": 5,
+      "gap_id": "g-24a1744a985a",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": 0.007831039392501186,
+        "topic_rank": 0.0
+      },
+      "text_length": 60
+    },
+    {
+      "area_evidence_density": 113,
+      "area_id": "a-ff0a5de0f9586864",
+      "area_n_claims": 127,
+      "dens": 2,
+      "gap_id": "g-4173489eaad7",
+      "k_step": 1,
+      "k_topic": 2,
+      "lens": "WHY",
+      "lexical_state": "open",
+      "reference": 0.5,
+      "scores": {
+        "density_residual": 0.1523097611137478,
+        "topic_rank": 0.16666666666666666
+      },
+      "text_length": 125
+    },
+    {
+      "area_evidence_density": 67,
+      "area_id": "a-89c2721fe5f2ee88",
+      "area_n_claims": 74,
+      "dens": 4,
+      "gap_id": "g-57de0e58c067",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "WHY",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.01566207878500237,
+        "topic_rank": 0.0
+      },
+      "text_length": 144
+    },
+    {
+      "area_evidence_density": 58,
+      "area_id": "a-7c823af7a0bcf79b",
+      "area_n_claims": 69,
+      "dens": 27,
+      "gap_id": "g-59164a9db5bd",
+      "k_step": 1,
+      "k_topic": 7,
+      "lens": "DIAG",
+      "lexical_state": "open",
+      "reference": 1.0,
+      "scores": {
+        "density_residual": 0.27153535832937825,
+        "topic_rank": 0.25
+      },
+      "text_length": 76
+    },
+    {
+      "area_evidence_density": 52,
+      "area_id": "a-b29da96b7f6c06f7",
+      "area_n_claims": 64,
+      "dens": 5,
+      "gap_id": "g-5fca641a2d9f",
+      "k_step": 1,
+      "k_topic": 2,
+      "lens": "WHY",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.22128618889416232,
+        "topic_rank": -0.25
+      },
+      "text_length": 147
+    },
+    {
+      "area_evidence_density": 113,
+      "area_id": "a-ff0a5de0f9586864",
+      "area_n_claims": 127,
+      "dens": 12,
+      "gap_id": "g-6bcf4a7d12f8",
+      "k_step": 1,
+      "k_topic": 7,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.27153535832937825,
+        "topic_rank": -0.25
+      },
+      "text_length": 55
+    },
+    {
+      "area_evidence_density": 52,
+      "area_id": "a-b29da96b7f6c06f7",
+      "area_n_claims": 64,
+      "dens": 5,
+      "gap_id": "g-710b6269d54a",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": 0.007831039392501186,
+        "topic_rank": 0.0
+      },
+      "text_length": 49
+    },
+    {
+      "area_evidence_density": 67,
+      "area_id": "a-89c2721fe5f2ee88",
+      "area_n_claims": 74,
+      "dens": 5,
+      "gap_id": "g-7821712e9d9f",
+      "k_step": 1,
+      "k_topic": 2,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.22128618889416232,
+        "topic_rank": -0.25
+      },
+      "text_length": 60
+    },
+    {
+      "area_evidence_density": 52,
+      "area_id": "a-b29da96b7f6c06f7",
+      "area_n_claims": 64,
+      "dens": 9,
+      "gap_id": "g-81f5899a2eb8",
+      "k_step": 1,
+      "k_topic": 5,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": 0.0,
+        "topic_rank": 0.0
+      },
+      "text_length": 51
+    },
+    {
+      "area_evidence_density": 52,
+      "area_id": "a-b29da96b7f6c06f7",
+      "area_n_claims": 64,
+      "dens": 8,
+      "gap_id": "g-83b9b964dcef",
+      "k_step": 1,
+      "k_topic": 6,
+      "lens": "WHY",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.021535358329378262,
+        "topic_rank": 0.0
+      },
+      "text_length": 180
+    },
+    {
+      "area_evidence_density": 113,
+      "area_id": "a-ff0a5de0f9586864",
+      "area_n_claims": 127,
+      "dens": 4,
+      "gap_id": "g-8cb7d671f6ce",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "WHY",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.01566207878500237,
+        "topic_rank": 0.0
+      },
+      "text_length": 141
+    },
+    {
+      "area_evidence_density": 113,
+      "area_id": "a-ff0a5de0f9586864",
+      "area_n_claims": 127,
+      "dens": 3,
+      "gap_id": "g-952747a9c3aa",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.03523967726625534,
+        "topic_rank": 0.0
+      },
+      "text_length": 57
+    },
+    {
+      "area_evidence_density": 58,
+      "area_id": "a-7c823af7a0bcf79b",
+      "area_n_claims": 69,
+      "dens": 26,
+      "gap_id": "g-994077969379",
+      "k_step": 1,
+      "k_topic": 11,
+      "lens": "DIAG",
+      "lexical_state": "open",
+      "reference": 1.0,
+      "scores": {
+        "density_residual": 0.0,
+        "topic_rank": 0.0
+      },
+      "text_length": 75
+    },
+    {
+      "area_evidence_density": 52,
+      "area_id": "a-b29da96b7f6c06f7",
+      "area_n_claims": 64,
+      "dens": 2,
+      "gap_id": "g-a7c3c7cdae9c",
+      "k_step": 1,
+      "k_topic": 2,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": -0.26435690555291885,
+        "topic_rank": -0.25
+      },
+      "text_length": 56
+    },
+    {
+      "area_evidence_density": 113,
+      "area_id": "a-ff0a5de0f9586864",
+      "area_n_claims": 127,
+      "dens": 14,
+      "gap_id": "g-bcb3952493a6",
+      "k_step": 1,
+      "k_topic": 6,
+      "lens": "RESULT",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": 0.021535358329378262,
+        "topic_rank": 0.0
+      },
+      "text_length": 60
+    },
+    {
+      "area_evidence_density": 58,
+      "area_id": "a-7c823af7a0bcf79b",
+      "area_n_claims": 69,
+      "dens": 8,
+      "gap_id": "g-d66536a8ef30",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "WHY",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": 0.03523967726625534,
+        "topic_rank": 0.0
+      },
+      "text_length": 146
+    },
+    {
+      "area_evidence_density": 58,
+      "area_id": "a-7c823af7a0bcf79b",
+      "area_n_claims": 69,
+      "dens": 5,
+      "gap_id": "g-f753d140fd7b",
+      "k_step": 1,
+      "k_topic": 3,
+      "lens": "WHY",
+      "lexical_state": "closed",
+      "reference": 0.0,
+      "scores": {
+        "density_residual": 0.007831039392501186,
+        "topic_rank": 0.0
+      },
+      "text_length": 132
+    }
+  ],
+  "rules_commit": "14cbdab",
+  "source_count_plant": {
+    "a": {
+      "checks": {
+        "area_evidence_density": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 24,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 0.06459252506561441,
+          "trips": false
+        },
+        "area_n_claims": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 24,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 0.06459252506561441,
+          "trips": false
+        },
+        "dens": {
+          "discriminates": true,
+          "distinct_covariate": 12,
+          "n": 24,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 0.8337839691171867,
+          "trips": true
+        },
+        "k_step": {
+          "discriminates": false,
+          "distinct_covariate": 1,
+          "n": 24,
+          "planted_rho": null,
+          "planted_trips": false,
+          "random_trip_rate": 0.0,
+          "rho": null,
+          "trips": false
+        },
+        "k_topic": {
+          "discriminates": true,
+          "distinct_covariate": 7,
+          "n": 24,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 1.0,
+          "trips": true
+        }
+      },
+      "passes": false
+    },
+    "area_size_association": {
+      "reason": "Too few candidate-bearing areas; not a pass.",
+      "rho": null,
+      "status": "untestable"
+    },
+    "area_spread": {
+      "distinct": 4,
+      "max": 5.0,
+      "min": 3.2857142857142856,
+      "n_empty": 1,
+      "n_present": 4,
+      "range": 1.7142857142857144
+    },
+    "areas": [
+      {
+        "area_id": "a-7c823af7a0bcf79b",
+        "mean": 5.0,
+        "n_candidates": 6
+      },
+      {
+        "area_id": "a-89c2721fe5f2ee88",
+        "mean": 4.0,
+        "n_candidates": 5
+      },
+      {
+        "area_id": "a-8c10790bb9b3111b",
+        "mean": null,
+        "n_candidates": 0
+      },
+      {
+        "area_id": "a-b29da96b7f6c06f7",
+        "mean": 3.2857142857142856,
+        "n_candidates": 7
+      },
+      {
+        "area_id": "a-ff0a5de0f9586864",
+        "mean": 3.8333333333333335,
+        "n_candidates": 6
+      }
+    ],
+    "b": {
+      "length_rho": -0.159226628079926,
+      "n_length": 24,
+      "n_strata": 2,
+      "n_within": 8,
+      "passes": false,
+      "within_rho": null
+    },
+    "c": {
+      "draws": 2000,
+      "length_failures": 2000,
+      "passes": false,
+      "seed": 0,
+      "testable": true,
+      "uniform_failures": 1759
+    },
+    "passes": false
+  }
+}

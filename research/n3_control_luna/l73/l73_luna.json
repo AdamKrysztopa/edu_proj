@@ -1,0 +1,248 @@
+{
+ "judge_model": "gpt-5.6-luna",
+ "judge_settings": {
+  "api": "https://api.openai.com/v1/chat/completions",
+  "max_completion_tokens": 6000,
+  "model": "gpt-5.6-luna",
+  "price_usd_per_mtok": [
+   0.2,
+   1.2
+  ],
+  "reasoning_effort": "medium",
+  "response_format": "json_object",
+  "temperature": "not sent"
+ },
+ "planted": {
+  "all_pairs": [
+   {
+    "seeds": [
+     "c-389bc2073959b863"
+    ],
+    "states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "closed",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   },
+   {
+    "seeds": [
+     "c-eead0ab87f80ef32"
+    ],
+    "states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "closed",
+     "own_eq": "partial",
+     "own_sf": "open"
+    }
+   },
+   {
+    "seeds": [
+     "c-f3a5297e22f21f3f"
+    ],
+    "states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "closed",
+     "own_eq": "closed",
+     "own_sf": "closed"
+    }
+   }
+  ],
+  "diff_equal_cap_closed": -0.3333333333333333,
+  "diff_seed_free_closed": -0.6666666666666666,
+  "fires_equal_cap": false,
+  "fires_seed_free": false,
+  "k": 2,
+  "own_other_lengths": [
+   56,
+   94
+  ],
+  "planted_text": "When an intermittent fault appears, choose first the test whose failure likelihood is highest.",
+  "target_states": {
+   "ctrl_eq": "closed",
+   "ctrl_sf": "closed",
+   "own_eq": "closed",
+   "own_sf": "closed"
+  }
+ },
+ "planted_fires": false,
+ "spend": {
+  "calls": 18,
+  "completion_tokens": 2925,
+  "finish_reasons": {
+   "stop": 18
+  },
+  "max_usd": 0.4,
+  "prompt_tokens": 2802,
+  "reasoning_tokens": 2104,
+  "served_models": [
+   "gpt-5.6-luna"
+  ],
+  "usd": 0.0040704
+ },
+ "stand_in_fires": false,
+ "stand_ins": [
+  {
+   "all_pairs": [
+    {
+     "seeds": [
+      "c-389bc2073959b863"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "open"
+     }
+    },
+    {
+     "seeds": [
+      "c-eead0ab87f80ef32"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "partial",
+      "own_sf": "open"
+     }
+    },
+    {
+     "seeds": [
+      "c-f3a5297e22f21f3f"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "open"
+     }
+    }
+   ],
+   "diff_equal_cap_closed": -0.3333333333333333,
+   "diff_seed_free_closed": -1.0,
+   "fires_equal_cap": false,
+   "fires_seed_free": false,
+   "k": 2,
+   "own_other_lengths": [
+    56,
+    94
+   ],
+   "planted_text": "kemu bc rdlsbqgbcnnc hcrnb sdhuusbs smbhbr ejner dsj rvfd ssugl failure likelihood dr wcsbtgpv",
+   "rng_seed": 7,
+   "target_states": {
+    "ctrl_eq": "closed",
+    "ctrl_sf": "closed",
+    "own_eq": "closed",
+    "own_sf": "open"
+   }
+  },
+  {
+   "all_pairs": [
+    {
+     "seeds": [
+      "c-389bc2073959b863"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "open"
+     }
+    },
+    {
+     "seeds": [
+      "c-eead0ab87f80ef32"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "partial",
+      "own_sf": "open"
+     }
+    },
+    {
+     "seeds": [
+      "c-f3a5297e22f21f3f"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "partial",
+      "own_sf": "open"
+     }
+    }
+   ],
+   "diff_equal_cap_closed": -0.6666666666666666,
+   "diff_seed_free_closed": -1.0,
+   "fires_equal_cap": false,
+   "fires_seed_free": false,
+   "k": 2,
+   "own_other_lengths": [
+    56,
+    94
+   ],
+   "planted_text": "hlme gw bcehzqgmuaop ompsg mcphyawi qnpmxd vidcm tmd vbkh wcpuq failure likelihood gs zetcrbpw",
+   "rng_seed": 8,
+   "target_states": {
+    "ctrl_eq": "closed",
+    "ctrl_sf": "closed",
+    "own_eq": "partial",
+    "own_sf": "open"
+   }
+  },
+  {
+   "all_pairs": [
+    {
+     "seeds": [
+      "c-389bc2073959b863"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "open"
+     }
+    },
+    {
+     "seeds": [
+      "c-eead0ab87f80ef32"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "partial",
+      "own_sf": "open"
+     }
+    },
+    {
+     "seeds": [
+      "c-f3a5297e22f21f3f"
+     ],
+     "states": {
+      "ctrl_eq": "closed",
+      "ctrl_sf": "closed",
+      "own_eq": "closed",
+      "own_sf": "open"
+     }
+    }
+   ],
+   "diff_equal_cap_closed": -0.3333333333333333,
+   "diff_seed_free_closed": -1.0,
+   "fires_equal_cap": false,
+   "fires_seed_free": false,
+   "k": 2,
+   "own_other_lengths": [
+    56,
+    94
+   ],
+   "planted_text": "otli ef vakqotckrtwb xmfwo xnffhbde qscywm zxdjg vhx zncy igmik failure likelihood zb gwanbmpe",
+   "rng_seed": 9,
+   "target_states": {
+    "ctrl_eq": "closed",
+    "ctrl_sf": "closed",
+    "own_eq": "closed",
+    "own_sf": "open"
+   }
+  }
+ ]
+}

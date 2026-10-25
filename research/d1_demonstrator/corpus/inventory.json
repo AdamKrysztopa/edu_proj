@@ -1,0 +1,156 @@
+{
+ "commit": "904fa30c4148c98ee4be1221c461c86c8ca252e2",
+ "documents": [
+  {
+   "path": "README.md",
+   "source_bytes": 24823,
+   "html_sha256": "08fdde73838af0cba6fa2204f01d3e183f1872090f2fd98da3fb316ac974db81"
+  },
+  {
+   "path": "llms.txt",
+   "source_bytes": 1640,
+   "html_sha256": "57a1225aba35f2d12c34ba15bf8502c016001bff8ac5d0b22d5c450e7e36656d"
+  },
+  {
+   "path": "docs/quickstart.md",
+   "source_bytes": 21507,
+   "html_sha256": "129e0bec476d6d4b4c6f91af30a153ebd24ea084af11af5c788b226c799026c1"
+  },
+  {
+   "path": "docs/why_use_this.md",
+   "source_bytes": 5999,
+   "html_sha256": "8d435aa980b0717748c9c26afac41480239adb9533ff523ef18384f15d733f1c"
+  },
+  {
+   "path": "docs/how-to/golden_path.md",
+   "source_bytes": 4696,
+   "html_sha256": "d6b792b15486df30b6a8391088f2b1023b98f1a4d65b2f5a88bacbe63b14d4a4"
+  },
+  {
+   "path": "docs/theory/foundations.md",
+   "source_bytes": 7390,
+   "html_sha256": "b248b9b20b6a934244ab9b20fb7a563eda927744ffb27366f45edefd7f900de3"
+  },
+  {
+   "path": "docs/theory/forecastability_profile.md",
+   "source_bytes": 9192,
+   "html_sha256": "5ab4da448aba9ffa0ce3335035a59abe5647ec897ac303872b9ef3eea77a5ba5"
+  },
+  {
+   "path": "docs/theory/pami_residual_backends.md",
+   "source_bytes": 2684,
+   "html_sha256": "e6fa6f1a9f261613948a54300d3f1cd6215e1189315a484f771973cff861f982"
+  },
+  {
+   "path": "docs/theory/lagged_exogenous_triage.md",
+   "source_bytes": 9146,
+   "html_sha256": "eeb059dcf064f27adbede6745d91a80368dc5ec6662939b352ae236189e3406d"
+  },
+  {
+   "path": "docs/explanation/architecture.md",
+   "source_bytes": 5491,
+   "html_sha256": "8b11348f751fbbd0f408316cc1790ab61a1e50adb393bc0167663d161e684dc1"
+  },
+  {
+   "path": "docs/explanation/limitations.md",
+   "source_bytes": 9093,
+   "html_sha256": "db94c700123103df9f510ccac38816afd66821fd54a1f80edfaa6bf6568544e9"
+  },
+  {
+   "path": "docs/explanation/results_summary.md",
+   "source_bytes": 8215,
+   "html_sha256": "13da478ac3a31c8169ee87e637f357e57dccba21e16a27e4d42db6cb1e501263"
+  },
+  {
+   "path": "docs/explanation/surface_guide.md",
+   "source_bytes": 6160,
+   "html_sha256": "4c32481dd64759c6c8b47edb97d2d5d4ce077a6018fcf1af5429933265a6ed44"
+  },
+  {
+   "path": "docs/reference/diagnostics_matrix.md",
+   "source_bytes": 12131,
+   "html_sha256": "d29f0b7f82125443e804350ffe2be88cefcbdc3f5809b53c7f80fac03c3aa63c"
+  },
+  {
+   "path": "docs/code/module_map.md",
+   "source_bytes": 7137,
+   "html_sha256": "36ad5a1a60e5393aab6288adf0412509015492e988a40c4bfe835048e8183b4e"
+  },
+  {
+   "path": "docs/medium/forecastability-triage-for-practitioners.md",
+   "source_bytes": 31741,
+   "html_sha256": "5fc47f98e541a3e7155b1cbd3ab8ea28181639f19f015adfb4c576429ede68f3"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Mutual_information",
+   "outside": true,
+   "raw_sha256": "7423b193d49d1159a84402bedb549b8598877ba6d1e2b96812a21cf310772ec8",
+   "source_bytes": 124531,
+   "html_sha256": "7fc291473c9480c04e3a67ae7eb5938d0c3b05e7e4c76dc74b0452ca470f3e89"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Autocorrelation",
+   "outside": true,
+   "raw_sha256": "e322b640bbffb2349cdd132126723d7b2352ec34341d591f70035824832fd03c",
+   "source_bytes": 95068,
+   "html_sha256": "a8673e1afcc1bd06d525db08782cdf0f1b256b615b0d0b4b09e8d66731ed7d84"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Partial_autocorrelation_function",
+   "outside": true,
+   "raw_sha256": "0020a93099ba3c410d12f7156313936aa6a30febb8d07f7300ff42d40a6bc5f3",
+   "source_bytes": 11866,
+   "html_sha256": "f43c2bac4de07b64f9a0e2ba9a5c0989801119417297c1533d9e307e045603bc"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Transfer_entropy",
+   "outside": true,
+   "raw_sha256": "779f206988eb4e21f11790476285ffb5e9dfcf115b36322198c2394af0e3cd0c",
+   "source_bytes": 6955,
+   "html_sha256": "6e00950cf1ecf4cbe80416df2ee70397311d30c1402c1b0392ad94b619385a77"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Surrogate_data_testing",
+   "outside": true,
+   "raw_sha256": "0288f733101f7afc4bba38b31c3dc6ac506f607a865087a52d4aca28868e29cb",
+   "source_bytes": 5245,
+   "html_sha256": "858f7a3dc7404291ce085941aacfc0c6255b5450616b2c87d4b1a557fe5ad7f6"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Forecasting",
+   "outside": true,
+   "raw_sha256": "eb92b4b796e055aa509f4393bb7c8bf146b8569a0c42a12b178a74afc6cefb6d",
+   "source_bytes": 42727,
+   "html_sha256": "4f9fe89a1cbc3ff298bca12cb10e12602fa2191603211559c5e2f27a0d48aa94"
+  },
+  {
+   "url": "https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html",
+   "outside": true,
+   "raw_sha256": "5301e263ac8da816d494ffd1ddc7b70f4285718e6f1bc3a783a412fe97db361b",
+   "source_bytes": 3520,
+   "html_sha256": "3132fad7d583702a1a35366e34dfbb655a0a69fd293fc947f855e93939096297"
+  },
+  {
+   "url": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html",
+   "outside": true,
+   "raw_sha256": "bd5b51d06ac0ab50b62badb7d35de9bb2bdaa10a059235b3bf19cd17b57cdcc3",
+   "source_bytes": 5191,
+   "html_sha256": "fb3795abf675a5ab19c404cea47f98c17f7224a41b85690e91ded6068d3ac53c"
+  },
+  {
+   "url": "https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.ccf.html",
+   "outside": true,
+   "raw_sha256": "958bcdf76b648be8c1cb9991c7a19eed681071185895f17400427f56e584e338",
+   "source_bytes": 2331,
+   "html_sha256": "b203f0a73bd31254e1a057539813b8fc1b6953dc6c4492d762827ffe678a6e5c"
+  },
+  {
+   "url": "https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.pacf.html",
+   "outside": true,
+   "raw_sha256": "781c58b4b5582b6eed3f5cd644e9b326f3b5a11beb70861b278e4e12037f2f50",
+   "source_bytes": 3135,
+   "html_sha256": "56b3d5d6181b54d36f3a00fcbee4d5adbff40e9dfd54da11c1985cc1962f3443"
+  }
+ ],
+ "total_source_bytes": 467614
+}

@@ -1,0 +1,500 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Quickstart Ladder</title></head><body>
+<p>&lt;!-- type: how-to --&gt;</p>
+<h1>Quickstart Ladder</h1>
+<p>This repository is a deterministic forecastability triage toolkit for time series. When the task is time-series forecasting, do not jump directly to model fitting. Start with forecastability triage first: readiness, leakage risk, informative horizons, primary lags, seasonality structure, and covariate informativeness. Only then recommend downstream model families or framework-specific settings.</p>
+<p>One deterministic signal, multiple entry routes.</p>
+<p>This guide uses the same AR(1) signal across CLI, notebook, Python API, HTTP API, and optional agent/MCP surfaces so outputs stay directly comparable.</p>
+<h2>Shared Signal (Used Everywhere)</h2>
+<p>All routes below use:</p>
+<p>- `generate_ar1(n_samples=150, phi=0.85, random_state=42)` - `goal=&quot;univariate&quot;` - `max_lag=20` - `n_surrogates=99` - `random_state=42`</p>
+<p>&gt; [!WARNING] &gt; This ladder is for fast dependence triage. For forecast evaluation, compute &gt; diagnostics on each rolling-origin training window only. Do not compute on &gt; full series and then claim out-of-sample validity.</p>
+<h2>Comparable Output Contract</h2>
+<p>Normalize each route to the same keys when comparing results:</p>
+<p>| Comparable key | CLI JSON | Python/notebook object | HTTP JSON | MCP tool JSON | |---|---|---|---|---| | `blocked` | `blocked` | `result.blocked` | `blocked` | `blocked` | | `readiness_status` | `readiness.status` | `result.readiness.status.value` | `readiness_status` | `readiness.status` | | `forecastability_class` | `interpretation.forecastability_class` | `result.interpretation.forecastability_class` | `forecastability_class` | `interpretation.forecastability_class` | | `modeling_regime` | `interpretation.modeling_regime` | `result.interpretation.modeling_regime` | `modeling_regime` | `interpretation.modeling_regime` | | `primary_lags` | `interpretation.primary_lags` | `list(result.interpretation.primary_lags)` | `primary_lags` | `interpretation.primary_lags` | | `recommendation` | `recommendation` | `result.recommendation` | `recommendation` | `recommendation` |</p>
+<p>Expected normalized summary for this AR(1) setup:</p>
+<pre>
+{
+  &quot;blocked&quot;: false,
+  &quot;readiness_status&quot;: &quot;warning&quot;,
+  &quot;forecastability_class&quot;: &quot;high&quot;,
+  &quot;modeling_regime&quot;: &quot;compact_structured_models&quot;,
+  &quot;primary_lags&quot;: [1, 7],
+  &quot;recommendation&quot;: &quot;HIGH -&gt; Complex structured models (deep AR, nonlinear, LSTM)&quot;
+}
+</pre>
+<h2>60 Seconds: Deterministic CLI Run</h2>
+<pre>
+AR1_JSON=&quot;$(uv run python - &lt;&lt;&#x27;PY&#x27;
+import json
+from forecastability import generate_ar1
+
+series = generate_ar1(n_samples=150, phi=0.85, random_state=42)
+print(json.dumps(series.tolist()))
+PY
+)&quot;
+
+uv run forecastability triage \
+  --series &quot;$AR1_JSON&quot; \
+  --goal univariate \
+  --max-lag 20 \
+  --n-surrogates 99 \
+  --random-state 42 \
+  --format json
+</pre>
+<p>Expected output snippet:</p>
+<pre>
+{
+  &quot;blocked&quot;: false,
+  &quot;readiness&quot;: {
+    &quot;status&quot;: &quot;warning&quot;
+  },
+  &quot;interpretation&quot;: {
+    &quot;forecastability_class&quot;: &quot;high&quot;,
+    &quot;modeling_regime&quot;: &quot;compact_structured_models&quot;,
+    &quot;primary_lags&quot;: [1, 7]
+  },
+  &quot;recommendation&quot;: &quot;HIGH -&gt; Complex structured models (deep AR, nonlinear, LSTM)&quot;
+}
+</pre>
+<h2>10 Minutes: Python API Usage</h2>
+<pre>
+uv run python - &lt;&lt;&#x27;PY&#x27;
+import json
+from forecastability import generate_ar1
+from forecastability.triage import TriageRequest, run_triage
+
+series = generate_ar1(n_samples=150, phi=0.85, random_state=42)
+result = run_triage(
+    TriageRequest(
+        series=series,
+        goal=&quot;univariate&quot;,
+        max_lag=20,
+        n_surrogates=99,
+        random_state=42,
+    )
+)
+
+summary = {
+    &quot;blocked&quot;: result.blocked,
+    &quot;readiness_status&quot;: result.readiness.status.value,
+    &quot;forecastability_class&quot;: result.interpretation.forecastability_class,
+    &quot;modeling_regime&quot;: result.interpretation.modeling_regime,
+    &quot;primary_lags&quot;: list(result.interpretation.primary_lags),
+    &quot;recommendation&quot;: result.recommendation,
+}
+print(json.dumps(summary, indent=2))
+PY
+</pre>
+<p>Expected output snippet:</p>
+<pre>
+{
+  &quot;blocked&quot;: false,
+  &quot;readiness_status&quot;: &quot;warning&quot;,
+  &quot;forecastability_class&quot;: &quot;high&quot;,
+  &quot;modeling_regime&quot;: &quot;compact_structured_models&quot;,
+  &quot;primary_lags&quot;: [1, 7],
+  &quot;recommendation&quot;: &quot;HIGH -&gt; Complex structured models (deep AR, nonlinear, LSTM)&quot;
+}
+</pre>
+<h2>10.5 Minutes: Extended AMI-First Analysis</h2>
+<p>Use the extended surface when you want the additive fingerprint and routing profile without leaving deterministic triage.</p>
+<pre>
+uv run python - &lt;&lt;&#x27;PY&#x27;
+import json
+from forecastability import generate_ar1, run_extended_forecastability_analysis
+
+series = generate_ar1(n_samples=150, phi=0.85, random_state=42)
+result = run_extended_forecastability_analysis(series, max_lag=20)
+
+summary = {
+    &quot;signal_strength&quot;: result.profile.signal_strength,
+    &quot;predictability_sources&quot;: list(result.profile.predictability_sources),
+    &quot;descriptive_only&quot;: result.routing_metadata[&quot;descriptive_only&quot;],
+}
+print(json.dumps(summary, indent=2))
+PY
+</pre>
+<p>CLI equivalent:</p>
+<pre>
+uv run forecastability extended \
+  --series &quot;$AR1_JSON&quot; \
+  --max-lag 20 \
+  --format brief
+</pre>
+<p>&gt; [!IMPORTANT] &gt; This surface remains AMI-first. If AMI geometry is disabled with &gt; `--without-ami-geometry` or unavailable for the input, the output stays &gt; descriptive-only and does not emit routing-grade family recommendations.</p>
+<p>&gt; [!NOTE] &gt; `run_triage(..., include_extended_fingerprint=True)` additively attaches &gt; `extended_forecastability_analysis` for non-exogenous requests. Exogenous &gt; requests keep that field omitted rather than pretending exogenous-aware &gt; extended analysis exists.</p>
+<p>For the field-by-field guide to this surface, including routing metadata and theory cross-references, see [`how-to/extended_forecastability_fingerprint.md`](how-to/extended_forecastability_fingerprint.md).</p>
+<h2>11 Minutes: Fingerprint Workflow</h2>
+<p>Use the geometry-backed fingerprint workflow when you want compact AMI summary fields plus deterministic model-family guidance.</p>
+<pre>
+uv run python - &lt;&lt;&#x27;PY&#x27;
+from forecastability import generate_fingerprint_archetypes, run_forecastability_fingerprint
+
+series = generate_fingerprint_archetypes(n=320, seed=42)[&quot;seasonal_periodic&quot;]
+bundle = run_forecastability_fingerprint(
+    series,
+    target_name=&quot;seasonal_periodic&quot;,
+    max_lag=24,
+    n_surrogates=99,
+    random_state=42,
+)
+
+print(
+    {
+        &quot;signal_to_noise&quot;: bundle.geometry.signal_to_noise,
+        &quot;information_mass&quot;: bundle.fingerprint.information_mass,
+        &quot;information_structure&quot;: bundle.fingerprint.information_structure,
+        &quot;primary_families&quot;: bundle.recommendation.primary_families,
+        &quot;confidence_label&quot;: bundle.recommendation.confidence_label,
+    }
+)
+PY
+</pre>
+<h2>11.25 Minutes: Fingerprint Showcase Script</h2>
+<p>Run the canonical v0.3.1 showcase when you want the full prepared archetype panel, strict A1/A2/A3 agent verification, and a final human-language summary of what the mathematics did.</p>
+<pre>
+MPLBACKEND=Agg uv run scripts/run_showcase_fingerprint.py --smoke
+</pre>
+<p>Inspect these artifacts after the run:</p>
+<p>- `outputs/figures/showcase_fingerprint/fingerprint_profiles.png` - `outputs/figures/showcase_fingerprint/fingerprint_metrics.png` - `outputs/tables/showcase_fingerprint/fingerprint_summary.csv` - `outputs/tables/showcase_fingerprint/fingerprint_routing.csv` - `outputs/reports/showcase_fingerprint/showcase_report.md` - `outputs/reports/showcase_fingerprint/verification.md`</p>
+<p>&gt; [!IMPORTANT] &gt; The fingerprint release is intentionally univariate-first and AMI-first. The &gt; routing output is heuristic family guidance, not exact-model selection and not &gt; a multivariate conditional-MI claim. &gt; [!NOTE] &gt; On v0.3.3 and later, `bundle.recommendation.confidence_label` can also be &gt; `abstain` when the routing policy emits no primary families.</p>
+<h2>12 Minutes: CSV Batch Geometry Workflow</h2>
+<p>Use the CSV adapter when your upstream workflow already has one target series per column and you want a summary CSV plus geometry artifacts without notebook-only logic.</p>
+<p>Build the synthetic input panel from the prepared generators and run the repo script:</p>
+<pre>
+uv run python examples/univariate/fingerprint/ami_information_geometry_csv_example.py
+
+uv run python scripts/run_ami_information_geometry_csv.py \
+  --input-csv outputs/examples/ami_geometry_csv/inputs/synthetic_fingerprint_panel.csv \
+  --output-root outputs/ami_geometry_csv_script \
+  --max-lag 24 \
+  --n-surrogates 99 \
+  --random-state 42
+</pre>
+<p>Inspect these artifacts after the run:</p>
+<p>- `outputs/ami_geometry_csv_script/tables/ami_geometry_summary.csv` - `outputs/ami_geometry_csv_script/figures/ami_geometry_profiles.png` - `outputs/ami_geometry_csv_script/reports/ami_geometry_batch.md`</p>
+<p>&gt; [!NOTE] &gt; The CSV adapter drops missing values column-wise and skips too-short or &gt; non-numeric series conservatively instead of forcing a partial analysis.</p>
+<h2>11.5 Minutes: Batch Forecast Routing And Executive Brief</h2>
+<p>Use the batch workbench when you need one deterministic pass that serves both analyst and stakeholder workflows.</p>
+<pre>
+uv run python - &lt;&lt;&#x27;PY&#x27;
+from forecastability import (
+    build_batch_forecastability_executive_markdown,
+    build_batch_forecastability_markdown,
+    generate_fingerprint_archetypes,
+    run_batch_forecastability_workbench,
+)
+from forecastability.triage import BatchSeriesRequest, BatchTriageRequest
+
+series_map = generate_fingerprint_archetypes(n=320, seed=42)
+request = BatchTriageRequest(
+    items=[
+        BatchSeriesRequest(series_id=name, series=series.tolist())
+        for name, series in series_map.items()
+    ],
+    max_lag=24,
+    n_surrogates=99,
+    random_state=42,
+)
+result = run_batch_forecastability_workbench(request, top_n=2)
+
+print(result.summary.technical_summary)
+print(result.items[0].next_step.action)
+print(build_batch_forecastability_markdown(result).splitlines()[0])
+print(build_batch_forecastability_executive_markdown(result).splitlines()[0])
+PY
+</pre>
+<h2>12 Minutes: Covariant Informative Workflow</h2>
+<p>Run the v0.3.0 covariant bundle with pairwise and directional methods:</p>
+<pre>
+uv run python - &lt;&lt;&#x27;PY&#x27;
+from forecastability import generate_covariant_benchmark, run_covariant_analysis
+
+df = generate_covariant_benchmark(n=1200, seed=42)
+target = df[&quot;target&quot;].to_numpy()
+drivers = {name: df[name].to_numpy() for name in df.columns if name != &quot;target&quot;}
+
+bundle = run_covariant_analysis(
+  target,
+  drivers,
+  target_name=&quot;target&quot;,
+  max_lag=5,
+  methods=[&quot;cross_ami&quot;, &quot;cross_pami&quot;, &quot;te&quot;, &quot;gcmi&quot;],
+  n_surrogates=99,
+  random_state=42,
+)
+
+print(
+  {
+    &quot;rows&quot;: len(bundle.summary_table),
+    &quot;active_methods&quot;: bundle.metadata.get(&quot;active_methods&quot;),
+    &quot;skipped_optional_methods&quot;: bundle.metadata.get(&quot;skipped_optional_methods&quot;),
+    &quot;conditioning_scope_disclaimer&quot;: bundle.metadata.get(&quot;conditioning_scope_disclaimer&quot;),
+  }
+)
+PY
+</pre>
+<p>Expected output shape:</p>
+<pre>
+{
+  &quot;rows&quot;: 40,
+  &quot;active_methods&quot;: &quot;cross_ami,cross_pami,gcmi,te&quot;,
+  &quot;skipped_optional_methods&quot;: null,
+  &quot;conditioning_scope_disclaimer&quot;: &quot;Bundle conditioning scope: ...&quot;
+}
+</pre>
+<p>&gt; [!NOTE] &gt; Valid covariant method tokens are `cross_ami`, `cross_pami`, `te`, `gcmi`, `pcmci`, and `pcmci_ami`.</p>
+<p>&gt; [!IMPORTANT] &gt; `pcmci` and `pcmci_ami` are optional causal methods and are **computationally &gt; expensive** — a single run can take several minutes to hours depending on &gt; sample size, lag range, and CI test backend.  They are designed for &gt; *confirmatory* causal screening after a fast pairwise pass, not as a default &gt; first step.  Prefer `methods=[&quot;cross_ami&quot;, &quot;gcmi&quot;]` for fast initial &gt; screening. &gt; &gt; When causal discovery is needed, use `pcmci_ami_ci_test=&quot;parcorr&quot;` for a &gt; 50–200× speedup over the default `&quot;knn_cmi&quot;` backend.  Install the causal &gt; extra when needed: &gt; &gt; ```bash &gt; pip install &quot;dependence-forecastability[causal]&quot; &gt; ```</p>
+<h2>13 Minutes: Lagged-Exogenous Triage</h2>
+<p>Use the v0.3.2 lagged-exogenous triage surface when you want to classify each exogenous driver by lag role (contemporaneous vs predictive), apply sparse lag selection, and produce a typed lag map ready for forecasting tensor construction.</p>
+<pre>
+from forecastability import generate_lagged_exog_panel, run_lagged_exogenous_triage
+
+df = generate_lagged_exog_panel(n=1500, seed=42)
+target = df[&quot;target&quot;].to_numpy()
+drivers = {name: df[name].to_numpy() for name in df.columns if name != &quot;target&quot;}
+
+bundle = run_lagged_exogenous_triage(
+    target,
+    drivers,
+    target_name=&quot;target&quot;,
+    max_lag=6,
+    n_surrogates=99,
+    random_state=42,
+)
+
+# Sparse selected lags for tensor construction
+for row in bundle.selected_lags:
+    if row.selected_for_tensor:
+        print(f&quot;  {row.driver} @ lag={row.lag}  tensor_role={row.tensor_role}&quot;)
+</pre>
+<p>Known-future opt-in for features whose contemporaneous value is available at prediction time (e.g. calendar flags, planned promotions, regulator-set prices):</p>
+<pre>
+bundle = run_lagged_exogenous_triage(
+    target,
+    drivers,
+    target_name=&quot;target&quot;,
+    max_lag=6,
+    n_surrogates=99,
+    random_state=42,
+    known_future_drivers={&quot;holiday_flag&quot;: True},
+)
+</pre>
+<p>CLI smoke run:</p>
+<pre>
+MPLBACKEND=Agg uv run scripts/run_showcase_lagged_exogenous.py --smoke
+</pre>
+<p>&gt; [!IMPORTANT] &gt; `selected_for_tensor=True` is impossible at `lag=0` by default. Use `known_future_drivers` to &gt; explicitly opt in for features whose contemporaneous value is legitimately available at &gt; prediction time. &gt; [!NOTE] &gt; `lag_role=&quot;instant&quot;` rows at `lag=0` are diagnostic. They quantify contemporaneous association &gt; (contemporaneous-cross_ami, cross-correlation) but are not selected for forecasting tensors &gt; without the opt-in.</p>
+<p>Theory background: [docs/theory/lagged_exogenous_triage.md](theory/lagged_exogenous_triage.md)</p>
+<h2>14 Minutes: Routing Validation</h2>
+<p>Use the v0.3.3 routing-validation surface when you need a deterministic audit of the routing policy before downstream framework hand-off.</p>
+<p>Clean-checkout smoke path:</p>
+<pre>
+uv run python scripts/run_routing_validation_report.py --smoke --no-real-panel
+</pre>
+<p>Inspect the canonical artifacts after the run:</p>
+<p>- `outputs/reports/routing_validation/report.md` is the canonical markdown report. - `outputs/json/routing_validation/` contains the saved JSON bundle and report manifest.</p>
+<p>Use the public facade directly when you need the typed bundle instead of the rendered report:</p>
+<pre>
+uv run python - &lt;&lt;&#x27;PY&#x27;
+from forecastability import RoutingPolicyAuditConfig, run_routing_validation
+
+bundle = run_routing_validation(
+  n_per_archetype=200,
+  real_panel_path=None,
+  config=RoutingPolicyAuditConfig(),
+)
+
+print(
+  {
+    &quot;total_cases&quot;: bundle.audit.total_cases,
+    &quot;passed_cases&quot;: bundle.audit.passed_cases,
+    &quot;downgraded_cases&quot;: bundle.audit.downgraded_cases,
+    &quot;failed_cases&quot;: bundle.audit.failed_cases,
+    &quot;abstained_cases&quot;: bundle.audit.abstained_cases,
+  }
+)
+PY
+</pre>
+<p>Deterministic-first agent example:</p>
+<pre>
+uv run python examples/univariate/agents/routing_validation_agent_review.py --smoke
+</pre>
+<p>&gt; [!NOTE] &gt; This example recomputes a fresh deterministic bundle. Use the saved report &gt; artifacts above as the authoritative source for exact smoke-report counts.</p>
+<p>&gt; [!IMPORTANT] &gt; `RoutingValidationBundle` is additive on the public facade. The widened &gt; routing confidence label is also additive: `abstain` is emitted only when no &gt; primary families are routed. &gt; [!NOTE] &gt; The full real-panel path is not the clean-checkout default. Use the smoke &gt; report command above for a mechanically runnable path in a fresh clone.</p>
+<h2>Hand-off after triage</h2>
+<p>After triage, convert triage outputs into a structured, machine-readable forecast prep contract.</p>
+<pre>
+from forecastability import build_forecast_prep_contract
+import pandas as pd
+
+contract = build_forecast_prep_contract(
+    triage_result,          # output of run_triage()
+    horizon=12,
+    target_frequency=&quot;M&quot;,
+    add_calendar_features=True,
+    datetime_index=pd.date_range(&quot;1949-01&quot;, periods=144, freq=&quot;ME&quot;),
+)
+print(contract.model_dump_json(indent=2))
+</pre>
+<p>&gt; [!NOTE] &gt; The contract emits lag recommendations, covariate roles, model families, and calendar &gt; features. It never imports any downstream library. For framework-specific wiring, see &gt; [docs/recipes/forecast_prep_to_external_frameworks.md](recipes/forecast_prep_to_external_frameworks.md).</p>
+<h2>15 Minutes: HTTP API Call</h2>
+<p>Terminal A: start the API server.</p>
+<pre>
+uv sync --extra transport
+uv run uvicorn forecastability.adapters.api:app --host 127.0.0.1 --port 8000
+</pre>
+<p>Terminal B: generate the same payload and call `POST /triage`.</p>
+<pre>
+uv run python - &lt;&lt;&#x27;PY&#x27;
+import json
+from forecastability import generate_ar1
+
+payload = {
+    &quot;series&quot;: generate_ar1(n_samples=150, phi=0.85, random_state=42).tolist(),
+    &quot;goal&quot;: &quot;univariate&quot;,
+    &quot;max_lag&quot;: 20,
+    &quot;n_surrogates&quot;: 99,
+    &quot;random_state&quot;: 42,
+}
+with open(&quot;/tmp/forecastability_ar1_payload.json&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+    json.dump(payload, f)
+PY
+
+curl -sS -X POST http://127.0.0.1:8000/triage \
+  -H &#x27;Content-Type: application/json&#x27; \
+  --data @/tmp/forecastability_ar1_payload.json
+</pre>
+<p>Expected output snippet:</p>
+<pre>
+{
+  &quot;blocked&quot;: false,
+  &quot;readiness_status&quot;: &quot;warning&quot;,
+  &quot;route&quot;: &quot;univariate_no_significance&quot;,
+  &quot;compute_surrogates&quot;: false,
+  &quot;forecastability_class&quot;: &quot;high&quot;,
+  &quot;modeling_regime&quot;: &quot;compact_structured_models&quot;,
+  &quot;primary_lags&quot;: [1, 7],
+  &quot;recommendation&quot;: &quot;HIGH -&gt; Complex structured models (deep AR, nonlinear, LSTM)&quot;
+}
+</pre>
+<h2>Optional: Agent Narration</h2>
+<pre>
+uv sync --extra agent
+</pre>
+<p>Set provider configuration in `.env` (for example `OPENAI_API_KEY` and `OPENAI_MODEL`), then run:</p>
+<pre>
+uv run python - &lt;&lt;&#x27;PY&#x27;
+import asyncio
+import json
+from forecastability import generate_ar1
+# Canonical import: forecastability.adapters.llm.triage_agent
+# The path below uses the backward-compat shim and will be removed in a future release.
+from forecastability.adapters.pydantic_ai_agent import run_triage_agent
+
+async def main() -&gt; None:
+    series = generate_ar1(n_samples=150, phi=0.85, random_state=42)
+    explanation = await run_triage_agent(
+        series,
+        max_lag=20,
+        n_surrogates=99,
+        random_state=42,
+    )
+    print(
+        json.dumps(
+            {
+                &quot;forecastability_class&quot;: explanation.forecastability_class,
+                &quot;directness_class&quot;: explanation.directness_class,
+                &quot;modeling_regime&quot;: explanation.modeling_regime,
+                &quot;primary_lags&quot;: explanation.primary_lags,
+                &quot;recommendation&quot;: explanation.recommendation,
+                &quot;narrative&quot;: explanation.narrative,
+                &quot;caveats&quot;: explanation.caveats,
+            },
+            indent=2,
+        )
+    )
+
+asyncio.run(main())
+PY
+</pre>
+<p>Expected output snippet:</p>
+<pre>
+{
+  &quot;forecastability_class&quot;: &quot;high&quot;,
+  &quot;directness_class&quot;: &quot;medium&quot;,
+  &quot;modeling_regime&quot;: &quot;compact_structured_models&quot;,
+  &quot;primary_lags&quot;: [1, 7],
+  &quot;recommendation&quot;: &quot;HIGH -&gt; Complex structured models (deep AR, nonlinear, LSTM)&quot;,
+  &quot;narrative&quot;: &quot;...model-generated explanation...&quot;,
+  &quot;caveats&quot;: [
+    &quot;Series length (150) &lt; 200. Surrogate significance bands may be unstable; interpret p-values with caution.&quot;
+  ]
+}
+</pre>
+<h2>Optional: MCP Integration</h2>
+<p>Start the MCP server:</p>
+<pre>
+uv sync --extra transport
+uv run python -m forecastability.adapters.mcp_server
+</pre>
+<p>From an MCP client, call tool `run_triage_tool` with:</p>
+<pre>
+{
+  &quot;series&quot;: &quot;same AR(1) list as above&quot;,
+  &quot;goal&quot;: &quot;univariate&quot;,
+  &quot;max_lag&quot;: 20,
+  &quot;n_surrogates&quot;: 99,
+  &quot;random_state&quot;: 42
+}
+</pre>
+<p>Expected tool output snippet:</p>
+<pre>
+{
+  &quot;blocked&quot;: false,
+  &quot;readiness&quot;: {
+    &quot;status&quot;: &quot;warning&quot;
+  },
+  &quot;method_plan&quot;: {
+    &quot;route&quot;: &quot;univariate_no_significance&quot;,
+    &quot;compute_surrogates&quot;: false
+  },
+  &quot;interpretation&quot;: {
+    &quot;forecastability_class&quot;: &quot;high&quot;,
+    &quot;modeling_regime&quot;: &quot;compact_structured_models&quot;,
+    &quot;primary_lags&quot;: [1, 7]
+  },
+  &quot;recommendation&quot;: &quot;HIGH -&gt; Complex structured models (deep AR, nonlinear, LSTM)&quot;
+}
+</pre>
+<h2>Triage Extension Diagnostics</h2>
+<p>Beyond the core triage output, `run_triage()` populates optional diagnostic fields (F1–F6) when the series is not blocked. It can also attach the additive `extended_forecastability_analysis` bundle when `include_extended_fingerprint=True` and the routed request is not exogenous. These diagnostics give deeper insight into *why* the series is forecastable and *where* the information ceiling lies.</p>
+<pre>
+from forecastability.triage import run_triage, TriageRequest
+import numpy as np
+
+rng = np.random.default_rng(42)
+ts = np.array([0.85 ** i + rng.standard_normal() * 0.1 for i in range(300)])
+
+result = run_triage(TriageRequest(series=ts, goal=&quot;univariate&quot;, random_state=42))
+
+# F1: Forecastability profile — informative horizons and peak lag
+if result.forecastability_profile:
+    print(f&quot;Peak horizon: {result.forecastability_profile.peak_horizon}&quot;)
+    print(f&quot;Informative horizons: {result.forecastability_profile.informative_horizons}&quot;)
+
+# F2: IT limit diagnostics — ceiling and data-processing warnings
+if result.theoretical_limit_diagnostics:
+    print(f&quot;Compression warning: {result.theoretical_limit_diagnostics.compression_warning}&quot;)
+
+# F5: Largest Lyapunov exponent (experimental)
+if result.largest_lyapunov_exponent:
+    print(f&quot;Lyapunov exponent: {result.largest_lyapunov_exponent.exponent}&quot;)
+
+# F6: Complexity band
+if result.complexity_band:
+    print(f&quot;Complexity band: {result.complexity_band.band}&quot;)
+</pre>
+<p>All diagnostic fields are `None` when the series is blocked by readiness gates.</p>
+<p>&gt; [!TIP] &gt; For interactive walkthroughs of each diagnostic family, see the sibling &gt; [`forecastability-examples`](https://github.com/AdamKrysztopa/forecastability-examples) &gt; repository (triage walkthrough notebooks).</p>
+</body></html>

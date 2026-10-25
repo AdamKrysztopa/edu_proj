@@ -1,0 +1,81 @@
+{
+ "planted_positive": {
+  "gap_new_rate": 1.0,
+  "covered_new_rate": 0.0,
+  "difference": 1.0,
+  "gap_answers_new": 10,
+  "n_agreed": 15,
+  "permutation_p": 0.000333000333000333,
+  "n_with_content": 15,
+  "decision": "Continue",
+  "expected": "Continue"
+ },
+ "all_novel": {
+  "gap_new_rate": 1.0,
+  "covered_new_rate": 1.0,
+  "difference": 0.0,
+  "gap_answers_new": 10,
+  "n_agreed": 15,
+  "permutation_p": 1.0,
+  "n_with_content": 15,
+  "decision": "Change",
+  "expected": "Change"
+ },
+ "all_copied": {
+  "gap_new_rate": 0.0,
+  "covered_new_rate": 0.0,
+  "difference": 0.0,
+  "gap_answers_new": 0,
+  "n_agreed": 15,
+  "permutation_p": 1.0,
+  "n_with_content": 15,
+  "decision": "Change",
+  "expected": "Change"
+ },
+ "filler": {
+  "gap_new_rate": 0.0,
+  "covered_new_rate": 0.0,
+  "difference": 0.0,
+  "gap_answers_new": 0,
+  "n_agreed": 15,
+  "permutation_p": 1.0,
+  "n_with_content": 15,
+  "decision": "Change",
+  "expected": "Change"
+ },
+ "borderline_4_of_10_new": {
+  "gap_new_rate": 0.4,
+  "covered_new_rate": 0.0,
+  "difference": 0.4,
+  "gap_answers_new": 4,
+  "n_agreed": 15,
+  "permutation_p": 0.15384615384615385,
+  "n_with_content": 15,
+  "decision": "Change",
+  "expected": "Change"
+ },
+ "stances_only": {
+  "gap_new_rate": 0.0,
+  "covered_new_rate": 0.0,
+  "difference": 0.0,
+  "gap_answers_new": 0,
+  "n_agreed": 15,
+  "permutation_p": 1.0,
+  "n_with_content": 0,
+  "decision": "No reading",
+  "expected": "No reading"
+ },
+ "judges_disagree_on_gap": {
+  "gap_new_rate": 0.0,
+  "covered_new_rate": 0.0,
+  "difference": 0.0,
+  "gap_answers_new": 0,
+  "n_agreed": 5,
+  "permutation_p": 1.0,
+  "n_with_content": 15,
+  "decision": "Change",
+  "expected": "Change"
+ },
+ "best_case_difference": 1.0,
+ "all_pass": true
+}

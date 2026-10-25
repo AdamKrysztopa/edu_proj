@@ -1,0 +1,431 @@
+{
+ "retrieved": "2026-10-24",
+ "api": "https://web.archive.org/cdx/search/cdx",
+ "cap_per_query": 20000,
+ "method": "statuscode:200 captures with timestamp <= cutoff; counts only, no page fetched. Capped rows are lower bounds and their distinct_urls depends on CDX sort order, so only 'capped' and 'first' are informative there.",
+ "provenance": "Assembled from the run log of cdx_counts.py. The run was stopped after phillips1998: whole-domain queries on www.fas.org and www.army.mil returned HTTP 504 after retries, so www.globalsecurity.org (phillips1998) and all phillips2001 targets were not measured.",
+ "rows": [
+  {
+   "gold": "sullivan2014",
+   "cutoff": "20140324",
+   "target": "en.wikipedia.org/wiki/Cricothyrotomy",
+   "captures_200": 19,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20070616081440",
+   "last": "20131212203607"
+  },
+  {
+   "gold": "sullivan2014",
+   "cutoff": "20140324",
+   "target": "emedicine.medscape.com",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 3123,
+   "first": "20081208084948",
+   "last": "20140324160123"
+  },
+  {
+   "gold": "sullivan2014",
+   "cutoff": "20140324",
+   "target": "www.trauma.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 2825,
+   "first": "19961227071404",
+   "last": "20140324105423"
+  },
+  {
+   "gold": "okoli2020",
+   "cutoff": "20200820",
+   "target": "en.wikipedia.org/wiki/Incident_Command_System",
+   "captures_200": 123,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20041027123920",
+   "last": "20200818205307"
+  },
+  {
+   "gold": "okoli2020",
+   "cutoff": "20200820",
+   "target": "www.firehouse.com",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 587,
+   "first": "19980114154327",
+   "last": "20200819204231"
+  },
+  {
+   "gold": "okoli2020",
+   "cutoff": "20200820",
+   "target": "www.fireengineering.com",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 9081,
+   "first": "20070502133348",
+   "last": "20200820235339"
+  },
+  {
+   "gold": "okoli2020",
+   "cutoff": "20200820",
+   "target": "www.usfa.fema.gov",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 1821,
+   "first": "19970213034531",
+   "last": "20200820035342"
+  },
+  {
+   "gold": "madani2015",
+   "cutoff": "20150805",
+   "target": "en.wikipedia.org/wiki/Cholecystectomy",
+   "captures_200": 49,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20040711160454",
+   "last": "20150516130656"
+  },
+  {
+   "gold": "madani2015",
+   "cutoff": "20150805",
+   "target": "www.sages.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 3642,
+   "first": "19961227110504",
+   "last": "20150805074909"
+  },
+  {
+   "gold": "madani2015",
+   "cutoff": "20150805",
+   "target": "www.websurg.com",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 5174,
+   "first": "20010202070700",
+   "last": "20150805015444"
+  },
+  {
+   "gold": "logishetty2019",
+   "cutoff": "20190919",
+   "target": "en.wikipedia.org/wiki/Hip_replacement",
+   "captures_200": 78,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20041128025429",
+   "last": "20190822193234"
+  },
+  {
+   "gold": "logishetty2019",
+   "cutoff": "20190919",
+   "target": "www.orthobullets.com",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 1738,
+   "first": "20090422053914",
+   "last": "20190919194756"
+  },
+  {
+   "gold": "logishetty2019",
+   "cutoff": "20190919",
+   "target": "orthoinfo.aaos.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 3926,
+   "first": "20000619212529",
+   "last": "20190919195926"
+  },
+  {
+   "gold": "grover2022_tar",
+   "cutoff": "20221116",
+   "target": "en.wikipedia.org/wiki/Incisional_hernia",
+   "captures_200": 71,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20060913000000",
+   "last": "20221111125206"
+  },
+  {
+   "gold": "grover2022_tar",
+   "cutoff": "20221116",
+   "target": "www.americasherniasociety.org",
+   "captures_200": 1544,
+   "capped": false,
+   "distinct_urls": 782,
+   "first": "20200510220604",
+   "last": "20211128142306"
+  },
+  {
+   "gold": "grover2022_tar",
+   "cutoff": "20221116",
+   "target": "www.websurg.com",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 5382,
+   "first": "20010202070700",
+   "last": "20221102104716"
+  },
+  {
+   "gold": "grover2023_rygb",
+   "cutoff": "20230912",
+   "target": "en.wikipedia.org/wiki/Gastric_bypass_surgery",
+   "captures_200": 167,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20050418184620",
+   "last": "20230908125254"
+  },
+  {
+   "gold": "grover2023_rygb",
+   "cutoff": "20230912",
+   "target": "asmbs.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 3773,
+   "first": "20081201075300",
+   "last": "20230904002832"
+  },
+  {
+   "gold": "grover2023_rygb",
+   "cutoff": "20230912",
+   "target": "www.websurg.com",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 5365,
+   "first": "20010202070700",
+   "last": "20230807183857"
+  },
+  {
+   "gold": "smink2012",
+   "cutoff": "20120209",
+   "target": "en.wikipedia.org/wiki/Appendectomy",
+   "captures_200": 48,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20040412213718",
+   "last": "20120206045740"
+  },
+  {
+   "gold": "smink2012",
+   "cutoff": "20120209",
+   "target": "www.sages.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 4073,
+   "first": "19961227110504",
+   "last": "20120207232309"
+  },
+  {
+   "gold": "smink2012",
+   "cutoff": "20120209",
+   "target": "www.websurg.com",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 4506,
+   "first": "20010202070700",
+   "last": "20120209023159"
+  },
+  {
+   "gold": "sullivan2007",
+   "cutoff": "20071212",
+   "target": "en.wikipedia.org/wiki/Colonoscopy",
+   "captures_200": 28,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20040413033944",
+   "last": "20071201132141"
+  },
+  {
+   "gold": "sullivan2007",
+   "cutoff": "20071212",
+   "target": "www.asge.org",
+   "captures_200": 16337,
+   "capped": false,
+   "distinct_urls": 6714,
+   "first": "19961029084119",
+   "last": "20071210091850"
+  },
+  {
+   "gold": "sullivan2007",
+   "cutoff": "20071212",
+   "target": "gi.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 4491,
+   "first": "19970402112909",
+   "last": "20071212233009"
+  },
+  {
+   "gold": "dias2019",
+   "cutoff": "20190723",
+   "target": "en.wikipedia.org/wiki/Cardiac_surgery",
+   "captures_200": 195,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20040917024104",
+   "last": "20190713010850"
+  },
+  {
+   "gold": "dias2019",
+   "cutoff": "20190723",
+   "target": "www.sts.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 4960,
+   "first": "19961202151928",
+   "last": "20190721072625"
+  },
+  {
+   "gold": "dias2019",
+   "cutoff": "20190723",
+   "target": "www.ctsnet.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 11644,
+   "first": "19980526091140",
+   "last": "20190722045929"
+  },
+  {
+   "gold": "karamchandani2021",
+   "cutoff": "20210623",
+   "target": "en.wikipedia.org/wiki/Tear_of_meniscus",
+   "captures_200": 48,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20080311140539",
+   "last": "20210427134354"
+  },
+  {
+   "gold": "karamchandani2021",
+   "cutoff": "20210623",
+   "target": "www.orthobullets.com",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 1855,
+   "first": "20090422053914",
+   "last": "20210622120006"
+  },
+  {
+   "gold": "karamchandani2021",
+   "cutoff": "20210623",
+   "target": "www.sportsmed.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 6064,
+   "first": "19961219000449",
+   "last": "20210623212945"
+  },
+  {
+   "gold": "russjara2023",
+   "cutoff": "20231130",
+   "target": "en.wikipedia.org/wiki/Drug_interaction",
+   "captures_200": 119,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20050410060325",
+   "last": "20230318185905"
+  },
+  {
+   "gold": "russjara2023",
+   "cutoff": "20231130",
+   "target": "www.drugs.com/drug_interactions",
+   "captures_200": 2911,
+   "capped": false,
+   "distinct_urls": 253,
+   "first": "20040509221252",
+   "last": "20231129183943"
+  },
+  {
+   "gold": "ede2023",
+   "cutoff": "20231208",
+   "target": "en.wikipedia.org/wiki/Early_warning_score",
+   "captures_200": 15,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20150128011505",
+   "last": "20230712060439"
+  },
+  {
+   "gold": "ede2023",
+   "cutoff": "20231208",
+   "target": "www.nice.org.uk",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 1,
+   "first": "19991008163146",
+   "last": "20230419074741"
+  },
+  {
+   "gold": "ede2023",
+   "cutoff": "20231208",
+   "target": "www.rcplondon.ac.uk",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 2608,
+   "first": "19981212032228",
+   "last": "20231208200920"
+  },
+  {
+   "gold": "canopy2015",
+   "cutoff": "20150629",
+   "target": "en.wikipedia.org/wiki/Endoscopic_retrograde_cholangiopancreatography",
+   "captures_200": 32,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20041211020758",
+   "last": "20150523212423"
+  },
+  {
+   "gold": "canopy2015",
+   "cutoff": "20150629",
+   "target": "www.asge.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 4447,
+   "first": "19961029084119",
+   "last": "20150629035643"
+  },
+  {
+   "gold": "plumptre2017",
+   "cutoff": "20170711",
+   "target": "en.wikipedia.org/wiki/Pelvic_examination",
+   "captures_200": 25,
+   "capped": false,
+   "distinct_urls": 1,
+   "first": "20071114035801",
+   "last": "20170327204151"
+  },
+  {
+   "gold": "plumptre2017",
+   "cutoff": "20170711",
+   "target": "www.acog.org",
+   "captures_200": 20000,
+   "capped": true,
+   "distinct_urls": 17145,
+   "first": "19980202034255",
+   "last": "20170711002257"
+  },
+  {
+   "gold": "phillips1998",
+   "cutoff": "19971231",
+   "target": "en.wikipedia.org/wiki/Urban_warfare",
+   "captures_200": 0,
+   "capped": false,
+   "distinct_urls": 0,
+   "first": null,
+   "last": null
+  },
+  {
+   "gold": "phillips1998",
+   "cutoff": "19971231",
+   "target": "www.fas.org",
+   "error": "HTTP Error 504: Gateway Time-out"
+  },
+  {
+   "gold": "phillips1998",
+   "cutoff": "19971231",
+   "target": "www.army.mil",
+   "error": "HTTP Error 504: Gateway Time-out"
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{"item": "DS7",
+ "card": {"question": "Which public boundary texts exist per gold domain, and could they revive the dead features (n_boundary_sources, has_done_support, imagined_only, latest_source)?",
+          "answer": "They exist and mostly predate their gold (near-miss/fatality reports for Okoli; M&M, MAUDE, forums for Madani and Logishetty), but 0 of 108 URLs recorded by the three N2 runs N3 reads is a boundary host, and no public text is a DONE record, so has_done_support stays dead.",
+          "changed": "Recommend the E-CTA primary test cover size, density, type and lens signal only; n_boundary_sources and imagined_only enter as secondary only if a gold-blind pre-freeze retrieval probe shows variance. Owner adopted this 2026-10-24."},
+ "worked": "Boundary sources predating each primary gold found for all three; mappable to existing kinds with no new field.",
+ "failed": "Host rules alone revive nothing: 0 of 50 cited sources and 0 of 108 recorded URLs are boundary hosts.",
+ "figure": {"title": "No N2 ledger that N3 reads reached a boundary host: 0 of 108 recorded URLs",
+            "kind": "table",
+            "rows": [
+              {"ledger": "PLC", "recorded_urls": 47, "cited_sources": 19, "boundary_current_rules": 0, "boundary_proposed_rules": 0},
+              {"ledger": "GDPR v1", "recorded_urls": 31, "cited_sources": 13, "boundary_current_rules": 0, "boundary_proposed_rules": 0},
+              {"ledger": "GDPR v2", "recorded_urls": 30, "cited_sources": 18, "boundary_current_rules": 0, "boundary_proposed_rules": 0}],
+            "reference": "I6 'dead' = at most one distinct value per ledger; reviving needs >= 1 boundary source in some areas and 0 in others",
+            "source": "research/ds7/replay.json: <run>.recorded.n, <run>.cited.n, <run>.recorded.boundary_current_rules, <run>.recorded.boundary_proposed, for the runs whose n3_ledger is set"}}

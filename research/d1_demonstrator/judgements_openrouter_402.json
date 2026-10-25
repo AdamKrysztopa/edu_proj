@@ -1,0 +1,462 @@
+[
+ {
+  "q": "canary-filler-40",
+  "question": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "This is an important point and it depends on the situation, so one should think about it carefully and consider the context before deciding what to do. This is an important point and it depends on the situation, so one",
+  "must_not_be": "new",
+  "passages": [
+   "Limitations",
+   "AMI, pAMI, and TE Foundations",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecasting",
+   "Autocorrelation",
+   "Autocorrelation",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Mutual information",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": "no content",
+   "new_content": "",
+   "reason": "The answer contains only repetitive advice to consider the context. It states no concrete consequence, exception, or other substantive claim."
+  }
+ },
+ {
+  "q": "canary-filler-90",
+  "question": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "This is an important point and it depends on the situation, so one should think about it carefully and consider the context before deciding what to do. This is an important point and it depends on the situation, so one should think about it carefully and consider the context before deciding what to do. This is an important point and it depends on the situation, so one should think about it carefully and consider the context before deciding what to do. This is an important point and it depends on",
+  "must_not_be": "new",
+  "passages": [
+   "Limitations",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Autocorrelation",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Autocorrelation",
+   "Forecasting",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": "no content",
+   "new_content": "",
+   "reason": "The answer consists entirely of repeated generic advice to consider the context. It makes no substantive claim about leakage consequences or acceptable exceptions."
+  }
+ },
+ {
+  "q": "canary-copied",
+  "question": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "- **Train-window-only diagnostics.** AMI, pAMI, and all F1\u2013F8 diagnostics are computed on the training window up to each rolling origin. No diagnostic touches the post-origin holdout. - **Holdout-only scoring.** Forecast errors and accuracy metrics are computed on the post-origin holdout window only. - **Caller responsibility.** The `run_rolling_origin_evaluation()` function enforces this boundary internally. If you compute diagnostics manually outside this function, you must enforce the same boundary. Violating it introduces look-ahead leakage and invalidates the evaluation. - **Exogenous workflows.** The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.",
+  "must_not_be": "new",
+  "passages": [
+   "Limitations",
+   "AMI, pAMI, and TE Foundations",
+   "Golden Path",
+   "Limitations",
+   "Quickstart Ladder",
+   "Forecastability Triage Toolkit",
+   "Limitations",
+   "Forecasting",
+   "Diagnostics Matrix",
+   "Forecastability Triage Toolkit"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": "already written",
+   "new_content": "",
+   "reason": "The expert answer reproduces passage [1] verbatim, including the training/holdout boundary, caller responsibility, and the consequence that violations cause look-ahead leakage and invalidate evaluation. It adds no exception or acceptable alternative."
+  }
+ },
+ {
+  "q": 1,
+  "question": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "Serious risk, never OK. It is a classical leak: information from the future goes into the past. That is asking for failures in production.",
+  "passages": [
+   "Limitations",
+   "AMI, pAMI, and TE Foundations",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Limitations",
+   "Diagnostics Matrix",
+   "Forecasting",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecastability Triage Toolkit"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": "partly",
+   "new_content": "\u201cThat is asking for failures in production.\u201d",
+   "reason": "The passages explicitly state that violating the training-window boundary introduces look-ahead leakage, invalidates evaluation, and is prohibited. The answer adds a warning about production failures, which the passages do not state or directly imply."
+  }
+ },
+ {
+  "q": 2,
+  "question": "Sources say: \"Use `known_future_drivers` only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags, planned promotions, or externally scheduled variables.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "Serious risk, never OK. People often use features that are not known but predicted. That accumulates the errors.",
+  "passages": [
+   "Forecastability Triage Toolkit",
+   "Quickstart Ladder",
+   "Lagged-Exogenous Triage",
+   "Quickstart Ladder",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Autocorrelation",
+   "Mutual information",
+   "Forecasting",
+   "Forecasting",
+   "mutual_info_regression"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": "new",
+   "new_content": "\u201cPeople often use features that are not known but predicted. That accumulates the errors.\u201d",
+   "reason": "The passages restrict known_future_drivers to genuinely known values, but do not describe the practice of using predicted features or state that doing so compounds prediction errors."
+  }
+ },
+ {
+  "q": 3,
+  "question": "Sources prescribe: \"A practitioner should target model evaluation exclusively at horizons in $\\mathcal{H}_\\varepsilon$ - lags outside this set carry no detectable predictive signal above the noise floor.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "Done it; it surprised me. AMI looks meaningful at many horizons, but pAMI shows the real horizon.",
+  "passages": [
+   "Forecastability Profile & Informative Horizon Set",
+   "Diagnostics Matrix",
+   "Quickstart Ladder",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecastability Triage Toolkit",
+   "Forecastability Triage Toolkit",
+   "Diagnostics Matrix",
+   "Diagnostics Matrix"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": "new",
+   "new_content": "\u201cAMI looks meaningful at many horizons, but pAMI shows the real horizon.\u201d",
+   "reason": "Passage 10 defines AMI and pAMI but does not state this observed contrast between their horizon profiles. Passage 5 describes a similar contrast for cross-series diagnostics, not AMI versus pAMI. The answer does not specify expectations, next steps, or a counterfactual result."
+  }
+ },
+ {
+  "q": 4,
+  "question": "Sources prescribe: \"Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "Done it; as expected. When the decay was not monotone, I looked for a mistake I had made; I was sure I had done something wrong with the data.",
+  "passages": [
+   "Forecastability Profile & Informative Horizon Set",
+   "Quickstart Ladder",
+   "Golden Path",
+   "Limitations",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Mutual information",
+   "Mutual information",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecastability Triage Toolkit",
+   "Forecastability Triage Toolkit"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\"Error code: 402 - {\\'error\\': {\\'message\\': \\'This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.\\', \\'code\\': 402, \\'metadata\\': {\\'reason\\': \\'in_flight_budget_exhausted\\', \\'limit_source\\': \\'openrouter_in_flight_budget\\', \\'remedy_hint\\': \\'Retry after your in-flight requests settle (see the Retry-After header). Adding credits at https://openrouter.ai/settings/credits raises your in-flight budget, up to a capped ceiling.\\', \\'headers\\': {\\'Retry-After\\': \\'120\\'}, \\'provider_name\\': None}}, \\'user_id\\': \\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\'}\")')"
+  }
+ },
+ {
+  "q": 5,
+  "question": "\"statistics and time series analysis) to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+  "answer": "Exceptions exist. Only if we need to understand the factual relationship.",
+  "passages": [
+   "Autocorrelation",
+   "Autocorrelation",
+   "Mutual information",
+   "Autocorrelation",
+   "Partial autocorrelation function",
+   "Autocorrelation",
+   "Autocorrelation",
+   "Autocorrelation",
+   "Diagnostics Matrix",
+   "Mutual information"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\"Error code: 402 - {\\'error\\': {\\'message\\': \\'This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.\\', \\'code\\': 402, \\'metadata\\': {\\'reason\\': \\'in_flight_budget_exhausted\\', \\'limit_source\\': \\'openrouter_in_flight_budget\\', \\'remedy_hint\\': \\'Retry after your in-flight requests settle (see the Retry-After header). Adding credits at https://openrouter.ai/settings/credits raises your in-flight budget, up to a capped ceiling.\\', \\'headers\\': {\\'Retry-After\\': \\'120\\'}, \\'provider_name\\': None}}, \\'user_id\\': \\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\'}\")')"
+  }
+ },
+ {
+  "q": 6,
+  "question": "Sources prescribe: \"To evaluate the order, one examines the plot to find the lag after which the partial autocorrelations are all within the confidence interval.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "I always look at which of those past covariates really matter, not at the stack of them.",
+  "passages": [
+   "Partial autocorrelation function",
+   "Quickstart Ladder",
+   "Mutual information",
+   "statsmodels.tsa.stattools.pacf",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecastability Triage Toolkit",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Mutual information",
+   "Golden Path",
+   "Golden Path"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\"Error code: 402 - {\\'error\\': {\\'message\\': \\'This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.\\', \\'code\\': 402, \\'metadata\\': {\\'reason\\': \\'in_flight_budget_exhausted\\', \\'limit_source\\': \\'openrouter_in_flight_budget\\', \\'remedy_hint\\': \\'Retry after your in-flight requests settle (see the Retry-After header). Adding credits at https://openrouter.ai/settings/credits raises your in-flight budget, up to a capped ceiling.\\', \\'headers\\': {\\'Retry-After\\': \\'120\\'}, \\'provider_name\\': None}}, \\'user_id\\': \\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\'}\")')"
+  }
+ },
+ {
+  "q": 7,
+  "question": "Sources prescribe: \"Overfitting in nonlinear backends sharp pAMI spikes at isolated lags only for tree backends backend fits noise in conditioning space compare against linear baseline and require ranking stability\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "Done it; as expected. When I had real dependences between the past \"events\" and the \"current\" value. I cannot explain it; you see it.",
+  "passages": [
+   "pAMI Residual Backends: Trade-offs and Failure Modes",
+   "Quickstart Ladder",
+   "Forecastability Triage Toolkit",
+   "Forecastability Triage Toolkit",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Golden Path",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Mutual information",
+   "Forecastability Triage Toolkit",
+   "Forecastability Triage Toolkit"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'reason\\\\\\': \\\\\\'weight_exceeds_budget\\\\\\', \\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request\\\\\\'s maximum cost exceeds your available credits. Add credits, or lower max_tokens or prompt size.\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\"Error code: 402 - {\\'error\\': {\\'message\\': \\'This request would exceed your available credits given your current in-flight requests. Retry after in-flight requests settle, or add credits.\\', \\'code\\': 402, \\'metadata\\': {\\'reason\\': \\'in_flight_budget_exhausted\\', \\'limit_source\\': \\'openrouter_in_flight_budget\\', \\'remedy_hint\\': \\'Retry after your in-flight requests settle (see the Retry-After header). Adding credits at https://openrouter.ai/settings/credits raises your in-flight budget, up to a capped ceiling.\\', \\'headers\\': {\\'Retry-After\\': \\'120\\'}, \\'provider_name\\': None}}, \\'user_id\\': \\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\'}\")')"
+  }
+ },
+ {
+  "q": 8,
+  "question": "One source writes: \"Quantitative forecasting models are appropriate to use when past numerical data is available and when it is reasonable to assume that some of the patterns in the data are expected to continue into the future.\". Think of a recent case where you had to judge whether something was appropriate past. Describe one case that clearly was, one that clearly was not, and one that was hard to call. What differed between them, and what did you check first?",
+  "answer": "It is seen from the numbers. Autocorrelation and partial autocorrelation first; then AMI and pAMI show which linear and nonlinear, stacked and direct, relationships are directly seen.",
+  "passages": [
+   "Forecasting",
+   "Mutual information",
+   "Golden Path",
+   "Forecasting",
+   "Forecasting",
+   "Surrogate data testing",
+   "Forecasting",
+   "Forecasting",
+   "Surrogate data testing",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series"
+  ],
+  "judge_a": {
+   "label": "new",
+   "new_content": "\"Autocorrelation and partial autocorrelation first; then AMI and pAMI show which linear and nonlinear, stacked and direct, relationships are directly seen.\"",
+   "reason": "The passages do not name ACF/PACF as the first check. They also do not mention auto mutual information (AMI) or partial AMI as a way to separate linear from nonlinear dependence, or direct from indirect (stacked) dependence. Passage 10 only gestures at conditioning on the target's own history."
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  }
+ },
+ {
+  "q": 9,
+  "question": "Sources prescribe: \"Numerical inflation `directness_ratio > 1.0` estimator instability, finite-sample effects Treat as warning;\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+  "answer": "Done it; as expected. More than one means there is a bug, a defect.",
+  "passages": [
+   "Quickstart Ladder",
+   "Mutual information",
+   "Limitations",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecastability Triage Toolkit",
+   "Golden Path",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Golden Path",
+   "Forecastability Triage Toolkit",
+   "Forecastability Triage Toolkit"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  }
+ },
+ {
+  "q": 10,
+  "question": "\"It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+  "answer": "Yes, unfortunately it happens often. Often a 3-sigma uncertainty band suggests absurd values that neither the model nor reality ever shows. I haven't solved this issue; I don't know why it happens.",
+  "passages": [
+   "Mutual information",
+   "Forecasting",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Mutual information",
+   "Mutual information",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecastability Triage Toolkit",
+   "Forecastability Triage Toolkit",
+   "Autocorrelation",
+   "Limitations"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  }
+ },
+ {
+  "q": 11,
+  "question": "Sources say: \"any lag where the derived profile exceeds the raw profile by more than estimation noise is a data-leakage candidate, not a genuine gain.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "Simple: disappointment in production.",
+  "passages": [
+   "Forecastability Profile & Informative Horizon Set",
+   "Forecastability Profile & Informative Horizon Set",
+   "Autocorrelation",
+   "Diagnostics Matrix",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecastability Profile & Informative Horizon Set",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecastability Profile & Informative Horizon Set",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecastability Profile & Informative Horizon Set"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  }
+ },
+ {
+  "q": 12,
+  "question": "Sources say: \"Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "The risk of misidentification increases.",
+  "passages": [
+   "Forecastability Profile & Informative Horizon Set",
+   "Autocorrelation",
+   "Mutual information",
+   "Forecasting",
+   "Mutual information",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Autocorrelation",
+   "Quickstart Ladder",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  }
+ },
+ {
+  "q": 13,
+  "question": "Sources say: \"An absolute threshold risks including noise lags or excluding genuinely informative ones as signal strength varies across series.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "It is like using soccer rules in cheese [chess].",
+  "passages": [
+   "Forecastability Profile & Informative Horizon Set",
+   "Autocorrelation",
+   "Forecastability Profile & Informative Horizon Set",
+   "Autocorrelation",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Forecasting",
+   "Diagnostics Matrix",
+   "Diagnostics Matrix",
+   "Stop Feeding Forecasting Models Blindly: A Forecastability Triage Workflow for Time Series",
+   "Diagnostics Matrix"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  }
+ },
+ {
+  "q": 14,
+  "question": "\"Use ../public_api.md when deciding whether a symbol is part of the supported import contract.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+  "answer": "Tests and evals are passing.",
+  "passages": [
+   "Module Map",
+   "Forecastability Triage Toolkit",
+   "Quickstart Ladder",
+   "Forecastability Triage Toolkit",
+   "Forecastability Triage Toolkit",
+   "dependence-forecastability: routing surface for coding agents",
+   "Forecastability Triage Toolkit",
+   "Limitations",
+   "Golden Path",
+   "Surface Guide"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  }
+ },
+ {
+  "q": 15,
+  "question": "Sources say: \"Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "answer": "I have no opinion on it.",
+  "passages": [
+   "Lagged-Exogenous Triage",
+   "Lagged-Exogenous Triage",
+   "Lagged-Exogenous Triage",
+   "Mutual information",
+   "Autocorrelation",
+   "Limitations",
+   "Forecasting",
+   "Surrogate data testing",
+   "Lagged-Exogenous Triage",
+   "Autocorrelation"
+  ],
+  "judge_a": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}, {\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 1974. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  },
+  "judge_b": {
+   "label": null,
+   "error": "LLMUnavailable('APIStatusError(\\'Error code: 402 - {\\\\\\'error\\\\\\': {\\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\", \\\\\\'code\\\\\\': 402, \\\\\\'metadata\\\\\\': {\\\\\\'limit_source\\\\\\': \\\\\\'openrouter_credits\\\\\\', \\\\\\'remedy_hint\\\\\\': \\\\\\'Add credits at https://openrouter.ai/settings/credits, or lower max_tokens / prompt size to fit your remaining balance.\\\\\\', \\\\\\'provider_name\\\\\\': None, \\\\\\'previous_errors\\\\\\': [{\\\\\\'code\\\\\\': 402, \\\\\\'message\\\\\\': \"This request requires more credits, or fewer max_tokens. You requested up to 8192 tokens, but can only afford 3949. To increase, visit https://openrouter.ai/workspaces/default/keys/800966297d2336f3f319f494e18db4cfe67e73c812eb9df350c5ccd7c2edaa6c and adjust the key\\\\\\'s weekly limit\"}]}}, \\\\\\'user_id\\\\\\': \\\\\\'user_3GiYjfnqnYGZvISuDb6CW6tpBG8\\\\\\'}\\')')"
+  }
+ }
+]

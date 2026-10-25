@@ -1,0 +1,191 @@
+{
+ "label": "SYNTHETIC \u2014 planning simulation; never a criterion, never feeds a gate",
+ "c": 1.85,
+ "delta": 0.1,
+ "code_sha256": {
+  "keycells.py": "d65e5fb00e11c47c60e09f46341e98d7df238f48bbf248e948021778004d8ecd",
+  "simulate.py": "843975b2be53f9785e70a2fc3bc54e905a4977bafa712a3c71f856ba2d1020fa",
+  "auroc.py": "276ff9d463f03817f382fd0de650b08d552badd1c4d6d68d45e29d8d1d4643f5",
+  "baselines.py": "547fdd636e1c70866decc08c3ccf057635044c89848dca1512c3510a151a5e35"
+ },
+ "seconds": 352,
+ "boot": 2000,
+ "cells": [
+  {
+   "cell": {
+    "name": "planted_gain_0.20_16/4_icc0.3",
+    "k": 3,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.3,
+    "gain": 0.2,
+    "reps": 300,
+    "boot": 2000
+   },
+   "pooled_minority": 12,
+   "freq": {
+    "agreement_rule|continue": 0.6267,
+    "agreement_rule|inconclusive": 0.3733,
+    "analytic|continue": 0.6267,
+    "analytic|inconclusive": 0.37,
+    "analytic|stop": 0.0033,
+    "bootstrap_min|continue": 0.73,
+    "bootstrap_min|inconclusive": 0.2333,
+    "bootstrap_min|stop": 0.0367,
+    "bootstrap|continue": 0.76,
+    "bootstrap|inconclusive": 0.2367,
+    "bootstrap|stop": 0.0033,
+    "max_t|continue": 0.6267,
+    "max_t|inconclusive": 0.3633,
+    "max_t|stop": 0.01
+   },
+   "analytic_bootstrap_agreement": 0.86
+  },
+  {
+   "cell": {
+    "name": "gain_delta_16/4_icc0.3",
+    "k": 3,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.3,
+    "gain": 0.1,
+    "reps": 300,
+    "boot": 2000
+   },
+   "pooled_minority": 12,
+   "freq": {
+    "agreement_rule|continue": 0.0733,
+    "agreement_rule|inconclusive": 0.86,
+    "agreement_rule|stop": 0.0667,
+    "analytic|continue": 0.08,
+    "analytic|inconclusive": 0.8467,
+    "analytic|stop": 0.0733,
+    "bootstrap_min|continue": 0.1067,
+    "bootstrap_min|inconclusive": 0.48,
+    "bootstrap_min|stop": 0.4133,
+    "bootstrap|continue": 0.1267,
+    "bootstrap|inconclusive": 0.7367,
+    "bootstrap|stop": 0.1367,
+    "max_t|continue": 0.08,
+    "max_t|inconclusive": 0.7567,
+    "max_t|stop": 0.1633
+   },
+   "analytic_bootstrap_agreement": 0.8633
+  },
+  {
+   "cell": {
+    "name": "null_16/4_icc0.3",
+    "k": 3,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.3,
+    "gain": 0.0,
+    "reps": 300,
+    "boot": 2000
+   },
+   "pooled_minority": 12,
+   "freq": {
+    "agreement_rule|inconclusive": 0.57,
+    "agreement_rule|stop": 0.43,
+    "analytic|inconclusive": 0.5633,
+    "analytic|stop": 0.4367,
+    "bootstrap_min|inconclusive": 0.0867,
+    "bootstrap_min|stop": 0.9133,
+    "bootstrap|inconclusive": 0.3833,
+    "bootstrap|stop": 0.6167,
+    "max_t|inconclusive": 0.38,
+    "max_t|stop": 0.62
+   },
+   "analytic_bootstrap_agreement": 0.82
+  },
+  {
+   "cell": {
+    "name": "gain_delta_balanced_icc0",
+    "k": 3,
+    "n": 20,
+    "share": 0.5,
+    "icc": 0.0,
+    "gain": 0.1,
+    "reps": 300,
+    "boot": 2000
+   },
+   "pooled_minority": 30,
+   "freq": {
+    "agreement_rule|continue": 0.15,
+    "agreement_rule|inconclusive": 0.8,
+    "agreement_rule|stop": 0.05,
+    "analytic|continue": 0.15,
+    "analytic|inconclusive": 0.8,
+    "analytic|stop": 0.05,
+    "bootstrap_min|continue": 0.1667,
+    "bootstrap_min|inconclusive": 0.4567,
+    "bootstrap_min|stop": 0.3767,
+    "bootstrap|continue": 0.1967,
+    "bootstrap|inconclusive": 0.71,
+    "bootstrap|stop": 0.0933,
+    "max_t|continue": 0.15,
+    "max_t|inconclusive": 0.7833,
+    "max_t|stop": 0.0667
+   },
+   "analytic_bootstrap_agreement": 0.91
+  },
+  {
+   "cell": {
+    "name": "planted_gain_0.20_16/4_x5golds_icc0",
+    "k": 5,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.0,
+    "gain": 0.2,
+    "reps": 300,
+    "boot": 2000
+   },
+   "pooled_minority": 20,
+   "freq": {
+    "agreement_rule|continue": 0.8333,
+    "agreement_rule|inconclusive": 0.1667,
+    "analytic|continue": 0.8333,
+    "analytic|inconclusive": 0.1667,
+    "bootstrap_min|continue": 0.87,
+    "bootstrap_min|inconclusive": 0.1267,
+    "bootstrap_min|stop": 0.0033,
+    "bootstrap|continue": 0.8833,
+    "bootstrap|inconclusive": 0.1167,
+    "max_t|continue": 0.8333,
+    "max_t|inconclusive": 0.1667
+   },
+   "analytic_bootstrap_agreement": 0.95
+  },
+  {
+   "cell": {
+    "name": "gain_delta_16/4_x5golds_icc0",
+    "k": 5,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.0,
+    "gain": 0.1,
+    "reps": 300,
+    "boot": 2000
+   },
+   "pooled_minority": 20,
+   "freq": {
+    "agreement_rule|continue": 0.1767,
+    "agreement_rule|inconclusive": 0.7967,
+    "agreement_rule|stop": 0.0267,
+    "analytic|continue": 0.18,
+    "analytic|inconclusive": 0.7933,
+    "analytic|stop": 0.0267,
+    "bootstrap_min|continue": 0.21,
+    "bootstrap_min|inconclusive": 0.3967,
+    "bootstrap_min|stop": 0.3933,
+    "bootstrap|continue": 0.2267,
+    "bootstrap|inconclusive": 0.6967,
+    "bootstrap|stop": 0.0767,
+    "max_t|continue": 0.18,
+    "max_t|inconclusive": 0.74,
+    "max_t|stop": 0.08
+   },
+   "analytic_bootstrap_agreement": 0.8967
+  }
+ ]
+}

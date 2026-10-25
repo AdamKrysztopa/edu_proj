@@ -1,0 +1,210 @@
+{
+ "label": "SYNTHETIC \u2014 planning simulation; never a criterion, never feeds a gate",
+ "c": 1.85,
+ "delta": 0.1,
+ "code_sha256": {
+  "keycells.py": "d65e5fb00e11c47c60e09f46341e98d7df238f48bbf248e948021778004d8ecd",
+  "simulate.py": "843975b2be53f9785e70a2fc3bc54e905a4977bafa712a3c71f856ba2d1020fa",
+  "auroc.py": "276ff9d463f03817f382fd0de650b08d552badd1c4d6d68d45e29d8d1d4643f5",
+  "baselines.py": "547fdd636e1c70866decc08c3ccf057635044c89848dca1512c3510a151a5e35"
+ },
+ "seconds": 352,
+ "cells": [
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.0,
+    "r": 0.0,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.728,
+   "mean_auroc_area_size": 0.62,
+   "freq": {
+    "continue": 0.012,
+    "inconclusive": 0.939,
+    "stop": 0.049
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.0,
+    "r": 0.3,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.653,
+   "mean_auroc_area_size": 0.618,
+   "freq": {
+    "inconclusive": 0.628,
+    "stop": 0.372
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.0,
+    "r": 0.6,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.624,
+   "mean_auroc_area_size": 0.618,
+   "freq": {
+    "inconclusive": 0.234,
+    "stop": 0.766
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.0,
+    "r": 0.0,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.729,
+   "mean_auroc_area_size": 0.618,
+   "freq": {
+    "continue": 0.045,
+    "inconclusive": 0.912,
+    "stop": 0.043
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.0,
+    "r": 0.3,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.658,
+   "mean_auroc_area_size": 0.62,
+   "freq": {
+    "inconclusive": 0.649,
+    "stop": 0.351
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 20,
+    "share": 0.8,
+    "icc": 0.0,
+    "r": 0.6,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.621,
+   "mean_auroc_area_size": 0.616,
+   "freq": {
+    "inconclusive": 0.142,
+    "stop": 0.858
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "share": 0.5,
+    "icc": 0.0,
+    "r": 0.0,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.73,
+   "mean_auroc_area_size": 0.619,
+   "freq": {
+    "continue": 0.049,
+    "inconclusive": 0.906,
+    "stop": 0.045
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "share": 0.5,
+    "icc": 0.0,
+    "r": 0.3,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.658,
+   "mean_auroc_area_size": 0.62,
+   "freq": {
+    "inconclusive": 0.587,
+    "stop": 0.413
+   }
+  },
+  {
+   "cell": {
+    "k": 3,
+    "n": 20,
+    "share": 0.5,
+    "icc": 0.0,
+    "r": 0.6,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.626,
+   "mean_auroc_area_size": 0.624,
+   "freq": {
+    "inconclusive": 0.137,
+    "stop": 0.863
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 30,
+    "share": 0.8,
+    "icc": 0.0,
+    "r": 0.0,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.734,
+   "mean_auroc_area_size": 0.619,
+   "freq": {
+    "continue": 0.152,
+    "inconclusive": 0.833,
+    "stop": 0.015
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 30,
+    "share": 0.8,
+    "icc": 0.0,
+    "r": 0.3,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.657,
+   "mean_auroc_area_size": 0.619,
+   "freq": {
+    "inconclusive": 0.55,
+    "stop": 0.45
+   }
+  },
+  {
+   "cell": {
+    "k": 5,
+    "n": 30,
+    "share": 0.8,
+    "icc": 0.0,
+    "r": 0.6,
+    "reps": 1000
+   },
+   "mean_auroc_map": 0.627,
+   "mean_auroc_area_size": 0.621,
+   "freq": {
+    "inconclusive": 0.032,
+    "stop": 0.968
+   }
+  }
+ ]
+}

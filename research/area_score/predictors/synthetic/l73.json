@@ -1,0 +1,195 @@
+{
+  "label": "SYNTHETIC",
+  "n": 64,
+  "positive": {
+    "a": {
+      "checks": {
+        "area_evidence_density": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 0.02647870455426011,
+          "trips": false
+        },
+        "area_n_claims": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": -0.005295740910852022,
+          "trips": false
+        },
+        "dens": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": -0.005295740910852022,
+          "trips": false
+        },
+        "k_step": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 0.02647870455426011,
+          "trips": false
+        },
+        "k_topic": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": -0.005295740910852022,
+          "trips": false
+        }
+      },
+      "passes": true
+    },
+    "area_size_association": {
+      "reason": "Too few candidate-bearing areas; not a pass.",
+      "rho": null,
+      "status": "untestable"
+    },
+    "area_spread": {
+      "distinct": 1,
+      "max": 0.43764584358359226,
+      "min": 0.43764584358359226,
+      "n_empty": 0,
+      "n_present": 1,
+      "range": 0.0
+    },
+    "areas": [
+      {
+        "area_id": "synthetic",
+        "mean": 0.43764584358359226,
+        "n_candidates": 64
+      }
+    ],
+    "b": {
+      "length_rho": 0.02647870455426011,
+      "n_length": 64,
+      "n_strata": 4,
+      "n_within": 64,
+      "passes": true,
+      "within_rho": 0.9701425001453319
+    },
+    "c": {
+      "draws": 2000,
+      "length_failures": 2000,
+      "passes": true,
+      "seed": 0,
+      "testable": true,
+      "uniform_failures": 2000
+    },
+    "passes": true
+  },
+  "purpose": "pipeline diagnostic only; never a criterion or research gate input",
+  "source_count_plant": {
+    "a": {
+      "checks": {
+        "area_evidence_density": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 0.0,
+          "trips": false
+        },
+        "area_n_claims": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 1.0,
+          "trips": true
+        },
+        "dens": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 1.0,
+          "trips": true
+        },
+        "k_step": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 0.0,
+          "trips": false
+        },
+        "k_topic": {
+          "discriminates": true,
+          "distinct_covariate": 4,
+          "n": 64,
+          "planted_rho": 1.0,
+          "planted_trips": true,
+          "random_trip_rate": 0.0,
+          "rho": 1.0,
+          "trips": true
+        }
+      },
+      "passes": false
+    },
+    "area_size_association": {
+      "reason": "Too few candidate-bearing areas; not a pass.",
+      "rho": null,
+      "status": "untestable"
+    },
+    "area_spread": {
+      "distinct": 1,
+      "max": 3.5,
+      "min": 3.5,
+      "n_empty": 0,
+      "n_present": 1,
+      "range": 0.0
+    },
+    "areas": [
+      {
+        "area_id": "synthetic",
+        "mean": 3.5,
+        "n_candidates": 64
+      }
+    ],
+    "b": {
+      "length_rho": 0.0,
+      "n_length": 64,
+      "n_strata": 4,
+      "n_within": 64,
+      "passes": false,
+      "within_rho": null
+    },
+    "c": {
+      "draws": 2000,
+      "length_failures": 2000,
+      "passes": true,
+      "seed": 0,
+      "testable": true,
+      "uniform_failures": 2000
+    },
+    "passes": false
+  },
+  "spec_sha256": "0c9a0350fcfb35d7bbb64e3ba4387918b37808b0fc6de07636cf081604ef797f",
+  "spec_source": "gapmap/tests/test_predictor_rules.py:synthetic_controls"
+}

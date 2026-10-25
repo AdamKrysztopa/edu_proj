@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from reconstruct.llm import BudgetExceeded
 from reconstruct.run import reconstruct
 from residual.ledger import Ledger
 
@@ -70,6 +71,55 @@ def test_budget_exceeded_mid_run_still_writes_an_incomplete_run_dir(tmp_path):
     assert sidecar["complete"] is False
     assert any("budget" in r.lower() for r in sidecar["incomplete_reasons"]), (
         f"expected a budget-related incomplete reason, got {sidecar['incomplete_reasons']}")
+
+
+def test_budget_exceeded_during_cross_verify_keeps_every_checked_claim(tmp_path):
+    """Areas used to be written to the ledger only after cross-verification and the per-area
+    slots; a budget stop inside cross-verification left assignments naming absent areas, the
+    Ledger refused them and the run died with no ledger.json (D1 cheap arm, 2026-10-25)."""
+    out = tmp_path / "run"
+    pm_a = ("The pump receives a scheduled preventive maintenance visit every calendar month "
+            "regardless of how many hours it has run.")
+    pm_b = ("Out in the field, technicians perform preventive maintenance on the pump on a fixed "
+            "monthly schedule, never tied to operating hours.")
+    url_a, url_b = "https://plant-log.example/pm", "https://site-handbook.example/pm"
+    pages = {
+        url_a: Page(body="<!doctype html><html><body><p>" + pm_a + "</p><p>"
+                    + " ".join(f"plantpad{i}" for i in range(80)) + "</p></body></html>"),
+        url_b: Page(body="<!doctype html><html><body><p>" + pm_b + "</p><p>"
+                    + " ".join(f"handbookpad{i}" for i in range(80)) + "</p></body></html>"),
+    }
+    supports = lambda q: {"verdict": "supports", "supporting_quote": q, "adds_content": False,
+                          "subject_or_scope_differs": False,
+                          "quantifier_modality_or_connective_differs": False}
+    claim = lambda a, q: {"assertion": a, "quote": q, "area": "Pump PM", "knowledge_type": "concept",
+                          "question": "domain"}
+
+    planner = ScriptedBackend(role="planner", family="anthropic")
+    planner.script("plan", "", {"areas": [{"name": "Pump PM", "queries": ["pump pm schedule"]}]})
+    planner.script_search("pump pm schedule", search_result(
+        "pump pm schedule", [(url_a, "t"), (url_b, "t")], TODAY))
+    extractor = ScriptedBackend(role="extractor", family="anthropic")
+    extractor.script("extract", "scheduled preventive maintenance visit",
+                     {"claims": [claim("Pump preventive maintenance follows a fixed monthly schedule.", pm_a)]})
+    extractor.script("extract", "technicians perform preventive maintenance",
+                     {"claims": [claim("The pump gets monthly maintenance regardless of hours run.", pm_b)]})
+    verifier = ScriptedBackend(role="verifier", family="openai")
+    verifier.script("verify", "Pump preventive maintenance follows a fixed monthly schedule.", supports(pm_a))
+    verifier.script("verify", "The pump gets monthly maintenance regardless of hours run.", supports(pm_b))
+    verifier.script("cross_verify", "", BudgetExceeded("cap reached during cross-verification"))
+    script_default_decoys(extractor, verifier)
+
+    models = make_models(planner=planner, extractor=extractor, verifier=verifier, out=out)
+    run_dir = Path(reconstruct(domain="maintenance", task="t", models=models, http=http_client(pages),
+                                out=out, today=TODAY, max_results=5))
+
+    ledger = Ledger.from_json((run_dir / "ledger.json").read_text())
+    assert len([c for c in ledger.claims if c.supporting]) == 2
+    assert [a.name for a in ledger.areas] == ["Pump PM"]
+    sidecar = read_json(run_dir / "sidecar.json")
+    assert sidecar["complete"] is False
+    assert any("budget" in r.lower() for r in sidecar["incomplete_reasons"])
 
 
 # --- item 15: non-HTML and blocklisted URLs never become Sources ----------------------------------

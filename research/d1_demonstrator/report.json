@@ -1,0 +1,39 @@
+{
+ "item": "D1",
+ "date": "2026-10-25",
+ "label": "exploratory demonstrator; not N3; feeds no gate",
+ "decision": "Change",
+ "gap_new_rate": 0.5555555555555556,
+ "covered_new_rate": 0.6666666666666666,
+ "difference": -0.11111111111111105,
+ "gap_answers_new": 5,
+ "n_agreed": 12,
+ "permutation_p": 0.682983682983683,
+ "n_with_content": 13,
+ "arms": {
+  "cheap": {
+   "claims": 691,
+   "clusters": 4,
+   "complete": false,
+   "cost_usd": 1.501,
+   "hyp": 7
+  },
+  "toptier": {
+   "claims": 644,
+   "clusters": 4,
+   "complete": true,
+   "cost_usd": 3.955,
+   "hyp": 3
+  }
+ },
+ "judges": [
+  "claude-opus-5.5 subagent",
+  "codex gpt-5.6-sol"
+ ],
+ "canaries_passed": true,
+ "gapmap_flags": [
+  "closure-uninformative"
+ ],
+ "cost_usd_total": 12.68,
+ "answers_sha256": "b80385c0546af90c3cd4340eae0f5d2ab5c9751c7d033f8d980064e4eed4a976"
+}

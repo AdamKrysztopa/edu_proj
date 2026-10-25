@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/adamkrysztopa/projects/edu_proj/reconstruct/src/reconstruct/run.py", line 990, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/adamkrysztopa/projects/edu_proj/reconstruct/src/reconstruct/run.py", line 981, in main
+    result = reconstruct(args.domain, args.task, models=models, http=http, out=run_dir,
+                         today=now.date(), areas=args.areas, blocklist=blocklist,
+                         max_results=args.max_results, max_doc_chars=args.max_doc_chars,
+                         search_corpus=search_corpus)
+  File "/Users/adamkrysztopa/projects/edu_proj/reconstruct/src/reconstruct/run.py", line 644, in reconstruct
+    ledger = Ledger(purpose="reconstruction", claims=tuple(ledger_claims),
+                    contradictions=tuple(ledger_contradictions), areas=tuple(ledger_areas),
+                    assignments=tuple(ledger_assignments))
+  File "/Users/adamkrysztopa/projects/edu_proj/reconstruct/.venv/lib/python3.14/site-packages/pydantic/main.py", line 263, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Ledger
+  Value error, assignment (c-001c2d7b29387e9b, a-b88abef0d623f938) names an absent claim or area [type=value_error, input_value={'purpose': 'reconstructi... 'a-c7bab7b3b0973022'))}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.13/v/value_error
+exit 1

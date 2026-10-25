@@ -1,0 +1,102 @@
+{
+ "complete": false,
+ "config_canonical_sha256": "35fd0af25618f8d6e0d1c2c3707d7e932afe2ce72dbd01e956034b43bfeb04c1",
+ "files": {
+  "gapmap/src/gapmap/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "gapmap/src/gapmap/__main__.py": "b940eb78d7a700758698eb207eb21b3d5b53197cd01b42fe93999aed1d71d143",
+  "gapmap/src/gapmap/area.py": "ab98c1dbce6b2032476f5afd6b0be53fb481b66dc3b8d0f755cc7abdb97d1e1f",
+  "gapmap/src/gapmap/checks.py": "878081b992e157151c289fe6a3bc56344921eb442706894c12ce9bf400754e4e",
+  "gapmap/src/gapmap/control2.py": "92fec5a4e980552741370483a4236a31d1e2faf47de463a6101bd19f39838db5",
+  "gapmap/src/gapmap/jev.py": "93544d480e8000dbfa02da3101df2b84bb09bd8dac43a3b88a0ce87a2c595b2c",
+  "gapmap/src/gapmap/judge.py": "d38d535f5935e22422ff84ce021f04aeb2a9879b52eebef568694abb4b2dad8f",
+  "gapmap/src/gapmap/lenses.py": "e87448afe368639b2f63aa9bdd2b6e7035c9950cf9b4ff585fbc372da4c2bbbc",
+  "gapmap/src/gapmap/link.py": "499279f796c00d68b7d034ca051e5176570f7b799f28dd4e95807556a5e0651f",
+  "gapmap/src/gapmap/manifest.py": "bd91762bb4d345d02a4fa46a73d7e6172d4b61a184faa935590206aa573269d6",
+  "gapmap/src/gapmap/rank.py": "86f238b484d51e8c150487e216cd53df21d4c89bb389ccb2b9522390829e36c2",
+  "gapmap/src/gapmap/record.py": "c7455874d04aaf43e3975b9c071fbb98aee35b99c011174f7be7c5ecd62a708a",
+  "gapmap/src/gapmap/semantic.py": "78277863e6be4c9fb865e6dbb9f3764775f72168b54398b26c4efb529763e328",
+  "gapmap/src/gapmap/text.py": "2aadb90ca4b6e15a47ecd2ede1476ef95c7580271b65bc781699afd7b53993e7",
+  "gapmap/tests/conftest.py": "0876468b1e8ccfed2ce1cad834776e67c6ab00ce85438c77f5273fe18011ec0d",
+  "gapmap/tests/l73_fixtures.py": "255c4fcd5a2e5bd67104e11907a45614b9ade63a1902fd0edecd40a0f9e6f47d",
+  "reconstruct/src/reconstruct/admission.py": "610267f9514cbfcf30dc27091c8ee866679944eb25a632b957bbb5a7198f5b34",
+  "research/freeze_manifest/area_partition.json": null,
+  "research/freeze_manifest/closure_arms.json": null,
+  "research/freeze_manifest/eligible_gold.json": null,
+  "research/n3_control_v3/compare.py": "780ba23dfaf7bc3b3f3c169a7876f9afc053e0022801e9b7da215c119e8ca1d0",
+  "research/n3_control_v3/l73.py": "72dded782166dc6d998e506999a32bb8c9d67c65679e1904673c8ee15eb3c631",
+  "residual/src/residual/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "residual/src/residual/auroc.py": "276ff9d463f03817f382fd0de650b08d552badd1c4d6d68d45e29d8d1d4643f5",
+  "residual/src/residual/baselines.py": "547fdd636e1c70866decc08c3ccf057635044c89848dca1512c3510a151a5e35",
+  "residual/src/residual/claims.py": "2b2c19712607ed312d14569478738a75ea89ce21ae6e262e7614eb2937843f20",
+  "residual/src/residual/estimators.py": "fc71405ad0f0ae5f96bd386356b5f4ca5af055a1d5a18a13a64864b0c77dbb9d",
+  "residual/src/residual/features.py": "55bcf44ca3e29071116f534e98524d233223033cad430c8afb54a912d33a1422",
+  "residual/src/residual/freeze.py": "eaeec0f23ee7db0c1b3bd38654d0b2e880a31aeaee2e91ddfd635737bb192cea",
+  "residual/src/residual/gapmap.py": "ff6afe20b3ee4d917515d0f9eb72f18769ef9344ab9540408c256bec8852076c",
+  "residual/src/residual/gates.py": "b7b635dcdaef67897fc68a4552b905a1b12e35c2460f2318ffd163dfa4632adb",
+  "residual/src/residual/ledger.py": "8f88682a2d3efc3157ede63775c67fc1375de989fc43ae945952897848cc0749",
+  "residual/src/residual/presence.py": "3790ca69ef9f5d70408b015384d1c1513ca8615f8173053f2512991335e5643c",
+  "residual/src/residual/provenance.py": "cbd27629970748069fc25ec2bdcb2e6365bcebcd1903192e2894a74cd0b9a7a3",
+  "residual/src/residual/reach.py": "3fd5ae2d2f8944c57165a18e7109000866c2b52584366ba1f11b178fce5bb3ba",
+  "residual/src/residual/residual.py": "11eeee92a9f0f5d0105609c914549b7b41dbf55f3e07bcc5f554592a3edd853a",
+  "residual/src/residual/vocab.py": "afe88df0daea6764136e481cae0647c66dbd655d64c9b9e42e13577018ba49e0"
+ },
+ "manifest_sha256": "d38a1720aa3c8508a179a68d4c9cdcb8e3ec9479ce3ca0416648fe734d9999e1",
+ "missing": [
+  "research/freeze_manifest/area_partition.json",
+  "research/freeze_manifest/closure_arms.json",
+  "research/freeze_manifest/eligible_gold.json"
+ ],
+ "roles": {
+  "admission": [
+   "reconstruct/src/reconstruct/admission.py"
+  ],
+  "closure_arms": [
+   "research/freeze_manifest/closure_arms.json"
+  ],
+  "controls": [
+   "research/n3_control_v3/compare.py",
+   "research/n3_control_v3/l73.py",
+   "gapmap/tests/l73_fixtures.py",
+   "gapmap/tests/conftest.py"
+  ],
+  "eligible_gold": [
+   "research/freeze_manifest/eligible_gold.json"
+  ],
+  "gapmap": [
+   "gapmap/src/gapmap/__init__.py",
+   "gapmap/src/gapmap/__main__.py",
+   "gapmap/src/gapmap/area.py",
+   "gapmap/src/gapmap/checks.py",
+   "gapmap/src/gapmap/control2.py",
+   "gapmap/src/gapmap/jev.py",
+   "gapmap/src/gapmap/judge.py",
+   "gapmap/src/gapmap/lenses.py",
+   "gapmap/src/gapmap/link.py",
+   "gapmap/src/gapmap/manifest.py",
+   "gapmap/src/gapmap/rank.py",
+   "gapmap/src/gapmap/record.py",
+   "gapmap/src/gapmap/semantic.py",
+   "gapmap/src/gapmap/text.py"
+  ],
+  "partition": [
+   "research/freeze_manifest/area_partition.json"
+  ],
+  "residual": [
+   "residual/src/residual/__init__.py",
+   "residual/src/residual/auroc.py",
+   "residual/src/residual/baselines.py",
+   "residual/src/residual/claims.py",
+   "residual/src/residual/estimators.py",
+   "residual/src/residual/features.py",
+   "residual/src/residual/freeze.py",
+   "residual/src/residual/gapmap.py",
+   "residual/src/residual/gates.py",
+   "residual/src/residual/ledger.py",
+   "residual/src/residual/presence.py",
+   "residual/src/residual/provenance.py",
+   "residual/src/residual/reach.py",
+   "residual/src/residual/residual.py",
+   "residual/src/residual/vocab.py"
+  ]
+ }
+}

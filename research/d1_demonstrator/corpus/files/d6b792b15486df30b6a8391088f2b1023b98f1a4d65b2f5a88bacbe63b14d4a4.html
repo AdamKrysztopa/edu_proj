@@ -1,0 +1,62 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Golden Path</title></head><body>
+<p>&lt;!-- type: how-to --&gt;</p>
+<h1>Golden Path</h1>
+<p>The opinionated path from install to a trustworthy first result in the live repository.</p>
+<p>_Last verified for release 0.2.0 consolidation on 2026-04-14._</p>
+<p>Follow this path before you reach for the CLI, API, dashboard, MCP, or agent layers.</p>
+<h2>1. Choose The Right Install Context</h2>
+<p>If you want the published package surface, install from PyPI.</p>
+<pre>
+pip install dependence-forecastability
+</pre>
+<p>If you are working in the repository, sync the local environment.</p>
+<pre>
+uv sync
+</pre>
+<h2>2. Run One Deterministic Triage Call</h2>
+<p>Use the stable package facade and a simple generated series.</p>
+<pre>
+from forecastability import TriageRequest, generate_ar1, run_triage
+
+series = generate_ar1(n_samples=300, phi=0.8, random_state=42)
+result = run_triage(
+    TriageRequest(
+        series=series,
+        goal=&quot;univariate&quot;,
+        max_lag=20,
+        n_surrogates=99,
+        random_state=42,
+    )
+)
+</pre>
+<p>&gt; [!IMPORTANT] &gt; AMI is computed per horizon. pAMI is a project extension that uses a linear-residual approximation rather than exact conditional mutual information.</p>
+<h2>3. Read The Minimum Trust Fields</h2>
+<p>Start with the fields that tell you whether the result is usable and whether significance was actually computed.</p>
+<pre>
+summary = {
+    &quot;blocked&quot;: result.blocked,
+    &quot;readiness_status&quot;: result.readiness.status.value,
+    &quot;compute_surrogates&quot;: None if result.method_plan is None else result.method_plan.compute_surrogates,
+    &quot;forecastability_class&quot;: None if result.interpretation is None else result.interpretation.forecastability_class,
+    &quot;primary_lags&quot;: [] if result.interpretation is None else list(result.interpretation.primary_lags),
+    &quot;recommendation&quot;: result.recommendation,
+}
+print(summary)
+</pre>
+<p>Interpret those fields in this order.</p>
+<p>| Field | What it tells you | | --- | --- | | `blocked` | Whether triage completed at all | | `readiness_status` | Whether the data is clear, warning-level, or blocked | | `compute_surrogates` | Whether significance was actually computed | | `forecastability_class` | High-level interpretation when triage completed | | `primary_lags` | Informative lags identified by the deterministic workflow |</p>
+<p>&gt; [!NOTE] &gt; `blocked` is different from “no forecastable structure.” A blocked result means the workflow could not support the requested computation. &gt; [!NOTE] &gt; When `compute_surrogates` is `false`, significance was skipped or suppressed. That is different from a run where surrogates were computed and no lags were significant. &gt; [!CAUTION] &gt; Phase-randomized FFT surrogates preserve the power spectrum. For highly periodic series, they can make significance tests conservative or uninformative even when the underlying series is obviously structured.</p>
+<h2>4. Follow The Canonical Notebook Path</h2>
+<p>Use the live notebooks directly.</p>
+<p>1. Read [../notebooks/README.md](../notebooks/README.md). 2. Run [../notebooks/walkthroughs/00_air_passengers_showcase.ipynb](../notebooks/walkthroughs/00_air_passengers_showcase.ipynb). 3. Run [../notebooks/walkthroughs/01_covariant_informative_showcase.ipynb](../notebooks/walkthroughs/01_covariant_informative_showcase.ipynb) if you want the covariant benchmark path. 4. Continue through the remaining walkthrough notebooks. 5. Use the `notebooks/triage/` notebooks only after the walkthroughs; they are deep dives, not first-stop onboarding.</p>
+<h2>5. Use The Maintainer Workflows When You Need Repo Outputs</h2>
+<p>These are the repository workflows that align with the current codebase.</p>
+<p>| Workflow | Command | | --- | --- | | Canonical triage artifacts | `uv run python scripts/run_canonical_triage.py` | | Benchmark panel | `uv run python scripts/run_benchmark_panel.py` | | Report artifacts | `uv run python scripts/build_report_artifacts.py` |</p>
+<p>The main checked-in artifact surfaces are:</p>
+<p>- `outputs/json/canonical_examples_summary.json` and related canonical JSON outputs - `outputs/tables/*.csv` - `outputs/reports/*.md`</p>
+<p>Treat those as reference artifacts, not guaranteed-fresh build outputs.</p>
+<h2>6. Add Optional Surfaces Only After The Core Path Is Clear</h2>
+<p>| Surface | Entry point | Stability | | --- | --- | --- | | CLI | `forecastability` | Beta | | HTTP API | `forecastability.adapters.api:app` | Beta | | Dashboard | `forecastability-dashboard` | Beta | | MCP server | adapter surface | Experimental | | Agent narration | adapter surface | Experimental |</p>
+<p>&gt; [!WARNING] &gt; In rolling-origin evaluation, diagnostics are computed on train windows only and scoring on post-origin holdout only.</p>
+<p>For the multi-surface walkthrough, see [../quickstart.md](../quickstart.md). For the exact HTTP contract, see [../reference/api_contract.md](../reference/api_contract.md).</p>
+</body></html>

@@ -1,0 +1,52 @@
+{
+ "basis": "I1b measured (research/n3_control_luna/*/judge_calls.jsonl)",
+ "luna_measured": {
+  "calls": 568,
+  "prompt_tokens": 252816,
+  "completion_tokens": 239208,
+  "reasoning_tokens": 209056
+ },
+ "tokens_per_prompt_char": 0.1973435246070552,
+ "completion_tokens_per_call_luna_medium": 421.14084507042253,
+ "calls": {
+  "plc": 188,
+  "gdpr_v1": 184,
+  "gdpr_v2": 168,
+  "l73": 76
+ },
+ "prompt_tokens": {
+  "plc": 69471,
+  "gdpr_v1": 75840,
+  "gdpr_v2": 87469,
+  "l73": 10305
+ },
+ "models": {
+  "gpt-5.6-luna": {
+   "price_usd_per_mtok": [
+    0.2,
+    1.2
+   ],
+   "expected_usd": {
+    "x1": 0.35992446871120126
+   },
+   "worst_case_usd": 4.483817156035145
+  },
+  "gpt-6.1-sol": {
+   "price_usd_per_mtok": [
+    2.0,
+    10.0
+   ],
+   "expected_usd": {
+    "x1": 3.0803991659852517,
+    "x3": 8.268854377252858,
+    "x5": 13.457309588520463
+   },
+   "worst_case_usd": 37.446171560351445
+  }
+ },
+ "total_expected_usd": {
+  "x1": 3.440323634696453,
+  "x3": 8.628778845964058,
+  "x5": 13.817234057231664
+ }
+}

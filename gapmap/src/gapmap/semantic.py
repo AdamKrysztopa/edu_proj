@@ -74,31 +74,35 @@ def build_retrieval(a_rows: list[tuple[str, int, str]],
     return Retrieval(a_items=a_items, s_items=s_items)
 
 
+def seed_sentences(index: link.Index, seed_ids) -> list[tuple[str, int, str]]:
+    return [(cid, i, sent) for cid in sorted(seed_ids)
+            for i, sent in enumerate(text.sentences(index.T[cid]))]
+
+
+def ranked_sentences(index: link.Index, ids, scoring_stems: frozenset[str],
+                     skip: set[tuple[str, int]]) -> list[tuple[str, int, str]]:
+    """Every sentence of `ids` not in `skip` with score >= 1, uncapped, by score then claim_id
+    then sentence index."""
+    rows = []
+    for cid in ids:
+        for i, sent in enumerate(text.sentences(index.T[cid])):
+            if (cid, i) in skip:
+                continue
+            score = len(scoring_stems & text.cw(sent))
+            if score >= 1:
+                rows.append((cid, i, sent, score))
+    rows.sort(key=lambda r: (-r[3], r[0], r[1]))
+    return [(cid, i, sent) for cid, i, sent, _s in rows]
+
+
 def retrieve(index: link.Index, seed_ids: frozenset[str], scoring_stems: frozenset[str]) -> Retrieval:
     """All sentences of `T(c)` over A and S, scored by overlap with `scoring_stems`, top 8 A / top
     4 S at score >= 1, ties by claim_id then sentence index; the seed's own span sentences are
     always included, unconditional on score."""
-    seed_sents: list[tuple[str, int, str]] = []
-    seen: set[tuple[str, int]] = set()
-    for cid in sorted(seed_ids):
-        for i, sent in enumerate(text.sentences(index.T[cid])):
-            seed_sents.append((cid, i, sent))
-            seen.add((cid, i))
-
-    def scored(ids) -> list[tuple[str, int, str, int]]:
-        rows = []
-        for cid in ids:
-            for i, sent in enumerate(text.sentences(index.T[cid])):
-                if (cid, i) in seen:
-                    continue
-                score = len(scoring_stems & text.cw(sent))
-                if score >= 1:
-                    rows.append((cid, i, sent, score))
-        rows.sort(key=lambda r: (-r[3], r[0], r[1]))
-        return rows
-
-    a_rest = [(cid, i, sent) for cid, i, sent, _s in scored(index.a_ids)]
-    s_rest = [(cid, i, sent) for cid, i, sent, _s in scored(index.s_ids)]
+    seed_sents = seed_sentences(index, seed_ids)
+    seen = {(cid, i) for cid, i, _s in seed_sents}
+    a_rest = ranked_sentences(index, index.a_ids, scoring_stems, seen)
+    s_rest = ranked_sentences(index, index.s_ids, scoring_stems, seen)
     return build_retrieval(seed_sents + a_rest, s_rest)
 
 
@@ -174,11 +178,11 @@ def judge_retrieval(judge: Judge, retrieval: Retrieval, seed_text: str, question
     if not isinstance(raw, dict):
         return _undecided(ask_error or "the judge returned no parseable JSON object")
 
-    states_raw = raw.get("states")
-    partially_raw = raw.get("partially")
-    states_raw = states_raw if isinstance(states_raw, list) else ([] if states_raw is None else [states_raw])
-    partially_raw = (partially_raw if isinstance(partially_raw, list)
-                     else ([] if partially_raw is None else [partially_raw]))
+    present = [k for k in ("states", "partially") if k in raw]
+    if not present or any(not isinstance(raw[k], list) for k in present):
+        return _undecided("the reply has no 'states'/'partially' list")
+    states_raw = raw.get("states", [])
+    partially_raw = raw.get("partially", [])
 
     resolved_states = [_resolve_id(x, valid) for x in states_raw]
     resolved_partially = [_resolve_id(x, valid) for x in partially_raw]

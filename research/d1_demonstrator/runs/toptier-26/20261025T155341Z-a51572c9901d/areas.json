@@ -1,0 +1,53 @@
+{
+ "areas": [
+  {
+   "name": "Toolkit installation and running an analysis",
+   "queries": [
+    "dependence-forecastability python package github",
+    "dependence-forecastability toolkit documentation quickstart",
+    "forecastability analysis python library horizon-wise example"
+   ]
+  },
+  {
+   "name": "Horizon-wise dependence measures (auto-mutual information, ACF/PACF)",
+   "queries": [
+    "auto-mutual information forecast horizon time series forecastability",
+    "lagged mutual information estimator kNN Kraskov time series",
+    "partial autocorrelation versus mutual information lag dependence"
+   ]
+  },
+  {
+   "name": "Significance testing with surrogates and confidence bands",
+   "queries": [
+    "surrogate data test mutual information time series significance",
+    "phase randomization IAAFT surrogates lagged dependence",
+    "permutation test auto-mutual information confidence band"
+   ]
+  },
+  {
+   "name": "Interpreting forecastability scores and linking to model performance",
+   "queries": [
+    "forecastability measure spectral entropy forecast error relationship",
+    "interpreting mutual information decay across forecast horizons",
+    "forecastability assessment before model selection time series"
+   ]
+  },
+  {
+   "name": "Extending the toolkit: adding measures and contributing",
+   "queries": [
+    "dependence-forecastability contributing guide",
+    "python package plugin pattern adding new metric scikit-style API",
+    "pytest testing statistical estimators open source contribution"
+   ]
+  },
+  {
+   "name": "Covariates and cross-dependence for exogenous drivers",
+   "queries": [
+    "cross mutual information lagged exogenous variable forecasting",
+    "transfer entropy time series predictor selection horizon",
+    "conditional mutual information feature selection lagged covariates"
+   ]
+  }
+ ],
+ "sha256": "22341bd2c2091942c9765a65439000a6a352921463825a8a206f8c95e1104cb5"
+}

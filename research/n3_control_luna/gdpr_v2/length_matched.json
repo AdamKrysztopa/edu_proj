@@ -1,0 +1,67 @@
+{
+ "length_matched": {
+  "best_reachable_diff": 1.0,
+  "donor_pool_empty": 0,
+  "donor_tied": 9,
+  "equal_cap": {
+   "closed": {
+    "ci95": [
+     -0.16129032258064516,
+     0.14705882352941177
+    ],
+    "clusters": 29,
+    "control_rate": 0.5625,
+    "diff": 0.0,
+    "n": 32,
+    "own_rate": 0.5625
+   },
+   "closed_or_partial": {
+    "ci95": [
+     -0.06666666666666667,
+     0.13333333333333333
+    ],
+    "clusters": 29,
+    "control_rate": 0.65625,
+    "diff": 0.03125,
+    "n": 32,
+    "own_rate": 0.6875
+   }
+  },
+  "n_discriminable": 32,
+  "n_pairs": 32,
+  "own_pool_empty": 0,
+  "seed_free": {
+   "closed": {
+    "ci95": [
+     -0.15625,
+     0.21212121212121213
+    ],
+    "clusters": 29,
+    "control_rate": 0.375,
+    "diff": 0.03125,
+    "n": 32,
+    "own_rate": 0.40625
+   },
+   "closed_or_partial": {
+    "ci95": [
+     -0.09375,
+     0.28125
+    ],
+    "clusters": 29,
+    "control_rate": 0.5625,
+    "diff": 0.09375,
+    "n": 32,
+    "own_rate": 0.65625
+   }
+  },
+  "share_discriminable": 1.0,
+  "tol": 0.25,
+  "undecided": {
+   "ctrl_eq": 0,
+   "ctrl_sf": 0,
+   "own_eq": 0,
+   "own_sf": 0
+  }
+ },
+ "source": "offline replay of closure_judgements.json on 535d7b5 control2.length_matched"
+}

@@ -1,0 +1,33 @@
+<!doctype html><html><head><meta charset='utf-8'><title>statsmodels.tsa.stattools.pacf</title></head><body>
+<h1>statsmodels.tsa.stattools.pacf</h1>
+<p>statsmodels.tsa.stattools.pacf(x, nlags=None, method=&#x27;ywadjusted&#x27;, alpha=None, *, result_object=None)[source]</p>
+<p>Partial autocorrelation estimate Parameters: xarray_likeObservations of time series for which pacf is calculated.</p>
+<p>nlagsint, optional</p>
+<p>Number of lags to return autocorrelation for. If not provided, uses min(10 * np.log10(nobs), nobs // 2 - 1). The returned value includes lag 0 (ie., 1) so size of the pacf vector is (nlags + 1,).</p>
+<p>methodstr, optional</p>
+<p>Specifies which method for the calculations to use. “yw”, “ywa”, “ywadjusted” or “yw_adjusted” : Yule-Walker with sample-size adjustment in denominator for acovf. Default. “ywm”, “ywmle” or “yw_mle” : Yule-Walker without adjustment. “ols” : regression of time series on lags of it and on constant. “ols-inefficient” : regression of time series on lags using a single common sample to estimate all pacf coefficients. “ols-adjusted” : regression of time series on lags with a bias adjustment. “ld”, “lda”, “ldadjusted” or “ld_adjusted” : Levinson-Durbin recursion with bias correction. “ldb”, “ldbiased” or “ld_biased” : Levinson-Durbin recursion without bias correction. “burg” : Burg’s partial autocorrelation estimator.</p>
+<p>alphafloat, optional</p>
+<p>If a number is given, the confidence intervals for the given level are returned. For instance if alpha=.05, 95 % confidence intervals are returned where the standard deviation is computed according to 1/sqrt(len(x)).</p>
+<p>result_objectbool, optional</p>
+<p>Flag controlling whether a PacfResult is returned. When alpha is not None a PacfResult is always returned; it holds the same two values as the legacy tuple it replaces. When alpha is None a bare array is returned unless result_object=True, which additionally yields a PacfResult with confint set to None.</p>
+<p>Returns:</p>
+<p>PacfResult or ndarrayWhen alpha is not None (or result_object=True), a result object with fields: pacfndarrayThe partial autocorrelations for lags 0, 1, …, nlags. Shape (nlags+1,).</p>
+<p>confintndarray or None</p>
+<p>Confidence intervals for the PACF at lags 0, 1, …, nlags. Shape (nlags + 1, 2). None when alpha is None.</p>
+<p>See PacfResult.</p>
+<p>When alpha is None a bare ndarray of partial autocorrelations is returned instead.</p>
+<p>See also</p>
+<p>statsmodels.tsa.stattools.acf</p>
+<p>Estimate the autocorrelation function.</p>
+<p>statsmodels.tsa.stattools.pacf_yw</p>
+<p>Partial autocorrelation estimation using Yule-Walker.</p>
+<p>statsmodels.tsa.stattools.pacf_ols</p>
+<p>Partial autocorrelation estimation using OLS.</p>
+<p>statsmodels.tsa.stattools.pacf_burg</p>
+<p>Partial autocorrelation estimation using Burg’s method.</p>
+<p>statsmodels.graphics.tsaplots.plot_pacf</p>
+<p>Plot partial autocorrelations and confidence intervals.</p>
+<p>Notes</p>
+<p>Based on simulation evidence across a range of low-order ARMA models, the best methods based on root MSE are Yule-Walker (MLW), Levinson-Durbin (MLE) and Burg, respectively. The estimators with the lowest bias included included these three in addition to OLS and OLS-adjusted.</p>
+<p>Yule-Walker (adjusted) and Levinson-Durbin (adjusted) performed consistently worse than the other options.</p>
+</body></html>

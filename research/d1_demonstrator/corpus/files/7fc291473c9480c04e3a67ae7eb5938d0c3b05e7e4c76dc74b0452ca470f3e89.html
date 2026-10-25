@@ -1,0 +1,1764 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Mutual information</title></head><body>
+<h1>Mutual information</h1>
+<p>In probability theory and information theory, the mutual information (MI) of two random variables is a measure of the mutual dependence between the two variables. More specifically, it quantifies the &quot;amount of information&quot; (in units such as shannons (bits), nats or hartleys) obtained about one random variable by observing the other random variable. The concept of mutual information is intimately linked to that of entropy of a random variable, a fundamental notion in information theory that quantifies the expected &quot;amount of information&quot; held in a random variable. Not limited to real-valued random variables and linear dependence like the correlation coefficient, MI is more general and determines how different the joint distribution of the pair</p>
+<p>( X , Y )</p>
+<p>{\displaystyle (X,Y)}</p>
+<p>is from the product of the marginal distributions of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>. MI is the expected value of the pointwise mutual information (PMI). The quantity was defined and analyzed by Claude Shannon in his landmark paper &quot;A Mathematical Theory of Communication&quot;, although he did not call it &quot;mutual information&quot;. This term was coined later by Robert Fano. Mutual Information is also known as information gain.</p>
+<h2>Definition</h2>
+<p>Let</p>
+<p>( X , Y )</p>
+<p>{\displaystyle (X,Y)}</p>
+<p>be a pair of random variables with values over the space</p>
+<p>X</p>
+<p>×</p>
+<p>Y</p>
+<p>{\displaystyle {\mathcal {X}}\times {\mathcal {Y}}}</p>
+<p>. If their joint distribution is</p>
+<p>P</p>
+<p>( X , Y )</p>
+<p>{\displaystyle P_{(X,Y)}}</p>
+<p>and the marginal distributions are</p>
+<p>P</p>
+<p>X</p>
+<p>{\displaystyle P_{X}}</p>
+<p>and</p>
+<p>P</p>
+<p>Y</p>
+<p>{\displaystyle P_{Y}}</p>
+<p>, the mutual information is defined as</p>
+<p>I ( X ; Y ) =</p>
+<p>D</p>
+<p>K L</p>
+<p>(</p>
+<p>P</p>
+<p>( X , Y )</p>
+<p>∥</p>
+<p>P</p>
+<p>X</p>
+<p>⊗</p>
+<p>P</p>
+<p>Y</p>
+<p>)</p>
+<p>{\displaystyle I(X;Y)=D_{\mathrm {KL} }(P_{(X,Y)}\parallel P_{X}\otimes P_{Y})}</p>
+<p>where</p>
+<p>D</p>
+<p>K L</p>
+<p>{\displaystyle D_{\mathrm {KL} }}</p>
+<p>is the Kullback–Leibler divergence, and</p>
+<p>P</p>
+<p>X</p>
+<p>⊗</p>
+<p>P</p>
+<p>Y</p>
+<p>{\displaystyle P_{X}\otimes P_{Y}}</p>
+<p>is the outer product distribution which assigns probability</p>
+<p>P</p>
+<p>X</p>
+<p>( x ) ⋅</p>
+<p>P</p>
+<p>Y</p>
+<p>( y )</p>
+<p>{\displaystyle P_{X}(x)\cdot P_{Y}(y)}</p>
+<p>to each</p>
+<p>( x , y )</p>
+<p>{\displaystyle (x,y)}</p>
+<p>. Expressed in terms of the entropy</p>
+<p>H ( ⋅ )</p>
+<p>{\displaystyle H(\cdot )}</p>
+<p>and the conditional entropy</p>
+<p>H ( ⋅</p>
+<p>|</p>
+<p>⋅ )</p>
+<p>{\displaystyle H(\cdot |\cdot )}</p>
+<p>of the random variables</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>, one also has (see relation to conditional and joint entropy):</p>
+<p>I ( X ; Y ) = H ( X ) − H ( X</p>
+<p>|</p>
+<p>Y ) = H ( Y ) − H ( Y</p>
+<p>|</p>
+<p>X )</p>
+<p>{\displaystyle I(X;Y)=H(X)-H(X|Y)=H(Y)-H(Y|X)}</p>
+<p>Notice, as per property of the Kullback–Leibler divergence, that</p>
+<p>I ( X ; Y )</p>
+<p>{\displaystyle I(X;Y)}</p>
+<p>is equal to zero precisely when the joint distribution coincides with the product of the marginals, i.e. when</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>are independent (and hence observing</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>tells you nothing about</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>).</p>
+<p>I ( X ; Y )</p>
+<p>{\displaystyle I(X;Y)}</p>
+<p>is non-negative. It is a measure of the price for encoding</p>
+<p>( X , Y )</p>
+<p>{\displaystyle (X,Y)}</p>
+<p>as a pair of independent random variables when in reality they are not. If the natural logarithm is used, the unit of mutual information is the nat.  If the log base 2 is used, the unit of mutual information is the shannon, also known as the bit.  If the log base 10 is used, the unit of mutual information is the hartley, also known as the ban or the dit.</p>
+<h3>In terms of PMFs for discrete distributions</h3>
+<p>The mutual information of two jointly discrete random variables</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>is calculated as a double sum:</p>
+<p>I ⁡ ( X ; Y ) =</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>P</p>
+<p>( X , Y )</p>
+<p>( x , y ) log ⁡</p>
+<p>(</p>
+<p>P</p>
+<p>( X , Y )</p>
+<p>( x , y )</p>
+<p>P</p>
+<p>X</p>
+<p>( x )</p>
+<p>P</p>
+<p>Y</p>
+<p>( y )</p>
+<p>)</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=\sum _{y\in {\mathcal {Y}}}\sum _{x\in {\mathcal {X}}}{P_{(X,Y)}(x,y)\log \left({\frac {P_{(X,Y)}(x,y)}{P_{X}(x)\,P_{Y}(y)}}\right)}}</p>
+<p>, where</p>
+<p>P</p>
+<p>( X , Y )</p>
+<p>{\displaystyle P_{(X,Y)}}</p>
+<p>is the joint probability mass function of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>, and</p>
+<p>P</p>
+<p>X</p>
+<p>{\displaystyle P_{X}}</p>
+<p>and</p>
+<p>P</p>
+<p>Y</p>
+<p>{\displaystyle P_{Y}}</p>
+<p>are the marginal probability mass functions of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>respectively.</p>
+<h3>In terms of PDFs for continuous distributions</h3>
+<p>In the case of jointly continuous random variables, the double sum is replaced by a double integral:</p>
+<p>I ⁡ ( X ; Y ) =</p>
+<p>∫</p>
+<p>Y</p>
+<p>∫</p>
+<p>X</p>
+<p>P</p>
+<p>( X , Y )</p>
+<p>( x , y ) log ⁡</p>
+<p>(</p>
+<p>P</p>
+<p>( X , Y )</p>
+<p>( x , y )</p>
+<p>P</p>
+<p>X</p>
+<p>( x )</p>
+<p>P</p>
+<p>Y</p>
+<p>( y )</p>
+<p>)</p>
+<p>d x</p>
+<p>d y</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=\int _{\mathcal {Y}}\int _{\mathcal {X}}{P_{(X,Y)}(x,y)\log {\left({\frac {P_{(X,Y)}(x,y)}{P_{X}(x)\,P_{Y}(y)}}\right)}}\;dx\,dy}</p>
+<p>, where</p>
+<p>P</p>
+<p>( X , Y )</p>
+<p>{\displaystyle P_{(X,Y)}}</p>
+<p>is now the joint probability density function of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>, and</p>
+<p>P</p>
+<p>X</p>
+<p>{\displaystyle P_{X}}</p>
+<p>and</p>
+<p>P</p>
+<p>Y</p>
+<p>{\displaystyle P_{Y}}</p>
+<p>are the marginal probability density functions of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>respectively.</p>
+<h2>Motivation</h2>
+<p>Intuitively, mutual information measures the information that</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>share: It measures how much knowing one of these variables reduces uncertainty about the other. For example, if</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>are independent, then knowing</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>does not give any information about</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>and vice versa, so their mutual information is zero.  At the other extreme, if</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>is a deterministic function of</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>is a deterministic function of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>then all information conveyed by</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>is shared with</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>: knowing</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>determines the value of</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>and vice versa. As a result, the mutual information is the same as the uncertainty contained in</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>(or</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>) alone, namely the entropy of</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>(or</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>). A very special case of this is when</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>are the same random variable. Mutual information is a measure of the inherent dependence expressed in the joint distribution of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>relative to the marginal distribution of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>under the assumption of independence. Mutual information therefore measures dependence in the following sense:</p>
+<p>I ⁡ ( X ; Y ) = 0</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=0}</p>
+<p>if and only if</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>are independent random variables.  This is easy to see in one direction: if</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>are independent, then</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y ) =</p>
+<p>p</p>
+<p>X</p>
+<p>( x ) ⋅</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>{\displaystyle p_{(X,Y)}(x,y)=p_{X}(x)\cdot p_{Y}(y)}</p>
+<p>, and therefore:</p>
+<p>log ⁡</p>
+<p>(</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y )</p>
+<p>p</p>
+<p>X</p>
+<p>( x )</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>)</p>
+<p>= log ⁡ 1 = 0</p>
+<p>{\displaystyle \log {\left({\frac {p_{(X,Y)}(x,y)}{p_{X}(x)\,p_{Y}(y)}}\right)}=\log 1=0}</p>
+<p>. Moreover, mutual information is nonnegative (i.e.</p>
+<p>I ⁡ ( X ; Y ) ≥ 0</p>
+<p>{\displaystyle \operatorname {I} (X;Y)\geq 0}</p>
+<p>see below) and symmetric (i.e.</p>
+<p>I ⁡ ( X ; Y ) = I ⁡ ( Y ; X )</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=\operatorname {I} (Y;X)}</p>
+<p>see below).</p>
+<h2>Properties</h2>
+<h3>Nonnegativity</h3>
+<p>Using Jensen&#x27;s inequality on the definition of mutual information we can show that</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>{\displaystyle \operatorname {I} (X;Y)}</p>
+<p>is non-negative, i.e.</p>
+<p>I ⁡ ( X ; Y ) ≥ 0</p>
+<p>{\displaystyle \operatorname {I} (X;Y)\geq 0}</p>
+<h3>Symmetry</h3>
+<p>I ⁡ ( X ; Y ) = I ⁡ ( Y ; X )</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=\operatorname {I} (Y;X)}</p>
+<p>The proof is given considering the relationship with entropy, as shown below.</p>
+<h3>Supermodularity under independence</h3>
+<p>If</p>
+<p>C</p>
+<p>{\displaystyle C}</p>
+<p>is independent of</p>
+<p>( A , B )</p>
+<p>{\displaystyle (A,B)}</p>
+<p>, then</p>
+<p>I ⁡ ( Y ; A , B , C ) − I ⁡ ( Y ; A , B ) ≥ I ⁡ ( Y ; A , C ) − I ⁡ ( Y ; A )</p>
+<p>{\displaystyle \operatorname {I} (Y;A,B,C)-\operatorname {I} (Y;A,B)\geq \operatorname {I} (Y;A,C)-\operatorname {I} (Y;A)}</p>
+<p>.</p>
+<h3>Relation to conditional and joint entropy</h3>
+<p>Mutual information can be equivalently expressed as:</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>≡</p>
+<p>H</p>
+<p>( X ) −</p>
+<p>H</p>
+<p>( X ∣ Y )</p>
+<p>≡</p>
+<p>H</p>
+<p>( Y ) −</p>
+<p>H</p>
+<p>( Y ∣ X )</p>
+<p>≡</p>
+<p>H</p>
+<p>( X ) +</p>
+<p>H</p>
+<p>( Y ) −</p>
+<p>H</p>
+<p>( X , Y )</p>
+<p>≡</p>
+<p>H</p>
+<p>( X , Y ) −</p>
+<p>H</p>
+<p>( X ∣ Y ) −</p>
+<p>H</p>
+<p>( Y ∣ X )</p>
+<p>{\displaystyle {\begin{aligned}\operatorname {I} (X;Y)&amp;{}\equiv \mathrm {H} (X)-\mathrm {H} (X\mid Y)\\&amp;{}\equiv \mathrm {H} (Y)-\mathrm {H} (Y\mid X)\\&amp;{}\equiv \mathrm {H} (X)+\mathrm {H} (Y)-\mathrm {H} (X,Y)\\&amp;{}\equiv \mathrm {H} (X,Y)-\mathrm {H} (X\mid Y)-\mathrm {H} (Y\mid X)\end{aligned}}}</p>
+<p>where</p>
+<p>H</p>
+<p>( X )</p>
+<p>{\displaystyle \mathrm {H} (X)}</p>
+<p>and</p>
+<p>H</p>
+<p>( Y )</p>
+<p>{\displaystyle \mathrm {H} (Y)}</p>
+<p>are the marginal entropies,</p>
+<p>H</p>
+<p>( X ∣ Y )</p>
+<p>{\displaystyle \mathrm {H} (X\mid Y)}</p>
+<p>and</p>
+<p>H</p>
+<p>( Y ∣ X )</p>
+<p>{\displaystyle \mathrm {H} (Y\mid X)}</p>
+<p>are the conditional entropies, and</p>
+<p>H</p>
+<p>( X , Y )</p>
+<p>{\displaystyle \mathrm {H} (X,Y)}</p>
+<p>is the joint entropy of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>. Notice the analogy to the union, difference, and intersection of two sets: in this respect, all the formulas given above are apparent from the Venn diagram reported at the beginning of the article. In terms of a communication channel in which the output</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>is a noisy version of the input</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>, these relations are summarised in the figure:</p>
+<p>Because</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>{\displaystyle \operatorname {I} (X;Y)}</p>
+<p>is non-negative, consequently,</p>
+<p>H</p>
+<p>( X ) ≥</p>
+<p>H</p>
+<p>( X ∣ Y )</p>
+<p>{\displaystyle \mathrm {H} (X)\geq \mathrm {H} (X\mid Y)}</p>
+<p>. Here we give the detailed deduction of</p>
+<p>I ⁡ ( X ; Y ) =</p>
+<p>H</p>
+<p>( Y ) −</p>
+<p>H</p>
+<p>( Y ∣ X )</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=\mathrm {H} (Y)-\mathrm {H} (Y\mid X)}</p>
+<p>for the case of jointly discrete random variables:</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>=</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>, y ∈</p>
+<p>Y</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y ) log ⁡</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y )</p>
+<p>p</p>
+<p>X</p>
+<p>( x )</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>=</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>, y ∈</p>
+<p>Y</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y ) log ⁡</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y )</p>
+<p>p</p>
+<p>X</p>
+<p>( x )</p>
+<p>−</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>, y ∈</p>
+<p>Y</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y ) log ⁡</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>=</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>, y ∈</p>
+<p>Y</p>
+<p>p</p>
+<p>X</p>
+<p>( x )</p>
+<p>p</p>
+<p>Y ∣ X = x</p>
+<p>( y ) log ⁡</p>
+<p>p</p>
+<p>Y ∣ X = x</p>
+<p>( y ) −</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>, y ∈</p>
+<p>Y</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y ) log ⁡</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>=</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>p</p>
+<p>X</p>
+<p>( x )</p>
+<p>(</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>p</p>
+<p>Y ∣ X = x</p>
+<p>( y ) log ⁡</p>
+<p>p</p>
+<p>Y ∣ X = x</p>
+<p>( y )</p>
+<p>)</p>
+<p>−</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>(</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y )</p>
+<p>)</p>
+<p>log ⁡</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>= −</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>p</p>
+<p>X</p>
+<p>( x )</p>
+<p>H</p>
+<p>( Y ∣ X = x ) −</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>p</p>
+<p>Y</p>
+<p>( y ) log ⁡</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>= −</p>
+<p>H</p>
+<p>( Y ∣ X ) +</p>
+<p>H</p>
+<p>( Y )</p>
+<p>=</p>
+<p>H</p>
+<p>( Y ) −</p>
+<p>H</p>
+<p>( Y ∣ X ) .</p>
+<p>{\displaystyle {\begin{aligned}\operatorname {I} (X;Y)&amp;{}=\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p_{(X,Y)}(x,y)\log {\frac {p_{(X,Y)}(x,y)}{p_{X}(x)p_{Y}(y)}}\\&amp;{}=\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p_{(X,Y)}(x,y)\log {\frac {p_{(X,Y)}(x,y)}{p_{X}(x)}}-\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p_{(X,Y)}(x,y)\log p_{Y}(y)\\&amp;{}=\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p_{X}(x)p_{Y\mid X=x}(y)\log p_{Y\mid X=x}(y)-\sum _{x\in {\mathcal {X}},y\in {\mathcal {Y}}}p_{(X,Y)}(x,y)\log p_{Y}(y)\\&amp;{}=\sum _{x\in {\mathcal {X}}}p_{X}(x)\left(\sum _{y\in {\mathcal {Y}}}p_{Y\mid X=x}(y)\log p_{Y\mid X=x}(y)\right)-\sum _{y\in {\mathcal {Y}}}\left(\sum _{x\in {\mathcal {X}}}p_{(X,Y)}(x,y)\right)\log p_{Y}(y)\\&amp;{}=-\sum _{x\in {\mathcal {X}}}p_{X}(x)\mathrm {H} (Y\mid X=x)-\sum _{y\in {\mathcal {Y}}}p_{Y}(y)\log p_{Y}(y)\\&amp;{}=-\mathrm {H} (Y\mid X)+\mathrm {H} (Y)\\&amp;{}=\mathrm {H} (Y)-\mathrm {H} (Y\mid X).\\\end{aligned}}}</p>
+<p>The proofs of the other identities above are similar. The proof of the general case (not just discrete) is similar, with integrals replacing sums. Intuitively, if entropy</p>
+<p>H</p>
+<p>( Y )</p>
+<p>{\displaystyle \mathrm {H} (Y)}</p>
+<p>is regarded as a measure of uncertainty about a random variable, then</p>
+<p>H</p>
+<p>( Y ∣ X )</p>
+<p>{\displaystyle \mathrm {H} (Y\mid X)}</p>
+<p>is a measure of what</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>does not say about</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>. This is &quot;the amount of uncertainty remaining about</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>after</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>is known&quot;, and thus the right side of the second of these equalities can be read as &quot;the amount of uncertainty in</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>, minus the amount of uncertainty in</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>which remains after</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>is known&quot;, which is equivalent to &quot;the amount of uncertainty in</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>which is removed by knowing</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>&quot;. This corroborates the intuitive meaning of mutual information as the amount of information (that is, reduction in uncertainty) that knowing either variable provides about the other. Note that in the discrete case</p>
+<p>H</p>
+<p>( Y ∣ Y ) = 0</p>
+<p>{\displaystyle \mathrm {H} (Y\mid Y)=0}</p>
+<p>and therefore</p>
+<p>H</p>
+<p>( Y ) = I ⁡ ( Y ; Y )</p>
+<p>{\displaystyle \mathrm {H} (Y)=\operatorname {I} (Y;Y)}</p>
+<p>. Thus</p>
+<p>I ⁡ ( Y ; Y ) ≥ I ⁡ ( X ; Y )</p>
+<p>{\displaystyle \operatorname {I} (Y;Y)\geq \operatorname {I} (X;Y)}</p>
+<p>, and one can formulate the basic principle that a variable contains at least as much information about itself as any other variable can provide.</p>
+<h3>Relation to Kullback–Leibler divergence</h3>
+<p>For jointly discrete or jointly continuous pairs</p>
+<p>( X , Y )</p>
+<p>{\displaystyle (X,Y)}</p>
+<p>, mutual information is the Kullback–Leibler divergence from the product of the marginal distributions,</p>
+<p>p</p>
+<p>X</p>
+<p>⋅</p>
+<p>p</p>
+<p>Y</p>
+<p>{\displaystyle p_{X}\cdot p_{Y}}</p>
+<p>, of the joint distribution</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>{\displaystyle p_{(X,Y)}}</p>
+<p>, that is,</p>
+<p>I ⁡ ( X ; Y ) =</p>
+<p>D</p>
+<p>KL</p>
+<p>(</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>∥</p>
+<p>p</p>
+<p>X</p>
+<p>p</p>
+<p>Y</p>
+<p>)</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=D_{\text{KL}}\left(p_{(X,Y)}\parallel p_{X}p_{Y}\right)}</p>
+<p>Furthermore, let</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y ) =</p>
+<p>p</p>
+<p>X ∣ Y = y</p>
+<p>( x ) ∗</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>{\displaystyle p_{(X,Y)}(x,y)=p_{X\mid Y=y}(x)*p_{Y}(y)}</p>
+<p>be the conditional mass or density function. Then, we have the identity</p>
+<p>I ⁡ ( X ; Y ) =</p>
+<p>E</p>
+<p>Y</p>
+<p>[</p>
+<p>D</p>
+<p>KL</p>
+<p>(</p>
+<p>p</p>
+<p>X ∣ Y</p>
+<p>∥</p>
+<p>p</p>
+<p>X</p>
+<p>)</p>
+<p>]</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=\mathbb {E} _{Y}\left[D_{\text{KL}}\!\left(p_{X\mid Y}\parallel p_{X}\right)\right]}</p>
+<p>The proof for jointly discrete random variables is as follows:</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>=</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y ) log ⁡</p>
+<p>(</p>
+<p>p</p>
+<p>( X , Y )</p>
+<p>( x , y )</p>
+<p>p</p>
+<p>X</p>
+<p>( x )</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>)</p>
+<p>=</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>p</p>
+<p>X ∣ Y = y</p>
+<p>( x )</p>
+<p>p</p>
+<p>Y</p>
+<p>( y ) log ⁡</p>
+<p>p</p>
+<p>X ∣ Y = y</p>
+<p>( x )</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>p</p>
+<p>X</p>
+<p>( x )</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>=</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>p</p>
+<p>X ∣ Y = y</p>
+<p>( x ) log ⁡</p>
+<p>p</p>
+<p>X ∣ Y = y</p>
+<p>( x )</p>
+<p>p</p>
+<p>X</p>
+<p>( x )</p>
+<p>=</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>p</p>
+<p>Y</p>
+<p>( y )</p>
+<p>D</p>
+<p>KL</p>
+<p>(</p>
+<p>p</p>
+<p>X ∣ Y = y</p>
+<p>∥</p>
+<p>p</p>
+<p>X</p>
+<p>)</p>
+<p>=</p>
+<p>E</p>
+<p>Y</p>
+<p>[</p>
+<p>D</p>
+<p>KL</p>
+<p>(</p>
+<p>p</p>
+<p>X ∣ Y</p>
+<p>∥</p>
+<p>p</p>
+<p>X</p>
+<p>)</p>
+<p>]</p>
+<p>.</p>
+<p>{\displaystyle {\begin{aligned}\operatorname {I} (X;Y)&amp;=\sum _{y\in {\mathcal {Y}}}\sum _{x\in {\mathcal {X}}}{p_{(X,Y)}(x,y)\log \left({\frac {p_{(X,Y)}(x,y)}{p_{X}(x)\,p_{Y}(y)}}\right)}\\&amp;=\sum _{y\in {\mathcal {Y}}}\sum _{x\in {\mathcal {X}}}p_{X\mid Y=y}(x)p_{Y}(y)\log {\frac {p_{X\mid Y=y}(x)p_{Y}(y)}{p_{X}(x)p_{Y}(y)}}\\&amp;=\sum _{y\in {\mathcal {Y}}}p_{Y}(y)\sum _{x\in {\mathcal {X}}}p_{X\mid Y=y}(x)\log {\frac {p_{X\mid Y=y}(x)}{p_{X}(x)}}\\&amp;=\sum _{y\in {\mathcal {Y}}}p_{Y}(y)\;D_{\text{KL}}\!\left(p_{X\mid Y=y}\parallel p_{X}\right)\\&amp;=\mathbb {E} _{Y}\left[D_{\text{KL}}\!\left(p_{X\mid Y}\parallel p_{X}\right)\right].\end{aligned}}}</p>
+<p>Similarly this identity can be established for jointly continuous random variables. Note that here the Kullback–Leibler divergence involves integration over the values of the random variable</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>only, and the expression</p>
+<p>D</p>
+<p>KL</p>
+<p>(</p>
+<p>p</p>
+<p>X ∣ Y</p>
+<p>∥</p>
+<p>p</p>
+<p>X</p>
+<p>)</p>
+<p>{\displaystyle D_{\text{KL}}(p_{X\mid Y}\parallel p_{X})}</p>
+<p>still denotes a random variable because</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>is random. Thus mutual information can also be understood as the expectation over</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>of the Kullback–Leibler divergence of the conditional distribution</p>
+<p>p</p>
+<p>X ∣ Y</p>
+<p>{\displaystyle p_{X\mid Y}}</p>
+<p>of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>given</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>from the univariate distribution</p>
+<p>p</p>
+<p>X</p>
+<p>{\displaystyle p_{X}}</p>
+<p>of</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>: the more different the distributions</p>
+<p>p</p>
+<p>X ∣ Y</p>
+<p>{\displaystyle p_{X\mid Y}}</p>
+<p>and</p>
+<p>p</p>
+<p>X</p>
+<p>{\displaystyle p_{X}}</p>
+<p>are on average, the greater the information gain.</p>
+<h3>Bayesian estimation of mutual information</h3>
+<p>If samples from a joint distribution are available, a Bayesian approach can be used to estimate the mutual information of that distribution. The first work to do this, which also showed how to do Bayesian estimation of many other information-theoretic properties besides mutual information, was. Subsequent researchers have rederived  and extended this analysis. See  for a recent paper based on a prior specifically tailored to estimation of mutual information per se. Besides, recently an estimation method accounting for continuous and multivariate outputs,</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>, was proposed in .</p>
+<h3>Independence assumptions</h3>
+<p>The Kullback-Leibler divergence formulation of the mutual information is predicated on that one is interested in comparing</p>
+<p>p ( x , y )</p>
+<p>{\displaystyle p(x,y)}</p>
+<p>to the fully factorized outer product</p>
+<p>p ( x ) ⋅ p ( y )</p>
+<p>{\displaystyle p(x)\cdot p(y)}</p>
+<p>. In many problems, such as non-negative matrix factorization, one is interested in less extreme factorizations; specifically, one wishes to compare</p>
+<p>p ( x , y )</p>
+<p>{\displaystyle p(x,y)}</p>
+<p>to a low-rank matrix approximation in some unknown variable</p>
+<p>w</p>
+<p>{\displaystyle w}</p>
+<p>; that is, to what degree one might have</p>
+<p>p ( x , y ) ≈</p>
+<p>∑</p>
+<p>w</p>
+<p>p</p>
+<p>′</p>
+<p>( x , w )</p>
+<p>p</p>
+<p>′ ′</p>
+<p>( w , y )</p>
+<p>{\displaystyle p(x,y)\approx \sum _{w}p^{\prime }(x,w)p^{\prime \prime }(w,y)}</p>
+<p>Alternately, one might be interested in knowing how much more information</p>
+<p>p ( x , y )</p>
+<p>{\displaystyle p(x,y)}</p>
+<p>carries over its factorization. In such a case, the excess information that the full distribution</p>
+<p>p ( x , y )</p>
+<p>{\displaystyle p(x,y)}</p>
+<p>carries over the matrix factorization is given by the Kullback-Leibler divergence</p>
+<p>I</p>
+<p>L R M A</p>
+<p>=</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>p ( x , y ) log ⁡</p>
+<p>(</p>
+<p>p ( x , y )</p>
+<p>∑</p>
+<p>w</p>
+<p>p</p>
+<p>′</p>
+<p>( x , w )</p>
+<p>p</p>
+<p>′ ′</p>
+<p>( w , y )</p>
+<p>)</p>
+<p>,</p>
+<p>{\displaystyle \operatorname {I} _{LRMA}=\sum _{y\in {\mathcal {Y}}}\sum _{x\in {\mathcal {X}}}{p(x,y)\log {\left({\frac {p(x,y)}{\sum _{w}p^{\prime }(x,w)p^{\prime \prime }(w,y)}}\right)}},}</p>
+<p>The conventional definition of the mutual information is recovered in the extreme case that the process</p>
+<p>W</p>
+<p>{\displaystyle W}</p>
+<p>has only one value for</p>
+<p>w</p>
+<p>{\displaystyle w}</p>
+<p>.</p>
+<h2>Variations</h2>
+<p>Several variations on mutual information have been proposed to suit various needs.  Among these are normalized variants and generalizations to more than two variables.</p>
+<h3>Metric</h3>
+<p>Many applications require a metric, that is, a distance measure between pairs of points. The quantity</p>
+<p>d ( X , Y )</p>
+<p>=</p>
+<p>H</p>
+<p>( X , Y ) − I ⁡ ( X ; Y )</p>
+<p>=</p>
+<p>H</p>
+<p>( X ) +</p>
+<p>H</p>
+<p>( Y ) − 2 I ⁡ ( X ; Y )</p>
+<p>=</p>
+<p>H</p>
+<p>( X ∣ Y ) +</p>
+<p>H</p>
+<p>( Y ∣ X )</p>
+<p>= 2</p>
+<p>H</p>
+<p>( X , Y ) −</p>
+<p>H</p>
+<p>( X ) −</p>
+<p>H</p>
+<p>( Y )</p>
+<p>{\displaystyle {\begin{aligned}d(X,Y)&amp;=\mathrm {H} (X,Y)-\operatorname {I} (X;Y)\\&amp;=\mathrm {H} (X)+\mathrm {H} (Y)-2\operatorname {I} (X;Y)\\&amp;=\mathrm {H} (X\mid Y)+\mathrm {H} (Y\mid X)\\&amp;=2\mathrm {H} (X,Y)-\mathrm {H} (X)-\mathrm {H} (Y)\end{aligned}}}</p>
+<p>satisfies the properties of a metric (triangle inequality, non-negativity, indiscernability and symmetry) for discrete random variables</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>, where equality</p>
+<p>X = Y</p>
+<p>{\displaystyle X=Y}</p>
+<p>is understood to mean that</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>can be completely determined from</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>. This distance metric is also known as the variation of information. If</p>
+<p>X , Y</p>
+<p>{\displaystyle X,Y}</p>
+<p>are discrete random variables then all the entropy terms are non-negative, so</p>
+<p>0 ≤ d ( X , Y ) ≤</p>
+<p>H</p>
+<p>( X , Y )</p>
+<p>{\displaystyle 0\leq d(X,Y)\leq \mathrm {H} (X,Y)}</p>
+<p>and one can define a normalized distance</p>
+<p>D ( X , Y ) =</p>
+<p>d ( X , Y )</p>
+<p>H</p>
+<p>( X , Y )</p>
+<p>≤ 1.</p>
+<p>{\displaystyle D(X,Y)={\frac {d(X,Y)}{\mathrm {H} (X,Y)}}\leq 1.}</p>
+<p>Plugging in the definitions shows that</p>
+<p>D ( X , Y ) = 1 −</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>H</p>
+<p>( X , Y )</p>
+<p>.</p>
+<p>{\displaystyle D(X,Y)=1-{\frac {\operatorname {I} (X;Y)}{\mathrm {H} (X,Y)}}.}</p>
+<p>This is known as the Rajski Distance. In a set-theoretic interpretation of information (see the figure for Conditional entropy), this is effectively the Jaccard distance between</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>. Finally,</p>
+<p>D</p>
+<p>′</p>
+<p>( X , Y ) = 1 −</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>max</p>
+<p>{</p>
+<p>H</p>
+<p>( X ) ,</p>
+<p>H</p>
+<p>( Y )</p>
+<p>}</p>
+<p>{\displaystyle D^{\prime }(X,Y)=1-{\frac {\operatorname {I} (X;Y)}{\max \left\{\mathrm {H} (X),\mathrm {H} (Y)\right\}}}}</p>
+<p>is also a metric.</p>
+<h3>Conditional mutual information</h3>
+<p>Sometimes it is useful to express the mutual information of two random variables conditioned on a third.</p>
+<p>I ⁡ ( X ; Y</p>
+<p>|</p>
+<p>Z ) =</p>
+<p>E</p>
+<p>Z</p>
+<p>[</p>
+<p>D</p>
+<p>K L</p>
+<p>(</p>
+<p>P</p>
+<p>( X , Y )</p>
+<p>|</p>
+<p>Z</p>
+<p>‖</p>
+<p>P</p>
+<p>X</p>
+<p>|</p>
+<p>Z</p>
+<p>⊗</p>
+<p>P</p>
+<p>Y</p>
+<p>|</p>
+<p>Z</p>
+<p>) ]</p>
+<p>{\displaystyle \operatorname {I} (X;Y|Z)=\mathbb {E} _{Z}[D_{\mathrm {KL} }(P_{(X,Y)|Z}\|P_{X|Z}\otimes P_{Y|Z})]}</p>
+<p>For jointly discrete random variables this takes the form</p>
+<p>I ⁡ ( X ; Y</p>
+<p>|</p>
+<p>Z ) =</p>
+<p>∑</p>
+<p>z ∈</p>
+<p>Z</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>p</p>
+<p>Z</p>
+<p>( z )</p>
+<p>p</p>
+<p>X , Y</p>
+<p>|</p>
+<p>Z</p>
+<p>( x , y</p>
+<p>|</p>
+<p>z ) log ⁡</p>
+<p>[</p>
+<p>p</p>
+<p>X , Y</p>
+<p>|</p>
+<p>Z</p>
+<p>( x , y</p>
+<p>|</p>
+<p>z )</p>
+<p>p</p>
+<p>X</p>
+<p>|</p>
+<p>Z</p>
+<p>( x</p>
+<p>|</p>
+<p>z )</p>
+<p>p</p>
+<p>Y</p>
+<p>|</p>
+<p>Z</p>
+<p>( y</p>
+<p>|</p>
+<p>z )</p>
+<p>]</p>
+<p>,</p>
+<p>{\displaystyle \operatorname {I} (X;Y|Z)=\sum _{z\in {\mathcal {Z}}}\sum _{y\in {\mathcal {Y}}}\sum _{x\in {\mathcal {X}}}{p_{Z}(z)\,p_{X,Y|Z}(x,y|z)\log \left[{\frac {p_{X,Y|Z}(x,y|z)}{p_{X|Z}\,(x|z)p_{Y|Z}(y|z)}}\right]},}</p>
+<p>which can be simplified as</p>
+<p>I ⁡ ( X ; Y</p>
+<p>|</p>
+<p>Z ) =</p>
+<p>∑</p>
+<p>z ∈</p>
+<p>Z</p>
+<p>∑</p>
+<p>y ∈</p>
+<p>Y</p>
+<p>∑</p>
+<p>x ∈</p>
+<p>X</p>
+<p>p</p>
+<p>X , Y , Z</p>
+<p>( x , y , z ) log ⁡</p>
+<p>p</p>
+<p>X , Y , Z</p>
+<p>( x , y , z )</p>
+<p>p</p>
+<p>Z</p>
+<p>( z )</p>
+<p>p</p>
+<p>X , Z</p>
+<p>( x , z )</p>
+<p>p</p>
+<p>Y , Z</p>
+<p>( y , z )</p>
+<p>.</p>
+<p>{\displaystyle \operatorname {I} (X;Y|Z)=\sum _{z\in {\mathcal {Z}}}\sum _{y\in {\mathcal {Y}}}\sum _{x\in {\mathcal {X}}}p_{X,Y,Z}(x,y,z)\log {\frac {p_{X,Y,Z}(x,y,z)p_{Z}(z)}{p_{X,Z}(x,z)p_{Y,Z}(y,z)}}.}</p>
+<p>For jointly continuous random variables this takes the form</p>
+<p>I ⁡ ( X ; Y</p>
+<p>|</p>
+<p>Z ) =</p>
+<p>∫</p>
+<p>Z</p>
+<p>∫</p>
+<p>Y</p>
+<p>∫</p>
+<p>X</p>
+<p>p</p>
+<p>Z</p>
+<p>( z )</p>
+<p>p</p>
+<p>X , Y</p>
+<p>|</p>
+<p>Z</p>
+<p>( x , y</p>
+<p>|</p>
+<p>z ) log ⁡</p>
+<p>[</p>
+<p>p</p>
+<p>X , Y</p>
+<p>|</p>
+<p>Z</p>
+<p>( x , y</p>
+<p>|</p>
+<p>z )</p>
+<p>p</p>
+<p>X</p>
+<p>|</p>
+<p>Z</p>
+<p>( x</p>
+<p>|</p>
+<p>z )</p>
+<p>p</p>
+<p>Y</p>
+<p>|</p>
+<p>Z</p>
+<p>( y</p>
+<p>|</p>
+<p>z )</p>
+<p>]</p>
+<p>d x d y d z ,</p>
+<p>{\displaystyle \operatorname {I} (X;Y|Z)=\int _{\mathcal {Z}}\int _{\mathcal {Y}}\int _{\mathcal {X}}{p_{Z}(z)\,p_{X,Y|Z}(x,y|z)\log \left[{\frac {p_{X,Y|Z}(x,y|z)}{p_{X|Z}\,(x|z)p_{Y|Z}(y|z)}}\right]}dxdydz,}</p>
+<p>which can be simplified as</p>
+<p>I ⁡ ( X ; Y</p>
+<p>|</p>
+<p>Z ) =</p>
+<p>∫</p>
+<p>Z</p>
+<p>∫</p>
+<p>Y</p>
+<p>∫</p>
+<p>X</p>
+<p>p</p>
+<p>X , Y , Z</p>
+<p>( x , y , z ) log ⁡</p>
+<p>p</p>
+<p>X , Y , Z</p>
+<p>( x , y , z )</p>
+<p>p</p>
+<p>Z</p>
+<p>( z )</p>
+<p>p</p>
+<p>X , Z</p>
+<p>( x , z )</p>
+<p>p</p>
+<p>Y , Z</p>
+<p>( y , z )</p>
+<p>d x d y d z .</p>
+<p>{\displaystyle \operatorname {I} (X;Y|Z)=\int _{\mathcal {Z}}\int _{\mathcal {Y}}\int _{\mathcal {X}}p_{X,Y,Z}(x,y,z)\log {\frac {p_{X,Y,Z}(x,y,z)p_{Z}(z)}{p_{X,Z}(x,z)p_{Y,Z}(y,z)}}dxdydz.}</p>
+<p>Conditioning on a third random variable may either increase or decrease the mutual information, but it is always true that</p>
+<p>I ⁡ ( X ; Y</p>
+<p>|</p>
+<p>Z ) ≥ 0</p>
+<p>{\displaystyle \operatorname {I} (X;Y|Z)\geq 0}</p>
+<p>for discrete, jointly distributed random variables</p>
+<p>X , Y , Z</p>
+<p>{\displaystyle X,Y,Z}</p>
+<p>. This result has been used as a basic building block for proving other inequalities in information theory.</p>
+<h3>Interaction information</h3>
+<p>Several generalizations of mutual information to more than two random variables have been proposed, such as total correlation (or multi-information) and dual total correlation. The expression and study of multivariate higher-degree mutual information was achieved in two seemingly independent works: McGill (1954) who called these functions &quot;interaction information&quot;, and Hu Kuo Ting (1962). Interaction information is defined for one variable as follows:</p>
+<p>I ⁡ (</p>
+<p>X</p>
+<p>1</p>
+<p>) =</p>
+<p>H</p>
+<p>(</p>
+<p>X</p>
+<p>1</p>
+<p>)</p>
+<p>{\displaystyle \operatorname {I} (X_{1})=\mathrm {H} (X_{1})}</p>
+<p>and for</p>
+<p>n &gt; 1 ,</p>
+<p>{\displaystyle n&gt;1,}</p>
+<p>I ⁡ (</p>
+<p>X</p>
+<p>1</p>
+<p>;</p>
+<p>. . .</p>
+<p>;</p>
+<p>X</p>
+<p>n</p>
+<p>) = I ⁡ (</p>
+<p>X</p>
+<p>1</p>
+<p>;</p>
+<p>. . .</p>
+<p>;</p>
+<p>X</p>
+<p>n − 1</p>
+<p>) − I ⁡ (</p>
+<p>X</p>
+<p>1</p>
+<p>;</p>
+<p>. . .</p>
+<p>;</p>
+<p>X</p>
+<p>n − 1</p>
+<p>∣</p>
+<p>X</p>
+<p>n</p>
+<p>) ,</p>
+<p>{\displaystyle \operatorname {I} (X_{1};\,...\,;X_{n})=\operatorname {I} (X_{1};\,...\,;X_{n-1})-\operatorname {I} (X_{1};\,...\,;X_{n-1}\mid X_{n}),}</p>
+<p>where (as above) we define</p>
+<p>I ⁡ (</p>
+<p>X</p>
+<p>1</p>
+<p>;</p>
+<p>. . .</p>
+<p>;</p>
+<p>X</p>
+<p>n − 1</p>
+<p>|</p>
+<p>X</p>
+<p>n</p>
+<p>) =</p>
+<p>E</p>
+<p>X</p>
+<p>n</p>
+<p>[</p>
+<p>I ⁡ (</p>
+<p>X</p>
+<p>1</p>
+<p>;</p>
+<p>. . .</p>
+<p>;</p>
+<p>X</p>
+<p>n − 1</p>
+<p>)</p>
+<p>|</p>
+<p>X</p>
+<p>n</p>
+<p>]</p>
+<p>.</p>
+<p>{\displaystyle \operatorname {I} (X_{1};\,...\,;X_{n-1}|X_{n})=\mathbb {E} _{X_{n}}{\bigl [}\operatorname {I} (X_{1};\,...\,;X_{n-1})|X_{n}{\bigr ]}.}</p>
+<p>Some authors reverse the order of the terms on the right-hand side of the preceding equation, which changes the sign when the number of random variables is odd. (And in this case, the single-variable expression becomes the negative of the entropy.) The interaction information can be positive, negative, or zero. Positivity corresponds to relations generalizing the pairwise correlations, nullity corresponds to a refined notion of independence, and negativity detects high dimensional &quot;emergent&quot; relations and clustered datapoints ).</p>
+<h4>Multivariate statistical independence</h4>
+<p>The multivariate mutual information functions generalize the pairwise independence case that states that</p>
+<p>X</p>
+<p>1</p>
+<p>,</p>
+<p>X</p>
+<p>2</p>
+<p>{\displaystyle X_{1},X_{2}}</p>
+<p>if and only if</p>
+<p>I (</p>
+<p>X</p>
+<p>1</p>
+<p>;</p>
+<p>X</p>
+<p>2</p>
+<p>) = 0</p>
+<p>{\displaystyle I(X_{1};X_{2})=0}</p>
+<p>, to arbitrary numerous variable. n variables are mutually independent if and only if the</p>
+<p>2</p>
+<p>n</p>
+<p>− n − 1</p>
+<p>{\displaystyle 2^{n}-n-1}</p>
+<p>mutual information functions vanish</p>
+<p>I (</p>
+<p>X</p>
+<p>1</p>
+<p>; … ;</p>
+<p>X</p>
+<p>k</p>
+<p>) = 0</p>
+<p>{\displaystyle I(X_{1};\ldots ;X_{k})=0}</p>
+<p>with</p>
+<p>n ≥ k ≥ 2</p>
+<p>{\displaystyle n\geq k\geq 2}</p>
+<p>(theorem 2). In this sense, the</p>
+<p>I (</p>
+<p>X</p>
+<p>1</p>
+<p>; … ;</p>
+<p>X</p>
+<p>k</p>
+<p>) = 0</p>
+<p>{\displaystyle I(X_{1};\ldots ;X_{k})=0}</p>
+<p>can be used as a refined statistical independence criterion.</p>
+<h4>Applications</h4>
+<p>For 3 variables, Brenner et al. applied multivariate mutual information to neural coding and called its negativity &quot;synergy&quot; and Watkinson et al. applied it to genetic expression. For arbitrary k variables, Tapia et al. applied multivariate mutual information to gene expression. One high-dimensional generalization scheme which maximizes the mutual information between the joint distribution and other target variables is found to be useful in feature selection. Mutual information is also used in the area of signal processing as a measure of similarity between two signals. For example, FMI metric is an image fusion performance measure that makes use of mutual information in order to measure the amount of information that the fused image contains about the source images. The Matlab code for this metric can be found at. A python package for computing all multivariate mutual informations, conditional mutual information, joint entropies, total correlations, information distance in a dataset of n variables is available.</p>
+<h3>Directed information</h3>
+<p>Directed information,</p>
+<p>I ⁡</p>
+<p>(</p>
+<p>X</p>
+<p>n</p>
+<p>→</p>
+<p>Y</p>
+<p>n</p>
+<p>)</p>
+<p>{\displaystyle \operatorname {I} \left(X^{n}\to Y^{n}\right)}</p>
+<p>, measures the amount of information that flows from the process</p>
+<p>X</p>
+<p>n</p>
+<p>{\displaystyle X^{n}}</p>
+<p>to</p>
+<p>Y</p>
+<p>n</p>
+<p>{\displaystyle Y^{n}}</p>
+<p>, where</p>
+<p>X</p>
+<p>n</p>
+<p>{\displaystyle X^{n}}</p>
+<p>denotes the vector</p>
+<p>X</p>
+<p>1</p>
+<p>,</p>
+<p>X</p>
+<p>2</p>
+<p>, . . . ,</p>
+<p>X</p>
+<p>n</p>
+<p>{\displaystyle X_{1},X_{2},...,X_{n}}</p>
+<p>and</p>
+<p>Y</p>
+<p>n</p>
+<p>{\displaystyle Y^{n}}</p>
+<p>denotes</p>
+<p>Y</p>
+<p>1</p>
+<p>,</p>
+<p>Y</p>
+<p>2</p>
+<p>, . . . ,</p>
+<p>Y</p>
+<p>n</p>
+<p>{\displaystyle Y_{1},Y_{2},...,Y_{n}}</p>
+<p>. The term directed information was coined by James Massey and is defined as</p>
+<p>I ⁡</p>
+<p>(</p>
+<p>X</p>
+<p>n</p>
+<p>→</p>
+<p>Y</p>
+<p>n</p>
+<p>)</p>
+<p>=</p>
+<p>∑</p>
+<p>i = 1</p>
+<p>n</p>
+<p>I ⁡</p>
+<p>(</p>
+<p>X</p>
+<p>i</p>
+<p>;</p>
+<p>Y</p>
+<p>i</p>
+<p>∣</p>
+<p>Y</p>
+<p>i − 1</p>
+<p>)</p>
+<p>{\displaystyle \operatorname {I} \left(X^{n}\to Y^{n}\right)=\sum _{i=1}^{n}\operatorname {I} \left(X^{i};Y_{i}\mid Y^{i-1}\right)}</p>
+<p>. Note that if</p>
+<p>n = 1</p>
+<p>{\displaystyle n=1}</p>
+<p>, the directed information becomes the mutual information. Directed information has many applications in problems where causality plays an important role, such as capacity of channel with feedback.</p>
+<h3>Normalized variants</h3>
+<p>Normalized variants of the mutual information are provided by the coefficients of constraint, uncertainty coefficient or proficiency:</p>
+<p>C</p>
+<p>X Y</p>
+<p>=</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>H</p>
+<p>( Y )</p>
+<p>and</p>
+<p>C</p>
+<p>Y X</p>
+<p>=</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>H</p>
+<p>( X )</p>
+<p>.</p>
+<p>{\displaystyle C_{XY}={\frac {\operatorname {I} (X;Y)}{\mathrm {H} (Y)}}~~~~{\mbox{and}}~~~~C_{YX}={\frac {\operatorname {I} (X;Y)}{\mathrm {H} (X)}}.}</p>
+<p>The two coefficients have a value ranging in [0, 1], but are not necessarily equal. This measure is not symmetric. If one desires a symmetric measure, one may consider the following redundancy measure:</p>
+<p>R =</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>H</p>
+<p>( X ) +</p>
+<p>H</p>
+<p>( Y )</p>
+<p>{\displaystyle R={\frac {\operatorname {I} (X;Y)}{\mathrm {H} (X)+\mathrm {H} (Y)}}}</p>
+<p>which attains a minimum of zero when the variables are independent and a maximum value of</p>
+<p>R</p>
+<p>max</p>
+<p>=</p>
+<p>min</p>
+<p>{</p>
+<p>H</p>
+<p>( X ) ,</p>
+<p>H</p>
+<p>( Y )</p>
+<p>}</p>
+<p>H</p>
+<p>( X ) +</p>
+<p>H</p>
+<p>( Y )</p>
+<p>{\displaystyle R_{\max }={\frac {\min \left\{\mathrm {H} (X),\mathrm {H} (Y)\right\}}{\mathrm {H} (X)+\mathrm {H} (Y)}}}</p>
+<p>when one variable becomes completely redundant with the knowledge of the other.  See also Redundancy (information theory). Another symmetrical measure is the symmetric uncertainty (Witten &amp; Frank 2005), given by</p>
+<p>U ( X , Y ) = 2 R = 2</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>H</p>
+<p>( X ) +</p>
+<p>H</p>
+<p>( Y )</p>
+<p>{\displaystyle U(X,Y)=2R=2{\frac {\operatorname {I} (X;Y)}{\mathrm {H} (X)+\mathrm {H} (Y)}}}</p>
+<p>which represents the harmonic mean of the two uncertainty coefficients</p>
+<p>C</p>
+<p>X Y</p>
+<p>,</p>
+<p>C</p>
+<p>Y X</p>
+<p>{\displaystyle C_{XY},C_{YX}}</p>
+<p>. If we consider mutual information as a special case of the total correlation or dual total correlation, the normalized versions are respectively,</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>min</p>
+<p>[</p>
+<p>H</p>
+<p>( X ) ,</p>
+<p>H</p>
+<p>( Y )</p>
+<p>]</p>
+<p>{\displaystyle {\frac {\operatorname {I} (X;Y)}{\min \left[\mathrm {H} (X),\mathrm {H} (Y)\right]}}}</p>
+<p>and</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>H</p>
+<p>( X , Y )</p>
+<p>.</p>
+<p>{\displaystyle {\frac {\operatorname {I} (X;Y)}{\mathrm {H} (X,Y)}}\;.}</p>
+<p>This normalized version is also known as Information Quality Ratio (IQR) and quantifies the amount of information of a variable based on another variable against total uncertainty:</p>
+<p>I Q R ( X , Y ) = E ⁡ [ I ⁡ ( X ; Y ) ] =</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>H</p>
+<p>( X , Y )</p>
+<p>=</p>
+<p>∑</p>
+<p>x ∈ X</p>
+<p>∑</p>
+<p>y ∈ Y</p>
+<p>p ( x , y ) log ⁡</p>
+<p>p ( x ) p ( y )</p>
+<p>∑</p>
+<p>x ∈ X</p>
+<p>∑</p>
+<p>y ∈ Y</p>
+<p>p ( x , y ) log ⁡</p>
+<p>p ( x , y )</p>
+<p>− 1</p>
+<p>{\displaystyle IQR(X,Y)=\operatorname {E} [\operatorname {I} (X;Y)]={\frac {\operatorname {I} (X;Y)}{\mathrm {H} (X,Y)}}={\frac {\sum _{x\in X}\sum _{y\in Y}p(x,y)\log {p(x)p(y)}}{\sum _{x\in X}\sum _{y\in Y}p(x,y)\log {p(x,y)}}}-1}</p>
+<p>There exists a normalization which derives from first thinking of mutual information as an analogue to covariance (thus Shannon entropy is analogous to variance).  Then the normalized mutual information is calculated akin to the Pearson correlation coefficient,</p>
+<p>I ⁡ ( X ; Y )</p>
+<p>H</p>
+<p>( X )</p>
+<p>H</p>
+<p>( Y )</p>
+<p>.</p>
+<p>{\displaystyle {\frac {\operatorname {I} (X;Y)}{\sqrt {\mathrm {H} (X)\mathrm {H} (Y)}}}\;.}</p>
+<p>A naive normalization may lead to biased interpretation and introduce spurious dependences.</p>
+<h3>Weighted variants</h3>
+<p>In the traditional formulation of the mutual information,</p>
+<p>I ⁡ ( X ; Y ) =</p>
+<p>∑</p>
+<p>y ∈ Y</p>
+<p>∑</p>
+<p>x ∈ X</p>
+<p>p ( x , y ) log ⁡</p>
+<p>p ( x , y )</p>
+<p>p ( x )</p>
+<p>p ( y )</p>
+<p>,</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=\sum _{y\in Y}\sum _{x\in X}p(x,y)\log {\frac {p(x,y)}{p(x)\,p(y)}},}</p>
+<p>each event or object  specified by</p>
+<p>( x , y )</p>
+<p>{\displaystyle (x,y)}</p>
+<p>is weighted by the corresponding  probability</p>
+<p>p ( x , y )</p>
+<p>{\displaystyle p(x,y)}</p>
+<p>.  This assumes that all objects or events are equivalent apart from their probability of occurrence.  However, in some applications it may be the case that certain objects or events are more significant than others, or that certain patterns of association are more semantically important than others. For example, the deterministic mapping</p>
+<p>{ ( 1 , 1 ) , ( 2 , 2 ) , ( 3 , 3 ) }</p>
+<p>{\displaystyle \{(1,1),(2,2),(3,3)\}}</p>
+<p>may be viewed as stronger than the deterministic mapping</p>
+<p>{ ( 1 , 3 ) , ( 2 , 1 ) , ( 3 , 2 ) }</p>
+<p>{\displaystyle \{(1,3),(2,1),(3,2)\}}</p>
+<p>, although these relationships would yield the same mutual information.  This is because the mutual information is not sensitive at all to any inherent ordering in the variable values (Cronbach 1954, Coombs, Dawes &amp; Tversky 1970, Lockhead 1970), and is therefore not sensitive at all to the form of the relational mapping between the associated variables.  If it is desired that the former relation—showing agreement on all variable values—be judged stronger than the later relation, then it is possible to use the following weighted mutual information (Guiasu 1977).</p>
+<p>I ⁡ ( X ; Y ) =</p>
+<p>∑</p>
+<p>y ∈ Y</p>
+<p>∑</p>
+<p>x ∈ X</p>
+<p>w ( x , y ) p ( x , y ) log ⁡</p>
+<p>p ( x , y )</p>
+<p>p ( x )</p>
+<p>p ( y )</p>
+<p>,</p>
+<p>{\displaystyle \operatorname {I} (X;Y)=\sum _{y\in Y}\sum _{x\in X}w(x,y)p(x,y)\log {\frac {p(x,y)}{p(x)\,p(y)}},}</p>
+<p>which places a weight</p>
+<p>w ( x , y )</p>
+<p>{\displaystyle w(x,y)}</p>
+<p>on the probability of each variable value co-occurrence,</p>
+<p>p ( x , y )</p>
+<p>{\displaystyle p(x,y)}</p>
+<p>. This allows that certain probabilities may carry more or less significance than others, thereby allowing the quantification of relevant holistic or Prägnanz factors.  In the above example, using larger relative weights for</p>
+<p>w ( 1 , 1 )</p>
+<p>{\displaystyle w(1,1)}</p>
+<p>,</p>
+<p>w ( 2 , 2 )</p>
+<p>{\displaystyle w(2,2)}</p>
+<p>, and</p>
+<p>w ( 3 , 3 )</p>
+<p>{\displaystyle w(3,3)}</p>
+<p>would have the effect of assessing greater informativeness for the relation</p>
+<p>{ ( 1 , 1 ) , ( 2 , 2 ) , ( 3 , 3 ) }</p>
+<p>{\displaystyle \{(1,1),(2,2),(3,3)\}}</p>
+<p>than for the relation</p>
+<p>{ ( 1 , 3 ) , ( 2 , 1 ) , ( 3 , 2 ) }</p>
+<p>{\displaystyle \{(1,3),(2,1),(3,2)\}}</p>
+<p>, which may be desirable in some cases of pattern recognition, and the like.  This weighted mutual information is a form of weighted KL-Divergence, which is known to take negative values for some inputs, and there are examples where the weighted mutual information also takes negative values.</p>
+<h3>Adjusted mutual information</h3>
+<p>A probability distribution can be viewed as a partition of a set.  One may then ask: if a set were partitioned randomly, what would the distribution of probabilities be?  What would the expectation value of the mutual information be? The adjusted mutual information or AMI subtracts the expectation value of the MI, so that the AMI is zero when two different distributions are random, and one when two distributions are identical.  The AMI is defined in analogy to the adjusted Rand index of two different partitions of a set.</p>
+<h3>Absolute mutual information</h3>
+<p>Using the ideas of Kolmogorov complexity, one can consider the mutual information of two sequences independent of any probability distribution:</p>
+<p>I</p>
+<p>K</p>
+<p>⁡ ( X ; Y ) = K ( X ) − K ( X ∣ Y ) .</p>
+<p>{\displaystyle \operatorname {I} _{K}(X;Y)=K(X)-K(X\mid Y).}</p>
+<p>To establish that this quantity is symmetric up to an additive logarithmic term (</p>
+<p>I</p>
+<p>K</p>
+<p>⁡ ( X ; Y ) ≈</p>
+<p>I</p>
+<p>K</p>
+<p>⁡ ( Y ; X )</p>
+<p>{\displaystyle \operatorname {I} _{K}(X;Y)\approx \operatorname {I} _{K}(Y;X)}</p>
+<p>), one requires the chain rule for Kolmogorov complexity (Li &amp; Vitányi 1997). Approximations of this quantity via compression can be used to define a distance measure to perform a hierarchical clustering of sequences without having any domain knowledge of the sequences (Cilibrasi &amp; Vitányi 2005).</p>
+<h3>Linear correlation</h3>
+<p>Unlike correlation coefficients, such as the product moment correlation coefficient, mutual information contains information about all dependence—linear and nonlinear—and not just linear dependence as the correlation coefficient measures. However, in the narrow case that the joint distribution for</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>is a bivariate normal distribution (implying in particular that both marginal distributions are normally distributed), there is an exact relationship between</p>
+<p>I</p>
+<p>{\displaystyle \operatorname {I} }</p>
+<p>and the correlation coefficient</p>
+<p>ρ</p>
+<p>{\displaystyle \rho }</p>
+<p>(Gel&#x27;fand &amp; Yaglom 1957).</p>
+<p>I = −</p>
+<p>1 2</p>
+<p>log ⁡</p>
+<p>(</p>
+<p>1 −</p>
+<p>ρ</p>
+<p>2</p>
+<p>)</p>
+<p>{\displaystyle \operatorname {I} =-{\frac {1}{2}}\log \left(1-\rho ^{2}\right)}</p>
+<p>The equation above can be derived as follows for a bivariate Gaussian:</p>
+<p>(</p>
+<p>X</p>
+<p>1</p>
+<p>X</p>
+<p>2</p>
+<p>)</p>
+<p>∼</p>
+<p>N</p>
+<p>(</p>
+<p>(</p>
+<p>μ</p>
+<p>1</p>
+<p>μ</p>
+<p>2</p>
+<p>)</p>
+<p>, Σ</p>
+<p>)</p>
+<p>,</p>
+<p>Σ =</p>
+<p>(</p>
+<p>σ</p>
+<p>1</p>
+<p>2</p>
+<p>ρ</p>
+<p>σ</p>
+<p>1</p>
+<p>σ</p>
+<p>2</p>
+<p>ρ</p>
+<p>σ</p>
+<p>1</p>
+<p>σ</p>
+<p>2</p>
+<p>σ</p>
+<p>2</p>
+<p>2</p>
+<p>)</p>
+<p>H</p>
+<p>(</p>
+<p>X</p>
+<p>i</p>
+<p>)</p>
+<p>=</p>
+<p>1 2</p>
+<p>log ⁡</p>
+<p>(</p>
+<p>2 π e</p>
+<p>σ</p>
+<p>i</p>
+<p>2</p>
+<p>)</p>
+<p>=</p>
+<p>1 2</p>
+<p>+</p>
+<p>1 2</p>
+<p>log ⁡ ( 2 π ) + log ⁡</p>
+<p>(</p>
+<p>σ</p>
+<p>i</p>
+<p>)</p>
+<p>,</p>
+<p>i ∈ { 1 , 2 }</p>
+<p>H</p>
+<p>(</p>
+<p>X</p>
+<p>1</p>
+<p>,</p>
+<p>X</p>
+<p>2</p>
+<p>)</p>
+<p>=</p>
+<p>1 2</p>
+<p>log ⁡</p>
+<p>[</p>
+<p>( 2 π e</p>
+<p>)</p>
+<p>2</p>
+<p>|</p>
+<p>Σ</p>
+<p>|</p>
+<p>]</p>
+<p>= 1 + log ⁡ ( 2 π ) + log ⁡</p>
+<p>(</p>
+<p>σ</p>
+<p>1</p>
+<p>σ</p>
+<p>2</p>
+<p>)</p>
+<p>+</p>
+<p>1 2</p>
+<p>log ⁡</p>
+<p>(</p>
+<p>1 −</p>
+<p>ρ</p>
+<p>2</p>
+<p>)</p>
+<p>{\displaystyle {\begin{aligned}{\begin{pmatrix}X_{1}\\X_{2}\end{pmatrix}}&amp;\sim {\mathcal {N}}\left({\begin{pmatrix}\mu _{1}\\\mu _{2}\end{pmatrix}},\Sigma \right),\qquad \Sigma ={\begin{pmatrix}\sigma _{1}^{2}&amp;\rho \sigma _{1}\sigma _{2}\\\rho \sigma _{1}\sigma _{2}&amp;\sigma _{2}^{2}\end{pmatrix}}\\\mathrm {H} (X_{i})&amp;={\frac {1}{2}}\log \left(2\pi e\sigma _{i}^{2}\right)={\frac {1}{2}}+{\frac {1}{2}}\log(2\pi )+\log \left(\sigma _{i}\right),\quad i\in \{1,2\}\\\mathrm {H} (X_{1},X_{2})&amp;={\frac {1}{2}}\log \left[(2\pi e)^{2}|\Sigma |\right]=1+\log(2\pi )+\log \left(\sigma _{1}\sigma _{2}\right)+{\frac {1}{2}}\log \left(1-\rho ^{2}\right)\\\end{aligned}}}</p>
+<p>Therefore,</p>
+<p>I ⁡</p>
+<p>(</p>
+<p>X</p>
+<p>1</p>
+<p>;</p>
+<p>X</p>
+<p>2</p>
+<p>)</p>
+<p>=</p>
+<p>H</p>
+<p>(</p>
+<p>X</p>
+<p>1</p>
+<p>)</p>
+<p>+</p>
+<p>H</p>
+<p>(</p>
+<p>X</p>
+<p>2</p>
+<p>)</p>
+<p>−</p>
+<p>H</p>
+<p>(</p>
+<p>X</p>
+<p>1</p>
+<p>,</p>
+<p>X</p>
+<p>2</p>
+<p>)</p>
+<p>= −</p>
+<p>1 2</p>
+<p>log ⁡</p>
+<p>(</p>
+<p>1 −</p>
+<p>ρ</p>
+<p>2</p>
+<p>)</p>
+<p>{\displaystyle \operatorname {I} \left(X_{1};X_{2}\right)=\mathrm {H} \left(X_{1}\right)+\mathrm {H} \left(X_{2}\right)-\mathrm {H} \left(X_{1},X_{2}\right)=-{\frac {1}{2}}\log \left(1-\rho ^{2}\right)}</p>
+<h3>For discrete data</h3>
+<p>When</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>and</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>are limited to be in a discrete number of states, observation data is summarized in a contingency table, with row variable</p>
+<p>X</p>
+<p>{\displaystyle X}</p>
+<p>(or</p>
+<p>i</p>
+<p>{\displaystyle i}</p>
+<p>) and column variable</p>
+<p>Y</p>
+<p>{\displaystyle Y}</p>
+<p>(or</p>
+<p>j</p>
+<p>{\displaystyle j}</p>
+<p>).  Mutual information is one of the measures of association or correlation between the row and column variables. Other measures of association include Pearson&#x27;s chi-squared test statistics, G-test statistics, etc. In fact, with the same log base, mutual information will be equal to the G-test log-likelihood statistic divided by</p>
+<p>2 N</p>
+<p>{\displaystyle 2N}</p>
+<p>, where</p>
+<p>N</p>
+<p>{\displaystyle N}</p>
+<p>is the sample size.</p>
+<h2>Applications</h2>
+<p>In many applications, one wants to maximize mutual information (thus increasing dependencies), which is often equivalent to minimizing conditional entropy.  Examples include:</p>
+<p>In search engine technology, mutual information between phrases and contexts is used as a feature for k-means clustering to discover semantic clusters (concepts).  For example, the mutual information of a bigram might be calculated as:</p>
+<p>M I ( x , y ) = log ⁡</p>
+<p>P</p>
+<p>X , Y</p>
+<p>( x , y )</p>
+<p>P</p>
+<p>X</p>
+<p>( x )</p>
+<p>P</p>
+<p>Y</p>
+<p>( y )</p>
+<p>≈ log ⁡</p>
+<p>f</p>
+<p>X Y</p>
+<p>B</p>
+<p>f</p>
+<p>X</p>
+<p>U</p>
+<p>f</p>
+<p>Y</p>
+<p>U</p>
+<p>{\displaystyle MI(x,y)=\log {\frac {P_{X,Y}(x,y)}{P_{X}(x)P_{Y}(y)}}\approx \log {\frac {\frac {f_{XY}}{B}}{{\frac {f_{X}}{U}}{\frac {f_{Y}}{U}}}}}</p>
+<p>where</p>
+<p>f</p>
+<p>X Y</p>
+<p>{\displaystyle f_{XY}}</p>
+<p>is the number of times the bigram xy appears in the corpus,</p>
+<p>f</p>
+<p>X</p>
+<p>{\displaystyle f_{X}}</p>
+<p>is the number of times the unigram x appears in the corpus, B is the total number of bigrams, and U is the total number of unigrams. In telecommunications, the channel capacity is equal to the mutual information, maximized over all input distributions. Discriminative training procedures for hidden Markov models have been proposed based on the maximum mutual information (MMI) criterion. RNA secondary structure prediction from a multiple sequence alignment. Phylogenetic profiling prediction from pairwise present and disappearance of functionally link genes. Mutual information has been used as a criterion for feature selection and feature transformations in machine learning. It can be used to characterize both the relevance and redundancy of variables, such as the minimum redundancy feature selection. Mutual information is used in determining the similarity of two different clusterings of a dataset.  As such, it provides some advantages over the traditional Rand index. Mutual information of words is often used as a significance function for the computation of collocations in corpus linguistics. This has the added complexity that no word-instance is an instance to two different words; rather, one counts instances where 2 words occur adjacent or in close proximity; this slightly complicates the calculation, since the expected probability of one word occurring within</p>
+<p>N</p>
+<p>{\displaystyle N}</p>
+<p>words of another, goes up with</p>
+<p>N</p>
+<p>{\displaystyle N}</p>
+<p>Mutual information is used in medical imaging for image registration. Given a reference image (for example, a brain scan), and a second image which needs to be put into the same coordinate system as the reference image, this image is deformed until the mutual information between it and the reference image is maximized. Detection of phase synchronization in time series analysis. In the infomax method for neural-net and other machine learning, including the infomax-based Independent component analysis algorithm Average mutual information in delay embedding theorem is used for determining the embedding delay parameter. Mutual information between genes in expression microarray data is used by the ARACNE algorithm for reconstruction of gene networks. In statistical mechanics, Loschmidt&#x27;s paradox may be expressed in terms of mutual information. Loschmidt noted that it must be impossible to determine a physical law which lacks time reversal symmetry (e.g. the second law of thermodynamics) only from physical laws which have this symmetry. He pointed out that the H-theorem of Boltzmann made the assumption that the velocities of particles in a gas  were permanently uncorrelated, which removed the time symmetry inherent in the H-theorem. It can be shown that if a system is described by a probability density in phase space, then Liouville&#x27;s theorem implies that the joint information (negative of the joint entropy) of the distribution remains constant in time. The joint information is equal to the mutual information plus the sum of all the marginal information (negative of the marginal entropies) for each particle coordinate. Boltzmann&#x27;s assumption amounts to ignoring the mutual information in the calculation of entropy, which yields the thermodynamic entropy (divided by the Boltzmann constant). In stochastic processes coupled to changing environments, mutual information can be used to disentangle internal and effective environmental dependencies. This is particularly useful when a physical system undergoes changes in the parameters describing its dynamics, e.g., changes in temperature. The mutual information is used to learn the structure of Bayesian networks/dynamic Bayesian networks, which is thought to explain the causal relationship between random variables, as exemplified by the GlobalMIT toolkit: learning the globally optimal dynamic Bayesian network with the Mutual Information Test criterion. The mutual information is used to quantify information transmitted during the updating procedure in the Gibbs sampling algorithm. Popular cost function in decision tree learning. The mutual information is used in cosmology to test the influence of large-scale environments on galaxy properties in the Galaxy Zoo. The mutual information was used in Solar Physics  to derive the solar differential rotation profile, a travel-time deviation map for sunspots, and a time–distance diagram from quiet-Sun measurements Used in Invariant Information Clustering to automatically train neural network classifiers and image segmenters given no labelled data. In stochastic dynamical systems with multiple timescales, mutual information has been shown to capture the functional couplings between different temporal scales. Importantly, it was shown that physical interactions may or may not give rise to mutual information, depending on the typical timescale of their dynamics.</p>
+<h2>See also</h2>
+<p>Data differencing Pointwise mutual information Quantum mutual information Specific-information</p>
+<h2>Notes</h2>
+<h2>References</h2>
+<p>Baudot, P.; Tapia, M.; Bennequin, D.; Goaillard, J.M. (2019). &quot;Topological Information Data Analysis&quot;. Entropy. 21 (9). 869. arXiv:1907.04242. Bibcode:2019Entrp..21..869B. doi:10.3390/e21090869. PMC 7515398. S2CID 195848308. Cilibrasi, R.; Vitányi, Paul (2005). &quot;Clustering by compression&quot; (PDF). IEEE Transactions on Information Theory. 51 (4): 1523–1545. arXiv:cs/0312044. doi:10.1109/TIT.2005.844059. S2CID 911. Cronbach, L. J. (1954). &quot;On the non-rational application of information measures in psychology&quot;. In Quastler, Henry (ed.). Information Theory in Psychology: Problems and Methods. Glencoe, Illinois: Free Press. pp. 14–30. Coombs, C. H.; Dawes, R. M.; Tversky, A. (1970). Mathematical Psychology: An Elementary Introduction. Englewood Cliffs, New Jersey: Prentice-Hall. Church, Kenneth Ward; Hanks, Patrick (1989). &quot;Word association norms, mutual information, and lexicography&quot;. Proceedings of the 27th Annual Meeting of the Association for Computational Linguistics. 16 (1): 76–83. doi:10.3115/981623.981633. Gel&#x27;fand, I.M.; Yaglom, A.M. (1957). &quot;Calculation of amount of information about a random function contained in another such function&quot;. American Mathematical Society Translations. Series 2. 12: 199–246. doi:10.1090/trans2/012/09. ISBN 978-0-8218-1712-4. {{cite journal}}: ISBN / Date incompatibility (help)CS1 maint: periodical has ISBN (link) English translation of original in Uspekhi Matematicheskikh Nauk 12 (1): 3-52. Guiasu, Silviu (1977). Information Theory with Applications. McGraw-Hill, New York. ISBN 978-0-07-025109-0. Li, Ming; Vitányi, Paul (February 1997). An introduction to Kolmogorov complexity and its applications. New York: Springer-Verlag. ISBN 978-0-387-94868-3. Lockhead, G. R. (1970). &quot;Identification and the form of multidimensional discrimination space&quot;. Journal of Experimental Psychology. 85 (1): 1–10. doi:10.1037/h0029508. PMID 5458322. David J. C. MacKay. Information Theory, Inference, and Learning Algorithms Cambridge: Cambridge University Press, 2003. ISBN 0-521-64298-1 (available free online) Haghighat, M. B. A.; Aghagolzadeh, A.; Seyedarabi, H. (2011). &quot;A non-reference image fusion metric based on mutual information of image features&quot;. Computers &amp; Electrical Engineering. 37 (5): 744–756. doi:10.1016/j.compeleceng.2011.07.012. S2CID 7738541. Athanasios Papoulis. Probability, Random Variables, and Stochastic Processes, second edition. New York: McGraw-Hill, 1984. (See Chapter 15.) Witten, Ian H. &amp; Frank, Eibe (2005). Data Mining: Practical Machine Learning Tools and Techniques. Morgan Kaufmann, Amsterdam. ISBN 978-0-12-374856-0. Archived from the original on 2020-11-27. Retrieved 2016-06-28. Peng, H.C.; Long, F. &amp; Ding, C. (2005). &quot;Feature selection based on mutual information: criteria of max-dependency, max-relevance, and min-redundancy&quot;. IEEE Transactions on Pattern Analysis and Machine Intelligence. 27 (8): 1226–1238. doi:10.1109/tpami.2005.159. PMID 16119262. S2CID 206764015. Archived from the original on 2009-05-22. Retrieved 2016-06-28. Andre S. Ribeiro; Stuart A. Kauffman; Jason Lloyd-Price; Bjorn Samuelsson &amp; Joshua Socolar (2008). &quot;Mutual Information in Random Boolean models of regulatory networks&quot;. Physical Review E. 77 (1) 011901. arXiv:0707.3642. Bibcode:2008PhRvE..77a1901R. doi:10.1103/physreve.77.011901. PMID 18351870. S2CID 15232112. Wells, W.M. III; Viola, P.; Atsumi, H.; Nakajima, S.; Kikinis, R. (1996). &quot;Multi-modal volume registration by maximization of mutual information&quot; (PDF). Medical Image Analysis. 1 (1): 35–51. doi:10.1016/S1361-8415(01)80004-9. PMID 9873920. Archived from the original (PDF) on 2008-09-06. Retrieved 2010-08-05. Pandey, Biswajit; Sarkar, Suman (2017). &quot;How much a galaxy knows about its large-scale environment?: An information theoretic perspective&quot;. Monthly Notices of the Royal Astronomical Society Letters. 467 (1): L6. arXiv:1611.00283. Bibcode:2017MNRAS.467L...6P. doi:10.1093/mnrasl/slw250. S2CID 119095496. Janssen, Joseph; Guan, Vincent; Robeva, Elina (2023). &quot;Ultra-marginal Feature Importance: Learning from Data with Causal Guarantees&quot;. International Conference on Artificial Intelligence and Statistics: 10782–10814. arXiv:2204.09938.</p>
+</body></html>

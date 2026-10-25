@@ -1,0 +1,145 @@
+{
+ "label": "SYNTHETIC — not evidence about learners or experts",
+ "spec_sha256": "85da9dbe4c1fd1d5400857bda2a5c9c091ebe387bd69aacdcfccc6c2e2685937",
+ "generator_sha256": "ccd5f201e657b71690f39b6a6968124536d7416bfc3543beea517c6e000c4d27",
+ "estimators_sha256": "fc71405ad0f0ae5f96bd386356b5f4ca5af055a1d5a18a13a64864b0c77dbb9d",
+ "python": "3.14.2",
+ "spec": {
+  "common": {
+   "label": "SYNTHETIC — not evidence about learners or experts",
+   "z": 1.96,
+   "tau": [
+    0.1,
+    0.25,
+    0.5
+   ],
+   "achievable_pass_rate": 0.8,
+   "replicates": 500,
+   "seed": 20261024
+  },
+  "default": {
+   "source": "default grid of docs/plans/prompts/I3-residual-identifiability.md",
+   "N": [
+    50,
+    200
+   ],
+   "never_written_share": [
+    0.0,
+    0.2,
+    0.5
+   ],
+   "k_text_occasions": [
+    2,
+    3,
+    5
+   ],
+   "heterogeneity_beta": {
+    "low": [
+     15.0,
+     35.0
+    ],
+    "high": [
+     1.65,
+     3.85
+    ],
+    "extreme": [
+     0.45,
+     1.05
+    ]
+   },
+   "rho": [
+    0.0,
+    0.3,
+    0.6
+   ],
+   "gold_p": [
+    1.0,
+    0.6
+   ],
+   "model": "p_i ~ Beta(a, b), mean 0.3; CV 0.21 low, 0.60 high, 0.97 extreme (a < 1: infinite density at p = 0, a sensitivity case). With probability rho an item's k text captures copy one shared Bernoulli(p_i) draw, else they are independent, so the within-item correlation is rho. Never-written items: catchability 0 on every text occasion. Gold catches every item independently with probability gold_p; matching is exact."
+  },
+  "ds4": {
+   "source": "research/ds4-identifiability.md §7 (commit b4c9abf)",
+   "N": [
+    50,
+    200
+   ],
+   "never_written_share": [
+    0.0,
+    0.2,
+    0.5
+   ],
+   "k_text_occasions": [
+    2,
+    3,
+    5
+   ],
+   "mean_p": [
+    0.15,
+    0.4
+   ],
+   "logit_sigma": [
+    0.5,
+    1.5
+   ],
+   "family": [
+    "logit_normal",
+    "two_class"
+   ],
+   "rho": [
+    0.0,
+    0.3,
+    0.6
+   ],
+   "g_W": [
+    0.6,
+    0.9
+   ],
+   "g_Z_over_g_W": [
+    0.5,
+    1.0,
+    1.5
+   ],
+   "false_non_match": [
+    0.0,
+    0.1
+   ],
+   "two_class_high_weight": 0.25,
+   "model": "logit p_i ~ Normal(mu, sigma) with mu set so E[p] = mean_p; two_class matches that mean and SD with weight 0.25 on the high class. Text captures X_ij = 1{sqrt(rho) W_i + sqrt(1-rho) E_ij < Phi^-1(p_i)}: a Gaussian copula, exchangeable across text occasions, conditional on p_i. Gold catches written items with g_W and never-written with min(1, ratio * g_W). A gold item that text caught fails to match with probability false_non_match and is then counted as gold-uncaught; the corpus-presence audit (DS4 §3.3) is exact. Text, gold and match/noise use separate random streams."
+  }
+ },
+ "ds4_calibration": {
+  "p0.15_s0.5": {
+   "mu": -1.8194403959510859,
+   "mean": 0.14999999999999997,
+   "cv": 0.42269229751687165,
+   "p_lo": 0.1133937732366379,
+   "p_hi": 0.2598186802900862,
+   "weight_hi": 0.25
+  },
+  "p0.15_s1.5": {
+   "mu": -2.370743916610958,
+   "mean": 0.14999999999999997,
+   "cv": 1.120940513324879,
+   "p_lo": 0.05292370393294857,
+   "p_hi": 0.4412288882011542,
+   "weight_hi": 0.25
+  },
+  "p0.4_s0.5": {
+   "mu": -0.42915867861981893,
+   "mean": 0.39999999999999997,
+   "cv": 0.2845982030878349,
+   "p_lo": 0.3342748603345419,
+   "p_hi": 0.5971754189963743,
+   "weight_hi": 0.25
+  },
+  "p0.4_s1.5": {
+   "mu": -0.5723401283889873,
+   "mean": 0.39999999999999997,
+   "cv": 0.6578716855238131,
+   "p_lo": 0.24807104210823744,
+   "p_hi": 0.8557868736752876,
+   "weight_hi": 0.25
+  }
+ }
+}

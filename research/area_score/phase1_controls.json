@@ -1,0 +1,88 @@
+{
+  "domain": "plc",
+  "gap_ids": [
+    "g-04fee3a9511b",
+    "g-0708446e9b37",
+    "g-09c80fc72d09",
+    "g-130c1cada42b",
+    "g-16732a0764dc",
+    "g-1fd637e11077",
+    "g-20058c799d9f",
+    "g-24a1744a985a",
+    "g-4173489eaad7",
+    "g-57de0e58c067",
+    "g-59164a9db5bd",
+    "g-5fca641a2d9f",
+    "g-6bcf4a7d12f8",
+    "g-710b6269d54a",
+    "g-7821712e9d9f",
+    "g-81f5899a2eb8",
+    "g-83b9b964dcef",
+    "g-8cb7d671f6ce",
+    "g-952747a9c3aa",
+    "g-994077969379",
+    "g-a7c3c7cdae9c",
+    "g-bcb3952493a6",
+    "g-d66536a8ef30",
+    "g-f753d140fd7b"
+  ],
+  "label": "PLANTED_AND_STAND_IN_ONLY",
+  "ledger_sha256": "3d724d8ddfb78f43240f853e7dee8702cd78d72b1d0856e9f1b70be7f90e49bd",
+  "n": 24,
+  "source_count_plant": {
+    "discriminates": true,
+    "distinct_covariate": 7,
+    "n": 24,
+    "planted_rho": 1.0,
+    "planted_trips": true,
+    "random_trip_rate": 0.0,
+    "rho": 1.0,
+    "trips": true
+  },
+  "stand_ins": {
+    "draws": 2000,
+    "length_failures": 2000,
+    "passes": false,
+    "seed": 0,
+    "testable": true,
+    "uniform_failures": 1759
+  },
+  "strata": [
+    {
+      "k_topic": 2,
+      "n": 6,
+      "reference_distinct": 3
+    },
+    {
+      "k_topic": 3,
+      "n": 11,
+      "reference_distinct": 1
+    },
+    {
+      "k_topic": 5,
+      "n": 1,
+      "reference_distinct": 1
+    },
+    {
+      "k_topic": 6,
+      "n": 2,
+      "reference_distinct": 1
+    },
+    {
+      "k_topic": 7,
+      "n": 2,
+      "reference_distinct": 2
+    },
+    {
+      "k_topic": 9,
+      "n": 1,
+      "reference_distinct": 1
+    },
+    {
+      "k_topic": 11,
+      "n": 1,
+      "reference_distinct": 1
+    }
+  ],
+  "within_best_reachable": 1.0
+}

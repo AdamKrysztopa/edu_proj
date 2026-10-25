@@ -1,0 +1,51 @@
+{
+ "areas": [
+  {
+   "name": "Toolkit installation and repository setup",
+   "queries": [
+    "dependence-forecastability toolkit github",
+    "dependence-forecastability python package install",
+    "forecastability toolkit contributing guide"
+   ]
+  },
+  {
+   "name": "Horizon-wise dependence measures (auto-mutual information, ACF)",
+   "queries": [
+    "auto-mutual information forecast horizon time series forecastability",
+    "horizon-specific mutual information lagged dependence time series",
+    "kNN mutual information estimator Kraskov time series lags"
+   ]
+  },
+  {
+   "name": "Running an analysis pipeline and configuration",
+   "queries": [
+    "dependence-forecastability example notebook horizon analysis",
+    "forecastability analysis CLI config time series lags horizons"
+   ]
+  },
+  {
+   "name": "Significance testing and surrogate baselines",
+   "queries": [
+    "surrogate data significance test mutual information time series",
+    "permutation test lagged mutual information confidence band",
+    "phase randomized surrogates forecastability"
+   ]
+  },
+  {
+   "name": "Interpreting forecastability scores against model performance",
+   "queries": [
+    "forecastability measure correlation with forecast error horizon",
+    "spectral entropy forecastability interpretation",
+    "mutual information predictability horizon decay interpretation"
+   ]
+  },
+  {
+   "name": "Extending the toolkit with new estimators and tests",
+   "queries": [
+    "dependence-forecastability add new dependence measure plugin",
+    "python package extension pytest contribution workflow"
+   ]
+  }
+ ],
+ "sha256": "d812c399f6c36dff1ce5e3c503c8f4b23f71d50359b37cdd865308af6deaa0d3"
+}

@@ -1,0 +1,131 @@
+{
+ "gold_date": "1994-06-01",
+ "fixtures": [
+  {
+   "plant": "after the gold",
+   "expected": "on_or_after_gold",
+   "observed": "on_or_after_gold",
+   "ok": true
+  },
+  {
+   "plant": "one day after the gold",
+   "expected": "on_or_after_gold",
+   "observed": "on_or_after_gold",
+   "ok": true
+  },
+  {
+   "plant": "on the gold's date",
+   "expected": "on_or_after_gold",
+   "observed": "on_or_after_gold",
+   "ok": true
+  },
+  {
+   "plant": "revised after the gold",
+   "expected": "on_or_after_gold",
+   "observed": "on_or_after_gold",
+   "ok": true
+  },
+  {
+   "plant": "undated",
+   "expected": "undated",
+   "observed": "undated",
+   "ok": true
+  },
+  {
+   "plant": "modification date only",
+   "expected": "undated",
+   "observed": "undated",
+   "ok": true
+  },
+  {
+   "plant": "Last-Modified only",
+   "expected": "last_modified_only",
+   "observed": "last_modified_only",
+   "ok": true
+  },
+  {
+   "plant": "Last-Modified as the published date",
+   "expected": "last_modified_only",
+   "observed": "last_modified_only",
+   "ok": true
+  },
+  {
+   "plant": "gold DOI, other case and resolver prefix",
+   "expected": "blocklist_doi",
+   "observed": "blocklist_doi",
+   "ok": true
+  },
+  {
+   "plant": "gold DOI inside a landing-page URL",
+   "expected": "blocklist_doi",
+   "observed": "blocklist_doi",
+   "ok": true
+  },
+  {
+   "plant": "gold title, other case, punctuation and spacing",
+   "expected": "blocklist_title",
+   "observed": "blocklist_title",
+   "ok": true
+  },
+  {
+   "plant": "gold landing page, other scheme, host prefix, slash and fragment",
+   "expected": "blocklist_url",
+   "observed": "blocklist_url",
+   "ok": true
+  },
+  {
+   "plant": "gold landing page reached by redirect",
+   "expected": "blocklist_url",
+   "observed": "blocklist_url",
+   "ok": true
+  },
+  {
+   "plant": "properly dated scholarly record",
+   "expected": "admitted",
+   "observed": "admitted",
+   "ok": true
+  },
+  {
+   "plant": "near-miss: longer title containing the gold's",
+   "expected": "admitted",
+   "observed": "admitted",
+   "ok": true
+  },
+  {
+   "plant": "near-miss: the gold's DOI plus one character",
+   "expected": "admitted",
+   "observed": "admitted",
+   "ok": true
+  },
+  {
+   "plant": "near-miss: Last-Modified after the gold beside a pre-gold publication date",
+   "expected": "admitted",
+   "observed": "admitted",
+   "ok": true
+  }
+ ],
+ "fixtures_ok": 17,
+ "fixtures_n": 17,
+ "replay_committed_sidecars": [
+  {
+   "run": "20260928T133336Z-59ec876b3d7e",
+   "sources": 35,
+   "on_or_after_gold": 11,
+   "undated": 24
+  },
+  {
+   "run": "20260928T135354Z-eb840a85b7d1",
+   "sources": 20,
+   "undated": 20
+  },
+  {
+   "run": "20260928T145943Z-bc1cc9a30a02",
+   "sources": 25,
+   "last_modified_only": 8,
+   "on_or_after_gold": 9,
+   "undated": 8
+  }
+ ],
+ "replay_admitted": 0,
+ "replay_sources": 80
+}

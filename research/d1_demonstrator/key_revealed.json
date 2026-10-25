@@ -1,0 +1,199 @@
+{
+ "seed": 20261025,
+ "items": [
+  {
+   "arm": "gap",
+   "source_arm": "cheap",
+   "rank": 2,
+   "gap_id": "g-6e7faf5504b4",
+   "lens": "WHY",
+   "anchor": "The same leakage boundary for rolling-origin evaluation applies to exogenous screening (F8), where CrossAMI must be computed on the training window only.",
+   "k_topic": 2,
+   "text": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "q": 1
+  },
+  {
+   "arm": "gap",
+   "source_arm": "toptier",
+   "rank": 0,
+   "gap_id": "g-16dd831f244c",
+   "lens": "WHY",
+   "anchor": "known_future_drivers should be used only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags or planned promotions.",
+   "k_topic": 3,
+   "text": "Sources say: \"Use `known_future_drivers` only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags, planned promotions, or externally scheduled variables.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "q": 2
+  },
+  {
+   "arm": "gap",
+   "source_arm": "toptier",
+   "rank": 2,
+   "gap_id": "g-404b719e7b16",
+   "lens": "RESULT",
+   "anchor": "evaluation should be targeted exclusively at horizons in the",
+   "k_topic": 2,
+   "text": "Sources prescribe: \"A practitioner should target model evaluation exclusively at horizons in $\\mathcal{H}_\\varepsilon$ - lags outside this set carry no detectable predictive signal above the noise floor.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "q": 3
+  },
+  {
+   "arm": "gap",
+   "source_arm": "cheap",
+   "rank": 6,
+   "gap_id": "g-8bd99de8a1fa",
+   "lens": "RESULT",
+   "anchor": "inspected before applying simplifying assumptions that",
+   "k_topic": 2,
+   "text": "Sources prescribe: \"Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "q": 4
+  },
+  {
+   "arm": "gap",
+   "source_arm": "toptier",
+   "rank": 1,
+   "gap_id": "g-329f88dfdb3e",
+   "lens": "HEDGE",
+   "anchor": "In statistics and time series analysis, the autocovariance is commonly normalized to a Pearson correlation coefficient, while in engineering the normalization is usually dropped.",
+   "k_topic": 2,
+   "text": "\"statistics and time series analysis) to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "q": 5
+  },
+  {
+   "arm": "covered",
+   "source_arm": "cheap",
+   "test_id": "RESULT:c-a58d2b7c5d7500ea",
+   "lens": "RESULT",
+   "anchor": "evaluate the AR model order, one should examine the plot to",
+   "lexical_state": "closed",
+   "k_topic": 3,
+   "text": "Sources prescribe: \"To evaluate the order, one examines the plot to find the lag after which the partial autocorrelations are all within the confidence interval.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "q": 6
+  },
+  {
+   "arm": "covered",
+   "source_arm": "cheap",
+   "test_id": "RESULT:c-7afe58436134c4db",
+   "lens": "RESULT",
+   "anchor": "comparing against linear baseline and requiring ranking",
+   "lexical_state": "closed",
+   "k_topic": 2,
+   "text": "Sources prescribe: \"Overfitting in nonlinear backends sharp pAMI spikes at isolated lags only for tree backends backend fits noise in conditioning space compare against linear baseline and require ranking stability\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "q": 7
+  },
+  {
+   "arm": "gap",
+   "source_arm": "cheap",
+   "rank": 0,
+   "gap_id": "g-1e8328c2a5d1",
+   "lens": "DISC",
+   "anchor": "appropriate past",
+   "k_topic": 3,
+   "text": "One source writes: \"Quantitative forecasting models are appropriate to use when past numerical data is available and when it is reasonable to assume that some of the patterns in the data are expected to continue into the future.\". Think of a recent case where you had to judge whether something was appropriate past. Describe one case that clearly was, one that clearly was not, and one that was hard to call. What differed between them, and what did you check first?",
+   "q": 8
+  },
+  {
+   "arm": "gap",
+   "source_arm": "cheap",
+   "rank": 5,
+   "gap_id": "g-f621e4d1db27",
+   "lens": "RESULT",
+   "anchor": "verified with multiple backends and sample-size stress",
+   "k_topic": 2,
+   "text": "Sources prescribe: \"Numerical inflation `directness_ratio > 1.0` estimator instability, finite-sample effects Treat as warning;\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "q": 9
+  },
+  {
+   "arm": "gap",
+   "source_arm": "toptier",
+   "rank": 0,
+   "fallback": "RG-SINGLE",
+   "test_id": "HEDGE:c-9c0f849034e929bd",
+   "lens": "HEDGE",
+   "anchor": "It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.",
+   "lexical_state": "open",
+   "k_topic": 1,
+   "text": "\"It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "q": 10
+  },
+  {
+   "arm": "covered",
+   "source_arm": "toptier",
+   "test_id": "WHY:c-bd65950824d7841e",
+   "lens": "WHY",
+   "anchor": "Any lag where a derived-feature profile exceeds the raw profile by more than estimation noise should be treated as a data-leakage candidate, not a genuine gain.",
+   "lexical_state": "closed",
+   "k_topic": 2,
+   "text": "Sources say: \"any lag where the derived profile exceeds the raw profile by more than estimation noise is a data-leakage candidate, not a genuine gain.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "q": 11
+  },
+  {
+   "arm": "gap",
+   "source_arm": "cheap",
+   "rank": 1,
+   "gap_id": "g-ed732e7e041f",
+   "lens": "WHY",
+   "anchor": "Surrogates should be used whenever sample size permits, specifically when n is at least 200 and n_surrogates is at least 99.",
+   "k_topic": 2,
+   "text": "Sources say: \"Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "q": 12
+  },
+  {
+   "arm": "covered",
+   "source_arm": "toptier",
+   "test_id": "WHY:c-f9792c1551303989",
+   "lens": "WHY",
+   "anchor": "Epsilon should be defined relative to the surrogate upper band rather than as a global absolute constant, because an absolute threshold risks including noise lags or excluding informative ones as signal strength varies across series.",
+   "lexical_state": "closed",
+   "k_topic": 2,
+   "text": "Sources say: \"An absolute threshold risks including noise lags or excluding genuinely informative ones as signal strength varies across series.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "q": 13
+  },
+  {
+   "arm": "covered",
+   "source_arm": "toptier",
+   "test_id": "SEL:c-1c4e8047d3bd12be",
+   "lens": "SEL",
+   "anchor": "Contributors should consult public_api.md when deciding whether a symbol is part of the supported import contract.",
+   "lexical_state": "closed",
+   "k_topic": 1,
+   "text": "\"Use ../public_api.md when deciding whether a symbol is part of the supported import contract.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "q": 14
+  },
+  {
+   "arm": "gap",
+   "source_arm": "cheap",
+   "rank": 3,
+   "gap_id": "g-332139dff89f",
+   "lens": "WHY",
+   "anchor": "Any new selector that goes further than xami_sparse, such as PMIME-style or PC-stable with driver autohistory, must be introduced under a new method label so that shipped cross_pami and xami_sparse semantics are not silently extended.",
+   "k_topic": 2,
+   "text": "Sources say: \"Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "q": 15
+  }
+ ],
+ "pool_sizes": {
+  "toptier": {
+   "gap": 28,
+   "covered": 10
+  },
+  "cheap": {
+   "gap": 23,
+   "covered": 36
+  }
+ },
+ "mean_words": {
+  "gap": 50.3,
+  "covered": 51.4
+ },
+ "lens_mix": {
+  "gap": {
+   "WHY": 4,
+   "RESULT": 3,
+   "HEDGE": 2,
+   "DISC": 1
+  },
+  "covered": {
+   "RESULT": 2,
+   "WHY": 2,
+   "SEL": 1
+  }
+ }
+}

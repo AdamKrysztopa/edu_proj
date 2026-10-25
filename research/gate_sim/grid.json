@@ -1,0 +1,98 @@
+{
+ "label": "SYNTHETIC \u2014 planning simulation; never a criterion, never feeds a gate",
+ "spec": {
+  "label": "SYNTHETIC \u2014 planning simulation; never a criterion, never feeds a gate",
+  "seed": 20261024,
+  "date": "2026-10-24",
+  "set_rules": {
+   "delta": 0.1,
+   "c": 1.85,
+   "pooling": "common effect, golds as fixed strata, weights n1*n0",
+   "continue": "intersection-union over K",
+   "stop": "Bonferroni over K",
+   "looks": "primary set, then one fallback gold pooled in once, same c"
+  },
+  "variance": "clustered DeLong (Obuchowski 1997); clusters of 4 areas registered in every cell",
+  "baseline_auroc": {
+   "strongest": 0.62,
+   "close": 0.6,
+   "weak": 0.5
+  },
+  "spread": {
+   "close": "area_size 0.62, every other baseline 0.60 (DS3 worst case: all within 0.02)",
+   "one_strong": "area_size 0.62, every other baseline 0.50 (least favourable for false Continue)"
+  },
+  "K": "residual.baselines.competing_set(n_golds): 5 baselines, 6 once every gold has two others",
+  "map_auroc": "0.62 + gain",
+  "grid": {
+   "golds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "areas": [
+    15,
+    20,
+    30
+   ],
+   "missed_share": [
+    0.3,
+    0.45,
+    0.5,
+    0.6,
+    0.75,
+    0.8
+   ],
+   "icc": [
+    0.0,
+    0.3
+   ],
+   "ties": [
+    0.0,
+    0.3
+   ],
+   "r": [
+    0.3,
+    0.6,
+    0.9
+   ],
+   "gain": [
+    0.0,
+    0.1,
+    0.2
+   ]
+  },
+  "c_grid": [
+   1.645,
+   1.75,
+   1.85,
+   1.95,
+   2.05,
+   2.15,
+   2.25,
+   2.35,
+   2.5,
+   2.65
+  ],
+  "deltas": [
+   0.05,
+   0.1,
+   0.15
+  ],
+  "minority_floor": 25,
+  "cluster_size": 4
+ },
+ "spec_sha256": "c9ad79a9f7a8a2b1af35044235def3a08d39dced8b35283ded4b1cfc8693f7a7",
+ "code_sha256": {
+  "auroc.py": "276ff9d463f03817f382fd0de650b08d552badd1c4d6d68d45e29d8d1d4643f5",
+  "baselines.py": "1cf24c1b4946a79d2c29988636957bb7f3ca959a658c4543ce73f96f6e25763f",
+  "simulate.py": "843975b2be53f9785e70a2fc3bc54e905a4977bafa712a3c71f856ba2d1020fa"
+ },
+ "reps": 1000,
+ "python": "3.14.2",
+ "seconds": 771,
+ "infeasible_cells": []
+}

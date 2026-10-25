@@ -1,0 +1,6 @@
+{
+  "planner": {"provider": "openrouter", "model": "anthropic/claude-opus-5.5", "family": "anthropic"},
+  "extractor": {"provider": "openrouter", "model": "anthropic/claude-opus-5.5", "family": "anthropic"},
+  "baseline": {"provider": "openrouter", "model": "anthropic/claude-opus-5.5", "family": "anthropic"},
+  "verifier": {"provider": "openrouter", "model": "openai/gpt-6.1-sol", "family": "openai"}
+}

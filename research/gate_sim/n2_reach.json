@@ -1,0 +1,160 @@
+{
+ "source": "research/n2/e_plant_eabst_report.md \u00a71.1, \u00a72.1; rules at reconstruct HEAD",
+ "label": "exact enumeration over counts the unrun arms could produce (arithmetic constraints only)",
+ "order": [
+  "continue",
+  "change",
+  "inconclusive",
+  "stop"
+ ],
+ "e_plant": {
+  "pooled_24": {
+   "n_full": 24,
+   "a_u_full": 5,
+   "registered_floor": 8,
+   "outcome_counts": {
+    "change": 742343,
+    "stop": 644356
+   },
+   "best_reachable": "change",
+   "example_best": {
+    "n": 1,
+    "a_u": 0,
+    "a_g": 0,
+    "b": 0,
+    "c": 0,
+    "e": 0,
+    "r_g": 0,
+    "a_u_full": 5,
+    "n_full": 24
+   },
+   "if_floor_met": {
+    "continue_points": 1880,
+    "continue_b_c": [
+     [
+      5,
+      0
+     ]
+    ],
+    "continue_min_n": 5,
+    "continue_requires_a_u_post_cap": [
+     5
+    ],
+    "example": {
+     "n": 5,
+     "a_u": 5,
+     "a_g": 0,
+     "b": 5,
+     "c": 0,
+     "e": 2,
+     "r_g": 3,
+     "a_u_full": 5,
+     "n_full": 24
+    }
+   },
+   "amendment_floor": {
+    "max_floor_with_continue_reachable": 5,
+    "as_fraction_of_n_full": 0.2083,
+    "ceil_rule": "ceil(n/5)"
+   }
+  },
+  "t_conc_08_excluded_23": {
+   "n_full": 23,
+   "a_u_full": 5,
+   "registered_floor": 8,
+   "outcome_counts": {
+    "change": 648720,
+    "stop": 508379
+   },
+   "best_reachable": "change",
+   "example_best": {
+    "n": 1,
+    "a_u": 0,
+    "a_g": 0,
+    "b": 0,
+    "c": 0,
+    "e": 0,
+    "r_g": 0,
+    "a_u_full": 5,
+    "n_full": 23
+   },
+   "if_floor_met": {
+    "continue_points": 1659,
+    "continue_b_c": [
+     [
+      5,
+      0
+     ]
+    ],
+    "continue_min_n": 5,
+    "continue_requires_a_u_post_cap": [
+     5
+    ],
+    "example": {
+     "n": 5,
+     "a_u": 5,
+     "a_g": 0,
+     "b": 5,
+     "c": 0,
+     "e": 2,
+     "r_g": 3,
+     "a_u_full": 5,
+     "n_full": 23
+    }
+   },
+   "amendment_floor": {
+    "max_floor_with_continue_reachable": 5,
+    "as_fraction_of_n_full": 0.2174,
+    "ceil_rule": "ceil(n/5)"
+   }
+  }
+ },
+ "e_abst": {
+  "n_items": 24,
+  "raw_answered": 5,
+  "outcome_counts": {
+   "inconclusive": 92300,
+   "stop": 3075,
+   "change": 340,
+   "continue": 35
+  },
+  "best_reachable": "continue",
+  "continue_corners_n_included_f_r_f_p": [
+   [
+    20,
+    4,
+    0
+   ],
+   [
+    20,
+    5,
+    0
+   ],
+   [
+    20,
+    5,
+    1
+   ],
+   [
+    21,
+    5,
+    0
+   ],
+   [
+    22,
+    5,
+    0
+   ],
+   [
+    23,
+    5,
+    0
+   ],
+   [
+    24,
+    5,
+    0
+   ]
+  ]
+ }
+}

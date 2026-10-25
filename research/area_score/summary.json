@@ -1,0 +1,498 @@
+{
+ "admissible": [
+  "gdpr_v1",
+  "plc"
+ ],
+ "decision": {
+  "by": [
+   [
+    "plc",
+    "k_topic",
+    0.960324216950288
+   ]
+  ],
+  "tripped": true
+ },
+ "feature_table": [
+  {
+   "distinct": 0,
+   "feature": "concentration",
+   "missing": 15,
+   "modal_share": 1.0,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 0,
+     "missing": 5
+    },
+    "gdpr_v2": {
+     "distinct": 0,
+     "missing": 5
+    },
+    "plc": {
+     "distinct": 0,
+     "missing": 5
+    }
+   },
+   "rho_n_claims": null,
+   "status": "dead",
+   "variance": null
+  },
+  {
+   "distinct": 5,
+   "feature": "earliest_source",
+   "missing": 6,
+   "modal_share": 0.4,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 0,
+     "missing": 5
+    },
+    "gdpr_v2": {
+     "distinct": 2,
+     "missing": 1
+    },
+    "plc": {
+     "distinct": 3,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": -0.2393949488198693,
+   "status": "live",
+   "variance": 1582078.3950617283
+  },
+  {
+   "distinct": 14,
+   "feature": "evidence_density",
+   "missing": 0,
+   "modal_share": 0.13333333333333333,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 5,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 5,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 5,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 0.7636529470297085,
+   "status": "live",
+   "variance": 731.76
+  },
+  {
+   "distinct": 1,
+   "feature": "has_done_support",
+   "missing": 0,
+   "modal_share": 1.0,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 1,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": null,
+   "status": "dead",
+   "variance": 0.0
+  },
+  {
+   "distinct": 1,
+   "feature": "imagined_only",
+   "missing": 0,
+   "modal_share": 1.0,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 1,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": null,
+   "status": "dead",
+   "variance": 0.0
+  },
+  {
+   "distinct": 0,
+   "feature": "instability",
+   "missing": 15,
+   "modal_share": 1.0,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 0,
+     "missing": 5
+    },
+    "gdpr_v2": {
+     "distinct": 0,
+     "missing": 5
+    },
+    "plc": {
+     "distinct": 0,
+     "missing": 5
+    }
+   },
+   "rho_n_claims": null,
+   "status": "dead",
+   "variance": null
+  },
+  {
+   "distinct": 14,
+   "feature": "knowledge_types",
+   "missing": 0,
+   "modal_share": 0.13333333333333333,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 5,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 4,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 5,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 0.5290167591595135,
+   "status": "live",
+   "variance": 3.8488888888888884
+  },
+  {
+   "distinct": 2,
+   "feature": "latest_source",
+   "missing": 6,
+   "modal_share": 0.4,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 0,
+     "missing": 5
+    },
+    "gdpr_v2": {
+     "distinct": 1,
+     "missing": 1
+    },
+    "plc": {
+     "distinct": 1,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": -0.08660254037844387,
+   "status": "dead",
+   "variance": 1076480.0
+  },
+  {
+   "distinct": 1,
+   "feature": "n_boundary_sources",
+   "missing": 0,
+   "modal_share": 1.0,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 1,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": null,
+   "status": "dead",
+   "variance": 0.0
+  },
+  {
+   "distinct": 13,
+   "feature": "n_claims",
+   "missing": 0,
+   "modal_share": 0.13333333333333333,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 5,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 5,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 5,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 1.0,
+   "status": "live (size)",
+   "variance": 2101.395555555556
+  },
+  {
+   "distinct": 2,
+   "feature": "n_contradictions",
+   "missing": 0,
+   "modal_share": 0.9333333333333333,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 2,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 1,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 0.21689400810692805,
+   "status": "live",
+   "variance": 0.24888888888888888
+  },
+  {
+   "distinct": 9,
+   "feature": "n_independent_sources",
+   "missing": 0,
+   "modal_share": 0.2,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 3,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 3,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 4,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 0.31860036243180073,
+   "status": "live",
+   "variance": 23.022222222222226
+  },
+  {
+   "distinct": 1,
+   "feature": "n_inferred",
+   "missing": 0,
+   "modal_share": 1.0,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 1,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": null,
+   "status": "dead",
+   "variance": 0.0
+  },
+  {
+   "distinct": 14,
+   "feature": "n_single_source_claims",
+   "missing": 0,
+   "modal_share": 0.13333333333333333,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 5,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 4,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 5,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 0.7743960131075005,
+   "status": "live",
+   "variance": 722.16
+  },
+  {
+   "distinct": 14,
+   "feature": "n_synthetic",
+   "missing": 0,
+   "modal_share": 0.13333333333333333,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 5,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 5,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 5,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 0.5425248369284916,
+   "status": "live",
+   "variance": 1101.982222222222
+  },
+  {
+   "distinct": 7,
+   "feature": "n_undated_sources",
+   "missing": 0,
+   "modal_share": 0.26666666666666666,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 4,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 4,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 4,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 0.08175145661955509,
+   "status": "live",
+   "variance": 5.822222222222222
+  },
+  {
+   "distinct": 5,
+   "feature": "n_unknown",
+   "missing": 0,
+   "modal_share": 0.3333333333333333,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 3,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 3,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 3,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": -0.5692780236674291,
+   "status": "live",
+   "variance": 1.3955555555555557
+  },
+  {
+   "distinct": 2,
+   "feature": "rationale_present",
+   "missing": 0,
+   "modal_share": 0.6,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 2,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 2,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 2,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 0.31553435235948046,
+   "status": "live",
+   "variance": 0.24000000000000002
+  },
+  {
+   "distinct": 3,
+   "feature": "source_kinds",
+   "missing": 0,
+   "modal_share": 0.6666666666666666,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 2,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 1,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": 0.18446698540792622,
+   "status": "live",
+   "variance": 0.7733333333333333
+  },
+  {
+   "distinct": 1,
+   "feature": "tacitness",
+   "missing": 0,
+   "modal_share": 1.0,
+   "n_areas": 15,
+   "per_ledger": {
+    "gdpr_v1": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "gdpr_v2": {
+     "distinct": 1,
+     "missing": 0
+    },
+    "plc": {
+     "distinct": 1,
+     "missing": 0
+    }
+   },
+   "rho_n_claims": null,
+   "status": "dead",
+   "variance": 0.0
+  }
+ ]
+}

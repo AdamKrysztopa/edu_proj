@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset='utf-8'><title>TimeSeriesSplit</title></head><body>
+<h1>TimeSeriesSplit</h1>
+<p>class sklearn.model_selection.TimeSeriesSplit(n_splits=5, *, max_train_size=None, test_size=None, gap=0)[source]</p>
+<p>Time Series cross-validator. Provides train/test indices to split time-ordered data, where other cross-validation methods are inappropriate, as they would lead to training on future data and evaluating on past data. To ensure comparable metrics across folds, samples must be equally spaced. Once this condition is met, each test set covers the same time duration, while the train set size accumulates data from previous splits. This cross-validation object is a variation of KFold. In the k-th split, it returns the first k folds as the train set and the (k+1)-th fold as the test set. Note that, unlike standard cross-validation methods, successive training sets are supersets of those that come before them. Read more in the User Guide. For visualisation of cross-validation behaviour and comparison between common scikit-learn split methods refer to Visualizing cross-validation behavior in scikit-learn Added in version 0.18. Parameters: n_splitsint, default=5Number of splits. Must be at least 2. Changed in version 0.22: n_splits default value changed from 3 to 5.</p>
+<p>max_train_sizeint, default=None</p>
+<p>Maximum size for a single training set.</p>
+<p>test_sizeint, default=None</p>
+<p>Used to limit the size of the test set. Defaults to n_samples // (n_splits + 1), which is the maximum allowed value with gap=0. Added in version 0.24.</p>
+<p>gapint, default=0</p>
+<p>Number of samples to exclude from the end of each train set before the test set. Added in version 0.24.</p>
+<p>Notes</p>
+<p>The training set has size i * n_samples // (n_splits + 1) + n_samples % (n_splits + 1) in the i th split, with a test set of size n_samples//(n_splits + 1) by default, where n_samples is the number of samples. Note that this formula is only valid when test_size and max_train_size are left to their default values.</p>
+<p>Examples</p>
+<p>&gt;&gt;&gt; import numpy as np &gt;&gt;&gt; from sklearn.model_selection import TimeSeriesSplit &gt;&gt;&gt; X = np.array([[1, 2], [3, 4], [1, 2], [3, 4], [1, 2], [3, 4]]) &gt;&gt;&gt; y = np.array([1, 2, 3, 4, 5, 6]) &gt;&gt;&gt; tscv = TimeSeriesSplit() &gt;&gt;&gt; print(tscv) TimeSeriesSplit(gap=0, max_train_size=None, n_splits=5, test_size=None) &gt;&gt;&gt; for i, (train_index, test_index) in enumerate(tscv.split(X)): ... print(f&quot;Fold {i}:&quot;) ... print(f&quot; Train: index={train_index}&quot;) ... print(f&quot; Test: index={test_index}&quot;) Fold 0: Train: index=[0] Test: index=[1] Fold 1: Train: index=[0 1] Test: index=[2] Fold 2: Train: index=[0 1 2] Test: index=[3] Fold 3: Train: index=[0 1 2 3] Test: index=[4] Fold 4: Train: index=[0 1 2 3 4] Test: index=[5] &gt;&gt;&gt; # Fix test_size to 2 with 12 samples &gt;&gt;&gt; X = np.random.randn(12, 2) &gt;&gt;&gt; y = np.random.randint(0, 2, 12) &gt;&gt;&gt; tscv = TimeSeriesSplit(n_splits=3, test_size=2) &gt;&gt;&gt; for i, (train_index, test_index) in enumerate(tscv.split(X)): ... print(f&quot;Fold {i}:&quot;) ... print(f&quot; Train: index={train_index}&quot;) ... print(f&quot; Test: index={test_index}&quot;) Fold 0: Train: index=[0 1 2 3 4 5] Test: index=[6 7] Fold 1: Train: index=[0 1 2 3 4 5 6 7] Test: index=[8 9] Fold 2: Train: index=[0 1 2 3 4 5 6 7 8 9] Test: index=[10 11] &gt;&gt;&gt; # Add in a 2 period gap &gt;&gt;&gt; tscv = TimeSeriesSplit(n_splits=3, test_size=2, gap=2) &gt;&gt;&gt; for i, (train_index, test_index) in enumerate(tscv.split(X)): ... print(f&quot;Fold {i}:&quot;) ... print(f&quot; Train: index={train_index}&quot;) ... print(f&quot; Test: index={test_index}&quot;) Fold 0: Train: index=[0 1 2 3] Test: index=[6 7] Fold 1: Train: index=[0 1 2 3 4 5] Test: index=[8 9] Fold 2: Train: index=[0 1 2 3 4 5 6 7] Test: index=[10 11]</p>
+<p>For a more extended example see Time-related feature engineering.</p>
+<p>get_metadata_routing()[source]</p>
+<p>Get metadata routing of this object. Please check User Guide on how the routing mechanism works. Returns: routingMetadataRequestA MetadataRequest encapsulating routing information.</p>
+<p>get_n_splits(X=None, y=None, groups=None)[source]</p>
+<p>Returns the number of splitting iterations as set with the n_splits param when instantiating the cross-validator. Parameters: Xarray-like of shape (n_samples, n_features), default=NoneAlways ignored, exists for API compatibility.</p>
+<p>yarray-like of shape (n_samples,), default=None</p>
+<p>Always ignored, exists for API compatibility.</p>
+<p>groupsarray-like of shape (n_samples,), default=None</p>
+<p>Always ignored, exists for API compatibility.</p>
+<p>Returns:</p>
+<p>n_splitsintReturns the number of splitting iterations in the cross-validator.</p>
+<p>split(X, y=None, groups=None)[source]</p>
+<p>Generate indices to split data into training and test set. Parameters: Xarray-like of shape (n_samples, n_features)Training data, where n_samples is the number of samples and n_features is the number of features.</p>
+<p>yarray-like of shape (n_samples,), default=None</p>
+<p>Always ignored, exists for API compatibility.</p>
+<p>groupsarray-like of shape (n_samples,), default=None</p>
+<p>Always ignored, exists for API compatibility.</p>
+<p>Yields:</p>
+<p>trainndarrayThe training set indices for that split.</p>
+<p>testndarray</p>
+<p>The testing set indices for that split.</p>
+<h2>Gallery examples</h2>
+<p>Time-related feature engineering</p>
+<p>Lagged features for time series forecasting</p>
+<p>Features in Histogram Gradient Boosting Trees</p>
+<p>L1-based models for Sparse Signals</p>
+<p>Visualizing cross-validation behavior in scikit-learn</p>
+</body></html>

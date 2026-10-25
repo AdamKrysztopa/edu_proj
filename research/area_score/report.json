@@ -1,0 +1,1480 @@
+{
+  "artifact_commit": "14cbdab (rules), b518774 (analysis); merged into plans-2026-10-24",
+  "card": {
+    "answer": "0/2 pass on PLC: both pass (b), but (a) is untestable for constant k_step and noise rejection is 87.95%, below 95%; no sampling interval is claimed for this deterministic replay.",
+    "changed": "No replacement is selected for I7; the owner must choose deferral or an explicit lens-reference fallback.",
+    "question": "Can either source-count-adjusted lens predictor pass the committed structural rules?"
+  },
+  "citation_review": "Self-checked by Codex against local artifacts; post-merge citation-verifier pass on PREDICTOR.md: PASS with minor fixes applied.",
+  "cost_usd": 0,
+  "decision_feeds": "The E-CTA predictor in I7 and the MS2 freeze; the primary model/baseline choice beside I5 and DS5.",
+  "domains": {
+    "gdpr_v1": {
+      "admissibility_note": null,
+      "admissible": true,
+      "conditional_pool": "HYP selection uses ineligible qwen 7b closure judgements.",
+      "decision_role": "descriptive_only",
+      "predictors": {
+        "density_residual": {
+          "a": {
+            "checks": {
+              "area_evidence_density": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "area_n_claims": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "dens": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "k_step": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "k_topic": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              }
+            },
+            "passes": false
+          },
+          "area_size_association": {
+            "reason": "Too few candidate-bearing areas; not a pass.",
+            "rho": null,
+            "status": "untestable"
+          },
+          "area_spread": {
+            "distinct": 1,
+            "max": 0.0,
+            "min": 0.0,
+            "n_empty": 4,
+            "n_present": 1,
+            "range": 0.0
+          },
+          "areas": [
+            {
+              "area_id": "a-4cee7026f66c7f38",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-a22bc4fe1a81afc2",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-cbfaacca47b52461",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-d4cbadee69366c38",
+              "mean": 0.0,
+              "n_candidates": 1
+            },
+            {
+              "area_id": "a-ec9ae8af25ae8135",
+              "mean": null,
+              "n_candidates": 0
+            }
+          ],
+          "b": {
+            "length_rho": null,
+            "n_length": 1,
+            "n_strata": 0,
+            "n_within": 0,
+            "passes": false,
+            "within_rho": null
+          },
+          "c": {
+            "draws": 2000,
+            "length_failures": 2000,
+            "passes": false,
+            "seed": 0,
+            "testable": false,
+            "uniform_failures": 2000
+          },
+          "passes": false
+        },
+        "topic_rank": {
+          "a": {
+            "checks": {
+              "area_evidence_density": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "area_n_claims": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "dens": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "k_step": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "k_topic": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 1,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              }
+            },
+            "passes": false
+          },
+          "area_size_association": {
+            "reason": "Too few candidate-bearing areas; not a pass.",
+            "rho": null,
+            "status": "untestable"
+          },
+          "area_spread": {
+            "distinct": 1,
+            "max": 0.0,
+            "min": 0.0,
+            "n_empty": 4,
+            "n_present": 1,
+            "range": 0.0
+          },
+          "areas": [
+            {
+              "area_id": "a-4cee7026f66c7f38",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-a22bc4fe1a81afc2",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-cbfaacca47b52461",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-d4cbadee69366c38",
+              "mean": 0.0,
+              "n_candidates": 1
+            },
+            {
+              "area_id": "a-ec9ae8af25ae8135",
+              "mean": null,
+              "n_candidates": 0
+            }
+          ],
+          "b": {
+            "length_rho": null,
+            "n_length": 1,
+            "n_strata": 0,
+            "n_within": 0,
+            "passes": false,
+            "within_rho": null
+          },
+          "c": {
+            "draws": 2000,
+            "length_failures": 2000,
+            "passes": false,
+            "seed": 0,
+            "testable": false,
+            "uniform_failures": 2000
+          },
+          "passes": false
+        }
+      },
+      "reference_comparator": {
+        "a": {
+          "checks": {
+            "area_evidence_density": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "area_n_claims": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "dens": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "k_step": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "k_topic": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            }
+          },
+          "passes": false
+        },
+        "area_size_association": {
+          "reason": "Too few candidate-bearing areas; not a pass.",
+          "rho": null,
+          "status": "untestable"
+        },
+        "area_spread": {
+          "distinct": 1,
+          "max": 0.0,
+          "min": 0.0,
+          "n_empty": 4,
+          "n_present": 1,
+          "range": 0.0
+        },
+        "areas": [
+          {
+            "area_id": "a-4cee7026f66c7f38",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-a22bc4fe1a81afc2",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-cbfaacca47b52461",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-d4cbadee69366c38",
+            "mean": 0.0,
+            "n_candidates": 1
+          },
+          {
+            "area_id": "a-ec9ae8af25ae8135",
+            "mean": null,
+            "n_candidates": 0
+          }
+        ],
+        "b": {
+          "length_rho": null,
+          "n_length": 1,
+          "n_strata": 0,
+          "n_within": 0,
+          "passes": false,
+          "within_rho": null
+        },
+        "c": {
+          "draws": 2000,
+          "length_failures": 2000,
+          "passes": false,
+          "seed": 0,
+          "testable": false,
+          "uniform_failures": 2000
+        },
+        "passes": false
+      },
+      "source_count_plant": {
+        "a": {
+          "checks": {
+            "area_evidence_density": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "area_n_claims": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "dens": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "k_step": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "k_topic": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 1,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            }
+          },
+          "passes": false
+        },
+        "area_size_association": {
+          "reason": "Too few candidate-bearing areas; not a pass.",
+          "rho": null,
+          "status": "untestable"
+        },
+        "area_spread": {
+          "distinct": 1,
+          "max": 2.0,
+          "min": 2.0,
+          "n_empty": 4,
+          "n_present": 1,
+          "range": 0.0
+        },
+        "areas": [
+          {
+            "area_id": "a-4cee7026f66c7f38",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-a22bc4fe1a81afc2",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-cbfaacca47b52461",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-d4cbadee69366c38",
+            "mean": 2.0,
+            "n_candidates": 1
+          },
+          {
+            "area_id": "a-ec9ae8af25ae8135",
+            "mean": null,
+            "n_candidates": 0
+          }
+        ],
+        "b": {
+          "length_rho": null,
+          "n_length": 1,
+          "n_strata": 0,
+          "n_within": 0,
+          "passes": false,
+          "within_rho": null
+        },
+        "c": {
+          "draws": 2000,
+          "length_failures": 2000,
+          "passes": false,
+          "seed": 0,
+          "testable": false,
+          "uniform_failures": 2000
+        },
+        "passes": false
+      }
+    },
+    "gdpr_v2": {
+      "admissibility_note": "140 pending verification(s) in the ledger",
+      "admissible": false,
+      "conditional_pool": "HYP selection uses ineligible qwen 7b closure judgements.",
+      "decision_role": "descriptive_only",
+      "predictors": {
+        "density_residual": {
+          "a": {
+            "checks": {
+              "area_evidence_density": {
+                "discriminates": true,
+                "distinct_covariate": 4,
+                "n": 6,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.05,
+                "rho": -0.029424494316824982,
+                "trips": false
+              },
+              "area_n_claims": {
+                "discriminates": true,
+                "distinct_covariate": 4,
+                "n": 6,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.048,
+                "rho": 0.029424494316824982,
+                "trips": false
+              },
+              "dens": {
+                "discriminates": false,
+                "distinct_covariate": 3,
+                "n": 6,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0675,
+                "rho": 0.0,
+                "trips": false
+              },
+              "k_step": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 6,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "k_topic": {
+                "discriminates": false,
+                "distinct_covariate": 2,
+                "n": 6,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.1365,
+                "rho": 0.0,
+                "trips": false
+              }
+            },
+            "passes": false
+          },
+          "area_size_association": {
+            "reason": "Too few candidate-bearing areas; not a pass.",
+            "rho": null,
+            "status": "untestable"
+          },
+          "area_spread": {
+            "distinct": 4,
+            "max": 0.25,
+            "min": -0.28125,
+            "n_empty": 1,
+            "n_present": 4,
+            "range": 0.53125
+          },
+          "areas": [
+            {
+              "area_id": "a-230df69d29033e7e",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-4ff2451b30f75877",
+              "mean": 0.0625,
+              "n_candidates": 2
+            },
+            {
+              "area_id": "a-742b4fdcde46a33a",
+              "mean": 0.25,
+              "n_candidates": 1
+            },
+            {
+              "area_id": "a-e88dbfdfa6796e73",
+              "mean": 0.1875,
+              "n_candidates": 1
+            },
+            {
+              "area_id": "a-f6c0e6fcfd8633f2",
+              "mean": -0.28125,
+              "n_candidates": 2
+            }
+          ],
+          "b": {
+            "length_rho": -0.37142857142857144,
+            "n_length": 6,
+            "n_strata": 2,
+            "n_within": 6,
+            "passes": false,
+            "within_rho": 0.9534625892455924
+          },
+          "c": {
+            "draws": 2000,
+            "length_failures": 2000,
+            "passes": false,
+            "seed": 0,
+            "testable": true,
+            "uniform_failures": 1812
+          },
+          "passes": false
+        },
+        "topic_rank": {
+          "a": {
+            "checks": {
+              "area_evidence_density": {
+                "discriminates": true,
+                "distinct_covariate": 4,
+                "n": 6,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.05,
+                "rho": -0.1563263498701806,
+                "trips": false
+              },
+              "area_n_claims": {
+                "discriminates": true,
+                "distinct_covariate": 4,
+                "n": 6,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.048,
+                "rho": -0.09379580992210836,
+                "trips": false
+              },
+              "dens": {
+                "discriminates": false,
+                "distinct_covariate": 3,
+                "n": 6,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0675,
+                "rho": -0.1270001270001905,
+                "trips": false
+              },
+              "k_step": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 6,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "k_topic": {
+                "discriminates": false,
+                "distinct_covariate": 2,
+                "n": 6,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.1365,
+                "rho": 0.0,
+                "trips": false
+              }
+            },
+            "passes": false
+          },
+          "area_size_association": {
+            "reason": "Too few candidate-bearing areas; not a pass.",
+            "rho": null,
+            "status": "untestable"
+          },
+          "area_spread": {
+            "distinct": 4,
+            "max": 0.25,
+            "min": -0.25,
+            "n_empty": 1,
+            "n_present": 4,
+            "range": 0.5
+          },
+          "areas": [
+            {
+              "area_id": "a-230df69d29033e7e",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-4ff2451b30f75877",
+              "mean": 0.0625,
+              "n_candidates": 2
+            },
+            {
+              "area_id": "a-742b4fdcde46a33a",
+              "mean": 0.25,
+              "n_candidates": 1
+            },
+            {
+              "area_id": "a-e88dbfdfa6796e73",
+              "mean": 0.125,
+              "n_candidates": 1
+            },
+            {
+              "area_id": "a-f6c0e6fcfd8633f2",
+              "mean": -0.25,
+              "n_candidates": 2
+            }
+          ],
+          "b": {
+            "length_rho": -0.2732295333235123,
+            "n_length": 6,
+            "n_strata": 2,
+            "n_within": 6,
+            "passes": true,
+            "within_rho": 1.0
+          },
+          "c": {
+            "draws": 2000,
+            "length_failures": 2000,
+            "passes": false,
+            "seed": 0,
+            "testable": true,
+            "uniform_failures": 1812
+          },
+          "passes": false
+        }
+      },
+      "reference_comparator": {
+        "a": {
+          "checks": {
+            "area_evidence_density": {
+              "discriminates": true,
+              "distinct_covariate": 4,
+              "n": 6,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.05,
+              "rho": -0.3019298199277709,
+              "trips": false
+            },
+            "area_n_claims": {
+              "discriminates": true,
+              "distinct_covariate": 4,
+              "n": 6,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.048,
+              "rho": -0.20658356100321165,
+              "trips": false
+            },
+            "dens": {
+              "discriminates": false,
+              "distinct_covariate": 3,
+              "n": 6,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0675,
+              "rho": 0.0,
+              "trips": false
+            },
+            "k_step": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 6,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "k_topic": {
+              "discriminates": false,
+              "distinct_covariate": 2,
+              "n": 6,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.1365,
+              "rho": 0.11180339887498948,
+              "trips": false
+            }
+          },
+          "passes": false
+        },
+        "area_size_association": {
+          "reason": "Too few candidate-bearing areas; not a pass.",
+          "rho": null,
+          "status": "untestable"
+        },
+        "area_spread": {
+          "distinct": 3,
+          "max": 1.0,
+          "min": 0.0,
+          "n_empty": 1,
+          "n_present": 4,
+          "range": 1.0
+        },
+        "areas": [
+          {
+            "area_id": "a-230df69d29033e7e",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-4ff2451b30f75877",
+            "mean": 0.5,
+            "n_candidates": 2
+          },
+          {
+            "area_id": "a-742b4fdcde46a33a",
+            "mean": 1.0,
+            "n_candidates": 1
+          },
+          {
+            "area_id": "a-e88dbfdfa6796e73",
+            "mean": 0.5,
+            "n_candidates": 1
+          },
+          {
+            "area_id": "a-f6c0e6fcfd8633f2",
+            "mean": 0.0,
+            "n_candidates": 2
+          }
+        ],
+        "b": {
+          "length_rho": -0.401188709901439,
+          "n_length": 6,
+          "n_strata": 2,
+          "n_within": 6,
+          "passes": false,
+          "within_rho": 1.0
+        },
+        "c": {
+          "draws": 2000,
+          "length_failures": 2000,
+          "passes": false,
+          "seed": 0,
+          "testable": true,
+          "uniform_failures": 1812
+        },
+        "passes": false
+      },
+      "source_count_plant": {
+        "a": {
+          "checks": {
+            "area_evidence_density": {
+              "discriminates": true,
+              "distinct_covariate": 4,
+              "n": 6,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.05,
+              "rho": -0.5330017908890261,
+              "trips": false
+            },
+            "area_n_claims": {
+              "discriminates": true,
+              "distinct_covariate": 4,
+              "n": 6,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.048,
+              "rho": -0.31980107453341566,
+              "trips": false
+            },
+            "dens": {
+              "discriminates": false,
+              "distinct_covariate": 3,
+              "n": 6,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0675,
+              "rho": 0.8660254037844387,
+              "trips": true
+            },
+            "k_step": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 6,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "k_topic": {
+              "discriminates": false,
+              "distinct_covariate": 2,
+              "n": 6,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.1365,
+              "rho": 1.0,
+              "trips": true
+            }
+          },
+          "passes": false
+        },
+        "area_size_association": {
+          "reason": "Too few candidate-bearing areas; not a pass.",
+          "rho": null,
+          "status": "untestable"
+        },
+        "area_spread": {
+          "distinct": 3,
+          "max": 3.0,
+          "min": 2.0,
+          "n_empty": 1,
+          "n_present": 4,
+          "range": 1.0
+        },
+        "areas": [
+          {
+            "area_id": "a-230df69d29033e7e",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-4ff2451b30f75877",
+            "mean": 2.0,
+            "n_candidates": 2
+          },
+          {
+            "area_id": "a-742b4fdcde46a33a",
+            "mean": 3.0,
+            "n_candidates": 1
+          },
+          {
+            "area_id": "a-e88dbfdfa6796e73",
+            "mean": 2.0,
+            "n_candidates": 1
+          },
+          {
+            "area_id": "a-f6c0e6fcfd8633f2",
+            "mean": 2.5,
+            "n_candidates": 2
+          }
+        ],
+        "b": {
+          "length_rho": -0.6210590034081188,
+          "n_length": 6,
+          "n_strata": 2,
+          "n_within": 6,
+          "passes": false,
+          "within_rho": null
+        },
+        "c": {
+          "draws": 2000,
+          "length_failures": 2000,
+          "passes": false,
+          "seed": 0,
+          "testable": true,
+          "uniform_failures": 1812
+        },
+        "passes": false
+      }
+    },
+    "plc": {
+      "admissibility_note": null,
+      "admissible": true,
+      "conditional_pool": "HYP selection uses ineligible qwen 7b closure judgements.",
+      "decision_role": "structural_screen",
+      "predictors": {
+        "density_residual": {
+          "a": {
+            "checks": {
+              "area_evidence_density": {
+                "discriminates": true,
+                "distinct_covariate": 4,
+                "n": 24,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0,
+                "rho": 0.05883552219723588,
+                "trips": false
+              },
+              "area_n_claims": {
+                "discriminates": true,
+                "distinct_covariate": 4,
+                "n": 24,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0,
+                "rho": 0.05883552219723588,
+                "trips": false
+              },
+              "dens": {
+                "discriminates": true,
+                "distinct_covariate": 12,
+                "n": 24,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0,
+                "rho": 0.06336714801468052,
+                "trips": false
+              },
+              "k_step": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 24,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "k_topic": {
+                "discriminates": true,
+                "distinct_covariate": 7,
+                "n": 24,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0,
+                "rho": -0.037034608149329976,
+                "trips": false
+              }
+            },
+            "passes": false
+          },
+          "area_size_association": {
+            "reason": "Too few candidate-bearing areas; not a pass.",
+            "rho": null,
+            "status": "untestable"
+          },
+          "area_spread": {
+            "distinct": 4,
+            "max": 0.059612798607815216,
+            "min": -0.0458234456573327,
+            "n_empty": 1,
+            "n_present": 4,
+            "range": 0.10543624426514792
+          },
+          "areas": [
+            {
+              "area_id": "a-7c823af7a0bcf79b",
+              "mean": 0.059612798607815216,
+              "n_candidates": 6
+            },
+            {
+              "area_id": "a-89c2721fe5f2ee88",
+              "mean": -0.0458234456573327,
+              "n_candidates": 5
+            },
+            {
+              "area_id": "a-8c10790bb9b3111b",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-b29da96b7f6c06f7",
+              "mean": -0.01889676136235225,
+              "n_candidates": 7
+            },
+            {
+              "area_id": "a-ff0a5de0f9586864",
+              "mean": 0.0006196276960396511,
+              "n_candidates": 6
+            }
+          ],
+          "b": {
+            "length_rho": 0.1935556255372069,
+            "n_length": 24,
+            "n_strata": 2,
+            "n_within": 8,
+            "passes": true,
+            "within_rho": 0.9548637106322311
+          },
+          "c": {
+            "draws": 2000,
+            "length_failures": 2000,
+            "passes": false,
+            "seed": 0,
+            "testable": true,
+            "uniform_failures": 1759
+          },
+          "passes": false
+        },
+        "topic_rank": {
+          "a": {
+            "checks": {
+              "area_evidence_density": {
+                "discriminates": true,
+                "distinct_covariate": 4,
+                "n": 24,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0,
+                "rho": 0.09480774962330386,
+                "trips": false
+              },
+              "area_n_claims": {
+                "discriminates": true,
+                "distinct_covariate": 4,
+                "n": 24,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0,
+                "rho": 0.09480774962330386,
+                "trips": false
+              },
+              "dens": {
+                "discriminates": true,
+                "distinct_covariate": 12,
+                "n": 24,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0,
+                "rho": -0.14601480617358276,
+                "trips": false
+              },
+              "k_step": {
+                "discriminates": false,
+                "distinct_covariate": 1,
+                "n": 24,
+                "planted_rho": null,
+                "planted_trips": false,
+                "random_trip_rate": 0.0,
+                "rho": null,
+                "trips": false
+              },
+              "k_topic": {
+                "discriminates": true,
+                "distinct_covariate": 7,
+                "n": 24,
+                "planted_rho": 1.0,
+                "planted_trips": true,
+                "random_trip_rate": 0.0,
+                "rho": 0.009927966424265595,
+                "trips": false
+              }
+            },
+            "passes": false
+          },
+          "area_size_association": {
+            "reason": "Too few candidate-bearing areas; not a pass.",
+            "rho": null,
+            "status": "untestable"
+          },
+          "area_spread": {
+            "distinct": 4,
+            "max": 0.041666666666666664,
+            "min": -0.05,
+            "n_empty": 1,
+            "n_present": 4,
+            "range": 0.09166666666666667
+          },
+          "areas": [
+            {
+              "area_id": "a-7c823af7a0bcf79b",
+              "mean": 0.041666666666666664,
+              "n_candidates": 6
+            },
+            {
+              "area_id": "a-89c2721fe5f2ee88",
+              "mean": -0.05,
+              "n_candidates": 5
+            },
+            {
+              "area_id": "a-8c10790bb9b3111b",
+              "mean": null,
+              "n_candidates": 0
+            },
+            {
+              "area_id": "a-b29da96b7f6c06f7",
+              "mean": -0.011904761904761902,
+              "n_candidates": 7
+            },
+            {
+              "area_id": "a-ff0a5de0f9586864",
+              "mean": 0.013888888888888886,
+              "n_candidates": 6
+            }
+          ],
+          "b": {
+            "length_rho": 0.20005245810142647,
+            "n_length": 24,
+            "n_strata": 2,
+            "n_within": 8,
+            "passes": true,
+            "within_rho": 1.0
+          },
+          "c": {
+            "draws": 2000,
+            "length_failures": 2000,
+            "passes": false,
+            "seed": 0,
+            "testable": true,
+            "uniform_failures": 1759
+          },
+          "passes": false
+        }
+      },
+      "reference_comparator": {
+        "a": {
+          "checks": {
+            "area_evidence_density": {
+              "discriminates": true,
+              "distinct_covariate": 4,
+              "n": 24,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0,
+              "rho": 0.03360176018979751,
+              "trips": false
+            },
+            "area_n_claims": {
+              "discriminates": true,
+              "distinct_covariate": 4,
+              "n": 24,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0,
+              "rho": 0.03360176018979751,
+              "trips": false
+            },
+            "dens": {
+              "discriminates": true,
+              "distinct_covariate": 12,
+              "n": 24,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0,
+              "rho": -0.06683169596418671,
+              "trips": false
+            },
+            "k_step": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 24,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "k_topic": {
+              "discriminates": true,
+              "distinct_covariate": 7,
+              "n": 24,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0,
+              "rho": -0.0514282700666431,
+              "trips": false
+            }
+          },
+          "passes": false
+        },
+        "area_size_association": {
+          "reason": "Too few candidate-bearing areas; not a pass.",
+          "rho": null,
+          "status": "untestable"
+        },
+        "area_spread": {
+          "distinct": 4,
+          "max": 0.3333333333333333,
+          "min": 0.0,
+          "n_empty": 1,
+          "n_present": 4,
+          "range": 0.3333333333333333
+        },
+        "areas": [
+          {
+            "area_id": "a-7c823af7a0bcf79b",
+            "mean": 0.3333333333333333,
+            "n_candidates": 6
+          },
+          {
+            "area_id": "a-89c2721fe5f2ee88",
+            "mean": 0.0,
+            "n_candidates": 5
+          },
+          {
+            "area_id": "a-8c10790bb9b3111b",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-b29da96b7f6c06f7",
+            "mean": 0.14285714285714285,
+            "n_candidates": 7
+          },
+          {
+            "area_id": "a-ff0a5de0f9586864",
+            "mean": 0.16666666666666666,
+            "n_candidates": 6
+          }
+        ],
+        "b": {
+          "length_rho": 0.19111458946217455,
+          "n_length": 24,
+          "n_strata": 2,
+          "n_within": 8,
+          "passes": true,
+          "within_rho": 1.0
+        },
+        "c": {
+          "draws": 2000,
+          "length_failures": 2000,
+          "passes": false,
+          "seed": 0,
+          "testable": true,
+          "uniform_failures": 1759
+        },
+        "passes": false
+      },
+      "source_count_plant": {
+        "a": {
+          "checks": {
+            "area_evidence_density": {
+              "discriminates": true,
+              "distinct_covariate": 4,
+              "n": 24,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0,
+              "rho": 0.06459252506561441,
+              "trips": false
+            },
+            "area_n_claims": {
+              "discriminates": true,
+              "distinct_covariate": 4,
+              "n": 24,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0,
+              "rho": 0.06459252506561441,
+              "trips": false
+            },
+            "dens": {
+              "discriminates": true,
+              "distinct_covariate": 12,
+              "n": 24,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0,
+              "rho": 0.8337839691171867,
+              "trips": true
+            },
+            "k_step": {
+              "discriminates": false,
+              "distinct_covariate": 1,
+              "n": 24,
+              "planted_rho": null,
+              "planted_trips": false,
+              "random_trip_rate": 0.0,
+              "rho": null,
+              "trips": false
+            },
+            "k_topic": {
+              "discriminates": true,
+              "distinct_covariate": 7,
+              "n": 24,
+              "planted_rho": 1.0,
+              "planted_trips": true,
+              "random_trip_rate": 0.0,
+              "rho": 1.0,
+              "trips": true
+            }
+          },
+          "passes": false
+        },
+        "area_size_association": {
+          "reason": "Too few candidate-bearing areas; not a pass.",
+          "rho": null,
+          "status": "untestable"
+        },
+        "area_spread": {
+          "distinct": 4,
+          "max": 5.0,
+          "min": 3.2857142857142856,
+          "n_empty": 1,
+          "n_present": 4,
+          "range": 1.7142857142857144
+        },
+        "areas": [
+          {
+            "area_id": "a-7c823af7a0bcf79b",
+            "mean": 5.0,
+            "n_candidates": 6
+          },
+          {
+            "area_id": "a-89c2721fe5f2ee88",
+            "mean": 4.0,
+            "n_candidates": 5
+          },
+          {
+            "area_id": "a-8c10790bb9b3111b",
+            "mean": null,
+            "n_candidates": 0
+          },
+          {
+            "area_id": "a-b29da96b7f6c06f7",
+            "mean": 3.2857142857142856,
+            "n_candidates": 7
+          },
+          {
+            "area_id": "a-ff0a5de0f9586864",
+            "mean": 3.8333333333333335,
+            "n_candidates": 6
+          }
+        ],
+        "b": {
+          "length_rho": -0.159226628079926,
+          "n_length": 24,
+          "n_strata": 2,
+          "n_within": 8,
+          "passes": false,
+          "within_rho": null
+        },
+        "c": {
+          "draws": 2000,
+          "length_failures": 2000,
+          "passes": false,
+          "seed": 0,
+          "testable": true,
+          "uniform_failures": 1759
+        },
+        "passes": false
+      }
+    }
+  },
+  "failed": "0/2 pass: constant k_step blocks (a), and random rejection 87.95% fails the required 95%.",
+  "figure": {
+    "kind": "bar",
+    "reference": "Failure rate >= 0.95 in each stand-in family (1900 of 2000 draws).",
+    "rows": [
+      {
+        "draws": 2000,
+        "failure_rate": 0.8795,
+        "failures": 1759,
+        "stand_in": "uniform"
+      },
+      {
+        "draws": 2000,
+        "failure_rate": 1.0,
+        "failures": 2000,
+        "stand_in": "length"
+      }
+    ],
+    "source": "research/area_score/phase1_controls.json, committed in 14cbdab: stand_ins.uniform_failures, stand_ins.length_failures, stand_ins.draws",
+    "title": "PLC random-score rejection is 87.95%, below the required 95%"
+  },
+  "gold_read": false,
+  "item": "I12",
+  "owner_options": [
+    {
+      "consequence": "Do not freeze a replacement yet. Revisit with new informative features and an eligible re-judged pool; neither outcome is guaranteed.",
+      "evidence": "0/2 replacements pass; PLC random rejection is 1759/2000 (87.95%, required 95%); k_step is constant and its required check is undefined.",
+      "option": "Defer E-CTA until DS7 revives a feature",
+      "recommended": true
+    },
+    {
+      "consequence": "An explicit owner exception to the I12 acceptance screen, not a passing candidate; accept that DeltaAUROC may tie density and retain the wave-3 re-judging prerequisite.",
+      "evidence": "On PLC the reference has within-stratum rho=1, length rho=0.19111458946217455, and four distinct nonempty area means; it still fails (a) and (c).",
+      "option": "Pre-register the fixed lens reference, aggregated by arithmetic mean",
+      "recommended": false
+    }
+  ],
+  "owner_question": "No replacement passes: should E-CTA be deferred until DS7 revives a feature, or should I7 pre-register the fixed lens reference while accepting a possible tie with the density baseline?",
+  "phase": 2,
+  "recommendation_would_change_if": "A new eligible pool makes all five covariate checks testable and both stand-in rejection rates reach 95%, with a candidate passing (a) and (b); or the owner explicitly accepts the unvalidated fallback.",
+  "replay_byte_identical": true,
+  "rule_and_i6_functions_unchanged": true,
+  "rules_commit": "14cbdab",
+  "selected_option": "Pre-register the fixed lens reference with mean aggregation, and rerun the 14cbdab rules on each gold domain's pre-gold partition before the freeze (beside I5's r); defer E-CTA if that rerun also fails the noise screen (owner, 2026-10-24).",
+  "sources": {
+    "gdpr_v1": "research/area_score/predictors/gdpr_v1.json",
+    "gdpr_v2": "research/area_score/predictors/gdpr_v2.json",
+    "plc": "research/area_score/predictors/plc.json"
+  },
+  "status": "done_owner_decided",
+  "synthetic_diagnostic": {
+    "label": "SYNTHETIC",
+    "path": "research/area_score/predictors/synthetic/l73.json",
+    "spec_sha256": "0c9a0350fcfb35d7bbb64e3ba4387918b37808b0fc6de07636cf081604ef797f",
+    "used_as_research_gate_input": false
+  },
+  "verification": {
+    "gapmap": {
+      "command": "UV_CACHE_DIR=\"$PWD/.uv-cache\" UV_OFFLINE=1 UV_NO_SYNC=1 uv run --directory gapmap pytest -q",
+      "passed": 295,
+      "seconds": 151.34
+    },
+    "git_diff_check": "passed",
+    "git_metadata_written": "orchestrator committed b518774",
+    "phase_1_rule_tests": 27,
+    "phase_2_tests": 11,
+    "reconstruct": {
+      "environment": "parent reconstruct environment; worktree source paths; worktree TLDEXTRACT_CACHE",
+      "passed": 460
+    },
+    "residual": {
+      "passed": 312
+    }
+  },
+  "worked": "Both replacements pass lens/length check (b); PLC within-stratum rho is 1.0000 and 0.9549."
+}

@@ -43,6 +43,24 @@ Every console-only route of the session app (the console page, session creation,
 - Verified by `pytest-archon#test_only_expert_routes_answer_a_network_client` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
 - Source: [0005 Console routes answer only the laptop itself](decisions/0005-console-routes-loopback-only.md)
 
+### every-call-logs-even-on-failure
+
+A provider error is logged to calls.jsonl exactly like a success — outcome "api_error" with its error class and HTTP status, never billed — before the caller ever sees LLMUnavailable; a transient error (rate limit, timeout, connection, 5xx) is retried up to three times with backoff, a non-transient error is logged once and raised immediately, and neither path may skip the log line to reach the exception.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/llm.py`
+- Verified by `pytest-archon#test_backend_retries_429_then_succeeds` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
+
+### failed-calls-counted-per-task
+
+Every stage that skips a unit after a failed plan, verify, cross-verify or decoy call increments that call's own task label in the run's failed_calls_by_task counts; a run's sidecar must show how many calls of each task failed, not only how many succeeded, so "complete: true" never hides a silent loss.
+
+- Severity: blocking
+- Scope: `reconstruct/src/reconstruct/run.py`
+- Verified by `pytest-archon#test_failed_calls_by_task_counts_verify_failures` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md)
+
 ### freeze-by-computed-rule
 
 The interviewer configuration is frozen only when a pre-stated rule over measured pilot and simulated-session metrics passes, computed by code from the session logs; the outcome is accept, change one variable and re-run, or change the model.
@@ -79,6 +97,15 @@ Every LLM request and response is logged in full, and session events are append-
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0001 Stage A instrument: validity guarantees enforced in code](decisions/0001-stage-a-instrument-validity-guarantees.md)
 
+### gapmap-live-judges-opt-in
+
+The gapmap CLIs replay closure judgements from the committed cache and make no network call unless a live judge flag (--judge ollama, or --judge openai in control2) is passed; a cache miss in replay mode raises an error naming the live flag that would fill it (--judge openai for an OpenAI judge in control2, else --judge ollama) rather than calling a model.
+
+- Severity: blocking
+- Scope: `gapmap/src/gapmap/**`
+- Verified by `pytest-archon#test_replay_mode_raises_a_clear_error_naming_judge_ollama_on_cache_miss` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0009 A same-family closure judge runs only as a parallel arm](decisions/0009-same-family-judge-as-parallel-arm.md)
+
 ### guard-calibrated-before-freeze
 
 Before probe-app freeze the leading-question guard is run over a labelled set of about 60 probe questions (two labellers, kappa reported), and its sensitivity and specificity with 95% CIs are pre-registered with the guard prompt; any change to the guard model or prompt repeats the calibration.
@@ -90,7 +117,7 @@ Before probe-app freeze the leading-question guard is run over a labelled set of
 
 ### independence-before-corroboration
 
-Fetched documents are clustered by union-find (shared registrable domain, shingle containment at least 0.5, or a shared verbatim run of at least 25 words overlapping an evidence span) before any claim is counted as corroborated; a syndicated copy on another domain collapses to the same independence key and counts once.
+Fetched documents are clustered by union-find on domain-grouping key or shingle containment at least 0.5 alone (no verbatim-run rule) before any claim is counted as corroborated; a shared verbatim run of at least 25 words between spans in two different clusters is not a clustering link but collapses those spans to one corroboration count, so a syndicated copy that only shares a quoted passage still counts once without merging the documents themselves into one independence key.
 
 - Severity: blocking
 - Scope: `reconstruct/src/reconstruct/evidence.py`
@@ -195,6 +222,15 @@ The freeze and the study gates (K0, K1, K2) are decided by pre-registered rules 
 - Scope: `instrument/**`, `research/experiment-ai-assisted-cta-physics.md`
 - Narrative intent — **not** verifiable. Do not grade compliance against it.
 - Source: [0004 A data-driven freeze for the Stage A interviewer](decisions/0004-data-driven-freeze.md)
+
+### same-family-judge-only-as-parallel-arm
+
+A closure judge whose family matches a ledger's generator or verifier runs only as a parallel arm on the same pairs, prompt and parser as an other-family judge; results are reported per arm, and a gate reading counts only where both arms agree in direction.
+
+- Severity: blocking
+- Scope: `gapmap/src/gapmap/judge.py`, `gapmap/src/gapmap/control2.py`, `gapmap/src/gapmap/semantic.py`
+- Verified by review — needs judgement, and may be graded as a soft signal.
+- Source: [0009 A same-family closure judge runs only as a parallel arm](decisions/0009-same-family-judge-as-parallel-arm.md)
 
 ### session-data-outside-repo
 
@@ -303,3 +339,4 @@ A slot becomes an UNKNOWN ledger record only when its area was searched, at leas
 - [0005 Console routes answer only the laptop itself](decisions/0005-console-routes-loopback-only.md) — threat-model
 - [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md) — decide-architecture
 - [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md) — decide-architecture
+- [0009 A same-family closure judge runs only as a parallel arm](decisions/0009-same-family-judge-as-parallel-arm.md) — decide-architecture

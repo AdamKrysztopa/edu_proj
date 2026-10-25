@@ -1,0 +1,113 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Transfer entropy</title></head><body>
+<h1>Transfer entropy</h1>
+<p>Transfer entropy is a non-parametric statistic measuring the amount of directed (time-asymmetric) transfer of information between two random processes. Transfer entropy from a process X to another process Y is the amount of uncertainty reduced in future values of Y  by knowing the past values of X given past values of Y. More specifically, if</p>
+<p>X</p>
+<p>t</p>
+<p>{\displaystyle X_{t}}</p>
+<p>and</p>
+<p>Y</p>
+<p>t</p>
+<p>{\displaystyle Y_{t}}</p>
+<p>for</p>
+<p>t ∈</p>
+<p>N</p>
+<p>{\displaystyle t\in \mathbb {N} }</p>
+<p>denote two random processes and the amount of information is measured using Shannon&#x27;s entropy, the transfer entropy can be written as:</p>
+<p>T</p>
+<p>X → Y</p>
+<p>= H</p>
+<p>(</p>
+<p>Y</p>
+<p>t</p>
+<p>∣</p>
+<p>Y</p>
+<p>t − 1 : t − L</p>
+<p>)</p>
+<p>− H</p>
+<p>(</p>
+<p>Y</p>
+<p>t</p>
+<p>∣</p>
+<p>Y</p>
+<p>t − 1 : t − L</p>
+<p>,</p>
+<p>X</p>
+<p>t − 1 : t − L</p>
+<p>)</p>
+<p>,</p>
+<p>{\displaystyle T_{X\rightarrow Y}=H\left(Y_{t}\mid Y_{t-1:t-L}\right)-H\left(Y_{t}\mid Y_{t-1:t-L},X_{t-1:t-L}\right),}</p>
+<p>where H(X) is Shannon&#x27;s entropy of X. The above definition of transfer entropy has been extended by other types of entropy measures such as Rényi entropy. Transfer entropy is conditional mutual information, with the history of the influenced variable</p>
+<p>Y</p>
+<p>t − 1 : t − L</p>
+<p>{\displaystyle Y_{t-1:t-L}}</p>
+<p>in the condition:</p>
+<p>T</p>
+<p>X → Y</p>
+<p>= I (</p>
+<p>Y</p>
+<p>t</p>
+<p>;</p>
+<p>X</p>
+<p>t − 1 : t − L</p>
+<p>∣</p>
+<p>Y</p>
+<p>t − 1 : t − L</p>
+<p>) .</p>
+<p>{\displaystyle T_{X\rightarrow Y}=I(Y_{t};X_{t-1:t-L}\mid Y_{t-1:t-L}).}</p>
+<p>Transfer entropy reduces to Granger causality for vector auto-regressive processes. Hence, it is advantageous when the model assumption of Granger causality doesn&#x27;t hold, for example, analysis of non-linear signals. However, it usually requires more samples for accurate estimation. The probabilities in the entropy formula can be estimated using different approaches (binning, nearest neighbors) or, in order to reduce complexity, using a non-uniform embedding. While it was originally defined for bivariate analysis, transfer entropy has been extended to multivariate forms, either conditioning on other potential source variables or considering transfer from a collection of sources, although these forms require more samples again. Transfer entropy has been used for estimation of functional connectivity of neurons, social influence in social networks and statistical causality between armed conflict events. Transfer entropy is a finite version of the directed information which was defined in 1990 by James Massey as</p>
+<p>I (</p>
+<p>X</p>
+<p>n</p>
+<p>→</p>
+<p>Y</p>
+<p>n</p>
+<p>) =</p>
+<p>∑</p>
+<p>i = 1</p>
+<p>n</p>
+<p>I (</p>
+<p>X</p>
+<p>i</p>
+<p>;</p>
+<p>Y</p>
+<p>i</p>
+<p>|</p>
+<p>Y</p>
+<p>i − 1</p>
+<p>)</p>
+<p>{\displaystyle I(X^{n}\to Y^{n})=\sum _{i=1}^{n}I(X^{i};Y_{i}|Y^{i-1})}</p>
+<p>,  where</p>
+<p>X</p>
+<p>n</p>
+<p>{\displaystyle X^{n}}</p>
+<p>denotes the vector</p>
+<p>X</p>
+<p>1</p>
+<p>,</p>
+<p>X</p>
+<p>2</p>
+<p>, . . . ,</p>
+<p>X</p>
+<p>n</p>
+<p>{\displaystyle X_{1},X_{2},...,X_{n}}</p>
+<p>and</p>
+<p>Y</p>
+<p>n</p>
+<p>{\displaystyle Y^{n}}</p>
+<p>denotes</p>
+<p>Y</p>
+<p>1</p>
+<p>,</p>
+<p>Y</p>
+<p>2</p>
+<p>, . . . ,</p>
+<p>Y</p>
+<p>n</p>
+<p>{\displaystyle Y_{1},Y_{2},...,Y_{n}}</p>
+<p>. The directed information places an important role in characterizing the fundamental limits (channel capacity) of communication channels with or without feedback and gambling with causal side information.</p>
+<h2>See also</h2>
+<p>Directed information Mutual information Conditional mutual information Causality Causality (physics) Structural equation modeling Rubin causal model</p>
+<h2>References</h2>
+<h2>External links</h2>
+<p>&quot;Transfer Entropy Toolbox&quot;. Google Code., a toolbox, developed in C++ and MATLAB, for computation of transfer entropy between spike trains. &quot;Java Information Dynamics Toolkit (JIDT)&quot;. GitHub. 2019-01-16., a toolbox, developed in Java and usable in MATLAB, GNU Octave and Python, for computation of transfer entropy and related information-theoretic measures in both discrete and continuous-valued data. &quot;Multivariate Transfer Entropy (MuTE) toolbox&quot;. GitHub. 2019-01-09., a toolbox, developed in MATLAB, for computation of transfer entropy with different estimators.</p>
+</body></html>

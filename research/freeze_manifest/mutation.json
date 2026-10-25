@@ -1,0 +1,267 @@
+{
+ "accepted": 2,
+ "base_restored": true,
+ "expected_accepted": 2,
+ "expected_refused": 40,
+ "ok": true,
+ "placeholders": [
+  "research/freeze_manifest/area_partition.json",
+  "research/freeze_manifest/closure_arms.json",
+  "research/freeze_manifest/eligible_gold.json"
+ ],
+ "refused": 40,
+ "rows": [
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/__init__.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/__main__.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/area.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/checks.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/control2.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/jev.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/judge.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/lenses.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/link.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/manifest.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/rank.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/record.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/semantic.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/text.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/tests/conftest.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/tests/l73_fixtures.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "reconstruct/src/reconstruct/admission.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "research/freeze_manifest/area_partition.json"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "research/freeze_manifest/closure_arms.json"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "research/freeze_manifest/eligible_gold.json"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "research/n3_control_v3/compare.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "research/n3_control_v3/l73.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/__init__.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/auroc.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/baselines.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/claims.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/estimators.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/features.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/freeze.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/gapmap.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/gates.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/ledger.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/presence.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/provenance.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/reach.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/residual.py"
+  },
+  {
+   "change": "one character",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "residual/src/residual/vocab.py"
+  },
+  {
+   "change": "config value",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/config.py"
+  },
+  {
+   "change": "new module in the package",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/zz_i7_probe.py"
+  },
+  {
+   "change": "required file deleted",
+   "expected": "refused",
+   "observed": "refused",
+   "path": "gapmap/src/gapmap/area.py"
+  },
+  {
+   "change": "comment only",
+   "expected": "accepted",
+   "observed": "accepted",
+   "path": "gapmap/src/gapmap/config.py"
+  },
+  {
+   "change": "comment only",
+   "expected": "accepted",
+   "observed": "accepted",
+   "path": "gapmap/src/gapmap/render.py"
+  }
+ ]
+}

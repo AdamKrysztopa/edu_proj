@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset='utf-8'><title>mutual_info_regression</title></head><body>
+<h1>mutual_info_regression</h1>
+<p>sklearn.feature_selection.mutual_info_regression(X, y, *, discrete_features=&#x27;auto&#x27;, n_neighbors=3, copy=True, random_state=None, n_jobs=None)[source]</p>
+<p>Estimate mutual information for a continuous target variable. Mutual information (MI) [1] between two random variables is a non-negative value, which measures the dependency between the variables. It is equal to zero if and only if two random variables are independent, and higher values mean higher dependency. The function relies on nonparametric methods based on entropy estimation from k-nearest neighbors distances as described in [2] and [3]. Both methods are based on the idea originally proposed in [4]. It can be used for univariate features selection, read more in the User Guide. Parameters: Xarray-like or sparse matrix, shape (n_samples, n_features)Feature matrix.</p>
+<p>yarray-like of shape (n_samples,)</p>
+<p>Target vector.</p>
+<p>discrete_features{‘auto’, bool, array-like}, default=’auto’</p>
+<p>If bool, then determines whether to consider all features discrete or continuous. If array, then it should be either a boolean mask with shape (n_features,) or array with indices of discrete features. If ‘auto’, it is assigned to False for dense X and to True for sparse X.</p>
+<p>n_neighborsint, default=3</p>
+<p>Number of neighbors to use for MI estimation for continuous variables, see [2] and [3]. Higher values reduce variance of the estimation, but could introduce a bias.</p>
+<p>copybool, default=True</p>
+<p>Whether to make a copy of the given data. If set to False, the initial data will be overwritten.</p>
+<p>random_stateint, RandomState instance or None, default=None</p>
+<p>Determines random number generation for adding small noise to continuous variables in order to remove repeated values. Pass an int for reproducible results across multiple function calls. See Glossary.</p>
+<p>n_jobsint, default=None</p>
+<p>The number of jobs to use for computing the mutual information. The parallelization is done on the columns of X. None means 1 unless in a joblib.parallel_backend context. -1 means using all processors. See Glossary for more details. Added in version 1.5.</p>
+<p>Returns:</p>
+<p>mindarray, shape (n_features,)Estimated mutual information between each feature and the target in nat units.</p>
+<p>Notes</p>
+<p>The term “discrete features” is used instead of naming them “categorical”, because it describes the essence more accurately. For example, pixel intensities of an image are discrete features (but hardly categorical) and you will get better results if mark them as such. Also note, that treating a continuous variable as discrete and vice versa will usually give incorrect results, so be attentive about that.</p>
+<p>True mutual information can’t be negative. If its estimate turns out to be negative, it is replaced by zero.</p>
+<p>References</p>
+<p>Mutual Information on Wikipedia.</p>
+<p>A. Kraskov, H. Stogbauer and P. Grassberger, “Estimating mutual information”. Phys. Rev. E 69, 2004.</p>
+<p>B. C. Ross “Mutual Information between Discrete and Continuous Data Sets”. PLoS ONE 9(2), 2014.</p>
+<p>L. F. Kozachenko, N. N. Leonenko, “Sample Estimate of the Entropy of a Random Vector”, Probl. Peredachi Inf., 23:2 (1987), 9-16</p>
+<p>Examples</p>
+<p>&gt;&gt;&gt; from sklearn.datasets import make_regression &gt;&gt;&gt; from sklearn.feature_selection import mutual_info_regression &gt;&gt;&gt; X, y = make_regression( ... n_samples=50, n_features=3, n_informative=1, noise=1e-4, random_state=42 ... ) &gt;&gt;&gt; mutual_info_regression(X, y) array([0.117, 2.645, 0.0287])</p>
+<h2>Gallery examples</h2>
+<p>Comparison of F-test and mutual information</p>
+</body></html>

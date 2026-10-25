@@ -1,0 +1,112 @@
+{
+ "admissibility_note": null,
+ "admissible": true,
+ "area_level": {
+  "score_max~evidence_density": {
+   "discriminates": false,
+   "distinct_covariate": 5,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.137,
+   "rho": 0.0,
+   "trips": false
+  },
+  "score_max~n_claims": {
+   "discriminates": false,
+   "distinct_covariate": 5,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.1445,
+   "rho": 0.35355339059327373,
+   "trips": false
+  },
+  "score_max~n_independent_sources": {
+   "discriminates": false,
+   "distinct_covariate": 3,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.0925,
+   "rho": 0.3952847075210474,
+   "trips": false
+  },
+  "score_noisy_or~evidence_density": {
+   "discriminates": false,
+   "distinct_covariate": 5,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.137,
+   "rho": 0.0,
+   "trips": false
+  },
+  "score_noisy_or~n_claims": {
+   "discriminates": false,
+   "distinct_covariate": 5,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.1445,
+   "rho": 0.35355339059327373,
+   "trips": false
+  },
+  "score_noisy_or~n_independent_sources": {
+   "discriminates": false,
+   "distinct_covariate": 3,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.0925,
+   "rho": 0.3952847075210474,
+   "trips": false
+  }
+ },
+ "candidate_level": {
+  "area_evidence_density": {
+   "discriminates": false,
+   "distinct_covariate": 1,
+   "n": 1,
+   "planted_rho": null,
+   "planted_trips": false,
+   "random_trip_rate": 0.0,
+   "rho": null,
+   "trips": false
+  },
+  "area_n_claims": {
+   "discriminates": false,
+   "distinct_covariate": 1,
+   "n": 1,
+   "planted_rho": null,
+   "planted_trips": false,
+   "random_trip_rate": 0.0,
+   "rho": null,
+   "trips": false
+  },
+  "dens": {
+   "discriminates": false,
+   "distinct_covariate": 1,
+   "n": 1,
+   "planted_rho": null,
+   "planted_trips": false,
+   "random_trip_rate": 0.0,
+   "rho": null,
+   "trips": false
+  },
+  "k_topic": {
+   "discriminates": false,
+   "distinct_covariate": 1,
+   "n": 1,
+   "planted_rho": null,
+   "planted_trips": false,
+   "random_trip_rate": 0.0,
+   "rho": null,
+   "trips": false
+  }
+ },
+ "domain": "gdpr_v1",
+ "grain": "planner",
+ "random_trip_max": 0.05,
+ "threshold": 0.8
+}

@@ -1,0 +1,49 @@
+{
+ "item": "I7",
+ "card": {
+  "question": "Can the freeze manifest and the admission rule hold a pre-registration boundary?",
+  "answer": "Yes, as a mechanism: 40/40 mutations refused, 2/2 outside edits accepted, 17/17 planted documents classified as planted; no value is frozen yet.",
+  "changed": "The MS2 freeze writes the partition, gold list and closure arms into research/freeze_manifest/ and runs gapmap and control2 with --require-manifest; none of the 80 sources in the committed PLC and GDPR runs passes a 1994 gold date."
+ },
+ "worked": "Every hashed-file, config-value and structural mutation refused (40/40, after the wave 2 merge); fixtures 17/17.",
+ "failed": "0 of 80 committed PLC and GDPR sources admissible at a 1994-06-01 gold date (52 undated); manifest incomplete by design, 3 freeze files missing (partition, eligible golds, closure arms).",
+ "figure": {
+  "title": "The manifest refused 40/40 mutations and accepted 2/2 outside edits; admission classified 17/17 plants",
+  "kind": "bar",
+  "rows": [
+   {
+    "check": "one character changed in a hashed file",
+    "expected": "refused",
+    "correct": 37,
+    "n": 37
+   },
+   {
+    "check": "config value, new module, deleted file",
+    "expected": "refused",
+    "correct": 3,
+    "n": 3
+   },
+   {
+    "check": "comment-only change outside the set",
+    "expected": "accepted",
+    "correct": 2,
+    "n": 2
+   },
+   {
+    "check": "planted documents (13 rejects, 4 admits)",
+    "expected": "as planted",
+    "correct": 17,
+    "n": 17
+   }
+  ],
+  "reference": "correct = n on every row; a single miss fails the mechanism",
+  "source": "research/freeze_manifest/mutation.json (rows: change, expected, observed) and research/freeze_manifest/admission.json (fixtures_ok, fixtures_n, fixtures[].expected)"
+ },
+ "post_merge": {
+  "manifest_sha256_prefix": "d38a1720",
+  "files": 37,
+  "mutations_refused": "40/40",
+  "missing": 3,
+  "note": "regenerated on plans-2026-10-24 after the wave 2 merge (7196e0c, 264cb43)"
+ }
+}

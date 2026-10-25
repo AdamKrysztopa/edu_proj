@@ -122,3 +122,26 @@ def test_judge_cache_miss_propagates_not_swallowed_as_undecided():
 
 def test_categorize_routes_undecided_to_rg_undecided_not_a_hypothesis():
     assert record.categorize("undecided", k_topic=5) == "RG-UNDECIDED"
+
+
+@pytest.mark.parametrize("reply", [
+    {},
+    {"reason": "no keys at all"},
+    {"states": 1, "partially": []},
+    {"states": [], "partially": "2"},
+    {"states": None},
+])
+def test_a_reply_without_a_listed_key_is_undecided_never_open(reply):
+    out = semantic.judge_retrieval(_FixedJudge(reply), _retrieval(), "seed", "question?")
+    assert out.state == "undecided"
+
+
+def test_a_states_only_reply_is_still_decided():
+    ret = _retrieval()
+    first_id_str, first_cid, _sent = ret.a_items[0]
+    out = semantic.judge_retrieval(_FixedJudge({"states": [first_id_str], "reason": "r"}), ret,
+                                   "seed", "question?")
+    assert out.state == "closed"
+    assert out.a_hits == (first_cid,)
+    out = semantic.judge_retrieval(_FixedJudge({"states": []}), ret, "seed", "question?")
+    assert out.state == "open"

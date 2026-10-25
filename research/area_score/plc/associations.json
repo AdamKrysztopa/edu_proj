@@ -1,0 +1,112 @@
+{
+ "admissibility_note": null,
+ "admissible": true,
+ "area_level": {
+  "score_max~evidence_density": {
+   "discriminates": false,
+   "distinct_covariate": 5,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.1275,
+   "rho": 0.4472135954999579,
+   "trips": false
+  },
+  "score_max~n_claims": {
+   "discriminates": false,
+   "distinct_covariate": 5,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.1275,
+   "rho": 0.4472135954999579,
+   "trips": false
+  },
+  "score_max~n_independent_sources": {
+   "discriminates": false,
+   "distinct_covariate": 4,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.126,
+   "rho": 0.3441236008058426,
+   "trips": false
+  },
+  "score_noisy_or~evidence_density": {
+   "discriminates": false,
+   "distinct_covariate": 5,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.1275,
+   "rho": 0.2,
+   "trips": false
+  },
+  "score_noisy_or~n_claims": {
+   "discriminates": false,
+   "distinct_covariate": 5,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.1275,
+   "rho": 0.2,
+   "trips": false
+  },
+  "score_noisy_or~n_independent_sources": {
+   "discriminates": false,
+   "distinct_covariate": 4,
+   "n": 5,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.126,
+   "rho": 0.4616902584383194,
+   "trips": false
+  }
+ },
+ "candidate_level": {
+  "area_evidence_density": {
+   "discriminates": true,
+   "distinct_covariate": 4,
+   "n": 24,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.0,
+   "rho": 0.04552956878488006,
+   "trips": false
+  },
+  "area_n_claims": {
+   "discriminates": true,
+   "distinct_covariate": 4,
+   "n": 24,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.0,
+   "rho": 0.04552956878488006,
+   "trips": false
+  },
+  "dens": {
+   "discriminates": true,
+   "distinct_covariate": 12,
+   "n": 24,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.0,
+   "rho": 0.7850923042441874,
+   "trips": false
+  },
+  "k_topic": {
+   "discriminates": true,
+   "distinct_covariate": 7,
+   "n": 24,
+   "planted_rho": 1.0,
+   "planted_trips": true,
+   "random_trip_rate": 0.0,
+   "rho": 0.960324216950288,
+   "trips": true
+  }
+ },
+ "domain": "plc",
+ "grain": "planner",
+ "random_trip_max": 0.05,
+ "threshold": 0.8
+}
