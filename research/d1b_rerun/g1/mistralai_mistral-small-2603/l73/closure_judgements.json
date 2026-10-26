@@ -1,0 +1,66 @@
+{
+ "0e647b06991e5180dfbcb9885c51084eb4ff2947f515bfb6b669619afadc624c": {
+  "partially": [],
+  "reason": "No sentence explicitly states a condition for choosing an option.",
+  "states": []
+ },
+ "1cac42b4632c14e8c97a60379e6ec335b2be6ca523e458bf7d086119d6103a08": {
+  "partially": [],
+  "reason": "No sentence explicitly states a condition for choosing an option in a specific situation.",
+  "states": []
+ },
+ "2148b241a5d7c6c8b2f502b0d28070a823df1e9d00d336159f3542d106b89000": {
+  "partially": [],
+  "reason": "Directly links sampling rate to suspected event",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "2c39b2c110e4a7f585f898567076df3382b25b4c844a258691933be02da753ae": {
+  "partially": [],
+  "reason": "No sentence explicitly states a condition for choosing an option.",
+  "states": []
+ },
+ "414b2f523ad79566d0faf5215d1bfa60afa760c0aacbec75806099856f8a8151": {
+  "partially": [],
+  "reason": "No sentence explicitly states a condition for selecting an option based on a situation.",
+  "states": []
+ },
+ "4c9c4c9c5f6cb8d106be5d3dd85e5925c7ee046d38189bfd28cad973f965c324": {
+  "partially": [],
+  "reason": "Guidance explicitly links interval selection to suspected event.",
+  "states": [
+   3,
+   4
+  ]
+ },
+ "87c32cb54b024ce85c7182327aa76aa83004c79acb029f5720ee6cc9c7b07d0a": {
+  "partially": [],
+  "reason": "Only sentence 3 specifies a condition for test selection.",
+  "states": [
+   3
+  ]
+ },
+ "9639e72b194bcd251f515ce9f72b5998c102d6df5d0e38caecd38d1ac39b5481": {
+  "partially": [],
+  "reason": "No sentence explicitly states a condition for choosing an option based on the situation.",
+  "states": []
+ },
+ "970a22b66257c948f41e01f36de99a0f3806e66e515803313b9a3c3b07d90081": {
+  "partially": [],
+  "reason": "No sentence explicitly states a condition for choosing an option.",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 2000,
+  "model": "mistralai/mistral-small-2603",
+  "price_usd_per_mtok": [
+   0.15,
+   0.6
+  ],
+  "response_format": "json_object",
+  "temperature": 0
+ }
+}

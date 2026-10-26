@@ -1,0 +1,78 @@
+{
+ "diff": 0.33333333333333337,
+ "judge_model": "deepseek/deepseek-v4.1-flash",
+ "lower90": 0.0,
+ "n_clusters": 4,
+ "n_topics": 6,
+ "passes": false,
+ "rates": {
+  "0": 0.6666666666666666,
+  "N": 0.5,
+  "N+": 0.5,
+  "P": 0.8333333333333334,
+  "R": 0.5
+ },
+ "spend": {
+  "cached_tokens": 114,
+  "calls": 30,
+  "completion_tokens": 31559,
+  "finish_reasons": {
+   "length": 9,
+   "stop": 21
+  },
+  "max_usd": 0.4,
+  "prior_usd": 0.050395943,
+  "prompt_tokens": 10319,
+  "reasoning_tokens": 30753,
+  "served_models": [
+   "deepseek/deepseek-v4.1-flash"
+  ],
+  "usd": 0.022113228799999995
+ },
+ "split": "selection",
+ "states": {
+  "t03": {
+   "0": "undecided",
+   "N": "undecided",
+   "N+": "undecided",
+   "P": "closed",
+   "R": "undecided"
+  },
+  "t04": {
+   "0": "partial",
+   "N": "undecided",
+   "N+": "undecided",
+   "P": "closed",
+   "R": "partial"
+  },
+  "t06": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "undecided"
+  },
+  "t12": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "undecided",
+   "R": "closed"
+  },
+  "t19": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t22": {
+   "0": "closed",
+   "N": "partial",
+   "N+": "undecided",
+   "P": "closed",
+   "R": "closed"
+  }
+ },
+ "undecided": 9
+}

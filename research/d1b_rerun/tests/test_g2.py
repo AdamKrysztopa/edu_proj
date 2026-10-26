@@ -141,3 +141,14 @@ def test_closing_markers_must_be_balanced_between_p_and_n_over_the_set():
         inserts[t["topic_id"]] = {**inserts[t["topic_id"]],
                                   "P": inserts[t["topic_id"]]["P"].replace("keeps", "because it keeps")}
     assert "marker" in g2.marker_problem(topics, inserts)
+
+
+def test_any_undecided_arm_makes_the_verdict_incomplete_not_fail():
+    topics, inserts = _set()
+
+    class Sometimes(Oracle):
+        def ask(self, prompt):
+            return None if "series 3 " in prompt else super().ask(prompt)
+
+    res = g2.evaluate(topics, inserts, Sometimes(inserts), split="gate")
+    assert res["undecided"] > 0 and res["complete"] is False and res["passes"] is False

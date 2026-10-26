@@ -86,3 +86,71 @@ def test_the_gapmap_cli_runs_an_openrouter_judge_alone_and_replays(tmp_path, mon
 def test_an_openrouter_replay_cache_miss_names_judge_openrouter(tmp_path):
     with pytest.raises(judge_mod.JudgeCacheMiss, match="--judge openrouter"):
         cli.main([*_args(tmp_path), "--model", MODEL])
+
+
+class Flaky:
+    """Fails with the given HTTP codes in turn, then answers like FakePost."""
+
+    def __init__(self, codes, finish_reason="stop"):
+        self.codes, self.posts = list(codes), 0
+        self.ok = FakePost()
+        self.finish_reason = finish_reason
+
+    def __call__(self, url, body, headers):
+        import urllib.error
+        self.posts += 1
+        if self.codes:
+            raise urllib.error.HTTPError(url, self.codes.pop(0), "err", {}, None)
+        reply = self.ok(url, body, headers)
+        reply["choices"][0]["finish_reason"] = self.finish_reason
+        return reply
+
+
+def _flaky_judge(post, monkeypatch):
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test")
+    return judge_mod.OpenRouterJudge(MODEL, max_usd=5, post=post, sleep=lambda s: None)
+
+
+def test_a_rate_limit_is_retried_then_answered(monkeypatch):
+    post = Flaky([429, 503])
+    assert _flaky_judge(post, monkeypatch).ask("p")["states"] == [1]
+    assert post.posts == 3
+
+
+def test_a_persistent_rate_limit_stops_the_run_instead_of_becoming_undecided(monkeypatch):
+    post = Flaky([429] * 10)
+    with pytest.raises(judge_mod.JudgeUnavailable):
+        _flaky_judge(post, monkeypatch).ask("p")
+    assert post.posts == 4
+
+
+def test_a_non_transient_error_stops_at_once(monkeypatch):
+    post = Flaky([400])
+    with pytest.raises(judge_mod.JudgeUnavailable):
+        _flaky_judge(post, monkeypatch).ask("p")
+    assert post.posts == 1
+
+
+def test_a_truncated_reply_stops_the_run_and_is_still_charged(monkeypatch):
+    j = _flaky_judge(Flaky([], finish_reason="length"), monkeypatch)
+    with pytest.raises(judge_mod.JudgeUnavailable, match="truncated"):
+        j.ask("p")
+    assert j.spent_usd > 0
+
+
+def test_an_unavailable_judge_propagates_through_the_parser():
+    from gapmap import semantic
+
+    class Down:
+        model_id = "down"
+
+        def ask(self, prompt):
+            raise judge_mod.JudgeUnavailable("429")
+
+    retrieval = semantic.build_retrieval([("c", 0, "A sentence.")])
+    with pytest.raises(judge_mod.JudgeUnavailable):
+        semantic.judge_retrieval(Down(), retrieval, "seed", "question")
+
+
+def test_the_default_reply_cap_leaves_room_for_reasoning_models():
+    assert judge_mod.OpenRouterJudge(MODEL, max_usd=1).max_completion_tokens >= 8000

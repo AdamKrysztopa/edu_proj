@@ -8,6 +8,8 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Protocol
@@ -80,6 +82,12 @@ def family(model_id: str) -> str:
     return "other"
 
 
+class JudgeUnavailable(JudgeCacheMiss):
+    """A provider error that outlived its retries, or a truncated reply: a JudgeCacheMiss so that
+    `semantic.judge_retrieval` re-raises it, because an unanswered prompt is not an "undecided"
+    judgement and must stop the run, never count as a closure state."""
+
+
 class BudgetExceeded(JudgeCacheMiss):
     """A JudgeCacheMiss so that `semantic.judge_retrieval` re-raises it: every other exception there
     degrades to `undecided`, and a refused call must stop the run, not become a judgement."""
@@ -134,6 +142,14 @@ class OpenAIJudge:
     def _billed(self, usage: dict, prompt_tokens: int, completion_tokens: int) -> float:
         return self._cost(prompt_tokens, completion_tokens)
 
+    def _send(self, body: dict) -> dict:
+        post = self._post or _http_post
+        return post(self.URL, body, {"Content-Type": "application/json",
+                                     "Authorization": "Bearer " + os.environ[self.KEY_ENV]})
+
+    def _after(self, choice: dict) -> None:
+        pass
+
     def _cost(self, prompt_tokens: int, completion_tokens: int) -> float:
         pin, pout = self.PRICES[self.model_id]
         return (prompt_tokens * pin + completion_tokens * pout) / 1e6
@@ -144,9 +160,7 @@ class OpenAIJudge:
             self.incomplete = True
             raise BudgetExceeded(f"spent ${self.prior_usd + self.spent_usd:.4f}; the next call could cost ${worst:.4f} "
                                  f"against a ${self.max_usd:.4f} cap; refusing it")
-        post = self._post or _http_post
-        payload = post(self.URL, self._body(prompt), {"Content-Type": "application/json",
-                                                      "Authorization": "Bearer " + os.environ[self.KEY_ENV]})
+        payload = self._send(self._body(prompt))
         usage = payload.get("usage") or {}
         p_tok, c_tok = usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0)
         cost = self._billed(usage, p_tok, c_tok)
@@ -162,6 +176,7 @@ class OpenAIJudge:
         if self.spend_ledger:
             with self.spend_ledger.open("a") as f:
                 f.write(json.dumps({"model": self.model_id, **call}, sort_keys=True) + "\n")
+        self._after(choice)
         content = (choice.get("message") or {}).get("content")
         try:
             parsed = json.loads(content) if content else None
@@ -200,10 +215,33 @@ class OpenRouterJudge(OpenAIJudge):
     URL = OPENROUTER_URL
     KEY_ENV = "OPENROUTER_API_KEY"
 
-    def __init__(self, model: str, *, max_usd: float, max_completion_tokens: int = 2000, post=None,
-                 spend_ledger: Path | str | None = None):
+    TRANSIENT = frozenset({408, 429, 500, 502, 503, 504})
+    RETRIES = 3
+
+    def __init__(self, model: str, *, max_usd: float, max_completion_tokens: int = 8000, post=None,
+                 spend_ledger: Path | str | None = None, sleep=time.sleep):
         super().__init__(model, max_usd=max_usd, reasoning_effort=None,
                          max_completion_tokens=max_completion_tokens, post=post, spend_ledger=spend_ledger)
+        self._sleep = sleep
+
+    def _send(self, body: dict) -> dict:
+        for attempt in range(self.RETRIES + 1):
+            try:
+                return super()._send(body)
+            except urllib.error.HTTPError as exc:
+                if exc.code not in self.TRANSIENT or attempt == self.RETRIES:
+                    raise JudgeUnavailable(f"{self.model_id}: HTTP {exc.code} after {attempt + 1} attempt(s)") from exc
+            except (urllib.error.URLError, TimeoutError) as exc:
+                if attempt == self.RETRIES:
+                    raise JudgeUnavailable(f"{self.model_id}: {type(exc).__name__} after {attempt + 1} attempts") from exc
+            self._sleep(2 ** attempt)
+        raise AssertionError("unreachable")
+
+    def _after(self, choice: dict) -> None:
+        # deepseek-v4.1-flash and qwen3.8-flash reason by default: 12 and 14 of their C1 replies hit a
+        # 2,000-token cap (2026-10-26).
+        if choice.get("finish_reason") == "length":
+            raise JudgeUnavailable(f"{self.model_id}: reply truncated at {self.max_completion_tokens} tokens")
 
     def _settings(self, reasoning_effort: str | None, max_completion_tokens: int) -> dict:
         return {"api": self.URL, "max_tokens": max_completion_tokens, "response_format": "json_object",

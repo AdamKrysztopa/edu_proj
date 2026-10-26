@@ -1,0 +1,78 @@
+{
+ "diff": 0.16666666666666663,
+ "judge_model": "qwen/qwen3.8-flash",
+ "lower90": -0.25,
+ "n_clusters": 4,
+ "n_topics": 6,
+ "passes": false,
+ "rates": {
+  "0": 0.6666666666666666,
+  "N": 0.5,
+  "N+": 0.5,
+  "P": 0.6666666666666666,
+  "R": 0.6666666666666666
+ },
+ "spend": {
+  "cached_tokens": 0,
+  "calls": 30,
+  "completion_tokens": 39687,
+  "finish_reasons": {
+   "length": 9,
+   "stop": 21
+  },
+  "max_usd": 0.4,
+  "prior_usd": 0.10675704180000001,
+  "prompt_tokens": 11643,
+  "reasoning_tokens": 38787,
+  "served_models": [
+   "qwen/qwen3.8-flash"
+  ],
+  "usd": 0.020399340000000002
+ },
+ "split": "selection",
+ "states": {
+  "t03": {
+   "0": "undecided",
+   "N": "undecided",
+   "N+": "undecided",
+   "P": "closed",
+   "R": "undecided"
+  },
+  "t04": {
+   "0": "partial",
+   "N": "partial",
+   "N+": "partial",
+   "P": "closed",
+   "R": "undecided"
+  },
+  "t06": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t12": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "undecided",
+   "P": "undecided",
+   "R": "closed"
+  },
+  "t19": {
+   "0": "closed",
+   "N": "undecided",
+   "N+": "closed",
+   "P": "undecided",
+   "R": "closed"
+  },
+  "t22": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  }
+ },
+ "undecided": 9
+}

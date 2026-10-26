@@ -1,0 +1,73 @@
+{
+ "diff": 0.0,
+ "judge_model": "mistralai/mistral-small-2603",
+ "lower90": 0.0,
+ "n_clusters": 4,
+ "n_topics": 6,
+ "passes": false,
+ "rates": {
+  "0": 0.0,
+  "N": 0.0,
+  "N+": 0.0,
+  "P": 0.0,
+  "R": 0.0
+ },
+ "spend": {
+  "cached_tokens": 0,
+  "calls": 0,
+  "completion_tokens": 0,
+  "finish_reasons": {},
+  "max_usd": 0.4,
+  "prior_usd": 0.1275020118,
+  "prompt_tokens": 0,
+  "reasoning_tokens": 0,
+  "served_models": [],
+  "usd": 0.0
+ },
+ "split": "selection",
+ "states": {
+  "t03": {
+   "0": "undecided",
+   "N": "undecided",
+   "N+": "undecided",
+   "P": "undecided",
+   "R": "undecided"
+  },
+  "t04": {
+   "0": "undecided",
+   "N": "undecided",
+   "N+": "undecided",
+   "P": "undecided",
+   "R": "undecided"
+  },
+  "t06": {
+   "0": "undecided",
+   "N": "undecided",
+   "N+": "undecided",
+   "P": "undecided",
+   "R": "undecided"
+  },
+  "t12": {
+   "0": "undecided",
+   "N": "undecided",
+   "N+": "undecided",
+   "P": "undecided",
+   "R": "undecided"
+  },
+  "t19": {
+   "0": "undecided",
+   "N": "undecided",
+   "N+": "undecided",
+   "P": "undecided",
+   "R": "undecided"
+  },
+  "t22": {
+   "0": "undecided",
+   "N": "undecided",
+   "N+": "undecided",
+   "P": "undecided",
+   "R": "undecided"
+  }
+ },
+ "undecided": 30
+}
