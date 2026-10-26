@@ -1,11 +1,12 @@
 {
+ "R_excess": 0.0,
  "complete": true,
  "diff": 0.9230769230769231,
  "judge_model": "google/gemma-4-31b-it",
  "lower90": 0.75,
  "n_clusters": 10,
  "n_topics": 13,
- "passes": false,
+ "passes": true,
  "rates": {
   "0": 0.15384615384615385,
   "N": 0.07692307692307693,
@@ -14,20 +15,16 @@
   "R": 0.15384615384615385
  },
  "spend": {
-  "cached_tokens": 1248,
-  "calls": 65,
-  "completion_tokens": 39208,
-  "finish_reasons": {
-   "stop": 65
-  },
-  "max_usd": 0.8,
-  "prior_usd": 0.335677333178,
-  "prompt_tokens": 20796,
-  "reasoning_tokens": 37943,
-  "served_models": [
-   "google/gemma-4-31b-it"
-  ],
-  "usd": 0.022115755000000004
+  "cached_tokens": 0,
+  "calls": 0,
+  "completion_tokens": 0,
+  "finish_reasons": {},
+  "max_usd": 0.0,
+  "prior_usd": 0.0,
+  "prompt_tokens": 0,
+  "reasoning_tokens": 0,
+  "served_models": [],
+  "usd": 0.0
  },
  "split": "gate",
  "states": {

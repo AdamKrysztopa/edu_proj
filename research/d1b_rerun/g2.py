@@ -6,7 +6,9 @@ concrete non-element, at least as long and as on-topic as P), N+ (N plus 2-3 mor
 non-elements), R (random letters with P's word lengths). Pass on a split, stated before any call:
 close(P) - close(N) >= 0.50, its cluster-bootstrap lower bound (5th percentile of 2,000 resamples
 of whole clusters) >= 0.30, close(N) <= 0.25, close(N+) <= 0.25, close(R) <= 0.10,
-close(0) <= 0.25. Only "closed" counts as closing. Any undecided arm makes the verdict incomplete,
+close(0) <= 0.25. Only "closed" counts as closing. Amendment (owner, 2026-10-26, post hoc, found on
+gemma's gate data): every R arm contains the no-insert arm, so R is scored on what the random letters
+add -- R closures among topics whose no-insert arm is open (`R_excess`); the raw R rate is reported. Any undecided arm makes the verdict incomplete,
 never a fail; a judge that cannot answer (rate limit, truncation) stops the run. Runs only on fixtures the owner confirmed.
 
     uv run --directory gapmap python ../research/d1b_rerun/g2.py --out DIR --split selection|gate \
@@ -139,7 +141,9 @@ def evaluate(topics: list[dict], inserts: dict, judge, *, split: str) -> dict:
     closed = {tid: {a: s == "closed" for a, s in st.items()} for tid, st in states.items()}
     rates = {a: sum(c[a] for c in closed.values()) / len(chosen) for a in ARMS}
     per_topic = [(t["cluster"], int(closed[t["topic_id"]]["P"]) - int(closed[t["topic_id"]]["N"])) for t in chosen]
-    res = {"judge_model": judge.model_id, "split": split, "n_topics": len(chosen),
+    base_open = [tid for tid in closed if not closed[tid]["0"]]
+    r_excess = sum(closed[tid]["R"] for tid in base_open) / len(base_open) if base_open else 0.0
+    res = {"judge_model": judge.model_id, "split": split, "n_topics": len(chosen), "R_excess": r_excess,
            "n_clusters": len({t["cluster"] for t in chosen}), "rates": rates,
            "diff": rates["P"] - rates["N"], "lower90": _lower(per_topic),
            "undecided": sum(s == "undecided" for st in states.values() for s in st.values()), "states": states}
@@ -151,7 +155,7 @@ def evaluate(topics: list[dict], inserts: dict, judge, *, split: str) -> dict:
 def passes(res: dict) -> bool:
     r = res["rates"]
     return (res.get("undecided", 0) == 0 and res["diff"] >= 0.50 and res["lower90"] >= 0.30 and r["N"] <= 0.25 and r["N+"] <= 0.25
-            and r["R"] <= 0.10 and r["0"] <= 0.25)
+            and res.get("R_excess", r["R"]) <= 0.10 and r["0"] <= 0.25)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -206,7 +210,7 @@ def main(argv: list[str] | None = None) -> int:
         res["spend"] = backend.spend()
     (out / f"g2_{args.split}.json").write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
     print(res["judge_model"], args.split, {a: round(v, 2) for a, v in res["rates"].items()},
-          "diff", round(res["diff"], 2), "lower90", round(res["lower90"], 2),
+          "diff", round(res["diff"], 2), "lower90", round(res["lower90"], 2), "R_excess", round(res["R_excess"], 2),
           "PASSES" if res["passes"] else "fails" if res["complete"] else f"INCOMPLETE ({res['undecided']} undecided)")
     return 0
 

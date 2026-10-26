@@ -163,3 +163,31 @@ def test_topics_the_owner_dropped_are_left_out_before_any_check():
 def test_a_seed_is_dropped_only_when_every_reader_closes_its_no_insert_arm():
     states = {"t1": {"a": "closed", "b": "closed"}, "t2": {"a": "closed", "b": "open"}, "t3": {"a": "open", "b": "open"}}
     assert g2.seed_drops(states) == ["t1"]
+
+
+def test_r_is_scored_on_what_the_random_letters_add_over_the_no_insert_arm():
+    topics, inserts = _set()
+    seeds_close = {"t00", "t01"}
+
+    class SeedReader(Oracle):
+        def ask(self, prompt):
+            p = standins.parse(prompt)
+            hit = [i for i, s in p.sentences if s.startswith("Compute") and p.seed.endswith(("series 0.", "series 1."))]
+            return {"states": hit, "partially": []} if hit else super().ask(prompt)
+
+    res = g2.evaluate(topics, inserts, SeedReader(inserts), split="gate")
+    assert res["rates"]["R"] == pytest.approx(2 / 18) and res["rates"]["0"] == pytest.approx(2 / 18)
+    assert res["R_excess"] == 0.0 and res["passes"]
+
+
+def test_a_judge_closing_on_random_letters_still_fails_r():
+    topics, inserts = _set()
+
+    class Gibberish(Oracle):
+        def ask(self, prompt):
+            p = standins.parse(prompt)
+            hit = [i for i, s in p.sentences if s in self.ps or (s.islower() and " " in s and not any(c in s for c in ".,"))]
+            return {"states": hit, "partially": []}
+
+    res = g2.evaluate(topics, inserts, Gibberish(inserts), split="gate")
+    assert res["R_excess"] > 0.10 and not res["passes"]
