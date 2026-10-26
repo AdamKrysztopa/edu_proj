@@ -1,0 +1,194 @@
+{
+  "t01": {
+    "P": "CrossAMI is computed on the training window only because scores taken over the full series let test-window values leak into exogenous screening.",
+    "N": "CrossAMI for exogenous screening (F8) is computed on the training window only, and the leakage boundary is the train_end argument since version 0.3.",
+    "N_plus": [
+      "Exogenous screening is step F8 in the rolling-origin evaluation guide.",
+      "The CrossAMI score for each driver is listed in the screening table."
+    ]
+  },
+  "t02": {
+    "P": "Passing a variable whose future values are not known at prediction time into known_future_drivers gives the model information it will not have in production.",
+    "N": "known_future_drivers takes a list of variable names, then stores the future values known at prediction time, such as calendar flags, in the forecasting config object.",
+    "N_plus": [
+      "Calendar flags and planned promotions are the two examples given in the drivers guide.",
+      "The known_future_drivers argument was added to the forecasting config in release 0.4."
+    ]
+  },
+  "t03": {
+    "P": "If the informative horizon set comes back empty, no lag carries signal above the noise floor and model evaluation stops rather than targeting any horizon.",
+    "N": "Model evaluation targets the horizons in the informative horizon set of the result object, and the signal above the noise floor that each lag carries is kept as a float.",
+    "N_plus": [
+      "Model evaluation in the tutorial uses the horizons listed in the informative horizon set.",
+      "The noise floor is drawn as a grey line in the horizon plot."
+    ]
+  },
+  "t04": {
+    "P": "A True is_non_monotone flag marks a profile with a later secondary peak, and the next action is to drop the monotone decay assumption and keep each lag.",
+    "N": "The is_non_monotone flag is a boolean field on the profile result, added in release 0.4 next to the monotone decay assumption column and the next_action field.",
+    "N_plus": [
+      "Monotone decay is the shape most AMI profiles take in the worked examples.",
+      "The is_non_monotone flag sits next to the peak_lag field in the profile result."
+    ]
+  },
+  "t05": {
+    "P": "The engineering convention of dropping the normalization does not apply when the autocovariance feeds a significance test, which needs the Pearson correlation scale.",
+    "N": "The autocovariance normalized to a Pearson correlation coefficient is what the acf helper returns, and the engineering variant without normalization was added 3 months later.",
+    "N_plus": [
+      "Time series analysis texts use the normalized form throughout their examples.",
+      "The engineering variant of the autocovariance is exposed as acovf in the stats module."
+    ]
+  },
+  "t06": {
+    "P": "A plot whose partial autocorrelations all fall inside the confidence interval after lag 3 gives an AR model order of 3, and the next step is to fit an AR(3) model.",
+    "N": "The partial autocorrelation plot is drawn by plot_pacf, then saved to the figures folder with the confidence interval shaded and each lag of the AR model order in the next panel.",
+    "N_plus": [
+      "The AR model order section of the guide follows the autocorrelation section.",
+      "The confidence interval on the plot uses the Bartlett formula from the stats module."
+    ]
+  },
+  "t07": {
+    "P": "If a high score persists across multiple backends and sample-size stress testing, the warning is cleared; if it collapses, the inflation was numerical and the result is discarded.",
+    "N": "Numerical inflation is reported as a warning in the result object, and the multiple backends for sample-size stress testing are named in the backends parameter of the run config file.",
+    "N_plus": [
+      "The stress testing module lives under the diagnostics package.",
+      "Numerical inflation warnings carry the code NUM_INFLATION in the result object."
+    ]
+  },
+  "t08": {
+    "P": "The practice of attaching uncertainty does not hold for deterministic schedule values like fixed calendar holidays, which carry no forecast error at all.",
+    "N": "The interval_width column holds the uncertainty attached to each forecast under this practice, and the plotting helper draws it as a degree band around the line.",
+    "N_plus": [
+      "Forecasts in the tutorial notebooks carry an interval_width column next to the point value.",
+      "The good practice note on uncertainty appears in the forecasting guide."
+    ]
+  },
+  "t09": {
+    "P": "Such lags are treated as leakage candidates because a derived feature built from the raw series cannot hold more information about the target than the raw profile.",
+    "N": "The derived-feature profile is computed first, then the raw profile, and each lag of both profiles is stored in the data-leakage candidate table with its estimation noise.",
+    "N_plus": [
+      "The derived-feature profile uses the same AMI estimator as the raw profile.",
+      "The data-leakage candidate table is written to the reports folder."
+    ]
+  },
+  "t10": {
+    "P": "Surrogates give a series-specific noise floor, and without that floor a high AMI value at some lag cannot be told apart from chance dependence.",
+    "N": "Surrogates are drawn by the surrogate module, with sample size n and n_surrogates set at 200 and 99 by default since version 0.2 of the package.",
+    "N_plus": [
+      "The surrogate module supports phase-randomised and block-shuffled surrogates.",
+      "The n_surrogates parameter is part of the diagnostics config."
+    ]
+  },
+  "t11": {
+    "P": "Epsilon is tied to the surrogate upper band so that the threshold scales with each series' own noise level instead of admitting noise lags in weak series.",
+    "N": "Epsilon is stored as a fraction of the surrogate upper band in epsilon_rel, and the global absolute threshold for noise lags in each series is named epsilon_abs.",
+    "N_plus": [
+      "The surrogate upper band is computed per lag from the surrogate draws.",
+      "Epsilon appears in the horizon selection section of the guide."
+    ]
+  },
+  "t12": {
+    "P": "A symbol listed in public_api.md is part of the supported import contract and may be imported directly; any symbol absent from that list is internal and avoided.",
+    "N": "The public_api.md file lists each symbol that is part of the supported import contract and sits in the docs/reference folder, next to the changelog for release 0.4.",
+    "N_plus": [
+      "Contributors edit public_api.md in the same pull request that adds a symbol.",
+      "The supported import contract covers the top-level package namespace."
+    ]
+  },
+  "t13": {
+    "P": "A new method label keeps earlier runs reproducible, since users who pinned cross_pami or xami_sparse would otherwise get different lags from the same call.",
+    "N": "New selectors such as PMIME-style or PC-stable are listed under the method label column, then documented next to the shipped cross_pami and xami_sparse in the table.",
+    "N_plus": [
+      "The xami_sparse selector was shipped in release 0.5.",
+      "The method label for cross_pami is printed in every selection result."
+    ]
+  },
+  "t14": {
+    "P": "The practice does not hold for a point forecast fed straight into an automated order rule, where the downstream system accepts a single number and ignores any interval.",
+    "N": "The degree of uncertainty attaching to forecasts is stored as a 90% interval by default, in the interval column of the forecast frame returned by the point forecast call.",
+    "N_plus": [
+      "Forecasts are returned as a frame with point and interval columns.",
+      "The good practice note on uncertainty cites the forecasting textbook."
+    ]
+  },
+  "t15": {
+    "P": "The terms are not interchangeable in engineering code when a function returns values bounded by one, since those are normalized autocorrelations.",
+    "N": "The normalization in engineering code is set by the normalize argument of the autocorrelation function, and autocovariance is its unnormalized output.",
+    "N_plus": [
+      "Engineering texts use the term autocorrelation for the unnormalized sum.",
+      "The autocovariance function lives in the stats module."
+    ]
+  },
+  "t16": {
+    "P": "Train-window diagnostics in rolling-origin evaluation give fold scores that move gradually, and a sharp jump at one fold marks leakage that the next step traces.",
+    "N": "Rolling-origin evaluation stores the diagnostics computed on train windows in the fold_diagnostics table, one row per fold, keyed by origin date and window size.",
+    "N_plus": [
+      "Train windows in rolling-origin evaluation grow by one step per fold.",
+      "The fold_diagnostics table is part of the evaluation result."
+    ]
+  },
+  "t17": {
+    "P": "The lower band stops being useless when a backend's bias pushes MI estimates below zero, since the lower band then shows how far the bias reaches.",
+    "N": "The upper band and the lower band for MI are returned as band_upper and band_lower, then drawn as dashed lines in the surrogate bands plot of the report.",
+    "N_plus": [
+      "Surrogate bands are computed from the same draws for every lag.",
+      "The upper band appears in the profile plot as a dashed line."
+    ]
+  },
+  "t18": {
+    "P": "Backends whose lag ranks agree with linear_residual across the robustness study pipeline are kept, and a backend that reorders the top lags is dropped from the set.",
+    "N": "The robustness study pipeline writes its comparison of all configured backends against linear_residual to robustness.csv, then prints a summary table of the backends.",
+    "N_plus": [
+      "The linear_residual backend is the reference estimator in the robustness study.",
+      "Configured backends are listed in the backends section of the config file."
+    ]
+  },
+  "t19": {
+    "P": "If new logic computes a diagnostic it belongs in the core package, and if it only formats or plots results it goes in the reporting layer described in architecture.md.",
+    "N": "The architecture.md file describes where new logic lives across the core package and the reporting layer, and it sits in the docs/explanation folder of the repository.",
+    "N_plus": [
+      "Contributors open architecture.md from the contributing guide.",
+      "The core package and the reporting layer are separate subpackages for new logic."
+    ]
+  },
+  "t20": {
+    "P": "With 99 surrogates the 2.5th and 97.5th percentiles fall on actual draws, and with fewer the band edges are interpolated guesses that misstate significance.",
+    "N": "The two-sided band uses 99 surrogates by default through the n_surrogates parameter, the significance threshold is the band_upper field, and fewer draws are refused.",
+    "N_plus": [
+      "The surrogates for the band are drawn by the surrogate module.",
+      "The significance threshold appears as a dashed line in the profile plot."
+    ]
+  },
+  "t21": {
+    "P": "When fewer than two seasonal cycles of data are available, choose a seasonal naive method; with long histories and known drivers, choose a regression-based method.",
+    "N": "The forecasting method is selected through the method argument, and the objectives and available data are logged since release 0.3 in the run metadata file of each run.",
+    "N_plus": [
+      "Selection of a forecasting method is covered in chapter three of the guide.",
+      "Available data are summarised in the run metadata before fitting."
+    ]
+  },
+  "t22": {
+    "P": "Horizons whose AMI sits above the surrogate band in the forecastability profile (F1) are chosen for modelling, and horizons below the band are left out.",
+    "N": "The forecastability profile (F1) is produced by run_profile(), then saved next to the AMI curves as profile.json, with horizons and bands stored per lag.",
+    "N_plus": [
+      "AMI curves are computed by the ami module for every lag.",
+      "The forecastability profile (F1) is the first step of the workflow guide."
+    ]
+  },
+  "t23": {
+    "P": "F3 is run on such series because added lags that carry noise rather than signal make the curve keep rising, and that pattern is invisible in single-lag AMI.",
+    "N": "F3 is the cumulative lag curve in the diagnostics module, and its plot of longer lags against noise and signal for each series is saved in the f3_curve folder.",
+    "N_plus": [
+      "The F3 curve is drawn next to the AMI profile in the report.",
+      "Longer lags are capped by the max_lag parameter of F3."
+    ]
+  },
+  "t24": {
+    "P": "Diagnostics computed on the full series use values from after the forecast origin, which makes every fold score look better than any live forecast could be.",
+    "N": "run_rolling_origin_evaluation() takes the forecast origin through its origin argument, and diagnostics computed manually take the same boundary as a cutoff index.",
+    "N_plus": [
+      "The leakage boundary is described in the rolling-origin evaluation guide.",
+      "Diagnostics computed manually are written to the user's own output folder."
+    ]
+  }
+}

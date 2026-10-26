@@ -1,0 +1,989 @@
+{
+ "split_seed": 20261026,
+ "topics": [
+  {
+   "topic_id": "t01",
+   "cluster": "d1-q1",
+   "origin": "d1-used",
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "test_id": "WHY:c-a5bfbf4dc9e5e96b",
+   "seed_text": "The same leakage boundary for rolling-origin evaluation applies to exogenous screening (F8), where CrossAMI must be computed on the training window only.",
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_rows": [
+    [
+     "c-a5bfbf4dc9e5e96b",
+     0,
+     "The same leakage boundary for rolling-origin evaluation applies to exogenous screening (F8), where CrossAMI must be computed on the training window only."
+    ],
+    [
+     "c-a5bfbf4dc9e5e96b",
+     1,
+     "The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-6e5c5af4b40ecbf5",
+     0,
+     "It is common practice in some disciplines like statistics and time series analysis to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ]
+   ],
+   "rerun_question_text": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t02",
+   "cluster": "d1-q2",
+   "origin": "d1-used",
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "test_id": "WHY:c-67213a7cebde7a96",
+   "seed_text": "known_future_drivers should be used only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags or planned promotions.",
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_rows": [
+    [
+     "c-67213a7cebde7a96",
+     0,
+     "known_future_drivers should be used only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags or planned promotions."
+    ],
+    [
+     "c-67213a7cebde7a96",
+     1,
+     "Use `known_future_drivers` only for variables whose contemporaneous future > values are genuinely known at prediction time, such as calendar flags, > planned promotions, or externally scheduled variables."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-23b71befef797d20",
+     0,
+     "It is common practice in some disciplines (e.g."
+    ],
+    [
+     "c-353778e07d782e1c",
+     0,
+     "Setting include_extended_fingerprint=True in run_triage attaches extended analysis only for non-exogenous requests;"
+    ],
+    [
+     "c-353778e07d782e1c",
+     0,
+     "`run_triage(..., include_extended_fingerprint=True)` additively attaches > `extended_forecastability_analysis` for non-exogenous requests."
+    ]
+   ],
+   "rerun_question_text": "Sources say: \"Use `known_future_drivers` only for variables whose contemporaneous future > values are genuinely known at prediction time, such as calendar flags, > planned promotions, or externally scheduled variables.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t03",
+   "cluster": "d1-q3",
+   "origin": "d1-used",
+   "ledger": "toptier-26b",
+   "lens": "RESULT",
+   "test_id": "RESULT:c-d3af3ac9c12c2b7c",
+   "seed_text": "Model evaluation should be targeted exclusively at horizons in the informative horizon set because lags outside it carry no detectable predictive signal above the noise floor.",
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_rows": [
+    [
+     "c-d3af3ac9c12c2b7c",
+     0,
+     "Model evaluation should be targeted exclusively at horizons in the informative horizon set because lags outside it carry no detectable predictive signal above the noise floor."
+    ],
+    [
+     "c-d3af3ac9c12c2b7c",
+     1,
+     "A practitioner should target model evaluation exclusively at horizons in $\\mathcal{H}_\\varepsilon$ - lags outside this set carry no detectable predictive signal above the noise floor."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-649be9381044ab08",
+     0,
+     "In statistics, the autocorrelation of a random process is the Pearson correlation between values of the process at different times, as a function of the two times or the time lag."
+    ],
+    [
+     "c-649be9381044ab08",
+     0,
+     "the autocorrelation of a real or complex random process is the Pearson correlation between values of the process at different times, as a function of the two times or of the time lag"
+    ],
+    [
+     "c-04bb985feaddbfac",
+     0,
+     "A well-defined autocorrelation coefficient lies in [-1, 1], with 1 indicating perfect correlation and -1 perfect anti-correlation."
+    ]
+   ],
+   "rerun_question_text": "Sources prescribe: \"A practitioner should target model evaluation exclusively at horizons in $\\mathcal{H}_\\varepsilon$ - lags outside this set carry no detectable predictive signal above the noise floor.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "split": "selection"
+  },
+  {
+   "topic_id": "t04",
+   "cluster": "d1-q4",
+   "origin": "d1-used",
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "test_id": "RESULT:c-ab4f9f360073f8bf",
+   "seed_text": "The is_non_monotone flag should be inspected before applying simplifying assumptions that assume monotone decay.",
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_rows": [
+    [
+     "c-ab4f9f360073f8bf",
+     0,
+     "The is_non_monotone flag should be inspected before applying simplifying assumptions that assume monotone decay."
+    ],
+    [
+     "c-ab4f9f360073f8bf",
+     1,
+     "`is_non_monotone` flags this shape for downstream consumers without judgement."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-6e5c5af4b40ecbf5",
+     0,
+     "It is common practice in some disciplines like statistics and time series analysis to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ]
+   ],
+   "rerun_question_text": "Sources prescribe: \"Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "split": "selection"
+  },
+  {
+   "topic_id": "t05",
+   "cluster": "d1-q5",
+   "origin": "d1-used",
+   "ledger": "toptier-26b",
+   "lens": "HEDGE",
+   "test_id": "HEDGE:c-23b71befef797d20",
+   "seed_text": "In statistics and time series analysis, the autocovariance is commonly normalized to a Pearson correlation coefficient, while in engineering the normalization is usually dropped.",
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_rows": [
+    [
+     "c-23b71befef797d20",
+     0,
+     "In statistics and time series analysis, the autocovariance is commonly normalized to a Pearson correlation coefficient, while in engineering the normalization is usually dropped."
+    ],
+    [
+     "c-23b71befef797d20",
+     1,
+     "It is common practice in some disciplines (e.g."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-464da2c578921c27",
+     0,
+     "Intuitively, mutual information measures how much knowing one variable reduces uncertainty about the other."
+    ],
+    [
+     "c-464da2c578921c27",
+     0,
+     "It measures how much knowing one of these variables reduces uncertainty about the other."
+    ],
+    [
+     "c-4ac40040cc033f94",
+     0,
+     "Large backend deltas on small sample fractions indicate short-sample fragility caused by insufficient support for residualization."
+    ]
+   ],
+   "rerun_question_text": "\"statistics and time series analysis) to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t06",
+   "cluster": "d1-q6",
+   "origin": "d1-used",
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "test_id": "RESULT:c-a58d2b7c5d7500ea",
+   "seed_text": "To evaluate the AR model order, one should examine the plot to find the lag after which the partial autocorrelations are all within the confidence interval, and this lag is determined to likely be the AR model's order.",
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_rows": [
+    [
+     "c-a58d2b7c5d7500ea",
+     0,
+     "To evaluate the AR model order, one should examine the plot to find the lag after which the partial autocorrelations are all within the confidence interval, and this lag is determined to likely be the AR model's order."
+    ],
+    [
+     "c-a58d2b7c5d7500ea",
+     1,
+     "To evaluate the order, one examines the plot to find the lag after which the partial autocorrelations are all within the confidence interval."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-a323418137e4ec1d",
+     0,
+     "it is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts."
+    ],
+    [
+     "c-4e39686e19b92a20",
+     0,
+     "Transfer Entropy is directional in that TE(X \u2192 Y) is generally not equal to TE(Y \u2192 X)."
+    ],
+    [
+     "c-65eaabf429163f17",
+     0,
+     "src/forecastability/extensions.py provides extension helpers used by repository workflows such as sensitivity and uncertainty studies."
+    ]
+   ],
+   "rerun_question_text": "Sources prescribe: \"To evaluate the order, one examines the plot to find the lag after which the partial autocorrelations are all within the confidence interval.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "split": "selection"
+  },
+  {
+   "topic_id": "t07",
+   "cluster": "d1-q9",
+   "origin": "d1-used",
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "test_id": "RESULT:c-e69be58ea45c4382",
+   "seed_text": "Numerical inflation should be treated as a warning and verified with multiple backends and sample-size stress testing.",
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_rows": [
+    [
+     "c-e69be58ea45c4382",
+     0,
+     "Numerical inflation should be treated as a warning and verified with multiple backends and sample-size stress testing."
+    ],
+    [
+     "c-e69be58ea45c4382",
+     1,
+     "Numerical inflation `directness_ratio > 1.0` estimator instability, finite-sample effects Treat as warning;"
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-6e5c5af4b40ecbf5",
+     0,
+     "It is common practice in some disciplines like statistics and time series analysis to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ]
+   ],
+   "rerun_question_text": "Sources prescribe: \"Numerical inflation `directness_ratio > 1.0` estimator instability, finite-sample effects Treat as warning;\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t08",
+   "cluster": "d1-q10",
+   "origin": "d1-used",
+   "ledger": "toptier-26b",
+   "lens": "HEDGE",
+   "test_id": "HEDGE:c-9c0f849034e929bd",
+   "seed_text": "It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.",
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_rows": [
+    [
+     "c-9c0f849034e929bd",
+     0,
+     "It is generally considered good practice to indicate the degree of uncertainty attached to forecasts."
+    ],
+    [
+     "c-9c0f849034e929bd",
+     1,
+     "it is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts"
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-649be9381044ab08",
+     0,
+     "In statistics, the autocorrelation of a random process is the Pearson correlation between values of the process at different times, as a function of the two times or the time lag."
+    ],
+    [
+     "c-649be9381044ab08",
+     0,
+     "the autocorrelation of a real or complex random process is the Pearson correlation between values of the process at different times, as a function of the two times or of the time lag"
+    ],
+    [
+     "c-04bb985feaddbfac",
+     0,
+     "A well-defined autocorrelation coefficient lies in [-1, 1], with 1 indicating perfect correlation and -1 perfect anti-correlation."
+    ]
+   ],
+   "rerun_question_text": "\"It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t09",
+   "cluster": "d1-q11",
+   "origin": "d1-used",
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "test_id": "WHY:c-bd65950824d7841e",
+   "seed_text": "Any lag where a derived-feature profile exceeds the raw profile by more than estimation noise should be treated as a data-leakage candidate, not a genuine gain.",
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_rows": [
+    [
+     "c-bd65950824d7841e",
+     0,
+     "Any lag where a derived-feature profile exceeds the raw profile by more than estimation noise should be treated as a data-leakage candidate, not a genuine gain."
+    ],
+    [
+     "c-bd65950824d7841e",
+     1,
+     "compare the `values` arrays element-wise across two runs;"
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-23b71befef797d20",
+     0,
+     "It is common practice in some disciplines (e.g."
+    ],
+    [
+     "c-353778e07d782e1c",
+     0,
+     "Setting include_extended_fingerprint=True in run_triage attaches extended analysis only for non-exogenous requests;"
+    ],
+    [
+     "c-353778e07d782e1c",
+     0,
+     "`run_triage(..., include_extended_fingerprint=True)` additively attaches > `extended_forecastability_analysis` for non-exogenous requests."
+    ]
+   ],
+   "rerun_question_text": "Sources say: \"any lag where the derived profile exceeds the raw profile by more than estimation noise is a data-leakage candidate, not a genuine gain.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t10",
+   "cluster": "d1-q12",
+   "origin": "d1-used",
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "test_id": "WHY:c-520e8d5962f8f467",
+   "seed_text": "Surrogates should be used whenever sample size permits, specifically when n is at least 200 and n_surrogates is at least 99.",
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_rows": [
+    [
+     "c-520e8d5962f8f467",
+     0,
+     "Surrogates should be used whenever sample size permits, specifically when n is at least 200 and n_surrogates is at least 99."
+    ],
+    [
+     "c-520e8d5962f8f467",
+     1,
+     "Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`)."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-6e5c5af4b40ecbf5",
+     0,
+     "It is common practice in some disciplines like statistics and time series analysis to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ]
+   ],
+   "rerun_question_text": "Sources say: \"Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t11",
+   "cluster": "d1-q13",
+   "origin": "d1-used",
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "test_id": "WHY:c-f9792c1551303989",
+   "seed_text": "Epsilon should be defined relative to the surrogate upper band rather than as a global absolute constant, because an absolute threshold risks including noise lags or excluding informative ones as signal strength varies across series.",
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_rows": [
+    [
+     "c-f9792c1551303989",
+     0,
+     "Epsilon should be defined relative to the surrogate upper band rather than as a global absolute constant, because an absolute threshold risks including noise lags or excluding informative ones as signal strength varies across series."
+    ],
+    [
+     "c-f9792c1551303989",
+     1,
+     "Define $\\varepsilon$ relative to the surrogate upper band, not as a global > absolute constant."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-23b71befef797d20",
+     0,
+     "It is common practice in some disciplines (e.g."
+    ],
+    [
+     "c-353778e07d782e1c",
+     0,
+     "Setting include_extended_fingerprint=True in run_triage attaches extended analysis only for non-exogenous requests;"
+    ],
+    [
+     "c-353778e07d782e1c",
+     0,
+     "`run_triage(..., include_extended_fingerprint=True)` additively attaches > `extended_forecastability_analysis` for non-exogenous requests."
+    ]
+   ],
+   "rerun_question_text": "Sources say: \"An absolute threshold risks including noise lags or > excluding genuinely informative ones as signal strength varies across series.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t12",
+   "cluster": "d1-q14",
+   "origin": "d1-used",
+   "ledger": "toptier-26b",
+   "lens": "SEL",
+   "test_id": "SEL:c-1c4e8047d3bd12be",
+   "seed_text": "Contributors should consult public_api.md when deciding whether a symbol is part of the supported import contract.",
+   "question": "Does any sentence state a condition that says which option to choose in which situation?",
+   "seed_rows": [
+    [
+     "c-1c4e8047d3bd12be",
+     0,
+     "Contributors should consult public_api.md when deciding whether a symbol is part of the supported import contract."
+    ],
+    [
+     "c-1c4e8047d3bd12be",
+     1,
+     "Use [../public_api.md](../public_api.md) when deciding whether a symbol is part of the supported import contract."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-649be9381044ab08",
+     0,
+     "In statistics, the autocorrelation of a random process is the Pearson correlation between values of the process at different times, as a function of the two times or the time lag."
+    ],
+    [
+     "c-649be9381044ab08",
+     0,
+     "the autocorrelation of a real or complex random process is the Pearson correlation between values of the process at different times, as a function of the two times or of the time lag"
+    ],
+    [
+     "c-04bb985feaddbfac",
+     0,
+     "A well-defined autocorrelation coefficient lies in [-1, 1], with 1 indicating perfect correlation and -1 perfect anti-correlation."
+    ]
+   ],
+   "rerun_question_text": "\"Use [../public_api.md](../public_api.md) when deciding whether a symbol is part of the supported import contract.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "split": "selection"
+  },
+  {
+   "topic_id": "t13",
+   "cluster": "d1-q15",
+   "origin": "d1-used",
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "test_id": "WHY:c-22acb9b0539eee32",
+   "seed_text": "Any new selector that goes further than xami_sparse, such as PMIME-style or PC-stable with driver autohistory, must be introduced under a new method label so that shipped cross_pami and xami_sparse semantics are not silently extended.",
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_rows": [
+    [
+     "c-22acb9b0539eee32",
+     0,
+     "Any new selector that goes further than xami_sparse, such as PMIME-style or PC-stable with driver autohistory, must be introduced under a new method label so that shipped cross_pami and xami_sparse semantics are not silently extended."
+    ],
+    [
+     "c-22acb9b0539eee32",
+     1,
+     "Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-6e5c5af4b40ecbf5",
+     0,
+     "It is common practice in some disciplines like statistics and time series analysis to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ]
+   ],
+   "rerun_question_text": "Sources say: \"Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t14",
+   "cluster": "d1-q10",
+   "origin": "rerun-excluded",
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "test_id": "HEDGE:c-2818fef8c18c9e3d",
+   "seed_text": "It is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts.",
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_rows": [
+    [
+     "c-2818fef8c18c9e3d",
+     0,
+     "It is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts."
+    ],
+    [
+     "c-2818fef8c18c9e3d",
+     1,
+     "it is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ],
+    [
+     "c-014eeea445c8fc65",
+     0,
+     "The autocorrelation function of an AR(p) process tails off just like the partial autocorrelation function of an MA(q) process."
+    ]
+   ],
+   "rerun_question_text": "\"It is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t15",
+   "cluster": "d1-q5",
+   "origin": "rerun-excluded",
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "test_id": "HEDGE:c-04070c929c03d0c4",
+   "seed_text": "In other disciplines like engineering, the normalization is usually dropped and the terms autocorrelation and autocovariance are used interchangeably.",
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_rows": [
+    [
+     "c-04070c929c03d0c4",
+     0,
+     "In other disciplines like engineering, the normalization is usually dropped and the terms autocorrelation and autocovariance are used interchangeably."
+    ],
+    [
+     "c-04070c929c03d0c4",
+     1,
+     "However, in other disciplines (e.g."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-a323418137e4ec1d",
+     0,
+     "it is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts."
+    ],
+    [
+     "c-4e39686e19b92a20",
+     0,
+     "Transfer Entropy is directional in that TE(X \u2192 Y) is generally not equal to TE(Y \u2192 X)."
+    ],
+    [
+     "c-4e39686e19b92a20",
+     0,
+     "Transfer entropy from a process X to another process Y is the amount of uncertainty reduced in future values of Y by knowing the past values of X given past values of Y."
+    ]
+   ],
+   "rerun_question_text": "\"engineering) the normalization is usually dropped and the terms \"autocorrelation\" and \"autocovariance\" are used interchangeably.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t16",
+   "cluster": "d1-q1",
+   "origin": "rerun-excluded",
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "test_id": "RESULT:c-d7d073c08a1e9cc5",
+   "seed_text": "In rolling-origin evaluation, diagnostics should be computed on train windows only.",
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_rows": [
+    [
+     "c-d7d073c08a1e9cc5",
+     0,
+     "In rolling-origin evaluation, diagnostics should be computed on train windows only."
+    ],
+    [
+     "c-d7d073c08a1e9cc5",
+     1,
+     "In rolling-origin evaluation, compute diagnostics on train windows only."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-6e5c5af4b40ecbf5",
+     0,
+     "It is common practice in some disciplines like statistics and time series analysis to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ]
+   ],
+   "rerun_question_text": "Sources prescribe: \"In rolling-origin evaluation, compute diagnostics on train windows only.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t17",
+   "cluster": "d1-q13",
+   "origin": "rerun-excluded",
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "test_id": "HEDGE:c-672eba057b35b6b7",
+   "seed_text": "For surrogate bands, the upper band is operationally informative for detecting non-null dependence while the lower band is usually near zero for MI and is not typically operationally useful.",
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_rows": [
+    [
+     "c-672eba057b35b6b7",
+     0,
+     "For surrogate bands, the upper band is operationally informative for detecting non-null dependence while the lower band is usually near zero for MI and is not typically operationally useful."
+    ],
+    [
+     "c-672eba057b35b6b7",
+     1,
+     "The upper band is operationally informative for detecting non-null dependence."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-6e5c5af4b40ecbf5",
+     0,
+     "It is common practice in some disciplines like statistics and time series analysis to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ]
+   ],
+   "rerun_question_text": "\"The upper band is operationally informative for detecting non-null dependence.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t18",
+   "cluster": "d1-q7",
+   "origin": "rerun-excluded",
+   "ledger": "toptier-26b",
+   "lens": "RESULT",
+   "test_id": "RESULT:c-a58de96982596cf4",
+   "seed_text": "The robustness study pipeline should be used to compare all configured backends against linear_residual.",
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_rows": [
+    [
+     "c-a58de96982596cf4",
+     0,
+     "The robustness study pipeline should be used to compare all configured backends against linear_residual."
+    ],
+    [
+     "c-a58de96982596cf4",
+     1,
+     "Use the robustness study pipeline to compare all configured backends against `linear_residual`."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-649be9381044ab08",
+     0,
+     "In statistics, the autocorrelation of a random process is the Pearson correlation between values of the process at different times, as a function of the two times or the time lag."
+    ],
+    [
+     "c-649be9381044ab08",
+     0,
+     "the autocorrelation of a real or complex random process is the Pearson correlation between values of the process at different times, as a function of the two times or of the time lag"
+    ],
+    [
+     "c-04bb985feaddbfac",
+     0,
+     "A well-defined autocorrelation coefficient lies in [-1, 1], with 1 indicating perfect correlation and -1 perfect anti-correlation."
+    ]
+   ],
+   "rerun_question_text": "Sources prescribe: \"Use the robustness study pipeline to compare all configured backends against `linear_residual`.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t19",
+   "cluster": "d1-q14",
+   "origin": "rerun-excluded",
+   "ledger": "toptier-26b",
+   "lens": "SEL",
+   "test_id": "SEL:c-5e29ea6d046a67da",
+   "seed_text": "Contributors should consult architecture.md when deciding where new logic should live.",
+   "question": "Does any sentence state a condition that says which option to choose in which situation?",
+   "seed_rows": [
+    [
+     "c-5e29ea6d046a67da",
+     0,
+     "Contributors should consult architecture.md when deciding where new logic should live."
+    ],
+    [
+     "c-5e29ea6d046a67da",
+     1,
+     "Use [../explanation/architecture.md](../explanation/architecture.md) when deciding where new logic should live."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-649be9381044ab08",
+     0,
+     "In statistics, the autocorrelation of a random process is the Pearson correlation between values of the process at different times, as a function of the two times or the time lag."
+    ],
+    [
+     "c-649be9381044ab08",
+     0,
+     "the autocorrelation of a real or complex random process is the Pearson correlation between values of the process at different times, as a function of the two times or of the time lag"
+    ],
+    [
+     "c-04bb985feaddbfac",
+     0,
+     "A well-defined autocorrelation coefficient lies in [-1, 1], with 1 indicating perfect correlation and -1 perfect anti-correlation."
+    ]
+   ],
+   "rerun_question_text": "\"Use [../explanation/architecture.md](../explanation/architecture.md) when deciding where new logic should live.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "split": "selection"
+  },
+  {
+   "topic_id": "t20",
+   "cluster": "d1-q12",
+   "origin": "rerun-excluded",
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "test_id": "WHY:c-ca2ed537d5bb3a4f",
+   "seed_text": "At least 99 surrogates are required for a valid two-sided 95% band, and fewer must not be used as a significance threshold.",
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_rows": [
+    [
+     "c-ca2ed537d5bb3a4f",
+     0,
+     "At least 99 surrogates are required for a valid two-sided 95% band, and fewer must not be used as a significance threshold."
+    ],
+    [
+     "c-ca2ed537d5bb3a4f",
+     1,
+     "At least `n_surrogates = 99` is required for a valid two-sided 95% band."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-649be9381044ab08",
+     0,
+     "In statistics, the autocorrelation of a random process is the Pearson correlation between values of the process at different times, as a function of the two times or the time lag."
+    ],
+    [
+     "c-649be9381044ab08",
+     0,
+     "the autocorrelation of a real or complex random process is the Pearson correlation between values of the process at different times, as a function of the two times or of the time lag"
+    ],
+    [
+     "c-04bb985feaddbfac",
+     0,
+     "A well-defined autocorrelation coefficient lies in [-1, 1], with 1 indicating perfect correlation and -1 perfect anti-correlation."
+    ]
+   ],
+   "rerun_question_text": "Sources say: \"At least `n_surrogates = 99` is required for a valid two-sided 95% band.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t21",
+   "cluster": "d1-q8",
+   "origin": "rerun-excluded",
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "test_id": "SEL:c-e0043c2395d5a61b",
+   "seed_text": "Selection of a forecasting method should be based on objectives and conditions such as available data.",
+   "question": "Does any sentence state a condition that says which option to choose in which situation?",
+   "seed_rows": [
+    [
+     "c-e0043c2395d5a61b",
+     0,
+     "Selection of a forecasting method should be based on objectives and conditions such as available data."
+    ],
+    [
+     "c-e0043c2395d5a61b",
+     1,
+     "Selection of a method should be based on your objectives and your conditions (data etc.)."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-6e5c5af4b40ecbf5",
+     0,
+     "It is common practice in some disciplines like statistics and time series analysis to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ]
+   ],
+   "rerun_question_text": "\"Selection of a method should be based on your objectives and your conditions (data etc.).\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t22",
+   "cluster": "d1-q6",
+   "origin": "rerun-excluded",
+   "ledger": "toptier-26b",
+   "lens": "SEL",
+   "test_id": "SEL:c-12dca6b80e1a3b61",
+   "seed_text": "The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model.",
+   "question": "Does any sentence state a condition that says which option to choose in which situation?",
+   "seed_rows": [
+    [
+     "c-12dca6b80e1a3b61",
+     0,
+     "The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model."
+    ],
+    [
+     "c-12dca6b80e1a3b61",
+     1,
+     "After AMI curves exist;"
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-649be9381044ab08",
+     0,
+     "In statistics, the autocorrelation of a random process is the Pearson correlation between values of the process at different times, as a function of the two times or the time lag."
+    ],
+    [
+     "c-649be9381044ab08",
+     0,
+     "the autocorrelation of a real or complex random process is the Pearson correlation between values of the process at different times, as a function of the two times or of the time lag"
+    ],
+    [
+     "c-04bb985feaddbfac",
+     0,
+     "A well-defined autocorrelation coefficient lies in [-1, 1], with 1 indicating perfect correlation and -1 perfect anti-correlation."
+    ]
+   ],
+   "rerun_question_text": "\"The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "split": "selection"
+  },
+  {
+   "topic_id": "t23",
+   "cluster": "d1-q13",
+   "origin": "rerun-excluded",
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "test_id": "WHY:c-73b132a5aaa54568",
+   "seed_text": "F3 should be used when one suspects that longer lags add noise rather than signal, as the curve never plateauing is also informative.",
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_rows": [
+    [
+     "c-73b132a5aaa54568",
+     0,
+     "F3 should be used when one suspects that longer lags add noise rather than signal, as the curve never plateauing is also informative."
+    ],
+    [
+     "c-73b132a5aaa54568",
+     1,
+     "When you suspect that longer lags add noise rather than signal (the curve never plateauing is also informative)."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-6e5c5af4b40ecbf5",
+     0,
+     "It is common practice in some disciplines like statistics and time series analysis to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term autocorrelation is used interchangeably with autocovariance."
+    ],
+    [
+     "c-ac8ebfd4bba1c07d",
+     0,
+     "In some fields, the term is used interchangeably with autocovariance."
+    ]
+   ],
+   "rerun_question_text": "Sources say: \"When you suspect that longer lags add noise rather than signal (the curve never plateauing is also informative).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "split": "gate"
+  },
+  {
+   "topic_id": "t24",
+   "cluster": "d1-q1",
+   "origin": "rerun-excluded",
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "test_id": "WHY:c-b57b3d55d5661578",
+   "seed_text": "run_rolling_origin_evaluation() enforces the leakage boundary internally, but diagnostics computed manually outside it require the user to enforce the same boundary to avoid look-ahead leakage.",
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_rows": [
+    [
+     "c-b57b3d55d5661578",
+     0,
+     "run_rolling_origin_evaluation() enforces the leakage boundary internally, but diagnostics computed manually outside it require the user to enforce the same boundary to avoid look-ahead leakage."
+    ],
+    [
+     "c-b57b3d55d5661578",
+     1,
+     "The `run_rolling_origin_evaluation()` function enforces this boundary internally."
+    ]
+   ],
+   "background_rows": [
+    [
+     "c-23b71befef797d20",
+     0,
+     "It is common practice in some disciplines (e.g."
+    ],
+    [
+     "c-464da2c578921c27",
+     0,
+     "Intuitively, mutual information measures how much knowing one variable reduces uncertainty about the other."
+    ],
+    [
+     "c-464da2c578921c27",
+     0,
+     "It measures how much knowing one of these variables reduces uncertainty about the other."
+    ]
+   ],
+   "rerun_question_text": "Sources say: \"The `run_rolling_origin_evaluation()` function enforces this boundary internally.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "split": "gate"
+  }
+ ]
+}

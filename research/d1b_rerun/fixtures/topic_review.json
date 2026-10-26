@@ -1,0 +1,21 @@
+{
+  "drop": ["T001", "T003", "T009", "T015", "T026", "T031", "T036", "T038", "T040", "T041", "T042", "T044", "T048", "T049", "T050", "T051"],
+  "reasons": {
+    "T001": "same as D1-Q14: stable/supported public import surface",
+    "T003": "same as T002: use cases depend on declared ports contracts",
+    "T009": "same as T004: multiple-testing (BH FDR) correction across many drivers",
+    "T015": "same as D1-Q14: which imports are part of the supported compatibility contract",
+    "T026": "same as D1-Q7: nonlinear backends vs linear baseline, consistency before trusting",
+    "T031": "same as T006: triage before model fitting",
+    "T036": "same as D1-Q14: what is and is not public API surface",
+    "T038": "same as T006: recommend models only after triage",
+    "T040": "same as T023: adapters hold transport, not business logic",
+    "T041": "same as T033: predictive dependence is not proof of causality",
+    "T042": "same as T006: downstream frameworks after triage, not instead",
+    "T044": "same as T016: minimum series length requirement for AMI",
+    "T048": "same as D1-Q7: cross-backend agreement / ranking stability before acting",
+    "T049": "same as T043: interpret absent significance only when surrogates computed",
+    "T050": "same as T030: keep AMI/pAMI curves horizon-specific, not collapsed",
+    "T051": "same as D1-Q15: new method label for extended selectors/surfaces"
+  }
+}
