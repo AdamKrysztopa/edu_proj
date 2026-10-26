@@ -9,7 +9,8 @@ of whole clusters) >= 0.30, close(N) <= 0.25, close(N+) <= 0.25, close(R) <= 0.1
 close(0) <= 0.25. Only "closed" counts as closing. Runs only on fixtures the owner confirmed.
 
     uv run --directory gapmap python ../research/d1b_rerun/g2.py --out DIR --split selection|gate \
-        [--judge ollama --model M] [--judge openai --model gpt-6.1-sol --reasoning-effort high \
+        [--judge openrouter --model M --max-usd X --spend-ledger ../research/d1b_rerun/openrouter_spend.jsonl]
+        [--judge openai --model gpt-6.1-sol --reasoning-effort high \
          --max-usd X --spend-ledger ../research/d1b_rerun/openai_spend.jsonl]
 """
 from __future__ import annotations
@@ -145,7 +146,7 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="g2")
     p.add_argument("--out", required=True)
     p.add_argument("--split", choices=["selection", "gate", "all"], required=True)
-    p.add_argument("--judge", choices=["ollama", "openai"])
+    p.add_argument("--judge", choices=["ollama", "openai", "openrouter"])
     p.add_argument("--model", default=config.JUDGE_MODEL)
     p.add_argument("--max-usd", type=float)
     p.add_argument("--reasoning-effort", default="medium")
@@ -163,18 +164,24 @@ def main(argv: list[str] | None = None) -> int:
         for r in rows:
             print(r["judge_model"], round(r["diff"], 3), "PASSES" if r["passes"] else "fails")
         return 1 if any(r["passes"] for r in rows) else 0
-    use_openai = args.judge == "openai" or args.model in judge_mod.OPENAI_PRICES_PER_MTOK
-    if args.judge == "openai" and args.max_usd is None:
-        p.error("--judge openai needs --max-usd")
-    if use_openai:
+    provider = ("openai" if args.model in judge_mod.OPENAI_PRICES_PER_MTOK
+                else "openrouter" if args.model in judge_mod.OPENROUTER_PRICES_PER_MTOK else "ollama")
+    if args.judge in ("openai", "openrouter") and args.max_usd is None:
+        p.error(f"--judge {args.judge} needs --max-usd")
+    if provider == "openai":
         backend = judge_mod.OpenAIJudge(args.model, max_usd=args.max_usd if args.judge else 0.0,
                                         reasoning_effort=args.reasoning_effort,
                                         spend_ledger=args.spend_ledger if args.judge else None)
         meta = {"model": args.model, **backend.settings}
+    elif provider == "openrouter":
+        backend = judge_mod.OpenRouterJudge(args.model, max_usd=args.max_usd if args.judge else 0.0,
+                                            spend_ledger=args.spend_ledger if args.judge else None)
+        meta = {"model": args.model, **backend.settings}
     else:
         backend, meta = judge_mod.OllamaJudge(model=args.model), None
+    use_openai = provider != "ollama"
     judge = judge_mod.CachedJudge(backend, out / "closure_judgements.json", live=args.judge is not None, meta=meta,
-                                  live_flag="--judge openai" if use_openai else "--judge ollama")
+                                  live_flag=f"--judge {provider}")
     try:
         res = evaluate(topics, inserts, judge, split=args.split)
     finally:

@@ -98,9 +98,13 @@ class OpenAIJudge:
     call shared by several runs, the cap covers the ledger's prior spend too, and each call is
     appended to it as soon as it returns."""
 
+    PRICES = OPENAI_PRICES_PER_MTOK
+    URL = OPENAI_URL
+    KEY_ENV = "OPENAI_API_KEY"
+
     def __init__(self, model: str, *, max_usd: float, reasoning_effort: str = "medium",
                  max_completion_tokens: int = 6000, post=None, spend_ledger: Path | str | None = None):
-        if model not in OPENAI_PRICES_PER_MTOK:
+        if model not in self.PRICES:
             raise ValueError(f"no recorded price for {model!r}")
         self.model_id = model
         self.max_usd = max_usd
@@ -108,35 +112,44 @@ class OpenAIJudge:
         self.prior_usd = (sum(json.loads(line)["usd"] for line in self.spend_ledger.read_text().splitlines()
                               if line.strip())
                           if self.spend_ledger and self.spend_ledger.exists() else 0.0)
-        self.settings = {"api": OPENAI_URL, "reasoning_effort": reasoning_effort,
-                         "max_completion_tokens": max_completion_tokens,
-                         "response_format": "json_object", "temperature": "not sent",
-                         "price_usd_per_mtok": list(OPENAI_PRICES_PER_MTOK[model])}
+        self.max_completion_tokens = max_completion_tokens
+        self.settings = self._settings(reasoning_effort, max_completion_tokens)
         self._post = post
         self.spent_usd = 0.0
         self.calls: list[dict] = []
         self.incomplete = False
 
+    def _settings(self, reasoning_effort: str | None, max_completion_tokens: int) -> dict:
+        return {"api": self.URL, "reasoning_effort": reasoning_effort,
+                "max_completion_tokens": max_completion_tokens,
+                "response_format": "json_object", "temperature": "not sent",
+                "price_usd_per_mtok": list(self.PRICES[self.model_id])}
+
+    def _body(self, prompt: str) -> dict:
+        return {"model": self.model_id, "messages": [{"role": "user", "content": prompt}],
+                "response_format": {"type": "json_object"},
+                "reasoning_effort": self.settings["reasoning_effort"],
+                "max_completion_tokens": self.settings["max_completion_tokens"]}
+
+    def _billed(self, usage: dict, prompt_tokens: int, completion_tokens: int) -> float:
+        return self._cost(prompt_tokens, completion_tokens)
+
     def _cost(self, prompt_tokens: int, completion_tokens: int) -> float:
-        pin, pout = OPENAI_PRICES_PER_MTOK[self.model_id]
+        pin, pout = self.PRICES[self.model_id]
         return (prompt_tokens * pin + completion_tokens * pout) / 1e6
 
     def ask(self, prompt: str) -> dict | None:
-        worst = self._cost(len(prompt) // 2 + 50, self.settings["max_completion_tokens"])
+        worst = self._cost(len(prompt) // 2 + 50, self.max_completion_tokens)
         if self.prior_usd + self.spent_usd + worst > self.max_usd:
             self.incomplete = True
             raise BudgetExceeded(f"spent ${self.prior_usd + self.spent_usd:.4f}; the next call could cost ${worst:.4f} "
                                  f"against a ${self.max_usd:.4f} cap; refusing it")
-        body = {"model": self.model_id, "messages": [{"role": "user", "content": prompt}],
-                "response_format": {"type": "json_object"},
-                "reasoning_effort": self.settings["reasoning_effort"],
-                "max_completion_tokens": self.settings["max_completion_tokens"]}
         post = self._post or _http_post
-        payload = post(OPENAI_URL, body, {"Content-Type": "application/json",
-                                          "Authorization": "Bearer " + os.environ["OPENAI_API_KEY"]})
+        payload = post(self.URL, self._body(prompt), {"Content-Type": "application/json",
+                                                      "Authorization": "Bearer " + os.environ[self.KEY_ENV]})
         usage = payload.get("usage") or {}
         p_tok, c_tok = usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0)
-        cost = self._cost(p_tok, c_tok)
+        cost = self._billed(usage, p_tok, c_tok)
         self.spent_usd += cost
         choice = (payload.get("choices") or [{}])[0]
         call = {"prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),
@@ -166,6 +179,44 @@ class OpenAIJudge:
                 "served_models": sorted({str(c["served_model"]) for c in self.calls}),
                 "finish_reasons": {r: sum(c["finish_reason"] == r for c in self.calls)
                                    for r in sorted({str(c["finish_reason"]) for c in self.calls})}}
+
+
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+# USD per 1M (input, output) tokens, from https://openrouter.ai/api/v1/models, read 2026-10-26. The
+# cap's worst case uses these; the spend uses the cost OpenRouter reports for the call when present.
+OPENROUTER_PRICES_PER_MTOK = {
+    "google/gemini-3.5-flash-lite": (0.30, 2.50),
+    "deepseek/deepseek-v4.1-flash": (0.02, 1.00),
+    "qwen/qwen3.8-flash": (0.15, 0.47),
+    "mistralai/mistral-small-2603": (0.15, 0.60),
+}
+
+
+class OpenRouterJudge(OpenAIJudge):
+    """A non-OpenAI judge through OpenRouter's chat completions, with `OpenAIJudge`'s cap, ledger and
+    reply contract; temperature 0, no reasoning setting."""
+
+    PRICES = OPENROUTER_PRICES_PER_MTOK
+    URL = OPENROUTER_URL
+    KEY_ENV = "OPENROUTER_API_KEY"
+
+    def __init__(self, model: str, *, max_usd: float, max_completion_tokens: int = 2000, post=None,
+                 spend_ledger: Path | str | None = None):
+        super().__init__(model, max_usd=max_usd, reasoning_effort=None,
+                         max_completion_tokens=max_completion_tokens, post=post, spend_ledger=spend_ledger)
+
+    def _settings(self, reasoning_effort: str | None, max_completion_tokens: int) -> dict:
+        return {"api": self.URL, "max_tokens": max_completion_tokens, "response_format": "json_object",
+                "temperature": 0, "price_usd_per_mtok": list(self.PRICES[self.model_id])}
+
+    def _body(self, prompt: str) -> dict:
+        return {"model": self.model_id, "messages": [{"role": "user", "content": prompt}],
+                "response_format": {"type": "json_object"}, "temperature": 0,
+                "max_tokens": self.settings["max_tokens"], "usage": {"include": True}}
+
+    def _billed(self, usage: dict, prompt_tokens: int, completion_tokens: int) -> float:
+        cost = usage.get("cost")
+        return float(cost) if cost is not None else self._cost(prompt_tokens, completion_tokens)
 
 
 class CachedJudge:

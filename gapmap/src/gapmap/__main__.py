@@ -1,8 +1,8 @@
 """CLI (spec §0, S1): `python -m gapmap --ledger L.json [--sibling S.json] [--sidecar sc.json]
---domain NAME --out DIR [--judge ollama|openai] [--model M]`. Deterministic given a filled judge
+--domain NAME --out DIR [--judge ollama|openai|openrouter] [--model M]`. Deterministic given a filled judge
 cache: replay mode (no `--judge`) never opens a socket -- a closure-judge cache miss raises a clear
 error instead. A live run writes `judge.json` (model, ledger, completeness, spend) beside the map;
-an OpenAI judge also takes `--max-usd`, `--reasoning-effort`, `--spend-ledger` and, under ADR 0009,
+an OpenAI or OpenRouter judge also takes `--max-usd`, `--reasoning-effort`, `--spend-ledger` and, under ADR 0009,
 `--parallel-arm` (an other-family arm's output directory on the same ledger)."""
 from __future__ import annotations
 
@@ -179,7 +179,7 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--sidecar")
     p.add_argument("--domain", required=True)
     p.add_argument("--out", required=True)
-    p.add_argument("--judge", choices=["ollama", "openai"], default=None,
+    p.add_argument("--judge", choices=["ollama", "openai", "openrouter"], default=None,
                    help="fill/refresh the closure-judgement cache from a live call; "
                         "omit for replay mode (cache only, no network)")
     p.add_argument("--model", default=config.JUDGE_MODEL, help="Ollama model, or an OpenAI model id")
@@ -191,15 +191,18 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--require-manifest", metavar="SHA",
                    help="refuse to run unless the repository hashes to this freeze manifest (gapmap.manifest)")
     args = p.parse_args(argv)
-    use_openai = args.judge == "openai" or args.model in judge_mod.OPENAI_PRICES_PER_MTOK
+    provider = (args.judge if args.judge in ("openai", "openrouter")
+                else "openai" if args.model in judge_mod.OPENAI_PRICES_PER_MTOK
+                else "openrouter" if args.model in judge_mod.OPENROUTER_PRICES_PER_MTOK else "ollama")
+    use_openai = provider == "openai"
     if args.require_manifest:
         try:
             manifest.check(args.require_manifest, model=args.model,
                            reasoning_effort=args.reasoning_effort if use_openai else None)
         except manifest.Refused as exc:
             p.error(f"--require-manifest: {exc}")
-    if args.judge == "openai" and args.max_usd is None:
-        p.error("--judge openai needs --max-usd")
+    if args.judge in ("openai", "openrouter") and args.max_usd is None:
+        p.error(f"--judge {args.judge} needs --max-usd")
     live = args.judge is not None
     if live:
         sidecar = _load_json(args.sidecar)
@@ -213,10 +216,14 @@ def main(argv: list[str] | None = None) -> None:
                                         max_completion_tokens=args.max_completion_tokens,
                                         spend_ledger=args.spend_ledger if live else None)
         meta = {"model": args.model, **backend.settings}
+    elif provider == "openrouter":
+        backend = judge_mod.OpenRouterJudge(args.model, max_usd=args.max_usd if live else 0.0,
+                                            spend_ledger=args.spend_ledger if live else None)
+        meta = {"model": args.model, **backend.settings}
     else:
         backend, meta = judge_mod.OllamaJudge(model=args.model), None
     judge = judge_mod.CachedJudge(backend, Path(args.out) / "closure_judgements.json", live=live, meta=meta,
-                                  live_flag="--judge openai" if use_openai else "--judge ollama")
+                                  live_flag=f"--judge {provider}")
     record_ = {"judge_model": backend.model_id, "ledger_sha256": _sha256_text(Path(args.ledger).read_text()),
                "config_sha256": config.CONFIG_SHA256, "settings": meta}
     try:
@@ -230,7 +237,7 @@ def main(argv: list[str] | None = None) -> None:
         record_["complete"] = True
     finally:
         if live:
-            if use_openai:
+            if provider != "ollama":
                 record_["spend"] = backend.spend()
             Path(args.out).mkdir(parents=True, exist_ok=True)
             (Path(args.out) / "judge.json").write_text(json.dumps(record_, sort_keys=True, indent=1) + "\n")
