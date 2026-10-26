@@ -4,6 +4,8 @@ Two NOW-timeline items, in order: **(1) fix the gap map's ranking** (Nov 2026), 
 
 Status: **approved by the owner, 2026-10-26**, after two `methods-critic` rounds (first draft: "would not run as designed"; second: "with them made, I would run it"; all findings applied). Owner decisions: plan approved as written; **criterion (b)**, LLM judges, advisory (§3.4, §3.7); **total cap $6**, which includes the optional sol G3 run (R5).
 
+**Outcome, 2026-10-26:** item 1 done (gemma-4-31b-it passes G1 and G2, G2 under the R amendment; gpt-6.1-sol passes G1 and its first G2 gate run, the second was stopped at A); item 2 **stopped at Stop A** (7 gap-eligible topics, 23 covered, 3 matched pairs, floor 10) and recorded as **Change** by the owner. $0.92 spent. Result: `research/d1b_rerun/RESULT.md`.
+
 ## 1. Diagnosis: why D1's ranking failed
 
 Sources: `research/d1_demonstrator/gapmap/{cheap-26b,toptier-26b}/gapmap.json` (checks), `key_revealed.json`, `result.json`, `corpus/manifest.json`, `research/n3_control_v3/RESULT.md`. Figures recomputed on 2026-10-26 and re-verified independently by `methods-critic`.
