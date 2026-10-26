@@ -227,6 +227,14 @@ The four owner decisions are recorded but were not ready to register. The critic
 - **Item 2, stopped at A: Change (owner, 2026-10-26).** Of 35 fresh topics, the cheap judge (gemma) left 7 open in every version against 23 closed; at most 3 matched pairs, floor 10. No questions were built or answered. Per plan §3.7, gap-map targeting is not a pilot claim; the PW lecturer and volunteer search may start as an elicitation-and-onboarding pilot without targeting. Note `research/d1b_rerun/RESULT.md`.
 - **Cost.** $0.92 of $6: OpenRouter $0.62, OpenAI $0.29 (sol's checks, started before the Stop A count against the plan's order; lesson queued).
 - **Open.** Targeting can be tested only on a corpus whose open side reaches 10 matched topics per arm; the rerun's rule, sheet builder, sealing, canaries and retest are built and tested for that (`research/d1b_rerun/`).
+- **Candidates it opens (unscheduled; owner chooses):**
+  1. *D1c, targeting on material with real gaps:* D1b's rule on a corpus whose open side reaches 10 matched topics per arm (a course with thin materials, or a multi-author project).
+  2. *Sol eligibility:* sol's second required G2 gate run (about $0.15; the first cost $0.14).
+  3. *Topicality-controlled real-ledger check* that a word-overlap stand-in fails, so a closure reading can count for MS1; then re-read sol's I1c GDPR v1 result (+0.23) with it.
+  4. *control2 and the mismatched-evidence control redesigned* until the overlap stand-in fails them (L7.3).
+  5. *Gap density as a measure:* open-gap share across codebases (single owner against many authors); a possible documentation-coverage audit.
+  6. *Contradictions as a target:* D1's 3 practice-vs-docs contradictions in 15 answers were unplanned; a study aiming questions at likely contradictions.
+  7. *Judge screening as N3's standard:* G1, G2, OpenRouter and a parallel top-tier arm as the way N3 chooses its closure judge.
 
 ## Conditional: not ready yet
 
