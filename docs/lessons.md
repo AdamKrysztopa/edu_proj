@@ -354,3 +354,51 @@ A queue padded with those is a queue nobody drains.
 - **What happened:** The outside report's Polish version (2026-10-25) was made by gpt-5.6-sol from English units, with a native-editor review pass; the owner still called it "terrible Polish". It kept English sentence shapes ("Doświadczeni ludzie wiedzą znacznie więcej, niż kiedykolwiek zapisują"). A from-scratch Polish rewrite from a brief, five critique rounds by four OpenAI models plus Fable, and above all one sentence written by the owner as a voice model, fixed it; the critics alone plateaued at 8/10.
 - **Generalises to:** A text for native readers in another language is written in that language from a brief, not translated unit by unit, and the owner's own example sentence is asked for before the first draft, since model critics converge on fluency but not on the owner's voice.
 - **Candidate home:** the translation rule proposed in the previous entry (`docs/plans/prompts/_common.md`).
+
+### The key-headroom check passed while the account had no credit
+
+- **What happened:** On 2026-10-26 `scripts/key_headroom.py --need 0.01` printed `limit=15 remaining=14.99998 reset=weekly`, while the OpenRouter account credit was exhausted ($80 of $80; D1's judge calls got HTTP 402 on 2026-10-25, `research/d1_demonstrator/judgements_openrouter_402.json`). The script reads the key's weekly `limit_remaining`, not the account balance, so L7.1's guard would let a paid run start that fails at its first call. Caught by reading the script's output against the 402 record while planning the gap-map fix and D1 rerun budget, not by any check.
+- **Generalises to:** A pre-run spending check reads every limit that can refuse the call (the account balance as well as the per-key cap) and passes only on the smallest, because a cap is not money.
+- **Candidate home:** `scripts/key_headroom.py` (also read the account credits endpoint) and L7.1's wording; `.claude/hooks/guard-key-headroom.sh`.
+
+### control2's own-versus-donor contrast is topicality, and a word counter beats the judge it certified
+
+- **What happened:** control2 ranks the own arm by candidate i's probe and the donor arm by j's probe (`gapmap/src/gapmap/control2.py:120,128-132`), so the own arm is more on-topic by construction. A lexical-overlap stand-in (close an arm iff its overlap with the question and seed reaches the median) gives +0.78 [0.67, 0.87] and +0.78 [0.65, 0.89] on the D1 ledgers, and +0.68 (PLC) and +0.46 (GDPR v1) on N3, against sol's +0.13 and +0.23. Only 6 and 1 D1 pairs are overlap-matched within 25%. I1c guarded against length and random letters, never against topical overlap; my draft plan then cited sol's GDPR v1 pass as prior evidence. Caught by `methods-critic` on the plan (2026-10-26), reproduced offline.
+- **Generalises to:** A control whose arms are retrieved by different queries must include a stand-in that scores each arm's topical overlap with the judged question, and a judge passes only by beating it on overlap-matched arms, because "on topic" is the cheapest way to look like "states the element".
+- **Candidate home:** `control2.verdict` (an overlap stand-in row) and L7.3's list of trivial stand-ins; the I1c MS1-candidate reading in `docs/plans/implement-queue.md` § I1 needs re-reading.
+
+### Local-model screening crashed the owner's Mac although the RAM limit was already on record
+
+- **What happened:** The D1b plan (§2.1, 2026-10-26) chose local Ollama models (gemma3:12b, mistral-nemo:12b, llama3.1:8b, about 25 GB of downloads) as the cheap judge arm, although `docs/plans/implement-queue.md` § I1c already recorded that coder32 was "not runnable on this laptop (24 GB RAM, 76 s per trivial reply, first L7.3 run hung about 4 h)". The gemma3 screening run, started while the other downloads filled the disk (31 GB free), took the machine down; the owner stopped local models and asked for hosted cheap judges instead. Caught by the owner, not by any check; two methods-critic rounds reviewed the plan without raising it.
+- **Generalises to:** A plan that runs local models states the machine's free RAM and disk against each model's size and runs one model at a time, and a recorded hardware failure on this machine counts as evidence against any local run, not only against that model.
+- **Candidate home:** `methods-critic` checklist (compute budget beside money budget); L7.2's plan record.
+
+### Provider errors and truncated replies were scored as a judge failing its check
+
+- **What happened:** In D1b's C1 screening (2026-10-26), mistral-small-2603 was rate-limited upstream (HTTP 429) on every G2 call: 0 billed calls, 30 "undecided" states, printed as "fails". deepseek-v4.1-flash and qwen3.8-flash reason by default (mean 661 and 973 reasoning tokens) and hit `OpenRouterJudge`'s 2,000-token cap on 12 and 14 calls (`finish_reason: length`), so 9 G2 replies each were unparseable, became "undecided" and counted as not closing. `semantic.judge_retrieval` degrades any judge exception to "undecided" by design, and `g2.evaluate` gave a pass/fail verdict over undecided arms. Caught by reading per-arm states after the arm-0 rates looked wrong, not by any check.
+- **Generalises to:** A screening or gate verdict over judge replies is "incomplete", never pass or fail, while any reply is an error, truncated or unparseable; a hosted judge retries transient errors and records every finish reason, and its token cap is set from a measured reply of that model.
+- **Candidate home:** `gapmap.judge.OpenRouterJudge` (retry, truncation flag); `research/d1b_rerun/g2.py` verdict; the same rule for `l73.py` when it is next re-frozen.
+
+### A confirmed "the seed does not state the element" was wrong for four of six selection seeds
+
+- **What happened:** G2's fixture writer and the owner both confirmed that every seed leaves its lens question open (`research/d1b_rerun/fixtures/confirmations.json`). In C1 (2026-10-26), every hosted judge, and qwen 7b, closed the no-insert arm of t06, t12, t03 and t19 by citing the seed itself. t03's seed carries its own reason and result ("…because lags outside it carry no detectable predictive signal"), and t12's and t19's carry a "when deciding…" condition. With those seeds in a 4- to 6-topic split, arm 0 ≤ 0.25 was out of reach for any judge that reads them that way, so the selection split could not select. Caught from the per-arm citations after every candidate failed, not by a check before the run.
+- **Generalises to:** Before a known-truth fixture is used as ground truth, its "absent" labels are checked by several independent readers (the no-insert arm through more than one model, or a second human), a label they dispute is treated as ambiguous and dropped, and the reachability of every limit is recomputed after the drops.
+- **Candidate home:** L7.3's best-case clause (recompute after fixture drops); the G2 spec in the D1b plan.
+
+### G2's random-letter limit was stricter than the no-insert limit it contains, so it counted a seed closure twice
+
+- **What happened:** The G2 rule (plan §2.2, `research/d1b_rerun/g2.py:passes`) required close(R) ≤ 0.10 and close(0) ≤ 0.25. But every R arm is the no-insert arm plus one random-letter sentence, so any judge that closes a seed also closes that topic's R arm. gemma-4-31b-it on the gate split (2026-10-26, two identical runs) closed exactly t07 and t21 under both 0 and R and no other R arm: P − N +0.92, lower bound +0.75, N 0.08, N+ 0.08, arm 0 0.15, R 0.15, so it failed on R alone. The offline tests passed because the oracle fake never closes a seed. Caught by comparing per-topic states after the run.
+- **Generalises to:** When a check's arms nest (one arm is another plus an insert), each limit is stated on what the insert adds (closures where the containing arm was open), or the limits are made consistent; and the L7.3 fixtures include a judge that closes the shared base, so a double count shows up before any real run.
+- **Candidate home:** L7.3's stand-in clause (a "base-closing" fake); G2's rule if it is amended.
+
+### Paid runs started in parallel with the free gate that should have stopped them
+
+- **What happened:** To save wall time, I started sol's paid OpenAI R1 runs (G1, then the G2 gate) while C3 was still running, before the $0 Stop A matched-pool count. `docs/plans/gapmap-fix-and-d1-rerun.md` §3.2 and §5 say "Feasibility before any OpenAI spend … stop here, with no OpenAI spend". Stop A then failed (gemma: 7 all-open topics, 3 matched pairs, floor 10), so $0.29 of OpenAI spend went to runs the plan said must not start. It was caught only when `build_sheet.py count` returned `stop_at_A: true`. The ordering lived in prose; no code refuses a paid run while the free gate before it is pending.
+- **Generalises to:** A paid run that a plan places after a free feasibility gate starts only once that gate's recorded output says to continue; running stages in parallel for speed must never reorder a gate ahead of the spend it guards.
+- **Candidate home:** a check in the paid-run wrappers (g1.py, g2.py, the gapmap CLI under `--judge openai`) that refuses when the plan's preceding gate record is missing or says stop; or the guard-key-headroom hook.
+
+### `codex exec` launched from a script waited silently on stdin
+
+- **What happened:** The Polish brief for the D1b artifact updates went to `codex exec -m gpt-5.6-sol -s read-only -o out.json "<prompt>"` from a backgrounded Bash call. Twice it ran for 10+ minutes and produced no output. `codex.log` read only "Reading additional input from stdin...": with stdin open, codex-cli 0.154 waits for more input after the prompt argument. It was caught by reading the log on a status check, not by any timeout or error. The fix was `< /dev/null`.
+- **Generalises to:** Any non-interactive CLI call from an agent closes stdin (`< /dev/null`), and a long-running background call is checked by its log early, not only when it exits.
+- **Candidate home:** the codex-companion skill or a wrapper script for `codex exec`; a PreToolUse hint on `codex exec` without a stdin redirect.

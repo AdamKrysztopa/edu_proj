@@ -1,0 +1,64 @@
+{
+ "complete": true,
+ "diff": 0.25,
+ "judge_model": "qwen/qwen3.8-flash",
+ "lower90": 0.0,
+ "n_clusters": 4,
+ "n_topics": 4,
+ "passes": false,
+ "rates": {
+  "0": 1.0,
+  "N": 0.75,
+  "N+": 0.75,
+  "P": 1.0,
+  "R": 0.75
+ },
+ "spend": {
+  "cached_tokens": 0,
+  "calls": 20,
+  "completion_tokens": 42811,
+  "finish_reasons": {
+   "stop": 20
+  },
+  "max_usd": 0.4,
+  "prior_usd": 0.2190117478,
+  "prompt_tokens": 7668,
+  "reasoning_tokens": 41862,
+  "served_models": [
+   "qwen/qwen3.8-flash"
+  ],
+  "usd": 0.02127137
+ },
+ "split": "selection",
+ "states": {
+  "t03": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t04": {
+   "0": "closed",
+   "N": "partial",
+   "N+": "partial",
+   "P": "closed",
+   "R": "partial"
+  },
+  "t19": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t22": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  }
+ },
+ "undecided": 0
+}

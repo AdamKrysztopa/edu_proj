@@ -1,0 +1,498 @@
+{
+ "00dac37e424017746e431bad00a17c6a7d8475c6d9f5c56df9ccce0dc7bec481": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state that the selection of the sampling rate depends on the suspected event.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "029706de42a5e5f733beab5bf4a35cd7697c9dd8eae6d7058aeacb444f9a57ab": {
+  "partially": [],
+  "reason": "The sentences provide general guidelines (rules) but do not state a condition (if/when) that dictates which specific option to choose in a given situation.",
+  "states": []
+ },
+ "094a8074df0a37c5b2ab7a500266fc9f25483e6e9ee212cc704d2d591bb3828e": {
+  "partially": [],
+  "reason": "Both sentences only mention documentation for data sensitivity, not a condition specifying which option to choose in which situation.",
+  "states": []
+ },
+ "0ba2c53bce1909eaa35afa2f5b703cac00eedf87017bbfd023effcb1e41ec7c8": {
+  "partially": [],
+  "reason": "Neither sentence states a condition for choosing a specific option.",
+  "states": []
+ },
+ "0fd389efc725e37d3d1cae23bfd55c0202505fe9cedf36436f35a58bf05a9e18": {
+  "partially": [],
+  "reason": "No sentence states which option to choose under which condition; sentences 3-4 concern access levels, not retention.",
+  "states": []
+ },
+ "102b8f708e781ca8c7b8f374e1a14c266c84c30e9aac10a409ffd1fe031612c0": {
+  "partially": [],
+  "reason": "No sentence provides a conditional rule (if X, then choose Y) for selecting a specific cable type.",
+  "states": []
+ },
+ "110f0840b42513186e9b76ee01719155ade8bad212f63fafa9b9d0ffb89fe59b": {
+  "partially": [],
+  "reason": "Sentence 1 states a condition: beside a frequency drive (situation) choose shielded cable (option), matching the pattern.",
+  "states": [
+   1
+  ]
+ },
+ "12b6419bb0a6f5c5eaa4099d6ed33839a2e7df4a874c4d8a2ed51eaa29719a3b": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 gives an if-then rule (cable beside drive \u2192 shielded). Sentence 2 only mentions documentation topically.",
+  "states": [
+   1
+  ]
+ },
+ "16c3adc6e0e2283badda135ecc3295869b36a73776c5ee0b9275c00eaa0799ab": {
+  "partially": [],
+  "reason": "The sentences discuss data sensitivity for access levels, not retention periods based on processing purpose.",
+  "states": []
+ },
+ "199baab6fdb742a64988a27f53ad36853e1d99501d9dc45831f65bac9680eadc": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state that the selection of the sampling interval depends on the suspected event.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "1bde1da9a59299f7773987a2d385b2e549a0fe461af2375a0b27a7cb8760e6a8": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "The seed assertion is a recommendation, while the sentences state that the practice is documented for the suspected event, which is a condition for the documentation, not a choice guide.",
+  "states": []
+ },
+ "1d344241258240f6c4614075e8109644f4cf9180482117b1d01986c5dbb580ea": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state ratings are selected based on load current, giving a condition for choosing ratings; 3\u20134 only document guidance.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "206b3f28e615fae1243a1a4457ef04fef4d20f3ea747aebdb32406a6b29e383a": {
+  "partially": [],
+  "reason": "The sentences only state the general principle of selection based on noise exposure, not specific conditional choices for different situations.",
+  "states": []
+ },
+ "215e7bb0c1bceb83eb5eb7be7ba0bc64407da7d314a13cd190a705067a27a3e8": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 2 mentions documented selection practice but gives no condition tying options to situations; sentence 1 is unrelated.",
+  "states": []
+ },
+ "22ae9e4720bdb90773935bd9efe76d4cbc6da486824c15513d87bb3840ac1201": {
+  "partially": [],
+  "reason": "Neither sentence states a conditional selection rule; sentence 1 only mentions documentation, sentence 2 is garbled.",
+  "states": []
+ },
+ "2bc6b0d1ff7b394e0f434af6ca6d507e7874b0085bd38e77cf2af0885da4f4b3": {
+  "partially": [],
+  "reason": "No sentence provides a conditional rule for choosing an option based on a specific situation or criteria.",
+  "states": []
+ },
+ "2c536385a1ef32d4cabd85654fd5ab60eb0c8f20e42bb86ba050d42d9fe3ece8": {
+  "partially": [],
+  "reason": "The sentences state the general principle (based on sensitivity) or that guidance exists, but they do not specify which option to choose in which situation.",
+  "states": []
+ },
+ "34a7c1fdd79c2349590cebdb6c663d16ab9d912aa9cc8508649b30fa1c541ef0": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state the rating selection condition based on load current; 3 and 4 are irrelevant.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "35ea480033983c5ea76351de81fae0e1ae55eb2869b2cb4093242af0081324f7": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 1 mentions selection practice tied to noise exposure but does not state which option to choose in which situation.",
+  "states": []
+ },
+ "361df756e033fe3972b21483a6c6e2a705b5b9994f8b1eeccc882f752d638d35": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state that retention period selection depends on the processing purpose; 3 and 4 merely document/write down the purpose.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "384f2a167f8b54f9aa0aa97c9a7dcd17d021e6a1045da4f1eb0a57a101cecf3a": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state that test selection depends on failure likelihood, a condition for which option to choose; sentences 3-4 do not.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "3d3562c8763654af898b7f7395c86d8c5c3f62901d8da8fe0cf9cb90631fd0c3": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify selecting breaker ratings based on load current, i.e., which option depends on the situation.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "3dcbbb121124bd8b3ec7b918c49f72eb52b003f4d0153dbabffc9a9d31053da4": null,
+ "41a9f9a544b892359f7a1f0a9f93cb33ddba8f3f97e6495a403c4dd9e06397ac": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 name load current as the selection basis but give no explicit if-then mapping from situation to rating choice.",
+  "states": []
+ },
+ "4506284223761ab504c7a34bc62a878fb9da332fceb1949939393fba01bb5485": {
+  "partially": [],
+  "reason": "The sentences state that selection depends on sensitivity but do not provide specific conditional instructions (If X, then choose Y).",
+  "states": []
+ },
+ "467a0831973440a4d0976f86afe8858c890f65eb76b991856e1b6d975241884e": {
+  "partially": [],
+  "reason": "Neither sentence states a condition mapping situations to option choice; sentence 1 only documents selection practice, without a which-option-when rule.",
+  "states": []
+ },
+ "486ee7eb09059713412ba98f9a5cf11d43b53bf31e04ab45e040abef18142178": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 directly state selecting retention periods based on processing purpose; 3 only mentions documentation; 4 is unintelligible noise.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "4a768528cbeb54b3c616faeffa726e733873f3066e6b33530ca3fde871caba54": {
+  "partially": [],
+  "reason": "Sentence 1 provides a specific conditional rule: if the purpose is a single delivery, choose the shortest period.",
+  "states": [
+   1
+  ]
+ },
+ "4a7c79b29b4765021904dc6a0180b1df19c3ae7b0b31cbbf213c450f2114a3d5": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly states a condition (beside a frequency drive, high noise exposure) and the option to choose (shielded cable).",
+  "states": [
+   3
+  ]
+ },
+ "4ebe5d416f2b060439f9a0c60921e92af0d87798c80a9b09ef45586c0dcd0b80": {
+  "partially": [],
+  "reason": "The sentences state that guidance exists for load current, but they do not specify a condition for choosing a particular option.",
+  "states": []
+ },
+ "51f6e7316778f285b06625e311fef80451fca9b6892dc2a1ee6f6a28dcf3db6d": {
+  "partially": [],
+  "reason": "Neither sentence provides a conditional rule specifying which option to choose in a given situation.",
+  "states": []
+ },
+ "53e432b3f0df6fd729f18dda0baf22759541bea0056ec9380c13c6b0b2a76e4f": {
+  "partially": [],
+  "reason": "Sentences discuss fuse rating selection by load current, unrelated to cable noise exposure and no conditional choice.",
+  "states": []
+ },
+ "656317927ecd3bc9afa86290e6f1ce9160d66b60206f31ac6e3aaa16d6acb323": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state a condition: select encryption methods according to data sensitivity. Others only document practice.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "69044106f65899f61b639173aa16a64b6c808b4281ac5ff70dad3ec6b72d1719": {
+  "partially": [],
+  "reason": "No sentence provides a conditional statement linking noise exposure levels to a specific cable selection.",
+  "states": []
+ },
+ "6912417546cc8cbba554a4f737dcc12d18e266f1b839936677051d533a1eff42": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state that the selection of the sampling interval is conditional upon the suspected event.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "69ac9ef47ee259f40cff0efebac2bce05b94363a2282c34d23495d6da871c9bd": {
+  "partially": [],
+  "reason": "Neither sentence provides a conditional instruction for choosing an option based on a specific situation.",
+  "states": []
+ },
+ "6cb366a8d207973b7bec3722239af21e837c88dcc4f1197eeb777aca992bd099": {
+  "partially": [],
+  "reason": "Sentence 1 provides a specific condition (running beside a frequency drive) and dictates the choice (shielded cable).",
+  "states": [
+   1
+  ]
+ },
+ "76d7da45fb144339a4acbf66b672636fef732ab9d227492e35411e560a5d0795": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify selecting fuse ratings based on load current, a condition-based selection rule.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "7963ee749243a531673690f37dc78dffdda52ee94cefe4fefa8ca15623fa095c": {
+  "partially": [],
+  "reason": "Neither sentence provides a conditional statement linking a specific situation to a required choice.",
+  "states": []
+ },
+ "7e48bd767fe160a628012bc8f7065eccf0cc0dad7a0475f47e8d59f6e4404eed": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state a selection rule tied to failure likelihood; 3 only documents practice; 4 is gibberish.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "8983512ddd7a28b21c5693c1a1ba00b7e6f82ec8fb5ee0a64c3ad69eda0674dd": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly gives a condition (intermittent fault) and which test to choose (highest failure likelihood), matching the conditional-choice element.",
+  "states": [
+   3
+  ]
+ },
+ "8a319a06aa521791c8ff3d577ac68a7b702d7112d1d412bbb97090d5d5ef7548": {
+  "partially": [],
+  "reason": "Neither sentence links a specific choice to a specific situation or condition.",
+  "states": []
+ },
+ "963c0475b85a5906c8d554205b3eb7726d25cbe32765f22f7dbf00d9088b8d0f": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1-2 match the seed, giving a selection basis (load current) but no situation-dependent condition choosing among options.",
+  "states": []
+ },
+ "9a92352d0b19a19f1b7ffc64bfc1eaa0e85b5309c1226dc59a1e2dd1344e2626": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 directly state that sampling rate is selected based on the suspected event, a condition-based choice; 3-4 only mention documentation.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "9b8a51373f6027ac3bdd3a2fb25719a87b9183076d1abde3101b6139e391687f": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentence 3 gives an explicit if-then choice condition. Sentences 1-2 give a selection basis but no situation-dependent condition.",
+  "states": [
+   3
+  ]
+ },
+ "9ca00e324af231c21241e677a8014e25c356e714f90ac9e9774bba8683776ccd": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 directly state that encryption method selection depends on data sensitivity, implying which option fits which situation.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "9d465cde1bf6cc5766b9db9e22dcaad5cd4543cccedf561829800c4b8a25fa42": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly tie fuse rating choice to the load current condition; 3-4 only mention documentation.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "9f06c8c621174900c594fa5c62fd6b934752aca5365ec724e059c8ea293cd545": {
+  "partially": [],
+  "reason": "The sentences state the general principle of selection but do not provide specific conditional rules (If X, then Y).",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "z-ai/glm-5.3-flash",
+  "price_usd_per_mtok": [
+   0.15,
+   0.5
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "a2bd3cd4fbf419c7fd35f9b5a9df102d1fffd3e82b779d2a407e1557b106831d": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "The sentences state that guidance exists for the suspected event, but they do not provide specific conditional instructions on which option to choose in which situation.",
+  "states": []
+ },
+ "a3190669e543eb50b8ae554d6c4ad46e2671f97bbc142fdda4105dc9e53a4a99": {
+  "partially": [],
+  "reason": "No sentence provides a conditional choice (e.g., 'if X, then Y'). They only state that selection is based on noise exposure.",
+  "states": []
+ },
+ "a70c4b11461fe9fc7f9f87ffae4556dd10ef234254ccdf366793944876540420": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify selecting breaker ratings according to load current, mapping situation to choice; others concern noise exposure.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "a77737d476e2174a817aa163b2514337b0be6c07ac40afb223753954ef964a5c": {
+  "partially": [],
+  "reason": "Sentence 1 only documents practice existence; sentence 2 is unintelligible, neither states a decision condition.",
+  "states": []
+ },
+ "aa0d8a60a55642ed7abc7aca471ae6915376183a21b0f54a9aab23067a63f659": {
+  "partially": [],
+  "reason": "Neither sentence specifies a condition mapping situations to choices; they only mention noise exposure measurement and documentation.",
+  "states": []
+ },
+ "aec0038f91aa1f0492a19a1b261ff82676bf872c6eb216be94734b4724cdc205": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "No sentence specifies which option to choose under which condition; 1-2 only state purpose-based selection without condition-option mapping.",
+  "states": []
+ },
+ "b16b5ef9d946c525bc4957060dd04e1d82d6c578679e0947f70ba7e574a9ecad": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly gives a condition (intermittent fault) and which test to choose (highest failure likelihood); sentence 2 only documents practice.",
+  "states": [
+   1
+  ]
+ },
+ "b2f15e8b1a78535ad70d93b8f286f2bf2b09ac51631cff5425db8006cbd6a83f": {
+  "partially": [],
+  "reason": "Sentence 3 specifies a condition (cable near a frequency drive) and dictates a choice (choose a shielded cable).",
+  "states": [
+   3
+  ]
+ },
+ "b56adea79ba906a132ec91b6042b19123269e601d9a39a7bb7dac6db978adc6e": {
+  "partially": [],
+  "reason": "Both sentences describe documentation of selection practice, not a condition specifying which option to choose in which situation.",
+  "states": []
+ },
+ "b76a7d6e3c70189d86ce1479bfe31a1c513b97413fbdad65c313a7c4478fca39": {
+  "partially": [],
+  "reason": "No sentence provides a conditional choice rule (If X, then Y).",
+  "states": []
+ },
+ "b8f8fd116131304fa42a479f2a39a645acf82e2162eb6ef2109164b6b69afa66": {
+  "partially": [],
+  "reason": "No sentence provides a conditional choice (If X, then Y). Sentences 1 and 2 are general guidelines.",
+  "states": []
+ },
+ "bab3ea8ed3a757072e4776ad000489cdfdd7ca52bcbe0dd208932573f0481600": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state selecting cable types based on noise exposure, i.e., which option per condition.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "bc24ff15f61a4077e3c6673f6cc0cadcbd9736699cb08736869d01707b0863fd": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state retention periods are selected based on processing purpose, a conditional selection rule. Sentence 3 only covers documentation; sentence 4 is gibberish.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "be2e507b6d1b7cfa2948f07f166530bfe0579202da59e3487ed9468368d55468": {
+  "partially": [],
+  "reason": "The sentences state that guidance is documented for selection, but they do not specify the conditional choice or the options to be selected.",
+  "states": []
+ },
+ "c0d178e4789adb3c04d133d376c8c81caf9e83e0749166f5ec04de62e6ef1e30": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 2 mentions selection based on failure likelihood but no explicit condition mapping options to situations; sentence 1 only logs data.",
+  "states": []
+ },
+ "c33894e0d35a02c3f46d807e57118aea4982a51075913678204a75c034afefda": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Both mention guidance tied to data sensitivity but describe documentation, not an explicit condition specifying which option to choose in which situation.",
+  "states": []
+ },
+ "cfe1e06709a1205ad6a8e42c4cadd00655ff486d1a906b8e8ecbfbbd26b8f58c": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Both mention guidance exists for the suspected event but don't explicitly state which option to choose in which situation.",
+  "states": []
+ },
+ "d902672dd9435b3f1ba4bfcc602966d4465c58223db3f4debfaf87b9f711b0dd": {
+  "partially": [],
+  "reason": "Neither sentence provides a conditional statement linking a specific situation to a specific choice.",
+  "states": []
+ },
+ "d9c4e880da04e967c30834d6a2b27628d53b3bc13e49db056471a9fda721cffd": {
+  "partially": [],
+  "reason": "Neither sentence specifies which option to choose under which situation; sentence 2 is garbled and sentence 1 only documents selection practice.",
+  "states": []
+ },
+ "e2f0e884168f8aaf26fb056d100d025416c62ca009e34315ff7cd65c08fb2614": {
+  "partially": [],
+  "reason": "Neither sentence provides a conditional rule stating which option to choose in a specific situation.",
+  "states": []
+ },
+ "e7e31ea2c35f3af9b4fc96d6eab670992d7c748d1a9646b80688321523f2df01": {
+  "partially": [],
+  "reason": "Sentence 1 documents selection practice; sentence 2 is garbled. Neither states a condition mapping options to situations.",
+  "states": []
+ },
+ "ef62c688d0d2765ac455b01e1d7ab59dd29c71175f28466170636b90c546e340": {
+  "partially": [],
+  "reason": "Neither sentence provides a condition for choosing a diagnostic test based on failure likelihood.",
+  "states": []
+ },
+ "f2ba10b39b06b0fec6eef37c3f9b03597f7a28e6d2dbc1ceee11f3f97aadac6f": {
+  "partially": [],
+  "reason": "No sentence provides a conditional statement (If X, then Y) specifying which option to choose in a particular situation.",
+  "states": []
+ },
+ "f7bba45f37d52c0d5758ccbb9ff05dc2e830db86b76839e4b11aad84379c42ab": {
+  "partially": [],
+  "reason": "Neither sentence states a condition specifying which option to choose in which situation; sentence 2 is garbled and sentence 1 only mentions documentation.",
+  "states": []
+ },
+ "f99006ec2006661877ec8f567f7c7e766b28bbfa97628d2f463d0a9f2724f2bb": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly states which retention option to choose for a specific processing purpose condition.",
+  "states": [
+   3
+  ]
+ },
+ "f99636a0e9d8b6eeda7ae14817024d80cede680b90b57159a21f0ea300375a26": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 1 mentions selection tied to failure likelihood but doesn't state a condition specifying which option to choose in which situation; sentence 2 is only topically related.",
+  "states": []
+ },
+ "faaaa3a23170055f7a4a1c789662a06b77e7aa5fc3ff1b21e1f0924cb89f8821": {
+  "partially": [],
+  "reason": "No sentence provides a specific conditional mapping (If X, then Y) for choosing a retention period based on purpose.",
+  "states": []
+ },
+ "ff74086a7643b301ef253288677b866e6b52128336e7c4f6aa69348007f9d740": {
+  "partially": [],
+  "reason": "None of the sentences provide a conditional statement linking a specific situation (e.g., high noise) to a specific choice.",
+  "states": []
+ }
+}

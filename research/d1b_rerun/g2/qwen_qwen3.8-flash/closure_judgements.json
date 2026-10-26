@@ -1,0 +1,200 @@
+{
+ "2457d27019c8520ad9f548beb8a91e49fae44772d2ad71654754c08e4079a9ee": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 states the sequencing condition and option; sentence 2 gives only the condition fragment.",
+  "states": [
+   1
+  ]
+ },
+ "378c5e053185e5152a4442716a364af74a85682e63768ea0093f087c0a2ad099": {
+  "partially": [],
+  "reason": "Both sentences explicitly advise using public_api.md when deciding import contract membership.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "38032dd5daa8a4a40b2386e1b3bf815ef9d1f42272365a82da1ddd2f8659b37d": null,
+ "3d1961b31a7e57672fb0b267a2a8305ae627d9629ad7f8d5bf3aff4d6eae894b": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 states the condition; sentence 2 only gives the timing fragment without the option.",
+  "states": [
+   1
+  ]
+ },
+ "45e1db0fc018ae5ab7ef56410a4e3b7f00f6342386586610a5fea9cb1862ff09": {
+  "partially": [
+   2
+  ],
+  "reason": "1 states the lag result and its meaning; 2 only gives the lag result without interpretation/action.",
+  "states": [
+   1
+  ]
+ },
+ "54fe99546f59e01fd1d7af87d665e0e722db08b6613fae3a86241bc2d9edcda1": {
+  "partially": [
+   2
+  ],
+  "reason": "1 states when to run F1; 2 gives only a condition, not a choice.",
+  "states": [
+   1
+  ]
+ },
+ "59f303b0f0f5e0bc6df1fc1b232d87883aca1ff20a9a09dbb9ca652b21776a07": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "No sentence fully states expected result or action; 1 and 2 partially mention inspection timing and flag meaning.",
+  "states": []
+ },
+ "6a677126cf17a86ccb7f5f3bb31980315c99d1b8b34b4abd7777b7d694ca5163": null,
+ "7293008ab6fa4d1772fa0e0291afa8020fb6fba80be9fb1021e8a96a32e2f982": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly direct using public_api.md when deciding symbol import-contract status.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "7570fe0017c9ed288132604f325ae1106a3e645ac9c5d57ad955ef2d7803e700": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 states the expected lag and its meaning; sentence 2 states the expected lag but not its interpretation or next action.",
+  "states": [
+   1
+  ]
+ },
+ "7a43aea928c8b535873bb3b2656d869c733730dc8663f5cec19b7747e668be2f": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentence 1 gives inspection timing; sentence 2 explains flag meaning, but neither states expected test result or consequent action.",
+  "states": []
+ },
+ "870111e566d208436a7fa144d62b6b22a125d245366d9e22f588047d90e76b48": {
+  "partially": [
+   2
+  ],
+  "reason": "1 and 3 state expected lag, its meaning as AR order, and 3 adds next fitting step; 2 gives only result.",
+  "states": [
+   1,
+   3
+  ]
+ },
+ "8b49eb56a05585bf2e5e3b9dcc0363185eb13122f22ff17813ba071095b3a4b3": null,
+ "93b4eef511f115b6d4ed4b112514d4094695e3ab87506db606394743712b09d7": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly states empty-set result, meaning no signal, and action to stop evaluation.",
+  "states": [
+   3
+  ]
+ },
+ "9a517db964a5975a4acf36441250e860b37aca0b7045cd86f491d2f37ff3d4ad": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 explicitly links option F1 to conditions; sentence 2 gives only condition fragment, no option.",
+  "states": [
+   1
+  ]
+ },
+ "9f4f33dc4482d52807ddeb9f2b19aedda086e891436b3afe9f1b8db1f34c5688": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly condition using architecture.md on deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "9ff14758d7fb4d34a6b9ae1b4f525506fb074adb2b06d88eac8f2ee7206a415a": {
+  "partially": [
+   1,
+   2,
+   3
+  ],
+  "reason": "No sentence gives expected result plus meaning/action; 1-3 only partially cover action, meaning, or field type.",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 2000,
+  "model": "qwen/qwen3.8-flash",
+  "price_usd_per_mtok": [
+   0.15,
+   0.47
+  ],
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "a4eea282453b5dfacc1e2581074481efee6b6245752c46ced8b68246077e64bb": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 states expected lag and interprets it as AR order; sentence 2 only mentions finding lag without meaning or action.",
+  "states": [
+   1
+  ]
+ },
+ "a809e27252a4687272496ec8825ea96e3e323ed7fcb349158c590408060c5cce": null,
+ "b73c7cdb89e46740a0d23a730ccfb80700150eb93a4ce8f0419351d39724027d": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 gives expected lag and its meaning; sentence 2 gives only expected lag.",
+  "states": [
+   1
+  ]
+ },
+ "b79d6f0fdd7bedc618deccc9af782fcd75eb589ec79cb9d0604bfa47fff66fb2": null,
+ "c0321a125b44a351f92582e7b8ab16c04f725a80046bafefacf73028e7117121": null,
+ "c0e13665745a553921ae50e9f966d803ee5260cdffcf0f2461491dcbf27b4891": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 3 gives result, meaning, and action; sentence 1 only advises inspection without result.",
+  "states": [
+   3
+  ]
+ },
+ "c76bd69d628f2f77c01b7e96f1f367ab82fae83c635b9a0b46c9137cd93ddc32": null,
+ "cd1e9ca309dac28bc46ff9ef14b9edddb2c5592a7aca57cda1a265fde17e613a": null,
+ "d0b6fcff67e4f06fb872ce81efdf2e23e550cf6cb75696c8130f83a693db1e55": null,
+ "d1b591d5b1f370465290fa26f92109d2d522b7eb403cef185b31f560c5cc6bcf": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly link using public_api.md to deciding symbol import contract status; others do not state such a condition.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "eff1ee29f16c3e2c40d7c3c9398c6e38bf2525fbad3bca907782c64dc47ce53b": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly say to consult/use architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "f758718cce302881fb35662fc553a29862e7b0c9df5fa2df5d6400e4b9754e71": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly name consulting/using architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "ffb9d96a93cab345e0ab981056ffdada17c9eeeacd019dc35b78d04f77684c32": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly states the condition for choosing horizons; others only mention timing or unrelated definitions.",
+  "states": [
+   3
+  ]
+ }
+}

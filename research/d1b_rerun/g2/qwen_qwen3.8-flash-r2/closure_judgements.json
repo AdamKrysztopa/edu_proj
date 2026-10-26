@@ -1,0 +1,192 @@
+{
+ "2457d27019c8520ad9f548beb8a91e49fae44772d2ad71654754c08e4079a9ee": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 gives full condition and option; sentence 2 only fragments the condition without option.",
+  "states": [
+   1
+  ]
+ },
+ "38032dd5daa8a4a40b2386e1b3bf815ef9d1f42272365a82da1ddd2f8659b37d": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "1 gives next action but not expected result; 2 explains flag meaning without expected result or next action.",
+  "states": []
+ },
+ "3d1961b31a7e57672fb0b267a2a8305ae627d9629ad7f8d5bf3aff4d6eae894b": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 states action F1 when AMI curves exist before horizon choice; sentence 2 only condition fragment.",
+  "states": [
+   1
+  ]
+ },
+ "54fe99546f59e01fd1d7af87d665e0e722db08b6613fae3a86241bc2d9edcda1": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 gives option and timing; sentence 2 only a condition fragment.",
+  "states": [
+   1
+  ]
+ },
+ "59f303b0f0f5e0bc6df1fc1b232d87883aca1ff20a9a09dbb9ca652b21776a07": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 1 mentions inspecting the flag before assumptions but not the expected result, meaning, or next action.",
+  "states": []
+ },
+ "7a43aea928c8b535873bb3b2656d869c733730dc8663f5cec19b7747e668be2f": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 states inspection before assumptions; Sentence 2 describes flag meaning but not expected result or action.",
+  "states": [
+   1
+  ]
+ },
+ "8b49eb56a05585bf2e5e3b9dcc0363185eb13122f22ff17813ba071095b3a4b3": {
+  "partially": [
+   5
+  ],
+  "reason": "1-2 state expected no-signal result and evaluation action; 5 only explains coefficient meanings.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "93b4eef511f115b6d4ed4b112514d4094695e3ab87506db606394743712b09d7": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentence 3 states result, meaning, and next action; 1-2 only state guidance/no-signal, not test result.",
+  "states": [
+   3
+  ]
+ },
+ "9a517db964a5975a4acf36441250e860b37aca0b7045cd86f491d2f37ff3d4ad": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 gives action and timing; sentence 2 only states the AMI condition fragment.",
+  "states": [
+   1
+  ]
+ },
+ "9f4f33dc4482d52807ddeb9f2b19aedda086e891436b3afe9f1b8db1f34c5688": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly specify consulting/using architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "9ff14758d7fb4d34a6b9ae1b4f525506fb074adb2b06d88eac8f2ee7206a415a": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "No full statement; 1 gives action, 2 gives flag meaning, but none gives expected result.",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "qwen/qwen3.8-flash",
+  "price_usd_per_mtok": [
+   0.15,
+   0.47
+  ],
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "a809e27252a4687272496ec8825ea96e3e323ed7fcb349158c590408060c5cce": {
+  "partially": [
+   3,
+   4
+  ],
+  "reason": "1 and 2 fully state expected no signal and evaluation action; 3 and 4 mention targeting/result format without full expectation/meaning.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "b79d6f0fdd7bedc618deccc9af782fcd75eb589ec79cb9d0604bfa47fff66fb2": {
+  "partially": [
+   6
+  ],
+  "reason": "Sentences 1 and 2 state expected no-signal outcome and next action; sentence 6 only interprets coefficient values.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "c0321a125b44a351f92582e7b8ab16c04f725a80046bafefacf73028e7117121": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Only 3 gives if-then placement choices; 1 and 2 direct to architecture.md without choosing among options.",
+  "states": [
+   3
+  ]
+ },
+ "c0e13665745a553921ae50e9f966d803ee5260cdffcf0f2461491dcbf27b4891": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 3 explicitly states True meaning and next action; sentence 1 only gives inspection action without result meaning.",
+  "states": [
+   3
+  ]
+ },
+ "c76bd69d628f2f77c01b7e96f1f367ab82fae83c635b9a0b46c9137cd93ddc32": {
+  "partially": [],
+  "reason": "1 and 2 explicitly state using architecture.md when deciding where new logic lives; 3 only describes it.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "d0b6fcff67e4f06fb872ce81efdf2e23e550cf6cb75696c8130f83a693db1e55": {
+  "partially": [
+   6
+  ],
+  "reason": "Sentences 1-2 state expected no signal and action; 6 only defines autocorrelation values.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "eff1ee29f16c3e2c40d7c3c9398c6e38bf2525fbad3bca907782c64dc47ce53b": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state choosing architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "f758718cce302881fb35662fc553a29862e7b0c9df5fa2df5d6400e4b9754e71": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly prescribe consulting/using architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "ffb9d96a93cab345e0ab981056ffdada17c9eeeacd019dc35b78d04f77684c32": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 3 gives above/below AMI criteria for choosing horizons; sentence 2 states only a timing condition.",
+  "states": [
+   3
+  ]
+ }
+}

@@ -1,6 +1,9 @@
 """CLI (spec §0, S1): `python -m gapmap --ledger L.json [--sibling S.json] [--sidecar sc.json]
---domain NAME --out DIR [--judge ollama]`. Deterministic given a filled judge cache: replay mode
-(no `--judge`) never opens a socket -- a closure-judge cache miss raises a clear error instead."""
+--domain NAME --out DIR [--judge ollama|openai|openrouter] [--model M]`. Deterministic given a filled judge
+cache: replay mode (no `--judge`) never opens a socket -- a closure-judge cache miss raises a clear
+error instead. A live run writes `judge.json` (model, ledger, completeness, spend) beside the map;
+an OpenAI or OpenRouter judge also takes `--max-usd`, `--reasoning-effort`, `--spend-ledger` and, under ADR 0009,
+`--parallel-arm` (an other-family arm's output directory on the same ledger)."""
 from __future__ import annotations
 
 import argparse
@@ -121,6 +124,30 @@ def _default_judge(out_dir: str, judge_mode: str | None):
     return judge_mod.CachedJudge(judge_mod.OllamaJudge(), cache_path, live=(judge_mode == "ollama"))
 
 
+def parallel_arm_problem(model_id: str, sidecar: dict | None, arm: dict | None,
+                         ledger_sha256: str) -> str | None:
+    """ADR 0009, as `control2.parallel_arm_problem`: a live judge of the ledger's generator or
+    verifier family runs only beside an other-family arm already judged on the same ledger. The
+    map's prompts are a function of the ledger and the config, so the same ledger and config hash
+    mean the same prompts."""
+    fam = judge_mod.family(model_id)
+    if fam == "other":
+        return None
+    if sidecar is None:
+        return f"a live {fam} judge needs --sidecar to compare its family with the ledger's"
+    ledger_families = {m["family"] for m in sidecar["config"]["models"].values()}
+    if fam not in ledger_families:
+        return None
+    if arm is None:
+        return (f"{model_id} shares the ledger's {fam} family; ADR 0009 runs it only beside an "
+                f"other-family arm: pass that arm's output directory as --parallel-arm")
+    if judge_mod.family(arm["judge_model"]) in ledger_families:
+        return f"--parallel-arm was judged by {arm['judge_model']}, not an other-family judge"
+    if arm["ledger_sha256"] != ledger_sha256 or arm.get("config_sha256") != config.CONFIG_SHA256:
+        return "--parallel-arm was judged on a different ledger or config"
+    return None
+
+
 def run(ledger_path: str, *, domain: str, out_dir: str, sibling_path: str | None = None,
        sidecar_path: str | None = None, judge_mode: str | None = None, judge=None,
        manifest_sha256: str | None = None) -> None:
@@ -152,19 +179,70 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--sidecar")
     p.add_argument("--domain", required=True)
     p.add_argument("--out", required=True)
-    p.add_argument("--judge", choices=["ollama"], default=None,
-                   help="fill/refresh the closure-judgement cache from a live local Ollama call; "
+    p.add_argument("--judge", choices=["ollama", "openai", "openrouter"], default=None,
+                   help="fill/refresh the closure-judgement cache from a live call; "
                         "omit for replay mode (cache only, no network)")
+    p.add_argument("--model", default=config.JUDGE_MODEL, help="Ollama model, or an OpenAI model id")
+    p.add_argument("--max-usd", type=float, help="hard spend cap, required with --judge openai")
+    p.add_argument("--reasoning-effort", default="medium", help="OpenAI judge only; recorded in the cache _meta")
+    p.add_argument("--max-completion-tokens", type=int, default=6000, help="OpenAI judge only")
+    p.add_argument("--spend-ledger", help="OpenAI judge only: JSONL shared by runs, so --max-usd covers them all")
+    p.add_argument("--reasoning-max-tokens", type=int, help="OpenRouter judge only: cap the model's reasoning")
+    p.add_argument("--parallel-arm", help="output directory of the other-family arm on the same ledger (ADR 0009)")
     p.add_argument("--require-manifest", metavar="SHA",
                    help="refuse to run unless the repository hashes to this freeze manifest (gapmap.manifest)")
     args = p.parse_args(argv)
+    provider = (args.judge if args.judge in ("openai", "openrouter")
+                else "openai" if args.model in judge_mod.OPENAI_PRICES_PER_MTOK
+                else "openrouter" if args.model in judge_mod.OPENROUTER_PRICES_PER_MTOK else "ollama")
+    use_openai = provider == "openai"
     if args.require_manifest:
         try:
-            manifest.check(args.require_manifest, model=config.JUDGE_MODEL)
+            manifest.check(args.require_manifest, model=args.model,
+                           reasoning_effort=args.reasoning_effort if use_openai else None)
         except manifest.Refused as exc:
             p.error(f"--require-manifest: {exc}")
-    run(args.ledger, domain=args.domain, out_dir=args.out, sibling_path=args.sibling,
-       sidecar_path=args.sidecar, judge_mode=args.judge, manifest_sha256=args.require_manifest)
+    if args.judge in ("openai", "openrouter") and args.max_usd is None:
+        p.error(f"--judge {args.judge} needs --max-usd")
+    live = args.judge is not None
+    if live:
+        sidecar = _load_json(args.sidecar)
+        arm = _load_json(str(Path(args.parallel_arm) / "judge.json")) if args.parallel_arm else None
+        problem = parallel_arm_problem(args.model, sidecar, arm, _sha256_text(Path(args.ledger).read_text()))
+        if problem:
+            p.error(problem)
+    if use_openai:
+        backend = judge_mod.OpenAIJudge(args.model, max_usd=args.max_usd if live else 0.0,
+                                        reasoning_effort=args.reasoning_effort,
+                                        max_completion_tokens=args.max_completion_tokens,
+                                        spend_ledger=args.spend_ledger if live else None)
+        meta = {"model": args.model, **backend.settings}
+    elif provider == "openrouter":
+        backend = judge_mod.OpenRouterJudge(args.model, max_usd=args.max_usd if live else 0.0,
+                                            spend_ledger=args.spend_ledger if live else None,
+                                            reasoning_max_tokens=args.reasoning_max_tokens)
+        meta = {"model": args.model, **backend.settings}
+    else:
+        backend, meta = judge_mod.OllamaJudge(model=args.model), None
+    judge = judge_mod.CachedJudge(backend, Path(args.out) / "closure_judgements.json", live=live, meta=meta,
+                                  live_flag=f"--judge {provider}")
+    record_ = {"judge_model": backend.model_id, "ledger_sha256": _sha256_text(Path(args.ledger).read_text()),
+               "config_sha256": config.CONFIG_SHA256, "settings": meta}
+    try:
+        run(args.ledger, domain=args.domain, out_dir=args.out, sibling_path=args.sibling,
+           sidecar_path=args.sidecar, judge=judge, manifest_sha256=args.require_manifest)
+    except (judge_mod.BudgetExceeded, judge_mod.JudgeUnavailable) as exc:
+        judge.save()
+        record_.update(complete=False, stopped=str(exc))
+        raise SystemExit(f"incomplete: {exc}") from exc
+    else:
+        record_["complete"] = True
+    finally:
+        if live:
+            if provider != "ollama":
+                record_["spend"] = backend.spend()
+            Path(args.out).mkdir(parents=True, exist_ok=True)
+            (Path(args.out) / "judge.json").write_text(json.dumps(record_, sort_keys=True, indent=1) + "\n")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,159 @@
+{
+ "t01": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t02": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t03": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t04": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t05": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t06": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t07": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t08": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t09": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t10": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t11": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t12": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t13": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t14": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t15": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t16": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t17": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t18": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t19": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t20": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t21": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t22": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t23": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "t24": {
+  "P": true,
+  "N": true,
+  "N_plus": true,
+  "seed_open": true
+ },
+ "_by": "owner, 2026-10-26: 'all confirmed' after reading fixtures/g2_review.md",
+ "_dropped": {
+  "t06": "owner, 2026-10-26: the seed states the expected result (every C1 judge closed arm 0)",
+  "t12": "owner, 2026-10-26: the seed's 'when deciding' reads as a choice condition (every C1 judge closed arm 0)",
+  "t11": "owner, 2026-10-26 (gate seed check): both seed readers closed arm 0; the seed carries its own reason ('because...')",
+  "t13": "owner, 2026-10-26 (gate seed check): both seed readers closed arm 0; the seed carries its own reason ('so that...')",
+  "t23": "owner, 2026-10-26 (gate seed check): both seed readers closed arm 0; the seed carries its own reason ('as the curve...')",
+  "t24": "owner, 2026-10-26 (gate seed check): both seed readers closed arm 0; the seed carries its own reason ('to avoid...')",
+  "t20": "owner, 2026-10-26 (gate seed check): the seed states its purpose ('required for a valid two-sided 95% band')"
+ },
+ "_revisions": {
+  "t07.N": "owner, 2026-10-26: rewritten N (vacuous 'since') confirmed, to restore marker balance after dropping t06, t12"
+ }
+}

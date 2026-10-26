@@ -48,6 +48,7 @@ This queue merges three passes ([C] Claude, [X] Codex, [R2] an adversarial secon
   - **Owner decision 2026-10-24, superseding the line above.** coder32 is dropped, not deferred: it is not runnable on this laptop (24 GB RAM, 76 s per trivial reply, first L7.3 run hung about 4 h with nothing saved), and no hosted coder32 run follows. No guard arm is eligible; choosing one is open.
   - **Cost.** OpenAI spend $5.03 of one $10 cap, including the superseded run 1 ($2.55).
   - Note `research/n3_control_v3/RESULT.md`; commit fccf477.
+  - **Re-reading, 2026-10-26 (D1b plan §1.5; no N3 rule changed).** control2 is topicality-biased: the own arm is ranked by candidate *i*'s probe and the donor arm by *j*'s (`gapmap/src/gapmap/control2.py:120,128-132`). A lexical-overlap stand-in passes it at +0.68 (PLC) and +0.46 (GDPR v1), above sol's +0.13 and +0.23 (stand-in values computed in session for plan §1.5 and not saved as a file; sol's from `research/n3_control_v3/RESULT.md`). So sol's GDPR v1 reading is not protected against an "is on topic" judge, and control2 cannot certify a judge on its own. A topicality-controlled check (D1b's G2: an on-topic non-element N beside the planted element P) should run before any control2 reading counts for MS1.
 
 ## Before E-CTA registration (methods-critic, 2026-10-24)
 
@@ -218,6 +219,14 @@ The four owner decisions are recorded but were not ready to register. The critic
   - cohort-level diagnosis only (EU AI Act Annex III, `REORIENTATION.md` §21).
   - If the course touches physics conservation, the §18.1 rule applies: anyone who has seen reconstructed conservation content is ineligible for a Track A role.
   - D1's outputs should be shaped so a lecturer can see them as the WUT pitch.
+
+## D1b. Fix the gap map's ranking, then rerun D1 on fresh questions (owner, 2026-10-26)
+
+- **Plan:** `docs/plans/gapmap-fix-and-d1-rerun.md`, approved 2026-10-26 after two `methods-critic` rounds. Owner decisions: criterion (b), LLM judges, advisory; total cap $6; no local models (the Mac crashed screening them), every non-OpenAI judge through OpenRouter.
+- **Item 1, done: the fix.** The gap map's closure judge is selectable (`--judge ollama|openai|openrouter`, ADR 0009 parallel-arm guard); defaults and the `research/n3/` caches are unchanged. Judges are screened on G1 (N3's L7.3 fixtures) and G2 (topicality-controlled plants, owner-confirmed). gemma-4-31b-it passes both (G2 twice, under a disclosed post-hoc amendment to the R term, `b7cc35f`; raw R 0.15) and is the cheap arm. gpt-6.1-sol passes G1 and its first G2 gate run; the second required run was stopped at A, so it is not yet eligible. The real-data null (mismatched-evidence control) still flags the gemma maps (+0.125, +0.111) and cannot gate, since a lexical-overlap stand-in passes it on the cheap ledger (+0.208; +0.200 on top-tier).
+- **Item 2, stopped at A: Change (owner, 2026-10-26).** Of 35 fresh topics, the cheap judge (gemma) left 7 open in every version against 23 closed; at most 3 matched pairs, floor 10. No questions were built or answered. Per plan §3.7, gap-map targeting is not a pilot claim; the PW lecturer and volunteer search may start as an elicitation-and-onboarding pilot without targeting. Note `research/d1b_rerun/RESULT.md`.
+- **Cost.** $0.92 of $6: OpenRouter $0.62, OpenAI $0.29 (sol's checks, started before the Stop A count against the plan's order; lesson queued).
+- **Open.** Targeting can be tested only on a corpus whose open side reaches 10 matched topics per arm; the rerun's rule, sheet builder, sealing, canaries and retest are built and tested for that (`research/d1b_rerun/`).
 
 ## Conditional: not ready yet
 

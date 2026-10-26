@@ -1,0 +1,61 @@
+{
+ "diff": 0.16666666666666663,
+ "judge_model": "qwen2.5:7b-instruct",
+ "lower90": 0.0,
+ "n_clusters": 4,
+ "n_topics": 6,
+ "passes": false,
+ "rates": {
+  "0": 0.6666666666666666,
+  "N": 0.8333333333333334,
+  "N+": 0.8333333333333334,
+  "P": 1.0,
+  "R": 0.6666666666666666
+ },
+ "split": "selection",
+ "states": {
+  "t03": {
+   "0": "open",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "open"
+  },
+  "t04": {
+   "0": "open",
+   "N": "partial",
+   "N+": "partial",
+   "P": "closed",
+   "R": "open"
+  },
+  "t06": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t12": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t19": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t22": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  }
+ },
+ "undecided": 0
+}

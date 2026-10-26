@@ -1,0 +1,205 @@
+{
+ "05ede45633730b1287f5652514520169b7e7dedd01714224b8c64670cb2ead08": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly states the condition of consulting public_api.md when deciding on a symbol's inclusion in the import contract.",
+  "states": [
+   1
+  ]
+ },
+ "077cceea09fd5c504a1aecdf63865aac85605abdfc72da1fff7555a2ff816e76": {
+  "partially": [],
+  "reason": "Sentence 1 directly states the condition for running the forecastability profile relative to AMI curves and modeling horizons.",
+  "states": [
+   1
+  ]
+ },
+ "1ac68d1bcdbdb9f688ed6256df95b9fc512102f4c60b55025b177fdf34f590e8": {
+  "partially": [],
+  "reason": "No sentence states the expected test result, its meaning, or the resulting next action.",
+  "states": []
+ },
+ "1b47338b5909ab7b5c20f606b4ee3b116afe448b44054ca6caa134a3bc503e56": {
+  "partially": [],
+  "reason": "Sentence 3 describes where new logic lives across specific locations, fulfilling the condition of choosing based on situations.",
+  "states": [
+   3
+  ]
+ },
+ "22fe38df69e252de2d8b0282cd8a7cb4339acb00cbdcb73919ab17ba02b73154": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state the result of the test (lag after which values are within the interval) and its meaning (AR model order).",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "253fdf248d978b46f3d92e6e512f2fc3c16d01a215f3bc55ecc4a9f08c5b5891": {
+  "partially": [],
+  "reason": "None of the sentences state a condition choosing between options based on different situations.",
+  "states": []
+ },
+ "28942175953d9114ca004f79eaf0a0e7cbf9c2e9f7b2cbb1b3de1e7da6a2802c": {
+  "partially": [],
+  "reason": "No sentence states a condition that says which option to choose in a specific situation.",
+  "states": []
+ },
+ "2ec89f90ac7ca4789a238d1212cd3e0279659d797630046c283675993192917d": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state the test result to expect (lag within confidence interval) and the resulting action (determines model order).",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "36b0b0b90deab5603d72c3449069ffb7938be687f4f0f90a71a369bb2a11a97b": {
+  "partially": [],
+  "reason": "None of the sentences state the result of the test, its meaning, or the resulting next action.",
+  "states": []
+ },
+ "42dbc579516f3bfa04b688797a30be55cd007ae96e680fb04ed58ab6a5464284": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly states the expected result (falling inside the interval after lag 3) and the next action (fit an AR(3)).",
+  "states": [
+   3
+  ]
+ },
+ "4d18ecc1e172816687d04d1c0442942a6c93042dad43286acbc0baecab2c9033": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify consulting public_api.md when deciding on a symbol's status.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "50200ea6541751b1b732c6c16e632fd52599c78567ef254ea4bc5527ac12604c": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state the test result to expect (lag where partial autocorrelations are within the interval) and its meaning.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "66ab6473ba476dd0b7b6073e87f8f34d6f6aa37be9aa9dcc7be9a7f70ddfee4a": {
+  "partially": [],
+  "reason": "None of the sentences state expected test results, their meanings, or resulting actions.",
+  "states": []
+ },
+ "6cf0f7752a8cf6fa117a1b688cca19f3a12331d586a3e9a28c257988c6366e73": {
+  "partially": [],
+  "reason": "Sentence 3 specifies distinct conditions for placing new logic either in the core package or the reporting layer.",
+  "states": [
+   3
+  ]
+ },
+ "7053b26c1c6b610a08d825b8b9b1d2e552524104a8e57fb46b7e6e7c15c3829e": {
+  "partially": [],
+  "reason": "No sentence states what result of the test to expect or what a given result means.",
+  "states": []
+ },
+ "899a8b839dfc9e0f98dfbecb322c994361443fa07c82affda654d791cb66f191": {
+  "partially": [],
+  "reason": "Sentence 3 states the test result (set comes back empty) and the resulting action (model evaluation stops).",
+  "states": [
+   3
+  ]
+ },
+ "8a374d0abafdab9350ee53a9127f7cb90c52121758654a52050e11f6df564404": {
+  "partially": [],
+  "reason": "Sentence 3 details the meaning of a True flag and the resulting next action.",
+  "states": [
+   3
+  ]
+ },
+ "8d1df3d0d540e55c30c53b21010e86ead2cf3e630445cf57daf66f3bc334586b": {
+  "partially": [],
+  "reason": "No sentence states a condition specifying which option to choose in a given situation.",
+  "states": []
+ },
+ "9dc885261e253fc7a82db8e08420130f4ae1f8515953576490d8691212bf8c2f": {
+  "partially": [],
+  "reason": "None of the sentences state what result to expect, its meaning, or the resulting next action.",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 2000,
+  "model": "google/gemini-3.5-flash-lite",
+  "price_usd_per_mtok": [
+   0.3,
+   2.5
+  ],
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "ae50e1fb54c642293e5f6372c50714c89cb937a8dbaff9f56c6edfcab8c148eb": {
+  "partially": [],
+  "reason": "None of the sentences state a condition for choosing which option to choose in a specific situation.",
+  "states": []
+ },
+ "b70ac8ce10865af9d27811a4a22c9c00a1eb2ce9cac856cc0ec4b2784ab6a7ee": {
+  "partially": [],
+  "reason": "Sentence 3 specifies which horizons to choose for modelling based on their position relative to the surrogate band.",
+  "states": [
+   3
+  ]
+ },
+ "bbed6b83c1a4b1e722d1b0948018eddd622f4ac6482ca0955533e0e8cc5df244": {
+  "partially": [],
+  "reason": "None of the sentences state what result to expect, its meaning, or the resulting next action.",
+  "states": []
+ },
+ "c4303e8d5f5ed6982d2d0d8092a05e71cea0b28641eae62f62f7818f4e2ef67a": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state the test result to expect and the next action: finding the lag where partial autocorrelations fall within the confidence interval to determine the AR model's order.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "c5e651eb5fb205bbe26d3b811da3c9a8584578fcdb3385913d99f14f6cd37de4": {
+  "partially": [],
+  "reason": "Sentence 3 specifies conditions for choosing which import category a symbol belongs to.",
+  "states": [
+   3
+  ]
+ },
+ "c983976bd2404df932cfc99f6caf81eeb5ab5b99d7639c0d02a59a83f5bd7cca": {
+  "partially": [],
+  "reason": "None of the sentences state the expected result of the test, its meaning, or the resulting next action.",
+  "states": []
+ },
+ "cd51630c26699ceba34b005f9f52c1d0084dd35a4ea1d49b2c6b31eabe997262": {
+  "partially": [],
+  "reason": "None of the sentences state the result of the test or the resulting next action.",
+  "states": []
+ },
+ "ced9cf67856c5d4b77ca97e21bed35c376bc3f26d6a32bc31c7e8d27ce3591f2": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state the condition to consult public_api.md when deciding on the supported import contract.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "d164bc5d475083586051677b0a1caa88c54c4903a857864ef44526944f2247bb": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state the condition to consult public_api.md when deciding if a symbol is part of the import contract.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "df6f9dbc3bbe3f7d4e45e4ff26c77f3b93bcc99dc71bbb4dfda9022db3548553": {
+  "partially": [],
+  "reason": "None of the sentences state a condition for choosing a specific option in a given situation.",
+  "states": []
+ },
+ "fc65afe5885feb36edccae350b14c44c6f4d4d2df22676639e7f73b6d5c8f6a7": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "They state to consult architecture.md when deciding placement, but do not outline specific options per situation.",
+  "states": []
+ }
+}

@@ -1,0 +1,6 @@
+{
+ "_source": "c-paraphrase restates the corpus's Diagnostics Matrix warning on the largest Lyapunov exponent in new words; c-new states facts absent from the corpus (checked with novelty.Retriever: top similarity below the copied passage and no corpus passage mentions 499 surrogates or imputed tail values).",
+ "paraphrase_question": "Can the largest Lyapunov exponent be used on its own when triaging a series?",
+ "paraphrase": "No. The LLE estimate is easily thrown off numerically, so the automatic triage never uses it and it only runs when the configuration switches on experimental features, with no promise that it stays stable. Anyone reading it should check it against the AMI and partial AMI results and the F6 complexity band before concluding anything.",
+ "planted_new": "On our retail data we raise the surrogate count from 99 to 499 whenever a daily series has fewer than 300 points: with 99 surrogates the 95% band marked 11 of 40 held-out series as informative at lag 14 when they were not. We also refuse to triage any series whose last tenth contains more than three imputed values, because the imputation alone produced a spurious weekly peak."
+}

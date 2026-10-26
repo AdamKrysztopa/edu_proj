@@ -1,0 +1,192 @@
+{
+ "015840db4b1d704b7685801d538e48b90d886237bb035b5500a63ef99400082c": null,
+ "03a913e77af24384e5581b50fb3fb550a0442fcd07fd27385d8d3c962d2f23ea": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentence 1 gives next action; sentence 2 gives flag meaning, but neither states expected result plus meaning/action fully.",
+  "states": []
+ },
+ "0ce3927bef9aadedec92843270d9ef7d10681ea1ed361358a84e94782e359400": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 gives expected lag and interprets it as likely AR order; sentence 2 only gives procedure.",
+  "states": [
+   1
+  ]
+ },
+ "0f2e761db3c7c088e83fa4b5f1ffc28248932b7fb26cf491f7d1329c5aed8fa3": null,
+ "142c9b632244c56fab3cd3e3ca1275b25fbe3f73d502cc67e4e775584296adf1": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly say to consult/use public_api.md when deciding whether a symbol is part of the contract.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "15e9fc4f1241ad98796410de79125563c7c03ef3c6ff91c5c10ff5b8d6ad7a35": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly say to consult/use architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "1c4a37fb0db401c089d31df8fdbc54f2ba76dffd1d83106332f131e2cdb5b466": {
+  "partially": [],
+  "reason": "Sentence 3 gives conditional choice rule: above band chosen, below left out.",
+  "states": [
+   3
+  ]
+ },
+ "1fc97f624d400a24807bd1d9a90d3328add295dd9e235c59eadfff275d818568": null,
+ "23bc3e21d9d10cda765d9415a14d5457820ce5593185e03a6e6b90e78abc1c29": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 condition consulting/using architecture.md on deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "246488477477303b23e03cfb1f6e50f83de77b401dcf1df67e3f5a09ee844491": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state to consult public_api.md when deciding if a symbol is supported.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "387dbdd689ca43e40b9039b68095614127c6c114fa58d5981e303ef917173cf8": null,
+ "4278ba69f65bcf019f5e2f4d2ef93326d77fb101cf5c9d4b0dc14e48fae1829a": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 give a conditional instruction: consult/use public_api.md when deciding symbol inclusion.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "4b9a3c6c271602cc2dff75b5b8d8d679f1916b49ec44c121147db897b614a202": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly states True flag meaning and next action.",
+  "states": [
+   3
+  ]
+ },
+ "593ebf55b8ae8fd19a2e93a875cb19fd97f6b1f6da4050081a23be61876c5371": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 gives expected PACF cutoff and interprets lag as likely AR order; sentence 2 only gives search procedure.",
+  "states": [
+   1
+  ]
+ },
+ "664ce6409227c0c5b4512da3627d3d70c17696b4570bb9e796510fda22dfebea": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly say to consult/use architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "6ec1f0d409ac9e91391bf8c4cc2d0b0ccf9748d59bbe04e2780591b90db02e92": {
+  "partially": [],
+  "reason": "Sentence 3 gives if-then conditions mapping diagnostic logic to core and formatting/plotting to reporting.",
+  "states": [
+   3
+  ]
+ },
+ "70348ee77d549e9b74e351b7820ddd039fb0efc72f830ab4065600e34f1ca07d": null,
+ "7682c4c77fd68ae42f211604dc9dfd47491788e73d7b187b9a913cf9ad3ccebc": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 gives the full ordering condition; sentence 2 only repeats the timing condition without an option.",
+  "states": [
+   1
+  ]
+ },
+ "77989cebc15ad7c429341a43a389c7e180bbc1c1c596dec91c3777c5cfcfe93d": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 states the ordering condition; sentence 2 gives only the AMI condition fragment.",
+  "states": [
+   1
+  ]
+ },
+ "9b40c95a223300801a71df92b7eb23d386250fa2122481d117e67db60a309b36": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 3 gives specific result, meaning, and next action; sentence 1 gives general meaning only.",
+  "states": [
+   3
+  ]
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 2000,
+  "model": "deepseek/deepseek-v4.1-flash",
+  "price_usd_per_mtok": [
+   0.02,
+   1.0
+  ],
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "a5cb8f478393664e7633b454f0effb951ed07b9847854cd9744a15110c038989": {
+  "partially": [],
+  "reason": "Both state to consult/use architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "b12fbec16775579d62a17c0a6e326d8f93aa2418a707755cfdfe4a2631107e55": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 1 states expected result and its meaning; sentence 2 states result but not meaning/action.",
+  "states": [
+   1
+  ]
+ },
+ "b4e31d3ac418e93ebaf4194e5d03767642cdf6f4db8e0ce6bb84e00de9ef31a4": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Only temporal ordering conditions are stated, not which option to choose in which situation.",
+  "states": []
+ },
+ "c50b2974b56356aeb89dfd86631c7d0b35e8c6829787cad9272e546056fae6e0": null,
+ "cf30a74ab2db8f68be9272f13f7b12e3f1b1a3bce0dd8f1567b30a0ee63283e4": {
+  "partially": [],
+  "reason": "Sentence 3 states empty informative set result and that evaluation stops.",
+  "states": [
+   3
+  ]
+ },
+ "d8534ded08797933d3242c777d84a224e5f50913d7a52041c236af9b852dfe8b": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state when deciding symbol contract, consult public_api.md.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "de397e6214bf213f27953086efd2bfd1482143614f6c94cc9ff441265a6744ea": null,
+ "fb278d3533a42e6bf5cfce0f3bdc5fe54c9bb4a962aebac4e93db50b7b2d5bcd": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentence 1 gives an inspection action but no expected result/meaning; sentence 2 describes flagging without judgement, not result/action.",
+  "states": []
+ },
+ "ff4eadd1fbfcad9129d09ae108a04906059bb6308df27166f8b9c0694f13bf52": null,
+ "ffeca25c5618f87bde3b4a79598827665b25e88cfead43b41353c9327420ce0f": null
+}

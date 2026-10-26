@@ -1,0 +1,534 @@
+{
+ "10:all_copied": {
+  "agreed": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 10,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 11,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 10,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 20,
+  "n_with_content": 20
+ },
+ "10:all_novel": {
+  "agreed": {
+   "covered_counted": 10,
+   "covered_new_rate": 1.0,
+   "difference": 0.0,
+   "gap_counted": 10,
+   "gap_new_rate": 1.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 11,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 10,
+   "covered_new_rate": 1.0,
+   "difference": 0.0,
+   "gap_counted": 10,
+   "gap_new_rate": 1.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 20,
+  "n_with_content": 20
+ },
+ "10:best_case_difference": 1.0,
+ "10:best_case_p": 5.412544112234515e-06,
+ "10:borderline_7_vs_4_of_15": {
+  "agreed": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.3,
+   "difference": 0.2,
+   "gap_counted": 10,
+   "gap_new_rate": 0.5,
+   "meets": false,
+   "p": 0.3249583234103358
+  },
+  "content_floor": 11,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.3,
+   "difference": 0.2,
+   "gap_counted": 10,
+   "gap_new_rate": 0.5,
+   "meets": false,
+   "p": 0.3249583234103358
+  },
+  "n": 20,
+  "n_with_content": 20
+ },
+ "10:filler": {
+  "agreed": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 10,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 11,
+  "decision": "No reading",
+  "expected": "No reading",
+  "judge_a": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 10,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 20,
+  "n_with_content": 0
+ },
+ "10:judge_a_dissents_on_gap": {
+  "agreed": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 0,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 11,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 10,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 20,
+  "n_with_content": 20
+ },
+ "10:judges_disagree_on_gap": {
+  "agreed": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 0,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 11,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 1.0,
+   "gap_counted": 10,
+   "gap_new_rate": 1.0,
+   "meets": true,
+   "p": 5.412544112234515e-06
+  },
+  "n": 20,
+  "n_with_content": 20
+ },
+ "10:planted_positive": {
+  "agreed": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 1.0,
+   "gap_counted": 10,
+   "gap_new_rate": 1.0,
+   "meets": true,
+   "p": 5.412544112234515e-06
+  },
+  "content_floor": 11,
+  "decision": "Continue",
+  "expected": "Continue",
+  "judge_a": {
+   "covered_counted": 10,
+   "covered_new_rate": 0.0,
+   "difference": 1.0,
+   "gap_counted": 10,
+   "gap_new_rate": 1.0,
+   "meets": true,
+   "p": 5.412544112234515e-06
+  },
+  "n": 20,
+  "n_with_content": 20
+ },
+ "12:all_copied": {
+  "agreed": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 12,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 13,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 12,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 24,
+  "n_with_content": 24
+ },
+ "12:all_novel": {
+  "agreed": {
+   "covered_counted": 12,
+   "covered_new_rate": 1.0,
+   "difference": 0.0,
+   "gap_counted": 12,
+   "gap_new_rate": 1.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 13,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 12,
+   "covered_new_rate": 1.0,
+   "difference": 0.0,
+   "gap_counted": 12,
+   "gap_new_rate": 1.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 24,
+  "n_with_content": 24
+ },
+ "12:best_case_difference": 1.0,
+ "12:best_case_p": 3.698011505253395e-07,
+ "12:borderline_7_vs_4_of_15": {
+  "agreed": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.25,
+   "difference": 0.25,
+   "gap_counted": 12,
+   "gap_new_rate": 0.5,
+   "meets": false,
+   "p": 0.20016152914254948
+  },
+  "content_floor": 13,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.25,
+   "difference": 0.25,
+   "gap_counted": 12,
+   "gap_new_rate": 0.5,
+   "meets": false,
+   "p": 0.20016152914254948
+  },
+  "n": 24,
+  "n_with_content": 24
+ },
+ "12:filler": {
+  "agreed": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 12,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 13,
+  "decision": "No reading",
+  "expected": "No reading",
+  "judge_a": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 12,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 24,
+  "n_with_content": 0
+ },
+ "12:judge_a_dissents_on_gap": {
+  "agreed": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 0,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 13,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 12,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 24,
+  "n_with_content": 24
+ },
+ "12:judges_disagree_on_gap": {
+  "agreed": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 0,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 13,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 1.0,
+   "gap_counted": 12,
+   "gap_new_rate": 1.0,
+   "meets": true,
+   "p": 3.698011505253395e-07
+  },
+  "n": 24,
+  "n_with_content": 24
+ },
+ "12:planted_positive": {
+  "agreed": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 1.0,
+   "gap_counted": 12,
+   "gap_new_rate": 1.0,
+   "meets": true,
+   "p": 3.698011505253395e-07
+  },
+  "content_floor": 13,
+  "decision": "Continue",
+  "expected": "Continue",
+  "judge_a": {
+   "covered_counted": 12,
+   "covered_new_rate": 0.0,
+   "difference": 1.0,
+   "gap_counted": 12,
+   "gap_new_rate": 1.0,
+   "meets": true,
+   "p": 3.698011505253395e-07
+  },
+  "n": 24,
+  "n_with_content": 24
+ },
+ "15:all_copied": {
+  "agreed": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 15,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 16,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 15,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 30,
+  "n_with_content": 30
+ },
+ "15:all_novel": {
+  "agreed": {
+   "covered_counted": 15,
+   "covered_new_rate": 1.0,
+   "difference": 0.0,
+   "gap_counted": 15,
+   "gap_new_rate": 1.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 16,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 15,
+   "covered_new_rate": 1.0,
+   "difference": 0.0,
+   "gap_counted": 15,
+   "gap_new_rate": 1.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 30,
+  "n_with_content": 30
+ },
+ "15:best_case_difference": 1.0,
+ "15:best_case_p": 6.44672503789385e-09,
+ "15:borderline_7_vs_4_of_15": {
+  "agreed": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.26666666666666666,
+   "difference": 0.2,
+   "gap_counted": 15,
+   "gap_new_rate": 0.4666666666666667,
+   "meets": false,
+   "p": 0.22486256871564217
+  },
+  "content_floor": 16,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.26666666666666666,
+   "difference": 0.2,
+   "gap_counted": 15,
+   "gap_new_rate": 0.4666666666666667,
+   "meets": false,
+   "p": 0.22486256871564217
+  },
+  "n": 30,
+  "n_with_content": 30
+ },
+ "15:filler": {
+  "agreed": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 15,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 16,
+  "decision": "No reading",
+  "expected": "No reading",
+  "judge_a": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 15,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 30,
+  "n_with_content": 0
+ },
+ "15:judge_a_dissents_on_gap": {
+  "agreed": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 0,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 16,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 15,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "n": 30,
+  "n_with_content": 30
+ },
+ "15:judges_disagree_on_gap": {
+  "agreed": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 0.0,
+   "gap_counted": 0,
+   "gap_new_rate": 0.0,
+   "meets": false,
+   "p": 1.0
+  },
+  "content_floor": 16,
+  "decision": "Change",
+  "expected": "Change",
+  "judge_a": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 1.0,
+   "gap_counted": 15,
+   "gap_new_rate": 1.0,
+   "meets": true,
+   "p": 6.44672503789385e-09
+  },
+  "n": 30,
+  "n_with_content": 30
+ },
+ "15:planted_positive": {
+  "agreed": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 1.0,
+   "gap_counted": 15,
+   "gap_new_rate": 1.0,
+   "meets": true,
+   "p": 6.44672503789385e-09
+  },
+  "content_floor": 16,
+  "decision": "Continue",
+  "expected": "Continue",
+  "judge_a": {
+   "covered_counted": 15,
+   "covered_new_rate": 0.0,
+   "difference": 1.0,
+   "gap_counted": 15,
+   "gap_new_rate": 1.0,
+   "meets": true,
+   "p": 6.44672503789385e-09
+  },
+  "n": 30,
+  "n_with_content": 30
+ },
+ "all_pass": true
+}

@@ -1,0 +1,513 @@
+{
+ "0383750b1e3a6c3d51353ecab76019cdbae5554ab5cc4a8f78bd94ccf1b0883c": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly say access levels should be selected based on data sensitivity.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "0496bd048233622122b15bb4b0a5c919e2ce4e18fab26cb9c38cfe850c514137": {
+  "partially": [],
+  "reason": "No sentence addresses cable types or noise exposure; fuse ratings only.",
+  "states": []
+ },
+ "067e49eaeb174c9d3c2ba0c7d0d5690e8f6dc3ae013af3f633cfa9a65aaa2053": {
+  "partially": [],
+  "reason": "No sentence states a conditional rule for choosing an option in a situation.",
+  "states": []
+ },
+ "070d22dee63c2c59be0d708c9f4ba8a9634c2fa17de846d0a68c57289011049b": {
+  "partially": [],
+  "reason": "No sentence states a conditional mapping of which option to choose in which situation.",
+  "states": []
+ },
+ "077a865a72ad2c23e2d32f5a1c375b32a6e2ce412d3e97af5de34545232c85f9": {
+  "partially": [],
+  "reason": "No sentence states a condition for choosing an option based on load current or fuse ratings.",
+  "states": []
+ },
+ "0d986901336601d18f8c8c26e27f8db438ea4ac783a483feffe9902d36b269d6": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state encryption methods should be selected based on data sensitivity.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "0e318d293452c5992ad55acfa0314a2686d4e051f8f31b5af3c3cbb8285553cb": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state retention periods should be selected based on processing purpose, a selection condition.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "0eddf9b7d43c27911f3f1fea00656566de2504332c879565979cf2ac94d0cb0e": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state selecting encryption methods based on data sensitivity.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "0f0f103b3a0d8127e59882597ab51252d5e4235e552153ff2fc8c62158fe663e": {
+  "partially": [],
+  "reason": "No sentence states a conditional choice based on noise exposure.",
+  "states": []
+ },
+ "0f4dfaccfb813d16217e58d8f0b8792130bcf4cf9e465d3074555873ac9e1dc9": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state cable types should be selected based on noise exposure.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "131c35a448855ae825660d737b0cf0ef970a369b3244702c7f22f1e4d1e29a55": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state retention selection depends on processing purpose.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "134ecdd5d0368974d50ee4308027ed5ec98b3775f929b0b2bbad04528e98a701": {
+  "partially": [],
+  "reason": "No sentence states a condition linking option choice to a situation; only says guidance is documented.",
+  "states": []
+ },
+ "167790cff218c2d81fac89ace80b1eba401262ac43fefeb882b2d4e049442469": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state fuse ratings should be selected based on load current.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "175506084c3313f3b8dde37bc4fdf7ba62da80f0877de374315eff6be8790608": {
+  "partially": [],
+  "reason": "Sentences only say selection practice is documented for data sensitivity, not a condition for choosing an option.",
+  "states": []
+ },
+ "17e8cbd5c056cf7e0027dbf9e2a0db594b9201eceabb2142da917832d4f76881": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1-2 give a selection basis (load current) but not an explicit if-situation/option condition.",
+  "states": []
+ },
+ "1932b52b0d8bf10e9b2fb0648732e628888b267227e97196caa2276107bae302": {
+  "partially": [],
+  "reason": "Sentence 1 gives condition: beside frequency drive, choose shielded cable due to high noise exposure.",
+  "states": [
+   1
+  ]
+ },
+ "211849d42458a9bd32dac3424f9791d913dd1735753d8edae48b0fccef329a8d": {
+  "partially": [],
+  "reason": "Sentence 3 gives a condition and the test to choose in that situation.",
+  "states": [
+   3
+  ]
+ },
+ "225bbb581d6d0f57a9c0d76c472848baeb1820c774cefa7aa9754a1ffae062bd": {
+  "partially": [],
+  "reason": "No sentence states a condition for choosing an option in a situation.",
+  "states": []
+ },
+ "22b324c0b715141c9234760240c3756b0d6476eabb2f08a3f4c81a90ab2bfd50": {
+  "partially": [],
+  "reason": "Sentence 1 gives a condition (intermittent fault) and says to choose the highest failure-likelihood test.",
+  "states": [
+   1
+  ]
+ },
+ "22d6afff80be12e22dea7cf23554705948f42417fa460f725daf856ec014c3a5": {
+  "partially": [],
+  "reason": "Sentence 3 states a condition: where cable runs beside a frequency drive, choose shielded cable.",
+  "states": [
+   3
+  ]
+ },
+ "23d86b38285beff15cec2ed994a29f8543fe3f32d9116c35da51dd0e8721ab10": {
+  "partially": [],
+  "reason": "No sentence states a conditional choice; both merely say guidance is documented for load current.",
+  "states": []
+ },
+ "271bae3e588a0a102de84ce7b6f36beb237410018d48e64d9889c06fc431537d": {
+  "partially": [],
+  "reason": "Sentence 3 gives conditional choice: if single delivery, choose shortest retention period.",
+  "states": [
+   3
+  ]
+ },
+ "29c2ce382d1871078c0c64c222c82be2a6ee707ec01bd9730d0761013d85b51e": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state selection based on load current.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "2d5e2b3d0c159cb68d5113d462b25abb3dfae1d934ad2888e585442e9214ede4": {
+  "partially": [],
+  "reason": "Sentence 1 gives a condition and choice; sentence 2 only documents practice.",
+  "states": [
+   1
+  ]
+ },
+ "2de559783882ec80eaf53e2abe567c49dd8b827e9e56d31c3b2e40fdc1440619": {
+  "partially": [],
+  "reason": "Sentence 1 gives an if-condition for choosing the shortest retention period.",
+  "states": [
+   1
+  ]
+ },
+ "308e4a997114f8b09a64aea927934b2920b71607bc71e2a80331819ac3f17385": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state diagnostic tests should be selected based on failure likelihood.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "43b38ef60f52fd8e4755f5108509587f7f6f2e69519cde0f9f486bb48458d354": {
+  "partially": [],
+  "reason": "Neither sentence states a conditional rule mapping a situation to a specific option; they only mention documented practice.",
+  "states": []
+ },
+ "48e65d39db223c2923a00e97265330dcaed212cd4fe82d6922c693b81dfc194e": {
+  "partially": [],
+  "reason": "No sentence states a conditional choice based on situation.",
+  "states": []
+ },
+ "4d8d08f590bda6ae4befb328c59872bb63dae5c8dc869714c61e0586ee844948": {
+  "partially": [],
+  "reason": "Neither sentence states a condition for choosing an option; they only say guidance is documented for the suspected event.",
+  "states": []
+ },
+ "56e3bcfb38d89291642cf60b602e1dc411eb44faeb2507ac7c21a49ee99996ef": {
+  "partially": [],
+  "reason": "Neither sentence states a condition specifying which access level to choose in which situation.",
+  "states": []
+ },
+ "575545f7000546915f767a1930a204271652b72b9e42849ed947d0ada66ba2bb": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state fuse rating selection should be based on load current, a selection condition.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "587686330306015a3b94706e35ec094e602945679cb4e682fb24e3b548eaa594": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state selection should be based on noise exposure, a condition for choosing cable types.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "58803b9ec454ef5c9092661d79660d427ff3b334e1b2a257e7360238c95cd983": {
+  "partially": [],
+  "reason": "No sentence states a condition for choosing options based on load current or breaker ratings.",
+  "states": []
+ },
+ "58d236e94e8fab361e3842e0c1d62995aa33a1abcfbf9751f1c54525bd97fc00": {
+  "partially": [],
+  "reason": "No sentence specifies which cable type to choose under which noise condition.",
+  "states": []
+ },
+ "5f6cfbd795642b0a96f73e4368cd574a8059105699379421f73c3dcfb4765aec": {
+  "partially": [],
+  "reason": "No sentence states a conditional rule for choosing options based on situation.",
+  "states": []
+ },
+ "6ade0803bb80c7d8ecc602167bf7ddfdc3205c4bdc37fe45490d416179c4fe66": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state retention periods are selected based on processing purpose, a selection condition.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "6cb1644e960b3ea3c562dc0768d629610adafbf3382386b09921ef6d328a6d91": {
+  "partially": [
+   3,
+   4
+  ],
+  "reason": "Sentences 1-2 directly state selection based on noise exposure; 3-4 mention selection for load current but different subject.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "6cb4756934c60ac191ed2d4c9389e6adcf5c64dbcb458b8f9209774b2a396671": {
+  "partially": [],
+  "reason": "No sentence states a condition for choosing an option based on load current or otherwise.",
+  "states": []
+ },
+ "6d7504028c81f41ce4b739e6de0a1430153fa006d3be702df59ed410826f6272": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state the selection rule based on failure likelihood.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "6d88281a7b201466a83f716a4004809e5a19474eb5b25b7f9d4a74be429bd3db": {
+  "partially": [],
+  "reason": "Sentence 1 states a condition (beside frequency drive) and choice (shielded cable).",
+  "states": [
+   1
+  ]
+ },
+ "75678cc9280fb1ede6949d78264629b2e1de83fcd8c3dee10cda141a4570e452": {
+  "partially": [],
+  "reason": "Neither sentence states a condition mapping an option to a situation; they only mention documentation for data sensitivity.",
+  "states": []
+ },
+ "78447d4c5a8508da15a31c75d4a3fa1a34510a48ac0f861e0b2a9fcac6c36b5b": {
+  "partially": [],
+  "reason": "No sentence states a condition for choosing an option in a situation.",
+  "states": []
+ },
+ "7a936650b6deb7c5b61d4c8d66bfa11bda9e73eef92a33a5e2f50fbf2ec784e8": {
+  "partially": [],
+  "reason": "No sentence states a conditional selection rule.",
+  "states": []
+ },
+ "7f622e60f4d1194b06d62c928154cd5e395f47399297ff00c4fda71c8ef92759": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state access levels should be selected based on data sensitivity.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "80a8be6331343f6578a468d2a91f90bec13e945dbd5eae051d0e97eb21e51165": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state selecting fuse ratings based on load current.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "8845cc84b17162a0092ce572cec58be8cd971fa4c28c944005430c377076fd22": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences mention selection guidance based on data sensitivity but do not state which option to choose in which situation.",
+  "states": []
+ },
+ "8afe23bab4aa1f0d77841c3894223e51581c55a8f6cf5b79aef13ad3a372bb19": {
+  "partially": [],
+  "reason": "No sentence states a condition specifying which option to choose in which situation.",
+  "states": []
+ },
+ "8d352f17508220d830d0a8a81aa8ef4afed71837e58ccc6395cabd5efaf64ff4": {
+  "partially": [],
+  "reason": "Neither sentence addresses fuse ratings or conditions for choosing options.",
+  "states": []
+ },
+ "91d65020b7e9482d46cf45c2aeeb9fdca31062d5943b1577c13d3e945e53c156": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state breaker ratings should be selected based on load current, a selection condition.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "9807b01f9728663555ad31fb86bb65fed107a350757fd5c45543f0152dc37f59": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state retention periods should be selected based on processing purpose; others do not.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "9ed574483b23b082a7fd5878c8c4ea0c157460346b611f76efe4367a42230862": {
+  "partially": [],
+  "reason": "No sentence states a conditional rule for choosing an option in a situation.",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "deepseek/deepseek-v4.1-flash",
+  "price_usd_per_mtok": [
+   0.02,
+   1.0
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "a3264a36b51239d986ef2a7e248bc283b0f57e64d3ba5f540f228e296eb4ebe4": {
+  "partially": [],
+  "reason": "Both explicitly state cable types should be selected based on noise exposure.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "a3c668e8ce331a2a4db9047e267d9054d9f47702f396029c40c6e90ad967be44": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state selection depends on suspected event, specifying choice condition.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "a6fbaab7a002ec3e80f2bb9c892e26b39def3661fe30fa8d7f9ffa3c36ee9bf6": {
+  "partially": [],
+  "reason": "Neither sentence states a condition specifying which option to choose in which situation.",
+  "states": []
+ },
+ "b4f68f76fea6b867c6659ae6c511663d5f9b8bc89c631962c06d836b34a03514": {
+  "partially": [],
+  "reason": "Neither sentence states a condition for choosing an option; both only say practice is documented.",
+  "states": []
+ },
+ "b5459c8126e495bc56ffda7c21a38bfd3cedbf76efe74c782289addbe9f31922": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1-2 state selection based on suspected event, but not which option for which situation.",
+  "states": []
+ },
+ "b94e7efdcb38dd497f26184f371c40deb5d8fc583a96518c45ac12bca969f664": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state cable types should be selected based on noise exposure.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "bb6e19837bd6a974da83fb0d9e039c0804bbf2fcf19540b614f9e9c0d577762f": {
+  "partially": [],
+  "reason": "No sentence states a condition for choosing an option based on load current or breaker ratings.",
+  "states": []
+ },
+ "bb80d35bb7d91bfb20712f5cef2d8da996542dfdbb5f7c37fbd35d8013c3b4bc": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly instruct selecting diagnostic tests by failure likelihood, a condition for choice.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "c0779945eb912535d9cdfdc1ca5977cb2aa5a2766f1451cfee58d2f32e8b4ed1": {
+  "partially": [],
+  "reason": "No sentence states a conditional mapping of options to situations; they only give a selection basis.",
+  "states": []
+ },
+ "c54c32b6b15aecc4cb2d04e7049746bb139abb1cde6e5d2943a2d4cd7e7b6f4c": {
+  "partially": [],
+  "reason": "No sentence states a conditional rule for choosing an option based on situation.",
+  "states": []
+ },
+ "cd9b3122e550e90e6ea6347addcb1392854d706f444700f70c60db0e0da9dd4d": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state breaker ratings selected based on load current.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "ce5925d25cff2b1c639e86fb5ae553fa3d9e6e5efcaf373a6ed630957fe518a1": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "No sentence gives an explicit situation-to-option condition; 1-2 only state a selection criterion.",
+  "states": []
+ },
+ "d18cf54ba914ec7804eb9385991b357499f100b5ba47683d903b720db3662aea": {
+  "partially": [],
+  "reason": "No sentence states a condition selecting an option; both only say practice documented for load current.",
+  "states": []
+ },
+ "d3471c8fe2e9a03f083e9d34b9e9029f7d669e4683df20c7a55ec49b02792f67": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state fuse ratings should be selected based on load current, a selection condition.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "d75a28930866be7979150ffc078577089862f78f7bc932ba1606b0bc3a754bd3": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state selecting sampling rate based on suspected event.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "d97b9f55ddd1a19b437f5b27bf1b3222444c735be76c98009ef3edbbeff627e7": {
+  "partially": [],
+  "reason": "Sentence 3 gives condition and choice; 1-2 state general criterion without situation or option.",
+  "states": [
+   3
+  ]
+ },
+ "d9bd9774261a0ff35c3ea24f4b7a3190601488e7b38e6eb2911b4471ed6bdf23": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state selection based on load current; 3-4 only document practice.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "dff360999f269938bfe081a4d3205179dafc34c082976c5430a8b536a4e59a58": {
+  "partially": [],
+  "reason": "No sentence states a condition for choosing an option based on load current.",
+  "states": []
+ },
+ "e255ff8fc93bdcbf80672bfe18b558a29156804065d03fff609c105103e1ac56": {
+  "partially": [],
+  "reason": "No sentence explicitly states a condition selecting an option based on noise exposure.",
+  "states": []
+ },
+ "e30bd7f276d3dc27145bbbe156d3a4d2c6708f7fb341b05a8507a8f874f3e363": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state sampling rate selection depends on suspected event.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "e311a03f822cbc7531d41b97445ec9d91c90c4fc7354d0660929b4c1b9bace8c": {
+  "partially": [],
+  "reason": "No sentence states a conditional rule for choosing an option in a situation.",
+  "states": []
+ },
+ "e453e7cf2de91d38e38206798dd58fbf9b882bc3d295fb2f5d564018f138f53f": {
+  "partially": [],
+  "reason": "No sentence states a conditional rule selecting an option based on situation.",
+  "states": []
+ },
+ "efba75352f92377dc48a4965318478535b84d82aa2aa6b5c35845cef943022b1": {
+  "partially": [],
+  "reason": "Sentence 3 gives a condition and the option to choose: beside a frequency drive, choose shielded cable.",
+  "states": [
+   3
+  ]
+ },
+ "f1cb327ad83e76a1b569db32ffc0d5fcc2d76cb14168a80416517c74aefc7a86": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state retention periods should be selected based on processing purpose, a condition for choice.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "fd10d0b9b5edfa9f0ade9bc08ac3d83c8181835db79eb35f50ce9c6e241925ed": {
+  "partially": [],
+  "reason": "No sentence states a conditional choice of option based on situation.",
+  "states": []
+ }
+}

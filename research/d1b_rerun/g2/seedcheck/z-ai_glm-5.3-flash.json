@@ -1,0 +1,118 @@
+{
+ "144e6956600e4fc639eccd90fc3f7096248d8190f6bfb9fc13f82315e4d7f545": {
+  "partially": [],
+  "reason": "No sentence provides a reason or explanation for why 99 surrogates are required.",
+  "states": []
+ },
+ "338ec938dd22d4230bd09a4827f09390ae6a4070189907df270cdb205361a436": {
+  "partially": [],
+  "reason": "The seed assertion describes a general practice in other disciplines but does not specify any conditions under which this practice fails or is not applicable.",
+  "states": []
+ },
+ "4513f4e07ccfc8e587d2c2aa2a0c586a4d2ec34df116f0ea3cb688f3a806d9e1": {
+  "partially": [],
+  "reason": "No sentence gives a reason or failure prevented for restricting known_future_drivers; all just restate the rule.",
+  "states": []
+ },
+ "530a510df2ebe9197777d2cf710a726af7652288b5c71ba6207afcf52967376d": {
+  "partially": [],
+  "reason": "No sentence specifies expected test results, their meaning, or next actions.",
+  "states": []
+ },
+ "5341715afbd0c7928bf93bd0d8e1e3343aaee8e4e4ad6b943682cb30d7b09519": {
+  "partially": [],
+  "reason": "No sentence states exceptions to the forecast-uncertainty rule; sentences 3-5 are about autocorrelation, unrelated.",
+  "states": []
+ },
+ "66913a884fce52e04907c2f5305a338a3430c710e71fa6cb174c335215fb08c0": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 2 explicitly states that the result `directness_ratio > 1.0` means it should be treated as a warning.",
+  "states": []
+ },
+ "85ec1aee0cd4165a9e004bf58f76b652870bbcc40009c04465aa4ffecc105944": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly give the purpose: preventing shipped cross_pami and xami_sparse semantics from being silently extended.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "8dbc961a68ed6dd88e80c65fd800e51f4d795f5cf213e0938b6760eaa74a3c57": {
+  "partially": [],
+  "reason": "Only sentence 1 gives the rationale (noise included or informative lags excluded); sentence 2 states the rule without reason.",
+  "states": [
+   1
+  ]
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "z-ai/glm-5.3-flash",
+  "price_usd_per_mtok": [
+   0.15,
+   0.5
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "a5c0e16d9b2ff1b98492a49d669a44ac226a32bb222482ee4892da013280e415": {
+  "partially": [],
+  "reason": "No sentence states exception conditions where the rule fails; sentences merely restate the rule or discuss unrelated terminology.",
+  "states": []
+ },
+ "a9ff773066e0a34b16a158b8b15bf62c52c84544483c2f64d4f67a683598860b": {
+  "partially": [],
+  "reason": "Sentence 1 explicitly states the reason for using F3: when one suspects that longer lags add noise rather than signal.",
+  "states": [
+   1
+  ]
+ },
+ "bd1e3164f80121bf3037a8dae62bee41f04f532dbdbca4e0cced21c8fb251f00": {
+  "partially": [],
+  "reason": "No sentence provides a specific case or condition where the rule does not hold.",
+  "states": []
+ },
+ "c0ff95972a14370d403ad4ad89975edadb39429e771c5917c117821719bbcdda": {
+  "partially": [],
+  "reason": "No sentence states the expected result of the pipeline comparison or its meaning/next action.",
+  "states": []
+ },
+ "c93c473c6a437d454c17019b2174b5fbe63fc724a44b9f6cee43c26e60a4abc4": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 state that method selection depends on conditions like available data, matching the seed.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "d03c9eebb11b0e772a73a8d829c2eeda7a71e2037dff761a749a3919a85f703c": {
+  "partially": [],
+  "reason": "No sentence provides a reason or explanation for why the leakage boundary must be enforced or why CrossAMI must be computed on the training window only.",
+  "states": []
+ },
+ "d4dd882d0a91b80548536f9f32a5fb1673547757d8052398550b682015518bac": {
+  "partially": [],
+  "reason": "Sentence 1 states the boundary must be enforced 'to avoid look-ahead leakage,' explaining the failure prevented; other sentences give no reason.",
+  "states": [
+   1
+  ]
+ },
+ "ddc158631ad9ec07de0cd083bc18fce6efa00332544482ed4750bdc36d5f8929": {
+  "partially": [],
+  "reason": "No sentence provides a reason or failure prevention for using surrogates, only stating the rule or discussing related statistical concepts.",
+  "states": []
+ },
+ "e6a6fcd4bf4e1633b40394dd0eccb3b1bd8c0adb14d29c8461238f55e633d404": {
+  "partially": [],
+  "reason": "No sentence provides the reason or the failure it prevents.",
+  "states": []
+ },
+ "f289fc7f09ded562e30c5b9b8e69f78991e1249c3c30932cea82893cdb075cec": {
+  "partially": [],
+  "reason": "No sentence states an exception condition; sentence 1 restates the rule, others are irrelevant.",
+  "states": []
+ }
+}

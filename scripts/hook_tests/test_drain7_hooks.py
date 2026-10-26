@@ -92,6 +92,21 @@ def key_headroom() -> None:
         r = fire("PreToolUse", "guard-key-headroom.sh", bash("python3 research/spikes/jev/spike.py estimate"),
                  {"KEY_HEADROOM_JSON": str(spent)})
         check("a non-paying command is left alone", r == {}, r)
+        empty_account = Path(d) / "empty_account.json"
+        empty_account.write_text(json.dumps({"limit": 15, "limit_remaining": 14.99, "usage_weekly": 0.01,
+                                             "account": {"total_credits": 80, "total_usage": 80.0}}))
+        r = fire("PreToolUse", "guard-key-headroom.sh", bash(live), {"KEY_HEADROOM_JSON": str(empty_account)})
+        check("an empty account refuses although the key has headroom", decision(r) == "deny", r)
+        low_account = Path(d) / "low_account.json"
+        low_account.write_text(json.dumps({"limit": 15, "limit_remaining": 14.99, "usage_weekly": 0.01,
+                                           "account": {"total_credits": 100, "total_usage": 99.0}}))
+        r = fire("PreToolUse", "guard-key-headroom.sh", bash(live), {"KEY_HEADROOM_JSON": str(low_account)})
+        check("an account balance below the run's --max-usd refuses", decision(r) == "deny", r)
+        rich = Path(d) / "rich.json"
+        rich.write_text(json.dumps({"limit": 15, "limit_remaining": 9.5, "usage_weekly": 5.5,
+                                    "account": {"total_credits": 100, "total_usage": 80.0}}))
+        r = fire("PreToolUse", "guard-key-headroom.sh", bash(live), {"KEY_HEADROOM_JSON": str(rich)})
+        check("key and account both covering the cap allows", r == {}, r)
 
 
 def freeze_tag() -> None:

@@ -8,6 +8,8 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Protocol
@@ -80,6 +82,16 @@ def family(model_id: str) -> str:
     return "other"
 
 
+class JudgeUnavailable(JudgeCacheMiss):
+    """A provider error that outlived its retries, or a truncated reply: a JudgeCacheMiss so that
+    `semantic.judge_retrieval` re-raises it, because an unanswered prompt is not an "undecided"
+    judgement and must stop the run, never count as a closure state."""
+
+
+class _Truncated(RuntimeError):
+    pass
+
+
 class BudgetExceeded(JudgeCacheMiss):
     """A JudgeCacheMiss so that `semantic.judge_retrieval` re-raises it: every other exception there
     degrades to `undecided`, and a refused call must stop the run, not become a judgement."""
@@ -98,9 +110,13 @@ class OpenAIJudge:
     call shared by several runs, the cap covers the ledger's prior spend too, and each call is
     appended to it as soon as it returns."""
 
+    PRICES = OPENAI_PRICES_PER_MTOK
+    URL = OPENAI_URL
+    KEY_ENV = "OPENAI_API_KEY"
+
     def __init__(self, model: str, *, max_usd: float, reasoning_effort: str = "medium",
                  max_completion_tokens: int = 6000, post=None, spend_ledger: Path | str | None = None):
-        if model not in OPENAI_PRICES_PER_MTOK:
+        if model not in self.PRICES:
             raise ValueError(f"no recorded price for {model!r}")
         self.model_id = model
         self.max_usd = max_usd
@@ -108,35 +124,50 @@ class OpenAIJudge:
         self.prior_usd = (sum(json.loads(line)["usd"] for line in self.spend_ledger.read_text().splitlines()
                               if line.strip())
                           if self.spend_ledger and self.spend_ledger.exists() else 0.0)
-        self.settings = {"api": OPENAI_URL, "reasoning_effort": reasoning_effort,
-                         "max_completion_tokens": max_completion_tokens,
-                         "response_format": "json_object", "temperature": "not sent",
-                         "price_usd_per_mtok": list(OPENAI_PRICES_PER_MTOK[model])}
+        self.max_completion_tokens = max_completion_tokens
+        self.settings = self._settings(reasoning_effort, max_completion_tokens)
         self._post = post
         self.spent_usd = 0.0
         self.calls: list[dict] = []
         self.incomplete = False
 
+    def _settings(self, reasoning_effort: str | None, max_completion_tokens: int) -> dict:
+        return {"api": self.URL, "reasoning_effort": reasoning_effort,
+                "max_completion_tokens": max_completion_tokens,
+                "response_format": "json_object", "temperature": "not sent",
+                "price_usd_per_mtok": list(self.PRICES[self.model_id])}
+
+    def _body(self, prompt: str) -> dict:
+        return {"model": self.model_id, "messages": [{"role": "user", "content": prompt}],
+                "response_format": {"type": "json_object"},
+                "reasoning_effort": self.settings["reasoning_effort"],
+                "max_completion_tokens": self.settings["max_completion_tokens"]}
+
+    def _billed(self, usage: dict, prompt_tokens: int, completion_tokens: int) -> float:
+        return self._cost(prompt_tokens, completion_tokens)
+
+    def _send(self, body: dict) -> dict:
+        post = self._post or _http_post
+        return post(self.URL, body, {"Content-Type": "application/json",
+                                     "Authorization": "Bearer " + os.environ[self.KEY_ENV]})
+
+    def _after(self, choice: dict) -> None:
+        pass
+
     def _cost(self, prompt_tokens: int, completion_tokens: int) -> float:
-        pin, pout = OPENAI_PRICES_PER_MTOK[self.model_id]
+        pin, pout = self.PRICES[self.model_id]
         return (prompt_tokens * pin + completion_tokens * pout) / 1e6
 
     def ask(self, prompt: str) -> dict | None:
-        worst = self._cost(len(prompt) // 2 + 50, self.settings["max_completion_tokens"])
+        worst = self._cost(len(prompt) // 2 + 50, self.max_completion_tokens)
         if self.prior_usd + self.spent_usd + worst > self.max_usd:
             self.incomplete = True
             raise BudgetExceeded(f"spent ${self.prior_usd + self.spent_usd:.4f}; the next call could cost ${worst:.4f} "
                                  f"against a ${self.max_usd:.4f} cap; refusing it")
-        body = {"model": self.model_id, "messages": [{"role": "user", "content": prompt}],
-                "response_format": {"type": "json_object"},
-                "reasoning_effort": self.settings["reasoning_effort"],
-                "max_completion_tokens": self.settings["max_completion_tokens"]}
-        post = self._post or _http_post
-        payload = post(OPENAI_URL, body, {"Content-Type": "application/json",
-                                          "Authorization": "Bearer " + os.environ["OPENAI_API_KEY"]})
+        payload = self._send(self._body(prompt))
         usage = payload.get("usage") or {}
         p_tok, c_tok = usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0)
-        cost = self._cost(p_tok, c_tok)
+        cost = self._billed(usage, p_tok, c_tok)
         self.spent_usd += cost
         choice = (payload.get("choices") or [{}])[0]
         call = {"prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),
@@ -149,6 +180,7 @@ class OpenAIJudge:
         if self.spend_ledger:
             with self.spend_ledger.open("a") as f:
                 f.write(json.dumps({"model": self.model_id, **call}, sort_keys=True) + "\n")
+        self._after(choice)
         content = (choice.get("message") or {}).get("content")
         try:
             parsed = json.loads(content) if content else None
@@ -166,6 +198,89 @@ class OpenAIJudge:
                 "served_models": sorted({str(c["served_model"]) for c in self.calls}),
                 "finish_reasons": {r: sum(c["finish_reason"] == r for c in self.calls)
                                    for r in sorted({str(c["finish_reason"]) for c in self.calls})}}
+
+
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+# USD per 1M (input, output) tokens, from https://openrouter.ai/api/v1/models, read 2026-10-26. The
+# cap's worst case uses these; the spend uses the cost OpenRouter reports for the call when present.
+OPENROUTER_PRICES_PER_MTOK = {
+    "google/gemini-3.5-flash-lite": (0.30, 2.50),
+    "deepseek/deepseek-v4.1-flash": (0.02, 1.00),
+    "qwen/qwen3.8-flash": (0.15, 0.47),
+    "mistralai/mistral-small-2603": (0.15, 0.60),
+    "z-ai/glm-5.3-flash": (0.15, 0.50),
+    "google/gemma-4-31b-it": (0.10, 0.34),
+}
+
+
+class OpenRouterJudge(OpenAIJudge):
+    """A non-OpenAI judge through OpenRouter's chat completions, with `OpenAIJudge`'s cap, ledger and
+    reply contract; temperature 0, no reasoning setting."""
+
+    PRICES = OPENROUTER_PRICES_PER_MTOK
+    URL = OPENROUTER_URL
+    KEY_ENV = "OPENROUTER_API_KEY"
+
+    TRANSIENT = frozenset({408, 429, 500, 502, 503, 504})
+    RETRIES = 3
+
+    def __init__(self, model: str, *, max_usd: float, max_completion_tokens: int = 8000, post=None,
+                 spend_ledger: Path | str | None = None, sleep=time.sleep, reasoning_max_tokens: int | None = None):
+        self.reasoning_max_tokens = reasoning_max_tokens
+        self.truncated = 0
+        super().__init__(model, max_usd=max_usd, reasoning_effort=None,
+                         max_completion_tokens=max_completion_tokens, post=post, spend_ledger=spend_ledger)
+        self._sleep = sleep
+
+    def _send(self, body: dict) -> dict:
+        for attempt in range(self.RETRIES + 1):
+            try:
+                return super()._send(body)
+            except urllib.error.HTTPError as exc:
+                if exc.code not in self.TRANSIENT or attempt == self.RETRIES:
+                    raise JudgeUnavailable(f"{self.model_id}: HTTP {exc.code} after {attempt + 1} attempt(s)") from exc
+            except (urllib.error.URLError, TimeoutError) as exc:
+                if attempt == self.RETRIES:
+                    raise JudgeUnavailable(f"{self.model_id}: {type(exc).__name__} after {attempt + 1} attempts") from exc
+            self._sleep(2 ** attempt)
+        raise AssertionError("unreachable")
+
+    def _after(self, choice: dict) -> None:
+        if choice.get("finish_reason") == "length":
+            raise _Truncated(f"{self.model_id}: reply truncated at {self.max_completion_tokens} tokens")
+
+    def ask(self, prompt: str) -> dict | None:
+        """A truncated reply (C1: deepseek and qwen reasoning past a 2,000-token cap; C3: gemma looping
+        to 8,000) is asked once more; a second truncation is returned as None, which the parser makes
+        "undecided", and counted in `spend()["truncated"]`. Both calls are charged."""
+        for attempt in (0, 1):
+            try:
+                return super().ask(prompt)
+            except _Truncated:
+                if attempt:
+                    self.truncated += 1
+                    return None
+        raise AssertionError("unreachable")
+
+    def spend(self) -> dict:
+        return {**super().spend(), "truncated": self.truncated}
+
+    def _settings(self, reasoning_effort: str | None, max_completion_tokens: int) -> dict:
+        out = {"api": self.URL, "max_tokens": max_completion_tokens, "response_format": "json_object",
+               "temperature": 0, "price_usd_per_mtok": list(self.PRICES[self.model_id])}
+        if self.reasoning_max_tokens is not None:
+            out["reasoning_max_tokens"] = self.reasoning_max_tokens
+        return out
+
+    def _body(self, prompt: str) -> dict:
+        return {"model": self.model_id, "messages": [{"role": "user", "content": prompt}],
+                "response_format": {"type": "json_object"}, "temperature": 0,
+                "max_tokens": self.settings["max_tokens"], "usage": {"include": True},
+                **({"reasoning": {"max_tokens": self.reasoning_max_tokens}} if self.reasoning_max_tokens else {})}
+
+    def _billed(self, usage: dict, prompt_tokens: int, completion_tokens: int) -> float:
+        cost = usage.get("cost")
+        return float(cost) if cost is not None else self._cost(prompt_tokens, completion_tokens)
 
 
 class CachedJudge:

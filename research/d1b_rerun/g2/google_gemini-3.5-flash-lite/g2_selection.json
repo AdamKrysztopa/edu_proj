@@ -1,0 +1,77 @@
+{
+ "diff": 0.5,
+ "judge_model": "google/gemini-3.5-flash-lite",
+ "lower90": 0.25,
+ "n_clusters": 4,
+ "n_topics": 6,
+ "passes": false,
+ "rates": {
+  "0": 0.3333333333333333,
+  "N": 0.5,
+  "N+": 0.5,
+  "P": 1.0,
+  "R": 0.3333333333333333
+ },
+ "spend": {
+  "cached_tokens": 0,
+  "calls": 30,
+  "completion_tokens": 1213,
+  "finish_reasons": {
+   "stop": 30
+  },
+  "max_usd": 0.4,
+  "prior_usd": 0.0104654,
+  "prompt_tokens": 9580,
+  "reasoning_tokens": 0,
+  "served_models": [
+   "google/gemini-3.5-flash-lite"
+  ],
+  "usd": 0.005906499999999999
+ },
+ "split": "selection",
+ "states": {
+  "t03": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t04": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t06": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t12": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t19": {
+   "0": "open",
+   "N": "closed",
+   "N+": "open",
+   "P": "closed",
+   "R": "partial"
+  },
+  "t22": {
+   "0": "open",
+   "N": "open",
+   "N+": "closed",
+   "P": "closed",
+   "R": "open"
+  }
+ },
+ "undecided": 0
+}
