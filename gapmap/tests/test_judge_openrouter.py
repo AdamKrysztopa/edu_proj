@@ -154,3 +154,16 @@ def test_an_unavailable_judge_propagates_through_the_parser():
 
 def test_the_default_reply_cap_leaves_room_for_reasoning_models():
     assert judge_mod.OpenRouterJudge(MODEL, max_usd=1).max_completion_tokens >= 8000
+
+
+def test_a_reasoning_budget_is_sent_and_recorded_only_when_set(monkeypatch):
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test")
+    post = FakePost()
+    j = judge_mod.OpenRouterJudge("deepseek/deepseek-v4.1-flash", max_usd=5, post=post, reasoning_max_tokens=2000)
+    j.ask("p")
+    assert post.bodies[0]["reasoning"] == {"max_tokens": 2000}
+    assert j.settings["reasoning_max_tokens"] == 2000
+    plain = FakePost()
+    judge_mod.OpenRouterJudge(MODEL, max_usd=5, post=plain).ask("p")
+    assert "reasoning" not in plain.bodies[0]
+    assert "reasoning_max_tokens" not in judge_mod.OpenRouterJudge(MODEL, max_usd=5).settings

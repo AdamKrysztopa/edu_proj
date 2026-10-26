@@ -1,0 +1,64 @@
+{
+ "complete": true,
+ "diff": 0.5,
+ "judge_model": "google/gemma-4-31b-it",
+ "lower90": 0.0,
+ "n_clusters": 4,
+ "n_topics": 4,
+ "passes": false,
+ "rates": {
+  "0": 0.5,
+  "N": 0.5,
+  "N+": 0.25,
+  "P": 1.0,
+  "R": 0.25
+ },
+ "spend": {
+  "cached_tokens": 384,
+  "calls": 20,
+  "completion_tokens": 19625,
+  "finish_reasons": {
+   "stop": 20
+  },
+  "max_usd": 0.6,
+  "prior_usd": 0.320788124386,
+  "prompt_tokens": 6528,
+  "reasoning_tokens": 19199,
+  "served_models": [
+   "google/gemma-4-31b-it"
+  ],
+  "usd": 0.009744495
+ },
+ "split": "selection",
+ "states": {
+  "t03": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "partial"
+  },
+  "t04": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t19": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "open",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t22": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  }
+ },
+ "undecided": 0
+}

@@ -1,0 +1,127 @@
+{
+ "complete": true,
+ "diff": 0.9230769230769231,
+ "judge_model": "google/gemma-4-31b-it",
+ "lower90": 0.75,
+ "n_clusters": 10,
+ "n_topics": 13,
+ "passes": false,
+ "rates": {
+  "0": 0.15384615384615385,
+  "N": 0.07692307692307693,
+  "N+": 0.07692307692307693,
+  "P": 1.0,
+  "R": 0.15384615384615385
+ },
+ "spend": {
+  "cached_tokens": 1824,
+  "calls": 65,
+  "completion_tokens": 39420,
+  "finish_reasons": {
+   "stop": 65
+  },
+  "max_usd": 0.8,
+  "prior_usd": 0.357793088178,
+  "prompt_tokens": 20796,
+  "reasoning_tokens": 38077,
+  "served_models": [
+   "google/gemma-4-31b-it"
+  ],
+  "usd": 0.021612294999999997
+ },
+ "split": "gate",
+ "states": {
+  "t01": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t02": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t05": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t07": {
+   "0": "closed",
+   "N": "closed",
+   "N+": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t08": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t09": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t10": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t14": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t15": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t16": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t17": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t18": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t21": {
+   "0": "closed",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "closed"
+  }
+ },
+ "undecided": 0
+}

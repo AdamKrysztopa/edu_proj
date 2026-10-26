@@ -80,6 +80,16 @@ def marker_problem(topics: list[dict], inserts: dict) -> str | None:
     return None if abs(p - n) <= 1 else f"marker: {p} Ps against {n} Ns carry a closing-lexicon word"
 
 
+def seed_drops(states: dict[str, dict[str, str]]) -> list[str]:
+    """Topics whose no-insert arm every seed reader closed: the seed reads as stating the element."""
+    return sorted(t for t, by in states.items() if by and all(v == "closed" for v in by.values()))
+
+
+def kept_topics(topics: list[dict], confirmed: dict) -> list[dict]:
+    dropped = confirmed.get("_dropped", {})
+    return [t for t in topics if t["topic_id"] not in dropped]
+
+
 def require_confirmed(topics: list[dict], inserts: dict, confirmed: dict) -> None:
     missing = [t["topic_id"] for t in topics
                if not all(confirmed.get(t["topic_id"], {}).get(k) is True for k in ("P", "N", "N_plus", "seed_open"))]
@@ -153,11 +163,14 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--max-usd", type=float)
     p.add_argument("--reasoning-effort", default="medium")
     p.add_argument("--spend-ledger")
+    p.add_argument("--reasoning-max-tokens", type=int, help="OpenRouter judge only: cap the model's reasoning")
     p.add_argument("--stand-ins", action="store_true", help="score the stand-ins instead of a judge ($0)")
     args = p.parse_args(argv)
     topics = json.loads((FIXTURES / "topics.json").read_text())["topics"]
     inserts = json.loads((FIXTURES / "inserts.json").read_text())
-    require_confirmed(topics, inserts, json.loads((FIXTURES / "confirmations.json").read_text()))
+    confirmed = json.loads((FIXTURES / "confirmations.json").read_text())
+    topics = kept_topics(topics, confirmed)
+    require_confirmed(topics, inserts, confirmed)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     if args.stand_ins:
@@ -177,7 +190,8 @@ def main(argv: list[str] | None = None) -> int:
         meta = {"model": args.model, **backend.settings}
     elif provider == "openrouter":
         backend = judge_mod.OpenRouterJudge(args.model, max_usd=args.max_usd if args.judge else 0.0,
-                                            spend_ledger=args.spend_ledger if args.judge else None)
+                                            spend_ledger=args.spend_ledger if args.judge else None,
+                                            reasoning_max_tokens=args.reasoning_max_tokens)
         meta = {"model": args.model, **backend.settings}
     else:
         backend, meta = judge_mod.OllamaJudge(model=args.model), None

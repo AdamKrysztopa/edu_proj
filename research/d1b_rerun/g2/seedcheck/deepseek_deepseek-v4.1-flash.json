@@ -1,0 +1,120 @@
+{
+ "08ab7fa363e78f2dffa14c7f58997d67881a9a4a2efecbfa11e63bf5f50869e7": {
+  "partially": [],
+  "reason": "No sentence gives a reason or failure prevented for using surrogates; sentences 1-2 only restate the rule.",
+  "states": []
+ },
+ "1586702a865b810ae1124e737b2c516ef70bd44bba25652c3f1fbf9ab5d1d39a": {
+  "partially": [],
+  "reason": "No sentence states exceptions to the forecasting uncertainty rule.",
+  "states": []
+ },
+ "1ecbe627a595b2d698ff6315ba51f6a6388dfb71aafc3c6228750b2fb2ff0a64": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 2 gives threshold, meaning, and action; sentence 1 gives action only.",
+  "states": [
+   2
+  ]
+ },
+ "2e58c1686446a72f04f77395d223ba4d6c6c9fbe8bd7b6d5347564cef0b01a20": {
+  "partially": [],
+  "reason": "No sentence states expected test result, interpretation, or next action.",
+  "states": []
+ },
+ "43fd44709944d7d308bacfcf7cc6dda9a793fd41e7158ae8d4b61e92b79f652d": {
+  "partially": [],
+  "reason": "Sentence 1 gives the rationale: longer lags may add noise, and a never-plateauing curve is informative.",
+  "states": [
+   1
+  ]
+ },
+ "475bb45573bdb4a2529f4658c6dc6418ae634be9180d63587870b9183fb0172d": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1-2 give general selection criteria but not specific option-situation mappings.",
+  "states": []
+ },
+ "67b7666488fd843e8f6c6ce0808738c7308f6526828125e28b07ca21a6feeb30": {
+  "partially": [],
+  "reason": "Sentence 1 gives the reason: absolute thresholds risk noise inclusion or informative exclusion as signal strength varies.",
+  "states": [
+   1
+  ]
+ },
+ "7b4c606b6f4e2a5bfdbf03707521408f08aab05b49bc63259109b654bd9ca474": {
+  "partially": [],
+  "reason": "No sentence states expected test result, interpretation, or next action; 1-2 only give instruction, 3-5 define autocorrelation.",
+  "states": []
+ },
+ "7f188bcdf9c2ff4193c23427d522d64afe3773dab2a95953b41c42d5efc5651d": {
+  "partially": [],
+  "reason": "No sentence states exceptions to the forecasting uncertainty rule; others discuss autocorrelation.",
+  "states": []
+ },
+ "7fdf8f2543502640dd61499162a3f768d7bfae2dae271e61e678babdf0d5e9f1": {
+  "partially": [],
+  "reason": "No sentence gives a reason or prevented failure for the leakage-candidate rule.",
+  "states": []
+ },
+ "80006f9c525ad16b510808c35dc687fe5e024a4a0d842566c1b7bc711cfe3229": {
+  "partially": [],
+  "reason": "No sentence gives a reason or failure prevented for the known_future_drivers restriction.",
+  "states": []
+ },
+ "8053f36064dfb0534bda9c56764228ff126dc35cae43d78afa26134c557ee767": {
+  "partially": [],
+  "reason": "No sentence gives a reason or failure prevented for the 99-surrogate requirement.",
+  "states": []
+ },
+ "8c18e399044443e7fc878a639a4e2b54bcfee07307b4d726bca5ba4761eb267a": {
+  "partially": [],
+  "reason": "No sentence specifies exception cases for the autocorrelation/autocovariance interchange rule.",
+  "states": []
+ },
+ "93b076c7cdb97805f1a9d55357dde35cad2b98c8f6ab488efe125767f65f6931": {
+  "partially": [],
+  "reason": "Both state the purpose: preventing silent extension of shipped cross_pami and xami_sparse semantics.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "deepseek/deepseek-v4.1-flash",
+  "price_usd_per_mtok": [
+   0.02,
+   1.0
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "aaa183bf8274571e0af1100bbee0af619f2d0483f4c54618552dc5ff9044a8fd": {
+  "partially": [],
+  "reason": "Sentence 1 states the boundary is to avoid look-ahead leakage.",
+  "states": [
+   1
+  ]
+ },
+ "b74c76846e683a4087513bd396850fc55aac876c0004e9f81185e617819d4342": {
+  "partially": [],
+  "reason": "No sentence states exception cases for the autocovariance normalization rule.",
+  "states": []
+ },
+ "d67ada37d930e3d901ff52ef8208a88e1650c01aeea79ebdcd09f9c8841382d0": {
+  "partially": [],
+  "reason": "No sentence states an exception condition where the surrogate-band rule does not hold.",
+  "states": []
+ },
+ "e99d23b930c59c5e9b2e520a5db97620a9d76ec9a53b90c6958d84e0792d0e59": {
+  "partially": [],
+  "reason": "No sentence gives a reason or failure prevented; 1-2 only restate the requirement, 3-5 are unrelated.",
+  "states": []
+ }
+}

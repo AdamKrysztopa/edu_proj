@@ -204,6 +204,8 @@ OPENROUTER_PRICES_PER_MTOK = {
     "deepseek/deepseek-v4.1-flash": (0.02, 1.00),
     "qwen/qwen3.8-flash": (0.15, 0.47),
     "mistralai/mistral-small-2603": (0.15, 0.60),
+    "z-ai/glm-5.3-flash": (0.15, 0.50),
+    "google/gemma-4-31b-it": (0.10, 0.34),
 }
 
 
@@ -219,7 +221,8 @@ class OpenRouterJudge(OpenAIJudge):
     RETRIES = 3
 
     def __init__(self, model: str, *, max_usd: float, max_completion_tokens: int = 8000, post=None,
-                 spend_ledger: Path | str | None = None, sleep=time.sleep):
+                 spend_ledger: Path | str | None = None, sleep=time.sleep, reasoning_max_tokens: int | None = None):
+        self.reasoning_max_tokens = reasoning_max_tokens
         super().__init__(model, max_usd=max_usd, reasoning_effort=None,
                          max_completion_tokens=max_completion_tokens, post=post, spend_ledger=spend_ledger)
         self._sleep = sleep
@@ -244,13 +247,17 @@ class OpenRouterJudge(OpenAIJudge):
             raise JudgeUnavailable(f"{self.model_id}: reply truncated at {self.max_completion_tokens} tokens")
 
     def _settings(self, reasoning_effort: str | None, max_completion_tokens: int) -> dict:
-        return {"api": self.URL, "max_tokens": max_completion_tokens, "response_format": "json_object",
-                "temperature": 0, "price_usd_per_mtok": list(self.PRICES[self.model_id])}
+        out = {"api": self.URL, "max_tokens": max_completion_tokens, "response_format": "json_object",
+               "temperature": 0, "price_usd_per_mtok": list(self.PRICES[self.model_id])}
+        if self.reasoning_max_tokens is not None:
+            out["reasoning_max_tokens"] = self.reasoning_max_tokens
+        return out
 
     def _body(self, prompt: str) -> dict:
         return {"model": self.model_id, "messages": [{"role": "user", "content": prompt}],
                 "response_format": {"type": "json_object"}, "temperature": 0,
-                "max_tokens": self.settings["max_tokens"], "usage": {"include": True}}
+                "max_tokens": self.settings["max_tokens"], "usage": {"include": True},
+                **({"reasoning": {"max_tokens": self.reasoning_max_tokens}} if self.reasoning_max_tokens else {})}
 
     def _billed(self, usage: dict, prompt_tokens: int, completion_tokens: int) -> float:
         cost = usage.get("cost")

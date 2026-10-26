@@ -1,0 +1,143 @@
+{
+ "157abfb9d5d161a05a812cf1f7d3463d5cc722c9419453a41e8646d608ddabed": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify consulting architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "1d76992b151d164a2fa72717121b0d794f3eac1f071a119c8b51823e5b4e279e": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify the next action (target evaluation at informative horizons) and the meaning of results (lags outside carry no signal).",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "2f6a9080c2a877a93b89f5398ae6c0a2bfb7bfa3c6ca9360dcb7a201b9fb8d3a": {
+  "partially": [],
+  "reason": "No sentence provides a condition for choosing a specific option based on a situation.",
+  "states": []
+ },
+ "4c6c2f46dafa512676f9336d51cd0673da1dc19639f9759cf507993c7dc2d66c": {
+  "partially": [],
+  "reason": "No sentence provides a conditional rule for choosing between different options based on a specific situation.",
+  "states": []
+ },
+ "5600984abf30c84c8d8bdd7696b5b468098687ae74aef7844d857b02e19e1af6": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify the next action (target model evaluation) and the meaning of results outside the informative set.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "66477abde2bf6f22e8c7f869f8c950180c68bcd44869b1b2d657243fbd80dcdd": {
+  "partially": [],
+  "reason": "No sentence provides a condition for choosing a specific option based on a situation.",
+  "states": []
+ },
+ "6b1167d41946bf34207661d88f3742d5b9e72587c4f7835a8176b40aa24b4672": {
+  "partially": [],
+  "reason": "No sentence specifies expected results, their meanings, or subsequent actions based on the flag's value.",
+  "states": []
+ },
+ "85c7d86d24865623bf4f4afb4ab0062149daac43cb3593b3383e5241cc74bf09": {
+  "partially": [],
+  "reason": "Sentence 3 specifies choosing horizons for modelling based on whether their AMI is above or below the surrogate band.",
+  "states": [
+   3
+  ]
+ },
+ "9e0af9deb1ce115e57916c5648fe7ce6fefcf8a76d0f3b2a676a3efd792cc666": {
+  "partially": [],
+  "reason": "Sentence 3 specifies a result (empty set), its meaning (no signal), and the subsequent action (stop evaluation).",
+  "states": [
+   3
+  ]
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "google/gemma-4-31b-it",
+  "price_usd_per_mtok": [
+   0.1,
+   0.34
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "a15c49fdffca46c5eb573338382aed37f0b1e2001a29b4a4ddfc2c2a4dd4dfc2": {
+  "partially": [],
+  "reason": "Sentence 3 specifies the result (True), its meaning (secondary peak), and the subsequent action (drop assumption).",
+  "states": [
+   3
+  ]
+ },
+ "a68fb5207d436a5d08b2715cc5bbca0497a1fe0f0944987f2823a3eb09601587": {
+  "partially": [],
+  "reason": "No sentence describes the meaning of a specific result or a conditional action based on the flag's value.",
+  "states": []
+ },
+ "a9dea50628e492fcf812010051025050fe1a89b5135f103c2cf388b6e0783f59": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify consulting architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "b2eadecb721ac39f97f2a4ffef966d8cdf634355f15b1d0283fd9d8d76eeb1d8": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify consulting or using architecture.md when deciding where new logic should live.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "bf776fbc83136efdf0827ca7053d68ad9728607fc0b8e9587bfc085be7dd73a2": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 state the action and meaning but not the expected result of the test.",
+  "states": []
+ },
+ "c6a9b338c24795be6669b075d1ff6d5339d432dbdad8d9cee663a38edaf2b436": {
+  "partially": [],
+  "reason": "No sentence provides a conditional rule for choosing a specific option; they only direct users to a reference document.",
+  "states": []
+ },
+ "c81b82b9970b6d3d0f7719fe47bbc5cf0e7bdd7bc05b7dbee4539dee11af35db": {
+  "partially": [],
+  "reason": "No sentence describes the expected result, the meaning of a specific result, or a conditional next action based on the flag.",
+  "states": []
+ },
+ "cd41399382f17168f2226b96440443649bd257b19a1e2fe6a783d93acdc2c21f": {
+  "partially": [],
+  "reason": "No sentence provides a conditional rule for choosing between different options based on a specific situation.",
+  "states": []
+ },
+ "d83cb5ac6f75b8b562b122ee01ad18edc6c08f85f0e6af97ce157ff5bf5cb798": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify the next action (targeting model evaluation) based on the result (membership in the informative horizon set).",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "e62126bbb37fba7820306006bac384f91a7abe684705601fad0989abf95b0c89": {
+  "partially": [],
+  "reason": "No sentence specifies the expected result, the meaning of a result, or the subsequent action based on the result.",
+  "states": []
+ },
+ "eca722ca51998ce551b1388d410e1c90f9be0cf062cffd90e7fbdd349d7c66e3": {
+  "partially": [],
+  "reason": "Sentence 3 provides specific conditions for placing logic in the core package or reporting layer.",
+  "states": [
+   3
+  ]
+ }
+}

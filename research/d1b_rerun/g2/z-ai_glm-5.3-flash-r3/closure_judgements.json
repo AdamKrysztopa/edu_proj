@@ -1,0 +1,145 @@
+{
+ "0c5a73b976c4aaa27474ff51e43614e0c2d6902fcea6d15afb04dd054da74a8a": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 2 hints at flag meaning ('without judgement') but no sentence specifies expected test results or next actions.",
+  "states": []
+ },
+ "151f3b3ff32c48c94731834ae6aca3a5d10e2a8017e858456754524d8e4cf71d": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify choosing based on a condition: when deciding where new logic should live, consult architecture.md.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "47d23a9f0365cc3686cf80eea284c9ecc8dfc53725d03cde377c1ad968159933": {
+  "partially": [],
+  "reason": "No sentence specifies which option to choose under which condition; sentences only describe timing, definitions, or implementation details.",
+  "states": []
+ },
+ "4d10d0903a8f18408423274bbe6f781d87f1a5ca1963474ad887d5b13170290f": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 prescribe an action (targeting evaluation), and sentence 6 explains what specific results (1 and -1) mean.",
+  "states": [
+   1,
+   2,
+   6
+  ]
+ },
+ "4fae7f3e07b38b509d026b0f389531fbd9a03b0f312e4ab7c006229200511f42": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 prescribe the evaluation action, while 5 defines the meaning of specific correlation results.",
+  "states": [
+   1,
+   2,
+   5
+  ]
+ },
+ "5e56f3b51c919e23de48bc6b01e772c1df45c05b6fc2e9277225d0c495d184fa": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 both use the phrase 'when deciding where new logic should live' to dictate the required action (consulting or using the file).",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "69e4fdddff596d5011ba34ecd09d83cb52c92b0d16b9eecc9c7e5027bfc95a79": {
+  "partially": [],
+  "reason": "No sentence specifies an expected test result, its interpretation, or a resulting next action; sentence 2 only describes flag propagation neutrally.",
+  "states": []
+ },
+ "72327b246ebd0c4616325a10a9aeccf9f5a8fcd4b57b0312c753c57910d547f7": {
+  "partially": [],
+  "reason": "No sentence describes the expected outcome of the test or the meaning/consequence of a specific result.",
+  "states": []
+ },
+ "7253fae0979923a295a37530e6d0ea7e42be4115bd592791a772fdfacfefb677": {
+  "partially": [],
+  "reason": "No sentence provides a conditional rule specifying which option to choose based on a given situation.",
+  "states": []
+ },
+ "8d18b09217d5234497f203ca93052f16e490a5c3231231938e4987a69cce013c": {
+  "partially": [],
+  "reason": "Sentence 3 states True means a later secondary peak and the next action: drop the monotone assumption and keep each lag.",
+  "states": [
+   3
+  ]
+ },
+ "8dec77f14fa71d893cdc7ed146227f41925c515559517d746144d4844cbe1e18": {
+  "partially": [],
+  "reason": "No sentence expresses a conditional rule mapping situations to options; sentences only order the F1 run and define autocorrelation.",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "z-ai/glm-5.3-flash",
+  "price_usd_per_mtok": [
+   0.15,
+   0.5
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "aa01d247a053757e1a2517d06c952db8404466ea8a3d522e26ada199f3ad720e": {
+  "partially": [],
+  "reason": "Sentence 3 provides a clear decision rule: horizons are chosen for modeling if their AMI sits above the surrogate band.",
+  "states": [
+   3
+  ]
+ },
+ "b307610ff26592b20907ebd35c195b939b548cfe55f346a537e6aa59352a5911": {
+  "partially": [],
+  "reason": "Sentence 6 explains what specific values of the autocorrelation coefficient mean (perfect correlation or anti-correlation).",
+  "states": [
+   6
+  ]
+ },
+ "b454e8dba2b61484d8f3eaef0b85856c6329597f5721359498b15abfa22c23d9": {
+  "partially": [],
+  "reason": "No sentence states the expected result, interpretation of a given result, or what next action the evaluation leads to.",
+  "states": []
+ },
+ "b78035470afe363fa7a0e44a4c9a522447a986ee8cc9aa376c67cebf559bbceb": {
+  "partially": [],
+  "reason": "Sentence 3 provides specific conditions (computes diagnostic vs. formats/plots) that determine the correct location for new logic.",
+  "states": [
+   3
+  ]
+ },
+ "dc0305e2c3ae7902a622248587253d72342e1b75c72faa704d3b19bec107f73e": {
+  "partially": [],
+  "reason": "Only sentence 3 specifies an expected result (empty set) and its meaning/action: no signal exists, so evaluation stops.",
+  "states": [
+   3
+  ]
+ },
+ "e75040ad25ff9500bc8f99fc1a46e3f2042dab931d313d9522b0104658cdca6b": {
+  "partially": [],
+  "reason": "No sentence describes the expected outcome of the inspection or the specific action to take based on the flag's value.",
+  "states": []
+ },
+ "e96be0a63dc86486e126f67362308af12237b1c2c8eb89dbcf2355f6ecdaa69e": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly link the situation of deciding where logic lives to the choice of consulting architecture.md.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "edcd04138a4d614a26d35954895bbb2cfc41eaea040d88f7596039372bc0f30d": {
+  "partially": [],
+  "reason": "Sentence 1 dictates the sequence of operations (when to run F1) based on the existence of AMI curves and the decision point for horizons.",
+  "states": [
+   1
+  ]
+ },
+ "f08c989a908f0b212361acb597044e00cfb6353fff6d188c8dc7f052db3bd64c": {
+  "partially": [],
+  "reason": "No sentence specifies which option to choose in which situation; they describe timing, outputs, and autocorrelation math only.",
+  "states": []
+ }
+}

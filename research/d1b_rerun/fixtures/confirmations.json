@@ -143,5 +143,17 @@
   "N_plus": true,
   "seed_open": true
  },
- "_by": "owner, 2026-10-26: 'all confirmed' after reading fixtures/g2_review.md"
+ "_by": "owner, 2026-10-26: 'all confirmed' after reading fixtures/g2_review.md",
+ "_dropped": {
+  "t06": "owner, 2026-10-26: the seed states the expected result (every C1 judge closed arm 0)",
+  "t12": "owner, 2026-10-26: the seed's 'when deciding' reads as a choice condition (every C1 judge closed arm 0)",
+  "t11": "owner, 2026-10-26 (gate seed check): both seed readers closed arm 0; the seed carries its own reason ('because...')",
+  "t13": "owner, 2026-10-26 (gate seed check): both seed readers closed arm 0; the seed carries its own reason ('so that...')",
+  "t23": "owner, 2026-10-26 (gate seed check): both seed readers closed arm 0; the seed carries its own reason ('as the curve...')",
+  "t24": "owner, 2026-10-26 (gate seed check): both seed readers closed arm 0; the seed carries its own reason ('to avoid...')",
+  "t20": "owner, 2026-10-26 (gate seed check): the seed states its purpose ('required for a valid two-sided 95% band')"
+ },
+ "_revisions": {
+  "t07.N": "owner, 2026-10-26: rewritten N (vacuous 'since') confirmed, to restore marker balance after dropping t06, t12"
+ }
 }

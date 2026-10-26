@@ -152,3 +152,14 @@ def test_any_undecided_arm_makes_the_verdict_incomplete_not_fail():
 
     res = g2.evaluate(topics, inserts, Sometimes(inserts), split="gate")
     assert res["undecided"] > 0 and res["complete"] is False and res["passes"] is False
+
+
+def test_topics_the_owner_dropped_are_left_out_before_any_check():
+    topics, inserts = _set(3)
+    kept = g2.kept_topics(topics, {"_dropped": {"t01": "seed states the element"}})
+    assert [t["topic_id"] for t in kept] == ["t00", "t02"]
+
+
+def test_a_seed_is_dropped_only_when_every_reader_closes_its_no_insert_arm():
+    states = {"t1": {"a": "closed", "b": "closed"}, "t2": {"a": "closed", "b": "open"}, "t3": {"a": "open", "b": "open"}}
+    assert g2.seed_drops(states) == ["t1"]

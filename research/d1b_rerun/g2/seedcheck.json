@@ -1,0 +1,86 @@
+{
+ "proposed_drops": [
+  "t11",
+  "t13",
+  "t23",
+  "t24"
+ ],
+ "readers": [
+  "deepseek/deepseek-v4.1-flash",
+  "z-ai/glm-5.3-flash"
+ ],
+ "states": {
+  "t01": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t02": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t05": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t07": {
+   "deepseek/deepseek-v4.1-flash": "closed",
+   "z-ai/glm-5.3-flash": "partial"
+  },
+  "t08": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t09": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t10": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t11": {
+   "deepseek/deepseek-v4.1-flash": "closed",
+   "z-ai/glm-5.3-flash": "closed"
+  },
+  "t13": {
+   "deepseek/deepseek-v4.1-flash": "closed",
+   "z-ai/glm-5.3-flash": "closed"
+  },
+  "t14": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t15": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t16": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t17": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t18": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t20": {
+   "deepseek/deepseek-v4.1-flash": "open",
+   "z-ai/glm-5.3-flash": "open"
+  },
+  "t21": {
+   "deepseek/deepseek-v4.1-flash": "partial",
+   "z-ai/glm-5.3-flash": "closed"
+  },
+  "t23": {
+   "deepseek/deepseek-v4.1-flash": "closed",
+   "z-ai/glm-5.3-flash": "closed"
+  },
+  "t24": {
+   "deepseek/deepseek-v4.1-flash": "closed",
+   "z-ai/glm-5.3-flash": "closed"
+  }
+ }
+}

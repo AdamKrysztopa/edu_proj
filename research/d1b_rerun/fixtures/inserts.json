@@ -49,7 +49,7 @@
   },
   "t07": {
     "P": "If a high score persists across multiple backends and sample-size stress testing, the warning is cleared; if it collapses, the inflation was numerical and the result is discarded.",
-    "N": "Numerical inflation is reported as a warning in the result object, and the multiple backends for sample-size stress testing are named in the backends parameter of the run config file.",
+    "N": "Numerical inflation is logged as a warning in the result object, since the multiple backends for sample-size stress testing are listed in the backends parameter of the run config file.",
     "N_plus": [
       "The stress testing module lives under the diagnostics package.",
       "Numerical inflation warnings carry the code NUM_INFLATION in the result object."
