@@ -88,6 +88,10 @@ class JudgeUnavailable(JudgeCacheMiss):
     judgement and must stop the run, never count as a closure state."""
 
 
+class _Truncated(RuntimeError):
+    pass
+
+
 class BudgetExceeded(JudgeCacheMiss):
     """A JudgeCacheMiss so that `semantic.judge_retrieval` re-raises it: every other exception there
     degrades to `undecided`, and a refused call must stop the run, not become a judgement."""
@@ -223,6 +227,7 @@ class OpenRouterJudge(OpenAIJudge):
     def __init__(self, model: str, *, max_usd: float, max_completion_tokens: int = 8000, post=None,
                  spend_ledger: Path | str | None = None, sleep=time.sleep, reasoning_max_tokens: int | None = None):
         self.reasoning_max_tokens = reasoning_max_tokens
+        self.truncated = 0
         super().__init__(model, max_usd=max_usd, reasoning_effort=None,
                          max_completion_tokens=max_completion_tokens, post=post, spend_ledger=spend_ledger)
         self._sleep = sleep
@@ -241,10 +246,24 @@ class OpenRouterJudge(OpenAIJudge):
         raise AssertionError("unreachable")
 
     def _after(self, choice: dict) -> None:
-        # deepseek-v4.1-flash and qwen3.8-flash reason by default: 12 and 14 of their C1 replies hit a
-        # 2,000-token cap (2026-10-26).
         if choice.get("finish_reason") == "length":
-            raise JudgeUnavailable(f"{self.model_id}: reply truncated at {self.max_completion_tokens} tokens")
+            raise _Truncated(f"{self.model_id}: reply truncated at {self.max_completion_tokens} tokens")
+
+    def ask(self, prompt: str) -> dict | None:
+        """A truncated reply (C1: deepseek and qwen reasoning past a 2,000-token cap; C3: gemma looping
+        to 8,000) is asked once more; a second truncation is returned as None, which the parser makes
+        "undecided", and counted in `spend()["truncated"]`. Both calls are charged."""
+        for attempt in (0, 1):
+            try:
+                return super().ask(prompt)
+            except _Truncated:
+                if attempt:
+                    self.truncated += 1
+                    return None
+        raise AssertionError("unreachable")
+
+    def spend(self) -> dict:
+        return {**super().spend(), "truncated": self.truncated}
 
     def _settings(self, reasoning_effort: str | None, max_completion_tokens: int) -> dict:
         out = {"api": self.URL, "max_tokens": max_completion_tokens, "response_format": "json_object",

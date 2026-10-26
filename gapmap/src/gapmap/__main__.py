@@ -187,6 +187,7 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--reasoning-effort", default="medium", help="OpenAI judge only; recorded in the cache _meta")
     p.add_argument("--max-completion-tokens", type=int, default=6000, help="OpenAI judge only")
     p.add_argument("--spend-ledger", help="OpenAI judge only: JSONL shared by runs, so --max-usd covers them all")
+    p.add_argument("--reasoning-max-tokens", type=int, help="OpenRouter judge only: cap the model's reasoning")
     p.add_argument("--parallel-arm", help="output directory of the other-family arm on the same ledger (ADR 0009)")
     p.add_argument("--require-manifest", metavar="SHA",
                    help="refuse to run unless the repository hashes to this freeze manifest (gapmap.manifest)")
@@ -218,7 +219,8 @@ def main(argv: list[str] | None = None) -> None:
         meta = {"model": args.model, **backend.settings}
     elif provider == "openrouter":
         backend = judge_mod.OpenRouterJudge(args.model, max_usd=args.max_usd if live else 0.0,
-                                            spend_ledger=args.spend_ledger if live else None)
+                                            spend_ledger=args.spend_ledger if live else None,
+                                            reasoning_max_tokens=args.reasoning_max_tokens)
         meta = {"model": args.model, **backend.settings}
     else:
         backend, meta = judge_mod.OllamaJudge(model=args.model), None
@@ -229,7 +231,7 @@ def main(argv: list[str] | None = None) -> None:
     try:
         run(args.ledger, domain=args.domain, out_dir=args.out, sibling_path=args.sibling,
            sidecar_path=args.sidecar, judge=judge, manifest_sha256=args.require_manifest)
-    except judge_mod.BudgetExceeded as exc:
+    except (judge_mod.BudgetExceeded, judge_mod.JudgeUnavailable) as exc:
         judge.save()
         record_.update(complete=False, stopped=str(exc))
         raise SystemExit(f"incomplete: {exc}") from exc

@@ -131,11 +131,23 @@ def test_a_non_transient_error_stops_at_once(monkeypatch):
     assert post.posts == 1
 
 
-def test_a_truncated_reply_stops_the_run_and_is_still_charged(monkeypatch):
-    j = _flaky_judge(Flaky([], finish_reason="length"), monkeypatch)
-    with pytest.raises(judge_mod.JudgeUnavailable, match="truncated"):
-        j.ask("p")
-    assert j.spent_usd > 0
+def test_a_truncated_reply_is_retried_once_then_undecided_charged_and_counted(monkeypatch):
+    post = Flaky([], finish_reason="length")
+    j = _flaky_judge(post, monkeypatch)
+    assert j.ask("p") is None
+    assert post.posts == 2 and j.spent_usd > 0
+    assert j.spend()["truncated"] == 1
+
+
+def test_a_truncated_reply_that_completes_on_retry_is_used(monkeypatch):
+    class Once(Flaky):
+        def __call__(self, url, body, headers):
+            reply = super().__call__(url, body, headers)
+            self.finish_reason = "stop"
+            return reply
+
+    j = _flaky_judge(Once([], finish_reason="length"), monkeypatch)
+    assert j.ask("p")["states"] == [1] and j.spend()["truncated"] == 0
 
 
 def test_an_unavailable_judge_propagates_through_the_parser():
@@ -167,3 +179,33 @@ def test_a_reasoning_budget_is_sent_and_recorded_only_when_set(monkeypatch):
     judge_mod.OpenRouterJudge(MODEL, max_usd=5, post=plain).ask("p")
     assert "reasoning" not in plain.bodies[0]
     assert "reasoning_max_tokens" not in judge_mod.OpenRouterJudge(MODEL, max_usd=5).settings
+
+
+def test_the_cli_passes_a_reasoning_budget_into_the_judge_and_its_record(tmp_path, monkeypatch):
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test")
+    post = FakePost(content='{"states": [], "partially": [], "reason": "r"}')
+    monkeypatch.setattr(judge_mod, "_http_post", post)
+    cli.main([*_args(tmp_path), "--judge", "openrouter", "--model", MODEL, "--max-usd", "1",
+              "--reasoning-max-tokens", "2000"])
+    rec = json.loads((tmp_path / "out" / "judge.json").read_text())
+    assert rec["settings"]["reasoning_max_tokens"] == 2000
+    assert post.bodies[0]["reasoning"] == {"max_tokens": 2000}
+
+
+def test_the_cli_saves_the_cache_and_marks_the_run_incomplete_when_the_judge_stops(tmp_path, monkeypatch):
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test")
+
+    class DownAfterOne(FakePost):
+        def __call__(self, url, body, headers):
+            if self.bodies:
+                import urllib.error
+                raise urllib.error.HTTPError(url, 400, "bad", {}, None)
+            return super().__call__(url, body, headers)
+
+    monkeypatch.setattr(judge_mod, "_http_post", DownAfterOne(content='{"states": [], "partially": [], "reason": "r"}'))
+    with pytest.raises(SystemExit):
+        cli.main([*_args(tmp_path), "--judge", "openrouter", "--model", MODEL, "--max-usd", "1"])
+    out = tmp_path / "out"
+    rec = json.loads((out / "judge.json").read_text())
+    assert rec["complete"] is False and "HTTP 400" in rec["stopped"]
+    assert len([k for k in json.loads((out / "closure_judgements.json").read_text()) if k != "_meta"]) == 1
