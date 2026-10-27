@@ -456,3 +456,21 @@ A queue padded with those is a queue nobody drains.
 - **What happened:** D1b's Stop A code (`research/d1b_rerun/`) hard-codes the reference repo, ledger paths and retriever corpus; run unchanged on another codebase, every topic would read as "outside" with no error. Found by the gap-density survey agent reading the code before reuse.
 - **Generalises to:** Code written for one study unit is reused on another only after a test runs it on a second unit and asserts non-empty, unit-specific results.
 - **Candidate home:** a test in `research/d1b_rerun/tests`; the D1c parameterisation (branch `d1c-prep`).
+
+### Cost estimates built from logged totals undercount truncated runs
+
+- **What happened:** The D1c preparation agent's first cost table (branch `d1c-prep`, `docs/plans/d1c-targeting-test.md`) priced each step from D1's logged run totals; runs that stopped early (HTTP 402, cap stops) were counted as if complete, so the estimate was about 40% low. Found when the agent rebuilt it per call from the call logs. The gap-density agent hit the same trap independently (D1's top-tier ledger, $3.95 vs about $6.29).
+- **Generalises to:** A cost estimate is derived per call and per task from call logs, scaled by the planned call counts, never from a past run's total spend.
+- **Candidate home:** an estimating rule beside L7.2 in `CLAUDE.md` or the plan template; drain with "A run marked complete while 95% of one task's calls failed".
+
+### A refusal that does not say which input to change
+
+- **What happened:** In D1c's canary generator, a check refused with "source passage not among those shown" without naming the passage, the measured value or the input to change, so the author model (and the agent) could not fix it; it took three dry-run rounds.
+- **Generalises to:** Every refusal or failed check names the measured value, the threshold and the input that would make it pass.
+- **Candidate home:** the coding conventions (`CLAUDE.md` or `docs/`), checked in review.
+
+### Tests over shuffled opaque IDs picked items by position
+
+- **What happened:** A D1c judging test edited "the first" ID; with random opaque IDs, about 1 run in 8 that ID was a canary, and the test failed. Found as flakiness during the D1c preparation.
+- **Generalises to:** A test over shuffled or randomly named items selects them by kind or content, never by position, and seeds any randomness it relies on.
+- **Candidate home:** the test conventions; drain with "A sealed artefact sat on disk in clear text" (record writes, do not scan disk afterwards).
