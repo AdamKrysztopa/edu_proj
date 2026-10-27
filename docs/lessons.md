@@ -426,3 +426,15 @@ A queue padded with those is a queue nobody drains.
 - **What happened:** While designing N8's preconditions, the agent found that OpenRouter's account-level prompt and response logging would keep sealed model output readable in the provider's activity view, and no client-side check can confirm it is off. N8 now refuses to run without an explicit `--provider-logging-off` attestation and records it.
 - **Generalises to:** Any sealed or blind paid run requires provider-side logging to be confirmed off by the account owner and the confirmation recorded in the run's manifest, because the client cannot verify it.
 - **Candidate home:** the sealing rules in `CLAUDE.md` beside L7.1; the `/preflight` checklist.
+
+### A failed paid call became a silent `undecided` state
+
+- **What happened:** `OpenAIJudge` (`gapmap/src/gapmap/judge.py`) has no retry and no `JudgeUnavailable`: one OpenAI call in sol's G1 run (`research/d1b_rerun/g1/sol-r1`) raised, and `semantic.judge_retrieval` turned it into an `undecided` ctrl_eq arm with no cache entry and no ledger line. L7.3's rule reads undecided as "not closed", which favours the stand-ins. `OpenRouterJudge` already had retries and stops the run; the asymmetry was found only when the judge-screening agent's $0 replay of sol's G1 missed a prompt.
+- **Generalises to:** A paid model call that gets no answer stops the run or marks it incomplete, and is never recorded as a judgement state; every judge backend shares one retry and failure contract, with a test per backend.
+- **Candidate home:** `gapmap/src/gapmap/judge.py` (OpenAIJudge gets OpenRouterJudge's retry and `JudgeUnavailable`, plus a test); arch-crew rule `every-call-logs-even-on-failure` extended from `reconstruct/` to `gapmap/`.
+
+### Building started while the critic gate was still reviewing the plan
+
+- **What happened:** The judge-screening agent drafted `gapmap/src/gapmap/screen.py` while `methods-critic` was still reviewing `docs/plans/judge-screening-standard.md`; the brief said review before building. The critic's ten findings were applied before any commit, so nothing wrong landed, but the order was broken for wall-clock time, as with D1b's paid runs started before Stop A.
+- **Generalises to:** A gate that must pass before a step (critic review, a $0 feasibility check) is waited for, never run in parallel with the step it guards, and the brief says so explicitly.
+- **Candidate home:** `CLAUDE.md` Agents (`methods-critic` line); the agent-brief template; drain together with the D1b ordering-slip lesson.
