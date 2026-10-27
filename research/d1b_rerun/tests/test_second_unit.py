@@ -78,6 +78,14 @@ def test_arms_and_the_stop_a_count_run_on_the_second_unit(unit, monkeypatch, tmp
     assert all(v[0] == "gdpr" for t in gaps + covs for v in t["versions"])
 
 
+def test_the_incomplete_ledger_opt_out_needs_a_stated_reason(tmp_path):
+    cfg = {"name": "x", "title": "X", "owner_repo": "github.com/o/x", "domain": "x", "seed": 7, "corpus": "corpus",
+           "ledgers": {}, "prior_items": None, "canaries": "c.json", "allow_incomplete_ledgers": True}
+    (tmp_path / "codebase.json").write_text(json.dumps(cfg))
+    with pytest.raises(codebase.Incomplete, match="allow_incomplete_reason"):
+        codebase.load(tmp_path / "codebase.json")
+
+
 def test_an_incomplete_ledger_is_refused_unless_the_config_allows_it():
     dry = codebase.load(Path(__file__).resolve().parents[2] / "d1c" / "dryrun-dependence-forecastability"
                         / "codebase.json")

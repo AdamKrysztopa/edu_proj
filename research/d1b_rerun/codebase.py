@@ -106,6 +106,8 @@ def load(path: Path) -> Codebase:
     hit = [r for r in EXCLUDED_REPOS for n in named if _repo_tail(n).endswith(r.lower())]
     if hit:
         raise Excluded(f"{path}: {hit[0]} is excluded from targeting tests (D1c plan §4, Stop 0)")
+    if cfg.get("allow_incomplete_ledgers") is True and not str(cfg.get("allow_incomplete_reason", "")).strip():
+        raise Incomplete(f"{path}: allow_incomplete_ledgers needs an allow_incomplete_reason")
     root = path.parent
     rel = lambda p: (root / p).resolve()
     return Codebase(name=cfg["name"], title=cfg["title"], root=root, owner_repo=cfg["owner_repo"],

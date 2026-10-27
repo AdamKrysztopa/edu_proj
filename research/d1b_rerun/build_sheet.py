@@ -281,6 +281,8 @@ def cmd_pool(args) -> int:
     if args.ledger and not args.pool:
         raise SystemExit("a pool restricted with --ledger needs its own --pool path")
     pool_text, pack_text, summary = pool_outputs(cb, args.ledger)
+    if cb.allow_incomplete_ledgers:
+        summary["allow_incomplete_ledgers"] = json.loads(Path(args.codebase).read_text())["allow_incomplete_reason"]
     pool = _pool_path(args, cb)
     pool.write_text(pool_text)
     pack = cb.review_pack if pool == cb.pool else pool.with_suffix(".review_pack.md")

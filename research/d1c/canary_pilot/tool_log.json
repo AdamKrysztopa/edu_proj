@@ -1,0 +1,12 @@
+{
+ "_what": "Every tool call judge A made in the canary pilot (2026-10-27), extracted from its session transcript. Its working directory held only instructions.txt and cases.json; case_map.json (the expected labels) was in a separate scratch directory and was copied beside cases.json only afterwards, for the record. Judge A read only those two files and wrote only its labels.",
+ "calls": [
+  {"tool": "Read", "target": "<scratchpad>/pilot_judge/instructions.txt"},
+  {"tool": "Read", "target": "<scratchpad>/pilot_judge/cases.json"},
+  {"tool": "Read", "target": "<scratchpad>/pilot_judge/instructions.txt"},
+  {"tool": "Read", "target": "<scratchpad>/pilot_judge/cases.json"},
+  {"tool": "Read", "target": "<scratchpad>/pilot_judge/cases.json"},
+  {"tool": "Write", "target": "<scratchpad>/pilot_judge/judge_a.json"},
+  {"tool": "SubagentHandback", "target": "report"}
+ ]
+}
