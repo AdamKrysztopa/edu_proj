@@ -16,7 +16,8 @@ any closure call (§3.2, §5).
 lecturer and volunteers may still start, as an elicitation-and-onboarding pilot without targeting.
 Further ranking work waits for N3 to resume. The fix itself (item 1) holds as far as it got: the
 closure judge is selectable beside the default and chosen by measurement. The cheap arm, gemma, passes
-both checks (G2 under a disclosed amendment); sol passes G1 and the first of its two required G2 runs.
+both checks (G2 under a disclosed amendment). Sol passes G1 and both required G2 gate runs; the
+second ran on 2026-10-27 ($0.144).
 
 ## How to read it
 
@@ -42,8 +43,9 @@ both checks (G2 under a disclosed amendment); sol passes G1 and the first of its
   under the amendment). Commit `b7cc35f`; lesson queued.
 - **One ordering slip.** Sol's paid G1 and G2 checks were started in parallel with the cheap arm's
   gap maps, before the free Stop A count, against the plan's order. Sol's G1 and first gate run
-  finished before the count; the second gate run was stopped when the count failed. $0.29 spent.
-  Lesson queued.
+  finished before the count, and the second gate run was stopped when the count failed. $0.29 was
+  spent. The second gate run was then made again from a fresh cache on 2026-10-27 and passed
+  ($0.144). Lesson queued.
 
 ## Figures
 
@@ -92,5 +94,7 @@ a codebase whose open side is large enough.
 ## Cost
 
 $1.06 of the owner's $6 cap: $0.62 on OpenRouter (judge screening, G1, G2, seed checks and
-gemma's two gap maps) and $0.44 on OpenAI (sol's G1, $0.13; its first G2 gate run, $0.14; 9 calls of the stopped second run, $0.02; the completed second run on 2026-10-27, $0.14). No local models: the
+gemma's two gap maps) and $0.44 on OpenAI (sol's G1, $0.13; its first G2 gate run, $0.14; 9 calls of the stopped second run, $0.02; the completed second run on 2026-10-27, $0.14). The same OpenAI ledger also holds a fresh sol G1
+run made by the judge-screening standard on 2026-10-27 ($0.14, outside D1b;
+`docs/plans/judge-screening-standard.md` §4). No local models: the
 Mac crashed while screening them, so they were deleted and the cheap arm moved to OpenRouter.

@@ -1,6 +1,6 @@
 ---
 id: 0010
-status: proposed
+status: active
 skill: decide-architecture
 date: 2026-10-27
 commit: ee1744a
@@ -57,7 +57,8 @@ started before the free Stop A count that should have stopped them (lesson 2026-
   re-run until it passes. Changing any fixture or runner file voids every earlier run.
 - The fixture set is D1's (dependence-forecastability) for G2 and N3's for G1. A domain with its own
   fixtures needs a new sequence version and new hashed files.
-- Eligibility is advisory until the gapmap CLI and control2 read `verdict.json`; neither does yet.
+- Eligibility is advisory until the gapmap CLI and control2 read `verdict.json`; neither does yet
+  (follow-up in `docs/plans/judge-screening-standard.md` §6).
 - A study-level $0 gate (D1b's Stop A) is enforced only when the plan passes its record as `--after`.
 - Adding `screen.py` changes the gapmap package hash (`gapmap.manifest`), as every change under
   `gapmap/src/gapmap/` does; the manifest is regenerated at the MS2 freeze.

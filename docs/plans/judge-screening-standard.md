@@ -9,7 +9,8 @@ one entry point that enforces that order in code. It changes no gapmap default a
 Like D1b it is exploratory. It feeds no N3 gate and is not RQ-B evidence. It decides which judge
 may be used, not what any gap map shows.
 
-Status: **built, 2026-10-27** (`gapmap/src/gapmap/screen.py`, ADR 0010 proposed). `methods-critic`
+Status: **built and adopted, 2026-10-27** (`gapmap/src/gapmap/screen.py`, ADR 0010 active; owner
+decisions in §6). `methods-critic`
 reviewed the first draft: "build with changes". Its findings 1–10 are applied below, and §6 lists the
 rule changes it found. Note on process: the module was drafted while that review was running, not
 after it. The critic flagged this, and the findings were applied before anything was committed.
@@ -97,13 +98,21 @@ gate-split prompts (by `methods-critic`, and again here after sol's second run):
 - `gemma-4-31b-it` (reasoning capped at 2,000 tokens) has G1 from `g1/google_gemma-4-31b-it-r3` and
   G2 from `g2/google_gemma-4-31b-it-gate1` and `-gate2`. All three replays reproduce, and the candidate is **eligible**. Each
   run note says it passes G2 only under the post-hoc R amendment.
-- `gpt-6.1-sol` (effort high): S0 and S1 pass (S1 via gemma). **G1 cannot be adopted.** In
-  `g1/sol-r1`, one call left no cache entry, so its arm is `undecided` (an equal-cap control arm,
-  `ctrl_eq`, which l73's rule does not rule on). The replay then misses that prompt. `OpenAIJudge` has no retry. An exception in the call
-  (most likely a transport error) is caught in `semantic.judge_retrieval` and becomes `undecided`,
-  with no line in the spend ledger.
-  So sol's screening verdict waits at G1. Its two passing G2 runs (`g2/sol-gate1`, `g2/sol-gate2`)
-  are adoptable once G1 passes.
+- `gpt-6.1-sol` (effort high): S0 and S1 pass (S1 via gemma). **D1b's G1 could not be adopted.**
+  In `g1/sol-r1`, one call left no cache entry, so its arm is `undecided` (an equal-cap control arm,
+  `ctrl_eq`, which l73's rule does not rule on), and the replay misses that prompt. `OpenAIJudge`
+  had no retry then. An exception in the call (most likely a transport error) was caught in
+  `semantic.judge_retrieval` and became `undecided`, with no line in the spend ledger. That is fixed:
+  `OpenAIJudge` now retries transient errors and raises `JudgeUnavailable` on persistent ones.
+  A **fresh G1 through the screen** (`research/judge_screening/gpt-6.1-sol/G1-run1`, 2026-10-27) passed:
+  planted positive fires, no stand-in fires, 0 undecided seed-free arms. It made 76 calls, all
+  finishing `stop`, and cost $0.139 against a $0.30 cap, on `research/d1b_rerun/openai_spend.jsonl`.
+  Then G2 was adopted from `g2/sol-gate1` and `g2/sol-gate2`, both replays reproducing. Sol is
+  **eligible**.
+
+`pair --cheap gemma-4-31b-it --top gpt-6.1-sol` is **ready** on fixture hash `474b636c4584…`. Its
+G2 state agreement is 0.78, kappa 0.59, over 130 states. `gated_on_this_hash` lists the two
+candidates.
 
 D1b's other candidates are not in the screen. They failed the selection split or ran locally:
 qwen2.5:7b fails G1 and G2, gemini-3.5-flash-lite fails G1, and qwen3.8-flash fails the selection
@@ -129,10 +138,18 @@ pinned settings, the price check, adoption order and reproduction, and `pair` wi
 The result readers are checked against D1b's committed outputs.
 `research/d1b_rerun/tests` covers the G2 oracle and g1.py's flag handling.
 
-## 6. Owner decisions
+## 6. Owner decisions (taken 2026-10-27)
 
-1. **Rule changes the critic found, for the owner to accept or reject.** Each is a reading or
-   tightening of D1b's prose, not a change to `g2.passes` or `l73.evaluate`:
+**Outcome.** The owner accepted all five rule readings below, (a) to (e). The owner kept gemma as
+the cheap arm under the disclosed R_excess amendment (item 2). The owner ordered the OpenAI retry fix
+and then one fresh sol G1 (item 3), and promoted ADR 0010 to active (item 4).
+
+**Follow-up (not yet built):** the gapmap CLI (`--judge openai|openrouter`) and `control2` must
+read `verdict.json` and refuse a live judge that is not in a ready `pair`. Until then, eligibility
+is recorded but not binding.
+
+1. **Rule changes the critic found** (accepted). Each is a reading or tightening of D1b's prose,
+   not a change to `g2.passes` or `l73.evaluate`:
    - (a) The G2 selection split is not a step. D1b made eligibility "G1 and the selection split",
      but the split proved unable to select: 2 of its 4 kept seeds read as stating the element to
      every judge, and gemma was gated only under a waiver. Choosing among several eligible cheap
@@ -146,16 +163,14 @@ The result readers are checked against D1b's committed outputs.
    - (e) Cheap screening runs need no top-tier arm of their own. In screening the criterion is the
      owner-confirmed labels, not a judge, so CLAUDE.md's "the cheap arm alone never settles" applies
      when a judge is used, which `pair` enforces.
-2. **gemma under the post-hoc amendment.** gemma is eligible only under the R_excess amendment,
-   which was found on its own gate data, and at temperature 0 a fresh run would reproduce the same
-   result. **Recommended:** accept gemma as the cheap arm, with the note kept in its verdict.
-3. **sol's G1.** One fresh G1 run through the screen (`run --candidate gpt-6.1-sol ... --live
-   --max-usd 0.30 --spend-ledger ../research/d1b_rerun/openai_spend.jsonl`, about $0.13), then
-   `adopt` sol's two G2 runs ($0). **Recommended**, because without it the screen cannot record the
-   pair and sol's eligibility rests on D1b's prose record alone.
-4. **ADR 0010** (proposed): whether to promote it. Promoting it makes the screen the only way a
-   closure judge becomes usable on N3. The gapmap CLI and control2 do not yet read `verdict.json`,
-   so until a check is added there, eligibility stays advisory.
+2. **gemma under the post-hoc amendment** (kept as the cheap arm). gemma is eligible only under
+   the R_excess amendment, which was found on its own gate data. At temperature 0 a fresh run would
+   reproduce the same result. The note stays in its verdict and `pair` prints it.
+3. **sol's G1** (ordered). First, `OpenAIJudge` took OpenRouterJudge's retry and `JudgeUnavailable`
+   contract, so a failed call stops the run as incomplete instead of becoming `undecided`. Then one
+   fresh G1 ran through the screen with a $0.30 cap, and sol's two G2 runs were adopted at $0 (§4).
+4. **ADR 0010** (promoted to active, constitution regenerated). The screen is now the only way a
+   closure judge becomes usable on N3. It binds only once the follow-up above is built.
 
 ## 7. Known limits
 
