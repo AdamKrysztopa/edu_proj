@@ -8,7 +8,7 @@ length) and writes the brief for a separate author, who never sees a question sh
 The author writes `fixtures/canaries.json`; `check` applies the code checks below; the owner then
 confirms the two labels and sets `owner_confirmed`. `novelty.py cases` refuses until all three
 hold. Filler and the copied passage need no author: filler is fixed text, and the copy is the
-eligible passage the retriever ranks first for the sheet's first question.
+eligible passage the retriever ranks first for a spare pool question (`novelty.spare_questions`).
 
 The checks guard what each canary is for: a paraphrase must be judged "already written" on
 meaning, so it may not pass on lexical match (content-word Jaccard and longest shared word run are

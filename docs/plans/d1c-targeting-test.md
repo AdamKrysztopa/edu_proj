@@ -2,7 +2,9 @@
 
 D1b asked a question it could not answer on dependence-forecastability: only 7 of 35 fresh topics were open in every version, against a floor of 10 per arm (`research/d1b_rerun/RESULT.md`). D1c asks **the same question on another codebase the owner wrote**. It keeps D1b's rule, arms, blinding and judges wherever possible (`docs/plans/gapmap-fix-and-d1-rerun.md`, cited below as "D1b plan §x"). Like D1 and D1b, it is exploratory: one expert, who built both the system and the codebase. It feeds no N3 gate and is not RQ-B evidence. N3 stays paused with its registered rules unchanged (`REORIENTATION.md` §22).
 
-**Status:** a draft for the owner's approval. It was built at $0 and revised after two rounds of `methods-critic`. Round 1 had eight blocking findings and round 2 had four. All are applied below; §12 lists them, and a third round checks them. No codebase is chosen here. A parallel gap-density survey recommends one, the owner confirms it, and only then is `codebase.json` filled in (§2). Every paid run in §8 happens later, under caps the owner sets.
+**Status: prepared, unscheduled.** The gap-density survey stopped before any paid call, and the owner accepted the stop (2026-10-27), so no codebase is chosen. D1c waits until targeting work reopens after N3. When it does, two things come first: the codebase is chosen (§4, Stop 0), and the on-domain judge check (§5.1) is built and passed. Only then is `codebase.json` filled in (§2).
+
+Everything was built at $0 and revised after three rounds of `methods-critic`, with 8, 4 and 2 blocking findings in turn, all applied (§12). Every paid run in §8 happens later, under caps the owner sets.
 
 ## 1. Question and decision rule, carried over
 
@@ -12,6 +14,11 @@ The following carry over unchanged:
 
 - **Arms** (D1b plan §3.2). A topic is *gap* if and only if every closure judgement of every ledger version of it, by both closure arms, is open. It is *covered* if and only if all of them are closed. Anything else goes to neither arm. The arms are matched by seeded code within strata (lens; k_topic band, 1 or ≥ 2; ledgers of origin; source origin) on question length and retrieval similarity. Their means must lie within 10% (`build_sheet.match`, `balance`).
 - **Size and fallbacks** (D1b plan §3.2). 15 + 15. If that is not possible, 12 + 12, then 10 + 10. With fewer than 10 matched, balanced topics per arm, the test stops (§4).
+- **The floor shows pool size only.** A random closure judge reaches it easily on a large enough pool. On D1b's own pools (500 seeds, one judge, matching as coded) it reaches the floor:
+  - on the 44-topic cheap-ledger pool: on 0.17 of seeds with P(open) 0.2, 0.64 with 0.3, and 0.98 with 0.5;
+  - on the 35-topic reviewed pool: on 0.00, 0.05 and 0.25 of seeds.
+  
+  The coordinator's survey finding (2026-10-27) is that a random judge reaches the floor on 77–98% of seeds. Passing Stop A therefore says nothing about whether the judge reads closure. That rests on the judge checks alone (§5.1).
 - **Rule** (D1b plan §3.4, `research/d1b_rerun/rule.py`, the code unchanged).
   - **Continue** if and only if the gap arm's "new" rate minus the covered arm's is ≥ 0.30, with a one-sided exact permutation p ≤ 0.10, on the criterion labels. Under criterion (b) it must hold both on the two judges' agreed labels and on judge A's labels alone.
   - Otherwise **Change**.
@@ -22,8 +29,13 @@ The following carry over unchanged:
   - at 10/10: 0.03, 0.23, 0.37 and 0.54.
   - **A Change cannot separate "the map does not target" from "the effect is below about 0.4."** `RESULT.md` prints this.
   - **The canary void lowers these figures.** If each judge were 0.9 accurate on each canary independently, both would pass all five with probability of about 0.35 (§5.3), and P(Continue | +0.30) at 15/15 would fall to about 0.33 × 0.35 ≈ 0.12. Canaries are built to be easier than that, but no measurement shows it yet.
-- **Secondary readings, never gating** (D1b plan §3.4): a labeller that uses answer length only; the number of new content units; the owner's self-ratings; and each closure arm's assignment on its own, revealed with the key.
-- **Blinding** (D1b plan §3.3). Per-candidate states, caches, rebuilt maps and the key are git-ignored (`research/d1c/.gitignore`), then sealed to the owner's RSA public key. The builder prints only aggregates and hashes. Once every answer is hash-locked, the owner guesses each question's arm; `novelty.py reveal` reads `guesses.json`. **The guess accuracy is reported as a descriptive figure, whatever its p.** D1b's "unblinded" flag (accuracy ≥ 0.70 at p < 0.05) is kept, but at 30 questions a true accuracy of 0.70 trips it only about 59% of the time. The owner wrote these docs and knows what they cover, so a Continue may still partly reflect that knowledge, and `RESULT.md` says so.
+- **Secondary readings, never gating** (D1b plan §3.4):
+  - a labeller that uses answer length only;
+  - **an overlap-only labeller (new):** "new" if and only if the answer's largest word overlap with the passages shown is below the median (`novelty.overlap_labels`). Lexical overlap is the stand-in that passed G4 on D1b, so a Continue it also reaches cannot be told from it, and `RESULT.md` says so;
+  - the number of new content units;
+  - the owner's self-ratings;
+  - each closure arm's assignment on its own, revealed with the key.
+- **Blinding** (D1b plan §3.3). Per-candidate states, caches and rebuilt maps are git-ignored (`research/d1c/.gitignore`), then sealed to the owner's RSA public key. **Changed from D1b:** D1b's `seal()` first wrote the key in plaintext to `secret/`. `build` now uses `seal_memory`: the key is never written, and the tar reaches `openssl` only on stdin, as in `reconstruct/src/reconstruct/eseal.py`. A canary test records every file write during `build` and finds the key text in none of them. The builder prints only aggregates and hashes. Once every answer is hash-locked, the owner guesses each question's arm; `novelty.py reveal` reads `guesses.json`. **The guess accuracy is reported as a descriptive figure, whatever its p.** D1b's "unblinded" flag (accuracy ≥ 0.70 at p < 0.05) is kept, but at 30 questions a true accuracy of 0.70 trips it only about 59% of the time. The owner wrote these docs and knows what they cover, so a Continue may still partly reflect that knowledge, and `RESULT.md` says so.
 - **Collection** (D1b plan §3.6). One question at a time in chat, typed answers, no follow-ups, two sittings split at question 15. The answers are locked first (`novelty.py lock`), then the self-ratings and the arm guesses are taken in one pass.
 
 **Criterion.** D1b's owner chose (b): the LLM judges' labels, advisory. D1c proposes the same. (a), the one blind second coder, stays open (§11).
@@ -31,8 +43,9 @@ The following carry over unchanged:
 **What each outcome triggers.** It is fixed in `RULE.md` at approval and adapted from D1b plan §3.7. D1b was recorded as Change, so gap-map targeting is not a pilot claim today.
 
 - **Continue under (a):** targeting may become one of the pilot's claims, which revises D1b's Change.
-- **Continue under (b):** the result is advisory. Targeting becomes a candidate claim that the pilot's own design may test. It is not a claim.
-- **Change, No reading, any Stop A, or "not run":** D1b's Change stands, and ranking work waits for N3. A Stop A is recorded as "targeting not testable on two of the owner's codebases", not as a negative result.
+- **Continue under (b):** a nomination of predictor grade. The criterion is LLM-labelled, so it is never a criterion in the project's sense. Targeting becomes a candidate that the pilot's own design may test, not a claim.
+- **Change or No reading under (b):** also a nomination of predictor grade. It changes no line's status by itself; only (a) can.
+- **Any outcome under (a), Stop A, or "not run":** D1b's Change stands, and ranking work waits for N3. A Stop A is recorded as "targeting not testable on two of the owner's codebases", not as a negative result.
 - **What the owner buys** for about $10 to $12 and about 2.5 hours of his time (§7, §8): under (b) a Continue moves targeting from "dropped" to "worth designing into the pilot", and a Change closes the ranking line until N3 resumes. Neither changes a registered rule. Under (b) the power is 0.33 at +0.30, so the decision value is modest, and the owner should weigh it before Stage 1 (§11).
 
 ## 2. The codebase as a parameter
@@ -70,7 +83,7 @@ With `prior_items: null`, step 1 of D1b's fresh-question filter (D1b plan §3.1)
 - **Cheap arm:** `reconstruct/models.json`. Haiku 4.5 for planner, extractor and baseline; gpt-5.4-mini as verifier.
 - **Top-tier arm:** `research/d1_demonstrator/models_toptier.json`. Opus 5.5; gpt-6.1-sol as verifier.
 
-**Completeness rule.** A run is **incomplete** if `codebase.reconstruction_problems(run_dir)` returns anything. That happens when the sidecar is not `complete`, when it lists `incomplete_reasons` (a cap stop, for instance), or when any task's `failed_calls_by_task` is non-zero. Failures are counted after retries, so a transient error that a retry fixed does not count (tested). The sidecar's own `complete` flag is not enough, because it only means that no exception or budget stop ended the run. An incomplete ledger does not enter D1c. The stage stops, and the owner either tops up the account and reruns that arm from scratch, once, or records D1c as "not run (incomplete inputs)". Without this rule the two arms would differ in coverage as well as in model. **Neither D1 ledger was complete**:
+**Completeness rule.** A run is **incomplete** if `codebase.reconstruction_problems(run_dir)` returns anything. That happens when the sidecar is not `complete`, when it lists `incomplete_reasons` (a cap stop, for instance), or when any task's `failed_calls_by_task` is non-zero. Failures are counted after retries, so a transient error that a retry fixed does not count (tested). The sidecar's own `complete` flag is not enough, because it only means that no exception or budget stop ended the run. An incomplete ledger does not enter D1c: `pool_rows` refuses it (`codebase.require_complete`), unless the config sets `allow_incomplete_ledgers`. Only D1b's own config and the dry run set it, and each states why. When a ledger is refused, the stage stops, and the owner either tops up the account and reruns that arm from scratch, once, or records D1c as "not run (incomplete inputs)". The rerun goes to a new `--out`, because `ledger_path` expects exactly one run directory, and it has its own cap, which counts in the headroom sums at Stop 1 and A1. Without this rule the two arms would differ in coverage as well as in model. **Neither D1 ledger was complete**:
 
 - The cheap arm stopped at its $1.50 cap partway through cross-verification and ran no decoys.
 - The top-tier arm's sidecar says `complete: true`, yet it records 761 failed cross-verifications, 30 failed decoys and 32 failed verifications, all HTTP 402.
@@ -89,10 +102,12 @@ Both spend ledgers are new and start at $0. **Caps are cumulative per spend ledg
 ### 3.4 Pool, topic review, count
 
 1. `build_sheet.py pool --codebase CFG` runs before any closure state is read.
-2. **Review.** A fresh subagent runs the registered prompt `research/d1c/topic_review_prompt.md`. It sees only the candidate-topic list, with no arm and no state, keeps the lowest ID of each group and drops the rest.
+2. **Review.** A fresh subagent runs the registered prompt `research/d1c/topic_review_prompt.md`. It works in a temp directory that holds only the prompt and the candidate-topic list, never the codebase directory, where closure caches lie by Stop A. It sees no arm and no state, keeps the lowest ID of each group and drops the rest. Its tool log is kept.
 3. **Lexical backstop.** At the same point, before any closure state is read, `build_sheet.lexical_drops` drops the higher ID of any pair whose quoted spans reach content-word Jaccard 0.30. It reads only topic text. It is inert on D1b's pool, where the largest pairwise Jaccard is 0.22.
 4. **Changed from D1b:** the owner does not review the topic list. On a codebase he wrote, reading the list would give him an advance look at every question.
-5. **Recall check.** The subagent review is checked against the owner's D1b review: the same prompt is run blind on D1b's candidate topics (`research/d1c/review_check/`). Its recall of the owner's 10 within-pool "same as T…" drops is scored; the other 6 drops were "same as D1-Q…", which a new codebase does not have. **The floor, registered before the run, is recall ≥ 0.8.** Below it, two independent reviewers run, and their union of drops is used. If that is also below the floor on D1b, the owner reviews, and the advance look is disclosed. The result is recorded in §12.
+5. **Recall check.** The subagent review is checked against the owner's D1b review: the same prompt is run blind on D1b's candidate topics (`research/d1c/review_check/`). Its recall of the owner's 10 within-pool "same as T…" drops is scored; the other 6 drops were "same as D1-Q…", which a new codebase does not have. **The floor is recall ≥ 0.8.** It was written into this plan before the reviewer ran, but committed together with the result, so git cannot show the order; that is disclosed. Below the floor, two independent reviewers run, and their union of drops is used. If that is also below the floor on D1b, the owner reviews, and the advance look is disclosed.
+
+**Result:** 8 of 10, so recall 0.8, exactly at the floor (exact 95% CI 0.44–0.97), with no drop outside the owner's groups (`score.json`). The tool log (`tool_log.json`) shows the reviewer read only the prompt and the topic list. With 10 items this is weak evidence, so `RESULT.md` will report the review's recall and its CI beside the result.
 
 ## 4. Stop rules
 
@@ -100,15 +115,17 @@ Both spend ledgers are new and start at $0. **Caps are cumulative per spend ledg
   - *Exclusion check.* The session confirms that the codebase is none of these:
     - `AdamKrysztopa/informant-video`, E-ABST's private-objective repository (`reconstruct/src/reconstruct/eabst.py`), still registered as future validation;
     - edu_proj itself;
+    - `AdamKrysztopa/turbo-design` (`REORIENTATION.md` §18.1; owner, 2026-10-27);
     - anything carrying physics-conservation content (`REORIENTATION.md` §18.1);
     - any domain of N3's gold set (`REORIENTATION.md` §22, threshold table; `research/ds1-gold-availability.md`), meaning DS1's ranked golds:
       - surgical and clinical procedures;
       - fireground incident command (Okoli);
       - en-route air traffic control;
       - urban-operations (MOUT) small-unit training;
+      - and the conditional fallbacks in `research/ds1-gold-availability.md`: PARI aircraft maintenance, naval radar troubleshooting (Schaafstal), rail maintenance control (Dadashi), USAF aircraft maintenance troubleshooting (Kancler);
     - any repository in E-OSS's departure corpora: the 133 projects [109], Chromium plus 7 [111], the 1,932 projects [112].
     
-    `codebase.load` refuses the two repositories in code, normalising scheme, case and `.git`, and checking both `owner_repo` and `corpus_build.repo_url`. The session confirms the rest in writing.
+    `codebase.load` refuses the three repositories in code, normalising scheme, case and `.git`, and checking both `owner_repo` and `corpus_build.repo_url`. The session confirms the rest in writing.
   - *Survey.* The gap-density survey may show the owner per-codebase aggregate scores only, never topic-level text. No closure state from the survey feeds D1c's arms: D1c rebuilds every ledger and gap map. The choice of codebase is a decision, so the survey must be model-free ($0), or else run a top-tier parallel arm beside any cheap model it uses (`CLAUDE.md`).
   - *Data.* The session states that the codebase's docs go to OpenRouter's providers and to OpenAI, and the owner's answers to the session and to Codex.
 - **Stop 1, before any paid call.** The owner confirms the lists and the commit, and states the OpenAI and OpenRouter balances. `scripts/key_headroom.py` runs, and its output, the sum of caps, and whether Codex bills the same OpenAI key are written into `RULE.md`. If there are fewer than 8 owner docs, the session reports it: D1b's pool came from 16.
@@ -130,7 +147,12 @@ Both spend ledgers are new and start at $0. **Caps are cumulative per spend ledg
 
 - **Cheap: `google/gemma-4-31b-it`.** It passed G1, and passed G2 twice on 13 gate topics: P − N 0.92, lower bound 0.75. It passes G2 **only under the R amendment, which was made post hoc on its own data** (D1b plan §2.2).
 - **Top-tier: `gpt-6.1-sol`, high effort.** It passed G1 and the first of its two required G2 gate runs. The second is run in Stage 3, under the R amendment, which was stated before that run.
-- **Domain transfer.** G1 and G2 were built on the N3 fixtures and on dependence-forecastability. The claim that G2 tests a reading property ("states the element" against "is on topic") rather than domain knowledge is **an assumption**. On the new codebase, the closure judges are therefore validated off-domain only, and `RESULT.md` says so.
+- **On-domain judge check: required before D1c, not yet built** (coordinator, 2026-10-27). G1 and G2 were built on the N3 fixtures and on dependence-forecastability. The claim that G2 tests a reading property ("states the element" against "is on topic") rather than domain knowledge is **an assumption**. Stop A cannot stand in for this check, because a random judge passes the floor (§1). Before any closure state on the new codebase is used, both closure judges therefore pass a G2-style check built from **the new codebase's own docs**, with its rule unchanged (D1b plan §2.2):
+  - the five arms (0, P, N, N+, R), P − N ≥ 0.50 with lower bound ≥ 0.30, N and N+ ≤ 0.25, R_excess ≤ 0.10;
+  - fixtures written by a fresh subagent and confirmed by the owner;
+  - its topics come from the corpus by seeded code and are excluded from the D1c pool, as D1b excluded D1's.
+  
+  `g2_topics.py` (D1-specific: D1's items and its clusters) has to be generalised for this. That is $0 of code, plus an owner confirmation of about 50 to 100 sentences, plus about $0.10 for gemma and $0.30 for sol, two gate runs each. If either judge fails, D1c stops (Stop B).
 - **On-domain evidence at $0.** `g4_standins.py --codebase CFG` (now parameterised) runs the length, lexical-overlap, specificity, source-count, lexicon and coin-flip stand-ins through the mismatched-evidence control on the new ledgers. `RESULT.md` reports:
   - the control for both judges;
   - the lexical stand-in;
@@ -138,7 +160,6 @@ Both spend ledgers are new and start at $0. **Caps are cumulative per spend ledg
   - gemma–sol kappa.
   
   None of these gates. As in D1b, the control is expected to be unable to certify a judge (D1b plan §1.5, §2.2 G4).
-- **A new G2 on the codebase** is an owner decision (§11). It is not built.
 - **Retest.** Sol re-asks a seeded 20% of its prompts with the cache bypassed (`retest.py --domain …`). The result is reported and never gates.
 
 ### 5.2 Novelty judges (two families, blind)
@@ -149,6 +170,7 @@ Unchanged from D1b plan §3.5:
 - **Isolation.** Each judge's only working directory is a temp directory holding `cases.json`. Their tool logs are kept.
 - **Families.** Both novelty judges are top-tier, so no cheap model judges novelty. Judge B shares the OpenAI family with the top-tier closure arm; the judge-A clause in §1 answers that.
 - **Changed from D1b, in code.** Canaries and real cases now sit in **one** `cases.json`, at random positions and under random 8-hex IDs. D1b had a separate `canaries.json` with IDs such as `c-new`, so a judge could pass the gate by reading IDs. The ID map, `case_map.json`, stays in the codebase directory, outside the judges' directory. It is hashed when `cases` runs, and its hash goes into `RULE.md` before any judge call.
+- **Valid output.** `ingest` checks each judge's output: every case ID present, every label in `LABELS`. An invalid output voids that judge (No reading), with no rerun, so a misspelled label can neither vanish from the rate nor count as content (tested).
 - **One pass per judge.** Each judge's raw output is committed, with its hash, the moment it returns, before `ingest`. `ingest` refuses a second pass and records both hashes, so a rerun judge would show up as a hash change. The judges' tool logs are kept as evidence of what each one read.
 - **Canary questions look like real cases.** The filler and copied canaries carry spare questions: lens-template questions from pool topics that are not on the sheet (`novelty.spare_questions`). They no longer repeat the sheet's first question. The author writes the paraphrase and planted questions in the same template style, from three other spare questions shown in the brief. No expert answer to any spare question exists.
 
@@ -157,7 +179,7 @@ Unchanged from D1b plan §3.5:
 | Canary | Built by | Expected |
 |---|---|---|
 | Filler, 40 and 90 words | fixed text | no content |
-| Copied | the eligible passage the retriever ranks first for the sheet's first question | already written |
+| Copied | the eligible passage the retriever ranks first for a spare question (§5.2) | already written |
 | Paraphrase | a separate author, from a **seeded** source passage | already written |
 | Planted | the same author, on that passage's topic | new |
 
@@ -171,7 +193,11 @@ Steps (`research/d1b_rerun/canaries.py`):
    - **Trivial labellers.** Three trivial labellers must each mislabel the paraphrase or the planted answer: "new if it contains a digit", "the longer answer is new" (the planted answer may be at most 20% longer), and "the answer with less word overlap with the shown passages is new" (the planted answer's overlap may not be lower). Lexical overlap is the stand-in that passed G4 on D1b.
 4. **Confirm.** The owner confirms both labels **after his answers are locked**, so that an invented fact about his own codebase cannot cue an answer. If he rejects one, a fresh author rewrites it before any judge sees it.
 5. **Freeze.** `canaries.json` and its expected labels are hashed into `RULE.md` before any judge call. They are not regenerated once a judge has run.
-6. **Gate.** A canary mislabelled by either judge voids that judge: the outcome is **No reading** (counts as Change), with the rule's figures still reported (`novelty.reveal`). D1's judges passed their canaries. If each judge were 0.9 accurate on each canary independently, both would pass all five with probability of only about 0.35. Canaries are meant to be easy, but this risk is stated before any judge is run.
+6. **Gate.** A canary error voids that judge only if it **crosses the decision**: the planted answer not labelled "new", the paraphrase or copied canary labelled "new" or "no content", or a filler labelled other than "no content" (`novelty._crosses`). A "partly" on a canary that is already written changes neither the rate nor the content floor, so it does not void. A void gives **No reading** (counts as Change), with the rule's figures still reported.
+7. **Pilot ($0, before Stage 1).** Both novelty judges label the dry-run canaries, mixed under opaque IDs with D1's 15 answered cases (`research/d1c/canary_pilot/`). The pass rate goes into `RULE.md`. If a judge fails, the canary constraints are revised before any spend (for example, raise `MIN_WORDS` so the paraphrase needs no padding).
+   - **Judge A, run 2026-10-27:** all five canaries correct, even under exact matching, and its output valid.
+   - **Judge B (Codex):** not yet run, because whether Codex bills the OpenAI key is open (§8). It runs at Stop 1, once that is known.
+   - One pass of one judge is not a measured rate, so the operating-characteristics caveat in §1 stands.
 
 Tests on dependence-forecastability's committed corpus (`tests/test_canaries.py`):
 
@@ -220,21 +246,23 @@ The figures are measured per call (`research/d1_demonstrator/runs/*/calls.jsonl`
 | Stage | Run | Spend ledger | Est. | Cap for the run | Cumulative cap on its ledger |
 |---|---|---|---|---|---|
 | 1 | cheap reconstruction | its own `calls.jsonl` | $2.30 | 2.75 | — |
-| 1 | gemma, cheap ledger | `openrouter_spend.jsonl` | $0.14 | 0.30 | 0.30 |
+| 1 | gemma, on-domain G2, two gate runs (§5.1) | `openrouter_spend.jsonl` | $0.10 | 0.20 | 0.20 |
+| 1 | gemma, cheap ledger | `openrouter_spend.jsonl` | $0.14 | 0.30 | 0.50 |
 | 2 | top-tier reconstruction | its own `calls.jsonl` | $6.10–8.60 | 9.50 | — |
-| 2 | gemma, top-tier ledger | `openrouter_spend.jsonl` | $0.09 | 0.25 | 0.55 |
-| 3 | sol, second G2 gate run (`g2.py --split gate`) | `openai_spend.jsonl` | $0.15 | 0.30 | 0.30 |
-| 3 | sol, cheap ledger (parallel arm) | `openai_spend.jsonl` | $0.55 | 0.80 | 1.10 |
-| 3 | sol, top-tier ledger (parallel arm) | `openai_spend.jsonl` | $0.37 | 0.60 | 1.70 |
-| 3 | sol retest, 20% | `openai_spend.jsonl` | $0.18 | 0.40 | 2.10 |
-| — | novelty judges, canary author, topic reviewer | — | $0 (session subagents, Codex) | — | — |
-| **All** | | | **$9.80–12.30** | | **sum of caps $14.90** |
+| 2 | gemma, top-tier ledger | `openrouter_spend.jsonl` | $0.09 | 0.25 | 0.75 |
+| 3 | sol, second D1-domain G2 gate run (`g2.py --split gate`) | `openai_spend.jsonl` | $0.15 | 0.30 | 0.30 |
+| 3 | sol, on-domain G2, two gate runs (§5.1) | `openai_spend.jsonl` | $0.30 | 0.45 | 0.75 |
+| 3 | sol, cheap ledger (parallel arm) | `openai_spend.jsonl` | $0.55 | 0.80 | 1.55 |
+| 3 | sol, top-tier ledger (parallel arm) | `openai_spend.jsonl` | $0.37 | 0.60 | 2.15 |
+| 3 | sol retest, 20% | `openai_spend.jsonl` | $0.18 | 0.40 | 2.55 |
+| — | novelty judges, canary author, topic reviewer, G2 fixture author | — | $0 (session subagents, Codex) | — | — |
+| **All** | | | **$10.20–12.70** | | **sum of caps $15.55** |
 
 - **Which figure to pass.** For closure runs, `--max-usd` takes the **cumulative** column, because the judge checks earlier spend plus this run's spend against it (`gapmap/src/gapmap/judge.py`). Passing the per-run figure would refuse the top-tier-ledger sol run outright. Reconstruction runs take the per-run cap, since each has its own `calls.jsonl`.
 - **Closure caps per ledger.** The 459-prompt closure estimate comes from D1's truncated ledgers. Before each closure run, the session counts that ledger's prompts with a $0 replay through `standins.RecordingJudge` and recomputes the cap.
-- **Headroom per provider.** OpenRouter carries both reconstructions and gemma, up to $12.80 of caps; `scripts/key_headroom.py` reads its balance. OpenAI carries sol, up to $2.10, plus Codex if it bills the same key; the owner states that balance. Both go into `RULE.md` beside the caps.
+- **Headroom per provider.** OpenRouter carries both reconstructions and gemma, up to $12.80 of caps; `scripts/key_headroom.py` reads its balance. OpenAI carries sol, up to $2.10, plus the on-domain judge check (about $0.30 for sol, §5.1), plus Codex if it bills the same key. The owner states that balance, and **Stage 3 starts only if the stated OpenAI balance covers all of it**. Both providers' figures go into `RULE.md` beside the caps, together with any rerun cap (§3.2).
 - **Scaling.** Reconstruction costs scale with the corpus: about $0.09 per document for the cheap arm and $0.23 to $0.33 for the top-tier arm. At Stop 1 the session recomputes every row from the confirmed corpus.
-- **The proposed $3.00 cap** covers Stage 1 and the A1 gate for corpora up to about 25 documents (cap 2.75 + 0.30 at 26 docs). It does not cover the whole test. Stages 2 and 3 need a second cap, which the owner sets at A1.
+- **The proposed $3.00 cap** covers Stage 1 and the A1 gate for corpora up to about 22 documents. At 26 docs the caps are 2.75 + 0.50 = $3.25. It does not cover the whole test. Stages 2 and 3 need a second cap, which the owner sets at A1.
 - **A whole test under $3.00** would mean a corpus of about 6 documents, which would almost certainly stop at A.
 
 ## 9. Order and stop points
@@ -247,12 +275,20 @@ The figures are measured per call (`research/d1_demonstrator/runs/*/calls.jsonl`
    - Recompute §8.
    - Run `canaries.py pick` to check that eligible passages exist.
 3. **Stop 1.** Confirm the lists and the commit; state the balances; run `key_headroom`. The seed is fixed. `RULE.md` (draft) is committed with the hashes of `rule.py`, `build_sheet.py`, `novelty.py`, `canaries.py` and `codebase.json`, the caps and the headroom.
-4. **Stage 1.** Cheap reconstruction (completeness rule), then gemma on the cheap ledger.
+4. **Stage 1.**
+   - Cheap reconstruction, under the completeness rule.
+   - The on-domain G2 fixtures are built from that ledger by seeded code ($0) and excluded from the pool. A fresh subagent writes them, and the owner confirms them.
+   - Gemma runs two on-domain gate runs. **If it fails, stop B; no closure state is used.**
+   - Gemma runs on the cheap ledger.
 5. **A1.** Cheap pool, subagent review, count. The owner funds Stages 2 and 3, or records "not run".
-6. **Stage 2.** Top-tier reconstruction (completeness rule), then gemma on the top-tier ledger. Then the full pool, the subagent review and **Stop A** (free).
-7. **Stage 3.** Sol's second G2 gate run (stop if it fails), sol on both ledgers, the retest, `g4_standins.py --codebase`. **Stop B.**
+6. **Stage 2.** Top-tier reconstruction, under the completeness rule, then gemma on the top-tier ledger. Then the full pool, the subagent review and **Stop A** (free).
+7. **Stage 3.**
+   - Sol's second D1-domain G2 gate run and its two on-domain gate runs. **Stop if any fails.**
+   - Sol on both ledgers, then the retest.
+   - `g4_standins.py --codebase`.
+   - **Stop B.**
 8. **Phase 4 ($0).**
-   - `build`: near-duplicate refusal; "Stop A (after sol)" if it cannot fill.
+   - `build`, which exits 3 on "Stop A (after sol)" if it cannot fill; it seals from memory.
    - Seal.
    - L7.3 checks.
    - `methods-critic` on `RULE.md`.
@@ -285,7 +321,12 @@ The figures are measured per call (`research/d1_demonstrator/runs/*/calls.jsonl`
 - **`canaries.py`** (§5.3) and **`corpus_build.py`** (§3.1).
 - **`research/d1c/`:** `codebase.template.json`, `.gitignore`, and `dryrun-dependence-forecastability/`.
 - **Replays, with the default config:** `build_sheet.py pool` rewrites `pool.json` and the review pack, `rule.py` rewrites `rule_checks.json`, and `g4_standins.py` rewrites `g4_standins.json`, all byte-identically.
-- **Not generalised:** `g1.py`, `g2.py`, `g2_topics.py`. G1 and G2 run on fixed fixtures and are reused as they are (§5.1).
+- **`build_sheet.seal_memory`:** the seal without plaintext on disk, with a canary test that records writes (§1).
+- **`codebase.require_complete`:** enforced in `pool_rows` (§3.2).
+- **`novelty.output_problems`, `_crosses`, `overlap_labels`:** §5.2, §5.3, §1.
+- **`tests/test_second_unit.py`:** the pipeline on E-LIVE's GDPR ledger, with a corpus built from its own assertions. The pool, arms and Stop A count are non-empty and unit-specific, and no D1 path, ledger or corpus is touched. This answers the coordinator's finding that D1b's Stop A code hard-coded the reference repository, ledger paths and retriever corpus.
+- **`research/d1c/canary_pilot/`:** judge A's pilot on the dry-run canaries (§5.3).
+- **Not generalised yet:** `g1.py`, `g2.py`, `g2_topics.py`. G1 and the D1-domain G2 run on fixed fixtures and are reused as they are. **`g2_topics.py` must be generalised for the on-domain check before D1c runs (§5.1).**
 
 ## 11. Open until the codebase is known, and owner decisions
 
@@ -294,16 +335,20 @@ Open:
 - The docs list, outside pages, commit, `domain`, `task` and `seed` (§2).
 - The costs recomputed from the confirmed corpus (§8).
 - Whether enough eligible owner prose exists for the canary source (`canaries.py pick` reports it at $0).
-- Whether the open side is large enough. Only Stop A settles this; A1 and the survey estimate it.
-- How the survey measures gap density, and what it shows the owner (§4, Stop 0).
+- Whether the open side is large enough. Only Stop A settles this, and only as a measure of pool size (§1).
+- How a future survey measures gap density, and what it shows the owner (§4, Stop 0). The 2026-10-27 survey stopped before any paid call.
+
+To build before D1c runs, all at $0:
+
+- `g2_topics.py` generalised for the on-domain judge check (§5.1);
+- judge B's canary pilot, once Codex billing is known (§5.3).
 
 Owner decisions (each with a recommendation):
 
-- **Budget:** $3.00 for Stage 1, with a second cap at A1 of about $12 for a D1-size corpus (recommended). Alternatively, one cap of about $15 set now. A corpus small enough to fit $3.00 in total would not reach Stop A.
-- **Criterion:** (b), as in D1b (recommended, because no coder is available). Alternatively (a), if a blind coder is found; it is the only criterion under which a Continue can become a pilot claim.
+- **Budget:** $3.00 for Stage 1, with a second cap at A1 of about $12.30 for a D1-size corpus (recommended). Alternatively, one cap of about $15.55 set now. A corpus small enough to fit $3.00 in total would not reach Stop A.
+- **Criterion:** (b), as in D1b (recommended, because no coder is available). Alternatively (a), if a blind coder is found; it is the only criterion under which an outcome can change a line's status.
 - **Sheet size:** 30 questions, as in D1b (recommended). About 15 in total would break the carried-over rule.
-- **G2 for the closure judges on the new codebase:** not run, with the validation domain disclosed and the free on-domain stand-ins reported (recommended). Alternatively, a G2 built on the new codebase: an owner confirmation of about 50 to 100 sentences, topics taken from the pool, and `g2_topics.py` generalised.
-- **Whether to run D1c at all,** given the decision value in §1. Recommended: run Stage 1 only after the survey's figures for the chosen codebase are known.
+- **When to run:** after N3, when targeting work reopens, and only once the on-domain judge check is built (recommended). Running earlier would bypass the owner's 2026-10-27 decision.
 
 ## 12. Review record
 
@@ -341,3 +386,30 @@ The non-blocking findings are applied as follows:
 - **N8.** The canary void in the operating characteristics: §1.
 - **N9.** Headroom per provider: §8.
 - **N10.** The wording of the Stop A count: §4.
+
+`methods-critic`, round 3 (2026-10-27): "would not run as written; with the two fixed, yes." All round-2 findings were verified in the code. The blocking findings and where each is applied:
+
+- **1.** The completeness rule existed only as a function. It is now enforced in `pool_rows`, and the dry-run config must opt out (§3.2).
+- **2.** The canary void was stricter than the rule and never measured. It now voids only on errors that cross the decision, and judge A's pilot passed (§5.3).
+
+The major findings are applied as follows:
+
+- `ingest` validates the judges' output (§5.2).
+- The reviewer works in a temp directory with its tool log kept, and the recall check reports its CI and the timing caveat (§3.4).
+- An overlap-only secondary reading (§1).
+- (b)'s outcomes are nominations of predictor grade (§1).
+
+The minor findings are applied as follows:
+
+- A cap and a new `--out` for any rerun (§3.2).
+- The DS1 fallbacks added to the exclusion list (§4).
+- An OpenAI balance condition before Stage 3 (§8).
+- Stale text fixed (§9, the §5.3 table).
+
+Coordinator, 2026-10-27, also applied:
+
+- **(a)** A second-unit test (§10).
+- **(b)** The floor shows pool size only, reproduced on D1b's pools, and the on-domain judge check is required (§1, §5.1).
+- **(c)** The seal encrypts from memory, with a canary test (§1).
+- turbo-design is excluded (§4).
+- D1c is unscheduled (status).

@@ -7,6 +7,9 @@
  "missed": {"T040": "owner: same as T023 (adapters hold transport, not business logic)", "T044": "owner: same as T016 (minimum series length for AMI)"},
  "reviewer_drops_outside_owner_groups": [],
  "recall": 0.8,
+ "recall_exact_95ci": [0.44, 0.97],
  "meets_floor": true,
+ "floor_timing": "The floor was written into the plan in this session before the reviewer ran, but committed in the same commit as the result (0474779), so git alone cannot show the order.",
+ "isolation": "tool_log.json: the reviewer read only the prompt and the topic list.",
  "note": "Exactly at the floor. Both misses were among the reviewer's own named close calls (T023/T040; the short-series cautions including T044)."
 }

@@ -211,21 +211,54 @@ def ingest(here: Path, a: dict, b: dict, raw: dict[str, Path] | None = None) -> 
         raise SystemExit("judgements.json exists: each judge gets one pass")
     case_map = json.loads((here / "case_map.json").read_text())
     failures, judged = split_judgements(case_map, a, b, parse_answers((here / "answers.md").read_text()))
+    failures += [f"{who}:invalid: {p}" for who, out in (("judge_a", a), ("judge_b", b))
+                 for p in output_problems(case_map, out)]
     doc = {"canary_failures": failures, "judged": judged,
            "raw_sha256": {k: _sha(Path(p)) for k, p in (raw or {}).items()}}
     (here / "judgements.json").write_text(json.dumps(doc, indent=1) + "\n")
     return doc
 
 
+def _crosses(want: str, got: str | None) -> bool:
+    """A canary error voids a judge only when it would move the decision: the rule counts "new",
+    and the content floor counts "no content"; "partly" on a written-down canary moves neither."""
+    if want == "new":
+        return got != "new"
+    if want == "no content":
+        return got != "no content"
+    return got in (None, "new", "no content")
+
+
 def canary_failures(expected: dict[str, str], a: dict, b: dict) -> list[str]:
     return [f"{who}:{cid}" for who, j in (("judge_a", a), ("judge_b", b)) for cid, want in expected.items()
-            if (j.get(cid) or {}).get("label") != want]
+            if _crosses(want, (j.get(cid) or {}).get("label"))]
+
+
+def output_problems(case_map: dict, out: dict) -> list[str]:
+    problems = [f"missing id {cid}" for cid in case_map if cid not in out]
+    problems += [f"label {(out[cid] or {}).get('label')!r} for {cid}" for cid in case_map
+                 if cid in out and (out[cid] or {}).get("label") not in LABELS]
+    return problems
 
 
 def length_labels(rows: list[dict]) -> dict[int, str]:
     words = {r["q"]: len(r["answer"].split()) for r in rows}
     cut = statistics.median(words.values())
     return {q: "new" if w >= cut else "already written" for q, w in words.items()}
+
+
+def overlap_labels(rows: list[dict], retriever: Retriever) -> dict[int, str]:
+    """Secondary reading, never gating: "new" iff the answer's largest word overlap (Jaccard) with
+    the passages the judges were shown is below the median. Lexical overlap is the stand-in that
+    passed G4 on D1b, so a Continue it also reaches cannot be told from it."""
+    def overlap(r):
+        a = set(_tokens(r["answer"]))
+        shown = [set(_tokens(t)) for _, t in retriever.top(r["question"] + " " + r["answer"])]
+        return max((len(a & s) / len(a | s) for s in shown if a | s), default=0.0)
+
+    scores = {r["q"]: overlap(r) for r in rows}
+    cut = statistics.median(scores.values())
+    return {q: "new" if s < cut else "already written" for q, s in scores.items()}
 
 
 def guess_accuracy(guesses: dict[int, str], arms: dict[int, str]) -> dict:
@@ -237,7 +270,8 @@ def guess_accuracy(guesses: dict[int, str], arms: dict[int, str]) -> dict:
 
 
 def reveal(judged: list[dict], sealed: Path, private_key: Path, opened: Path,
-           guesses: dict[int, str] | None = None, canary_failures: list[str] | None = None) -> dict:
+           guesses: dict[int, str] | None = None, canary_failures: list[str] | None = None,
+           overlap: dict[int, str] | None = None) -> dict:
     """A canary failure by either judge voids the reading (No reading, which counts as Change);
     the rule's figures are still reported."""
     sys.path.insert(0, str(HERE))
@@ -251,6 +285,8 @@ def reveal(judged: list[dict], sealed: Path, private_key: Path, opened: Path,
     res = {**rule.decide(rows), "rows": rows}
     by_len = length_labels(judged)
     res["length_only"] = rule.decide([{**r, "j1": by_len[r["q"]], "j2": by_len[r["q"]]} for r in rows])
+    if overlap is not None:
+        res["overlap_only"] = rule.decide([{**r, "j1": overlap[r["q"]], "j2": overlap[r["q"]]} for r in rows])
     if guesses is not None:
         res["blinding"] = guess_accuracy(guesses, {q: it["arm"] for q, it in key.items()})
     if canary_failures:
@@ -299,8 +335,11 @@ def main(argv: list[str] | None = None) -> int:
         return 1 if doc["canary_failures"] else 0
     else:
         doc = json.loads((here / "judgements.json").read_text())
+        questions = parse_answers((here / "questions.md").read_text())
+        overlap = overlap_labels([{**r, "question": questions[r["q"]]} for r in doc["judged"]],
+                                 Retriever(passages(cb.corpus)))
         res = reveal(doc["judged"], here / "sealed", Path(args.private_key).expanduser(), here / "opened",
-                     guesses=load_guesses(here), canary_failures=doc["canary_failures"])
+                     guesses=load_guesses(here), canary_failures=doc["canary_failures"], overlap=overlap)
         (here / "result.json").write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
         print(json.dumps({k: v for k, v in res.items() if k != "rows"}, indent=1, sort_keys=True))
     return 0

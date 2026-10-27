@@ -12,5 +12,7 @@
  "prior_items": "../d1_demonstrator/key_revealed.json",
  "prior_label": "D1",
  "canaries": "fixtures/canaries.json",
- "canary_mode": "fixed"
+ "canary_mode": "fixed",
+ "allow_incomplete_ledgers": true,
+ "allow_incomplete_reason": "D1b reused D1's ledgers as committed: the cheap run stopped at its cap and the top-tier run lost 823 calls to HTTP 402 (D1c plan \u00a73.2)."
 }

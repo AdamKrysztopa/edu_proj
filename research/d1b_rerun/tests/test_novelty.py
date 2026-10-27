@@ -144,6 +144,39 @@ def test_ingest_records_the_hash_of_each_judges_raw_output(tmp_path):
     assert doc["raw_sha256"]["judge_a"] == novelty._sha(tmp_path / "a.json")
 
 
+def test_only_canary_errors_that_cross_the_decision_void_a_judge():
+    expected = {"c-filler-40": "no content", "c-copied": "already written", "c-paraphrase": "already written",
+                "c-new": "new"}
+    ok = {"c-filler-40": {"label": "no content"}, "c-copied": {"label": "partly"},
+          "c-paraphrase": {"label": "partly"}, "c-new": {"label": "new"}}
+    assert novelty.canary_failures(expected, ok, ok) == []
+    bad = {**ok, "c-paraphrase": {"label": "new"}, "c-new": {"label": "partly"}, "c-filler-40": {"label": "partly"}}
+    assert novelty.canary_failures(expected, ok, bad) == ["judge_b:c-filler-40", "judge_b:c-paraphrase", "judge_b:c-new"]
+
+
+def test_a_judge_output_with_a_missing_id_or_an_unknown_label_is_invalid(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    ids = [k for k, v in case_map.items() if v["kind"] == "case"]
+    good = {k: {"label": v.get("expected", "new")} for k, v in case_map.items()}
+    assert novelty.output_problems(case_map, good) == []
+    missing = {k: v for k, v in good.items() if k != ids[0]}
+    assert novelty.output_problems(case_map, missing) == [f"missing id {ids[0]}"]
+    typo = {**good, ids[1]: {"label": "already_written"}}
+    assert novelty.output_problems(case_map, typo) == [f"label 'already_written' for {ids[1]}"]
+    (tmp_path / "case_map.json").write_text(json.dumps(case_map))
+    (tmp_path / "answers.md").write_text(_answers(2))
+    doc = novelty.ingest(tmp_path, good, typo)
+    assert doc["canary_failures"] == [f"judge_b:invalid: label 'already_written' for {ids[1]}"]
+
+
+def test_the_overlap_only_reading_labels_low_overlap_answers_new():
+    r = novelty.Retriever([("d", "surrogate bands set the significance floor of mutual information"),
+                           ("d", "the training window holds every diagnostic computation")])
+    rows = [{"q": 1, "question": "How are bands set?", "answer": "surrogate bands set the significance floor"},
+            {"q": 2, "question": "What did you see?", "answer": "our retail client mislabelled footfall twice"}]
+    assert novelty.overlap_labels(rows, r) == {1: "already written", 2: "new"}
+
+
 def test_a_canary_failure_voids_the_reading(tmp_path):
     key, pub = tmp_path / "seal.key", tmp_path / "seal.pub"
     subprocess.run(["openssl", "genpkey", "-algorithm", "RSA", "-out", str(key)], check=True, capture_output=True)

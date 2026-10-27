@@ -12,8 +12,9 @@ from pathlib import Path
 D1B_CONFIG = Path(__file__).resolve().parent / "codebase.json"
 PLACEHOLDER = "TODO"
 # informant-video is E-ABST's private-objective repository (reconstruct/src/reconstruct/eabst.py),
-# registered as future validation; edu_proj is this project itself.
-EXCLUDED_REPOS = ("AdamKrysztopa/informant-video", "AdamKrysztopa/edu_proj")
+# registered as future validation; edu_proj is this project itself; turbo-design carries Track A
+# content (REORIENTATION.md §18.1; owner, 2026-10-27).
+EXCLUDED_REPOS = ("AdamKrysztopa/informant-video", "AdamKrysztopa/edu_proj", "AdamKrysztopa/turbo-design")
 
 
 class Unfilled(ValueError):
@@ -21,6 +22,10 @@ class Unfilled(ValueError):
 
 
 class Excluded(ValueError):
+    pass
+
+
+class Incomplete(ValueError):
     pass
 
 
@@ -38,6 +43,7 @@ class Codebase:
     prior_label: str
     canaries: Path
     canary_mode: str
+    allow_incomplete_ledgers: bool = False
 
     @property
     def pool(self) -> Path:
@@ -107,7 +113,18 @@ def load(path: Path) -> Codebase:
                     ledgers={k: rel(v) for k, v in cfg["ledgers"].items()},
                     prior_items_path=rel(cfg["prior_items"]) if cfg.get("prior_items") else None,
                     prior_label=cfg.get("prior_label", ""), canaries=rel(cfg["canaries"]),
-                    canary_mode=cfg.get("canary_mode", "generated"))
+                    canary_mode=cfg.get("canary_mode", "generated"),
+                    allow_incomplete_ledgers=cfg.get("allow_incomplete_ledgers", False) is True)
+
+
+def require_complete(cb: Codebase, names) -> None:
+    """D1c plan §3.2: an incomplete reconstruction never enters a pool, unless the config says so
+    (D1b and the dry run reuse D1's ledgers, which are both incomplete, and say why)."""
+    if cb.allow_incomplete_ledgers:
+        return
+    problems = [f"{n}: {p}" for n in names for p in reconstruction_problems(cb.ledger_path(n).parent)]
+    if problems:
+        raise Incomplete("incomplete ledgers: " + "; ".join(problems))
 
 
 def d1b() -> Codebase:

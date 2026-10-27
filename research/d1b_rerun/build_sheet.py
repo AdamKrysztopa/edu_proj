@@ -26,6 +26,7 @@ import math
 import os
 import random
 import re
+import secrets
 import shutil
 import subprocess
 import tarfile
@@ -155,6 +156,36 @@ def seal(src: Path, public_key: Path, dest: Path) -> Path:
     return dest
 
 
+def seal_memory(files: dict[str, bytes], dirs: dict[str, Path], public_key: Path, dest: Path) -> Path:
+    """Seal without writing any plaintext: `files` (the key) are tarred from memory and `dirs`
+    (the closure caches, already on disk) from where they lie; the tar reaches openssl only on
+    stdin (the pattern of reconstruct/src/reconstruct/eseal.py). Then the `dirs` are deleted.
+    Same format as `seal`, so `unseal` opens either."""
+    buf = io.BytesIO()
+    with tarfile.open(fileobj=buf, mode="w:gz") as tar:
+        for name, data in sorted(files.items()):
+            info = tarfile.TarInfo(name)
+            info.size = len(data)
+            tar.addfile(info, io.BytesIO(data))
+        for name, path in sorted(dirs.items()):
+            tar.add(path, arcname=name)
+    sym = secrets.token_hex(32)
+    enc = subprocess.run(["openssl", "enc", "-aes-256-cbc", "-pbkdf2", "-salt", "-pass", "stdin"],
+                         input=sym.encode() + b"\n" + buf.getvalue(), capture_output=True, check=True).stdout
+    wrapped = subprocess.run(["openssl", "pkeyutl", "-encrypt", "-pubin", "-inkey", str(public_key),
+                              "-pkeyopt", "rsa_padding_mode:oaep"], input=sym.encode(),
+                             capture_output=True, check=True).stdout
+    dest.mkdir(parents=True, exist_ok=True)
+    (dest / "archive.enc").write_bytes(enc)
+    (dest / "key.enc").write_bytes(wrapped)
+    (dest / "sealed.sha256.json").write_text(json.dumps(
+        {"archive_sha256": _sha(dest / "archive.enc"), "key_sha256": _sha(dest / "key.enc"),
+         "public_key_sha256": _sha(public_key)}, indent=1) + "\n")
+    for path in dirs.values():
+        shutil.rmtree(path)
+    return dest
+
+
 def unseal(sealed: Path, private_key: Path, out: Path) -> Path:
     sym = subprocess.run(["openssl", "pkeyutl", "-decrypt", "-inkey", str(private_key),
                           "-pkeyopt", "rsa_padding_mode:oaep", "-in", str(sealed / "key.enc")],
@@ -188,6 +219,7 @@ def pool_rows(cb: codebase.Codebase, ledgers: list[str] | None = None) -> list[d
     codebase (D1's for D1b), none for a codebase never tested before."""
     from gapmap import lenses, link, semantic
 
+    codebase.require_complete(cb, ledgers or list(cb.ledgers))
     prior = cb.prior_items()
     prior_tok = common.d1_tokens(prior)
     prior_keys = {(" ".join(sorted(common.tokens(common.quote(it["text"])))), it["lens"]) for it in prior}
@@ -351,16 +383,12 @@ def cmd_build(args) -> int:
     for it in items:
         sheet += [f"## Q{it['q']}", "", it["question_text"], ""]
     (cb.root / "questions.md").write_text("\n".join(sheet))
-    secret = cb.root / "secret"
-    secret.mkdir(exist_ok=True)
-    (secret / "key.json").write_text(json.dumps(
-        {"seed": cb.seed, "n_per_arm": n, "items": items, "balance": balance(pairs),
-         "states": {f"{k[0]}|{k[1]}": v for k, v in states.items()}}, indent=1, sort_keys=True, default=list) + "\n")
-    for arm_dir in (Path(v) for v in (a.split("=", 1)[1] for a in args.arm)):
-        shutil.copytree(arm_dir, secret / "arms" / arm_dir.name)
-    sealed = seal(secret, Path(args.public_key).expanduser(), cb.root / "sealed")
-    for arm_dir in (Path(v) for v in (a.split("=", 1)[1] for a in args.arm)):
-        shutil.rmtree(arm_dir)
+    key = json.dumps({"seed": cb.seed, "n_per_arm": n, "items": items, "balance": balance(pairs),
+                      "states": {f"{k[0]}|{k[1]}": v for k, v in states.items()}},
+                     indent=1, sort_keys=True, default=list) + "\n"
+    arm_dirs = [Path(v) for v in (a.split("=", 1)[1] for a in args.arm)]
+    sealed = seal_memory({"key.json": key.encode()}, {f"arms/{d.name}": d for d in arm_dirs},
+                         Path(args.public_key).expanduser(), cb.root / "sealed")
     bal = balance(pairs)
     print(json.dumps({"n_per_arm": n, "questions_sha256": _sha(cb.root / "questions.md"),
                       **json.loads((sealed / "sealed.sha256.json").read_text()),

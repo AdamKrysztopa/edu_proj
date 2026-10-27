@@ -35,7 +35,8 @@ def test_relative_paths_resolve_against_the_config_file(tmp_path):
     assert cb.pool == tmp_path / "pool.json"
 
 
-@pytest.mark.parametrize("repo", ["github.com/AdamKrysztopa/informant-video", "github.com/AdamKrysztopa/edu_proj"])
+@pytest.mark.parametrize("repo", ["github.com/AdamKrysztopa/informant-video", "github.com/AdamKrysztopa/edu_proj",
+                                  "github.com/AdamKrysztopa/turbo-design"])
 def test_an_excluded_repository_is_refused(tmp_path, repo):
     cfg = {"name": "x", "title": "X", "owner_repo": repo, "domain": "x", "seed": 7, "corpus": "corpus",
            "ledgers": {}, "prior_items": None, "canaries": "c.json"}

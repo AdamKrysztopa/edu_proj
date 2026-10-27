@@ -12,5 +12,7 @@
  "prior_items": null,
  "prior_label": "",
  "canaries": "fixtures/canaries.json",
- "canary_mode": "generated"
+ "canary_mode": "generated",
+ "allow_incomplete_ledgers": true,
+ "allow_incomplete_reason": "Dry run on D1's ledgers, which are incomplete (D1c plan \u00a73.2); never a D1c input."
 }
