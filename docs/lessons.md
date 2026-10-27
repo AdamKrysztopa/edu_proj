@@ -438,3 +438,21 @@ A queue padded with those is a queue nobody drains.
 - **What happened:** The judge-screening agent drafted `gapmap/src/gapmap/screen.py` while `methods-critic` was still reviewing `docs/plans/judge-screening-standard.md`; the brief said review before building. The critic's ten findings were applied before any commit, so nothing wrong landed, but the order was broken for wall-clock time, as with D1b's paid runs started before Stop A.
 - **Generalises to:** A gate that must pass before a step (critic review, a $0 feasibility check) is waited for, never run in parallel with the step it guards, and the brief says so explicitly.
 - **Candidate home:** `CLAUDE.md` Agents (`methods-critic` line); the agent-brief template; drain together with the D1b ordering-slip lesson.
+
+### A run marked complete while 95% of one task's calls failed
+
+- **What happened:** D1's top-tier reconstruction ledger is recorded as complete, yet 761 of its 802 cross-verifications and all 30 decoys ended in `api_error`, so it cost $3.95 instead of about $6.29. The gap-density survey agent found it on 2026-10-27 while using D1's spend as a unit cost; its first estimate was about 37% too low. `failed_calls_by_task` counted the failures, but `complete` did not depend on them, and no report surfaced the share.
+- **Generalises to:** A run's `complete` flag (and any cost or result reused from it) depends on the failed-call share per task, above a stated threshold, and a report states that share beside every reused figure.
+- **Candidate home:** `reconstruct/src/reconstruct/run.py` sidecar (`complete` false or a `failed_share` per task, with a test); the arch-crew rule `failed-calls-counted-per-task`.
+
+### A feasibility floor read as if it said something about the judge
+
+- **What happened:** D1b's Stop A floor (10 matched topics per arm) is reached by a random judge drawing gemma's own open/closed shares on 77% of 300 seeds (98% when it draws one state per topic); gemma reaches 9 on D1b's full fired pool. Found by the gap-density survey agent's $0 replay. The floor tests whether the pool is large enough to match, not whether the judge reads the docs; nothing in D1b claimed otherwise, but the survey's first framing treated passing the floor as recommending a codebase.
+- **Generalises to:** A feasibility count is reported only as pool size, and a claim that a codebase or judge is suitable needs its own check that a trivial stand-in fails (L7.3).
+- **Candidate home:** the `methods-critic` rule-discrimination item (L7.3), with feasibility floors named as a case.
+
+### A study's pipeline silently hard-codes its first unit
+
+- **What happened:** D1b's Stop A code (`research/d1b_rerun/`) hard-codes the reference repo, ledger paths and retriever corpus; run unchanged on another codebase, every topic would read as "outside" with no error. Found by the gap-density survey agent reading the code before reuse.
+- **Generalises to:** Code written for one study unit is reused on another only after a test runs it on a second unit and asserts non-empty, unit-specific results.
+- **Candidate home:** a test in `research/d1b_rerun/tests`; the D1c parameterisation (branch `d1c-prep`).
