@@ -283,7 +283,8 @@ def _states(arm_dirs: dict[str, Path], rows_by_version: dict, cb: codebase.Codeb
 
 def _arms(args, cb: codebase.Codebase) -> tuple[list[dict], dict, list, list]:
     pool = json.loads(_pool_path(args, cb).read_text())
-    drop = set() if getattr(args, "unreviewed", False) else set(json.loads(cb.review.read_text())["drop"])
+    review = Path(args.review) if getattr(args, "review", None) else cb.review
+    drop = set() if getattr(args, "unreviewed", False) else set(json.loads(review.read_text())["drop"])
     topics = [t for t in pool["topics"] if t["topic_id"] not in drop]
     rows_by_version = {(r["ledger"], r["test_id"]): r for r in pool["rows"]}
     arm_dirs = dict((k, Path(v)) for k, v in (a.split("=", 1) for a in args.arm))
@@ -297,12 +298,26 @@ def _arms(args, cb: codebase.Codebase) -> tuple[list[dict], dict, list, list]:
 
 
 def count_summary(topics: list[dict], gaps: list[dict], covs: list[dict], *, seed: int) -> dict:
+    """Stop A reads the pair count only: the top-tier closure arm can only remove topics, so the
+    count is a bound, but balance is not monotone and is settled at `build`."""
+    pairs = match(gaps, covs, n=max(SIZES), seed=seed)
     try:
-        n, pairs = choose_size(gaps, covs, seed=seed)
+        n, _ = choose_size(gaps, covs, seed=seed)
     except TooFew:
-        n, pairs = 0, match(gaps, covs, n=max(SIZES), seed=seed)
+        n = 0
     return {"topics": len(topics), "all_open": len(gaps), "all_closed": len(covs),
-            "matched_pairs_upper_bound": len(pairs), "sheet_size_reachable": n, "stop_at_A": n == 0}
+            "matched_pairs_upper_bound": len(pairs), "balance_ok": balance(pairs)["ok"],
+            "matched_pairs_uncapped": len(match(gaps, covs, n=len(gaps) + len(covs), seed=seed)),
+            "sheet_size_reachable_now": n, "stop_at_A": len(pairs) < SIZES[-1]}
+
+
+NEAR_DUPLICATE = 0.30
+
+
+def near_duplicates(items: list[dict]) -> int:
+    toks = [common.tokens(common.quote(it["question_text"])) for it in items]
+    return sum(common.jaccard(toks[i], toks[j]) >= NEAR_DUPLICATE
+               for i in range(len(toks)) for j in range(i + 1, len(toks)))
 
 
 def cmd_count(args) -> int:
@@ -315,8 +330,18 @@ def cmd_count(args) -> int:
 def cmd_build(args) -> int:
     cb = codebase.load(args.codebase)
     topics, states, gaps, covs = _arms(args, cb)
-    n, pairs = choose_size(gaps, covs, seed=cb.seed)
+    try:
+        n, pairs = choose_size(gaps, covs, seed=cb.seed)
+    except TooFew:
+        print(json.dumps({"outcome": "Stop A (after sol)", **count_summary(topics, gaps, covs, seed=cb.seed)},
+                         indent=1))
+        return 3
     items = [{"arm": "gap", **g} for g, _ in pairs] + [{"arm": "covered", **c} for _, c in pairs]
+    dupes = near_duplicates(items)
+    if dupes:
+        print(json.dumps({"refused": "near-duplicate sheet questions; drop the higher topic id of each pair in "
+                                     "the review file and build again", "near_duplicate_pairs": dupes}))
+        return 4
     random.Random(cb.seed).shuffle(items)
     for i, it in enumerate(items, 1):
         it["q"] = i
@@ -356,7 +381,8 @@ def main(argv: list[str] | None = None) -> int:
         if name == "build":
             s.add_argument("--public-key", required=True)
         else:
-            s.add_argument("--unreviewed", action="store_true", help="skip the topic review drops (spend gate A1)")
+            s.add_argument("--unreviewed", action="store_true", help="count without any topic review drops")
+        s.add_argument("--review", help="review file (default: fixtures/topic_review.json; A1 uses its own)")
     for s in sub.choices.values():
         s.add_argument("--codebase", default=str(codebase.D1B_CONFIG))
         s.add_argument("--pool", help="default: pool.json in the codebase's root")

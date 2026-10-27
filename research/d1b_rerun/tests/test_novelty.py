@@ -1,5 +1,6 @@
 """D1b novelty judging (plan §3.5-3.6): lock, canary check, reveal. No model, no network."""
 import json
+import re
 import subprocess
 
 import pytest
@@ -83,6 +84,59 @@ def test_reveal_reports_the_blinding_check_from_the_owners_guesses(tmp_path):
     guesses = {it["q"]: it["arm"] for it in items}
     res = novelty.reveal(judged, tmp_path / "sealed", key, tmp_path / "opened", guesses=guesses)
     assert res["blinding"]["accuracy"] == 1.0 and res["blinding"]["unblinded"] is True
+
+
+def _mixed(tmp_path):
+    canary_rows = [{"id": "c-copied", "question": "Q?", "answer": "copied passage"},
+                   {"id": "c-new", "question": "Q?", "answer": "planted fact"}]
+    expected = {"c-copied": "already written", "c-new": "new"}
+    r = novelty.Retriever([("d", "copied passage about bands"), ("d", "another passage on windows")])
+    return novelty.build_cases({1: "A?", 2: "B?"}, {1: "answer one", 2: "answer two"}, canary_rows, expected, r)
+
+
+def test_canaries_and_cases_share_one_file_under_opaque_ids(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    assert len(cases) == 4 and set(case_map) == {c["id"] for c in cases}
+    assert all(re.fullmatch(r"[0-9a-f]{8}", c["id"]) for c in cases)
+    assert sorted(v.get("canary", "") for v in case_map.values()) == ["", "", "c-copied", "c-new"]
+    assert all("expected" not in c and "kind" not in c for c in cases)
+
+
+def test_judgements_map_back_to_canaries_and_questions(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    ids = {(v.get("canary") or f"q{v['q']}"): k for k, v in case_map.items()}
+    a = {ids["c-copied"]: {"label": "already written"}, ids["c-new"]: {"label": "new"},
+         ids["q1"]: {"label": "new"}, ids["q2"]: {"label": "partly"}}
+    b = {**a, ids["c-new"]: {"label": "partly"}}
+    failures, judged = novelty.split_judgements(case_map, a, b, {1: "answer one", 2: "answer two"})
+    assert failures == ["judge_b:c-new"]
+    assert [(r["q"], r["judge_a"]["label"], r["answer"]) for r in judged] == [(1, "new", "answer one"),
+                                                                             (2, "partly", "answer two")]
+
+
+def test_each_judge_gets_one_pass(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    (tmp_path / "case_map.json").write_text(json.dumps(case_map))
+    (tmp_path / "answers.md").write_text(_answers(2))
+    labels = {k: {"label": v.get("expected", "new")} for k, v in case_map.items()}
+    assert novelty.ingest(tmp_path, labels, labels)["canary_failures"] == []
+    with pytest.raises(SystemExit, match="one pass"):
+        novelty.ingest(tmp_path, labels, labels)
+
+
+def test_a_canary_failure_voids_the_reading(tmp_path):
+    key, pub = tmp_path / "seal.key", tmp_path / "seal.pub"
+    subprocess.run(["openssl", "genpkey", "-algorithm", "RSA", "-out", str(key)], check=True, capture_output=True)
+    subprocess.run(["openssl", "pkey", "-in", str(key), "-pubout", "-out", str(pub)], check=True, capture_output=True)
+    items = [{"q": i, "arm": "gap" if i <= 10 else "covered"} for i in range(1, 21)]
+    (tmp_path / "secret").mkdir()
+    (tmp_path / "secret" / "key.json").write_text(json.dumps({"items": items}))
+    bs.seal(tmp_path / "secret", pub, tmp_path / "sealed")
+    judged = [{"q": i, "answer": "x", "judge_a": {"label": "new" if i <= 10 else "already written"},
+               "judge_b": {"label": "new" if i <= 10 else "already written"}} for i in range(1, 21)]
+    res = novelty.reveal(judged, tmp_path / "sealed", key, tmp_path / "opened", canary_failures=["judge_b:c-new"])
+    assert res["decision"] == "No reading" and res["void"] == ["judge_b:c-new"]
+    assert res["agreed"]["meets"] is True
 
 
 def test_guesses_are_read_only_while_the_locked_answers_are_unchanged(tmp_path):

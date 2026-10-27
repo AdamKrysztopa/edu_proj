@@ -35,6 +35,7 @@ PARA_MAX_RUN = 6
 PARA_LENGTH = (0.5, 2.0)
 PLANT_MIN_SHARED = 3
 PLANT_MAX_JACCARD = 0.30
+LENGTH_MATCH = 0.20
 SPEC_KEYS = ("source_id", "paraphrase_question", "paraphrase", "planted_question", "planted_new", "planted_terms",
              "owner_confirmed")
 
@@ -125,6 +126,21 @@ def planted_problems(question: str, planted: str, terms: list[str], passages: li
     return out
 
 
+def standin_problems(paraphrase: str, planted: str) -> list[str]:
+    """A canary pair that a trivial labeller gets right tests nothing: "new iff it has a digit"
+    and "the longer answer is new" must each get the paraphrase or the planted answer wrong."""
+    out = []
+    has_digit = lambda s: re.search(r"\d", s) is not None
+    if has_digit(planted) and not has_digit(paraphrase):
+        out.append("a 'new iff it contains a digit' labeller gets both right: put a number from the passage in "
+                   "the paraphrase, or state the planted facts without digits")
+    a, b = len(paraphrase.split()), len(planted.split())
+    if b > a * (1 + LENGTH_MATCH):
+        out.append(f"the planted answer ({b} words) is more than {LENGTH_MATCH:.0%} longer than the paraphrase "
+                   f"({a}): a 'longer is new' labeller gets both right")
+    return out
+
+
 def copied(question: str, passages: list[dict], retriever: novelty.Retriever) -> str:
     ok = {p["text"] for p in eligible(passages)}
     for _, text_ in retriever.top(question, len(retriever.items)):
@@ -144,7 +160,8 @@ def check(spec: dict, cb: codebase.Codebase) -> list[str]:
         return [f"source_id {spec['source_id']} is not a passage of this corpus"]
     return (paraphrase_problems(src["text"], spec["paraphrase_question"], spec["paraphrase"], retriever)
             + planted_problems(spec["planted_question"], spec["planted_new"], spec["planted_terms"], passages,
-                               retriever))
+                               retriever)
+            + standin_problems(spec["paraphrase"], spec["planted_new"]))
 
 
 def ready(spec: dict, cb: codebase.Codebase, *, source_id: str) -> None:
@@ -188,6 +205,11 @@ Write one JSON object with these keys:
 - `planted_terms`: the exact short strings in `planted_new` that carry the invented facts (for
   example "a 3-day cutoff"). Each must occur nowhere in the documentation.
 - `owner_confirmed`: false.
+
+Two trivial labellers must each get one of your two answers wrong: "new iff it contains a digit"
+(so if the planted answer has digits, the paraphrase must carry one too, for example a number the
+passage states) and "the longer answer is new" (so the planted answer may be at most
+{LENGTH_MATCH:.0%} longer than the paraphrase).
 
 Paths are relative to the repository root. Save it as `{out}`. The documentation is the HTML
 under `{corpus}`; you may search it. Then run `{check}` from the repository root and revise until it prints `"ready": false` with only the owner's confirmation

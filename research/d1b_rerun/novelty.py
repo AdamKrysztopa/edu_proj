@@ -2,16 +2,18 @@
 
     uv run --directory gapmap python ../research/d1b_rerun/novelty.py lock
     uv run --directory gapmap python ../research/d1b_rerun/novelty.py cases --out DIR
-    uv run --directory gapmap python ../research/d1b_rerun/novelty.py ingest --a A.json --b B.json --cases DIR
+    uv run --directory gapmap python ../research/d1b_rerun/novelty.py ingest --a A.json --b B.json
     uv run --directory gapmap python ../research/d1b_rerun/novelty.py reveal --private-key ~/.d1b/seal.key
 
 Every command takes `--codebase CFG` (default: D1b's `codebase.json`); its files live in that
-config's directory. `cases` writes `canaries.json` and `cases.json` (question, answer, the same top-10 corpus passages,
-no arm) to a directory outside the repo; each judge reads only that directory and writes
-`{id: {"label", "new_content", "reason"}}`. `ingest` refuses unless every canary got its expected
-label from both judges. `reveal` opens the sealed key with the owner's private key (the owner types
-its passphrase), applies `rule.decide` and adds the secondary readings. D1's corpus and retriever
-are reused (`research/d1_demonstrator/judge.py`); D1's script reads a plaintext key, so it is not."""
+config's directory. `cases` writes one `cases.json` (question, answer, the same top-10 corpus
+passages, no arm) to a directory outside the repo, canaries mixed in at random positions under
+random opaque ids; the id map stays in the codebase directory. Each judge reads only that
+directory and writes `{id: {"label", "new_content", "reason"}}`. `ingest` runs once; a canary that
+either judge mislabels voids the reading at `reveal` (No reading). `reveal` opens the sealed key
+with the owner's private key (the owner types its passphrase), applies `rule.decide` and adds the
+secondary readings. D1's corpus and retriever are reused (`research/d1_demonstrator/judge.py`);
+D1's script reads a plaintext key, so it is not."""
 from __future__ import annotations
 
 import argparse
@@ -19,7 +21,9 @@ import hashlib
 import html
 import json
 import math
+import random
 import re
+import secrets
 import statistics
 import sys
 from collections import Counter
@@ -146,15 +150,55 @@ def cmd_cases(out: Path, cb=None) -> None:
     answers = parse_answers((here / "answers.md").read_text())
     retriever = Retriever(passages(cb.corpus) if cb is not None else passages())
     canaries, expected = _canaries(questions[min(questions)], retriever, cb)
+    cases, case_map = build_cases(questions, answers, canaries, expected, retriever)
     out.mkdir(parents=True, exist_ok=True)
     (out / "instructions.txt").write_text(SYSTEM + "\n\nFor each case, read QUESTION, EXPERT ANSWER and PASSAGES. "
                                           "Write one JSON object {id: {\"label\": one of " + json.dumps(LABELS)
                                           + ", \"new_content\": str, \"reason\": str}}.\n")
-    (out / "canaries.json").write_text(json.dumps([_with_passages(c, retriever) for c in canaries], indent=1) + "\n")
-    (out / "cases.json").write_text(json.dumps(
-        [_with_passages({"id": f"q{q}", "question": questions[q], "answer": answers[q]}, retriever)
-         for q in sorted(questions)], indent=1) + "\n")
-    (here / "canaries_expected.json").write_text(json.dumps(expected, indent=1) + "\n")
+    (out / "cases.json").write_text(json.dumps(cases, indent=1) + "\n")
+    (here / "case_map.json").write_text(json.dumps(case_map, indent=1, sort_keys=True) + "\n")
+    print(json.dumps({"cases": len(cases), "case_map_sha256": _sha(here / "case_map.json"),
+                      "cases_sha256": _sha(out / "cases.json")}))
+
+
+def build_cases(questions: dict[int, str], answers: dict[int, str], canary_rows: list[dict],
+                expected: dict[str, str], retriever: Retriever) -> tuple[list[dict], dict]:
+    """Canaries and real cases in one file, in random order, under random opaque ids, so that no
+    judge can tell a canary from a case by its id or file. The map stays outside the judges'
+    directory. Unseeded on purpose: a seeded order could be recomputed from this code."""
+    rng = random.SystemRandom()
+    rows = [({"kind": "canary", "canary": c["id"], "expected": expected[c["id"]]}, c) for c in canary_rows]
+    rows += [({"kind": "case", "q": q}, {"question": questions[q], "answer": answers[q]}) for q in sorted(questions)]
+    rng.shuffle(rows)
+    ids: set[str] = set()
+    while len(ids) < len(rows):
+        ids.add(secrets.token_hex(4))
+    cases, case_map = [], {}
+    for cid, (meta, row) in zip(sorted(ids, key=lambda _: rng.random()), rows):
+        case_map[cid] = meta
+        cases.append(_with_passages({"id": cid, "question": row["question"], "answer": row["answer"]}, retriever))
+    return cases, case_map
+
+
+def split_judgements(case_map: dict, a: dict, b: dict, answers: dict[int, str]) -> tuple[list[str], list[dict]]:
+    expected = {m["canary"]: m["expected"] for m in case_map.values() if m["kind"] == "canary"}
+    by_canary = {m["canary"]: cid for cid, m in case_map.items() if m["kind"] == "canary"}
+    failures = canary_failures(expected, {c: a.get(by_canary[c]) for c in expected},
+                               {c: b.get(by_canary[c]) for c in expected})
+    judged = [{"q": m["q"], "answer": answers[m["q"]], "judge_a": a.get(cid, {}), "judge_b": b.get(cid, {})}
+              for cid, m in case_map.items() if m["kind"] == "case"]
+    return failures, sorted(judged, key=lambda r: r["q"])
+
+
+def ingest(here: Path, a: dict, b: dict) -> dict:
+    """One pass per judge: a second ingest, or a re-run of a judge, is refused."""
+    if (here / "judgements.json").exists():
+        raise SystemExit("judgements.json exists: each judge gets one pass")
+    case_map = json.loads((here / "case_map.json").read_text())
+    failures, judged = split_judgements(case_map, a, b, parse_answers((here / "answers.md").read_text()))
+    doc = {"canary_failures": failures, "judged": judged}
+    (here / "judgements.json").write_text(json.dumps(doc, indent=1) + "\n")
+    return doc
 
 
 def canary_failures(expected: dict[str, str], a: dict, b: dict) -> list[str]:
@@ -177,7 +221,9 @@ def guess_accuracy(guesses: dict[int, str], arms: dict[int, str]) -> dict:
 
 
 def reveal(judged: list[dict], sealed: Path, private_key: Path, opened: Path,
-           guesses: dict[int, str] | None = None) -> dict:
+           guesses: dict[int, str] | None = None, canary_failures: list[str] | None = None) -> dict:
+    """A canary failure by either judge voids the reading (No reading, which counts as Change);
+    the rule's figures are still reported."""
     sys.path.insert(0, str(HERE))
     import build_sheet
     import rule
@@ -191,6 +237,8 @@ def reveal(judged: list[dict], sealed: Path, private_key: Path, opened: Path,
     res["length_only"] = rule.decide([{**r, "j1": by_len[r["q"]], "j2": by_len[r["q"]]} for r in rows])
     if guesses is not None:
         res["blinding"] = guess_accuracy(guesses, {q: it["arm"] for q, it in key.items()})
+    if canary_failures:
+        res["decision"], res["void"] = "No reading", list(canary_failures)
     return res
 
 
@@ -214,7 +262,6 @@ def main(argv: list[str] | None = None) -> int:
     i = sub.add_parser("ingest")
     i.add_argument("--a", required=True)
     i.add_argument("--b", required=True)
-    i.add_argument("--cases", required=True)
     r = sub.add_parser("reveal")
     r.add_argument("--private-key", required=True)
     for s in sub.choices.values():
@@ -230,20 +277,13 @@ def main(argv: list[str] | None = None) -> int:
     elif args.cmd == "cases":
         cmd_cases(Path(args.out), cb)
     elif args.cmd == "ingest":
-        a, b = json.loads(Path(args.a).read_text()), json.loads(Path(args.b).read_text())
-        failures = canary_failures(json.loads((here / "canaries_expected.json").read_text()), a, b)
-        cases = json.loads((Path(args.cases) / "cases.json").read_text())
-        judged = [{"q": int(c["id"][1:]), "answer": c["answer"], "judge_a": a.get(c["id"], {}),
-                   "judge_b": b.get(c["id"], {})} for c in cases]
-        (here / "judgements.json").write_text(json.dumps({"canary_failures": failures, "judged": judged}, indent=1) + "\n")
-        print(json.dumps({"canary_failures": failures, "judged": len(judged)}))
-        return 1 if failures else 0
+        doc = ingest(here, json.loads(Path(args.a).read_text()), json.loads(Path(args.b).read_text()))
+        print(json.dumps({"canary_failures": doc["canary_failures"], "judged": len(doc["judged"])}))
+        return 1 if doc["canary_failures"] else 0
     else:
         doc = json.loads((here / "judgements.json").read_text())
-        if doc["canary_failures"]:
-            raise SystemExit(f"canaries failed: {doc['canary_failures']}")
         res = reveal(doc["judged"], here / "sealed", Path(args.private_key).expanduser(), here / "opened",
-                     guesses=load_guesses(here))
+                     guesses=load_guesses(here), canary_failures=doc["canary_failures"])
         (here / "result.json").write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
         print(json.dumps({k: v for k, v in res.items() if k != "rows"}, indent=1, sort_keys=True))
     return 0

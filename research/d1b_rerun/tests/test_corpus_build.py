@@ -86,6 +86,13 @@ def test_a_checkout_at_another_commit_is_refused(project):
         corpus_build.build(root / "codebase.json", fetchers=_fakes())
 
 
+def test_a_checkout_with_uncommitted_changes_is_refused(project):
+    root, _ = project
+    (root / "source" / "README.md").write_text("# Tool\n\nEdited after the pin.\n")
+    with pytest.raises(SystemExit, match="uncommitted"):
+        corpus_build.build(root / "codebase.json", fetchers=_fakes())
+
+
 def test_a_missing_doc_is_refused_before_anything_is_written(project):
     root, _ = project
     cfg = json.loads((root / "codebase.json").read_text())

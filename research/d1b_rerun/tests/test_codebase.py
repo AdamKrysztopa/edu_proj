@@ -35,6 +35,15 @@ def test_relative_paths_resolve_against_the_config_file(tmp_path):
     assert cb.pool == tmp_path / "pool.json"
 
 
+@pytest.mark.parametrize("repo", ["github.com/AdamKrysztopa/informant-video", "github.com/AdamKrysztopa/edu_proj"])
+def test_an_excluded_repository_is_refused(tmp_path, repo):
+    cfg = {"name": "x", "title": "X", "owner_repo": repo, "domain": "x", "seed": 7, "corpus": "corpus",
+           "ledgers": {}, "prior_items": None, "canaries": "c.json"}
+    (tmp_path / "codebase.json").write_text(json.dumps(cfg))
+    with pytest.raises(codebase.Excluded):
+        codebase.load(tmp_path / "codebase.json")
+
+
 def test_a_config_with_a_placeholder_is_refused(tmp_path):
     cfg = json.loads((HERE.parent / "d1c" / "codebase.template.json").read_text())
     (tmp_path / "codebase.json").write_text(json.dumps(cfg))

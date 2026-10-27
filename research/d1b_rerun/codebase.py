@@ -11,9 +11,16 @@ from pathlib import Path
 
 D1B_CONFIG = Path(__file__).resolve().parent / "codebase.json"
 PLACEHOLDER = "TODO"
+# informant-video is E-ABST's private-objective repository (reconstruct/src/reconstruct/eabst.py),
+# registered as future validation; edu_proj is this project itself.
+EXCLUDED_REPOS = ("AdamKrysztopa/informant-video", "AdamKrysztopa/edu_proj")
 
 
 class Unfilled(ValueError):
+    pass
+
+
+class Excluded(ValueError):
     pass
 
 
@@ -70,6 +77,9 @@ def load(path: Path) -> Codebase:
     unfilled = _placeholders(cfg)
     if unfilled:
         raise Unfilled(f"{path}: {PLACEHOLDER} left in {', '.join(unfilled)}")
+    hit = [r for r in EXCLUDED_REPOS if cfg["owner_repo"].lower().rstrip("/").endswith(r.lower())]
+    if hit:
+        raise Excluded(f"{path}: {hit[0]} is excluded from targeting tests (D1c plan §4, Stop 0)")
     root = path.parent
     rel = lambda p: (root / p).resolve()
     return Codebase(name=cfg["name"], title=cfg["title"], root=root, owner_repo=cfg["owner_repo"],

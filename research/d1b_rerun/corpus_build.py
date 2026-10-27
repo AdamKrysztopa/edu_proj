@@ -42,6 +42,10 @@ def build(config: Path, fetchers: dict | None = None) -> dict:
                           capture_output=True, text=True, check=True).stdout.strip()
     if head != spec["commit"]:
         raise SystemExit(f"checkout is at {head}, not the pinned commit {spec['commit']}")
+    dirty = subprocess.run(["git", "-C", str(checkout), "status", "--porcelain"],
+                           capture_output=True, text=True, check=True).stdout.strip()
+    if dirty:
+        raise SystemExit("checkout has uncommitted changes; the corpus must be the pinned commit as committed")
     missing = [rel for rel in spec["docs"] if not (checkout / rel).is_file()]
     if missing:
         raise SystemExit(f"docs missing at the pinned commit: {missing}")

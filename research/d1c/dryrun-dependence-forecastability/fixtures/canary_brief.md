@@ -25,6 +25,11 @@ Write one JSON object with these keys:
   example "a 3-day cutoff"). Each must occur nowhere in the documentation.
 - `owner_confirmed`: false.
 
+Two trivial labellers must each get one of your two answers wrong: "new iff it contains a digit"
+(so if the planted answer has digits, the paraphrase must carry one too, for example a number the
+passage states) and "the longer answer is new" (so the planted answer may be at most
+20% longer than the paraphrase).
+
 Paths are relative to the repository root. Save it as `research/d1c/dryrun-dependence-forecastability/fixtures/canaries.json`. The documentation is the HTML
 under `research/d1_demonstrator/corpus`; you may search it. Then run `uv run --directory gapmap python ../research/d1b_rerun/canaries.py check --codebase ../research/d1c/dryrun-dependence-forecastability/codebase.json` from the repository root and revise until it prints `"ready": false` with only the owner's confirmation
 missing. The owner confirms both labels before use.

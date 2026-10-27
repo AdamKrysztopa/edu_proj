@@ -103,7 +103,7 @@ def test_the_copied_canary_is_an_eligible_passage(corpus):
 
 def _spec(src, **kw):
     return {"source_id": src["id"], "paraphrase_question": D1B_SPEC["paraphrase_question"],
-            "paraphrase": D1B_SPEC["paraphrase"], "planted_question": D1B_SPEC["paraphrase_question"],
+            "paraphrase": _length_matched(), "planted_question": D1B_SPEC["paraphrase_question"],
             "planted_new": D1B_SPEC["planted_new"], "planted_terms": D1B_NOVEL_TERMS,
             "owner_confirmed": True, **kw}
 
@@ -118,6 +118,21 @@ def test_ready_needs_the_seeded_source_passing_checks_and_the_owners_confirmatio
         canaries.ready(_spec(src), cb, source_id="0" * 12)
     with pytest.raises(canaries.NotReady, match="copy"):
         canaries.ready(_spec(src, paraphrase=src["text"]), cb, source_id=src["id"])
+
+
+def _length_matched():
+    words = len(D1B_SPEC["planted_new"].split())
+    return " ".join((D1B_SPEC["paraphrase"] + " " + D1B_SPEC["paraphrase"]).split()[:words])
+
+
+def test_trivial_stand_in_labellers_must_each_get_a_canary_wrong():
+    words = len(D1B_SPEC["planted_new"].split())
+    assert canaries.standin_problems(_length_matched(), D1B_SPEC["planted_new"]) == []
+    problems = canaries.standin_problems(D1B_SPEC["paraphrase"], D1B_SPEC["planted_new"])
+    assert len(problems) == 1 and "longer" in problems[0]
+    no_digits = " ".join(["fragile"] * words)
+    problems = canaries.standin_problems(no_digits, D1B_SPEC["planted_new"])
+    assert len(problems) == 1 and "digit" in problems[0]
 
 
 DRYRUN = HERE.parent / "d1c" / "dryrun-dependence-forecastability"

@@ -78,6 +78,30 @@ def test_the_sheet_size_falls_back_to_twelve_then_ten_then_stops():
         bs.choose_size(gaps[:9], covs[:9], seed=1)
 
 
+def test_stop_a_fires_on_the_pair_count_alone_not_on_balance():
+    gaps = [_topic(i, words=40) for i in range(10)]
+    covs = [_topic(20 + i, words=60) for i in range(10)]
+    res = bs.count_summary(gaps + covs, gaps, covs, seed=1)
+    assert res["matched_pairs_upper_bound"] == 10 and res["balance_ok"] is False
+    assert res["stop_at_A"] is False
+    res = bs.count_summary(gaps[:9] + covs[:9], gaps[:9], covs[:9], seed=1)
+    assert res["stop_at_A"] is True
+
+
+def test_the_count_also_reports_matched_pairs_beyond_the_sheet_cap():
+    gaps = [_topic(i) for i in range(22)]
+    covs = [_topic(100 + i) for i in range(22)]
+    res = bs.count_summary(gaps + covs, gaps, covs, seed=1)
+    assert res["matched_pairs_upper_bound"] == 15 and res["matched_pairs_uncapped"] == 22
+
+
+def test_near_duplicate_sheet_questions_are_counted():
+    quotes = ["compute the band on the training window only", "compute the band on the training window only, never the test",
+              "the surrogate count sets the significance floor"]
+    items = [{"question_text": f'Sources say: "{q}". Why?'} for q in quotes]
+    assert bs.near_duplicates(items) == 1
+
+
 def test_sealing_round_trips_only_with_the_private_key(tmp_path):
     key = tmp_path / "seal.key"
     pub = tmp_path / "seal.pub"
