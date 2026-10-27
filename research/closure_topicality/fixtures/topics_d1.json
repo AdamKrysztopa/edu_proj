@@ -1,0 +1,866 @@
+{
+ "note": "G2's gate topics after the owner's drops; P and N copied unchanged from research/d1b_rerun/fixtures/inserts.json, confirmed by the owner 2026-10-26",
+ "topics": [
+  {
+   "background_rows": [
+    [
+     "c-02db4a573b917ded",
+     0,
+     "In rolling-origin evaluation, diagnostics are computed on train windows only and scoring on post-origin holdout only."
+    ],
+    [
+     "c-02db4a573b917ded",
+     1,
+     "In rolling-origin evaluation, diagnostics are computed on train windows only and scoring on post-origin holdout only."
+    ],
+    [
+     "c-8a7ac04178f31200",
+     0,
+     "Diagnostics for AMI and pAMI are computed on each training window only, while forecast errors are computed on post-origin test window only."
+    ],
+    [
+     "c-1dc897cf8db01147",
+     0,
+     "The exogenous screening evaluation uses 7 target-driver benchmark cases: bike_cnt_temp, bike_cnt_hum, bike_cnt_noise, aapl_spy, aapl_noise, btc_eth, and btc_noise."
+    ],
+    [
+     "c-8a7ac04178f31200",
+     1,
+     "Diagnostics (AMI/pAMI) are computed on each training window only."
+    ],
+    [
+     "c-8a7ac04178f31200",
+     2,
+     "- Forecast errors are computed on post-origin test window only."
+    ],
+    [
+     "c-e6b24e03603d4113",
+     0,
+     "src/forecastability/pipeline/ contains analyzer facade, canonical workflow helpers, and rolling-origin evaluation support."
+    ],
+    [
+     "c-e6b24e03603d4113",
+     1,
+     "`analyzer.py`, `pipeline.py`, `rolling_origin.py` Analyzer facade, canonical workflow helpers, and rolling-origin evaluation support"
+    ]
+   ],
+   "cluster": "d1-q1",
+   "k": 8,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "probe": [
+    "apply",
+    "boundary",
+    "comput",
+    "crossami",
+    "evaluation",
+    "exogenou",
+    "leakage",
+    "origin",
+    "roll",
+    "same",
+    "screen",
+    "train",
+    "window"
+   ],
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_text": "The same leakage boundary for rolling-origin evaluation applies to exogenous screening (F8), where CrossAMI must be computed on the training window only.",
+   "seeds": [
+    "c-a5bfbf4dc9e5e96b"
+   ],
+   "split": "d1",
+   "topic_id": "t01"
+  },
+  {
+   "background_rows": [
+    [
+     "c-100c68ae20f2e64f",
+     0,
+     "A known-future opt-in exists for features whose contemporaneous value is available at prediction time, such as calendar flags, planned promotions, or regulator-set prices."
+    ],
+    [
+     "c-100c68ae20f2e64f",
+     1,
+     "Known-future opt-in for features whose contemporaneous value is available at prediction time (e.g."
+    ],
+    [
+     "c-9f8beabb447a6f8a",
+     0,
+     "A known-future covariate is one whose k = 0 value is legitimately observed before Y_t must be predicted, such as calendar features, holidays, regulator-set tariffs, or planned promotions."
+    ],
+    [
+     "c-100c68ae20f2e64f",
+     2,
+     "calendar flags, planned promotions, regulator-set prices)"
+    ],
+    [
+     "c-9f8beabb447a6f8a",
+     1,
+     "A \"known-future\" exogenous covariate is one whose $k=0$ value is legitimately observed **before** $Y_t$ must be predicted: calendar features, holidays, regulator-set tariffs, planned promotional events."
+    ],
+    [
+     "c-06f340cedf08777b",
+     0,
+     "With the known-future opt-in, k = 0 rows flip to tensor_role \"known_future\" and may be selected for the tensor for that driver only."
+    ],
+    [
+     "c-06f340cedf08777b",
+     1,
+     "With the opt-in, those rows flip to `tensor_role=\"known_future\"` and the selector may choose `selected_for_tensor=True` at $k=0$ for that driver only."
+    ],
+    [
+     "c-398f05f0bcd6a88a",
+     0,
+     "By default every k = 0 row receives tensor_role \"diagnostic\", and \"known_future\" is assigned only when the user explicitly opts in via known_future_drivers."
+    ]
+   ],
+   "cluster": "d1-q2",
+   "k": 8,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "probe": [
+    "calendar",
+    "contemporaneou",
+    "driver",
+    "flag",
+    "future",
+    "genuinely",
+    "known",
+    "plann",
+    "prediction",
+    "promotion",
+    "time",
+    "variabl"
+   ],
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_text": "known_future_drivers should be used only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags or planned promotions.",
+   "seeds": [
+    "c-67213a7cebde7a96"
+   ],
+   "split": "d1",
+   "topic_id": "t02"
+  },
+  {
+   "background_rows": [
+    [
+     "c-65065dfee36610b1",
+     0,
+     "Exogenous analysis uses CrossAMI and pCrossAMI curves to screen external drivers for lead-lag signal before multivariate forecasting or feature engineering."
+    ],
+    [
+     "c-931f2ebfc2cfdad2",
+     0,
+     "Transfer entropy is a non-parametric statistic that measures the amount of directed, time-asymmetric information transfer between two random processes."
+    ],
+    [
+     "c-931f2ebfc2cfdad2",
+     1,
+     "Transfer entropy is a non-parametric statistic measuring the amount of directed (time-asymmetric) transfer of information between two random processes."
+    ],
+    [
+     "c-abf9c3554eff3233",
+     0,
+     "A discriminating statistic is computed for both the original time series and all surrogate sets."
+    ],
+    [
+     "c-abf9c3554eff3233",
+     1,
+     "A discriminating statistic is then calculated for the original time series and all the surrogate set."
+    ],
+    [
+     "c-e3d4ac9478612d7d",
+     0,
+     "The partial autocorrelation function gives the partial correlation of a stationary time series with its own lagged values, regressed on the values at all shorter lags."
+    ],
+    [
+     "c-e3d4ac9478612d7d",
+     1,
+     "the partial autocorrelation function (PACF) gives the partial correlation of a stationary time series with its own lagged values, regressed the values of the time series at all shorter lags"
+    ],
+    [
+     "c-04fa21ff4fbf1bd9",
+     0,
+     "The CSV adapter drops missing values column-wise and conservatively skips too-short or non-numeric series rather than forcing partial analysis."
+    ]
+   ],
+   "cluster": "d1-q5",
+   "k": 8,
+   "ledger": "toptier-26b",
+   "lens": "HEDGE",
+   "probe": [
+    "analysi",
+    "autocovariance",
+    "coefficient",
+    "correlation",
+    "dropp",
+    "engineer",
+    "normaliz",
+    "normalization",
+    "pearson",
+    "statistic",
+    "time"
+   ],
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_text": "In statistics and time series analysis, the autocovariance is commonly normalized to a Pearson correlation coefficient, while in engineering the normalization is usually dropped.",
+   "seeds": [
+    "c-23b71befef797d20"
+   ],
+   "split": "d1",
+   "topic_id": "t05"
+  },
+  {
+   "background_rows": [
+    [
+     "c-074bbf77d40d49d7",
+     0,
+     "Directness can be numerically unstable when raw dependence is close to zero, and in this slice, 6 out of 7 cases have warning horizons and at least one directness_ratio greater than 1.0, which should be treated as an estimation warning rather than scientific evidence."
+    ],
+    [
+     "c-074bbf77d40d49d7",
+     2,
+     "In this slice, 6/7 cases have warning horizons and at least one `directness_ratio > 1.0`, which should be treated as an estimation warning, not scientific evidence of stronger conditioned dependence."
+    ],
+    [
+     "c-195d659856d7237b",
+     0,
+     "Largest Lyapunov exponent (F5) differentiates deterministic chaos from stochastic noise when sample size permits."
+    ],
+    [
+     "c-195d659856d7237b",
+     1,
+     "Differentiates deterministic chaos from stochastic noise (when sample size permits)"
+    ],
+    [
+     "c-2d8e9ac84a4e1468",
+     0,
+     "The \"ywadjusted\" method for pacf uses Yule-Walker with sample-size adjustment in denominator for acovf."
+    ],
+    [
+     "c-2d8e9ac84a4e1468",
+     1,
+     "\"yw\", \"ywa\", \"ywadjusted\" or \"yw_adjusted\" : Yule-Walker with sample-size adjustment in denominator for acovf."
+    ],
+    [
+     "c-520e8d5962f8f467",
+     0,
+     "Surrogates should be used whenever sample size permits, specifically when n is at least 200 and n_surrogates is at least 99."
+    ],
+    [
+     "c-520e8d5962f8f467",
+     1,
+     "Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`)."
+    ]
+   ],
+   "cluster": "d1-q9",
+   "k": 8,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "probe": [
+    "backend",
+    "inflation",
+    "multiple",
+    "numerical",
+    "sample",
+    "size",
+    "stress",
+    "treat",
+    "verifi",
+    "warn"
+   ],
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_text": "Numerical inflation should be treated as a warning and verified with multiple backends and sample-size stress testing.",
+   "seeds": [
+    "c-e69be58ea45c4382"
+   ],
+   "split": "d1",
+   "topic_id": "t07"
+  },
+  {
+   "background_rows": [
+    [
+     "c-353778e07d782e1c",
+     0,
+     "Setting include_extended_fingerprint=True in run_triage attaches extended analysis only for non-exogenous requests;"
+    ],
+    [
+     "c-353778e07d782e1c",
+     2,
+     "`run_triage(..., include_extended_fingerprint=True)` additively attaches > `extended_forecastability_analysis` for non-exogenous requests."
+    ],
+    [
+     "c-464da2c578921c27",
+     0,
+     "Intuitively, mutual information measures how much knowing one variable reduces uncertainty about the other."
+    ],
+    [
+     "c-464da2c578921c27",
+     1,
+     "It measures how much knowing one of these variables reduces uncertainty about the other."
+    ],
+    [
+     "c-4ac40040cc033f94",
+     0,
+     "Large backend deltas on small sample fractions indicate short-sample fragility caused by insufficient support for residualization."
+    ],
+    [
+     "c-6128ba04cdbca987",
+     0,
+     "Setting include_extended_fingerprint=True in run_triage attaches the extended analysis only for non-exogenous routes;"
+    ],
+    [
+     "c-6128ba04cdbca987",
+     2,
+     "`run_triage(..., include_extended_fingerprint=True)` additively attaches `extended_forecastability_analysis` for non-exogenous routes only."
+    ],
+    [
+     "c-725ecdd8f24d140c",
+     1,
+     "values above 1.0 indicate the residual approximation broke down at that horizon."
+    ]
+   ],
+   "cluster": "d1-q10",
+   "k": 8,
+   "ledger": "toptier-26b",
+   "lens": "HEDGE",
+   "probe": [
+    "attach",
+    "consider",
+    "degree",
+    "generally",
+    "good",
+    "indicate",
+    "practice",
+    "uncertainty"
+   ],
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_text": "It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.",
+   "seeds": [
+    "c-9c0f849034e929bd"
+   ],
+   "split": "d1",
+   "topic_id": "t08"
+  },
+  {
+   "background_rows": [
+    [
+     "c-2f1435153035f8c0",
+     0,
+     "A directness_ratio above 1.0 should be treated as an estimation warning, not as scientific evidence of stronger conditioned dependence."
+    ],
+    [
+     "c-2f1435153035f8c0",
+     1,
+     "at least one `directness_ratio > 1.0`, which should be treated as an estimation warning, not scientific evidence of stronger conditioned dependence"
+    ],
+    [
+     "c-50eecfbfdfafa159",
+     0,
+     "The CausalRivers workflow screens graph-positive drivers and negative controls across lags, separates raw from history-adjusted dependence, applies legality constraints, then hands off a sparse feature set."
+    ],
+    [
+     "c-50eecfbfdfafa159",
+     1,
+     "The workflow screens graph-positive drivers and negative controls across lags, separates raw pairwise dependence from signal that remains after target history is accounted for, applies forecast-legality constraints, and then hands off a sparse feature surface."
+    ],
+    [
+     "c-5e1cf37fab1d0e27",
+     0,
+     "New scorers inherit kNN estimation noise on short series."
+    ],
+    [
+     "c-5e1cf37fab1d0e27",
+     1,
+     "new scorers inherit kNN estimation noise on short series"
+    ],
+    [
+     "c-8a56e4fe36fc1b54",
+     2,
+     "This method is associated to the null hypothesis of the data being uncorrelated i.i.d noise (possibly Gaussian and measured by a static nonlinear function)."
+    ],
+    [
+     "c-01104818fadaca0b",
+     0,
+     "A positive Lyapunov estimate is consistent with chaos but can also arise from coloured noise or non-stationarity, so F5 alone cannot distinguish chaos from noise."
+    ]
+   ],
+   "cluster": "d1-q11",
+   "k": 8,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "probe": [
+    "candidate",
+    "data",
+    "deriv",
+    "estimation",
+    "exceed",
+    "feature",
+    "gain",
+    "genuine",
+    "leakage",
+    "noise",
+    "profile",
+    "raw",
+    "treat"
+   ],
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_text": "Any lag where a derived-feature profile exceeds the raw profile by more than estimation noise should be treated as a data-leakage candidate, not a genuine gain.",
+   "seeds": [
+    "c-bd65950824d7841e"
+   ],
+   "split": "d1",
+   "topic_id": "t09"
+  },
+  {
+   "background_rows": [
+    [
+     "c-195d659856d7237b",
+     0,
+     "Largest Lyapunov exponent (F5) differentiates deterministic chaos from stochastic noise when sample size permits."
+    ],
+    [
+     "c-195d659856d7237b",
+     1,
+     "Differentiates deterministic chaos from stochastic noise (when sample size permits)"
+    ],
+    [
+     "c-55a3d89f479050f5",
+     0,
+     "Surrogate significance is optional, requires feasible sample size, and needs at least 99 surrogates."
+    ],
+    [
+     "c-55a3d89f479050f5",
+     1,
+     "Surrogate significance is optional, requires feasible sample size, and needs at least 99 surrogates."
+    ],
+    [
+     "c-2d8e9ac84a4e1468",
+     0,
+     "The \"ywadjusted\" method for pacf uses Yule-Walker with sample-size adjustment in denominator for acovf."
+    ],
+    [
+     "c-2d8e9ac84a4e1468",
+     1,
+     "\"yw\", \"ywa\", \"ywadjusted\" or \"yw_adjusted\" : Yule-Walker with sample-size adjustment in denominator for acovf."
+    ],
+    [
+     "c-59ee33682140a710",
+     0,
+     "Transfer Entropy sample-size guardrails require min_pairs >= 50, and with non-empty conditioning history at least 2 * min_pairs aligned rows are required."
+    ],
+    [
+     "c-59ee33682140a710",
+     1,
+     "TE sample-size guardrails require `min_pairs >= 50`;"
+    ]
+   ],
+   "cluster": "d1-q12",
+   "k": 8,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "probe": [
+    "permit",
+    "sample",
+    "size",
+    "specifically",
+    "surrogat",
+    "whenever"
+   ],
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_text": "Surrogates should be used whenever sample size permits, specifically when n is at least 200 and n_surrogates is at least 99.",
+   "seeds": [
+    "c-520e8d5962f8f467"
+   ],
+   "split": "d1",
+   "topic_id": "t10"
+  },
+  {
+   "background_rows": [
+    [
+     "c-4e39686e19b92a20",
+     0,
+     "Transfer Entropy is directional in that TE(X \u2192 Y) is generally not equal to TE(Y \u2192 X)."
+    ],
+    [
+     "c-4e39686e19b92a20",
+     1,
+     "Transfer entropy from a process X to another process Y is the amount of uncertainty reduced in future values of Y by knowing the past values of X given past values of Y."
+    ],
+    [
+     "c-57f60d797dd50453",
+     0,
+     "The intuitive meaning of mutual information is the amount of information (that is, reduction in uncertainty) that knowing either variable provides about the other."
+    ],
+    [
+     "c-57f60d797dd50453",
+     1,
+     "This corroborates the intuitive meaning of mutual information as the amount of information (that is, reduction in uncertainty) that knowing either variable provides about the other."
+    ],
+    [
+     "c-65eaabf429163f17",
+     0,
+     "src/forecastability/extensions.py provides extension helpers used by repository workflows such as sensitivity and uncertainty studies."
+    ],
+    [
+     "c-65eaabf429163f17",
+     1,
+     "Extension helpers used by repository workflows such as sensitivity and uncertainty studies"
+    ],
+    [
+     "c-886adb6e1e90fe24",
+     1,
+     "Transfer entropy from a process X to another process Y is the amount of uncertainty reduced in future values of Y by knowing the past values of X given past values of Y."
+    ],
+    [
+     "c-9172d59eb6aef87e",
+     0,
+     "Transfer entropy from process X to process Y is the amount of uncertainty reduced in future values of Y by knowing the past values of X given past values of Y."
+    ]
+   ],
+   "cluster": "d1-q10",
+   "k": 8,
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "probe": [
+    "attach",
+    "consider",
+    "degree",
+    "generally",
+    "good",
+    "indicate",
+    "practice",
+    "uncertainty"
+   ],
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_text": "It is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts.",
+   "seeds": [
+    "c-2818fef8c18c9e3d"
+   ],
+   "split": "d1",
+   "topic_id": "t14"
+  },
+  {
+   "background_rows": [
+    [
+     "c-014eeea445c8fc65",
+     0,
+     "The autocorrelation function of an AR(p) process tails off just like the partial autocorrelation function of an MA(q) process."
+    ],
+    [
+     "c-014eeea445c8fc65",
+     1,
+     "the autocorrelation function of an AR(p) process tails off just like the partial autocorrelation function of an MA(q) process"
+    ],
+    [
+     "c-158b572135807eda",
+     1,
+     "The normalised permutation entropy and spectral entropy of the series, combined to classify its disorder level into a complexity band (regular / moderate / noise-like), providing structural context for the AMI results."
+    ],
+    [
+     "c-32ecea3ca5b4cc35",
+     0,
+     "Budgets are more specific, fixed-term financial plans used for resource allocation and control."
+    ],
+    [
+     "c-32ecea3ca5b4cc35",
+     1,
+     "budgets are more specific, fixed-term financial plans used for resource allocation and control"
+    ],
+    [
+     "c-4e3b8d45c8106175",
+     0,
+     "Forecasting can be described as predicting what the future will look like, whereas planning predicts what the future should look like."
+    ],
+    [
+     "c-4e3b8d45c8106175",
+     1,
+     "Forecasting can be described as predicting what the future will look like, whereas planning predicts what the future should look like."
+    ],
+    [
+     "c-64a81217e097dae7",
+     0,
+     "Linear surrogate methods are useful for data showing irregular fluctuations and short-term variabilities."
+    ]
+   ],
+   "cluster": "d1-q5",
+   "k": 8,
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "probe": [
+    "autocovariance",
+    "disciplin",
+    "dropp",
+    "engineer",
+    "interchangeably",
+    "like",
+    "normalization",
+    "term"
+   ],
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_text": "In other disciplines like engineering, the normalization is usually dropped and the terms autocorrelation and autocovariance are used interchangeably.",
+   "seeds": [
+    "c-04070c929c03d0c4"
+   ],
+   "split": "d1",
+   "topic_id": "t15"
+  },
+  {
+   "background_rows": [
+    [
+     "c-02db4a573b917ded",
+     0,
+     "In rolling-origin evaluation, diagnostics are computed on train windows only and scoring on post-origin holdout only."
+    ],
+    [
+     "c-02db4a573b917ded",
+     1,
+     "In rolling-origin evaluation, diagnostics are computed on train windows only and scoring on post-origin holdout only."
+    ],
+    [
+     "c-8a7ac04178f31200",
+     0,
+     "Diagnostics for AMI and pAMI are computed on each training window only, while forecast errors are computed on post-origin test window only."
+    ],
+    [
+     "c-8a7ac04178f31200",
+     1,
+     "Diagnostics (AMI/pAMI) are computed on each training window only."
+    ],
+    [
+     "c-8a7ac04178f31200",
+     2,
+     "- Forecast errors are computed on post-origin test window only."
+    ],
+    [
+     "c-e6b24e03603d4113",
+     0,
+     "src/forecastability/pipeline/ contains analyzer facade, canonical workflow helpers, and rolling-origin evaluation support."
+    ],
+    [
+     "c-e6b24e03603d4113",
+     1,
+     "`analyzer.py`, `pipeline.py`, `rolling_origin.py` Analyzer facade, canonical workflow helpers, and rolling-origin evaluation support"
+    ],
+    [
+     "c-edc181681f54f407",
+     0,
+     "pipeline/rolling_origin.py contains rolling-origin split helpers used by evaluation workflows."
+    ]
+   ],
+   "cluster": "d1-q1",
+   "k": 8,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "probe": [
+    "comput",
+    "evaluation",
+    "origin",
+    "roll",
+    "train",
+    "window"
+   ],
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_text": "In rolling-origin evaluation, diagnostics should be computed on train windows only.",
+   "seeds": [
+    "c-d7d073c08a1e9cc5"
+   ],
+   "split": "d1",
+   "topic_id": "t16"
+  },
+  {
+   "background_rows": [
+    [
+     "c-8c90b5242c0436c6",
+     0,
+     "Upper-band crossings should be used to detect non-null dependence."
+    ],
+    [
+     "c-8c90b5242c0436c6",
+     1,
+     "Use upper-band crossings to detect non-null dependence."
+    ],
+    [
+     "c-e5e1e73dba61b2c2",
+     0,
+     "The lower band is near zero for MI and usually not operationally informative."
+    ],
+    [
+     "c-e5e1e73dba61b2c2",
+     1,
+     "Lower band is near zero for MI and usually not operationally informative."
+    ],
+    [
+     "c-036f6b526cb8eadb",
+     0,
+     "Spearman is near zero for the abs-value coupling because |X| is V-shaped (non-monotone) in X."
+    ],
+    [
+     "c-036f6b526cb8eadb",
+     1,
+     "Spearman is also near zero because $ X $ is V-shaped (non-monotone) in $X$."
+    ],
+    [
+     "c-2a2178f666a2258b",
+     0,
+     "Spearman is near zero for the quadratic coupling because X\u00b2 is U-shaped (non-monotone) in X."
+    ],
+    [
+     "c-2a2178f666a2258b",
+     1,
+     "Spearman is also near zero because $X^2$ is U-shaped (non-monotone) in $X$."
+    ]
+   ],
+   "cluster": "d1-q13",
+   "k": 8,
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "probe": [
+    "band",
+    "dependence",
+    "detect",
+    "informative",
+    "lower",
+    "near",
+    "non",
+    "null",
+    "operationally",
+    "upper",
+    "useful",
+    "zero"
+   ],
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_text": "For surrogate bands, the upper band is operationally informative for detecting non-null dependence while the lower band is usually near zero for MI and is not typically operationally useful.",
+   "seeds": [
+    "c-672eba057b35b6b7"
+   ],
+   "split": "d1",
+   "topic_id": "t17"
+  },
+  {
+   "background_rows": [
+    [
+     "c-0938aacab4017209",
+     0,
+     "diagnostics/cmi.py owns alternative residual backends used by pAMI-style workflows."
+    ],
+    [
+     "c-0938aacab4017209",
+     1,
+     "`diagnostics/cmi.py` owns alternative residual backends used by pAMI-style workflows."
+    ],
+    [
+     "c-09ea319b9e11835e",
+     2,
+     "Nonlinear residual dependence that the linear backend cannot capture remains in the AMI but may not be fully removed from pAMI."
+    ],
+    [
+     "c-90dc62500a2b29c7",
+     0,
+     "pAMI feasibility with the linear residual backend requires N to be at least the maximum of H plus min_pairs_pami plus 1 and 2H."
+    ],
+    [
+     "c-90dc62500a2b29c7",
+     1,
+     "pAMI feasibility (linear residual backend): \\[ N \\ge \\max\\left(H + \\texttt{min\\_pairs\\_pami} + 1,\\ 2H\\right) \\]"
+    ],
+    [
+     "c-e0f0ce6bf728fd2b",
+     0,
+     "directness_ratio above 1.0 arises most commonly in noisy series, misspecified linear residual backends, or very short series with high estimation variance."
+    ],
+    [
+     "c-e0f0ce6bf728fd2b",
+     1,
+     "It arises most commonly in noisy series, misspecified linear residual backends, or very short series where estimation variance is high."
+    ],
+    [
+     "c-0b20865165cb900c",
+     2,
+     "It is a practical residual diagnostic, not exact nonlinear conditional mutual information and not causal proof."
+    ]
+   ],
+   "cluster": "d1-q7",
+   "k": 8,
+   "ledger": "toptier-26b",
+   "lens": "RESULT",
+   "probe": [
+    "against",
+    "backend",
+    "compare",
+    "configur",
+    "pipeline",
+    "residual",
+    "robustness",
+    "study"
+   ],
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_text": "The robustness study pipeline should be used to compare all configured backends against linear_residual.",
+   "seeds": [
+    "c-a58de96982596cf4"
+   ],
+   "split": "d1",
+   "topic_id": "t18"
+  },
+  {
+   "background_rows": [
+    [
+     "c-02293075bf7d14f3",
+     0,
+     "The pAMI estimator builds a conditioning matrix Z, residualizes past and future on Z using a linear backend by default with optional RF backend, then computes MI on residual pairs."
+    ],
+    [
+     "c-02293075bf7d14f3",
+     2,
+     "Build conditioning matrix \\(Z=[X_{t+1},\\ldots,X_{t+h-1}]\\)."
+    ],
+    [
+     "c-0451ed09ab140257",
+     0,
+     "Many other surrogate data methods have been proposed, some based on optimizations to achieve an autocorrelation close to the original one, some based on wavelet transform and some capable of dealing with some types of non-stationary data."
+    ],
+    [
+     "c-0451ed09ab140257",
+     1,
+     "Many other surrogate data methods have been proposed, some based on optimizations to achieve an autocorrelation close to the original one, some based on wavelet transform and some capable of dealing with some types of non-stationary data."
+    ],
+    [
+     "c-074bbf77d40d49d7",
+     2,
+     "In this slice, 6/7 cases have warning horizons and at least one `directness_ratio > 1.0`, which should be treated as an estimation warning, not scientific evidence of stronger conditioned dependence."
+    ],
+    [
+     "c-17a95fd8c5103a99",
+     0,
+     "Exogenous screening with FDR (F8) uses greedy forward selection and redundancy penalty is configurable approximation."
+    ],
+    [
+     "c-17a95fd8c5103a99",
+     1,
+     "Greedy forward selection;"
+    ],
+    [
+     "c-1fd49d0c0a3c73c7",
+     0,
+     "The mutual_info_regression function relies on nonparametric methods based on entropy estimation from k-nearest neighbors distances."
+    ]
+   ],
+   "cluster": "d1-q8",
+   "k": 8,
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "probe": [
+    "available",
+    "based",
+    "condition",
+    "objectiv",
+    "selection"
+   ],
+   "question": "Does any sentence state a condition that says which option to choose in which situation?",
+   "seed_text": "Selection of a forecasting method should be based on objectives and conditions such as available data.",
+   "seeds": [
+    "c-e0043c2395d5a61b"
+   ],
+   "split": "d1",
+   "topic_id": "t21"
+  }
+ ]
+}

@@ -1,0 +1,353 @@
+{
+ "arm_closed": {
+  "0": 0.15384615384615385,
+  "N": 0.15384615384615385,
+  "P": 1.0,
+  "R": 0.15384615384615385
+ },
+ "cited_background": {
+  "t01": [],
+  "t02": [],
+  "t05": [],
+  "t07": [
+   [
+    "c-074bbf77d40d49d7",
+    0
+   ],
+   [
+    "c-074bbf77d40d49d7",
+    2
+   ]
+  ],
+  "t08": [],
+  "t09": [],
+  "t10": [],
+  "t14": [],
+  "t15": [],
+  "t16": [],
+  "t17": [],
+  "t18": [
+   [
+    "c-e0f0ce6bf728fd2b",
+    0
+   ],
+   [
+    "c-e0f0ce6bf728fd2b",
+    1
+   ]
+  ],
+  "t21": [
+   [
+    "c-0451ed09ab140257",
+    0
+   ],
+   [
+    "c-0451ed09ab140257",
+    1
+   ]
+  ]
+ },
+ "complete": true,
+ "hits": {
+  "t01": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t02": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t05": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t07": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t08": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t09": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t10": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t14": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t15": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t16": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t17": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t18": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t21": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  }
+ },
+ "insert_partial": {
+  "t01": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t02": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t05": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t07": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t08": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t09": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t10": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t14": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t15": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t16": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t17": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t18": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t21": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  }
+ },
+ "judge_model": "google/gemma-4-31b-it",
+ "judge_settings": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "google/gemma-4-31b-it",
+  "price_usd_per_mtok": [
+   0.1,
+   0.34
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "n_clusters": 10,
+ "n_topics": 13,
+ "part1": {
+  "diff": 1.0,
+  "hit": {
+   "0": 0.0,
+   "N": 0.0,
+   "P": 1.0,
+   "R": 0.0
+  },
+  "lower90": 1.0,
+  "passes": true
+ },
+ "partial_background": {
+  "t01": [],
+  "t02": [],
+  "t05": [],
+  "t07": [],
+  "t08": [],
+  "t09": [],
+  "t10": [],
+  "t14": [],
+  "t15": [],
+  "t16": [],
+  "t17": [],
+  "t18": [
+   [
+    "c-e0f0ce6bf728fd2b",
+    0
+   ],
+   [
+    "c-e0f0ce6bf728fd2b",
+    1
+   ]
+  ],
+  "t21": [
+   [
+    "c-0451ed09ab140257",
+    0
+   ],
+   [
+    "c-0451ed09ab140257",
+    1
+   ]
+  ]
+ },
+ "split": "d1",
+ "states": {
+  "t01": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t02": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t05": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t07": {
+   "0": "closed",
+   "N": "closed",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t08": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t09": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t10": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t14": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t15": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t16": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t17": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t18": {
+   "0": "closed",
+   "N": "partial",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t21": {
+   "0": "open",
+   "N": "closed",
+   "P": "closed",
+   "R": "partial"
+  }
+ },
+ "undecided": 0,
+ "verdict": "part1-pass"
+}

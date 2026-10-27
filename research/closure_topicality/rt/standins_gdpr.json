@@ -1,0 +1,8552 @@
+{
+ "arm_level": [
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.4375,
+    "N": 0.5625,
+    "P": 0.5,
+    "R": 0.5
+   },
+   "judge": "standin-length",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.375,
+    "N": 0.625,
+    "P": 0.625,
+    "R": 0.375
+   },
+   "judge": "standin-overlap",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.5,
+    "N": 0.5625,
+    "P": 0.5,
+    "R": 0.5
+   },
+   "judge": "standin-specificity",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 1.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "standin-lexicon",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.625,
+    "N": 0.4375,
+    "P": 0.5,
+    "R": 0.625
+   },
+   "judge": "standin-coin-0",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.4375,
+    "N": 0.625,
+    "P": 0.5,
+    "R": 0.4375
+   },
+   "judge": "standin-overlap_frac",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.4375,
+    "N": 0.5625,
+    "P": 0.5625,
+    "R": 0.4375
+   },
+   "judge": "standin-probe",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.25,
+    "N": 0.5625,
+    "P": 0.5625,
+    "R": 0.6875
+   },
+   "judge": "standin-novel",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.4375,
+    "N": 0.5625,
+    "P": 0.5625,
+    "R": 0.5
+   },
+   "judge": "standin-novel_func",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.4375,
+    "N": 0.6875,
+    "P": 0.6875,
+    "R": 0.4375
+   },
+   "judge": "standin-closing_lexicon",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.5625,
+    "N": 0.5625,
+    "P": 0.5625,
+    "R": 0.5625
+   },
+   "judge": "standin-question_lexicon",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.375,
+    "N": 0.625,
+    "P": 0.625,
+    "R": 0.375
+   },
+   "judge": "standin-idf_overlap",
+   "lower90": 0.0,
+   "passes": false
+  }
+ ],
+ "best_citing": {
+  "diff": 0.4375,
+  "hit": {
+   "0": 0.0,
+   "N": 0.0625,
+   "P": 0.5,
+   "R": 1.0
+  },
+  "judge": "cite-specificity-le@0",
+  "lower90": 0.25,
+  "passes": false
+ },
+ "citing": [
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@158",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@158",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.1875,
+    "R": 0.1875
+   },
+   "judge": "cite-length-argmax",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-argmin",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@30",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@30",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@44",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@44",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@46",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@46",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@47",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@47",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@51",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@51",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@55",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@55",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@57",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@57",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@58",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@58",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@60",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@60",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@62",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@62",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@66",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@66",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@69",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@69",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@82",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@82",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@89",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@89",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@92",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@92",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@97",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@97",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@98",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@98",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@100",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@100",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@101",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@101",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@104",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@104",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@106",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@106",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@110",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@110",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@115",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@115",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@118",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@118",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@120",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@120",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@125",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@125",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@127",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@127",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@128",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@128",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@132",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@132",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@133",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-le@133",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-ge@136",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@136",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@142",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@142",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@143",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@143",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@145",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@145",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@146",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@146",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@147",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@147",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@149",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@149",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@153",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@153",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@156",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@156",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@157",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@157",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@158",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@158",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@160",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-le@160",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-ge@161",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 0.125
+   },
+   "judge": "cite-length-le@161",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.875
+   },
+   "judge": "cite-length-ge@165",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 0.125
+   },
+   "judge": "cite-length-le@165",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.875
+   },
+   "judge": "cite-length-ge@166",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.1875,
+    "R": 0.1875
+   },
+   "judge": "cite-length-le@166",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.8125,
+    "R": 0.8125
+   },
+   "judge": "cite-length-ge@168",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.25,
+    "R": 0.25
+   },
+   "judge": "cite-length-le@168",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.75,
+    "R": 0.75
+   },
+   "judge": "cite-length-ge@170",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.3125,
+    "R": 0.3125
+   },
+   "judge": "cite-length-le@170",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.6875,
+    "R": 0.6875
+   },
+   "judge": "cite-length-ge@171",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.3125,
+    "R": 0.3125
+   },
+   "judge": "cite-length-le@171",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.6875,
+    "R": 0.6875
+   },
+   "judge": "cite-length-ge@175",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.3125,
+    "R": 0.3125
+   },
+   "judge": "cite-length-le@175",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.6875,
+    "R": 0.6875
+   },
+   "judge": "cite-length-ge@177",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.375,
+    "R": 0.375
+   },
+   "judge": "cite-length-le@177",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.625,
+    "R": 0.625
+   },
+   "judge": "cite-length-ge@180",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.375,
+    "R": 0.375
+   },
+   "judge": "cite-length-le@180",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.625,
+    "R": 0.625
+   },
+   "judge": "cite-length-ge@181",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.375,
+    "R": 0.375
+   },
+   "judge": "cite-length-le@181",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.625,
+    "R": 0.625
+   },
+   "judge": "cite-length-ge@183",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.4375,
+    "R": 0.4375
+   },
+   "judge": "cite-length-le@183",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.5625,
+    "R": 0.5625
+   },
+   "judge": "cite-length-ge@184",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.5,
+    "R": 0.5
+   },
+   "judge": "cite-length-le@184",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.5,
+    "R": 0.5
+   },
+   "judge": "cite-length-ge@185",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.5,
+    "R": 0.5
+   },
+   "judge": "cite-length-le@185",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.5,
+    "R": 0.5
+   },
+   "judge": "cite-length-ge@186",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.5625,
+    "R": 0.5625
+   },
+   "judge": "cite-length-le@186",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.4375,
+    "R": 0.4375
+   },
+   "judge": "cite-length-ge@187",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.625,
+    "R": 0.625
+   },
+   "judge": "cite-length-le@187",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.375,
+    "R": 0.375
+   },
+   "judge": "cite-length-ge@189",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.6875,
+    "R": 0.6875
+   },
+   "judge": "cite-length-le@189",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.3125,
+    "R": 0.3125
+   },
+   "judge": "cite-length-ge@191",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.6875,
+    "R": 0.6875
+   },
+   "judge": "cite-length-le@191",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.3125,
+    "R": 0.3125
+   },
+   "judge": "cite-length-ge@192",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.6875,
+    "R": 0.6875
+   },
+   "judge": "cite-length-le@192",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.3125,
+    "R": 0.3125
+   },
+   "judge": "cite-length-ge@193",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.6875,
+    "R": 0.6875
+   },
+   "judge": "cite-length-le@193",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.3125,
+    "R": 0.3125
+   },
+   "judge": "cite-length-ge@196",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.6875,
+    "R": 0.6875
+   },
+   "judge": "cite-length-le@196",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.3125,
+    "R": 0.3125
+   },
+   "judge": "cite-length-ge@197",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.75,
+    "R": 0.75
+   },
+   "judge": "cite-length-le@197",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.25,
+    "R": 0.25
+   },
+   "judge": "cite-length-ge@198",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.8125,
+    "R": 0.8125
+   },
+   "judge": "cite-length-le@198",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.1875,
+    "R": 0.1875
+   },
+   "judge": "cite-length-ge@199",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.875,
+    "R": 0.875
+   },
+   "judge": "cite-length-le@199",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.125,
+    "R": 0.125
+   },
+   "judge": "cite-length-ge@201",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-le@201",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-ge@203",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.9375,
+    "R": 0.9375
+   },
+   "judge": "cite-length-le@203",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.0625,
+    "R": 0.0625
+   },
+   "judge": "cite-length-ge@205",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@205",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@206",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@206",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@208",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@208",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@209",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@209",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@213",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@213",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@215",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@215",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@216",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@216",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@232",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@232",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@235",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@235",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@236",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@236",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@237",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@237",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@244",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@244",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@261",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@261",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@268",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@268",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@271",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@271",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@282",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@282",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@289",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@289",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@293",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@293",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@310",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@310",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-length-ge@389",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-length-le@389",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.1875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-argmax",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-argmin",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.1875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.8125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@4",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@4",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@5",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.625,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.375,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@6",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.9375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.0625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@7",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@7",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@8",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@8",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@9",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@9",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@10",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@10",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap-ge@12",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap-le@12",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.285714",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.285714",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.1875,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-argmax",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-argmin",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.0555556",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.0555556",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.0666667",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.0666667",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.0714286",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.0714286",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.0833333",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.0833333",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.0909091",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.0909091",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.0952381",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.0952381",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.111111",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.111111",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.125",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.125",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.133333",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.133333",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.142857",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.142857",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.15",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.15",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.153846",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.153846",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.166667",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.166667",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.176471",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.176471",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.181818",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.181818",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.210526",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.210526",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.214286",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.214286",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.222222",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.222222",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.230769",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.1875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.230769",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.8125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.235294",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.235294",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.25",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.25",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.266667",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.266667",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.272727",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.272727",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.277778",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.277778",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.285714",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.285714",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.294118",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.4375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.294118",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.5625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.4375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.3",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.5625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.307692",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.4375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.307692",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.5625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.3125",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.3125",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.333333",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.6875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.333333",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.3125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.352941",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.352941",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.357143",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.357143",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.363636",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.363636",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.375",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.375",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.384615",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.384615",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.388889",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.388889",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.4",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.4",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.416667",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.416667",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.428571",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.428571",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.444444",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.444444",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.454545",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.454545",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.461538",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.461538",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.466667",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.466667",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.470588",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.470588",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.555556",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.555556",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.571429",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.571429",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.588235",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.588235",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.625",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.625",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.666667",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.666667",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.692308",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.692308",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.75",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.75",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.875",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.875",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@0.923077",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@0.923077",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-overlap_frac-ge@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-overlap_frac-le@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.6875,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.4375,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.5625,
+    "R": 0.0625
+   },
+   "judge": "cite-probe-argmax",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.4375,
+    "R": 1.0
+   },
+   "judge": "cite-probe-argmin",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-probe-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.3125,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.6875,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.4375,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.5625,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@3",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@4",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.6875,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@4",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.3125,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@5",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.8125,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.1875,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@6",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@7",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@7",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@8",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@8",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-probe-ge@12",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-probe-le@12",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@9.5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@9.5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.1875,
+    "R": 1.0
+   },
+   "judge": "cite-novel-argmax",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-novel-argmin",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@4",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@4",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@7",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@7",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@8",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@8",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@9",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@9",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@10",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.375,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@10",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.625,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@11",
+   "lower90": -0.3125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@11",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@12",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@12",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@13",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@13",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@14",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@14",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@15",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@15",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@17",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@17",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@19",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-novel-le@19",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-ge@20",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0625
+   },
+   "judge": "cite-novel-le@20",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.9375
+   },
+   "judge": "cite-novel-ge@21",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel-le@21",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel-ge@22",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.3125
+   },
+   "judge": "cite-novel-le@22",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.6875
+   },
+   "judge": "cite-novel-ge@24",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.6875
+   },
+   "judge": "cite-novel-le@24",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.3125
+   },
+   "judge": "cite-novel-ge@25",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.8125
+   },
+   "judge": "cite-novel-le@25",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.1875
+   },
+   "judge": "cite-novel-ge@26",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.875
+   },
+   "judge": "cite-novel-le@26",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.125
+   },
+   "judge": "cite-novel-ge@27",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.9375
+   },
+   "judge": "cite-novel-le@27",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0625
+   },
+   "judge": "cite-novel-ge@28",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel-le@28",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@9",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@9",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.1875,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-argmax",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-argmin",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel_func-ge@-1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@-1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@2",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@4",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@4",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@5",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@7",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.125,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@7",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.875,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@8",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@8",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@9",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@9",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@10",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.375,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@10",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.625,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@11",
+   "lower90": -0.3125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.75,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@11",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.25,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@12",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@12",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@13",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@13",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@14",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@14",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@15",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@15",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@17",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@17",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@19",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@19",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@20",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.75
+   },
+   "judge": "cite-novel_func-le@20",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.25
+   },
+   "judge": "cite-novel_func-ge@21",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.875
+   },
+   "judge": "cite-novel_func-le@21",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.125
+   },
+   "judge": "cite-novel_func-ge@22",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.875
+   },
+   "judge": "cite-novel_func-le@22",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.125
+   },
+   "judge": "cite-novel_func-ge@24",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-novel_func-le@24",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.4375,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.5,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-le@0",
+   "lower90": 0.25,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.3125,
+    "R": 0.125
+   },
+   "judge": "cite-specificity-argmax",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.4375,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.5,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-argmin",
+   "lower90": 0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.4375,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.5,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-le@0",
+   "lower90": 0.25,
+   "passes": false
+  },
+  {
+   "diff": -0.4375,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.5,
+    "R": 0.0
+   },
+   "judge": "cite-specificity-ge@1",
+   "lower90": -0.625,
+   "passes": false
+  },
+  {
+   "diff": 0.3125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.8125,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-le@1",
+   "lower90": 0.125,
+   "passes": false
+  },
+  {
+   "diff": -0.3125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.1875,
+    "R": 0.0
+   },
+   "judge": "cite-specificity-ge@2",
+   "lower90": -0.5,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-le@2",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-specificity-ge@3",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-le@3",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-specificity-ge@6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-le@6",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-specificity-ge@7",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-specificity-le@7",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-closing_lexicon-ge@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-closing_lexicon-le@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-closing_lexicon-argmax",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.4375,
+    "R": 1.0
+   },
+   "judge": "cite-closing_lexicon-argmin",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-closing_lexicon-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-closing_lexicon-le@0",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-closing_lexicon-ge@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-closing_lexicon-le@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-question_lexicon-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-question_lexicon-le@0",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.4375,
+    "R": 0.0625
+   },
+   "judge": "cite-question_lexicon-argmax",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-question_lexicon-argmin",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-question_lexicon-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-question_lexicon-le@0",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-question_lexicon-ge@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-question_lexicon-le@1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@9.84098",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@9.84098",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-argmax",
+   "lower90": -0.3125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-argmin",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-ge@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@0",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@3.2152",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@3.2152",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@3.27838",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@3.27838",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@3.34582",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@3.34582",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@4.16258",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@4.16258",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@4.21665",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@4.21665",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@4.39897",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@4.39897",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@4.87795",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@4.87795",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@5.19245",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@5.19245",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@5.33221",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@5.33221",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@5.40882",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@5.40882",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@5.56916",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@5.56916",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@6.31304",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@6.31304",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@6.50743",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@6.50743",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@6.73871",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@6.73871",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@6.73927",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@6.73927",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@6.81159",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@6.81159",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.06413",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.06413",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.2845",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.2845",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.37222",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.37222",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.43444",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.43444",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.49021",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.49021",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.74325",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.74325",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.78551",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.78551",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.91067",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.91067",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.91143",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.91143",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@7.96022",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@7.96022",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@8.33691",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@8.33691",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@8.47045",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@8.47045",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@8.5136",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@8.5136",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@8.60457",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@8.60457",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@8.65334",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@8.65334",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@8.9253",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@8.9253",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@9.20368",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@9.20368",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@9.22079",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@9.22079",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@9.59287",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@9.59287",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@9.63789",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@9.63789",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@9.84098",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@9.84098",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@10.0002",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@10.0002",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@10.1888",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@10.1888",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@10.6697",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@10.6697",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@10.6818",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@10.6818",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@10.877",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@10.877",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@10.9494",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@10.9494",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@11.1535",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@11.1535",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@11.1867",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@11.1867",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@11.6531",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@11.6531",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@11.6685",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@11.6685",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@11.7996",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@11.7996",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@11.8685",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@11.8685",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@11.8909",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@11.8909",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@11.9822",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@11.9822",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@12.0715",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.1875,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@12.0715",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.8125,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@12.1741",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@12.1741",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@12.2674",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@12.2674",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@12.3434",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@12.3434",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@12.3778",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@12.3778",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@12.5887",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@12.5887",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@12.8271",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@12.8271",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@12.8968",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@12.8968",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@12.972",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@12.972",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@13.2166",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@13.2166",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@13.2528",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@13.2528",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@13.3333",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@13.3333",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@13.4984",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@13.4984",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@13.5807",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@13.5807",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@13.5997",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@13.5997",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@13.6295",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.25,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@13.6295",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.75,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@13.7227",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.3125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@13.7227",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.6875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@14.2575",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@14.2575",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@14.5799",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@14.5799",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@14.9266",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@14.9266",
+   "lower90": 0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@15.0169",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.375,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@15.0169",
+   "lower90": -0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@15.127",
+   "lower90": -0.3125,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.4375,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@15.127",
+   "lower90": -0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.5625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@15.465",
+   "lower90": -0.3125,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.5,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@15.465",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.5,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@15.9421",
+   "lower90": -0.4375,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.5,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@15.9421",
+   "lower90": -0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.5,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@16.5113",
+   "lower90": -0.3125,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@16.5113",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@17.2513",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@17.2513",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.1875,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@17.2532",
+   "lower90": -0.375,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@17.2532",
+   "lower90": -0.0625,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@17.379",
+   "lower90": -0.3125,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@17.379",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@17.6931",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@17.6931",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@18.0486",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@18.0486",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@18.1906",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@18.1906",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@18.6083",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@18.6083",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@19.3133",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.5625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@19.3133",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.4375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@19.3417",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@19.3417",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@19.4687",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.5625,
+    "P": 0.625,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@19.4687",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.375,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@20.1411",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.6875,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@20.1411",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.3125,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@20.5855",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.625,
+    "P": 0.75,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@20.5855",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.375,
+    "P": 0.25,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@20.8815",
+   "lower90": -0.25,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.75,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@20.8815",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.3125,
+    "P": 0.25,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@22.7994",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.75,
+    "P": 0.75,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@22.7994",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.25,
+    "P": 0.25,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@23.899",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.8125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@23.899",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.1875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@24.1562",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.8125,
+    "P": 0.8125,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@24.1562",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.1875,
+    "P": 0.1875,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@24.3589",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@24.3589",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@25.1015",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@25.1015",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@26.3689",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.875,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@26.3689",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.125,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@26.8937",
+   "lower90": -0.125,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.875,
+    "P": 0.9375,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@26.8937",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.125,
+    "P": 0.0625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@29.2632",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@29.2632",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@30.2468",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.9375,
+    "P": 0.9375,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@30.2468",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0625,
+    "P": 0.0625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@32.7916",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 0.9375,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@32.7916",
+   "lower90": -0.1875,
+   "passes": false
+  },
+  {
+   "diff": 0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0625,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@34.6925",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@34.6925",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 0.0,
+    "P": 0.0,
+    "R": 0.0
+   },
+   "judge": "cite-idf_overlap-ge@44.1897",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": 0.0,
+   "hit": {
+    "0": 0.0,
+    "N": 1.0,
+    "P": 1.0,
+    "R": 1.0
+   },
+   "judge": "cite-idf_overlap-le@44.1897",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.0625,
+   "hit": {
+    "0": 0.0,
+    "N": 0.6875,
+    "P": 0.625,
+    "R": 0.5625
+   },
+   "judge": "cite-coin-0",
+   "lower90": -0.3125,
+   "passes": false
+  },
+  {
+   "diff": 0.25,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.6875,
+    "R": 0.375
+   },
+   "judge": "cite-coin-1",
+   "lower90": 0.0,
+   "passes": false
+  },
+  {
+   "diff": -0.125,
+   "hit": {
+    "0": 0.0,
+    "N": 0.4375,
+    "P": 0.3125,
+    "R": 0.625
+   },
+   "judge": "cite-coin-2",
+   "lower90": -0.4375,
+   "passes": false
+  }
+ ],
+ "passing": [],
+ "usable": true
+}

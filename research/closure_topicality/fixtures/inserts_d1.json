@@ -1,0 +1,57 @@
+{
+ "inserts": {
+  "t01": {
+   "N": "CrossAMI for exogenous screening (F8) is computed on the training window only, and the leakage boundary is the train_end argument since version 0.3.",
+   "P": "CrossAMI is computed on the training window only because scores taken over the full series let test-window values leak into exogenous screening."
+  },
+  "t02": {
+   "N": "known_future_drivers takes a list of variable names, then stores the future values known at prediction time, such as calendar flags, in the forecasting config object.",
+   "P": "Passing a variable whose future values are not known at prediction time into known_future_drivers gives the model information it will not have in production."
+  },
+  "t05": {
+   "N": "The autocovariance normalized to a Pearson correlation coefficient is what the acf helper returns, and the engineering variant without normalization was added 3 months later.",
+   "P": "The engineering convention of dropping the normalization does not apply when the autocovariance feeds a significance test, which needs the Pearson correlation scale."
+  },
+  "t07": {
+   "N": "Numerical inflation is logged as a warning in the result object, since the multiple backends for sample-size stress testing are listed in the backends parameter of the run config file.",
+   "P": "If a high score persists across multiple backends and sample-size stress testing, the warning is cleared; if it collapses, the inflation was numerical and the result is discarded."
+  },
+  "t08": {
+   "N": "The interval_width column holds the uncertainty attached to each forecast under this practice, and the plotting helper draws it as a degree band around the line.",
+   "P": "The practice of attaching uncertainty does not hold for deterministic schedule values like fixed calendar holidays, which carry no forecast error at all."
+  },
+  "t09": {
+   "N": "The derived-feature profile is computed first, then the raw profile, and each lag of both profiles is stored in the data-leakage candidate table with its estimation noise.",
+   "P": "Such lags are treated as leakage candidates because a derived feature built from the raw series cannot hold more information about the target than the raw profile."
+  },
+  "t10": {
+   "N": "Surrogates are drawn by the surrogate module, with sample size n and n_surrogates set at 200 and 99 by default since version 0.2 of the package.",
+   "P": "Surrogates give a series-specific noise floor, and without that floor a high AMI value at some lag cannot be told apart from chance dependence."
+  },
+  "t14": {
+   "N": "The degree of uncertainty attaching to forecasts is stored as a 90% interval by default, in the interval column of the forecast frame returned by the point forecast call.",
+   "P": "The practice does not hold for a point forecast fed straight into an automated order rule, where the downstream system accepts a single number and ignores any interval."
+  },
+  "t15": {
+   "N": "The normalization in engineering code is set by the normalize argument of the autocorrelation function, and autocovariance is its unnormalized output.",
+   "P": "The terms are not interchangeable in engineering code when a function returns values bounded by one, since those are normalized autocorrelations."
+  },
+  "t16": {
+   "N": "Rolling-origin evaluation stores the diagnostics computed on train windows in the fold_diagnostics table, one row per fold, keyed by origin date and window size.",
+   "P": "Train-window diagnostics in rolling-origin evaluation give fold scores that move gradually, and a sharp jump at one fold marks leakage that the next step traces."
+  },
+  "t17": {
+   "N": "The upper band and the lower band for MI are returned as band_upper and band_lower, then drawn as dashed lines in the surrogate bands plot of the report.",
+   "P": "The lower band stops being useless when a backend's bias pushes MI estimates below zero, since the lower band then shows how far the bias reaches."
+  },
+  "t18": {
+   "N": "The robustness study pipeline writes its comparison of all configured backends against linear_residual to robustness.csv, then prints a summary table of the backends.",
+   "P": "Backends whose lag ranks agree with linear_residual across the robustness study pipeline are kept, and a backend that reorders the top lags is dropped from the set."
+  },
+  "t21": {
+   "N": "The forecasting method is selected through the method argument, and the objectives and available data are logged since release 0.3 in the run metadata file of each run.",
+   "P": "When fewer than two seasonal cycles of data are available, choose a seasonal naive method; with long histories and known drivers, choose a regression-based method."
+  }
+ },
+ "note": "G2's gate topics after the owner's drops; P and N copied unchanged from research/d1b_rerun/fixtures/inserts.json, confirmed by the owner 2026-10-26"
+}

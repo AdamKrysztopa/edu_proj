@@ -1,0 +1,365 @@
+{
+ "arm_closed": {
+  "0": 0.0,
+  "N": 0.0,
+  "P": 1.0,
+  "R": 0.07692307692307693
+ },
+ "cited_background": {
+  "t01": [],
+  "t02": [],
+  "t05": [],
+  "t07": [],
+  "t08": [],
+  "t09": [
+   [
+    "c-2f1435153035f8c0",
+    0
+   ],
+   [
+    "c-2f1435153035f8c0",
+    1
+   ]
+  ],
+  "t10": [],
+  "t14": [],
+  "t15": [],
+  "t16": [],
+  "t17": [],
+  "t18": [],
+  "t21": []
+ },
+ "complete": true,
+ "hits": {
+  "t01": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t02": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t05": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t07": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t08": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t09": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t10": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t14": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t15": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t16": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t17": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t18": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  },
+  "t21": {
+   "0": false,
+   "N": false,
+   "P": true,
+   "R": false
+  }
+ },
+ "insert_partial": {
+  "t01": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t02": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t05": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t07": {
+   "0": false,
+   "N": true,
+   "P": false,
+   "R": false
+  },
+  "t08": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t09": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t10": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t14": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t15": {
+   "0": false,
+   "N": true,
+   "P": false,
+   "R": false
+  },
+  "t16": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t17": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t18": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  },
+  "t21": {
+   "0": false,
+   "N": false,
+   "P": false,
+   "R": false
+  }
+ },
+ "judge_model": "gpt-6.1-sol",
+ "judge_settings": {
+  "api": "https://api.openai.com/v1/chat/completions",
+  "max_completion_tokens": 6000,
+  "model": "gpt-6.1-sol",
+  "price_usd_per_mtok": [
+   2.0,
+   10.0
+  ],
+  "reasoning_effort": "high",
+  "response_format": "json_object",
+  "temperature": "not sent"
+ },
+ "n_clusters": 10,
+ "n_topics": 13,
+ "part1": {
+  "diff": 1.0,
+  "hit": {
+   "0": 0.0,
+   "N": 0.0,
+   "P": 1.0,
+   "R": 0.0
+  },
+  "lower90": 1.0,
+  "passes": true
+ },
+ "partial_background": {
+  "t01": [],
+  "t02": [],
+  "t05": [],
+  "t07": [
+   [
+    "c-074bbf77d40d49d7",
+    0
+   ],
+   [
+    "c-074bbf77d40d49d7",
+    2
+   ]
+  ],
+  "t08": [],
+  "t09": [
+   [
+    "c-2f1435153035f8c0",
+    0
+   ],
+   [
+    "c-2f1435153035f8c0",
+    1
+   ],
+   [
+    "c-5e1cf37fab1d0e27",
+    0
+   ],
+   [
+    "c-5e1cf37fab1d0e27",
+    1
+   ]
+  ],
+  "t10": [],
+  "t14": [],
+  "t15": [],
+  "t16": [],
+  "t17": [],
+  "t18": [
+   [
+    "c-09ea319b9e11835e",
+    2
+   ],
+   [
+    "c-e0f0ce6bf728fd2b",
+    0
+   ],
+   [
+    "c-e0f0ce6bf728fd2b",
+    1
+   ]
+  ],
+  "t21": [
+   [
+    "c-0451ed09ab140257",
+    0
+   ],
+   [
+    "c-0451ed09ab140257",
+    1
+   ]
+  ]
+ },
+ "split": "d1",
+ "states": {
+  "t01": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t02": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t05": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t07": {
+   "0": "partial",
+   "N": "partial",
+   "P": "closed",
+   "R": "partial"
+  },
+  "t08": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t09": {
+   "0": "partial",
+   "N": "partial",
+   "P": "closed",
+   "R": "closed"
+  },
+  "t10": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t14": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t15": {
+   "0": "open",
+   "N": "partial",
+   "P": "closed",
+   "R": "open"
+  },
+  "t16": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t17": {
+   "0": "open",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t18": {
+   "0": "partial",
+   "N": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t21": {
+   "0": "partial",
+   "N": "open",
+   "P": "closed",
+   "R": "partial"
+  }
+ },
+ "undecided": 0,
+ "verdict": "part1-pass"
+}
