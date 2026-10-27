@@ -16,6 +16,10 @@ parts are done and the paid part waits for the owner (§9). $0 spent. One `metho
 judged the stop correct by a wide margin and found the funded design not runnable as first written.
 Its findings are applied below. The remaining preconditions (§7) must be met before any funding.
 
+**Owner decision, 2026-10-27:** (1) the stop is accepted; there is no paid part, and ranking work
+stays deferred to N3, per D1b's Change; (2) turbo-design is excluded from any later study
+(`REORIENTATION.md` §18.1, conservation content). §9 is closed.
+
 ## 1. Pipeline (D1's and D1b's)
 
 Per codebase:

@@ -15,8 +15,11 @@ One codebase costs about **$9.38** at D1's corpus size once both ledgers are pri
 eight candidates' estimates run from $4.29 (antropy) to $12.54 (weft). No codebase has an open share
 yet. No D1c codebase is recommended on data.
 
-**Changed.** The paid part waits for the owner (plan §9; recommended: accept the stop). The $0 work
-settled four things:
+**Owner decision (2026-10-27).** The stop is accepted: the survey has no paid part, and ranking work
+stays deferred to N3, per D1b's Change. turbo-design is excluded from any later study, because its
+subject rests on conservation laws (`REORIENTATION.md` §18.1).
+
+**Changed.** The $0 work settled four things:
 
 - The comparison and the D1c-eligibility rule are fixed (plan §3, §4).
 - A D1c codebase must be one the owner wrote.
