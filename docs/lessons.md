@@ -474,3 +474,21 @@ A queue padded with those is a queue nobody drains.
 - **What happened:** A D1c judging test edited "the first" ID; with random opaque IDs, about 1 run in 8 that ID was a canary, and the test failed. Found as flakiness during the D1c preparation.
 - **Generalises to:** A test over shuffled or randomly named items selects them by kind or content, never by position, and seeds any randomness it relies on.
 - **Candidate home:** the test conventions; drain with "A sealed artefact sat on disk in clear text" (record writes, do not scan disk afterwards).
+
+### "Two identical runs" is ill-defined for a hosted model at temperature 0
+
+- **What happened:** gemma-4-31b-it via OpenRouter at temperature 0 gave identical G1 verdicts and seed-free states in two runs, but 5 of 76 equal-cap judgements differed (closure-topicality agent, branch `closure-topicality-check`). `docs/plans/prompts/_common.md:35` requires "two runs with identical results" without saying at which level; the agent chose the state level during the session, which excludes gemma as an ADR 0009 arm, while the judge-screening standard (branch `judge-screening-standard`) marks gemma eligible on verdicts. The ambiguity surfaced only after the runs.
+- **Generalises to:** A reproducibility rule names its level (verdict, state or judgement) and a tolerance before the runs, because hosted models are not bitwise deterministic at temperature 0.
+- **Candidate home:** `docs/plans/prompts/_common.md:35`; `gapmap.screen`'s eligibility rule and ADR 0010.
+
+### Per-sentence scoring mapped citations by claim id
+
+- **What happened:** `semantic.judge_retrieval` returns claim ids, and real background rows can share one claim id. The first `rt.py` (branch `closure-topicality-check`) mapped judge citations to sentences by claim id, which over-counted rows, and dropped partial marks. The agent found the first defect itself; `citation-verifier` found the second. Both fixed and the cached runs replayed at $0.
+- **Generalises to:** Any per-sentence score built on a judge's citations maps them by sentence position or id, with a test where two sentences share a claim id and one is marked partial.
+- **Candidate home:** a gapmap test and a note in `gapmap/src/gapmap/semantic.py` on what `a_hits` indexes.
+
+### A structural argument in a plan predicted a result the measurement contradicted
+
+- **What happened:** The closure-topicality plan argued that the overlap stand-in would still pass control2 after donor matching. Measured, matching removed the stand-in's lead but left too few pairs to read (GDPR v1: 4 of 44). The plan had reasoned instead of computing the matched-pair count, which was $0.
+- **Generalises to:** A prediction inside a plan that can be computed at $0 is computed before the plan is registered, not argued.
+- **Candidate home:** L7.3's "compute the best case" step in the `methods-critic` checklist.
