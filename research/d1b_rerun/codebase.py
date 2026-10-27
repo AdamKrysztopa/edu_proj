@@ -71,13 +71,33 @@ def _placeholders(value, where: str = "") -> list[str]:
     return []
 
 
+def _repo_tail(name: str) -> str:
+    name = name.strip().lower().rstrip("/")
+    return name[:-4] if name.endswith(".git") else name
+
+
+def reconstruction_problems(run_dir: Path) -> list[str]:
+    """Why a reconstruction run does not count as complete (D1c plan §3.2). The sidecar's own
+    `complete` flag means only that no exception or budget stop ended the run: D1's top-tier run
+    says complete with 823 calls failed. Failed calls are counted after retries, so a transient
+    error that a retry fixed does not count."""
+    side = json.loads((Path(run_dir) / "sidecar.json").read_text())
+    out = list(side.get("incomplete_reasons") or [])
+    if side.get("complete") is not True and not out:
+        out.append("sidecar not complete")
+    failed = (side.get("stats") or {}).get("failed_calls_by_task") or {}
+    out += [f"{task}: {n} failed calls" for task, n in sorted(failed.items()) if n]
+    return out
+
+
 def load(path: Path) -> Codebase:
     path = Path(path).resolve()
     cfg = json.loads(path.read_text())
     unfilled = _placeholders(cfg)
     if unfilled:
         raise Unfilled(f"{path}: {PLACEHOLDER} left in {', '.join(unfilled)}")
-    hit = [r for r in EXCLUDED_REPOS if cfg["owner_repo"].lower().rstrip("/").endswith(r.lower())]
+    named = [cfg["owner_repo"], cfg.get("corpus_build", {}).get("repo_url", "")]
+    hit = [r for r in EXCLUDED_REPOS for n in named if _repo_tail(n).endswith(r.lower())]
     if hit:
         raise Excluded(f"{path}: {hit[0]} is excluded from targeting tests (D1c plan §4, Stop 0)")
     root = path.parent

@@ -1,0 +1,12 @@
+{
+ "_what": "Blind subagent topic review (research/d1c/topic_review_prompt.md) on D1b's 51 candidate topics, scored against the owner's 10 within-pool 'same as T...' drops in research/d1b_rerun/fixtures/topic_review.json. The owner's 6 'same as D1-Q...' drops are not scored: the reviewer was not shown D1's questions, and a new codebase has none. Floor registered before the run: recall >= 0.8.",
+ "floor": 0.8,
+ "owner_within_pool_drops": ["T003", "T009", "T031", "T038", "T040", "T041", "T042", "T044", "T049", "T050"],
+ "reviewer_drops": ["T003", "T009", "T031", "T038", "T041", "T042", "T049", "T050"],
+ "hits": 8,
+ "missed": {"T040": "owner: same as T023 (adapters hold transport, not business logic)", "T044": "owner: same as T016 (minimum series length for AMI)"},
+ "reviewer_drops_outside_owner_groups": [],
+ "recall": 0.8,
+ "meets_floor": true,
+ "note": "Exactly at the floor. Both misses were among the reviewer's own named close calls (T023/T040; the short-series cautions including T044)."
+}

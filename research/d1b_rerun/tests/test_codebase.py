@@ -44,6 +44,37 @@ def test_an_excluded_repository_is_refused(tmp_path, repo):
         codebase.load(tmp_path / "codebase.json")
 
 
+@pytest.mark.parametrize("field,value", [("owner_repo", "https://github.com/AdamKrysztopa/informant-video.git"),
+                                         ("repo_url", "https://github.com/adamkrysztopa/Informant-Video/")])
+def test_the_exclusion_check_normalises_and_covers_the_corpus_repository(tmp_path, field, value):
+    cfg = {"name": "x", "title": "X", "owner_repo": "github.com/AdamKrysztopa/x", "domain": "x", "seed": 7,
+           "corpus": "corpus", "ledgers": {}, "prior_items": None, "canaries": "c.json",
+           "corpus_build": {"repo_url": "https://github.com/AdamKrysztopa/x"}}
+    if field == "owner_repo":
+        cfg["owner_repo"] = value
+    else:
+        cfg["corpus_build"]["repo_url"] = value
+    (tmp_path / "codebase.json").write_text(json.dumps(cfg))
+    with pytest.raises(codebase.Excluded):
+        codebase.load(tmp_path / "codebase.json")
+
+
+def test_neither_d1_reconstruction_counts_as_complete():
+    cb = codebase.d1b()
+    cheap = codebase.reconstruction_problems(cb.ledger_path("cheap-26b").parent)
+    top = codebase.reconstruction_problems(cb.ledger_path("toptier-26b").parent)
+    assert any("budget exceeded" in p for p in cheap)
+    assert "cross_verify: 761 failed calls" in top and "decoy: 30 failed calls" in top
+
+
+def test_a_retried_call_that_succeeded_leaves_a_run_complete(tmp_path):
+    (tmp_path / "sidecar.json").write_text(json.dumps(
+        {"complete": True, "incomplete_reasons": [], "stats": {"failed_calls_by_task": {"verify": 0, "decoy": 0}}}))
+    (tmp_path / "calls.jsonl").write_text(json.dumps({"task": "verify", "outcome": "api_error"}) + "\n"
+                                          + json.dumps({"task": "verify", "outcome": "ok"}) + "\n")
+    assert codebase.reconstruction_problems(tmp_path) == []
+
+
 def test_a_config_with_a_placeholder_is_refused(tmp_path):
     cfg = json.loads((HERE.parent / "d1c" / "codebase.template.json").read_text())
     (tmp_path / "codebase.json").write_text(json.dumps(cfg))

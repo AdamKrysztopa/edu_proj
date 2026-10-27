@@ -141,6 +141,24 @@ def standin_problems(paraphrase: str, planted: str) -> list[str]:
     return out
 
 
+def _max_overlap(question: str, answer: str, retriever: novelty.Retriever) -> float:
+    toks = common.tokens(answer)
+    return max((common.jaccard(toks, common.tokens(t)) for _, t in retriever.top(question + " " + answer)),
+               default=0.0)
+
+
+def overlap_problems(spec: dict, retriever: novelty.Retriever) -> list[str]:
+    """Lexical overlap is the stand-in that passed D1b's G4: a "lower overlap with the shown
+    passages is new" labeller must get the pair wrong, so the planted answer may not overlap less."""
+    para = _max_overlap(spec["paraphrase_question"], spec["paraphrase"], retriever)
+    plant = _max_overlap(spec["planted_question"], spec["planted_new"], retriever)
+    if plant < para:
+        return [f"a 'lower overlap is new' labeller gets both right: the planted answer's overlap with the shown "
+                f"passages ({plant:.3f}) is below the paraphrase's ({para:.3f}); reuse more of the documentation's "
+                "own terms in the planted answer"]
+    return []
+
+
 def copied(question: str, passages: list[dict], retriever: novelty.Retriever) -> str:
     ok = {p["text"] for p in eligible(passages)}
     for _, text_ in retriever.top(question, len(retriever.items)):
@@ -161,7 +179,8 @@ def check(spec: dict, cb: codebase.Codebase) -> list[str]:
     return (paraphrase_problems(src["text"], spec["paraphrase_question"], spec["paraphrase"], retriever)
             + planted_problems(spec["planted_question"], spec["planted_new"], spec["planted_terms"], passages,
                                retriever)
-            + standin_problems(spec["paraphrase"], spec["planted_new"]))
+            + standin_problems(spec["paraphrase"], spec["planted_new"])
+            + overlap_problems(spec, retriever))
 
 
 def ready(spec: dict, cb: codebase.Codebase, *, source_id: str) -> None:
@@ -174,7 +193,11 @@ def ready(spec: dict, cb: codebase.Codebase, *, source_id: str) -> None:
         raise NotReady("the owner has not confirmed the canary labels")
 
 
-def brief(src: dict, cb: codebase.Codebase | None = None, config: str = "CFG") -> str:
+def brief(src: dict, cb: codebase.Codebase | None = None, config: str = "CFG",
+          style: list[str] | None = None) -> str:
+    examples = ("Write `paraphrase_question` and `planted_question` in the same style as these candidate "
+                "questions. They were generated for this project but are not on the expert's sheet, so no expert "
+                "answer to them exists:\n\n" + "\n".join(f"> {q}" for q in style) if style else "")
     repo = Path(__file__).resolve().parents[2]
     out = cb.canaries.relative_to(repo) if cb is not None else "fixtures/canaries.json"
     corpus = cb.corpus.relative_to(repo) if cb is not None else "the corpus directory"
@@ -183,7 +206,8 @@ def brief(src: dict, cb: codebase.Codebase | None = None, config: str = "CFG") -
 
 You write two short answers used to check two blind judges. Each judge compares an expert's
 answer with passages from a software project's documentation and labels it "new" (it adds
-knowledge the passages lack) or "already written". You never see any real question or answer.
+knowledge the passages lack) or "already written". You never see a question the expert was asked,
+or any expert answer.
 
 Source passage, from the project's own documentation (id {src['id']}, "{src['title']}"):
 
@@ -206,10 +230,14 @@ Write one JSON object with these keys:
   example "a 3-day cutoff"). Each must occur nowhere in the documentation.
 - `owner_confirmed`: false.
 
-Two trivial labellers must each get one of your two answers wrong: "new iff it contains a digit"
+Three trivial labellers must each get one of your two answers wrong: "new iff it contains a digit"
 (so if the planted answer has digits, the paraphrase must carry one too, for example a number the
-passage states) and "the longer answer is new" (so the planted answer may be at most
-{LENGTH_MATCH:.0%} longer than the paraphrase).
+passage states), "the longer answer is new" (so the planted answer may be at most
+{LENGTH_MATCH:.0%} longer than the paraphrase) and "the answer with less word overlap with the
+documentation is new" (so the planted answer should reuse at least as much of the documentation's
+own vocabulary as the paraphrase does).
+
+{examples}
 
 Paths are relative to the repository root. Save it as `{out}`. The documentation is the HTML
 under `{corpus}`; you may search it. Then run `{check}` from the repository root and revise until it prints `"ready": false` with only the owner's confirmation
@@ -228,7 +256,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "pick":
         out = cb.root / "fixtures" / "canary_brief.md"
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(brief(src, cb, args.codebase))
+        style = (novelty.spare_questions(cb.pool, cb.root / "questions.md", seed=cb.seed + 1, k=3)
+                 if cb.pool.exists() else None)
+        out.write_text(brief(src, cb, args.codebase, style))
         print(json.dumps({"source_id": src["id"], "eligible": len(eligible(passages)), "brief": str(out)}))
         return 0
     spec = json.loads(cb.canaries.read_text())

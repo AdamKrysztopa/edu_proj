@@ -110,24 +110,36 @@ def lock(here: Path = HERE) -> dict:
     return out
 
 
-def _canaries(question: str, retriever: Retriever, cb=None) -> tuple[list[dict], dict[str, str]]:
+def spare_questions(pool: Path, questions: Path, *, seed: int, k: int) -> list[str]:
+    """Lens-template questions from pool topics that are not on the sheet, seeded: canaries that
+    carry them look like real cases without repeating a real case's question."""
+    on_sheet = set(parse_answers(questions.read_text()).values()) if questions.exists() else set()
+    texts = sorted({t["question_text"] for t in json.loads(pool.read_text())["topics"]} - on_sheet)
+    return random.Random(seed).sample(texts, min(k, len(texts)))
+
+
+def _canaries(question: str, retriever: Retriever, cb=None,
+              spare_questions: list[str] | None = None) -> tuple[list[dict], dict[str, str]]:
     """D1b's canaries are fixed by hand (`canary_mode: fixed`); a new codebase's are generated
-    from its own corpus and must pass `canaries.ready` (seeded source, code checks, owner)."""
+    from its own corpus and must pass `canaries.ready` (seeded source, code checks, owner). With
+    spare questions, the filler and copied canaries carry them instead of the sheet's first."""
     filler = ("This is an important point and it depends on the situation, so one should think about it "
               "carefully and consider the context before deciding what to do. ").split()
     spec = json.loads((cb.canaries if cb is not None else HERE / "fixtures" / "canaries.json").read_text())
     generated = cb is not None and cb.canary_mode == "generated"
+    q40, q90, q_copied = (spare_questions if spare_questions and len(spare_questions) >= 3 else [question] * 3)[:3]
     if generated:
         sys.path.insert(0, str(HERE))
         import canaries as gen
 
         corpus_blocks = gen.source_passages(cb)
         gen.ready(spec, cb, source_id=gen.pick(corpus_blocks, cb.seed)["id"])
-        copied = gen.copied(question, corpus_blocks, retriever)
+        copied = gen.copied(q_copied, corpus_blocks, retriever)
     else:
-        copied = retriever.top(question, 1)[0][1]
-    rows = [{"id": f"c-filler-{n}", "question": question, "answer": " ".join((filler * 10)[:n])} for n in (40, 90)]
-    rows.append({"id": "c-copied", "question": question, "answer": copied})
+        copied = retriever.top(q_copied, 1)[0][1]
+    rows = [{"id": f"c-filler-{n}", "question": q, "answer": " ".join((filler * 10)[:n])}
+            for n, q in ((40, q40), (90, q90))]
+    rows.append({"id": "c-copied", "question": q_copied, "answer": copied})
     rows.append({"id": "c-paraphrase", "question": spec["paraphrase_question"], "answer": spec["paraphrase"]})
     rows.append({"id": "c-new", "question": spec["planted_question"] if generated else question,
                  "answer": spec["planted_new"]})
@@ -149,7 +161,9 @@ def cmd_cases(out: Path, cb=None) -> None:
     questions = parse_answers((here / "questions.md").read_text())
     answers = parse_answers((here / "answers.md").read_text())
     retriever = Retriever(passages(cb.corpus) if cb is not None else passages())
-    canaries, expected = _canaries(questions[min(questions)], retriever, cb)
+    spare = (spare_questions(cb.pool, here / "questions.md", seed=cb.seed, k=3)
+             if cb is not None and cb.canary_mode == "generated" else None)
+    canaries, expected = _canaries(questions[min(questions)], retriever, cb, spare)
     cases, case_map = build_cases(questions, answers, canaries, expected, retriever)
     out.mkdir(parents=True, exist_ok=True)
     (out / "instructions.txt").write_text(SYSTEM + "\n\nFor each case, read QUESTION, EXPERT ANSWER and PASSAGES. "
@@ -190,13 +204,15 @@ def split_judgements(case_map: dict, a: dict, b: dict, answers: dict[int, str]) 
     return failures, sorted(judged, key=lambda r: r["q"])
 
 
-def ingest(here: Path, a: dict, b: dict) -> dict:
-    """One pass per judge: a second ingest, or a re-run of a judge, is refused."""
+def ingest(here: Path, a: dict, b: dict, raw: dict[str, Path] | None = None) -> dict:
+    """One pass per judge: a second ingest is refused. The raw outputs' hashes are recorded; the
+    plan also commits them as each judge returns, so a re-run judge would show as a hash change."""
     if (here / "judgements.json").exists():
         raise SystemExit("judgements.json exists: each judge gets one pass")
     case_map = json.loads((here / "case_map.json").read_text())
     failures, judged = split_judgements(case_map, a, b, parse_answers((here / "answers.md").read_text()))
-    doc = {"canary_failures": failures, "judged": judged}
+    doc = {"canary_failures": failures, "judged": judged,
+           "raw_sha256": {k: _sha(Path(p)) for k, p in (raw or {}).items()}}
     (here / "judgements.json").write_text(json.dumps(doc, indent=1) + "\n")
     return doc
 
@@ -277,7 +293,8 @@ def main(argv: list[str] | None = None) -> int:
     elif args.cmd == "cases":
         cmd_cases(Path(args.out), cb)
     elif args.cmd == "ingest":
-        doc = ingest(here, json.loads(Path(args.a).read_text()), json.loads(Path(args.b).read_text()))
+        doc = ingest(here, json.loads(Path(args.a).read_text()), json.loads(Path(args.b).read_text()),
+                     raw={"judge_a": Path(args.a), "judge_b": Path(args.b)})
         print(json.dumps({"canary_failures": doc["canary_failures"], "judged": len(doc["judged"])}))
         return 1 if doc["canary_failures"] else 0
     else:

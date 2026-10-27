@@ -103,8 +103,8 @@ def test_the_copied_canary_is_an_eligible_passage(corpus):
 
 def _spec(src, **kw):
     return {"source_id": src["id"], "paraphrase_question": D1B_SPEC["paraphrase_question"],
-            "paraphrase": _length_matched(), "planted_question": D1B_SPEC["paraphrase_question"],
-            "planted_new": D1B_SPEC["planted_new"], "planted_terms": D1B_NOVEL_TERMS,
+            "paraphrase": _length_matched(PLANTED_RICH), "planted_question": D1B_SPEC["paraphrase_question"],
+            "planted_new": PLANTED_RICH, "planted_terms": D1B_NOVEL_TERMS,
             "owner_confirmed": True, **kw}
 
 
@@ -120,8 +120,12 @@ def test_ready_needs_the_seeded_source_passing_checks_and_the_owners_confirmatio
         canaries.ready(_spec(src, paraphrase=src["text"]), cb, source_id=src["id"])
 
 
-def _length_matched():
-    words = len(D1B_SPEC["planted_new"].split())
+PLANTED_RICH = (D1B_SPEC["planted_new"] + " None of this touches the experimental Lyapunov exponent, which stays "
+                "excluded from automated triage.")
+
+
+def _length_matched(planted: str = D1B_SPEC["planted_new"]):
+    words = len(planted.split())
     return " ".join((D1B_SPEC["paraphrase"] + " " + D1B_SPEC["paraphrase"]).split()[:words])
 
 
@@ -133,6 +137,16 @@ def test_trivial_stand_in_labellers_must_each_get_a_canary_wrong():
     no_digits = " ".join(["fragile"] * words)
     problems = canaries.standin_problems(no_digits, D1B_SPEC["planted_new"])
     assert len(problems) == 1 and "digit" in problems[0]
+
+
+def test_a_lower_overlap_is_new_labeller_must_also_fail(corpus):
+    _, passages, retriever = corpus
+    spec = {"paraphrase_question": D1B_SPEC["paraphrase_question"], "paraphrase": _length_matched(),
+            "planted_question": D1B_SPEC["paraphrase_question"], "planted_new": D1B_SPEC["planted_new"]}
+    problems = canaries.overlap_problems(spec, retriever)
+    assert len(problems) == 1 and "overlap" in problems[0]
+    spec["planted_new"] = spec["paraphrase"]
+    assert canaries.overlap_problems(spec, retriever) == []
 
 
 DRYRUN = HERE.parent / "d1c" / "dryrun-dependence-forecastability"
@@ -154,9 +168,13 @@ def test_novelty_uses_generated_canaries_only_once_the_owner_confirms(tmp_path):
     with pytest.raises(canaries.NotReady, match="owner"):
         novelty._canaries(question, retriever, cb)
     (tmp_path / "canaries.json").write_text(json.dumps({**spec, "owner_confirmed": True}))
-    rows, expected = novelty._canaries(question, retriever, codebase.replace(cb, canaries=tmp_path / "canaries.json"))
+    spare = ["One source writes: \"a\". Why?", "One source writes: \"b\". Why?", "One source writes: \"c\". Why?"]
+    rows, expected = novelty._canaries(question, retriever, codebase.replace(cb, canaries=tmp_path / "canaries.json"),
+                                       spare_questions=spare)
     by_id = {r["id"]: r for r in rows}
     assert by_id["c-new"]["question"] == spec["planted_question"]
+    assert [by_id[c]["question"] for c in ("c-filler-40", "c-filler-90", "c-copied")] == spare
+    assert question not in {r["question"] for r in rows}
     assert by_id["c-copied"]["answer"] in {p["text"] for p in canaries.eligible(canaries.source_passages(cb))}
     assert expected["c-paraphrase"] == "already written" and expected["c-new"] == "new"
 

@@ -285,6 +285,7 @@ def _arms(args, cb: codebase.Codebase) -> tuple[list[dict], dict, list, list]:
     pool = json.loads(_pool_path(args, cb).read_text())
     review = Path(args.review) if getattr(args, "review", None) else cb.review
     drop = set() if getattr(args, "unreviewed", False) else set(json.loads(review.read_text())["drop"])
+    drop |= lexical_drops(pool["topics"])
     topics = [t for t in pool["topics"] if t["topic_id"] not in drop]
     rows_by_version = {(r["ledger"], r["test_id"]): r for r in pool["rows"]}
     arm_dirs = dict((k, Path(v)) for k, v in (a.split("=", 1) for a in args.arm))
@@ -314,10 +315,14 @@ def count_summary(topics: list[dict], gaps: list[dict], covs: list[dict], *, see
 NEAR_DUPLICATE = 0.30
 
 
-def near_duplicates(items: list[dict]) -> int:
-    toks = [common.tokens(common.quote(it["question_text"])) for it in items]
-    return sum(common.jaccard(toks[i], toks[j]) >= NEAR_DUPLICATE
-               for i in range(len(toks)) for j in range(i + 1, len(toks)))
+def lexical_drops(topics: list[dict]) -> set[str]:
+    """Topics whose quoted spans reach NEAR_DUPLICATE content-word Jaccard with a lower-numbered
+    topic. Reads topic text only, never a closure state, so it acts as part of the review. A
+    backstop: on D1b's pool the largest pairwise Jaccard is 0.22 and it drops nothing."""
+    ordered = sorted(topics, key=lambda t: t["topic_id"])
+    toks = [common.tokens(common.quote(t["question_text"])) for t in ordered]
+    return {ordered[j]["topic_id"] for i in range(len(ordered)) for j in range(i + 1, len(ordered))
+            if common.jaccard(toks[i], toks[j]) >= NEAR_DUPLICATE}
 
 
 def cmd_count(args) -> int:
@@ -337,11 +342,6 @@ def cmd_build(args) -> int:
                          indent=1))
         return 3
     items = [{"arm": "gap", **g} for g, _ in pairs] + [{"arm": "covered", **c} for _, c in pairs]
-    dupes = near_duplicates(items)
-    if dupes:
-        print(json.dumps({"refused": "near-duplicate sheet questions; drop the higher topic id of each pair in "
-                                     "the review file and build again", "near_duplicate_pairs": dupes}))
-        return 4
     random.Random(cb.seed).shuffle(items)
     for i, it in enumerate(items, 1):
         it["q"] = i

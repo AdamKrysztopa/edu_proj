@@ -124,6 +124,26 @@ def test_each_judge_gets_one_pass(tmp_path):
         novelty.ingest(tmp_path, labels, labels)
 
 
+def test_spare_questions_are_pool_topics_not_on_the_sheet(tmp_path):
+    pool = {"topics": [{"topic_id": f"T{i}", "question_text": f"Question {i}?"} for i in range(6)]}
+    (tmp_path / "pool.json").write_text(json.dumps(pool))
+    (tmp_path / "questions.md").write_text("# q\n\n## Q1\n\nQuestion 0?\n\n## Q2\n\nQuestion 3?\n")
+    spare = novelty.spare_questions(tmp_path / "pool.json", tmp_path / "questions.md", seed=1, k=3)
+    assert len(spare) == 3 and not {"Question 0?", "Question 3?"} & set(spare)
+    assert spare == novelty.spare_questions(tmp_path / "pool.json", tmp_path / "questions.md", seed=1, k=3)
+
+
+def test_ingest_records_the_hash_of_each_judges_raw_output(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    (tmp_path / "case_map.json").write_text(json.dumps(case_map))
+    (tmp_path / "answers.md").write_text(_answers(2))
+    labels = {k: {"label": v.get("expected", "new")} for k, v in case_map.items()}
+    (tmp_path / "a.json").write_text(json.dumps(labels))
+    (tmp_path / "b.json").write_text(json.dumps(labels))
+    doc = novelty.ingest(tmp_path, labels, labels, raw={"judge_a": tmp_path / "a.json", "judge_b": tmp_path / "b.json"})
+    assert doc["raw_sha256"]["judge_a"] == novelty._sha(tmp_path / "a.json")
+
+
 def test_a_canary_failure_voids_the_reading(tmp_path):
     key, pub = tmp_path / "seal.key", tmp_path / "seal.pub"
     subprocess.run(["openssl", "genpkey", "-algorithm", "RSA", "-out", str(key)], check=True, capture_output=True)

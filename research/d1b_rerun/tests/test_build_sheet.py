@@ -95,11 +95,16 @@ def test_the_count_also_reports_matched_pairs_beyond_the_sheet_cap():
     assert res["matched_pairs_upper_bound"] == 15 and res["matched_pairs_uncapped"] == 22
 
 
-def test_near_duplicate_sheet_questions_are_counted():
-    quotes = ["compute the band on the training window only", "compute the band on the training window only, never the test",
-              "the surrogate count sets the significance floor"]
-    items = [{"question_text": f'Sources say: "{q}". Why?'} for q in quotes]
-    assert bs.near_duplicates(items) == 1
+def test_lexical_near_duplicates_drop_the_higher_topic_id_before_any_state_is_read():
+    quotes = ["compute the band on the training window only", "the surrogate count sets the significance floor",
+              "compute the band on the training window only, never the test"]
+    topics = [{"topic_id": f"T00{i + 1}", "question_text": f'Sources say: "{q}". Why?'} for i, q in enumerate(quotes)]
+    assert bs.lexical_drops(topics) == {"T003"}
+
+
+def test_lexical_drops_are_inert_on_d1bs_pool():
+    pool = json.loads((bs.common.HERE / "pool.json").read_text())
+    assert bs.lexical_drops(pool["topics"]) == set()
 
 
 def test_sealing_round_trips_only_with_the_private_key(tmp_path):
