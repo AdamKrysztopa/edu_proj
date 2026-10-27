@@ -10,6 +10,7 @@ close(0) <= 0.25. Only "closed" counts as closing. Amendment (owner, 2026-10-26,
 gemma's gate data): every R arm contains the no-insert arm, so R is scored on what the random letters
 add -- R closures among topics whose no-insert arm is open (`R_excess`); the raw R rate is reported. Any undecided arm makes the verdict incomplete,
 never a fail; a judge that cannot answer (rate limit, truncation) stops the run. Runs only on fixtures the owner confirmed.
+`--stand-ins` ($0) also runs an oracle that closes only P, which must pass: the fixtures can still be met.
 
     uv run --directory gapmap python ../research/d1b_rerun/g2.py --out DIR --split selection|gate \
         [--judge openrouter --model M --max-usd X --spend-ledger ../research/d1b_rerun/openrouter_spend.jsonl]
@@ -120,6 +121,17 @@ def stand_ins(topics: list[dict], inserts: dict) -> list:
             standins.LexiconJudge(), standins.CoinFlipJudge()]
 
 
+class OracleJudge:
+    """Closes exactly the arms holding a P sentence: the planted positive the fixtures must let pass."""
+    model_id = "oracle-p"
+
+    def __init__(self, inserts: dict):
+        self.ps = {v["P"] for v in inserts.values()}
+
+    def ask(self, prompt: str) -> dict:
+        return {"states": [i for i, s in standins.parse(prompt).sentences if s in self.ps], "partially": []}
+
+
 def _lower(per_topic: list[tuple[str, int]]) -> float:
     clusters: dict[str, list[int]] = {}
     for cl, d in per_topic:
@@ -180,9 +192,11 @@ def main(argv: list[str] | None = None) -> int:
     if args.stand_ins:
         rows = [evaluate(topics, inserts, j, split=args.split) for j in stand_ins(topics, inserts)]
         (out / f"g2_standins_{args.split}.json").write_text(json.dumps(rows, indent=1, sort_keys=True) + "\n")
-        for r in rows:
+        oracle = evaluate(topics, inserts, OracleJudge(inserts), split=args.split)
+        (out / f"g2_oracle_{args.split}.json").write_text(json.dumps(oracle, indent=1, sort_keys=True) + "\n")
+        for r in [*rows, oracle]:
             print(r["judge_model"], round(r["diff"], 3), "PASSES" if r["passes"] else "fails")
-        return 1 if any(r["passes"] for r in rows) else 0
+        return 1 if any(r["passes"] for r in rows) or not oracle["passes"] else 0
     provider = ("openai" if args.model in judge_mod.OPENAI_PRICES_PER_MTOK
                 else "openrouter" if args.model in judge_mod.OPENROUTER_PRICES_PER_MTOK else "ollama")
     if args.judge in ("openai", "openrouter") and args.max_usd is None:

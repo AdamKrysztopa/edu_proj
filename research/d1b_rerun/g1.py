@@ -2,7 +2,8 @@
 with outputs under `research/d1b_rerun/g1/<tag>/` instead of the N3 control record. l73.py builds
 its own judge and knows only OpenAI and Ollama models; for an OpenRouter model id the wrapper hands
 it a `judge` module whose OpenAI judge is `OpenRouterJudge` (pass `--judge openai`, as for sol);
-`--reasoning-max-tokens N` is taken by the wrapper and passed to that judge.
+`--reasoning-max-tokens N` is taken by the wrapper and passed to that judge; `--out-root DIR` puts
+the run under `DIR/<tag>/l73/` instead (`gapmap.screen`).
 
     uv run --directory gapmap python ../research/d1b_rerun/g1.py --tag gemini --judge openai \
         --model google/gemini-3.5-flash-lite --max-usd X --spend-ledger ../research/d1b_rerun/openrouter_spend.jsonl
@@ -17,11 +18,11 @@ from gapmap import judge as judge_mod
 HERE = Path(__file__).resolve().parent
 
 
-def load_l73() -> types.ModuleType:
+def load_l73(out_root: Path | None = None) -> types.ModuleType:
     spec = importlib.util.spec_from_file_location("l73", HERE.parent / "n3_control_v3" / "l73.py")
     l73 = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(l73)
-    l73.HERE = HERE / "g1"
+    l73.HERE = out_root or HERE / "g1"
     return l73
 
 
@@ -41,13 +42,20 @@ def _openrouter_shim(reasoning_max_tokens: int | None = None) -> types.ModuleTyp
     return shim
 
 
+def _take(flag: str) -> str | None:
+    if flag not in sys.argv:
+        return None
+    i = sys.argv.index(flag)
+    value = sys.argv[i + 1]
+    del sys.argv[i:i + 2]
+    return value
+
+
 if __name__ == "__main__":
-    l73 = load_l73()
-    budget = None
-    if "--reasoning-max-tokens" in sys.argv:
-        i = sys.argv.index("--reasoning-max-tokens")
-        budget = int(sys.argv[i + 1])
-        del sys.argv[i:i + 2]
+    out_root = _take("--out-root")
+    l73 = load_l73(Path(out_root).resolve() if out_root else None)
+    budget = _take("--reasoning-max-tokens")
+    budget = int(budget) if budget is not None else None
     if "--model" in sys.argv and sys.argv[sys.argv.index("--model") + 1] in judge_mod.OPENROUTER_PRICES_PER_MTOK:
         l73.judge_mod = _openrouter_shim(budget)
     l73.main()

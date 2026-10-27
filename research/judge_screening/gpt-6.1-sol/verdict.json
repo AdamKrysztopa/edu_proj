@@ -1,0 +1,75 @@
+{
+ "candidate": {
+  "family": "openai",
+  "model": "gpt-6.1-sol",
+  "provider": "openai",
+  "settings": {
+   "reasoning_effort": "high"
+  },
+  "tier": "top"
+ },
+ "eligible": false,
+ "fixtures_sha256": "474b636c458484d63a5cfe5c4a3b4fd54bdab4f54a4a409feb13f1a3e29eeab6",
+ "g2_rule": "g2.passes as committed, R scored as R_excess (owner amendment 2026-10-26)",
+ "gated_on_this_hash": [
+  "gemma-4-31b-it"
+ ],
+ "runs": [
+  {
+   "dir": "research/judge_screening/gpt-6.1-sol/S0-run1",
+   "figures": {
+    "oracle_passes": true,
+    "passing_stand_ins": []
+   },
+   "finished": "2026-10-27T07:49:14Z",
+   "fixtures_sha256": "474b636c458484d63a5cfe5c4a3b4fd54bdab4f54a4a409feb13f1a3e29eeab6",
+   "outcome": "pass",
+   "step": "S0"
+  },
+  {
+   "arm_verdict_sha256": "ab85516e4757f7b93c0eae7fefa6f89c82ad32330439db07c618ef92e99064e1",
+   "dir": null,
+   "figures": {},
+   "finished": "2026-10-27T07:49:14Z",
+   "fixtures_sha256": "474b636c458484d63a5cfe5c4a3b4fd54bdab4f54a4a409feb13f1a3e29eeab6",
+   "outcome": "pass",
+   "parallel_arm": "gemma-4-31b-it",
+   "step": "S1"
+  }
+ ],
+ "sequence": "screen-v1",
+ "settles_alone": false,
+ "slug": "gpt-6.1-sol",
+ "stale_runs": 0,
+ "status": "pending",
+ "steps": {
+  "G1": {
+   "fails": 0,
+   "incomplete": 0,
+   "passes": 0,
+   "required": 1,
+   "state": "pending"
+  },
+  "G2": {
+   "fails": 0,
+   "incomplete": 0,
+   "passes": 0,
+   "required": 2,
+   "state": "pending"
+  },
+  "S0": {
+   "fails": 0,
+   "incomplete": 0,
+   "passes": 1,
+   "required": 1,
+   "state": "satisfied"
+  },
+  "S1": {
+   "fails": 0,
+   "incomplete": 0,
+   "passes": 1,
+   "required": 1,
+   "state": "satisfied"
+  }
+ }
+}
