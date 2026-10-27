@@ -1,0 +1,124 @@
+{
+ "both_ledgers": {
+  "all_closed": 42,
+  "all_open": 16,
+  "by_origin": {
+   "outside": {
+    "all_closed": 3,
+    "all_open": 2,
+    "matched_pairs_upper_bound": 0,
+    "mixed": 1,
+    "open_share": 0.333,
+    "reaches_floor": false,
+    "topics": 6
+   },
+   "owner": {
+    "all_closed": 39,
+    "all_open": 14,
+    "matched_pairs_upper_bound": 9,
+    "mixed": 16,
+    "open_share": 0.203,
+    "reaches_floor": false,
+    "topics": 69
+   }
+  },
+  "matched_pairs_upper_bound": 9,
+  "mixed": 17,
+  "noise_floor_rate": 0.7666666666666667,
+  "noise_floor_rate_coin": 0.9933333333333333,
+  "noise_floor_rate_per_topic": 0.9766666666666667,
+  "noise_floor_rate_two_independent_judges": 0.0,
+  "open_share": 0.213,
+  "reaches_floor": false,
+  "topics": 75,
+  "version_marginals": {
+   "closed": 0.5455,
+   "open": 0.3091
+  },
+  "versions": 110,
+  "versions_per_topic": 1.467
+ },
+ "codebase": "AdamKrysztopa/dependence-forecastability",
+ "filters": "debris only (no D1-overlap filter, no owner review)",
+ "judges": [
+  "gemma"
+ ],
+ "only_cheap-26b": {
+  "all_closed": 35,
+  "all_open": 14,
+  "by_origin": {
+   "outside": {
+    "all_closed": 3,
+    "all_open": 1,
+    "matched_pairs_upper_bound": 1,
+    "mixed": 1,
+    "open_share": 0.2,
+    "reaches_floor": false,
+    "topics": 5
+   },
+   "owner": {
+    "all_closed": 32,
+    "all_open": 13,
+    "matched_pairs_upper_bound": 11,
+    "mixed": 7,
+    "open_share": 0.25,
+    "reaches_floor": true,
+    "topics": 52
+   }
+  },
+  "matched_pairs_upper_bound": 12,
+  "mixed": 8,
+  "noise_floor_rate": 0.56,
+  "noise_floor_rate_coin": 0.9933333333333333,
+  "noise_floor_rate_per_topic": 0.8366666666666667,
+  "noise_floor_rate_two_independent_judges": 0.0,
+  "open_share": 0.246,
+  "reaches_floor": true,
+  "topics": 57,
+  "version_marginals": {
+   "closed": 0.5942,
+   "open": 0.2609
+  },
+  "versions": 69,
+  "versions_per_topic": 1.211
+ },
+ "only_toptier-26b": {
+  "all_closed": 16,
+  "all_open": 13,
+  "by_origin": {
+   "outside": {
+    "all_closed": 0,
+    "all_open": 2,
+    "matched_pairs_upper_bound": 0,
+    "mixed": 1,
+    "open_share": 0.667,
+    "reaches_floor": false,
+    "topics": 3
+   },
+   "owner": {
+    "all_closed": 16,
+    "all_open": 11,
+    "matched_pairs_upper_bound": 11,
+    "mixed": 7,
+    "open_share": 0.324,
+    "reaches_floor": true,
+    "topics": 34
+   }
+  },
+  "matched_pairs_upper_bound": 11,
+  "mixed": 8,
+  "noise_floor_rate": 0.41333333333333333,
+  "noise_floor_rate_coin": 0.8,
+  "noise_floor_rate_per_topic": 0.56,
+  "noise_floor_rate_two_independent_judges": 0.0,
+  "open_share": 0.351,
+  "reaches_floor": true,
+  "topics": 37,
+  "version_marginals": {
+   "closed": 0.4634,
+   "open": 0.3902
+  },
+  "versions": 41,
+  "versions_per_topic": 1.108
+ }
+}
