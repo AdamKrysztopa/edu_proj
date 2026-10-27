@@ -90,6 +90,10 @@ let sol's citations be recounted.
   - **What the retest means for ADR 0009.** `_common.md:35` asks for "two runs with identical
     results". Under the state-level reading, gemma does not count as an ADR 0009 arm; under a
     verdict-level reading, it would.
+  - **Owner decision, 2026-10-27 (post hoc, disclosed).** "Identical" means the same verdict and
+    the same states the rule reads, with at least 90% of individual judgements equal. Gemma's
+    retest has 71 of 76 equal (93%), so gemma counts as an ADR 0009 arm. Item 3 (c) is unchanged:
+    gemma's control2 interval still crosses 0.
   - **How the reading was chosen** (this session's account; the file has no history from before
     the run). `g1_retest.py` compared the full topic records before the run. The seed-free field
     was added after it.
@@ -164,7 +168,7 @@ The rule was fixed before any call:
 | (a) RT's GDPR split, sol, parts I and II | built and checked at $0; waits for the owner's labels |
 | (b) sol's citations recounted on the owner's labels, with the overlap stand-in's citations and a planted fake in the same blind pack | built (`reread.py`); waits for the owner's labels |
 | (c) ADR 0009: gemma on the same pairs, interval above 0 | **cannot hold**: run incomplete (1 undecided control arm), +0.16 [−0.02, +0.32]; filled either way after the run, +0.14 [−0.03, +0.29] or +0.16 [−0.02, +0.32] |
-| gemma as a counted arm: G1 passes twice, identically | passes twice; identical at verdict level, not at state level (5 of 76 equal-cap judgements differ) |
+| gemma as a counted arm: G1 passes twice, identically | passes twice; identical at verdict level, not at state level (5 of 76 equal-cap judgements differ); counts under the owner's 2026-10-27 reading (≥ 90% equal: 71 of 76) |
 
 For reference, on these pairs sol closes 19 of 44 own arms against 9 control arms. The overlap
 stand-in closes 32 against 12 (+0.45).
