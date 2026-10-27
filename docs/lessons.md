@@ -408,3 +408,21 @@ A queue padded with those is a queue nobody drains.
 - **What happened:** After D1b, I updated the four Claude Docs pages by find-and-replace on the sentences I found with a text search for "D1" and "rerun", then reported "all artifacts updated" twice. The text search does not reach diagram widgets or table cells phrased differently. In the synthesis (EN and PL), the "Implementation plan" timeline still showed "Fix the gap map's ranking: Nov 2026" and "Rerun D1: Nov–Dec 2026" as future work, and the status diagrams and plan table were stale. No section drew conclusions from the two studies. The owner caught both from a screenshot.
 - **Generalises to:** An artifact is updated after a result only when every embedded widget, table and status chip has been read against the new state (outline, then each embed's code), and when the page states what the result concludes and changes in the plan, not only that the result exists.
 - **Candidate home:** the docs-update step of the result workflow (a checklist that lists every embed and table on each artifact page); `docs/artifacts.md` could record which widgets carry plan dates.
+
+### A sealed artefact sat on disk in clear text between write and encrypt
+
+- **What happened:** D1b's `seal()` (`research/d1b_rerun/build_sheet.py`) writes the sealed key and sheet into a `secret/` directory, then tars, encrypts and deletes it, so the content exists unencrypted on disk for a while (and in any backup or snapshot taken meanwhile). D1b's tests checked that the ciphertext decrypts, not that no plaintext was ever written. Caught by the N8 E-SEAL agent when it reused the scheme; N8's version pipes plaintext to openssl on stdin and a canary test scans every written file.
+- **Generalises to:** Sealed or blind material is encrypted from memory and never written in clear, and its test plants a canary in the content and asserts it appears in no file, log or output stream.
+- **Candidate home:** a shared `seal` helper used by D1b and N8, with the canary test; fix D1b's `seal()` before it is reused for D1c.
+
+### A coverage measure was compared with baselines of unequal length
+
+- **What happened:** N8's first scoring design (`docs/plans/n8-e-seal.md`, branch `n8-e-seal`) compared each arm's coverage of the reference operation list against baselines up to three times longer, which biases the reading toward the longer list. `methods-critic` caught it before anything ran.
+- **Generalises to:** A coverage or recall measure compared across arms or against a baseline uses size-matched lists (or a length-adjusted score), because coverage rises with list length alone.
+- **Candidate home:** the `methods-critic` checklist, next to L7.3's trivial stand-ins (list length as a stand-in).
+
+### Provider-side logging is a display path that code cannot see
+
+- **What happened:** While designing N8's preconditions, the agent found that OpenRouter's account-level prompt and response logging would keep sealed model output readable in the provider's activity view, and no client-side check can confirm it is off. N8 now refuses to run without an explicit `--provider-logging-off` attestation and records it.
+- **Generalises to:** Any sealed or blind paid run requires provider-side logging to be confirmed off by the account owner and the confirmation recorded in the run's manifest, because the client cannot verify it.
+- **Candidate home:** the sealing rules in `CLAUDE.md` beside L7.1; the `/preflight` checklist.
