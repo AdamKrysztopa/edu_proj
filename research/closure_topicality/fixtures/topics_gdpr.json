@@ -1,0 +1,2312 @@
+{
+ "pairs_sha256": "129beef55ad695fa2eba008c36db33df1cecba4f564b19453bcd6286bcdaff59",
+ "quotas": {
+  "DISC": 3,
+  "HEDGE": 3,
+  "RESULT": 5,
+  "SEL": 2,
+  "WHY": 3
+ },
+ "reserve": {
+  "DISC": [
+   {
+    "background_rows": [
+     [
+      "c-2294f81bcee5f2d1",
+      0,
+      "Processing is systematic when it occurs according to a system, is pre-arranged or methodical, and takes place as part of a general plan for data collection."
+     ],
+     [
+      "c-2294f81bcee5f2d1",
+      1,
+      "The DPO guidelines say that 'systematic' means that the processing: occurs according to a system;"
+     ],
+     [
+      "c-68352cd1183670c8",
+      0,
+      "A DPIA description of processing must include the nature, scope, context, and purposes of the processing."
+     ],
+     [
+      "c-68352cd1183670c8",
+      1,
+      "Your description must include \"the nature, scope, context and purposes of the processing\"."
+     ]
+    ],
+    "cluster": "c-7f0dc02ba850151a",
+    "k": 4,
+    "lens": "DISC",
+    "probe": [
+     "description",
+     "systematic"
+    ],
+    "question": "Does any sentence state how to tell whether something counts as 'systematic description': a threshold, a defining feature, or a contrast between a case that is and one that is not?",
+    "seed_text": "A DPIA must contain a systematic description of the envisaged processing operations and the purposes of processing, including the legitimate interest pursued by the controller where applicable.",
+    "seeds": [
+     "c-7f0dc02ba850151a",
+     "c-82daadaccb91caa0",
+     "c-e43f33dcbd7906c2"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-DISC-1"
+   },
+   {
+    "background_rows": [
+     [
+      "c-1a02d59f3bec3f16",
+      1,
+      "A DPIA may also be carried out on a voluntary basis in order to identify and deal as effectively as possible with the risks, even if they are minor, to the rights and freedoms of individuals."
+     ],
+     [
+      "c-592a2fadc6f4283c",
+      1,
+      "Where a data controller carries out a Data Protection Impact Assessment (DPIA), which indicates that the intended processing would result in a high risk to the data protection rights of individuals in the absence of mitigating measures, the controller shall consult the Supervisory Authority."
+     ],
+     [
+      "c-82daadaccb91caa0",
+      3,
+      "The assets on which the personal data are based (hardware, software, networks, individuals, paper documents or paper transmission channels) are identified"
+     ],
+     [
+      "c-d824ab501b6a2648",
+      0,
+      "Data controllers are required to carry out a DPIA before any processing that is likely to result in a high risk to the rights and freedoms of individuals."
+     ],
+     [
+      "c-d824ab501b6a2648",
+      1,
+      "Data controllers need to carry out a DPIA before any processing likely to result in a high risk to the rights and freedoms of individuals."
+     ]
+    ],
+    "cluster": "c-008d014ea5c56f48",
+    "k": 5,
+    "lens": "DISC",
+    "probe": [
+     "individual",
+     "vulnerable"
+    ],
+    "question": "Does any sentence state how to tell whether something counts as 'vulnerable individual': a threshold, a defining feature, or a contrast between a case that is and one that is not?",
+    "seed_text": "Processing should be screened for factors indicating high-risk processing, such as processing data of vulnerable individuals.",
+    "seeds": [
+     "c-008d014ea5c56f48",
+     "c-16a45958ab75ba4c",
+     "c-9600745fc043ff05",
+     "c-a61a8a7f7977334f",
+     "c-c5da9eee15902f2a",
+     "c-e7aaad0024f89f82"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-DISC-2"
+   },
+   {
+    "background_rows": [
+     [
+      "c-258fefb9712faa61",
+      1,
+      "In any event, this list does not affect your overriding obligation in Article 35(1), which is to assess any proposed processing operation against the requirement to complete DPIAs."
+     ],
+     [
+      "c-d82d0d460fac14c0",
+      1,
+      "Most obviously, children are regarded as vulnerable to the processing of their personal data since they may be less able to understand how their data is being used, anticipate how this might affect them, and protect themselves against any unwanted consequences."
+     ]
+    ],
+    "cluster": "c-75b4dfcc59133374",
+    "k": 2,
+    "lens": "DISC",
+    "probe": [
+     "affect",
+     "significantly"
+    ],
+    "question": "Does any sentence state how to tell whether something counts as 'significantly affect': a threshold, a defining feature, or a contrast between a case that is and one that is not?",
+    "seed_text": "A DPIA is required for regular and systematic monitoring of employee activities that might produce legal effects or significantly affect employees.",
+    "seeds": [
+     "c-75b4dfcc59133374",
+     "c-ce8af6ca30f75288",
+     "c-d85bbd0dc09a826e",
+     "c-df979a78a5b2be70"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-DISC-3"
+   },
+   {
+    "background_rows": [
+     [
+      "c-003879ead25de590",
+      0,
+      "A data protection impact assessment is required when processing is likely to result in a high risk to the rights and freedoms of data subjects."
+     ],
+     [
+      "c-003879ead25de590",
+      1,
+      "If you have determined that the processing is likely to result in a high risk to the rights and freedoms of data subjects, you must carry out a data protection impact assessment (DPIA) for each processing operation."
+     ],
+     [
+      "c-09bbe8432b0a60fb",
+      0,
+      "A DPIA may relate to a single data processing operation or can evaluate several similar processing operations in terms of nature, scope, context, purposes and risks."
+     ],
+     [
+      "c-09bbe8432b0a60fb",
+      1,
+      "A DPIA may relate to a single data processing operation and can also be used to evaluate several similar processing operations in terms of nature, scope, context, purposes and risks."
+     ],
+     [
+      "c-107ffd1f52495e14",
+      1,
+      "The DPC will respond to a submission for statutory prior consultation within a period of up to eight weeks, where it appears that the intended processing would infringe the provisions of the GDPR or Data Protection Act, or that the controller has insufficiently identified or mitigated the potential risks."
+     ]
+    ],
+    "cluster": "c-11ca7f7628027032",
+    "k": 5,
+    "lens": "DISC",
+    "probe": [
+     "data",
+     "vulnerable"
+    ],
+    "question": "Does any sentence state how to tell whether something counts as 'vulnerable data': a threshold, a defining feature, or a contrast between a case that is and one that is not?",
+    "seed_text": "Employees may be considered vulnerable data subjects where a power imbalance means they cannot easily consent or object to data processing by an employer.",
+    "seeds": [
+     "c-11ca7f7628027032",
+     "c-f85aed9679c29ec1"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-DISC-4"
+   }
+  ],
+  "HEDGE": [
+   {
+    "background_rows": [
+     [
+      "c-008d014ea5c56f48",
+      0,
+      "Processing should be screened for factors indicating high-risk processing, such as processing data of vulnerable individuals."
+     ],
+     [
+      "c-008d014ea5c56f48",
+      2,
+      "If not, you need to screen for other factors that may indicate it is a type of processing that is likely to result in high risk, such as processing the data of vulnerable individuals."
+     ],
+     [
+      "c-359578dee62ec2a3",
+      1,
+      "Once we have the information we need, we will generally respond within eight weeks (although we can extend this by a further six weeks in complex cases)."
+     ],
+     [
+      "c-4b5fee1573c15d1d",
+      2,
+      "This means that although you have not yet assessed the actual level of risk, you need to screen for factors that point to the potential for a widespread or serious impact on individuals."
+     ],
+     [
+      "c-008d014ea5c56f48",
+      1,
+      "Otherwise, you need to check whether your processing is on the list of types of processing that automatically require a DPIA."
+     ],
+     [
+      "c-08c2a454d91ee0bd",
+      1,
+      "The ICO also requires you to do a DPIA if you plan to: use innovative technology (in combination with any of the criteria from the European guidelines)"
+     ],
+     [
+      "c-114c03552205b00b",
+      0,
+      "Legal advice or advice from independent experts such as IT experts, sociologists or ethicists should be considered where appropriate, though there are no specific requirements to do so."
+     ],
+     [
+      "c-14a904bccde628f0",
+      0,
+      "Processing that poses a risk of physical harm to individuals in case of personal data breach requires a DPIA."
+     ]
+    ],
+    "cluster": "c-04425373cd3694c7",
+    "k": 8,
+    "lens": "HEDGE",
+    "probe": [
+     "case",
+     "combination",
+     "factor",
+     "indicat",
+     "need",
+     "rule",
+     "strict",
+     "though",
+     "wp29"
+    ],
+    "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+    "seed_text": "In most cases, a combination of two factors from the WP29 criteria indicates the need for a DPIA, though this is not a strict rule.",
+    "seeds": [
+     "c-04425373cd3694c7"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-HEDGE-1"
+   },
+   {
+    "background_rows": [
+     [
+      "c-54a1c7e9bb958b12",
+      1,
+      "Publishing a DPIA is not a legal requirement of the GDPR."
+     ],
+     [
+      "c-001378676d9bc0ce",
+      0,
+      "A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing."
+     ],
+     [
+      "c-001378676d9bc0ce",
+      1,
+      "a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person"
+     ],
+     [
+      "c-04425373cd3694c7",
+      0,
+      "In most cases, a combination of two factors from the WP29 criteria indicates the need for a DPIA, though this is not a strict rule."
+     ],
+     [
+      "c-10c5d28dc341bcb1",
+      0,
+      "DPIAs are relevant to Data Protection Officers and those with specific data protection responsibilities in larger organisations."
+     ],
+     [
+      "c-10c5d28dc341bcb1",
+      1,
+      "DPOs and those with specific data protection responsibilities in larger organisations are likely to find it useful."
+     ],
+     [
+      "c-258fefb9712faa61",
+      0,
+      "Organizations have an overriding obligation under Article 35(1) to assess any proposed processing operation against the requirement to complete DPIAs regardless of provided high-risk lists."
+     ],
+     [
+      "c-258fefb9712faa61",
+      1,
+      "In any event, this list does not affect your overriding obligation in Article 35(1), which is to assess any proposed processing operation against the requirement to complete DPIAs."
+     ]
+    ],
+    "cluster": "c-114c03552205b00b",
+    "k": 8,
+    "lens": "HEDGE",
+    "probe": [
+     "appropriate",
+     "ethicist",
+     "expert",
+     "independent",
+     "legal",
+     "requirement",
+     "sociologist",
+     "specific",
+     "though"
+    ],
+    "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+    "seed_text": "Legal advice or advice from independent experts such as IT experts, sociologists or ethicists should be considered where appropriate, though there are no specific requirements to do so.",
+    "seeds": [
+     "c-114c03552205b00b"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-HEDGE-2"
+   }
+  ],
+  "RESULT": [
+   {
+    "background_rows": [
+     [
+      "c-001378676d9bc0ce",
+      0,
+      "A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing."
+     ],
+     [
+      "c-001378676d9bc0ce",
+      1,
+      "a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person"
+     ],
+     [
+      "c-34c46d94cc8bd51f",
+      0,
+      "Systematic monitoring of a publicly accessible area on a large scale is a type of processing requiring a data protection impact assessment."
+     ],
+     [
+      "c-34c46d94cc8bd51f",
+      1,
+      "(c)a systematic monitoring of a publicly accessible area on a large scale."
+     ],
+     [
+      "c-b1fad9042198d88d",
+      0,
+      "A DPIA is required for systematic monitoring of a publicly accessible area on a large scale."
+     ],
+     [
+      "c-b1fad9042198d88d",
+      1,
+      "a systematic monitoring of a publicly accessible area on a large scale a systematic monitoring of a publicly accessible area on a large scale"
+     ],
+     [
+      "c-ce8af6ca30f75288",
+      1,
+      "a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person"
+     ],
+     [
+      "c-d85bbd0dc09a826e",
+      1,
+      "A data protection impact assessment referred to in paragraph 1 shall in particular be required in the case of: (a)a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person"
+     ]
+    ],
+    "cluster": "c-a61a8a7f7977334f",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "access",
+     "carefully",
+     "decision",
+     "monitor",
+     "opportunity",
+     "profil",
+     "scale",
+     "sensitive",
+     "service"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "Organizations should carefully consider conducting DPIAs for large-scale processing, profiling or monitoring, decisions on service access or opportunities, or processing of sensitive data or vulnerable individuals.",
+    "seeds": [
+     "c-a61a8a7f7977334f"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-1"
+   },
+   {
+    "background_rows": [
+     [
+      "c-41a870a52524ab18",
+      0,
+      "A structured matrix considering likelihood and severity of risks is a helpful tool for assessing risk."
+     ],
+     [
+      "c-41a870a52524ab18",
+      1,
+      "It is helpful to use a structured matrix to think about likelihood and severity of risks"
+     ],
+     [
+      "c-5003fe4d83ed9730",
+      0,
+      "Assessing whether something qualifies as high risk requires considering both the likelihood and severity of any potential harm to individuals."
+     ],
+     [
+      "c-5003fe4d83ed9730",
+      1,
+      "To assess whether something is 'high risk', the UK GDPR is clear that you need to consider both the likelihood and severity of any potential harm to individuals."
+     ],
+     [
+      "c-52b6d55652938282",
+      0,
+      "To assess whether a risk is high risk, both the likelihood and severity of possible harm must be considered."
+     ],
+     [
+      "c-52b6d55652938282",
+      1,
+      "To assess whether the risk is a high risk, you need to consider both the likelihood and severity of the possible harm."
+     ],
+     [
+      "c-e8efeb1197a09f8e",
+      1,
+      "You are screening for any red flags which indicate that you need to do a DPIA to look at the risk (including the likelihood and severity of potential harm) in more detail."
+     ],
+     [
+      "c-fbf2d326300b2154",
+      1,
+      "Instead, the question is a more high-level screening test: are there features which point to the potential for high risk? You are screening for any red flags which indicate that you need to do a DPIA to look at the risk (including the likelihood and severity of potential harm) in more detail."
+     ]
+    ],
+    "cluster": "c-37fdafe0ca6db276",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "interest",
+     "likelihood",
+     "objectively",
+     "severity"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "A DPIA must objectively assess the likelihood and severity of any risks to individuals' rights and interests.",
+    "seeds": [
+     "c-37fdafe0ca6db276"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-2"
+   },
+   {
+    "background_rows": [
+     [
+      "c-fe0ce9c460a756a4",
+      0,
+      "A data protection impact assessment must include an assessment of the necessity and proportionality of the processing operations in relation to the purposes."
+     ],
+     [
+      "c-fe0ce9c460a756a4",
+      1,
+      "(b)an assessment of the necessity and proportionality of the processing operations in relation to the purposes"
+     ],
+     [
+      "c-1d5f876623c86b1a",
+      0,
+      "A DPIA process should include seven key steps: identifying the need, describing the processing, considering consultation, assessing necessity and proportionality, identifying and assessing risks, identifying mitigating measures, and signing off and recording outcomes."
+     ],
+     [
+      "c-1d5f876623c86b1a",
+      2,
+      "It should include these steps: Step 1: identify the need for a DPIA Step 2: describe the processing Step 3: consider consultation Step 4: assess necessity and proportionality Step 5: identify and assess risks Step 6: identify measures to mitigate the risks Step 7: sign off and record outcomes"
+     ],
+     [
+      "c-532e4a3959d34796",
+      0,
+      "A DPIA must assess the necessity and proportionality of processing, including measures to ensure compliance and respect for GDPR principles."
+     ],
+     [
+      "c-532e4a3959d34796",
+      1,
+      "The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing"
+     ],
+     [
+      "c-682644ddc2173082",
+      0,
+      "When assessing necessity and proportionality, considerations should include whether plans achieve the intended purpose and whether alternative reasonable ways exist to achieve the same result."
+     ],
+     [
+      "c-38ae08654c03df30",
+      0,
+      "Processing activities on files containing personal data of the entire national population require a DPIA unless one has already been carried out as part of a general impact assessment."
+     ]
+    ],
+    "cluster": "c-b48bd9a9fe31d4d7",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "contain",
+     "necessity",
+     "proportionality",
+     "relation"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "A DPIA must contain an assessment of the necessity and proportionality of the processing operations in relation to the purposes.",
+    "seeds": [
+     "c-b48bd9a9fe31d4d7"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-3"
+   },
+   {
+    "background_rows": [
+     [
+      "c-361677e5d0272012",
+      0,
+      "To determine whether processing is on a large scale, one should consider the number of individuals concerned, volume of data, variety of data, duration of processing, and geographical extent."
+     ],
+     [
+      "c-81b8af3c016017b2",
+      0,
+      "The scope of processing should include details about the nature, volume, variety, sensitivity, extent, frequency, duration of processing, number of data subjects, and geographical area covered."
+     ],
+     [
+      "c-361677e5d0272012",
+      1,
+      "to decide whether processing is on a large scale you should consider: the number of individuals concerned;"
+     ],
+     [
+      "c-361677e5d0272012",
+      5,
+      "and the geographical extent of the processing."
+     ],
+     [
+      "c-81b8af3c016017b2",
+      3,
+      "the volume and variety of the personal data;"
+     ],
+     [
+      "c-3418362ac4ffa1fa",
+      0,
+      "A DPIA is required for large-scale processing of special categories of data or personal data relating to criminal convictions and offences."
+     ],
+     [
+      "c-3418362ac4ffa1fa",
+      1,
+      "processing on a large scale of special categories of data referred to in Article 9(1) of the GDPR, or of personal data relating to criminal convictions and offences referred to in Article 10 of the GDPR processing on a large scale of special categories of data referred to in Article 9(1), or of personal data relating to criminal convictions and offences referred to in Article 10"
+     ],
+     [
+      "c-34c46d94cc8bd51f",
+      0,
+      "Systematic monitoring of a publicly accessible area on a large scale is a type of processing requiring a data protection impact assessment."
+     ]
+    ],
+    "cluster": "c-d7f4c0b3b05a9a2b",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "duration",
+     "extent",
+     "geographical",
+     "number",
+     "scale",
+     "variety",
+     "volume"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "Large-scale processing should be assessed by considering the number of individuals, volume of data, variety of data, duration of processing, and geographical extent.",
+    "seeds": [
+     "c-d7f4c0b3b05a9a2b"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-4"
+   },
+   {
+    "background_rows": [
+     [
+      "c-532e4a3959d34796",
+      0,
+      "A DPIA must assess the necessity and proportionality of processing, including measures to ensure compliance and respect for GDPR principles."
+     ],
+     [
+      "c-532e4a3959d34796",
+      1,
+      "The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing"
+     ],
+     [
+      "c-95c555efcf1b1916",
+      0,
+      "A DPIA must include description of the nature, scope, context and purposes of the processing, assessment of necessity and proportionality, identification and assessment of risks, and identification of additional mitigation measures."
+     ],
+     [
+      "c-95c555efcf1b1916",
+      2,
+      "assess necessity, proportionality and compliance measures;"
+     ]
+    ],
+    "cluster": "c-682644ddc2173082",
+    "k": 4,
+    "lens": "RESULT",
+    "probe": [
+     "achieve",
+     "alternative",
+     "consideration",
+     "exist",
+     "intend",
+     "necessity",
+     "plan",
+     "proportionality",
+     "purpose",
+     "reasonable",
+     "same",
+     "ways"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "When assessing necessity and proportionality, considerations should include whether plans achieve the intended purpose and whether alternative reasonable ways exist to achieve the same result.",
+    "seeds": [
+     "c-682644ddc2173082"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-5"
+   },
+   {
+    "background_rows": [
+     [
+      "c-1606aaf110dee704",
+      1,
+      "It provides written advice to the controller and, where applicable to the processor within period of up to eight weeks of receipt of the request for consultation."
+     ],
+     [
+      "c-2fa57f35f4df9222",
+      0,
+      "Controllers must submit the DPIA, documentation of responsibilities between controllers and processors, processing purposes and means, protective measures and safeguards, and DPO contact details when seeking prior consultation."
+     ],
+     [
+      "c-82daadaccb91caa0",
+      0,
+      "A DPIA must include a systematic description of the processing including nature, scope, context, personal data concerned, recipients, retention period, and identification of assets."
+     ],
+     [
+      "c-c63223f71c2e0c17",
+      1,
+      "But, this also means that any processing operations where the conditions (scope, purposes, personal data collected, identity of data controllers or recipients, data retention period, technical and organizational measures, etc.) have changed since the authorization was issued by the CNPD and are likely to result in a high risk, require a DPIA."
+     ],
+     [
+      "c-107ffd1f52495e14",
+      1,
+      "The DPC will respond to a submission for statutory prior consultation within a period of up to eight weeks, where it appears that the intended processing would infringe the provisions of the GDPR or Data Protection Act, or that the controller has insufficiently identified or mitigated the potential risks."
+     ],
+     [
+      "c-142f509aed6d9252",
+      0,
+      "The DPC response period may be extended by up to six weeks to account for the complexity of the proposed processing."
+     ],
+     [
+      "c-142f509aed6d9252",
+      1,
+      "The period for responding may be extended by a period of up to six weeks, taking into account the complexity of the proposed processing."
+     ],
+     [
+      "c-1606aaf110dee704",
+      2,
+      "That period may be extended by six weeks, taking into account the complexity of the intended processing."
+     ]
+    ],
+    "cluster": "c-6370fb5b7eeb5c13",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "access",
+     "collection",
+     "detail",
+     "novel",
+     "period",
+     "processor",
+     "retention",
+     "security",
+     "shar",
+     "storage",
+     "type",
+     "usage"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "The nature of processing in a DPIA should include details about data collection, storage, usage, access, sharing, processors, retention periods, security measures, new technologies, and novel processing types.",
+    "seeds": [
+     "c-6370fb5b7eeb5c13"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-6"
+   },
+   {
+    "background_rows": [
+     [
+      "c-154ec754e1a92f89",
+      3,
+      "It is important to reevaluate the DPIA when there is a change of the risk represented by the processing operation."
+     ],
+     [
+      "c-1cf8ebc6e7a8070e",
+      0,
+      "A DPIA must be kept under review and may need to be repeated if there is a substantial change to the nature, scope, context, or purposes of processing."
+     ],
+     [
+      "c-37d6615bd32e7020",
+      1,
+      "We carry out a new DPIA if there is a change to the nature, scope, context or purposes of our processing."
+     ],
+     [
+      "c-e31462fe998aaf03",
+      0,
+      "A DPIA should be reevaluated when there is a change in the risk represented by the processing operation due to evolution of technology, use of data for different purposes, or organizational context changes."
+     ],
+     [
+      "c-003879ead25de590",
+      1,
+      "If you have determined that the processing is likely to result in a high risk to the rights and freedoms of data subjects, you must carry out a data protection impact assessment (DPIA) for each processing operation."
+     ],
+     [
+      "c-06df122d987ae86f",
+      0,
+      "DPIAs should be kept under review and revisited when necessary."
+     ]
+    ],
+    "cluster": "c-27af33c5674fc109",
+    "k": 6,
+    "lens": "RESULT",
+    "probe": [
+     "accordance",
+     "carry",
+     "change",
+     "perform",
+     "represent",
+     "review"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "A controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk represented by processing operations.",
+    "seeds": [
+     "c-27af33c5674fc109"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-7"
+   },
+   {
+    "background_rows": [
+     [
+      "c-4b5fee1573c15d1d",
+      2,
+      "This means that although you have not yet assessed the actual level of risk, you need to screen for factors that point to the potential for a widespread or serious impact on individuals."
+     ],
+     [
+      "c-fbf2d326300b2154",
+      1,
+      "Instead, the question is a more high-level screening test: are there features which point to the potential for high risk? You are screening for any red flags which indicate that you need to do a DPIA to look at the risk (including the likelihood and severity of potential harm) in more detail."
+     ],
+     [
+      "c-04425373cd3694c7",
+      0,
+      "In most cases, a combination of two factors from the WP29 criteria indicates the need for a DPIA, though this is not a strict rule."
+     ],
+     [
+      "c-04425373cd3694c7",
+      1,
+      "In most cases, a combination of two of these factors indicates the need for a DPIA."
+     ],
+     [
+      "c-04f0850b2cd6549b",
+      0,
+      "The ICO will acknowledge receipt of a DPIA submission and notify the applicant within 10 days whether the DPIA has been accepted for prior consultation."
+     ],
+     [
+      "c-04f0850b2cd6549b",
+      1,
+      "We will write to you to within 10 days to let you know if we have accepted your DPIA for prior consultation."
+     ],
+     [
+      "c-2c3c8139efad16df",
+      0,
+      "ICO consultation is not required if a DPIA identified high risk but mitigating measures have reduced it to no longer be high."
+     ],
+     [
+      "c-2c3c8139efad16df",
+      1,
+      "If your DPIA identified a high risk but you have done things to reduce the risk so it is no longer high, you need not consult us."
+     ]
+    ],
+    "cluster": "c-df4002a48522526e",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "accept",
+     "additional",
+     "conclusion",
+     "eliminat",
+     "level",
+     "need",
+     "overall",
+     "record",
+     "reduc",
+     "residual"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "The DPIA conclusion should record additional measures, whether each risk is eliminated/reduced/accepted, overall residual risk level, and whether ICO consultation is needed.",
+    "seeds": [
+     "c-df4002a48522526e"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-8"
+   },
+   {
+    "background_rows": [
+     [
+      "c-1d5f876623c86b1a",
+      0,
+      "A DPIA process should include seven key steps: identifying the need, describing the processing, considering consultation, assessing necessity and proportionality, identifying and assessing risks, identifying mitigating measures, and signing off and recording outcomes."
+     ],
+     [
+      "c-1d5f876623c86b1a",
+      2,
+      "It should include these steps: Step 1: identify the need for a DPIA Step 2: describe the processing Step 3: consider consultation Step 4: assess necessity and proportionality Step 5: identify and assess risks Step 6: identify measures to mitigate the risks Step 7: sign off and record outcomes"
+     ],
+     [
+      "c-532e4a3959d34796",
+      0,
+      "A DPIA must assess the necessity and proportionality of processing, including measures to ensure compliance and respect for GDPR principles."
+     ],
+     [
+      "c-532e4a3959d34796",
+      1,
+      "The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing"
+     ],
+     [
+      "c-682644ddc2173082",
+      0,
+      "When assessing necessity and proportionality, considerations should include whether plans achieve the intended purpose and whether alternative reasonable ways exist to achieve the same result."
+     ]
+    ],
+    "cluster": "c-95c555efcf1b1916",
+    "k": 5,
+    "lens": "RESULT",
+    "probe": [
+     "additional",
+     "description",
+     "identification",
+     "mitigation",
+     "necessity",
+     "proportionality"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "A DPIA must include description of the nature, scope, context and purposes of the processing, assessment of necessity and proportionality, identification and assessment of risks, and identification of additional mitigation measures.",
+    "seeds": [
+     "c-95c555efcf1b1916"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-9"
+   },
+   {
+    "background_rows": [
+     [
+      "c-9c89ae4a230668c2",
+      0,
+      "A DPIA must identify potential impacts on data subject rights in case of illegitimate access, unwanted modification, or disappearance of data."
+     ],
+     [
+      "c-9c89ae4a230668c2",
+      1,
+      "Potential impacts on the rights and freedoms of data subjects are identified in case of events such as illegitimate access to data, an unwanted modification of data or their disappearance"
+     ],
+     [
+      "c-107ffd1f52495e14",
+      1,
+      "The DPC will respond to a submission for statutory prior consultation within a period of up to eight weeks, where it appears that the intended processing would infringe the provisions of the GDPR or Data Protection Act, or that the controller has insufficiently identified or mitigated the potential risks."
+     ],
+     [
+      "c-14a904bccde628f0",
+      0,
+      "Processing that poses a risk of physical harm to individuals in case of personal data breach requires a DPIA."
+     ],
+     [
+      "c-14a904bccde628f0",
+      1,
+      "Where the processing is of such a nature that a personal data breach could jeopardise the [physical] health or safety of individuals."
+     ],
+     [
+      "c-1ad3f7a1b2292d0b",
+      0,
+      "Invisible processing occurs when personal data is obtained from sources other than directly from the individual and privacy information required by Article 14 is not provided."
+     ],
+     [
+      "c-27f8dc3327212d5f",
+      0,
+      "The ICO may advise against processing or issue formal warnings if it considers processing would breach GDPR."
+     ],
+     [
+      "c-27f8dc3327212d5f",
+      1,
+      "In some cases we may advise you not to carry out the processing because we consider it would be in breach of the GDPR."
+     ]
+    ],
+    "cluster": "c-fb7e55870abf0330",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "access",
+     "breach",
+     "illegitimate",
+     "loss",
+     "modification",
+     "potential",
+     "security",
+     "sourc",
+     "type"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "Security risks assessment should include sources of risk and potential impact of each type of breach including illegitimate access, modification, or loss of personal data.",
+    "seeds": [
+     "c-fb7e55870abf0330"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-10"
+   },
+   {
+    "background_rows": [
+     [
+      "c-532e4a3959d34796",
+      1,
+      "The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing"
+     ],
+     [
+      "c-433f9c36e5a54609",
+      2,
+      "But an effective DPIA can also bring broader compliance, financial and reputational benefits, helping you demonstrate accountability and building trust and engagement with individuals."
+     ],
+     [
+      "c-532e4a3959d34796",
+      0,
+      "A DPIA must assess the necessity and proportionality of processing, including measures to ensure compliance and respect for GDPR principles."
+     ],
+     [
+      "c-9f835ba2ccd6e7f0",
+      1,
+      "For example, you may be able to demonstrate that consultation would compromise commercial confidentiality, undermine security, or be disproportionate or impracticable."
+     ],
+     [
+      "c-249bc289e9cba261",
+      0,
+      "A DPIA does not require eradication of all risks but should help document risks and assess whether any remaining risks are justified."
+     ],
+     [
+      "c-249bc289e9cba261",
+      2,
+      "But it should help you document them and assess whether or not any remaining risks are justified."
+     ],
+     [
+      "c-2fa57f35f4df9222",
+      0,
+      "Controllers must submit the DPIA, documentation of responsibilities between controllers and processors, processing purposes and means, protective measures and safeguards, and DPO contact details when seeking prior consultation."
+     ],
+     [
+      "c-2fa57f35f4df9222",
+      1,
+      "The Data Protection Impact Assessment and any ancillary documents;"
+     ]
+    ],
+    "cluster": "c-fb1459b330b4e176",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "address",
+     "compliance",
+     "demonstrate",
+     "document",
+     "ensure",
+     "envisag",
+     "mechanism",
+     "safeguard",
+     "security"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "A data protection impact assessment must document the measures envisaged to address risks including safeguards, security measures and mechanisms to ensure protection and demonstrate compliance.",
+    "seeds": [
+     "c-fb1459b330b4e176"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-11"
+   },
+   {
+    "background_rows": [
+     [
+      "c-532e4a3959d34796",
+      1,
+      "The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing"
+     ],
+     [
+      "c-433f9c36e5a54609",
+      2,
+      "But an effective DPIA can also bring broader compliance, financial and reputational benefits, helping you demonstrate accountability and building trust and engagement with individuals."
+     ],
+     [
+      "c-532e4a3959d34796",
+      0,
+      "A DPIA must assess the necessity and proportionality of processing, including measures to ensure compliance and respect for GDPR principles."
+     ],
+     [
+      "c-9f835ba2ccd6e7f0",
+      1,
+      "For example, you may be able to demonstrate that consultation would compromise commercial confidentiality, undermine security, or be disproportionate or impracticable."
+     ],
+     [
+      "c-1d5f876623c86b1a",
+      2,
+      "It should include these steps: Step 1: identify the need for a DPIA Step 2: describe the processing Step 3: consider consultation Step 4: assess necessity and proportionality Step 5: identify and assess risks Step 6: identify measures to mitigate the risks Step 7: sign off and record outcomes"
+     ],
+     [
+      "c-2fa57f35f4df9222",
+      0,
+      "Controllers must submit the DPIA, documentation of responsibilities between controllers and processors, processing purposes and means, protective measures and safeguards, and DPO contact details when seeking prior consultation."
+     ],
+     [
+      "c-2fa57f35f4df9222",
+      4,
+      "The measures and safeguards provided to protect the rights and freedoms of data subjects under the GDPR;"
+     ],
+     [
+      "c-3c28e4366df8d799",
+      2,
+      "You need to be confident that you can demonstrate that the nature, scope, context and purposes of the processing are all similar."
+     ]
+    ],
+    "cluster": "c-34a9732142853ea9",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "address",
+     "compliance",
+     "demonstrate",
+     "describe",
+     "ensure",
+     "envisag",
+     "mechanism",
+     "regulation",
+     "safeguard",
+     "security"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "A DPIA must describe the measures envisaged to address risks, including safeguards, security measures and mechanisms to ensure the protection of personal data and demonstrate compliance with the Regulation.",
+    "seeds": [
+     "c-34a9732142853ea9"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-12"
+   },
+   {
+    "background_rows": [
+     [
+      "c-7f0dc02ba850151a",
+      0,
+      "A DPIA must contain a systematic description of the envisaged processing operations and the purposes of processing, including the legitimate interest pursued by the controller where applicable."
+     ],
+     [
+      "c-7f0dc02ba850151a",
+      1,
+      "a systematic description of the envisaged processing operations and the purposes of the processing, including, where applicable, the legitimate interest pursued by the controller"
+     ],
+     [
+      "c-34a9732142853ea9",
+      1,
+      "the measures envisaged to address the risks, including safeguards, security measures and mechanisms to ensure the protection of personal data and to demonstrate compliance with this Regulation taking into account the rights and legitimate interests of data subjects and other persons concerned"
+     ],
+     [
+      "c-d2cd75d65c7a5378",
+      0,
+      "The purpose of processing should include legitimate interests, intended outcomes for individuals, and expected benefits for the controller or society."
+     ],
+     [
+      "c-d2cd75d65c7a5378",
+      2,
+      "This should include: your legitimate interests, where relevant;"
+     ],
+     [
+      "c-1606aaf110dee704",
+      1,
+      "It provides written advice to the controller and, where applicable to the processor within period of up to eight weeks of receipt of the request for consultation."
+     ],
+     [
+      "c-2fa57f35f4df9222",
+      5,
+      "The contact details of the Data Protection Officer (if applicable)"
+     ],
+     [
+      "c-34a9732142853ea9",
+      0,
+      "A DPIA must describe the measures envisaged to address risks, including safeguards, security measures and mechanisms to ensure the protection of personal data and demonstrate compliance with the Regulation."
+     ]
+    ],
+    "cluster": "c-e43f33dcbd7906c2",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "applicable",
+     "contain",
+     "description",
+     "envisag",
+     "interest",
+     "legitimate",
+     "pursu"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "A data protection impact assessment must contain a systematic description of the envisaged processing operations and purposes, including the legitimate interest pursued by the controller where applicable.",
+    "seeds": [
+     "c-e43f33dcbd7906c2"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-13"
+   },
+   {
+    "background_rows": [
+     [
+      "c-532e4a3959d34796",
+      0,
+      "A DPIA must assess the necessity and proportionality of processing, including measures to ensure compliance and respect for GDPR principles."
+     ],
+     [
+      "c-532e4a3959d34796",
+      1,
+      "The necessity and the proportionality are assessed [article 35, paragraph 7, point b)]: The measures envisaged to ensure compliance with the Regulation are determined, [article 35, paragraph 7, point d), and recital 90] taking into account: Measures contributing to the respect of the principles of proportionality and necessity of processing"
+     ],
+     [
+      "c-95c555efcf1b1916",
+      0,
+      "A DPIA must include description of the nature, scope, context and purposes of the processing, assessment of necessity and proportionality, identification and assessment of risks, and identification of additional mitigation measures."
+     ],
+     [
+      "c-95c555efcf1b1916",
+      2,
+      "assess necessity, proportionality and compliance measures;"
+     ]
+    ],
+    "cluster": "c-1d5f876623c86b1a",
+    "k": 4,
+    "lens": "RESULT",
+    "probe": [
+     "describ",
+     "key",
+     "necessity",
+     "need",
+     "outcom",
+     "proportionality",
+     "record",
+     "seven",
+     "sign",
+     "step"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "A DPIA process should include seven key steps: identifying the need, describing the processing, considering consultation, assessing necessity and proportionality, identifying and assessing risks, identifying mitigating measures, and signing off and recording outcomes.",
+    "seeds": [
+     "c-1d5f876623c86b1a"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-14"
+   },
+   {
+    "background_rows": [
+     [
+      "c-154ec754e1a92f89",
+      3,
+      "It is important to reevaluate the DPIA when there is a change of the risk represented by the processing operation."
+     ],
+     [
+      "c-1cf8ebc6e7a8070e",
+      0,
+      "A DPIA must be kept under review and may need to be repeated if there is a substantial change to the nature, scope, context, or purposes of processing."
+     ],
+     [
+      "c-e31462fe998aaf03",
+      0,
+      "A DPIA should be reevaluated when there is a change in the risk represented by the processing operation due to evolution of technology, use of data for different purposes, or organizational context changes."
+     ],
+     [
+      "c-06df122d987ae86f",
+      0,
+      "DPIAs should be kept under review and revisited when necessary."
+     ],
+     [
+      "c-06df122d987ae86f",
+      1,
+      "We keep our DPIAs under review and revisit them when necessary."
+     ],
+     [
+      "c-154ec754e1a92f89",
+      0,
+      "A DPIA is an ongoing process for managing risks, not a one-time exercise, and must be reevaluated when the risk represented by the processing operation changes."
+     ],
+     [
+      "c-1cf8ebc6e7a8070e",
+      1,
+      "You need to keep your DPIA under review."
+     ],
+     [
+      "c-1cf8ebc6e7a8070e",
+      2,
+      "You may need to repeat it if there is a substantial change to the nature, scope, context or purposes of your processing."
+     ]
+    ],
+    "cluster": "c-a0a6a634ce3d7a7f",
+    "k": 8,
+    "lens": "RESULT",
+    "probe": [
+     "change",
+     "comply",
+     "represent",
+     "review"
+    ],
+    "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+    "seed_text": "Controllers must conduct a review to assess if processing complies with the data protection impact assessment when there is a change in the risk represented by processing operations.",
+    "seeds": [
+     "c-a0a6a634ce3d7a7f"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-RESULT-15"
+   }
+  ],
+  "SEL": [
+   {
+    "background_rows": [
+     [
+      "c-d85bbd0dc09a826e",
+      0,
+      "Systematic and extensive evaluation of personal aspects based on automated processing including profiling that produces legal effects or significantly affects the natural person is a type of processing requiring a data protection impact assessment."
+     ],
+     [
+      "c-d85bbd0dc09a826e",
+      1,
+      "A data protection impact assessment referred to in paragraph 1 shall in particular be required in the case of: (a)a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person"
+     ],
+     [
+      "c-df979a78a5b2be70",
+      0,
+      "A legal or similarly significant effect is something that has a noticeable impact on an individual and can significantly affect their circumstances, behaviour or choices."
+     ],
+     [
+      "c-3882097b39ef919b",
+      0,
+      "The UK GDPR mandates DPIAs specifically for systematic and extensive profiling with significant effects, special category or criminal offence data processing on a large scale, and systematic monitoring of publicly accessible places on large scale."
+     ],
+     [
+      "c-3882097b39ef919b",
+      1,
+      "In particular, the UK GDPR says you must do a DPIA if you plan to: use systematic and extensive profiling with significant effects;"
+     ],
+     [
+      "c-df979a78a5b2be70",
+      2,
+      "A legal effect is something that affects a person's legal status or legal rights."
+     ],
+     [
+      "c-ee2d5da9d541f43d",
+      0,
+      "A legal effect is something that affects a person's legal status or legal rights."
+     ],
+     [
+      "c-ee2d5da9d541f43d",
+      1,
+      "A legal effect is something that affects a person's legal status or legal rights."
+     ]
+    ],
+    "cluster": "c-ce8af6ca30f75288",
+    "k": 8,
+    "lens": "SEL",
+    "probe": [
+     "affect",
+     "aspect",
+     "automat",
+     "based",
+     "effect",
+     "evaluation",
+     "extensive",
+     "legal",
+     "produc",
+     "profil",
+     "significantly"
+    ],
+    "question": "Does any sentence state a condition that says which option to choose in which situation?",
+    "seed_text": "A DPIA is required for systematic and extensive evaluation of personal aspects based on automated processing and profiling that produces legal effects or significantly affects data subjects.",
+    "seeds": [
+     "c-ce8af6ca30f75288"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-SEL-1"
+   }
+  ],
+  "WHY": [
+   {
+    "background_rows": [
+     [
+      "c-38cfa9c10f9c0da1",
+      0,
+      "Controllers should seek views of data subjects or their representatives on intended processing when appropriate, without prejudice to protection of commercial interests, public interests or security of operations."
+     ],
+     [
+      "c-38cfa9c10f9c0da1",
+      1,
+      "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations."
+     ],
+     [
+      "c-6e0dc7586d6eee18",
+      0,
+      "The controller should seek the views of data subjects or their representatives on the intended processing when appropriate, without prejudice to the protection of commercial or public interests or the security of processing operations."
+     ],
+     [
+      "c-6e0dc7586d6eee18",
+      1,
+      "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations."
+     ],
+     [
+      "c-a4a1629f9ba773b9",
+      3,
+      "You may be able to justify a decision not to carry out a DPIA if you are confident that the processing is nevertheless unlikely to result in a high risk, but you should document your reasons."
+     ],
+     [
+      "c-ae629243f4c8b411",
+      0,
+      "A DPIA must involve the opinion of the Data Protection Officer and, where appropriate, the point of view of data subjects or their representatives."
+     ],
+     [
+      "c-ae629243f4c8b411",
+      2,
+      "The point of view of the data subjects or their representatives are gathered, where appropriate (article 35, paragraph 9)."
+     ],
+     [
+      "c-ee2498294a77ec6d",
+      0,
+      "If an organization decides not to carry out a DPIA, the decision and its reasons must be documented."
+     ]
+    ],
+    "cluster": "c-bf045a5c8aabb1c3",
+    "k": 8,
+    "lens": "WHY",
+    "probe": [
+     "document",
+     "good",
+     "reason",
+     "representativ",
+     "sought",
+     "unless",
+     "view"
+    ],
+    "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+    "seed_text": "Views of individuals or their representatives should be sought and documented unless there is a good reason not to.",
+    "seeds": [
+     "c-bf045a5c8aabb1c3"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-WHY-1"
+   },
+   {
+    "background_rows": [
+     [
+      "c-003879ead25de590",
+      0,
+      "A data protection impact assessment is required when processing is likely to result in a high risk to the rights and freedoms of data subjects."
+     ],
+     [
+      "c-003879ead25de590",
+      1,
+      "If you have determined that the processing is likely to result in a high risk to the rights and freedoms of data subjects, you must carry out a data protection impact assessment (DPIA) for each processing operation."
+     ],
+     [
+      "c-1a02d59f3bec3f16",
+      1,
+      "A DPIA may also be carried out on a voluntary basis in order to identify and deal as effectively as possible with the risks, even if they are minor, to the rights and freedoms of individuals."
+     ],
+     [
+      "c-2fa57f35f4df9222",
+      4,
+      "The measures and safeguards provided to protect the rights and freedoms of data subjects under the GDPR;"
+     ],
+     [
+      "c-7903cb60269bacfc",
+      0,
+      "Rights and freedoms of natural persons refer mainly to data protection and privacy, but also include other fundamental rights such as freedom of speech, freedom of thought, and freedom of movement."
+     ],
+     [
+      "c-7903cb60269bacfc",
+      1,
+      "The reference to the rights and freedoms of natural persons refers mainly to data protection and the protection of privacy but also, where appropriate, to other fundamental rights, such as freedom of speech, freedom of thought, freedom of movement, prohibition of discrimination, the right to freedom and freedom of conscience and religion."
+     ],
+     [
+      "c-9c89ae4a230668c2",
+      1,
+      "Potential impacts on the rights and freedoms of data subjects are identified in case of events such as illegitimate access to data, an unwanted modification of data or their disappearance"
+     ],
+     [
+      "c-9f706d60992e0c4d",
+      0,
+      "A DPIA must assess the origin, nature, particularity and gravity of risks to the rights and freedoms of data subjects."
+     ]
+    ],
+    "cluster": "c-848a2f6232d71566",
+    "k": 8,
+    "lens": "WHY",
+    "probe": [
+     "freedom",
+     "particularly"
+    ],
+    "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+    "seed_text": "Controllers must conduct a data protection impact assessment before processing when the processing is likely to result in high risk to rights and freedoms, particularly when using new technologies and considering the nature, scope, context and purposes of the processing.",
+    "seeds": [
+     "c-848a2f6232d71566"
+    ],
+    "split": "gdpr",
+    "topic_id": "r-WHY-2"
+   }
+  ]
+ },
+ "seed": 20261027,
+ "topics": [
+  {
+   "background_rows": [
+    [
+     "c-405d9d51877524f1",
+     0,
+     "Processing may only be carried out after implementing the recommendations in the CNPD's opinion following prior consultation."
+    ],
+    [
+     "c-405d9d51877524f1",
+     1,
+     "Processing may only be carried out after implementing the recommandations in the opinion of the CNPD."
+    ],
+    [
+     "c-433f9c36e5a54609",
+     0,
+     "DPIAs are legally required for high-risk processing but can also bring broader compliance, financial and reputational benefits."
+    ],
+    [
+     "c-433f9c36e5a54609",
+     2,
+     "But an effective DPIA can also bring broader compliance, financial and reputational benefits, helping you demonstrate accountability and building trust and engagement with individuals."
+    ],
+    [
+     "c-6bf0abc6efa0347f",
+     0,
+     "Measures identified in a DPIA should be implemented and integrated into the project plan."
+    ],
+    [
+     "c-6bf0abc6efa0347f",
+     1,
+     "We implement the measures we identified, and integrate them into our project plan."
+    ],
+    [
+     "c-a61a8a7f7977334f",
+     1,
+     "You should also think carefully about doing a DPIA for any other processing that is large scale, involves profiling or monitoring, decides on access to services or opportunities, or involves sensitive data or vulnerable individuals."
+    ],
+    [
+     "c-c1e819c5160fa72a",
+     0,
+     "Publishing a DPIA is not a legal requirement under UK GDPR but organizations should actively consider the benefits of publication for demonstrating compliance and building trust."
+    ]
+   ],
+   "cluster": "c-1ab07da9589311e0",
+   "k": 8,
+   "lens": "SEL",
+   "probe": [
+    "benefit",
+    "cost",
+    "decid",
+    "implement"
+   ],
+   "question": "Does any sentence state a condition that says which option to choose in which situation?",
+   "seed_text": "Costs and benefits of mitigating measures should be considered when deciding whether to implement them.",
+   "seeds": [
+    "c-1ab07da9589311e0"
+   ],
+   "split": "gdpr",
+   "topic_id": "g01"
+  },
+  {
+   "background_rows": [
+    [
+     "c-95c555efcf1b1916",
+     2,
+     "assess necessity, proportionality and compliance measures;"
+    ],
+    [
+     "c-1d5f876623c86b1a",
+     0,
+     "A DPIA process should include seven key steps: identifying the need, describing the processing, considering consultation, assessing necessity and proportionality, identifying and assessing risks, identifying mitigating measures, and signing off and recording outcomes."
+    ],
+    [
+     "c-1d5f876623c86b1a",
+     2,
+     "It should include these steps: Step 1: identify the need for a DPIA Step 2: describe the processing Step 3: consider consultation Step 4: assess necessity and proportionality Step 5: identify and assess risks Step 6: identify measures to mitigate the risks Step 7: sign off and record outcomes"
+    ],
+    [
+     "c-682644ddc2173082",
+     0,
+     "When assessing necessity and proportionality, considerations should include whether plans achieve the intended purpose and whether alternative reasonable ways exist to achieve the same result."
+    ]
+   ],
+   "cluster": "c-532e4a3959d34796",
+   "k": 4,
+   "lens": "RESULT",
+   "probe": [
+    "compliance",
+    "ensure",
+    "gdpr",
+    "necessity",
+    "principl",
+    "proportionality",
+    "respect"
+   ],
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_text": "A DPIA must assess the necessity and proportionality of processing, including measures to ensure compliance and respect for GDPR principles.",
+   "seeds": [
+    "c-532e4a3959d34796"
+   ],
+   "split": "gdpr",
+   "topic_id": "g02"
+  },
+  {
+   "background_rows": [
+    [
+     "c-003879ead25de590",
+     1,
+     "If you have determined that the processing is likely to result in a high risk to the rights and freedoms of data subjects, you must carry out a data protection impact assessment (DPIA) for each processing operation."
+    ],
+    [
+     "c-003879ead25de590",
+     0,
+     "A data protection impact assessment is required when processing is likely to result in a high risk to the rights and freedoms of data subjects."
+    ],
+    [
+     "c-105d5acd1e141ba2",
+     0,
+     "Organizations should consult individuals and other relevant stakeholders when carrying out a DPIA."
+    ],
+    [
+     "c-154ec754e1a92f89",
+     1,
+     "Carrying out a DPIA is not a one-time exercise."
+    ],
+    [
+     "c-1a02d59f3bec3f16",
+     1,
+     "A DPIA may also be carried out on a voluntary basis in order to identify and deal as effectively as possible with the risks, even if they are minor, to the rights and freedoms of individuals."
+    ],
+    [
+     "c-27af33c5674fc109",
+     0,
+     "A controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk represented by processing operations."
+    ],
+    [
+     "c-27af33c5674fc109",
+     1,
+     "Where necessary, the controller shall carry out a review to assess if processing is performed in accordance with the data protection impact assessment at least when there is a change of the risk represented by processing operations."
+    ],
+    [
+     "c-27f8dc3327212d5f",
+     1,
+     "In some cases we may advise you not to carry out the processing because we consider it would be in breach of the GDPR."
+    ]
+   ],
+   "cluster": "c-d824ab501b6a2648",
+   "k": 8,
+   "lens": "WHY",
+   "probe": [
+    "carry",
+    "freedom"
+   ],
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_text": "Data controllers are required to carry out a DPIA before any processing that is likely to result in a high risk to the rights and freedoms of individuals.",
+   "seeds": [
+    "c-d824ab501b6a2648"
+   ],
+   "split": "gdpr",
+   "topic_id": "g03"
+  },
+  {
+   "background_rows": [
+    [
+     "c-b443da89de870d59",
+     0,
+     "Processing personal data not obtained directly from the data subject, where the controller relies on Article 14.5(b) impossibility or disproportionate effort, requires a DPIA when combined with other criteria."
+    ],
+    [
+     "c-7729f9f91ae6ef8a",
+     0,
+     "Invisible processing occurs when personal data is obtained from sources other than the data subject directly without providing Article 14 privacy information."
+    ],
+    [
+     "c-7729f9f91ae6ef8a",
+     1,
+     "'Invisible processing' occurs when you obtain personal data from somewhere other than directly from the individual themselves, and you don't provide them with the privacy information required by Article 14."
+    ],
+    [
+     "c-7b6e8ba1578d8223",
+     1,
+     "Invisible processing: processing of personal data that has not been obtained direct from the data subject in circumstances where the controller considers that compliance with Article 14 would prove impossible or involve disproportionate effort."
+    ],
+    [
+     "c-a4a1629f9ba773b9",
+     3,
+     "You may be able to justify a decision not to carry out a DPIA if you are confident that the processing is nevertheless unlikely to result in a high risk, but you should document your reasons."
+    ],
+    [
+     "c-e224ad1569d62c23",
+     0,
+     "Children are regarded as vulnerable because they may be less able to understand how their data is used, anticipate effects, and protect themselves from consequences."
+    ],
+    [
+     "c-e224ad1569d62c23",
+     1,
+     "Most obviously, children are regarded as vulnerable to the processing of their personal data since they may be less able to understand how their data is being used, anticipate how this might affect them, and protect themselves against any unwanted consequences."
+    ],
+    [
+     "c-0500aa73756cdbaa",
+     1,
+     "But you must consult the ICO if your DPIA identifies a high risk and you cannot take measures to reduce that risk."
+    ]
+   ],
+   "cluster": "c-477ea8169e5e396e",
+   "k": 8,
+   "lens": "RESULT",
+   "probe": [
+    "able",
+    "disproportionate",
+    "effort",
+    "exception",
+    "information",
+    "justify",
+    "people",
+    "privacy",
+    "protect",
+    "rely",
+    "take"
+   ],
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_text": "When relying on the disproportionate effort exception for not providing privacy information, controllers must be able to justify this and take other measures to protect people's rights.",
+   "seeds": [
+    "c-477ea8169e5e396e"
+   ],
+   "split": "gdpr",
+   "topic_id": "g04"
+  },
+  {
+   "background_rows": [
+    [
+     "c-154ec754e1a92f89",
+     0,
+     "A DPIA is an ongoing process for managing risks, not a one-time exercise, and must be reevaluated when the risk represented by the processing operation changes."
+    ],
+    [
+     "c-154ec754e1a92f89",
+     1,
+     "Carrying out a DPIA is not a one-time exercise."
+    ],
+    [
+     "c-154ec754e1a92f89",
+     2,
+     "It is an an on-going process that helps you to manage the risks resulting from a processing."
+    ],
+    [
+     "c-1ad3f7a1b2292d0b",
+     0,
+     "Invisible processing occurs when personal data is obtained from sources other than directly from the individual and privacy information required by Article 14 is not provided."
+    ],
+    [
+     "c-1ad3f7a1b2292d0b",
+     1,
+     "'Invisible processing' occurs when you obtain personal data from somewhere other than directly from the individual themselves, and you don't provide them with the privacy information required by Article 14."
+    ],
+    [
+     "c-2005ed4d313463ac",
+     1,
+     "If you identify a high risk that you cannot mitigate, you must consult the ICO before starting the processing."
+    ],
+    [
+     "c-249bc289e9cba261",
+     0,
+     "A DPIA does not require eradication of all risks but should help document risks and assess whether any remaining risks are justified."
+    ],
+    [
+     "c-249bc289e9cba261",
+     2,
+     "But it should help you document them and assess whether or not any remaining risks are justified."
+    ]
+   ],
+   "cluster": "c-9600745fc043ff05",
+   "k": 8,
+   "lens": "RESULT",
+   "probe": [
+    "ability",
+    "control",
+    "exercise",
+    "help",
+    "invisible",
+    "mitigate"
+   ],
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_text": "If processing involves invisible processing combined with any vulnerable individuals or other criteria, a DPIA must be conducted to help assess and mitigate impact on individuals' ability to exercise control over their data.",
+   "seeds": [
+    "c-9600745fc043ff05"
+   ],
+   "split": "gdpr",
+   "topic_id": "g05"
+  },
+  {
+   "background_rows": [
+    [
+     "c-2fa57f35f4df9222",
+     4,
+     "The measures and safeguards provided to protect the rights and freedoms of data subjects under the GDPR;"
+    ],
+    [
+     "c-4087d360b75cbcd6",
+     0,
+     "A data protection impact assessment must include an assessment of the risks to the rights and freedoms of data subjects."
+    ],
+    [
+     "c-4087d360b75cbcd6",
+     1,
+     "(c)an assessment of the risks to the rights and freedoms of data subjects referred to in paragraph 1"
+    ],
+    [
+     "c-848a2f6232d71566",
+     0,
+     "Controllers must conduct a data protection impact assessment before processing when the processing is likely to result in high risk to rights and freedoms, particularly when using new technologies and considering the nature, scope, context and purposes of the processing."
+    ],
+    [
+     "c-848a2f6232d71566",
+     1,
+     "Where a type of processing in particular using new technologies, and taking into account the nature, scope, context and purposes of the processing, is likely to result in a high risk to the rights and freedoms of natural persons, the controller shall, prior to the processing, carry out an assessment of the impact of the envisaged processing operations on the protection of personal data."
+    ],
+    [
+     "c-a8d67e2f019b7cce",
+     0,
+     "A Data Protection Impact Assessment must be conducted when a type of processing is likely to result in a high risk to the rights and freedoms of individuals."
+    ],
+    [
+     "c-a8d67e2f019b7cce",
+     1,
+     "Article 35(1) says that you must do a DPIA where a type of processing is likely to result in a high risk to the rights and freedoms of individuals"
+    ],
+    [
+     "c-afff0546ad99939c",
+     0,
+     "A DPIA must contain an assessment of the risks to the rights and freedoms of data subjects."
+    ]
+   ],
+   "cluster": "c-9f706d60992e0c4d",
+   "k": 8,
+   "lens": "RESULT",
+   "probe": [
+    "freedom",
+    "gravity",
+    "origin",
+    "particularity"
+   ],
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_text": "A DPIA must assess the origin, nature, particularity and gravity of risks to the rights and freedoms of data subjects.",
+   "seeds": [
+    "c-9f706d60992e0c4d"
+   ],
+   "split": "gdpr",
+   "topic_id": "g06"
+  },
+  {
+   "background_rows": [
+    [
+     "c-003879ead25de590",
+     1,
+     "If you have determined that the processing is likely to result in a high risk to the rights and freedoms of data subjects, you must carry out a data protection impact assessment (DPIA) for each processing operation."
+    ],
+    [
+     "c-249bc289e9cba261",
+     1,
+     "A DPIA does not have to indicate that all risks have been eradicated."
+    ],
+    [
+     "c-258fefb9712faa61",
+     0,
+     "Organizations have an overriding obligation under Article 35(1) to assess any proposed processing operation against the requirement to complete DPIAs regardless of provided high-risk lists."
+    ],
+    [
+     "c-2fd531c08b747fee",
+     1,
+     "You cannot begin the processing until you have consulted us."
+    ],
+    [
+     "c-359578dee62ec2a3",
+     1,
+     "Once we have the information we need, we will generally respond within eight weeks (although we can extend this by a further six weeks in complex cases)."
+    ],
+    [
+     "c-3c28e4366df8d799",
+     1,
+     "You have already done a substantially similar DPIA."
+    ],
+    [
+     "c-4b5fee1573c15d1d",
+     2,
+     "This means that although you have not yet assessed the actual level of risk, you need to screen for factors that point to the potential for a widespread or serious impact on individuals."
+    ],
+    [
+     "c-89f9cffe5a92b4e4",
+     1,
+     "You have already done a substantially similar DPIA."
+    ]
+   ],
+   "cluster": "c-2c3c8139efad16df",
+   "k": 8,
+   "lens": "RESULT",
+   "probe": [
+    "have",
+    "longer",
+    "reduc"
+   ],
+   "question": "Does any sentence state what result of this test to expect and what a given result means or which next action it leads to?",
+   "seed_text": "ICO consultation is not required if a DPIA identified high risk but mitigating measures have reduced it to no longer be high.",
+   "seeds": [
+    "c-2c3c8139efad16df"
+   ],
+   "split": "gdpr",
+   "topic_id": "g07"
+  },
+  {
+   "background_rows": [
+    [
+     "c-a4a1629f9ba773b9",
+     3,
+     "You may be able to justify a decision not to carry out a DPIA if you are confident that the processing is nevertheless unlikely to result in a high risk, but you should document your reasons."
+    ],
+    [
+     "c-ee2498294a77ec6d",
+     0,
+     "If an organization decides not to carry out a DPIA, the decision and its reasons must be documented."
+    ],
+    [
+     "c-b7309997452e6972",
+     0,
+     "Decision-making within a DPIA, including any difference of opinion with the DPO or individuals consulted, must be recorded in the DPIA outcome."
+    ],
+    [
+     "c-b7309997452e6972",
+     1,
+     "We record our decision-making in the outcome of the DPIA, including any difference of opinion with our DPO or individuals consulted."
+    ],
+    [
+     "c-ee2498294a77ec6d",
+     1,
+     "If we decide not to carry out a DPIA, we document our reasons."
+    ],
+    [
+     "c-001378676d9bc0ce",
+     0,
+     "A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing."
+    ],
+    [
+     "c-001378676d9bc0ce",
+     1,
+     "a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person"
+    ],
+    [
+     "c-003879ead25de590",
+     1,
+     "If you have determined that the processing is likely to result in a high risk to the rights and freedoms of data subjects, you must carry out a data protection impact assessment (DPIA) for each processing operation."
+    ]
+   ],
+   "cluster": "c-fb1fabafd72cb927",
+   "k": 8,
+   "lens": "WHY",
+   "probe": [
+    "decision",
+    "determin",
+    "document",
+    "dpo",
+    "need",
+    "reason"
+   ],
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_text": "If a DPIA is determined not to be needed, the decision and reasons must be documented, including the DPO's advice.",
+   "seeds": [
+    "c-fb1fabafd72cb927"
+   ],
+   "split": "gdpr",
+   "topic_id": "g08"
+  },
+  {
+   "background_rows": [
+    [
+     "c-0403ebb7fb067639",
+     0,
+     "Extensive processing implies that the processing covers a large area, involves a wide range of data, or affects a large number of individuals."
+    ],
+    [
+     "c-0403ebb7fb067639",
+     1,
+     "The term 'extensive' implies that the processing also covers a large area, involves a wide range of data or affects a large number of individuals."
+    ],
+    [
+     "c-2294f81bcee5f2d1",
+     0,
+     "Processing is systematic when it occurs according to a system, is pre-arranged or methodical, and takes place as part of a general plan for data collection."
+    ]
+   ],
+   "cluster": "c-001378676d9bc0ce",
+   "k": 3,
+   "lens": "DISC",
+   "probe": [
+    "extensive",
+    "systematic"
+   ],
+   "question": "Does any sentence state how to tell whether something counts as 'systematic extensive': a threshold, a defining feature, or a contrast between a case that is and one that is not?",
+   "seed_text": "A DPIA is required for systematic and extensive evaluation of personal aspects of natural persons based on automated processing including profiling where decisions with legal or similarly significant effects are based on such processing.",
+   "seeds": [
+    "c-001378676d9bc0ce",
+    "c-3882097b39ef919b",
+    "c-ce8af6ca30f75288",
+    "c-d85bbd0dc09a826e"
+   ],
+   "split": "gdpr",
+   "topic_id": "g09"
+  },
+  {
+   "background_rows": [
+    [
+     "c-4b5fee1573c15d1d",
+     2,
+     "This means that although you have not yet assessed the actual level of risk, you need to screen for factors that point to the potential for a widespread or serious impact on individuals."
+    ],
+    [
+     "c-008d014ea5c56f48",
+     2,
+     "If not, you need to screen for other factors that may indicate it is a type of processing that is likely to result in high risk, such as processing the data of vulnerable individuals."
+    ],
+    [
+     "c-359578dee62ec2a3",
+     1,
+     "Once we have the information we need, we will generally respond within eight weeks (although we can extend this by a further six weeks in complex cases)."
+    ],
+    [
+     "c-4b5fee1573c15d1d",
+     0,
+     "Processing must be screened for factors pointing to potential widespread or serious impact on individuals to determine if it is likely to result in high risk."
+    ],
+    [
+     "c-cb6b607ac9ce72c1",
+     1,
+     "In the case of processing pursuant to point (c) or (e) of Article 6(1), paragraphs 1 to 7 of this Article do not apply if a data protection impact assessment has already been carried out for the processing as part of a general impact assessment required by domestic law, unless domestic law provides otherwise."
+    ],
+    [
+     "c-008d014ea5c56f48",
+     0,
+     "Processing should be screened for factors indicating high-risk processing, such as processing data of vulnerable individuals."
+    ],
+    [
+     "c-008d014ea5c56f48",
+     1,
+     "Otherwise, you need to check whether your processing is on the list of types of processing that automatically require a DPIA."
+    ],
+    [
+     "c-08c2a454d91ee0bd",
+     1,
+     "The ICO also requires you to do a DPIA if you plan to: use innovative technology (in combination with any of the criteria from the European guidelines)"
+    ]
+   ],
+   "cluster": "c-a4a1629f9ba773b9",
+   "k": 8,
+   "lens": "HEDGE",
+   "probe": [
+    "absolute",
+    "case",
+    "combination",
+    "factor",
+    "indicator",
+    "need",
+    "point",
+    "rule",
+    "wp29"
+   ],
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_text": "In most cases, a combination of two factors from the WP29 high-risk indicators points to the need for a DPIA, but this is not an absolute rule.",
+   "seeds": [
+    "c-a4a1629f9ba773b9"
+   ],
+   "split": "gdpr",
+   "topic_id": "g10"
+  },
+  {
+   "background_rows": [
+    [
+     "c-2294f81bcee5f2d1",
+     0,
+     "Processing is systematic when it occurs according to a system, is pre-arranged or methodical, and takes place as part of a general plan for data collection."
+    ],
+    [
+     "c-2294f81bcee5f2d1",
+     1,
+     "The DPO guidelines say that 'systematic' means that the processing: occurs according to a system;"
+    ],
+    [
+     "c-a43949fd25fd6de0",
+     0,
+     "DPIA performance should be monitored on an ongoing basis."
+    ],
+    [
+     "c-a43949fd25fd6de0",
+     1,
+     "You should monitor the ongoing performance of the DPIA."
+    ]
+   ],
+   "cluster": "c-34c46d94cc8bd51f",
+   "k": 4,
+   "lens": "DISC",
+   "probe": [
+    "monitor",
+    "systematic"
+   ],
+   "question": "Does any sentence state how to tell whether something counts as 'systematic monitor': a threshold, a defining feature, or a contrast between a case that is and one that is not?",
+   "seed_text": "Systematic monitoring of a publicly accessible area on a large scale is a type of processing requiring a data protection impact assessment.",
+   "seeds": [
+    "c-34c46d94cc8bd51f",
+    "c-3882097b39ef919b",
+    "c-75b4dfcc59133374",
+    "c-b1fad9042198d88d"
+   ],
+   "split": "gdpr",
+   "topic_id": "g11"
+  },
+  {
+   "background_rows": [
+    [
+     "c-10c5d28dc341bcb1",
+     0,
+     "DPIAs are relevant to Data Protection Officers and those with specific data protection responsibilities in larger organisations."
+    ],
+    [
+     "c-ae629243f4c8b411",
+     0,
+     "A DPIA must involve the opinion of the Data Protection Officer and, where appropriate, the point of view of data subjects or their representatives."
+    ],
+    [
+     "c-258fefb9712faa61",
+     0,
+     "Organizations have an overriding obligation under Article 35(1) to assess any proposed processing operation against the requirement to complete DPIAs regardless of provided high-risk lists."
+    ],
+    [
+     "c-258fefb9712faa61",
+     1,
+     "In any event, this list does not affect your overriding obligation in Article 35(1), which is to assess any proposed processing operation against the requirement to complete DPIAs."
+    ],
+    [
+     "c-2fa57f35f4df9222",
+     5,
+     "The contact details of the Data Protection Officer (if applicable)"
+    ],
+    [
+     "c-38cfa9c10f9c0da1",
+     0,
+     "Controllers should seek views of data subjects or their representatives on intended processing when appropriate, without prejudice to protection of commercial interests, public interests or security of operations."
+    ],
+    [
+     "c-38cfa9c10f9c0da1",
+     1,
+     "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations."
+    ],
+    [
+     "c-4852a8201f6bc4d2",
+     1,
+     "Each data protection authority issues a list of the kind of processing operations which are subject to the requirement for a data protection impact assessment (DPIA), following an EDPB opinion (Art."
+    ]
+   ],
+   "cluster": "c-965c5dbfe1fb8a2f",
+   "k": 8,
+   "lens": "HEDGE",
+   "probe": [
+    "appropriate",
+    "expert",
+    "officer",
+    "relevant",
+    "requirement"
+   ],
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_text": "Consultation with data protection officers and where appropriate with individuals and relevant experts is a requirement in the DPIA process.",
+   "seeds": [
+    "c-965c5dbfe1fb8a2f"
+   ],
+   "split": "gdpr",
+   "topic_id": "g12"
+  },
+  {
+   "background_rows": [
+    [
+     "c-114c03552205b00b",
+     0,
+     "Legal advice or advice from independent experts such as IT experts, sociologists or ethicists should be considered where appropriate, though there are no specific requirements to do so."
+    ],
+    [
+     "c-114c03552205b00b",
+     1,
+     "We also recommend you consider seeking legal advice or advice from other independent experts such as IT experts, sociologists or ethicists where appropriate."
+    ],
+    [
+     "c-1ab07da9589311e0",
+     1,
+     "You can take into account the costs and benefits of each measure when deciding whether or not they are appropriate."
+    ],
+    [
+     "c-6154d9c9cb8eb883",
+     0,
+     "If risks identified in a DPIA cannot be mitigated by appropriate measures, the controller must consult the Data Protection Authority before proceeding with the processing."
+    ],
+    [
+     "c-6154d9c9cb8eb883",
+     1,
+     "If such risks cannot be mitigated by appropriate measures, the controller needs to consult the Data Protection Authority (DPA) before proceeding."
+    ]
+   ],
+   "cluster": "c-38cfa9c10f9c0da1",
+   "k": 5,
+   "lens": "DISC",
+   "probe": [
+    "appropriate",
+    "prejudice"
+   ],
+   "question": "Does any sentence state how to tell whether something counts as 'appropriate prejudice': a threshold, a defining feature, or a contrast between a case that is and one that is not?",
+   "seed_text": "Controllers should seek views of data subjects or their representatives on intended processing when appropriate, without prejudice to protection of commercial interests, public interests or security of operations.",
+   "seeds": [
+    "c-38cfa9c10f9c0da1",
+    "c-6e0dc7586d6eee18"
+   ],
+   "split": "gdpr",
+   "topic_id": "g13"
+  },
+  {
+   "background_rows": [
+    [
+     "c-49e75e3ef0b043f9",
+     1,
+     "Even if the individuals are not part of a group you might automatically consider vulnerable, an imbalance of power in their relationship with you can cause vulnerability for data protection purposes if they believe that they will be disadvantaged if the processing doesn't go ahead."
+    ],
+    [
+     "c-a4a1629f9ba773b9",
+     3,
+     "You may be able to justify a decision not to carry out a DPIA if you are confident that the processing is nevertheless unlikely to result in a high risk, but you should document your reasons."
+    ],
+    [
+     "c-b7309997452e6972",
+     0,
+     "Decision-making within a DPIA, including any difference of opinion with the DPO or individuals consulted, must be recorded in the DPIA outcome."
+    ],
+    [
+     "c-b7309997452e6972",
+     1,
+     "We record our decision-making in the outcome of the DPIA, including any difference of opinion with our DPO or individuals consulted."
+    ],
+    [
+     "c-ee2498294a77ec6d",
+     0,
+     "If an organization decides not to carry out a DPIA, the decision and its reasons must be documented."
+    ],
+    [
+     "c-ee2498294a77ec6d",
+     1,
+     "If we decide not to carry out a DPIA, we document our reasons."
+    ],
+    [
+     "c-04f0850b2cd6549b",
+     2,
+     "We will explain our reasoning."
+    ],
+    [
+     "c-2294f81bcee5f2d1",
+     0,
+     "Processing is systematic when it occurs according to a system, is pre-arranged or methodical, and takes place as part of a general plan for data collection."
+    ]
+   ],
+   "cluster": "c-72b9fa83c03d74eb",
+   "k": 8,
+   "lens": "WHY",
+   "probe": [
+    "ahead",
+    "compliant",
+    "document",
+    "dpo",
+    "follow",
+    "part",
+    "reason",
+    "record",
+    "sign",
+    "sought"
+   ],
+   "question": "Does any sentence state why this is done (the reason or the failure it prevents), other than 'the law/regulation requires it'?",
+   "seed_text": "DPO advice on whether processing is compliant and can go ahead should be sought and documented as part of sign-off; if advice is not followed, reasons must be recorded.",
+   "seeds": [
+    "c-72b9fa83c03d74eb"
+   ],
+   "split": "gdpr",
+   "topic_id": "g14"
+  },
+  {
+   "background_rows": [
+    [
+     "c-d7f4c0b3b05a9a2b",
+     0,
+     "Large-scale processing should be assessed by considering the number of individuals, volume of data, variety of data, duration of processing, and geographical extent."
+    ],
+    [
+     "c-81b8af3c016017b2",
+     0,
+     "The scope of processing should include details about the nature, volume, variety, sensitivity, extent, frequency, duration of processing, number of data subjects, and geographical area covered."
+    ],
+    [
+     "c-d7f4c0b3b05a9a2b",
+     1,
+     "to decide whether processing is on a large scale you should consider: the number of individuals concerned;"
+    ],
+    [
+     "c-81b8af3c016017b2",
+     3,
+     "the volume and variety of the personal data;"
+    ],
+    [
+     "c-d7f4c0b3b05a9a2b",
+     5,
+     "and the geographical extent of the processing."
+    ],
+    [
+     "c-0403ebb7fb067639",
+     0,
+     "Extensive processing implies that the processing covers a large area, involves a wide range of data, or affects a large number of individuals."
+    ],
+    [
+     "c-0403ebb7fb067639",
+     1,
+     "The term 'extensive' implies that the processing also covers a large area, involves a wide range of data or affects a large number of individuals."
+    ],
+    [
+     "c-1cad643a4f5a8967",
+     0,
+     "The ICO may impose limitations or bans on intended processing when it has significant concerns."
+    ]
+   ],
+   "cluster": "c-361677e5d0272012",
+   "k": 8,
+   "lens": "SEL",
+   "probe": [
+    "concern",
+    "determine",
+    "duration",
+    "extent",
+    "geographical",
+    "number",
+    "scale",
+    "variety",
+    "volume"
+   ],
+   "question": "Does any sentence state a condition that says which option to choose in which situation?",
+   "seed_text": "To determine whether processing is on a large scale, one should consider the number of individuals concerned, volume of data, variety of data, duration of processing, and geographical extent.",
+   "seeds": [
+    "c-361677e5d0272012"
+   ],
+   "split": "gdpr",
+   "topic_id": "g15"
+  },
+  {
+   "background_rows": [
+    [
+     "c-38cfa9c10f9c0da1",
+     0,
+     "Controllers should seek views of data subjects or their representatives on intended processing when appropriate, without prejudice to protection of commercial interests, public interests or security of operations."
+    ],
+    [
+     "c-38cfa9c10f9c0da1",
+     1,
+     "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations."
+    ],
+    [
+     "c-6e0dc7586d6eee18",
+     0,
+     "The controller should seek the views of data subjects or their representatives on the intended processing when appropriate, without prejudice to the protection of commercial or public interests or the security of processing operations."
+    ],
+    [
+     "c-6e0dc7586d6eee18",
+     1,
+     "Where appropriate, the controller shall seek the views of data subjects or their representatives on the intended processing, without prejudice to the protection of commercial or public interests or the security of processing operations."
+    ],
+    [
+     "c-bf045a5c8aabb1c3",
+     0,
+     "Views of individuals or their representatives should be sought and documented unless there is a good reason not to."
+    ],
+    [
+     "c-bf045a5c8aabb1c3",
+     1,
+     "You should seek and document the views of individuals (or their representatives) unless there is a good reason not to."
+    ],
+    [
+     "c-10c5d28dc341bcb1",
+     0,
+     "DPIAs are relevant to Data Protection Officers and those with specific data protection responsibilities in larger organisations."
+    ],
+    [
+     "c-114c03552205b00b",
+     0,
+     "Legal advice or advice from independent experts such as IT experts, sociologists or ethicists should be considered where appropriate, though there are no specific requirements to do so."
+    ]
+   ],
+   "cluster": "c-ae629243f4c8b411",
+   "k": 8,
+   "lens": "HEDGE",
+   "probe": [
+    "appropriate",
+    "involve",
+    "officer",
+    "opinion",
+    "point",
+    "representativ",
+    "view"
+   ],
+   "question": "Does any sentence state the specific cases in which the rule does NOT hold (an exception condition that is not merely a restatement of the rule or a cross-reference)?",
+   "seed_text": "A DPIA must involve the opinion of the Data Protection Officer and, where appropriate, the point of view of data subjects or their representatives.",
+   "seeds": [
+    "c-ae629243f4c8b411"
+   ],
+   "split": "gdpr",
+   "topic_id": "g16"
+  }
+ ]
+}

@@ -1,0 +1,898 @@
+{
+ "eligible": true,
+ "judge_model": "google/gemma-4-31b-it",
+ "judge_settings": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "google/gemma-4-31b-it",
+  "price_usd_per_mtok": [
+   0.1,
+   0.34
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "planted_fires": true,
+ "spend": {
+  "cached_tokens": 0,
+  "calls": 76,
+  "completion_tokens": 40390,
+  "finish_reasons": {
+   "stop": 76
+  },
+  "max_usd": 0.1,
+  "prior_usd": 0.0,
+  "prompt_tokens": 13609,
+  "reasoning_tokens": 37641,
+  "served_models": [
+   "google/gemma-4-31b-it"
+  ],
+  "truncated": 0,
+  "usd": 0.015145670000000002
+ },
+ "stand_in_fires": false,
+ "topics": {
+  "cable_shielding": {
+   "length_matched": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "open",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-da32cbe519e53e99"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "The noise exposure of every cable was measured by the site team and logged in the yearly plant reports.",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "open",
+     "own_sf": "open"
+    }
+   },
+   "planted": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "closed"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "closed",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-da32cbe519e53e99"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "closed",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": true,
+    "k": 2,
+    "own_sf_closed": true,
+    "sentence": "Where a cable runs beside a frequency drive, choose a shielded cable, since its noise exposure is high.",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "closed"
+    }
+   },
+   "random_letters_7": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-da32cbe519e53e99"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "kemub c rdlsb qgbc nnchcr n bsdhuusbs smbhbr ejnerd s jrvfdssu gldrwc sbtgp vrn noise exposure yk osolj",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   },
+   "random_letters_8": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-da32cbe519e53e99"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "hlmeg w bcehz qgmu aopomp s gmcphyawi qnpmxd vidcmt m dvbkhwcp uqgsze tcrbp wge noise exposure so xsojr",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   },
+   "random_letters_9": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-88d01d9698bfb186"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-27fe0e3fc0c36884"
+      ],
+      "seeds": [
+       "c-da32cbe519e53e99"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "otlie f vakqo tckr twbxmf w oxnffhbde qscywm zxdjgv h xzncyigm ikzbgw anbmp eah noise exposure nx dtady",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   }
+  },
+  "gdpr_retention": {
+   "length_matched": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-a8c5864e8cb283de"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "The processing purpose of the dataset was written down by the team in the register during the review.",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   },
+   "planted": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-a8c5864e8cb283de"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "closed"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": true,
+    "k": 2,
+    "own_sf_closed": true,
+    "sentence": "If the processing purpose is a single delivery, choose the shortest retention period and then delete.",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "closed"
+    }
+   },
+   "random_letters_7": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-a8c5864e8cb283de"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "open",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "ke mub processing purpose cr d lsbqgb cnnchcrnb sdhuus bss mbhbrejn erdsjrvfd ssugld rwc sbtg pvrnyko",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "open",
+     "own_sf": "open"
+    }
+   },
+   "random_letters_8": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-a8c5864e8cb283de"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "hl meg processing purpose wb c ehzqgm uaopompsg mcphya wiq npmxdvid cmtmdvbkh wcpuqg sze tcrb pwgesox",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   },
+   "random_letters_9": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-78571e51c6503a10"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-19727f9bef5c6f32"
+      ],
+      "seeds": [
+       "c-a8c5864e8cb283de"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "ot lie processing purpose fv a kqotck rtwbxmfwo xnffhb deq scywmzxd jgvhxzncy igmikz bgw anbm peahnxd",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   }
+  },
+  "plc_test_order": {
+   "length_matched": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "seeds": [
+       "c-389bc2073959b863"
+      ],
+      "states": {
+       "ctrl_eq": "open",
+       "ctrl_sf": "open",
+       "own_eq": "open",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-f3a5297e22f21f3f"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "The failure likelihood of each test was logged by the maintenance team after the spring audit.",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   },
+   "planted": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "seeds": [
+       "c-389bc2073959b863"
+      ],
+      "states": {
+       "ctrl_eq": "open",
+       "ctrl_sf": "open",
+       "own_eq": "open",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-f3a5297e22f21f3f"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "closed"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": true,
+    "k": 2,
+    "own_sf_closed": true,
+    "sentence": "When an intermittent fault appears, choose first the test whose failure likelihood is highest.",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "closed"
+    }
+   },
+   "random_letters_7": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "seeds": [
+       "c-389bc2073959b863"
+      ],
+      "states": {
+       "ctrl_eq": "open",
+       "ctrl_sf": "open",
+       "own_eq": "open",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-f3a5297e22f21f3f"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "kemu bc rdlsbqgbcnnc hcrnb sdhuusbs smbhbr ejner dsj rvfd ssugl failure likelihood dr wcsbtgpv",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   },
+   "random_letters_8": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "seeds": [
+       "c-389bc2073959b863"
+      ],
+      "states": {
+       "ctrl_eq": "open",
+       "ctrl_sf": "open",
+       "own_eq": "open",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-f3a5297e22f21f3f"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "hlme gw bcehzqgmuaop ompsg mcphyawi qnpmxd vidcm tmd vbkh wcpuq failure likelihood gs zetcrbpw",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   },
+   "random_letters_9": {
+    "all_pairs": [
+     {
+      "donor_seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "seeds": [
+       "c-389bc2073959b863"
+      ],
+      "states": {
+       "ctrl_eq": "open",
+       "ctrl_sf": "open",
+       "own_eq": "open",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-eead0ab87f80ef32"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     },
+     {
+      "donor_seeds": [
+       "c-389bc2073959b863"
+      ],
+      "seeds": [
+       "c-f3a5297e22f21f3f"
+      ],
+      "states": {
+       "ctrl_eq": "closed",
+       "ctrl_sf": "open",
+       "own_eq": "closed",
+       "own_sf": "open"
+      }
+     }
+    ],
+    "fires_equal_cap": false,
+    "fires_seed_free": false,
+    "k": 2,
+    "own_sf_closed": false,
+    "sentence": "otli ef vakqotckrtwb xmfwo xnffhbde qscywm zxdjg vhx zncy igmik failure likelihood zb gwanbmpe",
+    "target_states": {
+     "ctrl_eq": "closed",
+     "ctrl_sf": "open",
+     "own_eq": "closed",
+     "own_sf": "open"
+    }
+   }
+  }
+ }
+}

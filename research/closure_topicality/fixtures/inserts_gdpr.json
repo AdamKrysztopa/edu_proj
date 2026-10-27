@@ -1,0 +1,70 @@
+{
+  "spec_sha256": "11f78ae76291b396c62d4bd8695b09be580dbd6034d9e0c63b8a6db7667d7b17",
+  "note": "SYNTHETIC: every P and N sentence below is LLM-authored from fixtures/insert_spec.md (sha256 above); none is quoted from GDPR guidance. The owner's labels decide every verdict.",
+  "inserts": {
+    "g01": {
+      "P": "Where a measure costs little relative to the risk it removes, implement it; where its cost far exceeds a small benefit, accepting the remaining risk is the better choice.",
+      "N": "Costs and benefits of each mitigating measure are entered in section 5 of the DPIA template, and the decision to implement them is signed off by the project owner at the monthly meeting."
+    },
+    "g02": {
+      "P": "If the assessment finds that a less intrusive way would achieve the same purpose, the processing fails the necessity test and must be redesigned before it goes ahead.",
+      "N": "The necessity and proportionality assessment is Step 4 of the DPIA process, and its output must be filed in section 3 of the privacy template before approval, when the DPO reads it."
+    },
+    "g03": {
+      "P": "Carrying out the DPIA before processing starts lets risks to rights and freedoms be found while the design can still be changed cheaply.",
+      "N": "The project lead starts carrying out the DPIA before processing begins, and the form on risks to rights and freedoms sits in Annex 1 of the template."
+    },
+    "g04": {
+      "P": "If weighing the effort against the privacy impact shows the effort is not clearly disproportionate, the exception cannot be relied on and the privacy information must be given to people.",
+      "N": "When a controller relies on the disproportionate effort exception, the justification is logged in section 6 of the privacy file, which people in compliance must not delete before the annual audit."
+    },
+    "g05": {
+      "P": "Where the DPIA finds that people cannot learn of the invisible processing by any other route, their ability to exercise control is lost, and a notice or another channel must be added.",
+      "N": "Invisible processing is entered as item 9 on the screening list, and a note on people's ability to exercise control must be kept with the privacy notice in the DPIA file for that project."
+    },
+    "g06": {
+      "P": "Where the assessment rates the gravity of a risk to the rights and freedoms of data subjects as severe and its likelihood as probable, the risk is high and further measures that lower it are planned.",
+      "N": "The origin, nature, particularity and gravity of each risk are entered in a four-column table in section 4 of the DPIA template, which the data protection officer updates after each new assessment cycle."
+    },
+    "g07": {
+      "P": "If the residual risk after mitigation is still rated high, the DPIA outcome is to consult the ICO before processing starts, and processing waits for its written advice.",
+      "N": "Requests for ICO consultation are sent by email with the DPIA attached when the form is complete, and the ICO first logs each one under a reference number and an identified officer."
+    },
+    "g08": {
+      "P": "Recording the reasons for deciding a DPIA is not needed lets a later reviewer weigh the DPO's advice, see what the screening assumed and revisit the decision if the processing changes.",
+      "N": "The decision that a DPIA is not needed and its reasons are noted on the screening form, with the DPO's advice in box 3, when the project review board approves the plan at its quarterly meeting."
+    },
+    "g09": {
+      "P": "An evaluation counts as extensive when it covers a large share of a population or a wide range of personal aspects, not when a profiling tool scores a handful of customers on one attribute.",
+      "N": "Extensive evaluation of personal aspects appears first among the 3 items on the screening list, when the DPIA form is opened by the project lead for profiling work in each new online service."
+    },
+    "g10": {
+      "P": "A single high-risk factor can be enough to need a DPIA when it is severe, such as processing of genetic data, and two factors can fall short when an earlier DPIA already covers the same processing.",
+      "N": "The WP29 list of high-risk factors has nine entries, such as matching datasets, and the DPIA screening form shows them in a grid when the form is opened, with a tick box for each of the 9 entries in the grid."
+    },
+    "g11": {
+      "P": "Monitoring of a publicly accessible area is systematic where it follows a planned scheme, such as cameras recording a station concourse all day, and a one-off photograph of a crowd by a visitor is not.",
+      "N": "Systematic monitoring of a publicly accessible area is item 3 on the DPIA screening list for the station concourse, which includes it, and the form for it is not kept apart from the rest of the DPIA record."
+    },
+    "g12": {
+      "P": "An organisation that has not appointed a data protection officer does not have to consult one, and asking individuals may be dropped where it would compromise commercial confidentiality or security.",
+      "N": "The data protection officer's advice is recorded in step 3 of the DPIA process, and the people who were consulted are listed in an appendix by name and by role, not by the organisation they work for alone."
+    },
+    "g13": {
+      "P": "Seeking views counts as prejudicing commercial interests when it would disclose unreleased product plans to competitors, whereas a survey of customers about a published service would not.",
+      "N": "The duty to seek the views of data subjects or their representatives is set out in step 3 of the DPIA, and the form notes the date each view was sought when the survey closes, not the channel."
+    },
+    "g14": {
+      "P": "Recording why the DPO's advice was overruled at sign-off keeps the decision accountable to a named person and lets reviewers judge later whether the risk was accepted knowingly.",
+      "N": "The DPO's advice on whether the processing is compliant goes in the sign-off table at the end of the DPIA template, beside the name and job title of the person who approves it for review."
+    },
+    "g15": {
+      "P": "Treat processing as large scale when it covers a significant share of a regional population, and not when one doctor processes the records of their own patients.",
+      "N": "The five factors for large-scale processing are listed in step 2 of the screening form, which covers all new projects when they start, and not only those in the 2018 register."
+    },
+    "g16": {
+      "P": "Seeking the point of view of data subjects or their representatives can be skipped where it would be disproportionate, for example where the processing affects people who cannot be identified or contacted.",
+      "N": "The data subjects' point of view is recorded in section 7 of the form, and the representatives consulted are listed by role, for example by people's job title, in sections 3 and 4 of the DPIA record for that project."
+    }
+  }
+}

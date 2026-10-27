@@ -1,0 +1,321 @@
+{
+ "0911d3507f5161c120e53fd245d209104e3a525c9927377557b0bfcec29f3e48": {
+  "partially": [],
+  "reason": "Sentence 1 specifies that the lower band becomes useful when backend bias pushes MI estimates below zero.",
+  "states": [
+   1
+  ]
+ },
+ "1281b86f9217b25ca0216a1caeaade057efda190ff42703d0e1d85e6380eade6": {
+  "partially": [],
+  "reason": "Sentence 7 describes expected gradual scores, identifies sharp jumps as leakage, and mentions the subsequent tracing step.",
+  "states": [
+   7
+  ]
+ },
+ "1328c75d63c9f00094fdae6914892a0748f2360246cb486fbada54593864a57f": {
+  "partially": [],
+  "reason": "No sentence describes an exception to the rule regarding surrogate bands.",
+  "states": []
+ },
+ "139e9e6d7d4e98da0920c3dc937872125b4bcfd9c7859170a1508e1dd4711fa2": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify that a directness_ratio > 1.0 means an estimation warning, not scientific evidence.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "13d974075ad57a9025f34b5bcfb267f33fae3fab405ce344f886438729d0e286": {
+  "partially": [],
+  "reason": "None of the provided sentences explain why diagnostics are computed on the training window only.",
+  "states": []
+ },
+ "15e0b5535620a5ed5eee44fc3ddf59388b697e964cfa8c47e319838dd2b43c1d": {
+  "partially": [],
+  "reason": "No sentences describe expected results, their meanings, or subsequent actions.",
+  "states": []
+ },
+ "16e1c15f260c8006a781b0a5f48c7e9a499575ff343a8e965e796929488dd808": {
+  "partially": [],
+  "reason": "Sentence 4 explains that a derived feature cannot hold more information about the target than the raw profile.",
+  "states": [
+   4
+  ]
+ },
+ "1e4d3eaaab78c3459a10f2d675d834b408a5fca20a47d953a400a3f4d7aadee4": {
+  "partially": [],
+  "reason": "None of the sentences describe exceptions to the rule regarding surrogate bands.",
+  "states": []
+ },
+ "1f8d504072dfb070b455b2353c8a66b0f953c380df109ae5ff78937192d62b37": {
+  "partially": [],
+  "reason": "No sentence mentions exceptions to the practice of indicating uncertainty in forecasts.",
+  "states": []
+ },
+ "214c29b7028faa44dd5e95ea39a5d9774be7a34b8ec3523d8367d572c357f65e": {
+  "partially": [],
+  "reason": "None of the sentences mention the rule or any exceptions to it.",
+  "states": []
+ },
+ "23f2a8ffa6e11fd022c85444b4028c8f4f92a8d603ba054c0ca74bec1d4625a7": {
+  "partially": [],
+  "reason": "Sentence 5 specifies the outcomes of the verification tests, their meanings, and the resulting actions.",
+  "states": [
+   5
+  ]
+ },
+ "26fba901a0eba2671cfda4070189c0ac9a9db4b5a80eb142dc46acb4fc92eb4a": {
+  "partially": [],
+  "reason": "No sentence describes an exception to the rule mentioned in the seed assertion.",
+  "states": []
+ },
+ "27d64881d6b2a6ac9e79c60fcf121b7f4b30252c2015bc4f20f797a52f5bf8b7": {
+  "partially": [],
+  "reason": "None of the sentences mention exceptions to the practice of indicating uncertainty in forecasts.",
+  "states": []
+ },
+ "28f4d2a254d2a82b50ecfe01bd98bd2c0362998d1e971ce383d9ddd7a4225b36": {
+  "partially": [],
+  "reason": "Sentence 3 explains that using unknown future values gives the model information it will not have in production.",
+  "states": [
+   3
+  ]
+ },
+ "3275ea95a35acbaf32ac5065b04eac4728b2be1b471cb589edfc47dca0ce0815": {
+  "partially": [],
+  "reason": "Sentences 6 and 7 explain what a directness_ratio above 1.0 means regarding linear residual backends.",
+  "states": [
+   6,
+   7
+  ]
+ },
+ "35e476838a32bc6ec9d4b919a6f3662b4f83302001140ade86dc14b2b3544ddf": {
+  "partially": [],
+  "reason": "No sentence explains the reason or failure prevented by using surrogates or the specific sample size requirements.",
+  "states": []
+ },
+ "3a3b9e220cfa6d06440b09bf25221160a2b1d009ff48bc7e977ab514ea6f9e21": {
+  "partially": [],
+  "reason": "None of the sentences mention exceptions to the practice of indicating uncertainty in forecasts.",
+  "states": []
+ },
+ "4199a2f3dc928b8610eab616d039d0a24e3e2553c7656f820e45dc439e73a6c9": {
+  "partially": [],
+  "reason": "Sentence 5 explicitly identifies a specific exception where the practice of indicating uncertainty does not hold.",
+  "states": [
+   5
+  ]
+ },
+ "445cdd361d3e47e9ce72ccd00a3b45b3fc2f5108e8c20d153150d27ccda49b2f": {
+  "partially": [],
+  "reason": "No sentences describe expected results, meanings of results, or subsequent actions.",
+  "states": []
+ },
+ "447a4668ccdc01b094e27f1d3acbf2b7c7c0fef6a085a4d84f45fbf410ed6609": {
+  "partially": [],
+  "reason": "None of the sentences mention exceptions to the rule about indicating uncertainty in forecasts.",
+  "states": []
+ },
+ "455088ba040b6eb4546470fbf55ca46ad33d41e8c585b1d9e68005c669b25cc0": {
+  "partially": [],
+  "reason": "Sentence 7 explicitly identifies deterministic schedule values as an exception to the practice of attaching uncertainty.",
+  "states": [
+   7
+  ]
+ },
+ "484e78ad2700ef67ccff349e6b4dc4033510573579d443d2ec88b2d171722d8c": {
+  "partially": [],
+  "reason": "No sentence explains the reason or the failure prevented by treating these lags as data-leakage candidates.",
+  "states": []
+ },
+ "53bcb98ebd9fc59f804b5dd04d6a6953c60537fb4a574a2ddbfe8a7d18c5b14b": {
+  "partially": [],
+  "reason": "Sentence 6 explains that surrogates provide a noise floor to distinguish high AMI values from chance dependence.",
+  "states": [
+   6
+  ]
+ },
+ "55647496bf2bf609bbed953f069b6ec7575a4ff5e01be9215eaf362498437cea": {
+  "partially": [],
+  "reason": "No sentence explains the reason or the failure prevented by treating these lags as data-leakage candidates.",
+  "states": []
+ },
+ "58d90b15abf4a594181c2e2c1750d61e6bf858d4a36f61959c4ed5ea4657db14": {
+  "partially": [],
+  "reason": "Sentence 7 explains that using the full series would let test-window values leak into exogenous screening.",
+  "states": [
+   7
+  ]
+ },
+ "5b001a915953ae33c82603f05051642df1fcc71a4dece47dcdc1e8a746a13fba": {
+  "partially": [
+   3,
+   4
+  ],
+  "reason": "Sentences 3 and 4 associate specific data conditions and objectives with corresponding surrogate data methods.",
+  "states": []
+ },
+ "5bdc6db8386d11ed9d4f362681655b1227236a1f7823e5474f017d871ed66257": {
+  "partially": [],
+  "reason": "None of the sentences mention engineering, autocorrelation normalization, or exceptions to the seed assertion.",
+  "states": []
+ },
+ "630614cc8d4b33497d0f264b67bafc4335e063668999a16da67b85cc551ee8f3": {
+  "partially": [],
+  "reason": "No sentence provides a conditional rule for selecting a specific forecasting method based on objectives or data.",
+  "states": []
+ },
+ "673ab7d0b510490ed3134694e2356944f55128dd976c9fe3d482a4ca82616038": {
+  "partially": [],
+  "reason": "No sentence specifies an exception condition to the rule mentioned in the seed assertion.",
+  "states": []
+ },
+ "6926c3670c0cd50ec2cdac4ba25d32d9215799f6a622b239e1dd6ea41eb1024e": {
+  "partially": [],
+  "reason": "No sentence explains the reason for using surrogates or the purpose of the specific sample size requirements.",
+  "states": []
+ },
+ "7132d9709ca9567f4359cb12dfdc69df0ba849116aa3fd5de4baa9aa94f2ba79": {
+  "partially": [],
+  "reason": "None of the sentences explain why diagnostics are computed on the training window only.",
+  "states": []
+ },
+ "73d2dc738a42572c722ea8bc694231b0269473111c91306793b82d81aa86d89c": {
+  "partially": [],
+  "reason": "Sentence 6 specifies that terms are not interchangeable in engineering code when functions return values bounded by one.",
+  "states": [
+   6
+  ]
+ },
+ "7dd419ed79262b72d1c26578b30de83588f3efb9ca8e2808d3c12333a30c2e2f": {
+  "partially": [],
+  "reason": "None of the sentences explain the reason or the failure prevented by this restriction.",
+  "states": []
+ },
+ "7f626b5df7864d64dd0395451e214f6a399b7415195590c2acab9f3ae2aec6cf": {
+  "partially": [],
+  "reason": "None of the sentences mention autocovariance normalization or exceptions to the stated rule.",
+  "states": []
+ },
+ "9135bb93dc54ee5f3083984910de784064bad5df576f29a0e64ef605c5451d9e": {
+  "partially": [],
+  "reason": "No sentence explains the reason or the failure prevented by using known-future drivers.",
+  "states": []
+ },
+ "95032876e72880d80787b1b9f78c3d7b0a992e3f5122fb6ef7787522867ce08b": {
+  "partially": [],
+  "reason": "Sentence 8 specifies that backends agreeing with linear_residual are kept and those reordering top lags are dropped.",
+  "states": [
+   8
+  ]
+ },
+ "98d25580787831dd643b40f9a728ae325873d4f56e78513ccd48cdb2544a20e7": {
+  "partially": [],
+  "reason": "None of the sentences mention autocovariance normalization or exceptions to the rule described in the seed assertion.",
+  "states": []
+ },
+ "9b302fd5de34469d14c68054a8d68c2b8aa00321a8593f69448beebe47947309": {
+  "partially": [],
+  "reason": "No sentence describes expected results, meanings of results, or subsequent actions for the robustness study pipeline.",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "google/gemma-4-31b-it",
+  "price_usd_per_mtok": [
+   0.1,
+   0.34
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "a6e3eceb228f44841c872c6e106718d7ef7b9ae09d61fc8560efa801f72721f2": {
+  "partially": [],
+  "reason": "None of the sentences mention the rule or its exceptions.",
+  "states": []
+ },
+ "a9bc92d93ce7a5325456b845c45dcb6bc6dba971a36e8e9d4c04a9af9cb2ea8f": {
+  "partially": [],
+  "reason": "Sentence 2 specifies that the engineering convention of dropping normalization does not apply when feeding a significance test.",
+  "states": [
+   2
+  ]
+ },
+ "ace95576c1c66a69914c9ce10ec6f0e79bc7539b6f0bc8c023763697642be8cb": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify that a directness_ratio > 1.0 means an estimation warning, not scientific evidence.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "afa77772320cdeedf12a0c949b4c9b32f2af5bd2d918cfb0246084dd48820906": {
+  "partially": [],
+  "reason": "No sentence explains the reason or the failure prevented by treating these lags as data-leakage candidates.",
+  "states": []
+ },
+ "b231d4bd78ae52f54be635b373bf69973fb3890de77011b7b66c8c14c48e2bad": {
+  "partially": [],
+  "reason": "No sentence mentions exceptions to the practice of indicating uncertainty in forecasts.",
+  "states": []
+ },
+ "b8edaa0489028e7e14471f43d92065f02e81e761286ce6cd28acff9bca4976ea": {
+  "partially": [],
+  "reason": "None of the sentences explain the reason or the failure prevented by this practice.",
+  "states": []
+ },
+ "bc3d68e34cf050255f8ffbf83f47d22ee7b9cced7d553ab30efe3412658378a8": {
+  "partially": [
+   3,
+   4
+  ],
+  "reason": "Sentences 3 and 4 associate specific method types with certain objectives and data conditions.",
+  "states": []
+ },
+ "c9ff7809679b9a5ae8337eb12a73bf70edfdb4b4c1d73ed3344cbd614454dab9": {
+  "partially": [],
+  "reason": "No sentence explicitly states the reason why surrogates are used or the failure they prevent.",
+  "states": []
+ },
+ "d4619bed6a5dbae18f671ac000e03967fd0bdbcb8285f5ce78bb7f91e9b138c5": {
+  "partially": [],
+  "reason": "None of the sentences explain the reason or the failure prevented by this restriction.",
+  "states": []
+ },
+ "dd4b17fa95d1c1cc2f203848c92107bb66da31870094c27a464165c1cc9b159b": {
+  "partially": [],
+  "reason": "No sentence describes expected results, their meanings, or subsequent actions.",
+  "states": []
+ },
+ "df5cc047c449cb0b6ac8ac97280db8c5ed63e26f6e1daadca85e066017becfd5": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 specify that a directness_ratio > 1.0 should be treated as an estimation warning.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "e34533a2333d3b4bf28838558cb5d305fd58d659dc83cd8bf472cd3cd64bd7fa": {
+  "partially": [],
+  "reason": "Sentence 5 explicitly links specific data conditions to the choice of forecasting methods.",
+  "states": [
+   5
+  ]
+ },
+ "e6aefe07d622d7b4c91be71ab5a638013a0cb57d2d38a01d242c3b5c5d261757": {
+  "partially": [],
+  "reason": "No sentence describes exceptions to the rule regarding surrogate bands for MI.",
+  "states": []
+ },
+ "fb5f0aa4ab547629cf7461668b14e65041b85b972c7fb8c1c8bf517910807a65": {
+  "partially": [],
+  "reason": "Sentences 6 and 7 explain what a directness_ratio above 1.0 means regarding linear residual backends.",
+  "states": [
+   6,
+   7
+  ]
+ }
+}
