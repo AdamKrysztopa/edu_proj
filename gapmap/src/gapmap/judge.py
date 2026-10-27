@@ -113,9 +113,12 @@ class OpenAIJudge:
     PRICES = OPENAI_PRICES_PER_MTOK
     URL = OPENAI_URL
     KEY_ENV = "OPENAI_API_KEY"
+    TRANSIENT = frozenset({408, 429, 500, 502, 503, 504})
+    RETRIES = 3
 
     def __init__(self, model: str, *, max_usd: float, reasoning_effort: str = "medium",
-                 max_completion_tokens: int = 6000, post=None, spend_ledger: Path | str | None = None):
+                 max_completion_tokens: int = 6000, post=None, spend_ledger: Path | str | None = None,
+                 sleep=time.sleep):
         if model not in self.PRICES:
             raise ValueError(f"no recorded price for {model!r}")
         self.model_id = model
@@ -127,6 +130,7 @@ class OpenAIJudge:
         self.max_completion_tokens = max_completion_tokens
         self.settings = self._settings(reasoning_effort, max_completion_tokens)
         self._post = post
+        self._sleep = sleep
         self.spent_usd = 0.0
         self.calls: list[dict] = []
         self.incomplete = False
@@ -147,9 +151,28 @@ class OpenAIJudge:
         return self._cost(prompt_tokens, completion_tokens)
 
     def _send(self, body: dict) -> dict:
+        """A transient HTTP status, a connection error, a timeout or an unreadable envelope is retried
+        with backoff; one that outlives the retries, or any other HTTP status, stops the run as
+        JudgeUnavailable. It never reaches the parser, where it would become "undecided" (sol's G1,
+        2026-10-26: one failed call left an undecided arm and no cache entry)."""
+        key = os.environ.get(self.KEY_ENV)
+        if not key:
+            self.incomplete = True
+            raise JudgeUnavailable(f"{self.model_id}: {self.KEY_ENV} is not set")
         post = self._post or _http_post
-        return post(self.URL, body, {"Content-Type": "application/json",
-                                     "Authorization": "Bearer " + os.environ[self.KEY_ENV]})
+        for attempt in range(self.RETRIES + 1):
+            try:
+                return post(self.URL, body, {"Content-Type": "application/json", "Authorization": "Bearer " + key})
+            except urllib.error.HTTPError as exc:
+                if exc.code not in self.TRANSIENT or attempt == self.RETRIES:
+                    self.incomplete = True
+                    raise JudgeUnavailable(f"{self.model_id}: HTTP {exc.code} after {attempt + 1} attempt(s)") from exc
+            except (urllib.error.URLError, TimeoutError, ConnectionError, json.JSONDecodeError) as exc:
+                if attempt == self.RETRIES:
+                    self.incomplete = True
+                    raise JudgeUnavailable(f"{self.model_id}: {type(exc).__name__} after {attempt + 1} attempts") from exc
+            self._sleep(2 ** attempt)
+        raise AssertionError("unreachable")
 
     def _after(self, choice: dict) -> None:
         pass
@@ -221,29 +244,12 @@ class OpenRouterJudge(OpenAIJudge):
     URL = OPENROUTER_URL
     KEY_ENV = "OPENROUTER_API_KEY"
 
-    TRANSIENT = frozenset({408, 429, 500, 502, 503, 504})
-    RETRIES = 3
-
     def __init__(self, model: str, *, max_usd: float, max_completion_tokens: int = 8000, post=None,
                  spend_ledger: Path | str | None = None, sleep=time.sleep, reasoning_max_tokens: int | None = None):
         self.reasoning_max_tokens = reasoning_max_tokens
         self.truncated = 0
-        super().__init__(model, max_usd=max_usd, reasoning_effort=None,
-                         max_completion_tokens=max_completion_tokens, post=post, spend_ledger=spend_ledger)
-        self._sleep = sleep
-
-    def _send(self, body: dict) -> dict:
-        for attempt in range(self.RETRIES + 1):
-            try:
-                return super()._send(body)
-            except urllib.error.HTTPError as exc:
-                if exc.code not in self.TRANSIENT or attempt == self.RETRIES:
-                    raise JudgeUnavailable(f"{self.model_id}: HTTP {exc.code} after {attempt + 1} attempt(s)") from exc
-            except (urllib.error.URLError, TimeoutError) as exc:
-                if attempt == self.RETRIES:
-                    raise JudgeUnavailable(f"{self.model_id}: {type(exc).__name__} after {attempt + 1} attempts") from exc
-            self._sleep(2 ** attempt)
-        raise AssertionError("unreachable")
+        super().__init__(model, max_usd=max_usd, reasoning_effort=None, max_completion_tokens=max_completion_tokens,
+                         post=post, spend_ledger=spend_ledger, sleep=sleep)
 
     def _after(self, choice: dict) -> None:
         if choice.get("finish_reason") == "length":
