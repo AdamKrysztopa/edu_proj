@@ -5,7 +5,8 @@
     uv run --directory gapmap python ../research/d1b_rerun/novelty.py ingest --a A.json --b B.json --cases DIR
     uv run --directory gapmap python ../research/d1b_rerun/novelty.py reveal --private-key ~/.d1b/seal.key
 
-`cases` writes `canaries.json` and `cases.json` (question, answer, the same top-10 corpus passages,
+Every command takes `--codebase CFG` (default: D1b's `codebase.json`); its files live in that
+config's directory. `cases` writes `canaries.json` and `cases.json` (question, answer, the same top-10 corpus passages,
 no arm) to a directory outside the repo; each judge reads only that directory and writes
 `{id: {"label", "new_content", "reason"}}`. `ingest` refuses unless every canary got its expected
 label from both judges. `reveal` opens the sealed key with the owner's private key (the owner types
@@ -51,16 +52,20 @@ def parse_answers(text: str) -> dict[int, str]:
             for m in re.finditer(r"^## Q(\d+)\s*\n(.*?)(?=^## Q\d+|\Z)", text, flags=re.M | re.S)}
 
 
-def passages() -> list[tuple[str, str]]:
-    manifest = json.loads((D1 / "corpus" / "manifest.json").read_text())
+def blocks(corpus: Path = D1 / "corpus") -> list[dict]:
+    manifest = json.loads((corpus / "manifest.json").read_text())
     out = []
     for doc in manifest["documents"]:
-        raw = (D1 / "corpus" / doc["file"]).read_text()
-        for block in re.findall(r"<(?:p|pre|h\d)>(.*?)</(?:p|pre|h\d)>", raw, flags=re.S):
+        raw = (corpus / doc["file"]).read_text()
+        for tag, block in re.findall(r"<(p|pre|h\d)>(.*?)</(?:p|pre|h\d)>", raw, flags=re.S):
             text = html.unescape(re.sub(r"<[^>]+>", " ", block)).strip()
             if len(text.split()) >= 6:
-                out.append((doc["title"], text))
+                out.append({"title": doc["title"], "url": doc["url"], "tag": tag, "text": text})
     return out
+
+
+def passages(corpus: Path = D1 / "corpus") -> list[tuple[str, str]]:
+    return [(b["title"], b["text"]) for b in blocks(corpus)]
 
 
 def _tokens(text: str) -> list[str]:
@@ -101,14 +106,27 @@ def lock(here: Path = HERE) -> dict:
     return out
 
 
-def _canaries(question: str, retriever: Retriever) -> tuple[list[dict], dict[str, str]]:
+def _canaries(question: str, retriever: Retriever, cb=None) -> tuple[list[dict], dict[str, str]]:
+    """D1b's canaries are fixed by hand (`canary_mode: fixed`); a new codebase's are generated
+    from its own corpus and must pass `canaries.ready` (seeded source, code checks, owner)."""
     filler = ("This is an important point and it depends on the situation, so one should think about it "
               "carefully and consider the context before deciding what to do. ").split()
-    spec = json.loads((HERE / "fixtures" / "canaries.json").read_text())
+    spec = json.loads((cb.canaries if cb is not None else HERE / "fixtures" / "canaries.json").read_text())
+    generated = cb is not None and cb.canary_mode == "generated"
+    if generated:
+        sys.path.insert(0, str(HERE))
+        import canaries as gen
+
+        corpus_blocks = gen.source_passages(cb)
+        gen.ready(spec, cb, source_id=gen.pick(corpus_blocks, cb.seed)["id"])
+        copied = gen.copied(question, corpus_blocks, retriever)
+    else:
+        copied = retriever.top(question, 1)[0][1]
     rows = [{"id": f"c-filler-{n}", "question": question, "answer": " ".join((filler * 10)[:n])} for n in (40, 90)]
-    rows.append({"id": "c-copied", "question": question, "answer": retriever.top(question, 1)[0][1]})
+    rows.append({"id": "c-copied", "question": question, "answer": copied})
     rows.append({"id": "c-paraphrase", "question": spec["paraphrase_question"], "answer": spec["paraphrase"]})
-    rows.append({"id": "c-new", "question": question, "answer": spec["planted_new"]})
+    rows.append({"id": "c-new", "question": spec["planted_question"] if generated else question,
+                 "answer": spec["planted_new"]})
     expected = {"c-filler-40": "no content", "c-filler-90": "no content", "c-copied": "already written",
                 "c-paraphrase": "already written", "c-new": "new"}
     return rows, expected
@@ -119,14 +137,15 @@ def _with_passages(row: dict, retriever: Retriever) -> dict:
     return {**row, "passages": [{"title": t, "text": x[:1200]} for t, x in ctx]}
 
 
-def cmd_cases(out: Path) -> None:
-    lk = json.loads((HERE / "answers.lock.json").read_text())
-    if _sha(HERE / "answers.md") != lk["answers_sha256"]:
+def cmd_cases(out: Path, cb=None) -> None:
+    here = cb.root if cb is not None else HERE
+    lk = json.loads((here / "answers.lock.json").read_text())
+    if _sha(here / "answers.md") != lk["answers_sha256"]:
         raise SystemExit("answers.md changed after locking")
-    questions = parse_answers((HERE / "questions.md").read_text())
-    answers = parse_answers((HERE / "answers.md").read_text())
-    retriever = Retriever(passages())
-    canaries, expected = _canaries(questions[min(questions)], retriever)
+    questions = parse_answers((here / "questions.md").read_text())
+    answers = parse_answers((here / "answers.md").read_text())
+    retriever = Retriever(passages(cb.corpus) if cb is not None else passages())
+    canaries, expected = _canaries(questions[min(questions)], retriever, cb)
     out.mkdir(parents=True, exist_ok=True)
     (out / "instructions.txt").write_text(SYSTEM + "\n\nFor each case, read QUESTION, EXPERT ANSWER and PASSAGES. "
                                           "Write one JSON object {id: {\"label\": one of " + json.dumps(LABELS)
@@ -135,7 +154,7 @@ def cmd_cases(out: Path) -> None:
     (out / "cases.json").write_text(json.dumps(
         [_with_passages({"id": f"q{q}", "question": questions[q], "answer": answers[q]}, retriever)
          for q in sorted(questions)], indent=1) + "\n")
-    (HERE / "canaries_expected.json").write_text(json.dumps(expected, indent=1) + "\n")
+    (here / "canaries_expected.json").write_text(json.dumps(expected, indent=1) + "\n")
 
 
 def canary_failures(expected: dict[str, str], a: dict, b: dict) -> list[str]:
@@ -157,7 +176,8 @@ def guess_accuracy(guesses: dict[int, str], arms: dict[int, str]) -> dict:
             "unblinded": k / n >= UNBLINDED_ACCURACY and p < 0.05}
 
 
-def reveal(judged: list[dict], sealed: Path, private_key: Path, opened: Path) -> dict:
+def reveal(judged: list[dict], sealed: Path, private_key: Path, opened: Path,
+           guesses: dict[int, str] | None = None) -> dict:
     sys.path.insert(0, str(HERE))
     import build_sheet
     import rule
@@ -169,7 +189,20 @@ def reveal(judged: list[dict], sealed: Path, private_key: Path, opened: Path) ->
     res = {**rule.decide(rows), "rows": rows}
     by_len = length_labels(judged)
     res["length_only"] = rule.decide([{**r, "j1": by_len[r["q"]], "j2": by_len[r["q"]]} for r in rows])
+    if guesses is not None:
+        res["blinding"] = guess_accuracy(guesses, {q: it["arm"] for q, it in key.items()})
     return res
+
+
+def load_guesses(here: Path) -> dict[int, str] | None:
+    """The owner's arm guesses, made after the answers were locked (plan §3.3 of D1b)."""
+    path = here / "guesses.json"
+    if not path.exists():
+        return None
+    lk = json.loads((here / "answers.lock.json").read_text())
+    if _sha(here / "answers.md") != lk["answers_sha256"]:
+        raise SystemExit("answers.md changed after locking")
+    return {int(q): g for q, g in json.loads(path.read_text()).items()}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -184,26 +217,34 @@ def main(argv: list[str] | None = None) -> int:
     i.add_argument("--cases", required=True)
     r = sub.add_parser("reveal")
     r.add_argument("--private-key", required=True)
+    for s in sub.choices.values():
+        s.add_argument("--codebase", help="codebase config (default: D1b's)")
     args = p.parse_args(argv)
+    sys.path.insert(0, str(HERE))
+    import codebase
+
+    cb = codebase.load(args.codebase) if args.codebase else codebase.d1b()
+    here = cb.root
     if args.cmd == "lock":
-        print(json.dumps(lock()))
+        print(json.dumps(lock(here)))
     elif args.cmd == "cases":
-        cmd_cases(Path(args.out))
+        cmd_cases(Path(args.out), cb)
     elif args.cmd == "ingest":
         a, b = json.loads(Path(args.a).read_text()), json.loads(Path(args.b).read_text())
-        failures = canary_failures(json.loads((HERE / "canaries_expected.json").read_text()), a, b)
+        failures = canary_failures(json.loads((here / "canaries_expected.json").read_text()), a, b)
         cases = json.loads((Path(args.cases) / "cases.json").read_text())
         judged = [{"q": int(c["id"][1:]), "answer": c["answer"], "judge_a": a.get(c["id"], {}),
                    "judge_b": b.get(c["id"], {})} for c in cases]
-        (HERE / "judgements.json").write_text(json.dumps({"canary_failures": failures, "judged": judged}, indent=1) + "\n")
+        (here / "judgements.json").write_text(json.dumps({"canary_failures": failures, "judged": judged}, indent=1) + "\n")
         print(json.dumps({"canary_failures": failures, "judged": len(judged)}))
         return 1 if failures else 0
     else:
-        doc = json.loads((HERE / "judgements.json").read_text())
+        doc = json.loads((here / "judgements.json").read_text())
         if doc["canary_failures"]:
             raise SystemExit(f"canaries failed: {doc['canary_failures']}")
-        res = reveal(doc["judged"], HERE / "sealed", Path(args.private_key).expanduser(), HERE / "opened")
-        (HERE / "result.json").write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
+        res = reveal(doc["judged"], here / "sealed", Path(args.private_key).expanduser(), here / "opened",
+                     guesses=load_guesses(here))
+        (here / "result.json").write_text(json.dumps(res, indent=1, sort_keys=True) + "\n")
         print(json.dumps({k: v for k, v in res.items() if k != "rows"}, indent=1, sort_keys=True))
     return 0
 

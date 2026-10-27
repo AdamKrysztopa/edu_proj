@@ -26,8 +26,8 @@ def ledger_path(name: str) -> Path:
     return Path(path)
 
 
-def load(name: str) -> tuple[Ledger, link.Index, str]:
-    text_ = ledger_path(name).read_text()
+def load(name: str, cb=None) -> tuple[Ledger, link.Index, str]:
+    text_ = (cb.ledger_path(name) if cb is not None else ledger_path(name)).read_text()
     lg = Ledger.from_json(text_)
     return lg, link.build_index(lg), text_
 
@@ -55,8 +55,8 @@ def d1_items() -> list[dict]:
     return json.loads((D1 / "key_revealed.json").read_text())["items"]
 
 
-def d1_tokens() -> list[frozenset[str]]:
-    return [tokens(it["anchor"] + " " + quote(it["text"])) for it in d1_items()]
+def d1_tokens(items: list[dict] | None = None) -> list[frozenset[str]]:
+    return [tokens(it["anchor"] + " " + quote(it["text"])) for it in (d1_items() if items is None else items)]
 
 
 def candidate_tokens(cand) -> frozenset[str]:
@@ -64,6 +64,8 @@ def candidate_tokens(cand) -> frozenset[str]:
 
 
 def max_d1_jaccard(cand, d1: list[frozenset[str]]) -> tuple[float, int]:
+    if not d1:
+        return 0.0, -1
     scores = [jaccard(candidate_tokens(cand), t) for t in d1]
     best = max(range(len(scores)), key=lambda i: scores[i])
     return scores[best], best

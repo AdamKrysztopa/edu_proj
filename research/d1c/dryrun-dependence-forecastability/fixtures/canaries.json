@@ -1,0 +1,14 @@
+{
+  "source_id": "5983b51b770f",
+  "paraphrase_question": "In Lagged-Exogenous Triage, why is selected_for_tensor=True impossible at k = 0, and what does the known_future_drivers opt-in change about this chronological-causality guard?",
+  "paraphrase": "Out of the box, no driver can be marked for inclusion in the forecasting tensor at zero lag. To allow it, the use-case code must deliberately list that driver in `known_future_drivers`. The restriction is a design choice rather than a gap in the library: it exists to keep cause and effect in time order.",
+  "planted_question": "When is it actually safe to opt a driver into the zero-lag known-future path?",
+  "planted_new": "In practice we cap known-future opt-ins at 3 drivers per target, and only for series whose values are fixed at least 14 days ahead. The worst case we saw was a retail client who opted in daily footfall: backtest MASE fell from 0.92 to 0.61, then live error tripled within two weeks, because footfall is only published the next morning. We now require a 48-hour publication-lag audit before any driver is opted in.",
+  "planted_terms": [
+    "3 drivers per target",
+    "at least 14 days ahead",
+    "from 0.92 to 0.61",
+    "48-hour publication-lag audit"
+  ],
+  "owner_confirmed": false
+}

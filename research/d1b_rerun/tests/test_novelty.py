@@ -68,3 +68,30 @@ def test_reveal_decides_from_the_sealed_key_and_both_judges(tmp_path):
     res = novelty.reveal(judged, tmp_path / "sealed", key, tmp_path / "opened")
     assert res["decision"] == "Continue"
     assert res["rows"][0]["arm"] == "gap"
+    assert "blinding" not in res
+
+
+def test_reveal_reports_the_blinding_check_from_the_owners_guesses(tmp_path):
+    key, pub = tmp_path / "seal.key", tmp_path / "seal.pub"
+    subprocess.run(["openssl", "genpkey", "-algorithm", "RSA", "-out", str(key)], check=True, capture_output=True)
+    subprocess.run(["openssl", "pkey", "-in", str(key), "-pubout", "-out", str(pub)], check=True, capture_output=True)
+    items = [{"q": i, "arm": "gap" if i <= 10 else "covered"} for i in range(1, 21)]
+    (tmp_path / "secret").mkdir()
+    (tmp_path / "secret" / "key.json").write_text(json.dumps({"items": items}))
+    bs.seal(tmp_path / "secret", pub, tmp_path / "sealed")
+    judged = [{"q": i, "answer": "x", "judge_a": {"label": "new"}, "judge_b": {"label": "new"}} for i in range(1, 21)]
+    guesses = {it["q"]: it["arm"] for it in items}
+    res = novelty.reveal(judged, tmp_path / "sealed", key, tmp_path / "opened", guesses=guesses)
+    assert res["blinding"]["accuracy"] == 1.0 and res["blinding"]["unblinded"] is True
+
+
+def test_guesses_are_read_only_while_the_locked_answers_are_unchanged(tmp_path):
+    (tmp_path / "questions.md").write_text("# q\n\n## Q1\n\nA?\n")
+    (tmp_path / "answers.md").write_text(_answers(1))
+    novelty.lock(tmp_path)
+    assert novelty.load_guesses(tmp_path) is None
+    (tmp_path / "guesses.json").write_text(json.dumps({"1": "gap"}))
+    assert novelty.load_guesses(tmp_path) == {1: "gap"}
+    (tmp_path / "answers.md").write_text(_answers(1, "Edited."))
+    with pytest.raises(SystemExit, match="changed"):
+        novelty.load_guesses(tmp_path)

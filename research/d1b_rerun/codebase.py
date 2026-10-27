@@ -1,0 +1,87 @@
+"""The codebase a targeting test runs on (D1c plan §2). One JSON file names everything that is
+codebase-specific; relative paths resolve against that file's directory, which is also where the
+test's outputs (pool, fixtures, questions, sealed key) live. `codebase.json` beside this module is
+D1b's own, and replays D1b's committed outputs byte for byte."""
+from __future__ import annotations
+
+import dataclasses
+import glob
+import json
+from pathlib import Path
+
+D1B_CONFIG = Path(__file__).resolve().parent / "codebase.json"
+PLACEHOLDER = "TODO"
+
+
+class Unfilled(ValueError):
+    pass
+
+
+@dataclasses.dataclass(frozen=True)
+class Codebase:
+    name: str
+    title: str
+    root: Path
+    owner_repo: str
+    domain: str
+    seed: int
+    corpus: Path
+    ledgers: dict[str, Path]
+    prior_items_path: Path | None
+    prior_label: str
+    canaries: Path
+    canary_mode: str
+
+    @property
+    def pool(self) -> Path:
+        return self.root / "pool.json"
+
+    @property
+    def review_pack(self) -> Path:
+        return self.root / "fixtures" / "topic_review_pack.md"
+
+    @property
+    def review(self) -> Path:
+        return self.root / "fixtures" / "topic_review.json"
+
+    def ledger_path(self, name: str) -> Path:
+        (path,) = glob.glob(str(self.ledgers[name] / "*" / "ledger.json"))
+        return Path(path)
+
+    def prior_items(self) -> list[dict]:
+        if self.prior_items_path is None:
+            return []
+        return json.loads(self.prior_items_path.read_text())["items"]
+
+
+def _placeholders(value, where: str = "") -> list[str]:
+    if isinstance(value, str):
+        return [where or "(root)"] if PLACEHOLDER in value else []
+    if isinstance(value, dict):
+        return [p for k, v in value.items() for p in _placeholders(v, f"{where}.{k}".lstrip("."))]
+    if isinstance(value, list):
+        return [p for i, v in enumerate(value) for p in _placeholders(v, f"{where}[{i}]")]
+    return []
+
+
+def load(path: Path) -> Codebase:
+    path = Path(path).resolve()
+    cfg = json.loads(path.read_text())
+    unfilled = _placeholders(cfg)
+    if unfilled:
+        raise Unfilled(f"{path}: {PLACEHOLDER} left in {', '.join(unfilled)}")
+    root = path.parent
+    rel = lambda p: (root / p).resolve()
+    return Codebase(name=cfg["name"], title=cfg["title"], root=root, owner_repo=cfg["owner_repo"],
+                    domain=cfg["domain"], seed=int(cfg["seed"]), corpus=rel(cfg["corpus"]),
+                    ledgers={k: rel(v) for k, v in cfg["ledgers"].items()},
+                    prior_items_path=rel(cfg["prior_items"]) if cfg.get("prior_items") else None,
+                    prior_label=cfg.get("prior_label", ""), canaries=rel(cfg["canaries"]),
+                    canary_mode=cfg.get("canary_mode", "generated"))
+
+
+def d1b() -> Codebase:
+    return load(D1B_CONFIG)
+
+
+replace = dataclasses.replace
