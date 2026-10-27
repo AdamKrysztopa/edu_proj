@@ -1,0 +1,58 @@
+{
+ "item": "N8 E-SEAL dry run (non-conservation problem; replies discarded unread)",
+ "utc": "2026-10-27T07:48:41.681251+00:00",
+ "statement_sha256": "6ed5e2900e9b0a8d60f3c59a583877d6c3d9f890227121075dd3c254a9dfe105",
+ "system_prompt_sha256": "5882b04a7a3ce1c3b3c5b5b49ab168873b2d65323f9ea9180ced9f416e83c6c0",
+ "user_template_sha256": "17a25ae358b94c7a9e060b2bd508914569e97eaa1d612e171ce97ea9b8637e91",
+ "schema_sha256": "77865fed3a613c0bde8d042aa2474e882d76e6d5fcf10dcd29a47f33112e895a",
+ "max_usd": 0.25,
+ "spent_usd": 0.031279,
+ "calls": [
+  {
+   "arm": "top_tier",
+   "model": "anthropic/claude-opus-5.5",
+   "problem": "dry",
+   "spent_before_usd": 0.0,
+   "worst_case_usd": 0.171144,
+   "outcome": "ok",
+   "schema_ok": true,
+   "log_outcomes": [
+    "ok"
+   ],
+   "input_tokens": 750,
+   "output_tokens": 926,
+   "cost_usd": 0.02152
+  },
+  {
+   "arm": "other_family",
+   "model": "openai/gpt-6.1-sol",
+   "problem": "dry",
+   "spent_before_usd": 0.02152,
+   "worst_case_usd": 0.085572,
+   "outcome": "ok",
+   "schema_ok": true,
+   "log_outcomes": [
+    "ok"
+   ],
+   "input_tokens": 330,
+   "output_tokens": 539,
+   "cost_usd": 0.00605
+  },
+  {
+   "arm": "cheap",
+   "model": "anthropic/claude-haiku-4.5",
+   "problem": "dry",
+   "spent_before_usd": 0.02757,
+   "worst_case_usd": 0.042786,
+   "outcome": "ok",
+   "schema_ok": true,
+   "log_outcomes": [
+    "ok"
+   ],
+   "input_tokens": 594,
+   "output_tokens": 623,
+   "cost_usd": 0.003709
+  }
+ ],
+ "all_ok": true
+}
