@@ -1,0 +1,382 @@
+{
+ "04cdbc02e39f87a1559f3b3bf1e21d5f6d3f07653af578c80323438ffcc56d16": {
+  "partially": [],
+  "reason": "None of the provided sentences explain why CrossAMI must be computed on the training window only.",
+  "states": []
+ },
+ "0a31c8e5ad4b169a02727f7cc465e598034240d0677dd54c906fab2706c074a6": {
+  "partially": [],
+  "reason": "No sentence mentions exceptions to the practice of indicating uncertainty in forecasts.",
+  "states": []
+ },
+ "0a4fd4cecffd6e457e608aac03f1334909e6d25124ec9c2d0ccfd3d4ed2b0833": {
+  "partially": [],
+  "reason": "Sentence 3 explains that derived features cannot contain more information than the raw series they are built from.",
+  "states": [
+   3
+  ]
+ },
+ "153dfb4f779f36c4071fd2ca04519ad7b7645b603863e44e2c7742fc4105e601": {
+  "partially": [],
+  "reason": "None of the sentences explain why the restriction on known_future_drivers is necessary.",
+  "states": []
+ },
+ "186213391b366ebcef03142cc30ce900cace733926c8131b27448b11600fdcb4": {
+  "partially": [],
+  "reason": "No sentence describes an exception to the rule.",
+  "states": []
+ },
+ "195acecebbc77bd201bc96499fb31ab963c5d2aa020a8c012669b0f2de767175": {
+  "partially": [],
+  "reason": "No sentence specifies a particular option to choose for a specific condition.",
+  "states": []
+ },
+ "1c36e98b29ec477d6bd5b12336ad3d0e3b1f55cd9a284531ba7b1c90a43ca914": {
+  "partially": [],
+  "reason": "No sentence describes an exception to the normalization rule.",
+  "states": []
+ },
+ "2801af9e75778d7c50387fa070f75f67a6a642577c7291a22d3456195047c704": {
+  "partially": [],
+  "reason": "Sentence 2 specifies the result (directness_ratio > 1.0), its meaning (instability), and the action (treat as warning).",
+  "states": [
+   2
+  ]
+ },
+ "2cf1f7cf603ab795118c56478c67be92d1dec3288af25f64147809755dd2bcfa": {
+  "partially": [],
+  "reason": "Sentence 3 specifies that the lower band becomes useful when backend bias pushes MI estimates below zero.",
+  "states": [
+   3
+  ]
+ },
+ "3267da2fd77d9568dcf1342ba71a8f0a98f851c462c9377e6e263f6fe3bf3a5a": {
+  "partially": [],
+  "reason": "No sentence explains the reason or the failure prevented by this practice.",
+  "states": []
+ },
+ "330c0aeae40b6b7f9162d5653e410268a59551b39ce5c15fe51c2e0659280e2c": {
+  "partially": [],
+  "reason": "Sentence 3 explains that surrogates provide a noise floor to distinguish high AMI values from chance dependence.",
+  "states": [
+   3
+  ]
+ },
+ "3c4fb08adef47e243bfd7cbe1aeab972904700c292e133e4b3ae92f3546cedba": {
+  "partially": [],
+  "reason": "None of the provided sentences explain why this process is performed or what failure it prevents.",
+  "states": []
+ },
+ "3e8d4ff013d71103242234b25c74e4c452e0a1cfd00ab0e7791230b5c06e61aa": {
+  "partially": [],
+  "reason": "No sentence describes the expected result, meaning, or next action for the robustness study pipeline test.",
+  "states": []
+ },
+ "443ba81867efc9c322dad28ce81b241f9518871f946a09899c0cada2d2010d47": {
+  "partially": [],
+  "reason": "None of the provided sentences explain why surrogates should be used or the failure it prevents.",
+  "states": []
+ },
+ "48ec11ec4d0f5c86e5a8a8c80fb3e8b0206e4c406e779f153b455171998f57f1": {
+  "partially": [],
+  "reason": "Sentence 3 specifies that the engineering convention does not apply when autocovariance feeds a significance test.",
+  "states": [
+   3
+  ]
+ },
+ "4aeeafd8fbf91a5aae9950673944a1569a7b7229248a4602f429be409b60cb10": {
+  "partially": [],
+  "reason": "No sentence describes expected results, their meaning, or subsequent actions for the robustness study pipeline.",
+  "states": []
+ },
+ "5a6c8677405196c176ad3c6cf3eefffff6cdd01baa3b4b27fa43b357d0a0a8d3": {
+  "partially": [],
+  "reason": "No sentence states a specific exception to the rule provided in the seed assertion.",
+  "states": []
+ },
+ "5d568900b6def3ff904abd5f8f7979ea30ec9c496b5cb5534fae3bb269ca0bd6": {
+  "partially": [],
+  "reason": "No sentence describes expected results, their meanings, or subsequent actions.",
+  "states": []
+ },
+ "5e80a8dcba5d184d1b1d14c4b1bcfdf04640576356881b70c5bf55782e76f8ec": {
+  "partially": [],
+  "reason": "No sentence provides an exception to the rule stated in the seed assertion.",
+  "states": []
+ },
+ "67b29d0e14722564736aadef4348441efa5b5707b6d60ba370cfaab5c6225018": {
+  "partially": [],
+  "reason": "None of the provided sentences explain why CrossAMI must be computed on the training window only.",
+  "states": []
+ },
+ "67f90a773ff28e322ed25138203e07fbf435299cf50ec8df3b487142dd16ed79": {
+  "partially": [],
+  "reason": "Sentence 3 specifies that terms are not interchangeable in engineering code when functions return values bounded by one.",
+  "states": [
+   3
+  ]
+ },
+ "6c06d6faf6604b23b17fda1b883c8a95a6cea625ca2b04264fe4a2e905f09c73": {
+  "partially": [],
+  "reason": "No sentence describes expected results, their meaning, or subsequent actions for the robustness study pipeline.",
+  "states": []
+ },
+ "6eb93dbc5c4f6464504d179b17dd8f86c28942df521fd89fda1657e192657fba": {
+  "partially": [],
+  "reason": "None of the sentences provide an exception to the rule stated in the seed assertion.",
+  "states": []
+ },
+ "708686be8c493b3e96003a3f23e064ae983a9ac3ff23e34aa65294e96d16d373": {
+  "partially": [],
+  "reason": "None of the provided sentences state an exception to the rule described in the seed assertion.",
+  "states": []
+ },
+ "75d95e4a846af6ae297f7c9a1fc06d292089f31c1187eb77c346bc81e0b0d6f2": {
+  "partially": [],
+  "reason": "No sentence describes expected results, their meanings, or subsequent actions.",
+  "states": []
+ },
+ "7728ca81b6106bd0335407acf9894de15d59c7f866b19d0c642f9b622e2ba67d": {
+  "partially": [],
+  "reason": "No sentence describes an exception to the rule.",
+  "states": []
+ },
+ "78b85321a74b0d4f855fa984a5c86d7a9ac01633f941d5049aef85e2cdd42e55": {
+  "partially": [],
+  "reason": "None of the sentences explain why CrossAMI must be computed on the training window only.",
+  "states": []
+ },
+ "78c48849352215a57d1ae66d1d5d979b359b6fce766a290b57bd211cbd8b68a6": {
+  "partially": [],
+  "reason": "None of the sentences explain why surrogates should be used.",
+  "states": []
+ },
+ "793fc481e123778fed5ac5f7e12bbca50cb7712f396019a6e907e95be8b47c0c": {
+  "partially": [],
+  "reason": "No sentence mentions exceptions to the practice of indicating uncertainty in forecasts.",
+  "states": []
+ },
+ "79ca16d5e9da3b8902a146651ce1d2a1a74b2641f5699ffa99eec32fdb49f885": {
+  "partially": [],
+  "reason": "Sentence 2 specifies the result (directness_ratio > 1.0), its meaning (instability), and the action (treat as warning).",
+  "states": [
+   2
+  ]
+ },
+ "7b672fd754654abae238c257607730313327392256c6fde12344b095d067e6df": {
+  "partially": [],
+  "reason": "None of the sentences provide a reason why surrogates should be used or the failure it prevents.",
+  "states": []
+ },
+ "7c10f46a61407d94c675ea51e6d0aa2574e88d6149dc679b0af9083a9c858b59": {
+  "partially": [],
+  "reason": "None of the sentences explain the reason or the failure prevented by the restriction.",
+  "states": []
+ },
+ "807e081511b26c5251066791e3448684494a4eb75e062c355e549099d21b723c": {
+  "partially": [],
+  "reason": "No sentence describes the expected result, meaning, or next action for the robustness study pipeline test.",
+  "states": []
+ },
+ "80a12dc5aebc2b38fdff46e5cee646045067495d7e36b66fbf204ca3d3541825": {
+  "partially": [],
+  "reason": "None of the provided sentences explain why CrossAMI must be computed on the training window only.",
+  "states": []
+ },
+ "813b3cda57bcbc991c2b787806645224a65d8a35c355d6c9febeed0feba1d59e": {
+  "partially": [],
+  "reason": "Sentence 3 specifies that backends agreeing with linear_residual are kept and those reordering top lags are dropped.",
+  "states": [
+   3
+  ]
+ },
+ "8f951a8e83f57b4560bcabc2818f45f986a2cf11da896f2f93ae95c27d3de899": {
+  "partially": [],
+  "reason": "No sentence provides an exception to the rule.",
+  "states": []
+ },
+ "912b56d5b683d194c762d451baafc6064c7e4acfa19b92fa3f4ff7fcd6052c9f": {
+  "partially": [],
+  "reason": "No sentence states an exception to the rule.",
+  "states": []
+ },
+ "9327fc918e78bdff198040909406afb565915137119171ab53b699b3e137daa1": {
+  "partially": [],
+  "reason": "None of the sentences provide an exception to the rule stated in the seed assertion.",
+  "states": []
+ },
+ "96b4c06e9890b8d65c5d81928239c27f97356185a916d3fef0fabcf546061efb": {
+  "partially": [],
+  "reason": "Sentence 3 explains that using unknown future values provides the model with information unavailable during production.",
+  "states": [
+   3
+  ]
+ },
+ "98a524790aa172ceefbdc6c3f8229cd5ea11f1ed0661fe220d0c1ee103d4b6b4": {
+  "partially": [],
+  "reason": "Both sentences specify the action (treat as warning), while sentence 2 also provides the specific result and its meaning.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "9e2154a5c01394492eb0f3aa6e34371c256bd31bc2c15310becc1a609e33c529": {
+  "partially": [],
+  "reason": "No sentence explains the reason or the failure prevented by the restriction.",
+  "states": []
+ },
+ "9e41cd959eba6839548145080d3f9b55b25b17ec8f7181b9f99d8374fb5bd10c": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly describes a specific scenario where the practice of indicating uncertainty does not hold.",
+  "states": [
+   3
+  ]
+ },
+ "_meta": {
+  "api": "https://openrouter.ai/api/v1/chat/completions",
+  "max_tokens": 8000,
+  "model": "google/gemma-4-31b-it",
+  "price_usd_per_mtok": [
+   0.1,
+   0.34
+  ],
+  "reasoning_max_tokens": 2000,
+  "response_format": "json_object",
+  "temperature": 0
+ },
+ "add6f0921b625580ffa4330ea5f3f27bf6b0cc019fd2c0c19bbd3158f91c1dca": {
+  "partially": [],
+  "reason": "None of the sentences describe expected results, the meaning of results, or subsequent actions.",
+  "states": []
+ },
+ "b5db6cdddafc74078600f272b917ea255f2b94ce701d67f6b3f97508f7c2a7b6": {
+  "partially": [],
+  "reason": "No sentence provides an exception condition to the rule.",
+  "states": []
+ },
+ "b84e4775c4ae863c82e53465617f1ec43d9ee1aba12436264ffbbe3ffe4da62a": {
+  "partially": [],
+  "reason": "Sentence 3 explains that using the full series allows test-window values to leak into exogenous screening.",
+  "states": [
+   3
+  ]
+ },
+ "b937737aaffd2edd1365d617cbf053c0b109f62f2759771548a8aac786c1896c": {
+  "partially": [],
+  "reason": "No sentence describes an exception or a case where the rule does not hold.",
+  "states": []
+ },
+ "bc08a96eadf7718242e300709c0d5d724f5f61d12ed1ba5e55cfc2c8a2ae68b3": {
+  "partially": [],
+  "reason": "No sentence describes an exception to the rule stated in the seed assertion.",
+  "states": []
+ },
+ "be3d08b38e4ffbd8c67305157f702a907da3338e6dd59a9ac44b7e078658ac94": {
+  "partially": [],
+  "reason": "No sentence mentions exceptions to the practice of indicating uncertainty in forecasts.",
+  "states": []
+ },
+ "c59d6932fe22dfe72d87e3054cce92d1a7ee0e77cfad34870096d74f963b4f4b": {
+  "partially": [],
+  "reason": "No sentence provides an exception condition to the rule stated in the seed assertion.",
+  "states": []
+ },
+ "ca2477c7ccfe4a20fcd22f53c09f1fffe64e29f2163935dd5ee38f477edfc9c8": {
+  "partially": [],
+  "reason": "Sentence 3 specifies outcomes of the tests (persists vs collapses) and the resulting actions (cleared vs discarded).",
+  "states": [
+   3
+  ]
+ },
+ "cc93969659b2a1e491a12f67eee58635386d0d506dbc9dadc6b586a60aecdfa6": {
+  "partially": [],
+  "reason": "No sentence provides specific conditions for choosing a particular forecasting method.",
+  "states": []
+ },
+ "ccbb44575e86fb8059cf850049adf4becfe371cca0e557e3f6ca4beeb00706dc": {
+  "partially": [],
+  "reason": "No sentence describes exceptions to the rule.",
+  "states": []
+ },
+ "d62e2d7ac63ed303f1aedc0b55c2af592d3b53423621121a085f90dd928f3631": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly links specific conditions to the choice of forecasting methods.",
+  "states": [
+   3
+  ]
+ },
+ "d77633d675341fb6083f62820e72f0044395517d5aa610bc32be8366edce92b9": {
+  "partially": [],
+  "reason": "None of the provided sentences explain why the restriction on known_future_drivers is necessary or what failure it prevents.",
+  "states": []
+ },
+ "e136a01416f79820a4565bcd18055b20b6e3a835bcebcd2138ebafa12092a416": {
+  "partially": [],
+  "reason": "None of the sentences explain why surrogates should be used.",
+  "states": []
+ },
+ "e1ab6ff8b38ea198bdefb16e91fe245e53bd200a384945d4ad83ea0370f10572": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 explicitly state that method selection depends on objectives and conditions.",
+  "states": [
+   1,
+   2
+  ]
+ },
+ "e220f3aca4d3f1b78f1e6995399331e4691f53f6658a8e184aece266b54a0a67": {
+  "partially": [],
+  "reason": "Sentence 3 describes expected gradual scores, identifies sharp jumps as leakage, and mentions the subsequent tracing step.",
+  "states": [
+   3
+  ]
+ },
+ "e3c25e0460732f1876f56d9125c2a3dc161dfd1fbec1d9c9ec8c2549fe8eb7c9": {
+  "partially": [],
+  "reason": "Sentence 2 specifies the result (>1.0), its meaning (instability), and the action (treat as warning).",
+  "states": [
+   2
+  ]
+ },
+ "e40d0e64b8bc012c8664c4c69391195ce38ab43159c7477a695b045dcd89a0fd": {
+  "partially": [],
+  "reason": "No sentence explains the reason or the failure prevented by the assertion.",
+  "states": []
+ },
+ "eaa2f850e01953d93c414a9a212173fc59243f8f2bfd2e7cfc3398b713ed9181": {
+  "partially": [],
+  "reason": "None of the sentences explain the reason or the failure prevented by the assertion.",
+  "states": []
+ },
+ "ec6fd9aea3d2e9cdef18fab48150c45a083178dc7a103fe78977d4c8e49535d7": {
+  "partially": [],
+  "reason": "No sentence mentions exceptions to the rule.",
+  "states": []
+ },
+ "ede315c917c412159b5f6ce83662288caca1f83cf27ac5b5df46044b7fa299a1": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly identifies deterministic schedule values as an exception to the practice of attaching uncertainty.",
+  "states": [
+   3
+  ]
+ },
+ "f539b3c2332824690c116b05dbe8fe4d11b7dfd6a2316ae6b4fc57969564a9c6": {
+  "partially": [],
+  "reason": "No sentence describes expected test results, their meaning, or subsequent actions.",
+  "states": []
+ },
+ "fa7b0834e00c452b225acdcb779d46bc7f7a24522672af220bb16471ccacc6e3": {
+  "partially": [],
+  "reason": "No sentence specifies cases where the rule does not hold.",
+  "states": []
+ },
+ "fc1cf4cee10ef0b132765c32c4c7b77486815493399044ca2d4a793497e4987e": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentence 4 describes a specific practice in certain disciplines; 1 and 2 state the general principle of basing selection on conditions.",
+  "states": [
+   4
+  ]
+ }
+}

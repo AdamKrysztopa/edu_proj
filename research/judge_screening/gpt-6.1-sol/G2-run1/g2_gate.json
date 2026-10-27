@@ -1,0 +1,124 @@
+{
+ "R_excess": 0.0,
+ "complete": true,
+ "diff": 1.0,
+ "judge_model": "gpt-6.1-sol",
+ "lower90": 1.0,
+ "n_clusters": 10,
+ "n_topics": 13,
+ "passes": true,
+ "rates": {
+  "0": 0.0,
+  "N": 0.0,
+  "N+": 0.0,
+  "P": 1.0,
+  "R": 0.0
+ },
+ "spend": {
+  "cached_tokens": 0,
+  "calls": 0,
+  "completion_tokens": 0,
+  "finish_reasons": {},
+  "max_usd": 0.0,
+  "prior_usd": 0.0,
+  "prompt_tokens": 0,
+  "reasoning_tokens": 0,
+  "served_models": [],
+  "usd": 0.0
+ },
+ "split": "gate",
+ "states": {
+  "t01": {
+   "0": "partial",
+   "N": "partial",
+   "N+": "partial",
+   "P": "closed",
+   "R": "partial"
+  },
+  "t02": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t05": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t07": {
+   "0": "partial",
+   "N": "partial",
+   "N+": "partial",
+   "P": "closed",
+   "R": "partial"
+  },
+  "t08": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t09": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t10": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t14": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t15": {
+   "0": "open",
+   "N": "partial",
+   "N+": "partial",
+   "P": "closed",
+   "R": "open"
+  },
+  "t16": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t17": {
+   "0": "open",
+   "N": "open",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t18": {
+   "0": "open",
+   "N": "partial",
+   "N+": "open",
+   "P": "closed",
+   "R": "open"
+  },
+  "t21": {
+   "0": "partial",
+   "N": "partial",
+   "N+": "partial",
+   "P": "closed",
+   "R": "partial"
+  }
+ },
+ "undecided": 0
+}

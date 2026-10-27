@@ -220,3 +220,66 @@ def test_cached_prompt_tokens_are_recorded():
     j.ask("p")
     assert j.calls[0]["cached_tokens"] == 640
     assert j.spend()["cached_tokens"] == 640
+
+
+class FlakyOpenAI:
+    """Raises the given errors in order (an int is an HTTP status), then answers."""
+
+    def __init__(self, errors):
+        self.errors, self.posts, self.ok = list(errors), 0, FakePost()
+
+    def __call__(self, url, body, headers):
+        import urllib.error
+        self.posts += 1
+        if self.errors:
+            e = self.errors.pop(0)
+            raise urllib.error.HTTPError(url, e, "err", {}, None) if isinstance(e, int) else e
+        return self.ok(url, body, headers)
+
+
+def _flaky(post, monkeypatch, **kw):
+    monkeypatch.setenv("OPENAI_API_KEY", "test")
+    return judge_mod.OpenAIJudge("gpt-6.1-sol", max_usd=5, reasoning_effort="high", post=post,
+                                 sleep=lambda s: None, **kw)
+
+
+def test_an_openai_rate_limit_or_timeout_is_retried_then_answered(monkeypatch):
+    import urllib.error
+    post = FlakyOpenAI([429, urllib.error.URLError("reset"), TimeoutError()])
+    assert _flaky(post, monkeypatch).ask("p")["states"] == [1]
+    assert post.posts == 4
+
+
+def test_a_persistent_openai_error_stops_the_run_instead_of_becoming_undecided(monkeypatch):
+    post = FlakyOpenAI([503] * 10)
+    j = _flaky(post, monkeypatch)
+    with pytest.raises(judge_mod.JudgeUnavailable):
+        j.ask("p")
+    assert post.posts == 4 and j.incomplete and j.calls == []
+
+
+def test_a_non_transient_openai_error_stops_at_once(monkeypatch):
+    post = FlakyOpenAI([401])
+    with pytest.raises(judge_mod.JudgeUnavailable):
+        _flaky(post, monkeypatch).ask("p")
+    assert post.posts == 1
+
+
+def test_an_unreadable_openai_envelope_stops_the_run(monkeypatch):
+    post = FlakyOpenAI([json.JSONDecodeError("bad", "x", 0)] * 10)
+    with pytest.raises(judge_mod.JudgeUnavailable):
+        _flaky(post, monkeypatch).ask("p")
+
+
+def test_a_missing_openai_key_stops_the_run(monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    j = judge_mod.OpenAIJudge("gpt-6.1-sol", max_usd=5, post=FakePost())
+    with pytest.raises(judge_mod.JudgeUnavailable, match="OPENAI_API_KEY"):
+        j.ask("p")
+
+
+def test_an_openai_error_propagates_through_the_parser_as_a_stop_not_undecided(monkeypatch):
+    j = _flaky(FlakyOpenAI([500] * 10), monkeypatch)
+    retrieval = semantic.build_retrieval([("s", 0, "Pick the fuse by the load current.")])
+    with pytest.raises(judge_mod.JudgeUnavailable):
+        semantic.judge_retrieval(j, retrieval, "seed", "question?")

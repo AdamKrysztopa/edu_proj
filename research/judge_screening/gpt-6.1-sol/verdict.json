@@ -1,0 +1,145 @@
+{
+ "candidate": {
+  "family": "openai",
+  "model": "gpt-6.1-sol",
+  "provider": "openai",
+  "settings": {
+   "reasoning_effort": "high"
+  },
+  "tier": "top"
+ },
+ "eligible": true,
+ "fixtures_sha256": "474b636c458484d63a5cfe5c4a3b4fd54bdab4f54a4a409feb13f1a3e29eeab6",
+ "g2_rule": "g2.passes as committed, R scored as R_excess (owner amendment 2026-10-26)",
+ "gated_on_this_hash": [
+  "gemma-4-31b-it",
+  "gpt-6.1-sol"
+ ],
+ "runs": [
+  {
+   "dir": "research/judge_screening/gpt-6.1-sol/S0-run1",
+   "figures": {
+    "oracle_passes": true,
+    "passing_stand_ins": []
+   },
+   "finished": "2026-10-27T07:49:14Z",
+   "fixtures_sha256": "474b636c458484d63a5cfe5c4a3b4fd54bdab4f54a4a409feb13f1a3e29eeab6",
+   "outcome": "pass",
+   "step": "S0"
+  },
+  {
+   "arm_verdict_sha256": "ab85516e4757f7b93c0eae7fefa6f89c82ad32330439db07c618ef92e99064e1",
+   "dir": null,
+   "figures": {},
+   "finished": "2026-10-27T07:49:14Z",
+   "fixtures_sha256": "474b636c458484d63a5cfe5c4a3b4fd54bdab4f54a4a409feb13f1a3e29eeab6",
+   "outcome": "pass",
+   "parallel_arm": "gemma-4-31b-it",
+   "step": "S1"
+  },
+  {
+   "dir": "research/judge_screening/gpt-6.1-sol/G1-run1",
+   "figures": {
+    "eligible": true,
+    "planted_fires": true,
+    "stand_in_fires": false,
+    "undecided": {
+     "ctrl_sf": 0,
+     "own_sf": 0
+    }
+   },
+   "finished": "2026-10-27T08:07:29Z",
+   "fixtures_sha256": "474b636c458484d63a5cfe5c4a3b4fd54bdab4f54a4a409feb13f1a3e29eeab6",
+   "headroom": "unreadable for this provider; the owner's stated balance applies",
+   "max_usd": 0.3,
+   "outcome": "pass",
+   "spend_ledger": "/Users/adamkrysztopa/projects/edu_proj/.claude/worktrees/agent-a0c22efc0a24d6eab/research/d1b_rerun/openai_spend.jsonl",
+   "spend_usd": 0.138732,
+   "started": "2026-10-27T08:01:45Z",
+   "step": "G1"
+  },
+  {
+   "adopted_from": "research/d1b_rerun/g2/sol-gate1",
+   "dir": "research/judge_screening/gpt-6.1-sol/G2-run1",
+   "figures": {
+    "R_excess": 0.0,
+    "diff": 1.0,
+    "lower90": 1.0,
+    "n_topics": 13,
+    "rates": {
+     "0": 0.0,
+     "N": 0.0,
+     "N+": 0.0,
+     "P": 1.0,
+     "R": 0.0
+    },
+    "undecided": 0
+   },
+   "finished": "2026-10-27T08:07:52Z",
+   "fixtures_sha256": "474b636c458484d63a5cfe5c4a3b4fd54bdab4f54a4a409feb13f1a3e29eeab6",
+   "note": "D1b R1 gate run 1, cold cache (spend ledger: each gate prompt paid in this run)",
+   "outcome": "pass",
+   "source_cache_sha256": "d0f23a1511ab3a2c65c82b72fbf4718b69174381d518135a9c63737aa32207c9",
+   "step": "G2"
+  },
+  {
+   "adopted_from": "research/d1b_rerun/g2/sol-gate2",
+   "dir": "research/judge_screening/gpt-6.1-sol/G2-run2",
+   "figures": {
+    "R_excess": 0.0,
+    "diff": 1.0,
+    "lower90": 1.0,
+    "n_topics": 13,
+    "rates": {
+     "0": 0.0,
+     "N": 0.0,
+     "N+": 0.07692307692307693,
+     "P": 1.0,
+     "R": 0.0
+    },
+    "undecided": 0
+   },
+   "finished": "2026-10-27T08:07:52Z",
+   "fixtures_sha256": "474b636c458484d63a5cfe5c4a3b4fd54bdab4f54a4a409feb13f1a3e29eeab6",
+   "note": "Second required gate run, 2026-10-27, fresh cache (spend ledger: 56 gate prompts paid twice, the stopped run's 9 three times)",
+   "outcome": "pass",
+   "source_cache_sha256": "79b46de59b69fbddc0998269a52e61c47a1b42a28c051c210db05cf09ca991ed",
+   "step": "G2"
+  }
+ ],
+ "sequence": "screen-v1",
+ "settles_alone": true,
+ "slug": "gpt-6.1-sol",
+ "stale_runs": 0,
+ "status": "eligible",
+ "steps": {
+  "G1": {
+   "fails": 0,
+   "incomplete": 0,
+   "passes": 1,
+   "required": 1,
+   "state": "satisfied"
+  },
+  "G2": {
+   "fails": 0,
+   "incomplete": 0,
+   "passes": 2,
+   "required": 2,
+   "state": "satisfied"
+  },
+  "S0": {
+   "fails": 0,
+   "incomplete": 0,
+   "passes": 1,
+   "required": 1,
+   "state": "satisfied"
+  },
+  "S1": {
+   "fails": 0,
+   "incomplete": 0,
+   "passes": 1,
+   "required": 1,
+   "state": "satisfied"
+  }
+ }
+}

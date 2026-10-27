@@ -191,3 +191,9 @@ def test_a_judge_closing_on_random_letters_still_fails_r():
 
     res = g2.evaluate(topics, inserts, Gibberish(inserts), split="gate")
     assert res["R_excess"] > 0.10 and not res["passes"]
+
+
+def test_the_oracle_judge_closes_only_p_and_passes():
+    topics, inserts = _set()
+    res = g2.evaluate(topics, inserts, g2.OracleJudge(inserts), split="gate")
+    assert res["passes"] and res["rates"]["N"] == 0 and res["rates"]["0"] == 0

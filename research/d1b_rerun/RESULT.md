@@ -16,7 +16,8 @@ any closure call (§3.2, §5).
 lecturer and volunteers may still start, as an elicitation-and-onboarding pilot without targeting.
 Further ranking work waits for N3 to resume. The fix itself (item 1) holds as far as it got: the
 closure judge is selectable beside the default and chosen by measurement. The cheap arm, gemma, passes
-both checks (G2 under a disclosed amendment); sol passes G1 and the first of its two required G2 runs.
+both checks (G2 under a disclosed amendment). Sol passes G1 and both required G2 gate runs; the
+second ran on 2026-10-27 ($0.144).
 
 ## How to read it
 
@@ -42,8 +43,9 @@ both checks (G2 under a disclosed amendment); sol passes G1 and the first of its
   under the amendment). Commit `b7cc35f`; lesson queued.
 - **One ordering slip.** Sol's paid G1 and G2 checks were started in parallel with the cheap arm's
   gap maps, before the free Stop A count, against the plan's order. Sol's G1 and first gate run
-  finished before the count; the second gate run was stopped when the count failed. $0.29 spent.
-  Lesson queued.
+  finished before the count, and the second gate run was stopped when the count failed. $0.29 was
+  spent. The second gate run was then made again from a fresh cache on 2026-10-27 and passed
+  ($0.144). Lesson queued.
 
 ## Figures
 
@@ -57,7 +59,7 @@ both checks (G2 under a disclosed amendment); sol passes G1 and the first of its
 | mistral-small-2603 | — | unavailable (HTTP 429 on every call) | dropped |
 | deepseek-v4.1-flash, glm-5.3-flash | pass | fail on the selection split, which proved unreachable (its seeds state the element) | not gated |
 | **gemma-4-31b-it** (cheap arm) | passes | gate split (13 topics), passes twice: P − N 0.92, lower90 0.75, N 0.08, N+ 0.08, no-insert 0.15, R 0.15 (raw), R_excess 0 | **chosen** (passes under the amendment) |
-| **gpt-6.1-sol, high** (top-tier arm) | passes | gate split, passes once: P − N 1.00, lower90 1.00, N 0, N+ 0, no-insert 0, R 0 | not yet eligible: the second required gate run was stopped at A |
+| **gpt-6.1-sol, high** (top-tier arm) | passes | gate split, passes twice: P − N 1.00 and 1.00, lower90 1.00 and 1.00, N 0 and 0, N+ 0 and 0.08, no-insert 0 and 0, R 0 and 0, R_excess 0 and 0 | **eligible** (second run 2026-10-27, cold cache, after the stopped one) |
 
 G2 holds topicality fixed: per topic, the same seed and background with nothing inserted (0), a
 sentence stating the element (P), an on-topic non-element at least as long and as on-topic (N),
@@ -91,6 +93,8 @@ a codebase whose open side is large enough.
 
 ## Cost
 
-$0.92 of the owner's $6 cap: $0.62 on OpenRouter (judge screening, G1, G2, seed checks and
-gemma's two gap maps) and $0.29 on OpenAI (sol's G1, $0.13; its first G2 gate run, $0.14; 9 calls of the stopped second run, $0.02). No local models: the
+$1.06 of the owner's $6 cap: $0.62 on OpenRouter (judge screening, G1, G2, seed checks and
+gemma's two gap maps) and $0.44 on OpenAI (sol's G1, $0.13; its first G2 gate run, $0.14; 9 calls of the stopped second run, $0.02; the completed second run on 2026-10-27, $0.14). The same OpenAI ledger also holds a fresh sol G1
+run made by the judge-screening standard on 2026-10-27 ($0.14, outside D1b;
+`docs/plans/judge-screening-standard.md` §4). No local models: the
 Mac crashed while screening them, so they were deleted and the cheap arm moved to OpenRouter.

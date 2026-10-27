@@ -1,0 +1,405 @@
+{
+ "03dbc93a1f20b8e74933613e91596871a3736c6e7faf31771fe875875b2b1033": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why training-only CrossAMI is necessary or what failure it prevents; mentioning a leakage boundary does not state the rationale.",
+  "states": []
+ },
+ "09d675ee30bae49c5907945bf4c7ba3529db53b0829a8283bb50c592ec203fa9": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 makes normalization configurable but does not explicitly identify an argument value or condition under which the usual convention does not hold.",
+  "states": []
+ },
+ "0d263e0cdb86bee58a24652b1d74f607dbbb9b7ef24de2edc9d6fba23a06454e": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 mentions configurable normalization but does not explicitly specify when normalization is retained or the terms are not interchangeable.",
+  "states": []
+ },
+ "127a1f6c46bb500424878f54b3e768a14477bccd311a9b8e67dd7baf274295a2": {
+  "partially": [],
+  "reason": "Sentence 1 states the rule, but none explicitly explains its rationale or the failure it prevents.",
+  "states": []
+ },
+ "1f1c6639dcbdc4c1cc8494099fd6a0aa24b1c9b066584ba5927060287ea254f5": {
+  "partially": [],
+  "reason": "No sentence explicitly identifies conditions where normalization is retained or autocorrelation and autocovariance are distinguished; sentence 2 is incomplete.",
+  "states": []
+ },
+ "1f57907643931a26700cc4dbee5192e06ce82e52779ac4c25a80c6e5508d1b57": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly identifies an exception: backend bias pushes MI estimates below zero, making the lower band informative about the bias.",
+  "states": [
+   3
+  ]
+ },
+ "255429b38652e4cac6f5c2b441abecc00ee6360d45d3ab56388179d50b8ba55a": {
+  "partially": [],
+  "reason": "No sentence explicitly states an exception condition; sentences 1 and 2 restate the rule, while sentences 3\u20135 concern autocorrelation.",
+  "states": []
+ },
+ "273cc95d5a50630a9902c190edad3fd5df537a8574f58fcb967001ca28ffc1ad": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 identify selection criteria but do not specify which method to choose in any particular situation.",
+  "states": []
+ },
+ "2e1fe46279f8ffb1c5fa38ed4a84a28b3c854fbc03e386de4fe5e95aa18bfc6a": {
+  "partially": [],
+  "reason": "No sentence specifies an exception condition; qualifiers such as \u201cusually\u201d and \u201cnot typically\u201d do not identify specific cases where the rule fails.",
+  "states": []
+ },
+ "32be935fdb0e7e4efa547e9196c154036a0f54aaffcf40c22b37202978ea24c8": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly identifies an exception: engineering code returning values bounded by one uses normalized autocorrelations, so the terms are not interchangeable.",
+  "states": [
+   3
+  ]
+ },
+ "35b037b33922f1d5c1f9f6edcaa98a7de08c492f418c190eef7e422887e2a606": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly exempts deterministic schedule values, such as fixed calendar holidays, because they carry no forecast error.",
+  "states": [
+   3
+  ]
+ },
+ "35b07b504a72de2609fe4a3c20dedbba2646b21318bfcfa30761ff13270fe26e": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 2 links a numerical threshold to possible causes and a warning, but does not interpret outcomes of backend verification or sample-size stress testing.",
+  "states": []
+ },
+ "378a1878dadfa9818de23975ca56cb34811704d16db66476b75a5a0765138268": {
+  "partially": [
+   1,
+   2,
+   3
+  ],
+  "reason": "Sentences 1\u20133 mention a leakage boundary but do not explicitly explain why training-only computation is necessary or what failure it prevents.",
+  "states": []
+ },
+ "3a19063c941b4182649380c3b352c863b680c59e1a63cdb8c72400b132f66c0b": {
+  "partially": [],
+  "reason": "No sentence identifies a specific condition under which indicating forecast uncertainty is not good practice.",
+  "states": []
+ },
+ "3d5099d9494385195507e006898f384e2660fe0d1f0f6af55445d1341cce80f9": {
+  "partially": [],
+  "reason": "No sentence specifies an expected diagnostic result, explains what a result means, or links a result to a next action.",
+  "states": []
+ },
+ "400610ce562d0abc0db98db76e24af889f7f505eb63b7a021203128c7815ab69": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly says full-series scores let test-window values leak into exogenous screening.",
+  "states": [
+   3
+  ]
+ },
+ "43cd208d99704ad1ad3c0a4c3b308d8d24166176ef164be5dd2fd3545495bfaf": {
+  "partially": [],
+  "reason": "No sentence states a reason for the restriction or a failure it prevents; the relevant sentences only describe permitted usage or functionality.",
+  "states": []
+ },
+ "4653df64a66007361035482fde12e5333b3496bdc877fb61fc531e35eb94153a": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 invoke a leakage boundary but do not explicitly explain why training-only screening is necessary or what failure it prevents.",
+  "states": []
+ },
+ "4c6bf81120034d82b033b610e2ef2600b7dd39c1cbbb17f77ee9815a66c32384": {
+  "partially": [],
+  "reason": "No sentence states an expected backend-comparison result, its interpretation, or a resulting action; sentence 5 only interprets autocorrelation coefficients.",
+  "states": []
+ },
+ "4f459cccdcce964b55cbc85947e18a08fd32266fe57b526dd3ca60f6ff78be07": {
+  "partially": [],
+  "reason": "No sentence explicitly identifies a specific condition under which the stated normalization convention does not hold.",
+  "states": []
+ },
+ "5359c8ac7ef2240213fbcd2dc8f54a9405c78311db5be4b3eb8f79e9f8d5f1e7": {
+  "partially": [],
+  "reason": "No sentence identifies a specific condition under which indicating forecast uncertainty is not considered good practice.",
+  "states": []
+ },
+ "54d873483017aae9c98f32176a804260341122cf31f3e88c203a22ea563887f7": {
+  "partially": [],
+  "reason": "No sentence explicitly identifies a condition under which the surrogate-band rule does not hold.",
+  "states": []
+ },
+ "565fd96759f618382e96ffaa8c2374be5f0fab421b5c789e969160193c15e586": {
+  "partially": [],
+  "reason": "No sentence explicitly identifies specific conditions under which the surrogate-band rule does not hold.",
+  "states": []
+ },
+ "5bc605e13a325562f6071e3bb40a5a1042f579b56385262cfb8dc16b538d6520": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly links persistent scores to clearing the warning and collapsed scores to numerical inflation and discarding the result.",
+  "states": [
+   3
+  ]
+ },
+ "5e7b7ef41def409a569f5299f92ec3124c0b66b203406c6e2bbbba498ab5e27b": {
+  "partially": [],
+  "reason": "No sentence explains why surrogates should be used or identifies a failure their use prevents.",
+  "states": []
+ },
+ "5fdeff63a83ac5d7dd19069ac7e115c437571930d2867cf7de79116e8d84a772": {
+  "partially": [],
+  "reason": "No sentence explicitly identifies a specific condition under which indicating forecast uncertainty is not considered good practice.",
+  "states": []
+ },
+ "61b4bba35cc3118085a1f9101037bb52cf25ff354cd4cd00c2dd4e1250131380": {
+  "partially": [],
+  "reason": "No sentence explicitly states a specific condition under which indicating forecast uncertainty is not good practice.",
+  "states": []
+ },
+ "630e6e893b1734ce93c2c06db1101b29594285acf518be012746ef5d31575994": {
+  "partially": [],
+  "reason": "No sentence explains why surrogates should be used or what failure their use prevents.",
+  "states": []
+ },
+ "70e12e5f7c940356d1da1f0fd2e6f61e2804a94740140a83cbe8e5f50d49a90d": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 2 gives an inflation threshold, possible causes, and warning action, but no sentence specifies expected backend or sample-size test outcomes and their implications.",
+  "states": []
+ },
+ "73d6d3a1e986ca5beef40cec2e4beb03cce29a389e27d705ac28f8085c0e7ba5": {
+  "partially": [],
+  "reason": "No sentence explicitly identifies a case in which indicating forecast uncertainty is not considered good practice.",
+  "states": []
+ },
+ "84b3f7afdc1d17f1295486b11d379e6dc7db9a598a62a11f2ba5051da279ff02": {
+  "partially": [],
+  "reason": "No sentence specifies an expected diagnostic result, its interpretation, or a next action based on that result.",
+  "states": []
+ },
+ "84ef6b270d9cfaf73078b53390ee78a54a6c051ee4c6c57108e4d497846449c0": {
+  "partially": [],
+  "reason": "Sentence 3 explains that a feature derived from the raw series cannot contain more target information, so excess information suggests leakage.",
+  "states": [
+   3
+  ]
+ },
+ "8a3184001251caeb9db62eb9b2ce2f496da74b7f1ad613e881baff1541dd9455": {
+  "partially": [],
+  "reason": "No sentence explicitly states an exception condition under which the rule does not hold.",
+  "states": []
+ },
+ "8b3a5f6dcce1e828273b374d0349dada49e5388d7fffd4ef1cac153151f1cad1": {
+  "partially": [],
+  "reason": "None of the sentences explains why surrogates should be used or identifies a failure their use prevents.",
+  "states": []
+ },
+ "8b5a57ae83187ab96cf778562a4697cb5a8d2830dddc75b0d5d255a1968a00b2": {
+  "partially": [],
+  "reason": "No sentence explicitly explains the restriction\u2019s purpose or identifies a failure it prevents.",
+  "states": []
+ },
+ "8cf0502061fa4eea7fb3f55685e17e0feff20c69ab4a8078f338b6f601aeba12": {
+  "partially": [],
+  "reason": "No sentence specifies an expected diagnostic result, explains what a result means, or identifies a result-dependent next action.",
+  "states": []
+ },
+ "900114088e66234d76da3bb29ceeaffab0a83ef9941ad5d11a71c18d12846be9": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 identify general selection criteria but do not specify which method to choose in any particular situation.",
+  "states": []
+ },
+ "92c7c20d56ea01e1be972baf95fff4e84eb34ce5a23baaf8742ab4aeafaee38b": {
+  "partially": [],
+  "reason": "No sentence explicitly specifies conditions under which the stated normalization conventions do not hold.",
+  "states": []
+ },
+ "9d3dad16b1746a33df55b356924ee8dd0b8f1e42c810f0f35707c8c0e02e822d": {
+  "partially": [],
+  "reason": "No sentence explicitly identifies a specific condition in which normalization is retained or autocorrelation and autocovariance are not interchangeable.",
+  "states": []
+ },
+ "9e3aa5e921879d1bbe1c777272a4dc41fb605662ecb477f6817c6e0cc5a7ca97": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentence 3 maps specific data conditions to method choices; sentences 1 and 2 mention selection criteria without specifying which method to choose.",
+  "states": [
+   3
+  ]
+ },
+ "9f6576223c5b6c226723f5e03bd736a956e5f2c92f8cca90f538c17f469bf8b4": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why surrogates should be used or what failure their use prevents.",
+  "states": []
+ },
+ "_meta": {
+  "api": "https://api.openai.com/v1/chat/completions",
+  "max_completion_tokens": 6000,
+  "model": "gpt-6.1-sol",
+  "price_usd_per_mtok": [
+   2.0,
+   10.0
+  ],
+  "reasoning_effort": "high",
+  "response_format": "json_object",
+  "temperature": "not sent"
+ },
+ "a02ee2ba777bd3b9279c1f6603ac9c6d3684219b6f1b80d91116264b6bb46f7f": {
+  "partially": [],
+  "reason": "Sentence 3 specifies that agreement with linear_residual leads to keeping a backend, while reordering the top lags leads to dropping it.",
+  "states": [
+   3
+  ]
+ },
+ "a1dd41c18dace2dde3102317b36d3c55219437674e68696d087eaa5f3718ee1c": {
+  "partially": [],
+  "reason": "Sentences 1\u20132 state the training-only restriction but do not explicitly explain why it is needed or what failure it prevents.",
+  "states": []
+ },
+ "a69d6ea1f91af5506f6504eb223df7fc983481fab99c410469c64b15e89a8b65": {
+  "partially": [],
+  "reason": "Sentence 3 explains that surrogates provide a series-specific noise floor needed to distinguish high AMI from chance dependence.",
+  "states": [
+   3
+  ]
+ },
+ "a736b926344770c673eacd682019ac180816d3fbea6435f61643e9cd3fb8ca02": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why this restriction is imposed or what failure it prevents.",
+  "states": []
+ },
+ "a95b4f7d467b80e45b4f91fea7648b4d98b565b14d63d8dc621283f2d2b3abeb": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 name factors guiding selection but do not specify which forecasting method to choose under any particular condition.",
+  "states": []
+ },
+ "ad8352b6a09c8ba29fe684ff55b9614c1359775e106e3a072367fb3a8060e9a0": {
+  "partially": [],
+  "reason": "No sentence specifies an expected diagnostic result, interprets a result, or identifies a result-dependent next action.",
+  "states": []
+ },
+ "ae4cfda0eadd91be536d9e507a314856d6055e580c7ad2aeef27e533ba475373": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly exempts point forecasts fed into automated order rules that accept only a single number and ignore intervals.",
+  "states": [
+   3
+  ]
+ },
+ "aef6f72aa7ebd30b5e701a21b0381583ce4b52fb2cd27949fd7866be5ca32f56": {
+  "partially": [],
+  "reason": "Sentences 1 and 2 repeat the restriction without explaining why it exists or what failure it prevents; the others provide no reason.",
+  "states": []
+ },
+ "b359d9b7546ba244d3585c4597a25273b30ad6e9e8dcfec55415467311de3b7c": {
+  "partially": [
+   1
+  ],
+  "reason": "Sentence 2 specifies a threshold, possible causes, and warning treatment. Sentence 1 gives a follow-up action but no expected test result.",
+  "states": [
+   2
+  ]
+ },
+ "b5fc1e15126b1dbc42dad8e18f84f2c644ca3595578b310c85af2292709120d5": {
+  "partially": [
+   2
+  ],
+  "reason": "Sentence 2 gives a threshold, possible causes, and warning action, but no sentence specifies expected outcomes of backend verification or sample-size stress testing.",
+  "states": []
+ },
+ "bc849888b3433a97de4acc8e9fcfa60308fd290be26a72edebe70ebdc3c30500": {
+  "partially": [],
+  "reason": "Sentence 3 explicitly states an exception: engineering\u2019s omission of normalization does not apply when autocovariance feeds a significance test.",
+  "states": [
+   3
+  ]
+ },
+ "c63c73aa11f7fb43aad5c8785bb7677ceffe6a5d6961d5b070ba09680a110e15": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why this treatment is warranted or what failure it prevents; sentence 1 only states the rule.",
+  "states": []
+ },
+ "c6478e4368ff333e3096e401c6335fa9ebba2707ffd12ccafab709a9604eeeee": {
+  "partially": [],
+  "reason": "Sentence 3 identifies the failure: the model receives information during prediction that will not be available in production.",
+  "states": [
+   3
+  ]
+ },
+ "ce747da5d4a798ef200f2d65391e4a1d7240f14a9bf840e1496b66cefead65e7": {
+  "partially": [],
+  "reason": "No sentence states an expected result of the backend comparison, explains a comparison result, or specifies a resulting next action.",
+  "states": []
+ },
+ "cf3becb86225c22ceb5df06e7f189eed1d1f4678afb983db0c8c9c4b9484717d": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why excess derived-feature performance signals leakage or what failure this rule prevents.",
+  "states": []
+ },
+ "d898878800c633951e9843a1cd5dff9ef2cf869e9ee21171c7274f5977d807a0": {
+  "partially": [],
+  "reason": "Sentence 3 states the expected gradual fold-score changes, identifies a sharp jump as leakage, and says the next step traces it.",
+  "states": [
+   3
+  ]
+ },
+ "ddc19c3078db7c623594d7bbcb99882d69ba7519a2a4e034570b9f633afe2c63": {
+  "partially": [],
+  "reason": "No sentence explicitly identifies a specific exception condition to the normalization rule.",
+  "states": []
+ },
+ "e31e1725c6d573f9a426b05e64b64901958d7ce6b251e3a8dfe95d44c292ea6d": {
+  "partially": [],
+  "reason": "No sentence explicitly specifies circumstances in which the rule does not hold.",
+  "states": []
+ },
+ "e3855063bb72429f930d9e8efcf6b98b76b1595fdfb8cd0a8956ee11e8d076ba": {
+  "partially": [
+   1,
+   2
+  ],
+  "reason": "Sentences 1 and 2 identify factors guiding selection but do not specify which forecasting method to choose under any particular condition.",
+  "states": []
+ },
+ "eab8f8b5f853e922d8ec960505dc3e51c08ba581a70676cdb59f3dc0daa3883c": {
+  "partially": [],
+  "reason": "No sentence explicitly explains why the rule is applied or what failure it prevents; they only state the rule or describe procedures.",
+  "states": []
+ },
+ "f05052d5f0fab9a9bdd86d51969535167477aec4f7f67938e3c515b1a229582d": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 specifies output artifacts, but none states an expected comparison outcome, its meaning, or a next action based on it.",
+  "states": []
+ },
+ "f1e200562e57e40a8ef1be00c7fb26c1e2848d09bfd5b9d316360513fc9065b8": {
+  "partially": [],
+  "reason": "No sentence specifies cases where indicating forecast uncertainty is not good practice; \u201cgenerally\u201d alone does not state an exception.",
+  "states": []
+ },
+ "f4605f658b4ffb705e12dfccd1960154874db321ce636c8e8708c8121947e3f0": {
+  "partially": [],
+  "reason": "No sentence explicitly states a specific exception to the normalization convention.",
+  "states": []
+ },
+ "fec765490342d94d1f75fa4b9b0b2bd526b1354d5b705490a72efa84e75a62a9": {
+  "partially": [
+   3
+  ],
+  "reason": "Sentence 3 specifies expected output artifacts, but no sentence states expected comparison outcomes, their meaning, or resulting actions.",
+  "states": []
+ }
+}

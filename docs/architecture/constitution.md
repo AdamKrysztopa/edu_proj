@@ -232,6 +232,33 @@ A closure judge whose family matches a ledger's generator or verifier runs only 
 - Verified by review — needs judgement, and may be graded as a soft signal.
 - Source: [0009 A same-family closure judge runs only as a parallel arm](decisions/0009-same-family-judge-as-parallel-arm.md)
 
+### screen-eligible-only-after-required-passes
+
+verdict.json records a candidate eligible only after one passing G1 run and two passing G2 gate-split runs, each in a new directory with an empty closure cache, under the current fixture hash; a complete failing run puts the candidate out and an incomplete run never counts.
+
+- Severity: blocking
+- Scope: `gapmap/src/gapmap/screen.py`
+- Verified by `pytest-archon#test_eligibility_is_recorded_only_after_one_g1_and_two_g2_passes` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0010 Closure judges are chosen by the screening entry point](decisions/0010-closure-judges-chosen-by-screening.md)
+
+### screen-free-gates-before-paid
+
+gapmap.screen starts a paid screening run (G1, G2) only when every earlier step of the sequence, the $0 fixture gate and, for a same-family candidate, the parallel-arm gate, is satisfied under the current fixture hash; it starts at most one paid run per invocation and never two on one candidate at once.
+
+- Severity: blocking
+- Scope: `gapmap/src/gapmap/screen.py`
+- Verified by `pytest-archon#test_a_paid_step_is_refused_while_the_free_fixture_gate_fails` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0010 Closure judges are chosen by the screening entry point](decisions/0010-closure-judges-chosen-by-screening.md)
+
+### screen-same-family-after-other-family
+
+A candidate whose family is a target ledger's generator or verifier family gets no paid screening run until an other-family candidate is eligible on the same fixture hash, and a usable judge pair needs an eligible cheap other-family arm and an eligible top-tier arm on one hash.
+
+- Severity: blocking
+- Scope: `gapmap/src/gapmap/screen.py`
+- Verified by `pytest-archon#test_a_same_family_candidate_is_refused_paid_runs_until_an_other_family_arm_is_eligible` — run the rule checker to resolve this binding and evaluate it. The checker's verdict covers the whole repository, not only this rule's scope: `scope` decides which edits the drift drain treats as touching this rule, never what the checker itself inspects.
+- Source: [0010 Closure judges are chosen by the screening entry point](decisions/0010-closure-judges-chosen-by-screening.md)
+
 ### session-data-outside-repo
 
 Session data live only under git-ignored session directories, identified by pseudonym; names and the pseudonym key never enter the repository.
@@ -340,3 +367,4 @@ A slot becomes an UNKNOWN ledger record only when its area was searched, at leas
 - [0006 Residual accounting core: labels are computed, gates refuse synthetic input](decisions/0006-residual-accounting-core.md) — decide-architecture
 - [0007 Reconstruction pipeline: a one-way evidence-gathering walking skeleton](decisions/0007-reconstruction-pipeline.md) — decide-architecture
 - [0009 A same-family closure judge runs only as a parallel arm](decisions/0009-same-family-judge-as-parallel-arm.md) — decide-architecture
+- [0010 Closure judges are chosen by the screening entry point](decisions/0010-closure-judges-chosen-by-screening.md) — decide-architecture
