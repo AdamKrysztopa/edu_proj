@@ -1,0 +1,2901 @@
+{
+ "rows": [
+  {
+   "anchor": "appropriate past",
+   "k_topic": 3,
+   "ledger": "cheap-26b",
+   "lens": "DISC",
+   "question_text": "One source writes: \"Quantitative forecasting models are appropriate to use when past numerical data is available and when it is reasonable to assume that some of the patterns in the data are expected to continue into the future.\". Think of a recent case where you had to judge whether something was appropriate past. Describe one case that clearly was, one that clearly was not, and one that was hard to call. What differed between them, and what did you check first?",
+   "quote": "Quantitative forecasting models are appropriate to use when past numerical data is available and when it is reasonable to assume that some of the patterns in the data are expected to continue into the future.",
+   "similarity": 0.19772366871514985,
+   "source_origin": "outside",
+   "test_id": "DISC:appropriate past",
+   "words": 81
+  },
+  {
+   "anchor": "stable package",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "DISC",
+   "question_text": "One source writes: \"Use the stable package facade and a simple generated series.\". Think of a recent case where you had to judge whether something was stable package. Describe one case that clearly was, one that clearly was not, and one that was hard to call. What differed between them, and what did you check first?",
+   "quote": "Use the stable package facade and a simple generated series.",
+   "similarity": 0.19342722719092104,
+   "source_origin": "owner",
+   "test_id": "DISC:stable package",
+   "words": 56
+  },
+  {
+   "anchor": "In other disciplines like engineering, the normalization is usually dropped and the terms autocorrelation and autocovariance are used interchangeably.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "question_text": "\"engineering) the normalization is usually dropped and the terms \"autocorrelation\" and \"autocovariance\" are used interchangeably.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "quote": "engineering) the normalization is usually dropped and the terms ",
+   "similarity": 0.17202820367844324,
+   "source_origin": "outside",
+   "test_id": "HEDGE:c-04070c929c03d0c4",
+   "words": 39
+  },
+  {
+   "anchor": "PCMCI-AMI orchestration follows the inward-only dependency rule where use cases depend on declared ports (protocol contracts), and adapters satisfy those contracts without adapter-to-adapter helper coupling.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "question_text": "\"PCMCI-AMI orchestration now follows the inward-only dependency rule: use cases depend on declared ports (protocol contracts), and adapters satisfy those contracts without adapter-to-adapter helper coupling.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "quote": "PCMCI-AMI orchestration now follows the inward-only dependency rule: use cases depend on declared ports (protocol contracts), and adapters satisfy those contracts without adapter-to-adapter helper coupling.",
+   "similarity": 0.2255790050386636,
+   "source_origin": "owner",
+   "test_id": "HEDGE:c-12f83d379ed3d9b0",
+   "words": 49
+  },
+  {
+   "anchor": "It is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "question_text": "\"It is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "quote": "It is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts.",
+   "similarity": 0.16393842314283674,
+   "source_origin": "outside",
+   "test_id": "HEDGE:c-2818fef8c18c9e3d",
+   "words": 40
+  },
+  {
+   "anchor": "For surrogate bands, the upper band is operationally informative for detecting non-null dependence while the lower band is usually near zero for MI and is not typically operationally useful.",
+   "k_topic": 3,
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "question_text": "\"The upper band is operationally informative for detecting non-null dependence.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "quote": "The upper band is operationally informative for detecting non-null dependence.",
+   "similarity": 0.17974012683200372,
+   "source_origin": "owner",
+   "test_id": "HEDGE:c-672eba057b35b6b7",
+   "words": 34
+  },
+  {
+   "anchor": "Use cases must orchestrate triage models, pipeline helpers, and internal services, and depend on causal discovery through declared ports contracts.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "HEDGE",
+   "question_text": "\"Use cases orchestrate triage models, pipeline helpers, and internal services, and depend on causal discovery through declared `ports/` contracts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "quote": "Use cases orchestrate triage models, pipeline helpers, and internal services, and depend on causal discovery through declared `ports/` contracts.",
+   "similarity": 0.21736679699339892,
+   "source_origin": "owner",
+   "test_id": "HEDGE:c-925a7f61d84ad74d",
+   "words": 43
+  },
+  {
+   "anchor": "tested simultaneously because uncorrected p-values will",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"Without BH FDR correction when many drivers are tested simultaneously: uncorrected $p$-values will inflate false-positive rates.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "Without BH FDR correction when many drivers are tested simultaneously: uncorrected $p$-values will inflate false-positive rates.",
+   "similarity": 0.1820008333689626,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-01a236bf8006dd6e",
+   "words": 55
+  },
+  {
+   "anchor": "measure, and the forecastability ceiling is set by AMI, not",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"As a sole decision-maker: F6 is a complementary contextual tool, not a forecastability measure.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "As a sole decision-maker: F6 is a complementary contextual tool, not a forecastability measure.",
+   "similarity": 0.1791181802806226,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-0389d4b5eaef3a19",
+   "words": 53
+  },
+  {
+   "anchor": "assess readiness, leakage risk, informative horizons",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"Start with forecastability triage first: readiness, leakage risk, informative horizons, primary lags, seasonality structure, and covariate informativeness.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "Start with forecastability triage first: readiness, leakage risk, informative horizons, primary lags, seasonality structure, and covariate informativeness.",
+   "similarity": 0.20773922172225778,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-789fd2b48f481040",
+   "words": 56
+  },
+  {
+   "anchor": "checks rather than significance-lag selection alone.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"significance counts are currently zero across this canonical summary (`n_sig_ami=0`, `n_sig_pami=0` for all 8), so actionable lag decisions should rely on class-level screening plus domain checks rather than significance-lag selection alone.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "significance counts are currently zero across this canonical summary (`n_sig_ami=0`, `n_sig_pami=0` for all 8), so actionable lag decisions should rely on class-level screening plus domain checks rather than significance-lag selection alone.",
+   "similarity": 0.18162965376113052,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-7af7772c6efe28c5",
+   "words": 70
+  },
+  {
+   "anchor": "test next.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"Which model families are plausible enough to test next?\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "Which model families are plausible enough to test next?",
+   "similarity": 0.1659399297451472,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-9fd96f8c30ad5eb5",
+   "words": 48
+  },
+  {
+   "anchor": "evaluate the AR model order, one should examine the plot to",
+   "k_topic": 3,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"To evaluate the order, one examines the plot to find the lag after which the partial autocorrelations are all within the confidence interval.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "To evaluate the order, one examines the plot to find the lag after which the partial autocorrelations are all within the confidence interval.",
+   "similarity": 0.18790457627556684,
+   "source_origin": "outside",
+   "test_id": "RESULT:c-a58d2b7c5d7500ea",
+   "words": 62
+  },
+  {
+   "anchor": "evaluation applies to exogenous screening (F8), where",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.",
+   "similarity": 0.18515109003497504,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-a5bfbf4dc9e5e96b",
+   "words": 57
+  },
+  {
+   "anchor": "inspected before applying simplifying assumptions that",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.",
+   "similarity": 0.1834438264414658,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-ab4f9f360073f8bf",
+   "words": 57
+  },
+  {
+   "anchor": "evaluation, diagnostics should be computed on train windows",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"In rolling-origin evaluation, compute diagnostics on train windows only.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "In rolling-origin evaluation, compute diagnostics on train windows only.",
+   "similarity": 0.17799130768651175,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-d7d073c08a1e9cc5",
+   "words": 48
+  },
+  {
+   "anchor": "verified with multiple backends and sample-size stress",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"Numerical inflation `directness_ratio > 1.0` estimator instability, finite-sample effects Treat as warning;\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "Numerical inflation `directness_ratio > 1.0` estimator instability, finite-sample effects Treat as warning;",
+   "similarity": 0.16083839317178644,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-e69be58ea45c4382",
+   "words": 51
+  },
+  {
+   "anchor": "testing correction to control false positives across many",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"When you need a principled multiple-testing correction to control false positives across many candidate drivers.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "When you need a principled multiple-testing correction to control false positives across many candidate drivers.",
+   "similarity": 0.2030876722451608,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-ece84f6282e09c12",
+   "words": 54
+  },
+  {
+   "anchor": "Any new selector that goes further than xami_sparse, such as PMIME-style or PC-stable with driver autohistory, must be introduced under a new method label so that shipped cross_pami and xami_sparse semantics are not silently extended.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "question_text": "\"Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.",
+   "similarity": 0.17995242057297392,
+   "source_origin": "owner",
+   "test_id": "SEL:c-22acb9b0539eee32",
+   "words": 62
+  },
+  {
+   "anchor": "F3 should be used when selecting the lookback window for a forecasting model, using the recommended plateau as a principled starting point.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "question_text": "\"When selecting the lookback window for a forecasting model: use the recommended plateau $k^*$ as a principled starting point.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "When selecting the lookback window for a forecasting model: use the recommended plateau $k^*$ as a principled starting point.",
+   "similarity": 0.18031100484504864,
+   "source_origin": "owner",
+   "test_id": "SEL:c-49027e4da30a7b2d",
+   "words": 50
+  },
+  {
+   "anchor": "F7 should be used when screening a large panel of candidate series to prioritise modelling effort.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "question_text": "\"When screening a large panel of candidate series to prioritise modelling effort.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "When screening a large panel of candidate series to prioritise modelling effort.",
+   "similarity": 0.17944761496338574,
+   "source_origin": "owner",
+   "test_id": "SEL:c-70db791a682a6218",
+   "words": 43
+  },
+  {
+   "anchor": "Significance counts are currently zero across the canonical summary, so actionable lag decisions should rely on class-level screening plus domain checks rather than significance-lag selection alone.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "question_text": "\"significance counts are currently zero across this canonical summary (`n_sig_ami=0`, `n_sig_pami=0` for all 8), so actionable lag decisions should rely on class-level screening plus domain checks rather than significance-lag selection alone.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "significance counts are currently zero across this canonical summary (`n_sig_ami=0`, `n_sig_pami=0` for all 8), so actionable lag decisions should rely on class-level screening plus domain checks rather than significance-lag selection alone.",
+   "similarity": 0.16287835844280135,
+   "source_origin": "owner",
+   "test_id": "SEL:c-7af7772c6efe28c5",
+   "words": 62
+  },
+  {
+   "anchor": "F8 should be used when candidate exogenous variables are available and one needs to decide which, if any, are worth including in a multivariate model.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "question_text": "\"When candidate exogenous variables are available and you need to decide which, if any, are worth including in a multivariate model.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "When candidate exogenous variables are available and you need to decide which, if any, are worth including in a multivariate model.",
+   "similarity": 0.21292657209116678,
+   "source_origin": "owner",
+   "test_id": "SEL:c-8929289a585563de",
+   "words": 52
+  },
+  {
+   "anchor": "F4 should be avoided for short series with n less than 128 because Welch PSD estimates are based on very few segments and \u03a9 values are unreliable.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "question_text": "\"For short series ($n < 128$): Welch PSD estimates are based on very few segments and \u03a9 values are unreliable as anything other than a coarse indicator.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "For short series ($n < 128$): Welch PSD estimates are based on very few segments and \u03a9 values are unreliable as anything other than a coarse indicator.",
+   "similarity": 0.1682640320807424,
+   "source_origin": "owner",
+   "test_id": "SEL:c-92ea97938fb3a905",
+   "words": 58
+  },
+  {
+   "anchor": "Selection of a forecasting method should be based on objectives and conditions such as available data.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "question_text": "\"Selection of a method should be based on your objectives and your conditions (data etc.).\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "Selection of a method should be based on your objectives and your conditions (data etc.).",
+   "similarity": 0.14395928328397947,
+   "source_origin": "outside",
+   "test_id": "SEL:c-e0043c2395d5a61b",
+   "words": 46
+  },
+  {
+   "anchor": "Forecastability triage should determine whether there is seasonal structure worth modeling.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "SEL",
+   "question_text": "\"Is there a seasonal structure worth modeling?\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "Is there a seasonal structure worth modeling?",
+   "similarity": 0.1626408243091753,
+   "source_origin": "owner",
+   "test_id": "SEL:c-f7cbb38a2f9f913d",
+   "words": 38
+  },
+  {
+   "anchor": "New user-facing imports should be added through forecastability or forecastability.triage only when committing to compatibility.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Add new user-facing imports through `forecastability` or `forecastability.triage` only when you want to commit to compatibility.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Add new user-facing imports through `forecastability` or `forecastability.triage` only when you want to commit to compatibility.",
+   "similarity": 0.13825402807170434,
+   "source_origin": "owner",
+   "test_id": "WHY:c-007b692334093e05",
+   "words": 37
+  },
+  {
+   "anchor": "F8 should be avoided without Benjamini-Hochberg FDR correction when many drivers are tested simultaneously because uncorrected p-values will inflate false-positive rates.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Without BH FDR correction when many drivers are tested simultaneously: uncorrected $p$-values will inflate false-positive rates.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Without BH FDR correction when many drivers are tested simultaneously: uncorrected $p$-values will inflate false-positive rates.",
+   "similarity": 0.14588178513997702,
+   "source_origin": "owner",
+   "test_id": "WHY:c-01a236bf8006dd6e",
+   "words": 37
+  },
+  {
+   "anchor": "F6 should be avoided as a sole decision-maker because F6 is a complementary contextual tool, not a forecastability measure, and the forecastability ceiling is set by AMI, not entropy.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"As a sole decision-maker: F6 is a complementary contextual tool, not a forecastability measure.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "As a sole decision-maker: F6 is a complementary contextual tool, not a forecastability measure.",
+   "similarity": 0.13927921499916468,
+   "source_origin": "owner",
+   "test_id": "WHY:c-0389d4b5eaef3a19",
+   "words": 35
+  },
+  {
+   "anchor": "F8 should be avoided for very short series because CrossAMI inherits the same finite-sample bias and minimum-length requirements as univariate AMI.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"For very short series: CrossAMI inherits the same finite-sample bias and minimum- length requirements as univariate AMI.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "For very short series: CrossAMI inherits the same finite-sample bias and minimum- length requirements as univariate AMI.",
+   "similarity": 0.14279747778458665,
+   "source_origin": "owner",
+   "test_id": "WHY:c-0568df39c001b613",
+   "words": 38
+  },
+  {
+   "anchor": "F2 should be used when one wants to know why AMI is low, as limit compression reveals whether the ceiling is genuinely low or whether the sampled curve has not saturated the limit.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"When you want to know *why* AMI is low - limit compression reveals whether the ceiling is genuinely low (hard limit) or whether the sampled curve has not saturated the limit.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "When you want to know *why* AMI is low - limit compression reveals whether the ceiling is genuinely low (hard limit) or whether the sampled curve has not saturated the limit.",
+   "similarity": 0.21589958400378687,
+   "source_origin": "owner",
+   "test_id": "WHY:c-1e7a254fa6826dc0",
+   "words": 52
+  },
+  {
+   "anchor": "Any new selector that goes further than xami_sparse, such as PMIME-style or PC-stable with driver autohistory, must be introduced under a new method label so that shipped cross_pami and xami_sparse semantics are not silently extended.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.",
+   "similarity": 0.1711828570093836,
+   "source_origin": "owner",
+   "test_id": "WHY:c-22acb9b0539eee32",
+   "words": 52
+  },
+  {
+   "anchor": "F5 should be used in exploratory research only as one piece of converging evidence that a series may exhibit chaotic dynamics, always alongside F1 and F6.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Exploratory research only: as one piece of converging evidence that a series may exhibit chaotic dynamics, always alongside F1 and F6.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Exploratory research only: as one piece of converging evidence that a series may exhibit chaotic dynamics, always alongside F1 and F6.",
+   "similarity": 0.1565573542097266,
+   "source_origin": "owner",
+   "test_id": "WHY:c-27d0b3495c0ff1ed",
+   "words": 42
+  },
+  {
+   "anchor": "After following the canonical notebook path walkthroughs, the `notebooks/triage/` notebooks should be used for deep dives, not as first-stop onboarding.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Use the `notebooks/triage/` notebooks only after the walkthroughs; they are deep dives, not first-stop onboarding.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Use the `notebooks/triage/` notebooks only after the walkthroughs; they are deep dives, not first-stop onboarding.",
+   "similarity": 0.16456249056233188,
+   "source_origin": "owner",
+   "test_id": "WHY:c-2ca293993e13f245",
+   "words": 36
+  },
+  {
+   "anchor": "F7 should be avoided as a replacement for individual deep-dive analysis on flagged series because batch ranking surfaces which series to investigate, not why.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"As a replacement for individual deep-dive analysis on flagged series: batch ranking surfaces which series to investigate, not why.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "As a replacement for individual deep-dive analysis on flagged series: batch ranking surfaces which series to investigate, not why.",
+   "similarity": 0.1700469412794378,
+   "source_origin": "owner",
+   "test_id": "WHY:c-3079d77ce22ec266",
+   "words": 40
+  },
+  {
+   "anchor": "F4 should be avoided for strongly non-stationary series without prior detrending.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"For strongly non-stationary series without prior detrending.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "For strongly non-stationary series without prior detrending.",
+   "similarity": 0.11592356915624791,
+   "source_origin": "owner",
+   "test_id": "WHY:c-341703ae536a2333",
+   "words": 28
+  },
+  {
+   "anchor": "F5 (Largest Lyapunov Exponent) must be explicitly enabled via experimental: true in the config and does not run in default triage mode.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"F5 must be explicitly enabled via `experimental: true` in the config.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "F5 must be explicitly enabled via `experimental: true` in the config.",
+   "similarity": 0.1248384468977775,
+   "source_origin": "owner",
+   "test_id": "WHY:c-4834fba7cc489f65",
+   "words": 32
+  },
+  {
+   "anchor": "The architecture goal is inward dependency flow where adapters should not become a second business-logic layer.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Adapters should not become a second business-logic layer.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Adapters should not become a second business-logic layer.",
+   "similarity": 0.13015056698052394,
+   "source_origin": "owner",
+   "test_id": "WHY:c-4d970d03fcfa1063",
+   "words": 29
+  },
+  {
+   "anchor": "Surrogates should be used whenever sample size permits, specifically when n is at least 200 and n_surrogates is at least 99.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).",
+   "similarity": 0.10618290962956536,
+   "source_origin": "owner",
+   "test_id": "WHY:c-520e8d5962f8f467",
+   "words": 33
+  },
+  {
+   "anchor": "Deterministic orchestration must be kept in use_cases and pipeline rather than notebooks or scripts.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Keep deterministic orchestration in `use_cases/` and `pipeline/` rather than notebooks or scripts.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Keep deterministic orchestration in `use_cases/` and `pipeline/` rather than notebooks or scripts.",
+   "similarity": 0.1169923383348523,
+   "source_origin": "owner",
+   "test_id": "WHY:c-54d5f9039aa8eac5",
+   "words": 33
+  },
+  {
+   "anchor": "F7 should be avoided when F5 output is desired in the ranking because LLE is intentionally excluded from automated batch triage by design.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"When F5 output is desired in the ranking: LLE is intentionally excluded from automated batch triage by design.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "When F5 output is desired in the ranking: LLE is intentionally excluded from automated batch triage by design.",
+   "similarity": 0.1935412071218325,
+   "source_origin": "owner",
+   "test_id": "WHY:c-5f42b1909154998b",
+   "words": 39
+  },
+  {
+   "anchor": "F5 should be avoided in automated batch ranking because LLE is excluded by design.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"In automated batch ranking (F7): LLE is excluded by design.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "In automated batch ranking (F7): LLE is excluded by design.",
+   "similarity": 0.17476443184068874,
+   "source_origin": "owner",
+   "test_id": "WHY:c-5fe1f348a68575f6",
+   "words": 31
+  },
+  {
+   "anchor": "Escalation should occur only when nonlinear backends improve diagnostic consistency across datasets.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Escalate only when nonlinear backends improve diagnostic consistency across datasets.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Escalate only when nonlinear backends improve diagnostic consistency across datasets.",
+   "similarity": 0.12026494106542929,
+   "source_origin": "owner",
+   "test_id": "WHY:c-5ff63882db181126",
+   "words": 31
+  },
+  {
+   "anchor": "F2 should be used before investing in complex models because if the limit is low, model engineering gains diminish rapidly.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Before investing in complex models: if the limit is low, model engineering gains diminish rapidly.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Before investing in complex models: if the limit is low, model engineering gains diminish rapidly.",
+   "similarity": 0.1355476888213508,
+   "source_origin": "owner",
+   "test_id": "WHY:c-6c60cbc7e087bdb4",
+   "words": 36
+  },
+  {
+   "anchor": "A practitioner should interact with the profile instead of the raw numeric array to avoid re-implementing the threshold logic in downstream code.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"A practitioner interacts with the profile instead of the raw numeric array to avoid re-implementing the threshold logic in downstream code.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "A practitioner interacts with the profile instead of the raw numeric array to avoid re-implementing the threshold logic in downstream code.",
+   "similarity": 0.13747382947152334,
+   "source_origin": "owner",
+   "test_id": "WHY:c-703f18d903194a6e",
+   "words": 42
+  },
+  {
+   "anchor": "F5 should be avoided as a causal or classification proof because a positive lambda does not distinguish deterministic chaos from coloured stochastic noise.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"As a causal or classification proof: a positive $\\hat{\\lambda}$ does not distinguish deterministic chaos from coloured stochastic noise.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "As a causal or classification proof: a positive $\\hat{\\lambda}$ does not distinguish deterministic chaos from coloured stochastic noise.",
+   "similarity": 0.171574390127643,
+   "source_origin": "owner",
+   "test_id": "WHY:c-7108a192d336b9eb",
+   "words": 39
+  },
+  {
+   "anchor": "F3 should be used when one suspects that longer lags add noise rather than signal, as the curve never plateauing is also informative.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"When you suspect that longer lags add noise rather than signal (the curve never plateauing is also informative).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "When you suspect that longer lags add noise rather than signal (the curve never plateauing is also informative).",
+   "similarity": 0.1343099937534446,
+   "source_origin": "owner",
+   "test_id": "WHY:c-73b132a5aaa54568",
+   "words": 39
+  },
+  {
+   "anchor": "Significance counts are currently zero across the canonical summary, so actionable lag decisions should rely on class-level screening plus domain checks rather than significance-lag selection alone.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"significance counts are currently zero across this canonical summary (`n_sig_ami=0`, `n_sig_pami=0` for all 8), so actionable lag decisions should rely on class-level screening plus domain checks rather than significance-lag selection alone.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "significance counts are currently zero across this canonical summary (`n_sig_ami=0`, `n_sig_pami=0` for all 8), so actionable lag decisions should rely on class-level screening plus domain checks rather than significance-lag selection alone.",
+   "similarity": 0.13384180328537434,
+   "source_origin": "owner",
+   "test_id": "WHY:c-7af7772c6efe28c5",
+   "words": 52
+  },
+  {
+   "anchor": "AMI and pAMI horizons should not be pre-aggregated before triage.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Keep AMI and pAMI horizon-specific;\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Keep AMI and pAMI horizon-specific;",
+   "similarity": 0.1120438034640732,
+   "source_origin": "owner",
+   "test_id": "WHY:c-7f34e267e7469f22",
+   "words": 26
+  },
+  {
+   "anchor": "When the task is time-series forecasting, forecastability triage should be performed before model fitting.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"When the task is time-series forecasting, do not jump directly to model fitting.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "When the task is time-series forecasting, do not jump directly to model fitting.",
+   "similarity": 0.1687881648932364,
+   "source_origin": "owner",
+   "test_id": "WHY:c-832f11ec63500689",
+   "words": 34
+  },
+  {
+   "anchor": "F4 should be avoided for short series with n less than 128 because Welch PSD estimates are based on very few segments and \u03a9 values are unreliable.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"For short series ($n < 128$): Welch PSD estimates are based on very few segments and \u03a9 values are unreliable as anything other than a coarse indicator.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "For short series ($n < 128$): Welch PSD estimates are based on very few segments and \u03a9 values are unreliable as anything other than a coarse indicator.",
+   "similarity": 0.1464142222955293,
+   "source_origin": "owner",
+   "test_id": "WHY:c-92ea97938fb3a905",
+   "words": 48
+  },
+  {
+   "anchor": "F5 should be avoided for series with n less than 1000 because phase-space coverage is insufficient and the estimate is indicative only.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"For series with $n < 1000$: phase-space coverage is insufficient and the estimate is indicative only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "For series with $n < 1000$: phase-space coverage is insufficient and the estimate is indicative only.",
+   "similarity": 0.13111984029695894,
+   "source_origin": "owner",
+   "test_id": "WHY:c-9adf1e1ba5526b24",
+   "words": 37
+  },
+  {
+   "anchor": "The toolkit should not be used for proving physical causality between variables.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Do Not Use This For - Proving physical causality between variables.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Do Not Use This For - Proving physical causality between variables.",
+   "similarity": 0.11792926825603187,
+   "source_origin": "owner",
+   "test_id": "WHY:c-a09878eb59fe00c2",
+   "words": 32
+  },
+  {
+   "anchor": "The same leakage boundary for rolling-origin evaluation applies to exogenous screening (F8), where CrossAMI must be computed on the training window only.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.",
+   "similarity": 0.1610811014178921,
+   "source_origin": "owner",
+   "test_id": "WHY:c-a5bfbf4dc9e5e96b",
+   "words": 39
+  },
+  {
+   "anchor": "The is_non_monotone flag should be inspected before applying simplifying assumptions that assume monotone decay.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.",
+   "similarity": 0.13630780596314745,
+   "source_origin": "owner",
+   "test_id": "WHY:c-ab4f9f360073f8bf",
+   "words": 39
+  },
+  {
+   "anchor": "F2 should be avoided as a standalone decision without F1 because the limit is derived from the AMI curve, making F1 evidence prerequisite context.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"As a standalone decision without F1: the limit is derived from the AMI curve, so F1 evidence is prerequisite context.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "As a standalone decision without F1: the limit is derived from the AMI curve, so F1 evidence is prerequisite context.",
+   "similarity": 0.18087118525798013,
+   "source_origin": "owner",
+   "test_id": "WHY:c-abc3a8fdc46d2891",
+   "words": 41
+  },
+  {
+   "anchor": "F1 should be avoided directly at horizons beyond the frequency-specific cap because AMI values beyond these caps are unreliable.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Directly at horizons beyond the frequency-specific cap (Yearly 6, Quarterly 8, Monthly 18, Weekly 13, Daily 14, Hourly 48): AMI values beyond these caps are unreliable.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Directly at horizons beyond the frequency-specific cap (Yearly 6, Quarterly 8, Monthly 18, Weekly 13, Daily 14, Hourly 48): AMI values beyond these caps are unreliable.",
+   "similarity": 0.1758236279386908,
+   "source_origin": "owner",
+   "test_id": "WHY:c-bf72579f2ce06838",
+   "words": 47
+  },
+  {
+   "anchor": "Services should be treated as internal helpers, not as a third public API layer.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Treat `services/` as internal helpers, not as a third public API layer.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Treat `services/` as internal helpers, not as a third public API layer.",
+   "similarity": 0.12004754187695674,
+   "source_origin": "owner",
+   "test_id": "WHY:c-c4911ab16bfee0a5",
+   "words": 33
+  },
+  {
+   "anchor": "F6 should be avoided for very short series because permutation entropy requires adequate pattern-frequency estimates and for m equals 5, at least n approximately 600 is recommended.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"For very short series: permutation entropy requires adequate pattern-frequency estimates;\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "For very short series: permutation entropy requires adequate pattern-frequency estimates;",
+   "similarity": 0.12708990882017168,
+   "source_origin": "owner",
+   "test_id": "WHY:c-c6978261282cbd69",
+   "words": 31
+  },
+  {
+   "anchor": "Downstream model families or framework-specific settings should only be recommended after completing forecastability triage.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Only then recommend downstream model families or framework-specific settings.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Only then recommend downstream model families or framework-specific settings.",
+   "similarity": 0.14083382039111464,
+   "source_origin": "owner",
+   "test_id": "WHY:c-ca2565db6e11ee00",
+   "words": 30
+  },
+  {
+   "anchor": "F3 should be avoided as a standalone triage decision because F3 produces a curve and a lookback recommendation, not a scalar forecastability score.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"As a standalone triage decision: F3 produces a curve and a lookback recommendation, not a scalar forecastability score.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "As a standalone triage decision: F3 produces a curve and a lookback recommendation, not a scalar forecastability score.",
+   "similarity": 0.12206212350605958,
+   "source_origin": "owner",
+   "test_id": "WHY:c-cc4810c2ca7437f8",
+   "words": 39
+  },
+  {
+   "anchor": "In rolling-origin evaluation, diagnostics should be computed on train windows only.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"In rolling-origin evaluation, compute diagnostics on train windows only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "In rolling-origin evaluation, compute diagnostics on train windows only.",
+   "similarity": 0.16120039510925682,
+   "source_origin": "owner",
+   "test_id": "WHY:c-d7d073c08a1e9cc5",
+   "words": 30
+  },
+  {
+   "anchor": "Downstream model families or framework-specific settings should be recommended only after triage is completed.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Only then recommend downstream model families or framework-specific settings.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Only then recommend downstream model families or framework-specific settings.",
+   "similarity": 0.14083382039111464,
+   "source_origin": "owner",
+   "test_id": "WHY:c-deaeadb0c2b363e5",
+   "words": 30
+  },
+  {
+   "anchor": "Transport concerns must be put in adapters, not in use cases or metrics code.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Put transport concerns in `adapters/`, not in use cases or metrics code.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Put transport concerns in `adapters/`, not in use cases or metrics code.",
+   "similarity": 0.11775205440419663,
+   "source_origin": "owner",
+   "test_id": "WHY:c-e1073e72ca3c2484",
+   "words": 33
+  },
+  {
+   "anchor": "When the task is time-series forecasting, one should not jump directly to model fitting but should start with forecastability triage first.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"When the task is time-series forecasting, do not jump directly to model fitting.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "When the task is time-series forecasting, do not jump directly to model fitting.",
+   "similarity": 0.1687881648932364,
+   "source_origin": "owner",
+   "test_id": "WHY:c-e65cb947aa2ae2da",
+   "words": 34
+  },
+  {
+   "anchor": "F8 should be avoided as a causal screening tool because F8 detects predictive dependence, not causal direction.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"As a causal screening tool: F8 detects predictive dependence, not causal direction.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "As a causal screening tool: F8 detects predictive dependence, not causal direction.",
+   "similarity": 0.15221960402440166,
+   "source_origin": "owner",
+   "test_id": "WHY:c-ea0f41be7f1895c2",
+   "words": 33
+  },
+  {
+   "anchor": "Downstream forecasting frameworks should be used after triage, not instead of triage.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Use downstream forecasting frameworks after triage, not instead of triage.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Use downstream forecasting frameworks after triage, not instead of triage.",
+   "similarity": 0.1446434028560054,
+   "source_origin": "owner",
+   "test_id": "WHY:c-ec5f71c99ae25d10",
+   "words": 31
+  },
+  {
+   "anchor": "Significance not assessed is different from surrogates being computed with no lags clearing the band, and interpretation of significant-lag fields should only be performed when compute_surrogates is true.",
+   "k_topic": 2,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"\"Significance not assessed\" is different from \"surrogates were computed and no lags cleared the band.\" Use `compute_surrogates` to distinguish those states.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "\"Significance not assessed",
+   "similarity": 0.1615952356328769,
+   "source_origin": "owner",
+   "test_id": "WHY:c-f30acadec3e2a4b9",
+   "words": 42
+  },
+  {
+   "anchor": "F1 should be avoided for series shorter than approximately 3 times the maximum evaluation horizon.",
+   "k_topic": 1,
+   "ledger": "cheap-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"For series shorter than the recommended minimum (approximately 3\u00d7 the maximum evaluation horizon).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "For series shorter than the recommended minimum (approximately 3\u00d7 the maximum evaluation horizon).",
+   "similarity": 0.1253833997221239,
+   "source_origin": "owner",
+   "test_id": "WHY:c-f501b3f688f6f5ad",
+   "words": 34
+  },
+  {
+   "anchor": "stable import",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "DISC",
+   "question_text": "One source writes: \"`forecastability` and `forecastability.triage` Stable import contract\". Think of a recent case where you had to judge whether something was stable import. Describe one case that clearly was, one that clearly was not, and one that was hard to call. What differed between them, and what did you check first?",
+   "quote": "`forecastability` and `forecastability.triage` Stable import contract",
+   "similarity": 0.1835626347872804,
+   "source_origin": "owner",
+   "test_id": "DISC:stable import",
+   "words": 52
+  },
+  {
+   "anchor": "In statistics and time series analysis, the autocovariance is commonly normalized to a Pearson correlation coefficient, while in engineering the normalization is usually dropped.",
+   "k_topic": 2,
+   "ledger": "toptier-26b",
+   "lens": "HEDGE",
+   "question_text": "\"statistics and time series analysis) to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "quote": "statistics and time series analysis) to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient.",
+   "similarity": 0.20397072579279674,
+   "source_origin": "outside",
+   "test_id": "HEDGE:c-23b71befef797d20",
+   "words": 41
+  },
+  {
+   "anchor": "It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "HEDGE",
+   "question_text": "\"It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "quote": "It is generally considered good practice to indicate the degree of uncertainty attached to forecasts.",
+   "similarity": 0.16793023038136362,
+   "source_origin": "outside",
+   "test_id": "HEDGE:c-9c0f849034e929bd",
+   "words": 39
+  },
+  {
+   "anchor": "inspect the is_non_monotone flag before applying simplifying",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.",
+   "similarity": 0.1834438264414658,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-38de7f4f3192d75c",
+   "words": 57
+  },
+  {
+   "anchor": "comparing results across routes, outputs should be",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"Normalize each route to the same keys when comparing results\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "Normalize each route to the same keys when comparing results",
+   "similarity": 0.18909941189162727,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-44a10f4353ff9310",
+   "words": 49
+  },
+  {
+   "anchor": "compare all configured backends against linear_residual.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"Use the robustness study pipeline to compare all configured backends against `linear_residual`.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "Use the robustness study pipeline to compare all configured backends against `linear_residual`.",
+   "similarity": 0.19102477935269052,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-a58de96982596cf4",
+   "words": 51
+  },
+  {
+   "anchor": "evaluation should be targeted exclusively at horizons in the",
+   "k_topic": 2,
+   "ledger": "toptier-26b",
+   "lens": "RESULT",
+   "question_text": "Sources prescribe: \"A practitioner should target model evaluation exclusively at horizons in $\\mathcal{H}_\\varepsilon$ - lags outside this set carry no detectable predictive signal above the noise floor.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "quote": "A practitioner should target model evaluation exclusively at horizons in $\\mathcal{H}_\\varepsilon$ - lags outside this set carry no detectable predictive signal above the noise floor.",
+   "similarity": 0.20533060305371914,
+   "source_origin": "owner",
+   "test_id": "RESULT:c-d3af3ac9c12c2b7c",
+   "words": 64
+  },
+  {
+   "anchor": "The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "SEL",
+   "question_text": "\"The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model.",
+   "similarity": 0.17146099689839497,
+   "source_origin": "owner",
+   "test_id": "SEL:c-12dca6b80e1a3b61",
+   "words": 49
+  },
+  {
+   "anchor": "Contributors should consult public_api.md when deciding whether a symbol is part of the supported import contract.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "SEL",
+   "question_text": "\"Use ../public_api.md when deciding whether a symbol is part of the supported import contract.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "Use [../public_api.md](../public_api.md) when deciding whether a symbol is part of the supported import contract.",
+   "similarity": 0.18831659029797762,
+   "source_origin": "owner",
+   "test_id": "SEL:c-1c4e8047d3bd12be",
+   "words": 45
+  },
+  {
+   "anchor": "Any new selector that goes further, such as one conditioning on driver autohistory, must be introduced under a new method label so existing cross_pami and xami_sparse semantics are not silently extended.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "SEL",
+   "question_text": "\"Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.",
+   "similarity": 0.17995242057297392,
+   "source_origin": "owner",
+   "test_id": "SEL:c-4c9d9f7275c52f3d",
+   "words": 62
+  },
+  {
+   "anchor": "Contributors should consult architecture.md when deciding where new logic should live.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "SEL",
+   "question_text": "\"Use ../explanation/architecture.md when deciding where new logic should live.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "Use [../explanation/architecture.md](../explanation/architecture.md) when deciding where new logic should live.",
+   "similarity": 0.17386384041795247,
+   "source_origin": "owner",
+   "test_id": "SEL:c-5e29ea6d046a67da",
+   "words": 40
+  },
+  {
+   "anchor": "There is no single right forecasting method; method selection should be based on one's objectives and conditions such as data.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "SEL",
+   "question_text": "\"Selection of a method should be based on your objectives and your conditions (data etc.).\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "quote": "Selection of a method should be based on your objectives and your conditions (data etc.).",
+   "similarity": 0.14395928328397947,
+   "source_origin": "outside",
+   "test_id": "SEL:c-78a219a9a5e07751",
+   "words": 46
+  },
+  {
+   "anchor": "Optional surfaces should be added only after the core path is clear.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Add Optional Surfaces Only After The Core Path Is Clear\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Add Optional Surfaces Only After The Core Path Is Clear",
+   "similarity": 0.14452036866798101,
+   "source_origin": "owner",
+   "test_id": "WHY:c-06048134e309e409",
+   "words": 31
+  },
+  {
+   "anchor": "The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model.",
+   "similarity": 0.14303067441218065,
+   "source_origin": "owner",
+   "test_id": "WHY:c-12dca6b80e1a3b61",
+   "words": 39
+  },
+  {
+   "anchor": "Contributors should keep deterministic orchestration in use_cases and pipeline rather than in notebooks or scripts.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Keep deterministic orchestration in `use_cases/` and `pipeline/` rather than notebooks or scripts.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Keep deterministic orchestration in `use_cases/` and `pipeline/` rather than notebooks or scripts.",
+   "similarity": 0.1169923383348523,
+   "source_origin": "owner",
+   "test_id": "WHY:c-12fcd440ab5152d2",
+   "words": 33
+  },
+  {
+   "anchor": "Cross-backend agreement should be required before acting on lag recommendations.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"require cross-backend agreement before acting on lag recommendations\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "require cross-backend agreement before acting on lag recommendations",
+   "similarity": 0.10782906182330036,
+   "source_origin": "owner",
+   "test_id": "WHY:c-178838d1f9220e1f",
+   "words": 29
+  },
+  {
+   "anchor": "Contributors should treat services as internal helpers, not as a third public API layer.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Treat `services/` as internal helpers, not as a third public API layer.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Treat `services/` as internal helpers, not as a third public API layer.",
+   "similarity": 0.12004754187695674,
+   "source_origin": "owner",
+   "test_id": "WHY:c-19ce99b47740dfa8",
+   "words": 33
+  },
+  {
+   "anchor": "For time-series forecasting tasks, one should not jump directly to model fitting but start with forecastability triage first.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"When the task is time-series forecasting, do not jump directly to model fitting.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "When the task is time-series forecasting, do not jump directly to model fitting.",
+   "similarity": 0.1687881648932364,
+   "source_origin": "owner",
+   "test_id": "WHY:c-1d4a70e39783471e",
+   "words": 34
+  },
+  {
+   "anchor": "Significant-lag fields such as n_sig_raw_lags and n_sig_partial_lags should only be interpreted as evidence about absent significance when compute_surrogates is true.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Only interpret `n_sig_raw_lags`, `n_sig_partial_lags`, or other significant-lag fields as evidence about absent significance when `compute_surrogates` is `true`.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Only interpret `n_sig_raw_lags`, `n_sig_partial_lags`, or other significant-lag fields as evidence about absent significance when `compute_surrogates` is `true`.",
+   "similarity": 0.13529495263247315,
+   "source_origin": "owner",
+   "test_id": "WHY:c-227132d21dd427f9",
+   "words": 38
+  },
+  {
+   "anchor": "The AMI horizon-specific curve should never be collapsed before analysis.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Horizon-specific curve, never collapsed before analysis.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Horizon-specific curve, never collapsed before analysis.",
+   "similarity": 0.12962574275384603,
+   "source_origin": "owner",
+   "test_id": "WHY:c-361a6f8801f293a8",
+   "words": 27
+  },
+  {
+   "anchor": "Routines that assume monotone decay, such as naive exponential smoothers, should inspect the is_non_monotone flag before applying simplifying assumptions.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.",
+   "similarity": 0.13630780596314745,
+   "source_origin": "owner",
+   "test_id": "WHY:c-38de7f4f3192d75c",
+   "words": 39
+  },
+  {
+   "anchor": "For time-series forecasting tasks, forecastability triage should precede model fitting rather than jumping directly to fitting models.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"When the task is time-series forecasting, do not jump directly to model fitting.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "When the task is time-series forecasting, do not jump directly to model fitting.",
+   "similarity": 0.1687881648932364,
+   "source_origin": "owner",
+   "test_id": "WHY:c-3b16f3a7b858b851",
+   "words": 34
+  },
+  {
+   "anchor": "Any new selector that goes further, such as one conditioning on driver autohistory, must be introduced under a new method label so existing cross_pami and xami_sparse semantics are not silently extended.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.",
+   "similarity": 0.1711828570093836,
+   "source_origin": "owner",
+   "test_id": "WHY:c-4c9d9f7275c52f3d",
+   "words": 52
+  },
+  {
+   "anchor": "Contributors should put transport concerns in adapters, not in use cases or metrics code.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Put transport concerns in `adapters/`, not in use cases or metrics code.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Put transport concerns in `adapters/`, not in use cases or metrics code.",
+   "similarity": 0.11775205440419663,
+   "source_origin": "owner",
+   "test_id": "WHY:c-4cf8da484fd3be39",
+   "words": 33
+  },
+  {
+   "anchor": "known_future_drivers should be used only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags or planned promotions.",
+   "k_topic": 3,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Use `known_future_drivers` only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags, planned promotions, or externally scheduled variables.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Use `known_future_drivers` only for variables whose contemporaneous future > values are genuinely known at prediction time, such as calendar flags, > planned promotions, or externally scheduled variables.",
+   "similarity": 0.20313008484199035,
+   "source_origin": "owner",
+   "test_id": "WHY:c-67213a7cebde7a96",
+   "words": 46
+  },
+  {
+   "anchor": "Downstream model families or framework-specific settings should only be recommended after triage.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Only then recommend downstream model families or framework-specific settings.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Only then recommend downstream model families or framework-specific settings.",
+   "similarity": 0.14083382039111464,
+   "source_origin": "owner",
+   "test_id": "WHY:c-67372dcb86414a6a",
+   "words": 30
+  },
+  {
+   "anchor": "An elastic-alignment result would require a new surface, a new method label, and an explicit chronological-causality guard before entering a forecasting tensor.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Any elastic-alignment result would need a new surface, a new method label, and an explicit chronological-causality guard before it could be admitted to a forecasting tensor.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Any elastic-alignment result would need a new surface, a new method label, and an explicit chronological-causality guard before it could be admitted to a forecasting tensor.",
+   "similarity": 0.17094063805601073,
+   "source_origin": "owner",
+   "test_id": "WHY:c-69f267782709aaf0",
+   "words": 47
+  },
+  {
+   "anchor": "For exogenous screening (F8), CrossAMI must be computed on the training window only.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.",
+   "similarity": 0.1610811014178921,
+   "source_origin": "owner",
+   "test_id": "WHY:c-6cde14ffcab162d1",
+   "words": 39
+  },
+  {
+   "anchor": "Surrogates should be used whenever sample size permits, i.e. n of at least 200 and n_surrogates of at least 99.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).",
+   "similarity": 0.10618290962956536,
+   "source_origin": "owner",
+   "test_id": "WHY:c-8b34c98f4e94b843",
+   "words": 33
+  },
+  {
+   "anchor": "AMI and pAMI should be kept horizon-specific and not pre-aggregated before triage.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Keep AMI and pAMI horizon-specific;\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Keep AMI and pAMI horizon-specific;",
+   "similarity": 0.1120438034640732,
+   "source_origin": "owner",
+   "test_id": "WHY:c-8eabb66a53df1fee",
+   "words": 26
+  },
+  {
+   "anchor": "F5 must be explicitly enabled via experimental: true in the config and does not run in default triage mode.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"F5 must be explicitly enabled via `experimental: true` in the config.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "F5 must be explicitly enabled via `experimental: true` in the config.",
+   "similarity": 0.1248384468977775,
+   "source_origin": "owner",
+   "test_id": "WHY:c-aad107708da7c302",
+   "words": 32
+  },
+  {
+   "anchor": "run_rolling_origin_evaluation() enforces the leakage boundary internally, but diagnostics computed manually outside it require the user to enforce the same boundary to avoid look-ahead leakage.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"The `run_rolling_origin_evaluation()` function enforces this boundary internally.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "The `run_rolling_origin_evaluation()` function enforces this boundary internally.",
+   "similarity": 0.10682524297671443,
+   "source_origin": "owner",
+   "test_id": "WHY:c-b57b3d55d5661578",
+   "words": 28
+  },
+  {
+   "anchor": "Any lag where a derived-feature profile exceeds the raw profile by more than estimation noise should be treated as a data-leakage candidate, not a genuine gain.",
+   "k_topic": 2,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"any lag where the derived profile exceeds the raw profile by more than estimation noise is a data-leakage candidate, not a genuine gain.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "any lag where the derived profile exceeds the raw profile by more than estimation noise is a data-leakage candidate, not a genuine gain.",
+   "similarity": 0.1527662797187962,
+   "source_origin": "owner",
+   "test_id": "WHY:c-bd65950824d7841e",
+   "words": 44
+  },
+  {
+   "anchor": "The notebooks/triage notebooks should be used only after the walkthroughs because they are deep dives, not first-stop onboarding.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Use the `notebooks/triage/` notebooks only after the walkthroughs; they are deep dives, not first-stop onboarding.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Use the `notebooks/triage/` notebooks only after the walkthroughs; they are deep dives, not first-stop onboarding.",
+   "similarity": 0.16456249056233188,
+   "source_origin": "owner",
+   "test_id": "WHY:c-bf1996cb00988a8b",
+   "words": 36
+  },
+  {
+   "anchor": "Contributors should add new user-facing imports through forecastability or forecastability.triage only when they want to commit to compatibility.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Add new user-facing imports through `forecastability` or `forecastability.triage` only when you want to commit to compatibility.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Add new user-facing imports through `forecastability` or `forecastability.triage` only when you want to commit to compatibility.",
+   "similarity": 0.13825402807170434,
+   "source_origin": "owner",
+   "test_id": "WHY:c-c6bbdec6744fb515",
+   "words": 37
+  },
+  {
+   "anchor": "At least 99 surrogates are required for a valid two-sided 95% band, and fewer must not be used as a significance threshold.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"At least `n_surrogates = 99` is required for a valid two-sided 95% band.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "At least `n_surrogates = 99` is required for a valid two-sided 95% band.",
+   "similarity": 0.11524817765660686,
+   "source_origin": "owner",
+   "test_id": "WHY:c-ca2ed537d5bb3a4f",
+   "words": 34
+  },
+  {
+   "anchor": "Escalation to nonlinear backends should happen only when they improve diagnostic consistency across datasets.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Escalate only when nonlinear backends improve diagnostic consistency across datasets.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Escalate only when nonlinear backends improve diagnostic consistency across datasets.",
+   "similarity": 0.12026494106542929,
+   "source_origin": "owner",
+   "test_id": "WHY:c-d5a7fb62b56918db",
+   "words": 31
+  },
+  {
+   "anchor": "In rolling-origin evaluation, diagnostics should be computed on train windows only.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"In rolling-origin evaluation, compute diagnostics on train windows only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "In rolling-origin evaluation, compute diagnostics on train windows only.",
+   "similarity": 0.16120039510925682,
+   "source_origin": "owner",
+   "test_id": "WHY:c-d7d073c08a1e9cc5",
+   "words": 30
+  },
+  {
+   "anchor": "Adapters should not become a second business-logic layer.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Adapters should not become a second business-logic layer.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Adapters should not become a second business-logic layer.",
+   "similarity": 0.13015056698052394,
+   "source_origin": "owner",
+   "test_id": "WHY:c-d842abf5a063991d",
+   "words": 29
+  },
+  {
+   "anchor": "Downstream forecasting frameworks should be used after triage, not as a replacement for it.",
+   "k_topic": 1,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"Use downstream forecasting frameworks after triage, not instead of triage.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "Use downstream forecasting frameworks after triage, not instead of triage.",
+   "similarity": 0.1446434028560054,
+   "source_origin": "owner",
+   "test_id": "WHY:c-f8b08d5427aa4b76",
+   "words": 31
+  },
+  {
+   "anchor": "Epsilon should be defined relative to the surrogate upper band rather than as a global absolute constant, because an absolute threshold risks including noise lags or excluding informative ones as signal strength varies across series.",
+   "k_topic": 2,
+   "ledger": "toptier-26b",
+   "lens": "WHY",
+   "question_text": "Sources say: \"An absolute threshold risks including noise lags or excluding genuinely informative ones as signal strength varies across series.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "quote": "An absolute threshold risks including noise lags or > excluding genuinely informative ones as signal strength varies across series.",
+   "similarity": 0.1424570331328945,
+   "source_origin": "owner",
+   "test_id": "WHY:c-f9792c1551303989",
+   "words": 39
+  }
+ ],
+ "topics": [
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "DISC",
+   "lenses": [
+    "DISC"
+   ],
+   "question_text": "One source writes: \"Quantitative forecasting models are appropriate to use when past numerical data is available and when it is reasonable to assume that some of the patterns in the data are expected to continue into the future.\". Think of a recent case where you had to judge whether something was appropriate past. Describe one case that clearly was, one that clearly was not, and one that was hard to call. What differed between them, and what did you check first?",
+   "similarity": 0.19772366871514985,
+   "source_origin": "outside",
+   "topic_id": "T001",
+   "versions": [
+    [
+     "cheap-26b",
+     "DISC:appropriate past"
+    ]
+   ],
+   "words": 81
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "DISC",
+   "lenses": [
+    "DISC"
+   ],
+   "question_text": "One source writes: \"Use the stable package facade and a simple generated series.\". Think of a recent case where you had to judge whether something was stable package. Describe one case that clearly was, one that clearly was not, and one that was hard to call. What differed between them, and what did you check first?",
+   "similarity": 0.19342722719092104,
+   "source_origin": "owner",
+   "topic_id": "T002",
+   "versions": [
+    [
+     "cheap-26b",
+     "DISC:stable package"
+    ]
+   ],
+   "words": 56
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "HEDGE",
+   "lenses": [
+    "HEDGE"
+   ],
+   "question_text": "\"engineering) the normalization is usually dropped and the terms \"autocorrelation\" and \"autocovariance\" are used interchangeably.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "similarity": 0.17202820367844324,
+   "source_origin": "outside",
+   "topic_id": "T003",
+   "versions": [
+    [
+     "cheap-26b",
+     "HEDGE:c-04070c929c03d0c4"
+    ]
+   ],
+   "words": 39
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "HEDGE",
+   "lenses": [
+    "HEDGE"
+   ],
+   "question_text": "\"PCMCI-AMI orchestration now follows the inward-only dependency rule: use cases depend on declared ports (protocol contracts), and adapters satisfy those contracts without adapter-to-adapter helper coupling.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "similarity": 0.2255790050386636,
+   "source_origin": "owner",
+   "topic_id": "T004",
+   "versions": [
+    [
+     "cheap-26b",
+     "HEDGE:c-12f83d379ed3d9b0"
+    ]
+   ],
+   "words": 49
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "HEDGE",
+   "lenses": [
+    "HEDGE"
+   ],
+   "question_text": "\"It is generally considered a good practice to indicate the degree of uncertainty attaching to forecasts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "similarity": 0.16393842314283674,
+   "source_origin": "outside",
+   "topic_id": "T005",
+   "versions": [
+    [
+     "cheap-26b",
+     "HEDGE:c-2818fef8c18c9e3d"
+    ],
+    [
+     "toptier-26b",
+     "HEDGE:c-9c0f849034e929bd"
+    ]
+   ],
+   "words": 40
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "HEDGE",
+   "lenses": [
+    "HEDGE"
+   ],
+   "question_text": "\"The upper band is operationally informative for detecting non-null dependence.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "similarity": 0.17974012683200372,
+   "source_origin": "owner",
+   "topic_id": "T006",
+   "versions": [
+    [
+     "cheap-26b",
+     "HEDGE:c-672eba057b35b6b7"
+    ]
+   ],
+   "words": 34
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "HEDGE",
+   "lenses": [
+    "HEDGE"
+   ],
+   "question_text": "\"Use cases orchestrate triage models, pipeline helpers, and internal services, and depend on causal discovery through declared `ports/` contracts.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "similarity": 0.21736679699339892,
+   "source_origin": "owner",
+   "topic_id": "T007",
+   "versions": [
+    [
+     "cheap-26b",
+     "HEDGE:c-925a7f61d84ad74d"
+    ]
+   ],
+   "words": 43
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT",
+    "WHY"
+   ],
+   "question_text": "Sources prescribe: \"Without BH FDR correction when many drivers are tested simultaneously: uncorrected $p$-values will inflate false-positive rates.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.1820008333689626,
+   "source_origin": "owner",
+   "topic_id": "T008",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-01a236bf8006dd6e"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-01a236bf8006dd6e"
+    ]
+   ],
+   "words": 55
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT",
+    "WHY"
+   ],
+   "question_text": "Sources prescribe: \"As a sole decision-maker: F6 is a complementary contextual tool, not a forecastability measure.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.1791181802806226,
+   "source_origin": "owner",
+   "topic_id": "T009",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-0389d4b5eaef3a19"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-0389d4b5eaef3a19"
+    ]
+   ],
+   "words": 53
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT"
+   ],
+   "question_text": "Sources prescribe: \"Start with forecastability triage first: readiness, leakage risk, informative horizons, primary lags, seasonality structure, and covariate informativeness.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.20773922172225778,
+   "source_origin": "owner",
+   "topic_id": "T010",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-789fd2b48f481040"
+    ]
+   ],
+   "words": 56
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT",
+    "SEL",
+    "WHY"
+   ],
+   "question_text": "Sources prescribe: \"significance counts are currently zero across this canonical summary (`n_sig_ami=0`, `n_sig_pami=0` for all 8), so actionable lag decisions should rely on class-level screening plus domain checks rather than significance-lag selection alone.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.18162965376113052,
+   "source_origin": "owner",
+   "topic_id": "T011",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-7af7772c6efe28c5"
+    ],
+    [
+     "cheap-26b",
+     "SEL:c-7af7772c6efe28c5"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-7af7772c6efe28c5"
+    ]
+   ],
+   "words": 70
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT"
+   ],
+   "question_text": "Sources prescribe: \"Which model families are plausible enough to test next?\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.1659399297451472,
+   "source_origin": "owner",
+   "topic_id": "T012",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-9fd96f8c30ad5eb5"
+    ]
+   ],
+   "words": 48
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT"
+   ],
+   "question_text": "Sources prescribe: \"To evaluate the order, one examines the plot to find the lag after which the partial autocorrelations are all within the confidence interval.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.18790457627556684,
+   "source_origin": "outside",
+   "topic_id": "T013",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-a58d2b7c5d7500ea"
+    ]
+   ],
+   "words": 62
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT",
+    "WHY"
+   ],
+   "question_text": "Sources prescribe: \"The same leakage boundary applies to exogenous screening (F8): CrossAMI must be computed on the training window only.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.18515109003497504,
+   "source_origin": "owner",
+   "topic_id": "T014",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-a5bfbf4dc9e5e96b"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-a5bfbf4dc9e5e96b"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-6cde14ffcab162d1"
+    ]
+   ],
+   "words": 57
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT",
+    "WHY"
+   ],
+   "question_text": "Sources prescribe: \"Routines that assume monotone decay (such as naive exponential smoothers) should inspect this flag before applying simplifying assumptions.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.1834438264414658,
+   "source_origin": "owner",
+   "topic_id": "T015",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-ab4f9f360073f8bf"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-ab4f9f360073f8bf"
+    ],
+    [
+     "toptier-26b",
+     "RESULT:c-38de7f4f3192d75c"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-38de7f4f3192d75c"
+    ]
+   ],
+   "words": 57
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT",
+    "WHY"
+   ],
+   "question_text": "Sources prescribe: \"In rolling-origin evaluation, compute diagnostics on train windows only.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.17799130768651175,
+   "source_origin": "owner",
+   "topic_id": "T016",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-d7d073c08a1e9cc5"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-d7d073c08a1e9cc5"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-d7d073c08a1e9cc5"
+    ]
+   ],
+   "words": 48
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT"
+   ],
+   "question_text": "Sources prescribe: \"Numerical inflation `directness_ratio > 1.0` estimator instability, finite-sample effects Treat as warning;\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.16083839317178644,
+   "source_origin": "owner",
+   "topic_id": "T017",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-e69be58ea45c4382"
+    ]
+   ],
+   "words": 51
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT"
+   ],
+   "question_text": "Sources prescribe: \"When you need a principled multiple-testing correction to control false positives across many candidate drivers.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.2030876722451608,
+   "source_origin": "owner",
+   "topic_id": "T018",
+   "versions": [
+    [
+     "cheap-26b",
+     "RESULT:c-ece84f6282e09c12"
+    ]
+   ],
+   "words": 54
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL",
+    "WHY"
+   ],
+   "question_text": "\"Any new selector that goes further (PMIME-style, PC-stable with driver autohistory) must be introduced under a **new method label** so that the shipped `cross_pami` and `xami_sparse` semantics are not silently extended.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.17995242057297392,
+   "source_origin": "owner",
+   "topic_id": "T019",
+   "versions": [
+    [
+     "cheap-26b",
+     "SEL:c-22acb9b0539eee32"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-22acb9b0539eee32"
+    ],
+    [
+     "toptier-26b",
+     "SEL:c-4c9d9f7275c52f3d"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-4c9d9f7275c52f3d"
+    ]
+   ],
+   "words": 62
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL"
+   ],
+   "question_text": "\"When selecting the lookback window for a forecasting model: use the recommended plateau $k^*$ as a principled starting point.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.18031100484504864,
+   "source_origin": "owner",
+   "topic_id": "T020",
+   "versions": [
+    [
+     "cheap-26b",
+     "SEL:c-49027e4da30a7b2d"
+    ]
+   ],
+   "words": 50
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL"
+   ],
+   "question_text": "\"When screening a large panel of candidate series to prioritise modelling effort.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.17944761496338574,
+   "source_origin": "owner",
+   "topic_id": "T021",
+   "versions": [
+    [
+     "cheap-26b",
+     "SEL:c-70db791a682a6218"
+    ]
+   ],
+   "words": 43
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL"
+   ],
+   "question_text": "\"When candidate exogenous variables are available and you need to decide which, if any, are worth including in a multivariate model.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.21292657209116678,
+   "source_origin": "owner",
+   "topic_id": "T022",
+   "versions": [
+    [
+     "cheap-26b",
+     "SEL:c-8929289a585563de"
+    ]
+   ],
+   "words": 52
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL",
+    "WHY"
+   ],
+   "question_text": "\"For short series ($n < 128$): Welch PSD estimates are based on very few segments and \u03a9 values are unreliable as anything other than a coarse indicator.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.1682640320807424,
+   "source_origin": "owner",
+   "topic_id": "T023",
+   "versions": [
+    [
+     "cheap-26b",
+     "SEL:c-92ea97938fb3a905"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-92ea97938fb3a905"
+    ]
+   ],
+   "words": 58
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL"
+   ],
+   "question_text": "\"Selection of a method should be based on your objectives and your conditions (data etc.).\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.14395928328397947,
+   "source_origin": "outside",
+   "topic_id": "T024",
+   "versions": [
+    [
+     "cheap-26b",
+     "SEL:c-e0043c2395d5a61b"
+    ],
+    [
+     "toptier-26b",
+     "SEL:c-78a219a9a5e07751"
+    ]
+   ],
+   "words": 46
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL"
+   ],
+   "question_text": "\"Is there a seasonal structure worth modeling?\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.1626408243091753,
+   "source_origin": "owner",
+   "topic_id": "T025",
+   "versions": [
+    [
+     "cheap-26b",
+     "SEL:c-f7cbb38a2f9f913d"
+    ]
+   ],
+   "words": 38
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Add new user-facing imports through `forecastability` or `forecastability.triage` only when you want to commit to compatibility.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.13825402807170434,
+   "source_origin": "owner",
+   "topic_id": "T026",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-007b692334093e05"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-c6bbdec6744fb515"
+    ]
+   ],
+   "words": 37
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"For very short series: CrossAMI inherits the same finite-sample bias and minimum- length requirements as univariate AMI.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.14279747778458665,
+   "source_origin": "owner",
+   "topic_id": "T027",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-0568df39c001b613"
+    ]
+   ],
+   "words": 38
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"When you want to know *why* AMI is low - limit compression reveals whether the ceiling is genuinely low (hard limit) or whether the sampled curve has not saturated the limit.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.21589958400378687,
+   "source_origin": "owner",
+   "topic_id": "T028",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-1e7a254fa6826dc0"
+    ]
+   ],
+   "words": 52
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Exploratory research only: as one piece of converging evidence that a series may exhibit chaotic dynamics, always alongside F1 and F6.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1565573542097266,
+   "source_origin": "owner",
+   "topic_id": "T029",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-27d0b3495c0ff1ed"
+    ]
+   ],
+   "words": 42
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Use the `notebooks/triage/` notebooks only after the walkthroughs; they are deep dives, not first-stop onboarding.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.16456249056233188,
+   "source_origin": "owner",
+   "topic_id": "T030",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-2ca293993e13f245"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-bf1996cb00988a8b"
+    ]
+   ],
+   "words": 36
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"As a replacement for individual deep-dive analysis on flagged series: batch ranking surfaces which series to investigate, not why.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1700469412794378,
+   "source_origin": "owner",
+   "topic_id": "T031",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-3079d77ce22ec266"
+    ]
+   ],
+   "words": 40
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"For strongly non-stationary series without prior detrending.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.11592356915624791,
+   "source_origin": "owner",
+   "topic_id": "T032",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-341703ae536a2333"
+    ]
+   ],
+   "words": 28
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"F5 must be explicitly enabled via `experimental: true` in the config.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1248384468977775,
+   "source_origin": "owner",
+   "topic_id": "T033",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-4834fba7cc489f65"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-aad107708da7c302"
+    ]
+   ],
+   "words": 32
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Adapters should not become a second business-logic layer.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.13015056698052394,
+   "source_origin": "owner",
+   "topic_id": "T034",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-4d970d03fcfa1063"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-d842abf5a063991d"
+    ]
+   ],
+   "words": 29
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Use surrogates whenever sample size permits ($n \\ge 200$, `n_surrogates >= 99`).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.10618290962956536,
+   "source_origin": "owner",
+   "topic_id": "T035",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-520e8d5962f8f467"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-8b34c98f4e94b843"
+    ]
+   ],
+   "words": 33
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Keep deterministic orchestration in `use_cases/` and `pipeline/` rather than notebooks or scripts.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1169923383348523,
+   "source_origin": "owner",
+   "topic_id": "T036",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-54d5f9039aa8eac5"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-12fcd440ab5152d2"
+    ]
+   ],
+   "words": 33
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"When F5 output is desired in the ranking: LLE is intentionally excluded from automated batch triage by design.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1935412071218325,
+   "source_origin": "owner",
+   "topic_id": "T037",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-5f42b1909154998b"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-5fe1f348a68575f6"
+    ]
+   ],
+   "words": 39
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Escalate only when nonlinear backends improve diagnostic consistency across datasets.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.12026494106542929,
+   "source_origin": "owner",
+   "topic_id": "T038",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-5ff63882db181126"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-d5a7fb62b56918db"
+    ]
+   ],
+   "words": 31
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Before investing in complex models: if the limit is low, model engineering gains diminish rapidly.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1355476888213508,
+   "source_origin": "owner",
+   "topic_id": "T039",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-6c60cbc7e087bdb4"
+    ]
+   ],
+   "words": 36
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"A practitioner interacts with the profile instead of the raw numeric array to avoid re-implementing the threshold logic in downstream code.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.13747382947152334,
+   "source_origin": "owner",
+   "topic_id": "T040",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-703f18d903194a6e"
+    ]
+   ],
+   "words": 42
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"As a causal or classification proof: a positive $\\hat{\\lambda}$ does not distinguish deterministic chaos from coloured stochastic noise.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.171574390127643,
+   "source_origin": "owner",
+   "topic_id": "T041",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-7108a192d336b9eb"
+    ]
+   ],
+   "words": 39
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"When you suspect that longer lags add noise rather than signal (the curve never plateauing is also informative).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1343099937534446,
+   "source_origin": "owner",
+   "topic_id": "T042",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-73b132a5aaa54568"
+    ]
+   ],
+   "words": 39
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Keep AMI and pAMI horizon-specific;\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1120438034640732,
+   "source_origin": "owner",
+   "topic_id": "T043",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-7f34e267e7469f22"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-8eabb66a53df1fee"
+    ]
+   ],
+   "words": 26
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"When the task is time-series forecasting, do not jump directly to model fitting.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1687881648932364,
+   "source_origin": "owner",
+   "topic_id": "T044",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-832f11ec63500689"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-e65cb947aa2ae2da"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-1d4a70e39783471e"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-3b16f3a7b858b851"
+    ]
+   ],
+   "words": 34
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"For series with $n < 1000$: phase-space coverage is insufficient and the estimate is indicative only.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.13111984029695894,
+   "source_origin": "owner",
+   "topic_id": "T045",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-9adf1e1ba5526b24"
+    ]
+   ],
+   "words": 37
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Do Not Use This For - Proving physical causality between variables.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.11792926825603187,
+   "source_origin": "owner",
+   "topic_id": "T046",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-a09878eb59fe00c2"
+    ]
+   ],
+   "words": 32
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"As a standalone decision without F1: the limit is derived from the AMI curve, so F1 evidence is prerequisite context.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.18087118525798013,
+   "source_origin": "owner",
+   "topic_id": "T047",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-abc3a8fdc46d2891"
+    ]
+   ],
+   "words": 41
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Directly at horizons beyond the frequency-specific cap (Yearly 6, Quarterly 8, Monthly 18, Weekly 13, Daily 14, Hourly 48): AMI values beyond these caps are unreliable.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1758236279386908,
+   "source_origin": "owner",
+   "topic_id": "T048",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-bf72579f2ce06838"
+    ]
+   ],
+   "words": 47
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Treat `services/` as internal helpers, not as a third public API layer.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.12004754187695674,
+   "source_origin": "owner",
+   "topic_id": "T049",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-c4911ab16bfee0a5"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-19ce99b47740dfa8"
+    ]
+   ],
+   "words": 33
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"For very short series: permutation entropy requires adequate pattern-frequency estimates;\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.12708990882017168,
+   "source_origin": "owner",
+   "topic_id": "T050",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-c6978261282cbd69"
+    ]
+   ],
+   "words": 31
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Only then recommend downstream model families or framework-specific settings.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.14083382039111464,
+   "source_origin": "owner",
+   "topic_id": "T051",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-ca2565db6e11ee00"
+    ],
+    [
+     "cheap-26b",
+     "WHY:c-deaeadb0c2b363e5"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-67372dcb86414a6a"
+    ]
+   ],
+   "words": 30
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"As a standalone triage decision: F3 produces a curve and a lookback recommendation, not a scalar forecastability score.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.12206212350605958,
+   "source_origin": "owner",
+   "topic_id": "T052",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-cc4810c2ca7437f8"
+    ]
+   ],
+   "words": 39
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Put transport concerns in `adapters/`, not in use cases or metrics code.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.11775205440419663,
+   "source_origin": "owner",
+   "topic_id": "T053",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-e1073e72ca3c2484"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-4cf8da484fd3be39"
+    ]
+   ],
+   "words": 33
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"As a causal screening tool: F8 detects predictive dependence, not causal direction.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.15221960402440166,
+   "source_origin": "owner",
+   "topic_id": "T054",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-ea0f41be7f1895c2"
+    ]
+   ],
+   "words": 33
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b+toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Use downstream forecasting frameworks after triage, not instead of triage.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1446434028560054,
+   "source_origin": "owner",
+   "topic_id": "T055",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-ec5f71c99ae25d10"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-f8b08d5427aa4b76"
+    ]
+   ],
+   "words": 31
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"\"Significance not assessed\" is different from \"surrogates were computed and no lags cleared the band.\" Use `compute_surrogates` to distinguish those states.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1615952356328769,
+   "source_origin": "owner",
+   "topic_id": "T056",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-f30acadec3e2a4b9"
+    ]
+   ],
+   "words": 42
+  },
+  {
+   "k_band": "1",
+   "ledgers": "cheap-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"For series shorter than the recommended minimum (approximately 3\u00d7 the maximum evaluation horizon).\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1253833997221239,
+   "source_origin": "owner",
+   "topic_id": "T057",
+   "versions": [
+    [
+     "cheap-26b",
+     "WHY:c-f501b3f688f6f5ad"
+    ]
+   ],
+   "words": 34
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "DISC",
+   "lenses": [
+    "DISC"
+   ],
+   "question_text": "One source writes: \"`forecastability` and `forecastability.triage` Stable import contract\". Think of a recent case where you had to judge whether something was stable import. Describe one case that clearly was, one that clearly was not, and one that was hard to call. What differed between them, and what did you check first?",
+   "similarity": 0.1835626347872804,
+   "source_origin": "owner",
+   "topic_id": "T058",
+   "versions": [
+    [
+     "toptier-26b",
+     "DISC:stable import"
+    ]
+   ],
+   "words": 52
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "toptier-26b",
+   "lens": "HEDGE",
+   "lenses": [
+    "HEDGE"
+   ],
+   "question_text": "\"statistics and time series analysis) to normalize the autocovariance function to get a time-dependent Pearson correlation coefficient.\". Describe a case where this did not hold, or where you decided against it. What about that case told you it was an exception?",
+   "similarity": 0.20397072579279674,
+   "source_origin": "outside",
+   "topic_id": "T059",
+   "versions": [
+    [
+     "toptier-26b",
+     "HEDGE:c-23b71befef797d20"
+    ]
+   ],
+   "words": 41
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT"
+   ],
+   "question_text": "Sources prescribe: \"Normalize each route to the same keys when comparing results\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.18909941189162727,
+   "source_origin": "owner",
+   "topic_id": "T060",
+   "versions": [
+    [
+     "toptier-26b",
+     "RESULT:c-44a10f4353ff9310"
+    ]
+   ],
+   "words": 49
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT"
+   ],
+   "question_text": "Sources prescribe: \"Use the robustness study pipeline to compare all configured backends against `linear_residual`.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.19102477935269052,
+   "source_origin": "owner",
+   "topic_id": "T061",
+   "versions": [
+    [
+     "toptier-26b",
+     "RESULT:c-a58de96982596cf4"
+    ]
+   ],
+   "words": 51
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "toptier-26b",
+   "lens": "RESULT",
+   "lenses": [
+    "RESULT"
+   ],
+   "question_text": "Sources prescribe: \"A practitioner should target model evaluation exclusively at horizons in $\\mathcal{H}_\\varepsilon$ - lags outside this set carry no detectable predictive signal above the noise floor.\". Think of the last time you did this. What result did you get, what had you expected, what did that result make you do next -- and what result would have sent you down a different path?",
+   "similarity": 0.20533060305371914,
+   "source_origin": "owner",
+   "topic_id": "T062",
+   "versions": [
+    [
+     "toptier-26b",
+     "RESULT:c-d3af3ac9c12c2b7c"
+    ]
+   ],
+   "words": 64
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL",
+    "WHY"
+   ],
+   "question_text": "\"The forecastability profile (F1) should be run after AMI curves exist and before choosing which horizons to model.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.17146099689839497,
+   "source_origin": "owner",
+   "topic_id": "T063",
+   "versions": [
+    [
+     "toptier-26b",
+     "SEL:c-12dca6b80e1a3b61"
+    ],
+    [
+     "toptier-26b",
+     "WHY:c-12dca6b80e1a3b61"
+    ]
+   ],
+   "words": 49
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL"
+   ],
+   "question_text": "\"Use ../public_api.md when deciding whether a symbol is part of the supported import contract.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.18831659029797762,
+   "source_origin": "owner",
+   "topic_id": "T064",
+   "versions": [
+    [
+     "toptier-26b",
+     "SEL:c-1c4e8047d3bd12be"
+    ]
+   ],
+   "words": 45
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "SEL",
+   "lenses": [
+    "SEL"
+   ],
+   "question_text": "\"Use ../explanation/architecture.md when deciding where new logic should live.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+   "similarity": 0.17386384041795247,
+   "source_origin": "owner",
+   "topic_id": "T065",
+   "versions": [
+    [
+     "toptier-26b",
+     "SEL:c-5e29ea6d046a67da"
+    ]
+   ],
+   "words": 40
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Add Optional Surfaces Only After The Core Path Is Clear\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.14452036866798101,
+   "source_origin": "owner",
+   "topic_id": "T066",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-06048134e309e409"
+    ]
+   ],
+   "words": 31
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"require cross-backend agreement before acting on lag recommendations\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.10782906182330036,
+   "source_origin": "owner",
+   "topic_id": "T067",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-178838d1f9220e1f"
+    ]
+   ],
+   "words": 29
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Only interpret `n_sig_raw_lags`, `n_sig_partial_lags`, or other significant-lag fields as evidence about absent significance when `compute_surrogates` is `true`.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.13529495263247315,
+   "source_origin": "owner",
+   "topic_id": "T068",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-227132d21dd427f9"
+    ]
+   ],
+   "words": 38
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Horizon-specific curve, never collapsed before analysis.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.12962574275384603,
+   "source_origin": "owner",
+   "topic_id": "T069",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-361a6f8801f293a8"
+    ]
+   ],
+   "words": 27
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Use `known_future_drivers` only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags, planned promotions, or externally scheduled variables.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.20313008484199035,
+   "source_origin": "owner",
+   "topic_id": "T070",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-67213a7cebde7a96"
+    ]
+   ],
+   "words": 46
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"Any elastic-alignment result would need a new surface, a new method label, and an explicit chronological-causality guard before it could be admitted to a forecasting tensor.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.17094063805601073,
+   "source_origin": "owner",
+   "topic_id": "T071",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-69f267782709aaf0"
+    ]
+   ],
+   "words": 47
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"The `run_rolling_origin_evaluation()` function enforces this boundary internally.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.10682524297671443,
+   "source_origin": "owner",
+   "topic_id": "T072",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-b57b3d55d5661578"
+    ]
+   ],
+   "words": 28
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"any lag where the derived profile exceeds the raw profile by more than estimation noise is a data-leakage candidate, not a genuine gain.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1527662797187962,
+   "source_origin": "owner",
+   "topic_id": "T073",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-bd65950824d7841e"
+    ]
+   ],
+   "words": 44
+  },
+  {
+   "k_band": "1",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"At least `n_surrogates = 99` is required for a valid two-sided 95% band.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.11524817765660686,
+   "source_origin": "owner",
+   "topic_id": "T074",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-ca2ed537d5bb3a4f"
+    ]
+   ],
+   "words": 34
+  },
+  {
+   "k_band": ">=2",
+   "ledgers": "toptier-26b",
+   "lens": "WHY",
+   "lenses": [
+    "WHY"
+   ],
+   "question_text": "Sources say: \"An absolute threshold risks including noise lags or excluding genuinely informative ones as signal strength varies across series.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+   "similarity": 0.1424570331328945,
+   "source_origin": "owner",
+   "topic_id": "T075",
+   "versions": [
+    [
+     "toptier-26b",
+     "WHY:c-f9792c1551303989"
+    ]
+   ],
+   "words": 39
+  }
+ ]
+}

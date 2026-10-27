@@ -1,0 +1,14 @@
+{
+  "source_id": "5983b51b770f",
+  "paraphrase_question": "Sources say: \"A `selected_for_tensor=True` flag at $k = 0$ is impossible by default.\". What would happen if someone did it differently, and in what situations, if any, is doing it differently acceptable?",
+  "paraphrase": "Out of the box, no driver can have selected_for_tensor set to True at lag k = 0, meaning the same time step as the target. To allow that, the use-case code must deliberately list the driver in `known_future_drivers`. The restriction is a design choice rather than a gap in the library: it exists to keep cause and effect in time order.",
+  "planted_question": "\"Use `known_future_drivers` only for variables whose contemporaneous future values are genuinely known at prediction time, such as calendar flags, planned promotions, or externally scheduled variables.\". Think of the last time you made this choice. Which options did you consider, which did you take, and what about that situation decided it? When did you last choose differently?",
+  "planted_new": "We cap `known_future_drivers` at 3 drivers per target, and only for calendar flags or planned promotions whose contemporaneous value is fixed at least 14 days ahead of prediction time. One retail client opted in daily footfall at lag=0 with selected_for_tensor=True: backtest MASE fell from 0.92 to 0.61, then live error tripled, because footfall is published the next morning. We now require a 48-hour publication-lag audit before any opt-in.",
+  "planted_terms": [
+    "3 drivers per target",
+    "at least 14 days ahead",
+    "from 0.92 to 0.61",
+    "48-hour publication-lag audit"
+  ],
+  "owner_confirmed": false
+}

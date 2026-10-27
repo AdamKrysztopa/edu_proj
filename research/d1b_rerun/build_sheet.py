@@ -1,9 +1,11 @@
 """D1b plan §3.1-3.3: fresh questions, topic clusters, arms by agreement, matching, sheet, seal.
 
-    uv run --directory gapmap python ../research/d1b_rerun/build_sheet.py pool
-    uv run --directory gapmap python ../research/d1b_rerun/build_sheet.py count --arm local=DIR
+    uv run --directory gapmap python ../research/d1b_rerun/build_sheet.py pool [--codebase CFG]
+    uv run --directory gapmap python ../research/d1b_rerun/build_sheet.py count --arm local=DIR [--codebase CFG]
     uv run --directory gapmap python ../research/d1b_rerun/build_sheet.py build --arm local=DIR --arm sol=DIR \
-        --public-key ~/.d1b/seal.pub
+        --public-key ~/.d1b/seal.pub [--codebase CFG]
+
+`--codebase` names a config read by `codebase.py`; the default is D1b's own `codebase.json`.
 
 `pool` applies the fresh-question and debris filters and clusters versions of one topic across
 both ledgers, before any closure state is read, and writes `pool.json` and the topic-review pack.
@@ -24,21 +26,19 @@ import math
 import os
 import random
 import re
+import secrets
 import shutil
 import subprocess
 import tarfile
 from collections import Counter
 from pathlib import Path
 
+import codebase
 import common
 
 SEED = 20261026
 SIZES = (15, 12, 10)
 BALANCE_TOL = 0.10
-OWNER_REPO = "github.com/AdamKrysztopa/dependence-forecastability"
-POOL = common.HERE / "pool.json"
-REVIEW_PACK = common.HERE / "fixtures" / "topic_review_pack.md"
-REVIEW = common.HERE / "fixtures" / "topic_review.json"
 
 
 class TooFew(RuntimeError):
@@ -156,6 +156,36 @@ def seal(src: Path, public_key: Path, dest: Path) -> Path:
     return dest
 
 
+def seal_memory(files: dict[str, bytes], dirs: dict[str, Path], public_key: Path, dest: Path) -> Path:
+    """Seal without writing any plaintext: `files` (the key) are tarred from memory and `dirs`
+    (the closure caches, already on disk) from where they lie; the tar reaches openssl only on
+    stdin (the pattern of reconstruct/src/reconstruct/eseal.py). Then the `dirs` are deleted.
+    Same format as `seal`, so `unseal` opens either."""
+    buf = io.BytesIO()
+    with tarfile.open(fileobj=buf, mode="w:gz") as tar:
+        for name, data in sorted(files.items()):
+            info = tarfile.TarInfo(name)
+            info.size = len(data)
+            tar.addfile(info, io.BytesIO(data))
+        for name, path in sorted(dirs.items()):
+            tar.add(path, arcname=name)
+    sym = secrets.token_hex(32)
+    enc = subprocess.run(["openssl", "enc", "-aes-256-cbc", "-pbkdf2", "-salt", "-pass", "stdin"],
+                         input=sym.encode() + b"\n" + buf.getvalue(), capture_output=True, check=True).stdout
+    wrapped = subprocess.run(["openssl", "pkeyutl", "-encrypt", "-pubin", "-inkey", str(public_key),
+                              "-pkeyopt", "rsa_padding_mode:oaep"], input=sym.encode(),
+                             capture_output=True, check=True).stdout
+    dest.mkdir(parents=True, exist_ok=True)
+    (dest / "archive.enc").write_bytes(enc)
+    (dest / "key.enc").write_bytes(wrapped)
+    (dest / "sealed.sha256.json").write_text(json.dumps(
+        {"archive_sha256": _sha(dest / "archive.enc"), "key_sha256": _sha(dest / "key.enc"),
+         "public_key_sha256": _sha(public_key)}, indent=1) + "\n")
+    for path in dirs.values():
+        shutil.rmtree(path)
+    return dest
+
+
 def unseal(sealed: Path, private_key: Path, out: Path) -> Path:
     sym = subprocess.run(["openssl", "pkeyutl", "-decrypt", "-inkey", str(private_key),
                           "-pkeyopt", "rsa_padding_mode:oaep", "-in", str(sealed / "key.enc")],
@@ -169,14 +199,14 @@ def unseal(sealed: Path, private_key: Path, out: Path) -> Path:
     return out
 
 
-# ---- ledger-facing steps (need the gapmap env and the D1 ledgers) ----
+# ---- ledger-facing steps (need the gapmap env and the codebase's ledgers) ----
 
-def _retriever():
+def _retriever(cb: codebase.Codebase):
     import importlib.util
     spec = importlib.util.spec_from_file_location("d1_judge_retriever", common.HERE / "novelty.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
-    return mod.Retriever(mod.passages())
+    return mod.Retriever(mod.passages(cb.corpus))
 
 
 def _clean(text_: str) -> str:
@@ -184,54 +214,85 @@ def _clean(text_: str) -> str:
     return re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text_)
 
 
-def pool_rows() -> list[dict]:
+def pool_rows(cb: codebase.Codebase, ledgers: list[str] | None = None) -> list[dict]:
+    """Fresh-question and debris filters; `prior_items` are the earlier test's questions on this
+    codebase (D1's for D1b), none for a codebase never tested before."""
     from gapmap import lenses, link, semantic
 
-    d1 = common.d1_items()
-    d1_tok = common.d1_tokens()
-    d1_keys = {(" ".join(sorted(common.tokens(common.quote(it["text"])))), it["lens"]) for it in d1}
-    retriever = _retriever()
+    codebase.require_complete(cb, ledgers or list(cb.ledgers))
+    prior = cb.prior_items()
+    prior_tok = common.d1_tokens(prior)
+    prior_keys = {(" ".join(sorted(common.tokens(common.quote(it["text"])))), it["lens"]) for it in prior}
+    retriever = _retriever(cb)
     rows = []
-    for name in common.LEDGER_DIRS:
-        lg, index, _ = common.load(name)
+    for name in ledgers or cb.ledgers:
+        lg, index, _ = common.load(name, cb)
         cands = [c for c in lenses.run_all(lg, index, link.SETTING_1) if c.question_text and not c.excluded]
-        d1_seeds = {sid for c in cands
-                    if (" ".join(sorted(common.tokens(common.quote(c.question_text)))), c.lens) in d1_keys
-                    for sid in c.seeds}
+        prior_seeds = {sid for c in cands
+                       if (" ".join(sorted(common.tokens(common.quote(c.question_text)))), c.lens) in prior_keys
+                       for sid in c.seeds}
         for c in cands:
             q = common.quote(c.question_text)
-            if (common.debris(q) or c.seeds & d1_seeds
-                    or common.max_d1_jaccard(c, d1_tok)[0] >= common.FRESH_JACCARD):
+            if (common.debris(q) or c.seeds & prior_seeds
+                    or common.max_d1_jaccard(c, prior_tok)[0] >= common.FRESH_JACCARD):
                 continue
             seed_ids = semantic.primary_probe(lg, c)[1]
             src = lg.by_id[min(seed_ids)].evidence[0].source.identifier
             question = _clean(c.question_text)
             rows.append({"ledger": name, "test_id": c.test_id, "lens": c.lens, "quote": q, "anchor": c.anchor,
                          "k_topic": len(link.breadth(lg, c.x_a)),
-                         "source_origin": "owner" if OWNER_REPO in src else "outside",
+                         "source_origin": "owner" if cb.owner_repo in src else "outside",
                          "words": len(question.split()), "similarity": retriever.similarity(question),
                          "question_text": question})
     return rows
 
 
-def cmd_pool(_args) -> int:
-    rows = pool_rows()
+def review_pack(cb: codebase.Codebase, topics: list[dict]) -> str:
+    prior = cb.prior_items()
+    lines = [f"# {cb.title} topic review pack", ""]
+    if prior:
+        label = f"{cb.prior_label}'s {len(prior)} questions"
+        lines += [f"Flag any topic below that shares a topic with one of {label} or with another topic below.",
+                  "", f"## {label}", ""]
+        lines += [f"- {cb.prior_label}-Q{it['q']}: {it['text']}" for it in prior] + [""]
+    else:
+        lines += ["Flag any topic below that shares a topic with another topic below.", ""]
+    lines += ["## Candidate topics", ""] + [f"- {t['topic_id']}: {t['question_text']}" for t in topics]
+    return "\n".join(lines) + "\n"
+
+
+def pool_outputs(cb: codebase.Codebase, ledgers: list[str] | None = None) -> tuple[str, str, dict]:
+    rows = pool_rows(cb, ledgers)
     topics = cluster(rows)
-    POOL.write_text(json.dumps({"rows": rows, "topics": topics}, indent=1, sort_keys=True) + "\n")
-    lines = ["# D1b topic review pack", "",
-             "Flag any topic below that shares a topic with one of D1's 15 questions or with another topic below.",
-             "", "## D1's 15 questions", ""]
-    lines += [f"- D1-Q{it['q']}: {it['text']}" for it in common.d1_items()]
-    lines += ["", "## Candidate topics", ""] + [f"- {t['topic_id']}: {t['question_text']}" for t in topics]
-    REVIEW_PACK.write_text("\n".join(lines) + "\n")
-    print(json.dumps({"fresh_versions": len(rows), "topics": len(topics),
-                      "by_lens": Counter(t["lens"] for t in topics), "by_k_band": Counter(t["k_band"] for t in topics),
-                      "by_ledgers": Counter(t["ledgers"] for t in topics),
-                      "by_source_origin": Counter(t["source_origin"] for t in topics)}, indent=1))
+    summary = {"fresh_versions": len(rows), "topics": len(topics),
+               "by_lens": Counter(t["lens"] for t in topics), "by_k_band": Counter(t["k_band"] for t in topics),
+               "by_ledgers": Counter(t["ledgers"] for t in topics),
+               "by_source_origin": Counter(t["source_origin"] for t in topics)}
+    return (json.dumps({"rows": rows, "topics": topics}, indent=1, sort_keys=True) + "\n",
+            review_pack(cb, topics), summary)
+
+
+def _pool_path(args, cb: codebase.Codebase) -> Path:
+    return Path(args.pool) if args.pool else cb.pool
+
+
+def cmd_pool(args) -> int:
+    cb = codebase.load(args.codebase)
+    if args.ledger and not args.pool:
+        raise SystemExit("a pool restricted with --ledger needs its own --pool path")
+    pool_text, pack_text, summary = pool_outputs(cb, args.ledger)
+    if cb.allow_incomplete_ledgers:
+        summary["allow_incomplete_ledgers"] = json.loads(Path(args.codebase).read_text())["allow_incomplete_reason"]
+    pool = _pool_path(args, cb)
+    pool.write_text(pool_text)
+    pack = cb.review_pack if pool == cb.pool else pool.with_suffix(".review_pack.md")
+    pack.parent.mkdir(parents=True, exist_ok=True)
+    pack.write_text(pack_text)
+    print(json.dumps(summary, indent=1))
     return 0
 
 
-def _states(arm_dirs: dict[str, Path], rows_by_version: dict) -> dict:
+def _states(arm_dirs: dict[str, Path], rows_by_version: dict, cb: codebase.Codebase) -> dict:
     from gapmap import judge as judge_mod, lenses, link, semantic
 
     class Replay:
@@ -242,24 +303,27 @@ def _states(arm_dirs: dict[str, Path], rows_by_version: dict) -> dict:
             raise judge_mod.JudgeCacheMiss("replay only")
 
     states: dict = {}
+    names = [name for name in cb.ledgers if any(v[0] == name for v in rows_by_version)]
     for arm, d in arm_dirs.items():
-        for name in common.LEDGER_DIRS:
+        for name in names:
             rec = json.loads((d / name / "judge.json").read_text())
             judge = judge_mod.CachedJudge(Replay(rec["judge_model"]), d / name / "closure_judgements.json", live=False)
-            lg, index, _ = common.load(name)
+            lg, index, _ = common.load(name, cb)
             for c in lenses.run_all(lg, index, link.SETTING_1):
                 if (name, c.test_id) in rows_by_version:
                     states.setdefault((name, c.test_id), {})[arm] = semantic.judge_candidate(lg, index, judge, c)[0].state
     return states
 
 
-def _arms(args) -> tuple[list[dict], dict, list, list]:
-    pool = json.loads(POOL.read_text())
-    review = json.loads(REVIEW.read_text())
-    topics = [t for t in pool["topics"] if t["topic_id"] not in set(review["drop"])]
+def _arms(args, cb: codebase.Codebase) -> tuple[list[dict], dict, list, list]:
+    pool = json.loads(_pool_path(args, cb).read_text())
+    review = Path(args.review) if getattr(args, "review", None) else cb.review
+    drop = set() if getattr(args, "unreviewed", False) else set(json.loads(review.read_text())["drop"])
+    drop |= lexical_drops(pool["topics"])
+    topics = [t for t in pool["topics"] if t["topic_id"] not in drop]
     rows_by_version = {(r["ledger"], r["test_id"]): r for r in pool["rows"]}
     arm_dirs = dict((k, Path(v)) for k, v in (a.split("=", 1) for a in args.arm))
-    states = _states(arm_dirs, rows_by_version)
+    states = _states(arm_dirs, rows_by_version, cb)
     judges = tuple(sorted(arm_dirs))
     for t in topics:
         t["versions"] = [tuple(v) for v in t["versions"]]
@@ -268,43 +332,67 @@ def _arms(args) -> tuple[list[dict], dict, list, list]:
     return topics, states, gaps, covs
 
 
-def cmd_count(args) -> int:
-    topics, _states_, gaps, covs = _arms(args)
+def count_summary(topics: list[dict], gaps: list[dict], covs: list[dict], *, seed: int) -> dict:
+    """Stop A reads the pair count only: the top-tier closure arm can only remove topics, so the
+    count is a bound, but balance is not monotone and is settled at `build`."""
+    pairs = match(gaps, covs, n=max(SIZES), seed=seed)
     try:
-        n, pairs = choose_size(gaps, covs, seed=SEED)
+        n, _ = choose_size(gaps, covs, seed=seed)
     except TooFew:
-        n, pairs = 0, match(gaps, covs, n=max(SIZES), seed=SEED)
-    print(json.dumps({"topics": len(topics), "all_open": len(gaps), "all_closed": len(covs),
-                      "matched_pairs_upper_bound": len(pairs), "sheet_size_reachable": n,
-                      "stop_at_A": n == 0}, indent=1))
+        n = 0
+    return {"topics": len(topics), "all_open": len(gaps), "all_closed": len(covs),
+            "matched_pairs_upper_bound": len(pairs), "balance_ok": balance(pairs)["ok"],
+            "matched_pairs_uncapped": len(match(gaps, covs, n=len(gaps) + len(covs), seed=seed)),
+            "sheet_size_reachable_now": n, "stop_at_A": len(pairs) < SIZES[-1]}
+
+
+NEAR_DUPLICATE = 0.30
+
+
+def lexical_drops(topics: list[dict]) -> set[str]:
+    """Topics whose quoted spans reach NEAR_DUPLICATE content-word Jaccard with a lower-numbered
+    topic. Reads topic text only, never a closure state, so it acts as part of the review. A
+    backstop: on D1b's pool the largest pairwise Jaccard is 0.22 and it drops nothing."""
+    ordered = sorted(topics, key=lambda t: t["topic_id"])
+    toks = [common.tokens(common.quote(t["question_text"])) for t in ordered]
+    return {ordered[j]["topic_id"] for i in range(len(ordered)) for j in range(i + 1, len(ordered))
+            if common.jaccard(toks[i], toks[j]) >= NEAR_DUPLICATE}
+
+
+def cmd_count(args) -> int:
+    cb = codebase.load(args.codebase)
+    topics, _states_, gaps, covs = _arms(args, cb)
+    print(json.dumps(count_summary(topics, gaps, covs, seed=cb.seed), indent=1))
     return 0
 
 
 def cmd_build(args) -> int:
-    topics, states, gaps, covs = _arms(args)
-    n, pairs = choose_size(gaps, covs, seed=SEED)
+    cb = codebase.load(args.codebase)
+    topics, states, gaps, covs = _arms(args, cb)
+    try:
+        n, pairs = choose_size(gaps, covs, seed=cb.seed)
+    except TooFew:
+        print(json.dumps({"outcome": "Stop A (after sol)", **count_summary(topics, gaps, covs, seed=cb.seed)},
+                         indent=1))
+        return 3
     items = [{"arm": "gap", **g} for g, _ in pairs] + [{"arm": "covered", **c} for _, c in pairs]
-    random.Random(SEED).shuffle(items)
+    random.Random(cb.seed).shuffle(items)
     for i, it in enumerate(items, 1):
         it["q"] = i
-    sheet = ["# D1b questions", "",
+    sheet = [f"# {cb.title} questions", "",
              "One question at a time, in chat. Answer in plain prose, from memory, without the docs or the code open.",
              "\"I don't know\" or \"this never comes up\" is a fine answer.", ""]
     for it in items:
         sheet += [f"## Q{it['q']}", "", it["question_text"], ""]
-    (common.HERE / "questions.md").write_text("\n".join(sheet))
-    secret = common.HERE / "secret"
-    secret.mkdir(exist_ok=True)
-    (secret / "key.json").write_text(json.dumps(
-        {"seed": SEED, "n_per_arm": n, "items": items, "balance": balance(pairs),
-         "states": {f"{k[0]}|{k[1]}": v for k, v in states.items()}}, indent=1, sort_keys=True, default=list) + "\n")
-    for arm_dir in (Path(v) for v in (a.split("=", 1)[1] for a in args.arm)):
-        shutil.copytree(arm_dir, secret / "arms" / arm_dir.name)
-    sealed = seal(secret, Path(args.public_key).expanduser(), common.HERE / "sealed")
-    for arm_dir in (Path(v) for v in (a.split("=", 1)[1] for a in args.arm)):
-        shutil.rmtree(arm_dir)
+    (cb.root / "questions.md").write_text("\n".join(sheet))
+    key = json.dumps({"seed": cb.seed, "n_per_arm": n, "items": items, "balance": balance(pairs),
+                      "states": {f"{k[0]}|{k[1]}": v for k, v in states.items()}},
+                     indent=1, sort_keys=True, default=list) + "\n"
+    arm_dirs = [Path(v) for v in (a.split("=", 1)[1] for a in args.arm)]
+    sealed = seal_memory({"key.json": key.encode()}, {f"arms/{d.name}": d for d in arm_dirs},
+                         Path(args.public_key).expanduser(), cb.root / "sealed")
     bal = balance(pairs)
-    print(json.dumps({"n_per_arm": n, "questions_sha256": _sha(common.HERE / "questions.md"),
+    print(json.dumps({"n_per_arm": n, "questions_sha256": _sha(cb.root / "questions.md"),
                       **json.loads((sealed / "sealed.sha256.json").read_text()),
                       "mean_words": bal["words"], "mean_similarity": bal["similarity"],
                       "lens_mix": Counter(it["lens"] for it in items), "eligible_open": len(gaps),
@@ -315,12 +403,19 @@ def cmd_build(args) -> int:
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="build_sheet")
     sub = p.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("pool")
+    pool = sub.add_parser("pool")
+    pool.add_argument("--ledger", action="append", metavar="NAME", help="restrict the pool to these ledgers")
     for name in ("count", "build"):
         s = sub.add_parser(name)
         s.add_argument("--arm", action="append", required=True, metavar="NAME=DIR")
         if name == "build":
             s.add_argument("--public-key", required=True)
+        else:
+            s.add_argument("--unreviewed", action="store_true", help="count without any topic review drops")
+        s.add_argument("--review", help="review file (default: fixtures/topic_review.json; A1 uses its own)")
+    for s in sub.choices.values():
+        s.add_argument("--codebase", default=str(codebase.D1B_CONFIG))
+        s.add_argument("--pool", help="default: pool.json in the codebase's root")
     args = p.parse_args(argv)
     return {"pool": cmd_pool, "count": cmd_count, "build": cmd_build}[args.cmd](args)
 

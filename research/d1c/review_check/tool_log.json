@@ -1,0 +1,9 @@
+{
+ "_what": "Every tool call the blind topic reviewer made, extracted from its session transcript on 2026-10-27. It read only the registered prompt and the candidate-topic list (in a scratch directory outside the repo), and wrote only its review. It never opened research/d1b_rerun/fixtures/topic_review.json.",
+ "calls": [
+  {"tool": "Read", "target": "research/d1c/topic_review_prompt.md"},
+  {"tool": "Read", "target": "<scratchpad>/review_check/candidate_topics.md"},
+  {"tool": "Write", "target": "<scratchpad>/review_check/review.json"},
+  {"tool": "SubagentHandback", "target": "report"}
+ ]
+}

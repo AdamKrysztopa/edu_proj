@@ -57,6 +57,7 @@ def main() -> int:
         p.add_argument(a, required=True)
     p.add_argument("--reasoning-effort", default="high")
     p.add_argument("--max-usd", type=float, required=True)
+    p.add_argument("--domain", default="forecastability", help="the codebase config's `domain`")
     args = p.parse_args()
     run_dir = Path(args.run_dir)
     meta_backend = judge_mod.OpenAIJudge(args.model, max_usd=0.0, reasoning_effort=args.reasoning_effort)
@@ -64,7 +65,7 @@ def main() -> int:
                                    meta={"model": args.model, **meta_backend.settings}, live_flag="--judge openai")
     rec = Recorder(cached)
     scratch = run_dir / "_replay"
-    cli.run(args.ledger, domain="forecastability", out_dir=str(scratch), sidecar_path=args.sidecar, judge=rec)
+    cli.run(args.ledger, domain=args.domain, out_dir=str(scratch), sidecar_path=args.sidecar, judge=rec)
     chosen = sample(rec.prompts)
     first = [cached.ask(q) for q in chosen]
     live = judge_mod.OpenAIJudge(args.model, max_usd=args.max_usd, reasoning_effort=args.reasoning_effort,

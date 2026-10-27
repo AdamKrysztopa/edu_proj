@@ -3,7 +3,7 @@ lexical-overlap, specificity, closing-lexicon and coin-flip stand-ins through th
 mismatched-evidence control on the real D1 ledgers. G4 may gate only if every stand-in fails it
 (own - control < 0.20 in total). $0, no model.
 
-    uv run --directory gapmap python ../research/d1b_rerun/g4_standins.py
+    uv run --directory gapmap python ../research/d1b_rerun/g4_standins.py [--codebase CFG]
 """
 from __future__ import annotations
 
@@ -58,12 +58,22 @@ def measure(ledger_path: Path) -> dict:
     return {"ledger_sha256": sha, "prompts": len(rec.prompts), "stand_ins": rows}
 
 
-def main() -> int:
-    result = {name: measure(_ledger_path(d)) for name, d in LEDGERS.items()}
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+
+    import codebase
+
+    p = argparse.ArgumentParser(prog="g4_standins")
+    p.add_argument("--codebase", help="codebase config (default: D1b's); output goes to its directory")
+    args = p.parse_args(argv)
+    cb = codebase.load(args.codebase) if args.codebase else None
+    ledgers = cb.ledgers if cb is not None else LEDGERS
+    result = {name: measure(_ledger_path(d)) for name, d in ledgers.items()}
     result["g4_may_gate"] = not any(r["passes_g4"] for v in result.values() if isinstance(v, dict)
                                     for r in v["stand_ins"].values())
-    (HERE / "g4_standins.json").write_text(json.dumps(result, indent=1, sort_keys=True) + "\n")
-    for name in LEDGERS:
+    (cb.root if cb is not None else HERE).joinpath("g4_standins.json").write_text(
+        json.dumps(result, indent=1, sort_keys=True) + "\n")
+    for name in ledgers:
         for jid, r in result[name]["stand_ins"].items():
             print(name, jid, r["own_rate"], r["control_rate"], r["diff"], "PASSES" if r["passes_g4"] else "fails")
     print("g4_may_gate", result["g4_may_gate"])

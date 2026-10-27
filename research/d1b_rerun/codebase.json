@@ -1,0 +1,18 @@
+{
+ "name": "dependence-forecastability",
+ "title": "D1b",
+ "owner_repo": "github.com/AdamKrysztopa/dependence-forecastability",
+ "domain": "forecastability",
+ "seed": 20261026,
+ "corpus": "../d1_demonstrator/corpus",
+ "ledgers": {
+  "cheap-26b": "../d1_demonstrator/runs/cheap-26b",
+  "toptier-26b": "../d1_demonstrator/runs/toptier-26b"
+ },
+ "prior_items": "../d1_demonstrator/key_revealed.json",
+ "prior_label": "D1",
+ "canaries": "fixtures/canaries.json",
+ "canary_mode": "fixed",
+ "allow_incomplete_ledgers": true,
+ "allow_incomplete_reason": "D1b reused D1's ledgers as committed: the cheap run stopped at its cap and the top-tier run lost 823 calls to HTTP 402 (D1c plan \u00a73.2)."
+}

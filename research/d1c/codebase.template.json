@@ -1,0 +1,32 @@
+{
+ "name": "TODO repository name, e.g. the slug of github.com/AdamKrysztopa/<name>",
+ "title": "D1c",
+ "owner_repo": "github.com/AdamKrysztopa/TODO",
+ "domain": "TODO short label passed to gapmap --domain",
+ "seed": "TODO integer, fixed in RULE.md before any closure call",
+ "corpus": "corpus",
+ "ledgers": {
+  "cheap": "runs/cheap",
+  "toptier": "runs/toptier"
+ },
+ "prior_items": null,
+ "prior_label": "",
+ "canaries": "fixtures/canaries.json",
+ "canary_mode": "generated",
+ "corpus_build": {
+  "repo_url": "https://github.com/AdamKrysztopa/TODO",
+  "checkout": "source",
+  "commit": "TODO full sha the owner pins",
+  "docs": ["README.md", "TODO further user-facing docs, 12-20 in all"],
+  "outside_wikipedia": ["TODO titles of pages on the codebase's methods"],
+  "outside_sphinx": ["TODO URLs of library reference pages the codebase builds on"]
+ },
+ "reconstruct": {
+  "domain": "TODO one line naming the codebase and its field",
+  "task": "TODO How does a new contributor run, extend and interpret <the codebase's main workflow>?",
+  "max_doc_chars": 12000,
+  "max_results": 5,
+  "models_cheap": "../../../reconstruct/models.json",
+  "models_toptier": "../../d1_demonstrator/models_toptier.json"
+ }
+}

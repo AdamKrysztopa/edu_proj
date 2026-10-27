@@ -1,6 +1,7 @@
 """The D1b sheet builder (plan §3.1-3.3): topic clusters, arm assignment by agreement, matching,
 and sealing. Synthetic rows; no model, no network."""
 import json
+import pathlib
 import subprocess
 
 import pytest
@@ -76,6 +77,96 @@ def test_the_sheet_size_falls_back_to_twelve_then_ten_then_stops():
     assert n == 10 and len(pairs) == 10
     with pytest.raises(bs.TooFew):
         bs.choose_size(gaps[:9], covs[:9], seed=1)
+
+
+def _keypair(tmp_path):
+    key, pub = tmp_path / "seal.key", tmp_path / "seal.pub"
+    subprocess.run(["openssl", "genpkey", "-algorithm", "RSA", "-pkeyopt", "rsa_keygen_bits:2048", "-out", str(key)],
+                   check=True, capture_output=True)
+    subprocess.run(["openssl", "pkey", "-in", str(key), "-pubout", "-out", str(pub)], check=True, capture_output=True)
+    return key, pub
+
+
+def _files_containing(root, needle: bytes):
+    return [p for p in root.rglob("*") if p.is_file() and needle in p.read_bytes()]
+
+
+def test_the_memory_seal_writes_no_plaintext_and_round_trips(tmp_path):
+    key, pub = _keypair(tmp_path)
+    canary = b"CANARY-7f3a9c-arm-key"
+    arm = tmp_path / "work" / "closure" / "gemma"
+    (arm / "cheap").mkdir(parents=True)
+    (arm / "cheap" / "closure_judgements.json").write_bytes(b'{"x": "' + canary + b'-cache"}')
+    sealed = bs.seal_memory({"key.json": b'{"items": "' + canary + b'"}'}, {"arms/gemma": arm}, pub,
+                            tmp_path / "work" / "sealed")
+    assert not arm.exists()
+    assert _files_containing(tmp_path / "work", canary) == []
+    out = bs.unseal(sealed, key, tmp_path / "opened")
+    assert canary in (out / "key.json").read_bytes()
+    assert canary in (out / "arms" / "gemma" / "cheap" / "closure_judgements.json").read_bytes()
+
+
+def test_build_seals_from_memory_and_never_writes_a_secret_directory(tmp_path, monkeypatch):
+    key, pub = _keypair(tmp_path)
+    canary = "CANARY-b41e-anchor"
+    root = tmp_path / "unit"
+    root.mkdir()
+    (root / "codebase.json").write_text(json.dumps(
+        {"name": "u", "title": "U", "owner_repo": "github.com/o/u", "domain": "u", "seed": 3, "corpus": "corpus",
+         "ledgers": {}, "prior_items": None, "canaries": "c.json", "canary_mode": "generated"}))
+    arm = root / "closure" / "fake"
+    arm.mkdir(parents=True)
+    (arm / "cache.json").write_text("{}")
+    gaps = [{**_topic(i), "anchor": canary, "question_text": f"Gap question {i}?"} for i in range(10)]
+    covs = [{**_topic(50 + i), "anchor": canary, "question_text": f"Covered question {i}?"} for i in range(10)]
+    monkeypatch.setattr(bs, "_arms", lambda args, cb: (gaps + covs, {("l", "t"): {"fake": "open"}}, gaps, covs))
+    written = []
+    for name in ("write_text", "write_bytes"):
+        orig = getattr(pathlib.Path, name)
+
+        def spy(self, data, *a, _orig=orig, **k):
+            if canary in (data if isinstance(data, str) else data.decode("latin-1")):
+                written.append(str(self))
+            return _orig(self, data, *a, **k)
+
+        monkeypatch.setattr(pathlib.Path, name, spy)
+    rc = bs.main(["build", "--codebase", str(root / "codebase.json"), "--arm", f"fake={arm}", "--public-key", str(pub)])
+    assert rc == 0
+    assert written == [], f"plaintext key written to {written}"
+    assert not (root / "secret").exists() and not arm.exists()
+    assert _files_containing(root, canary.encode()) == []
+    assert "Gap question 3?" in (root / "questions.md").read_text()
+    out = bs.unseal(root / "sealed", key, tmp_path / "opened")
+    assert canary in (out / "key.json").read_text()
+
+
+def test_stop_a_fires_on_the_pair_count_alone_not_on_balance():
+    gaps = [_topic(i, words=40) for i in range(10)]
+    covs = [_topic(20 + i, words=60) for i in range(10)]
+    res = bs.count_summary(gaps + covs, gaps, covs, seed=1)
+    assert res["matched_pairs_upper_bound"] == 10 and res["balance_ok"] is False
+    assert res["stop_at_A"] is False
+    res = bs.count_summary(gaps[:9] + covs[:9], gaps[:9], covs[:9], seed=1)
+    assert res["stop_at_A"] is True
+
+
+def test_the_count_also_reports_matched_pairs_beyond_the_sheet_cap():
+    gaps = [_topic(i) for i in range(22)]
+    covs = [_topic(100 + i) for i in range(22)]
+    res = bs.count_summary(gaps + covs, gaps, covs, seed=1)
+    assert res["matched_pairs_upper_bound"] == 15 and res["matched_pairs_uncapped"] == 22
+
+
+def test_lexical_near_duplicates_drop_the_higher_topic_id_before_any_state_is_read():
+    quotes = ["compute the band on the training window only", "the surrogate count sets the significance floor",
+              "compute the band on the training window only, never the test"]
+    topics = [{"topic_id": f"T00{i + 1}", "question_text": f'Sources say: "{q}". Why?'} for i, q in enumerate(quotes)]
+    assert bs.lexical_drops(topics) == {"T003"}
+
+
+def test_lexical_drops_are_inert_on_d1bs_pool():
+    pool = json.loads((bs.common.HERE / "pool.json").read_text())
+    assert bs.lexical_drops(pool["topics"]) == set()
 
 
 def test_sealing_round_trips_only_with_the_private_key(tmp_path):

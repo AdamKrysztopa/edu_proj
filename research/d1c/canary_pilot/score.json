@@ -1,0 +1,54 @@
+{
+ "canaries": {
+  "c-filler-40": {
+   "expected": "no content",
+   "judge_a": "no content",
+   "void_under_crossing_rule": false,
+   "exact_match": true
+  },
+  "c-paraphrase": {
+   "expected": "already written",
+   "judge_a": "already written",
+   "void_under_crossing_rule": false,
+   "exact_match": true
+  },
+  "c-copied": {
+   "expected": "already written",
+   "judge_a": "already written",
+   "void_under_crossing_rule": false,
+   "exact_match": true
+  },
+  "c-new": {
+   "expected": "new",
+   "judge_a": "new",
+   "void_under_crossing_rule": false,
+   "exact_match": true
+  },
+  "c-filler-90": {
+   "expected": "no content",
+   "judge_a": "no content",
+   "void_under_crossing_rule": false,
+   "exact_match": true
+  }
+ },
+ "output_problems": [],
+ "canary_pass_crossing_rule": true,
+ "canary_pass_exact_rule": true,
+ "d1_case_labels": {
+  "q1": "already written",
+  "q2": "new",
+  "q3": "partly",
+  "q4": "already written",
+  "q5": "no content",
+  "q6": "already written",
+  "q7": "no content",
+  "q8": "new",
+  "q9": "new",
+  "q10": "new",
+  "q11": "already written",
+  "q12": "already written",
+  "q13": "no content",
+  "q14": "no content",
+  "q15": "no content"
+ }
+}

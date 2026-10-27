@@ -1,5 +1,6 @@
 """D1b novelty judging (plan §3.5-3.6): lock, canary check, reveal. No model, no network."""
 import json
+import re
 import subprocess
 
 import pytest
@@ -68,3 +69,136 @@ def test_reveal_decides_from_the_sealed_key_and_both_judges(tmp_path):
     res = novelty.reveal(judged, tmp_path / "sealed", key, tmp_path / "opened")
     assert res["decision"] == "Continue"
     assert res["rows"][0]["arm"] == "gap"
+    assert "blinding" not in res
+
+
+def test_reveal_reports_the_blinding_check_from_the_owners_guesses(tmp_path):
+    key, pub = tmp_path / "seal.key", tmp_path / "seal.pub"
+    subprocess.run(["openssl", "genpkey", "-algorithm", "RSA", "-out", str(key)], check=True, capture_output=True)
+    subprocess.run(["openssl", "pkey", "-in", str(key), "-pubout", "-out", str(pub)], check=True, capture_output=True)
+    items = [{"q": i, "arm": "gap" if i <= 10 else "covered"} for i in range(1, 21)]
+    (tmp_path / "secret").mkdir()
+    (tmp_path / "secret" / "key.json").write_text(json.dumps({"items": items}))
+    bs.seal(tmp_path / "secret", pub, tmp_path / "sealed")
+    judged = [{"q": i, "answer": "x", "judge_a": {"label": "new"}, "judge_b": {"label": "new"}} for i in range(1, 21)]
+    guesses = {it["q"]: it["arm"] for it in items}
+    res = novelty.reveal(judged, tmp_path / "sealed", key, tmp_path / "opened", guesses=guesses)
+    assert res["blinding"]["accuracy"] == 1.0 and res["blinding"]["unblinded"] is True
+
+
+def _mixed(tmp_path):
+    canary_rows = [{"id": "c-copied", "question": "Q?", "answer": "copied passage"},
+                   {"id": "c-new", "question": "Q?", "answer": "planted fact"}]
+    expected = {"c-copied": "already written", "c-new": "new"}
+    r = novelty.Retriever([("d", "copied passage about bands"), ("d", "another passage on windows")])
+    return novelty.build_cases({1: "A?", 2: "B?"}, {1: "answer one", 2: "answer two"}, canary_rows, expected, r)
+
+
+def test_canaries_and_cases_share_one_file_under_opaque_ids(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    assert len(cases) == 4 and set(case_map) == {c["id"] for c in cases}
+    assert all(re.fullmatch(r"[0-9a-f]{8}", c["id"]) for c in cases)
+    assert sorted(v.get("canary", "") for v in case_map.values()) == ["", "", "c-copied", "c-new"]
+    assert all("expected" not in c and "kind" not in c for c in cases)
+
+
+def test_judgements_map_back_to_canaries_and_questions(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    ids = {(v.get("canary") or f"q{v['q']}"): k for k, v in case_map.items()}
+    a = {ids["c-copied"]: {"label": "already written"}, ids["c-new"]: {"label": "new"},
+         ids["q1"]: {"label": "new"}, ids["q2"]: {"label": "partly"}}
+    b = {**a, ids["c-new"]: {"label": "partly"}}
+    failures, judged = novelty.split_judgements(case_map, a, b, {1: "answer one", 2: "answer two"})
+    assert failures == ["judge_b:c-new"]
+    assert [(r["q"], r["judge_a"]["label"], r["answer"]) for r in judged] == [(1, "new", "answer one"),
+                                                                             (2, "partly", "answer two")]
+
+
+def test_each_judge_gets_one_pass(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    (tmp_path / "case_map.json").write_text(json.dumps(case_map))
+    (tmp_path / "answers.md").write_text(_answers(2))
+    labels = {k: {"label": v.get("expected", "new")} for k, v in case_map.items()}
+    assert novelty.ingest(tmp_path, labels, labels)["canary_failures"] == []
+    with pytest.raises(SystemExit, match="one pass"):
+        novelty.ingest(tmp_path, labels, labels)
+
+
+def test_spare_questions_are_pool_topics_not_on_the_sheet(tmp_path):
+    pool = {"topics": [{"topic_id": f"T{i}", "question_text": f"Question {i}?"} for i in range(6)]}
+    (tmp_path / "pool.json").write_text(json.dumps(pool))
+    (tmp_path / "questions.md").write_text("# q\n\n## Q1\n\nQuestion 0?\n\n## Q2\n\nQuestion 3?\n")
+    spare = novelty.spare_questions(tmp_path / "pool.json", tmp_path / "questions.md", seed=1, k=3)
+    assert len(spare) == 3 and not {"Question 0?", "Question 3?"} & set(spare)
+    assert spare == novelty.spare_questions(tmp_path / "pool.json", tmp_path / "questions.md", seed=1, k=3)
+
+
+def test_ingest_records_the_hash_of_each_judges_raw_output(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    (tmp_path / "case_map.json").write_text(json.dumps(case_map))
+    (tmp_path / "answers.md").write_text(_answers(2))
+    labels = {k: {"label": v.get("expected", "new")} for k, v in case_map.items()}
+    (tmp_path / "a.json").write_text(json.dumps(labels))
+    (tmp_path / "b.json").write_text(json.dumps(labels))
+    doc = novelty.ingest(tmp_path, labels, labels, raw={"judge_a": tmp_path / "a.json", "judge_b": tmp_path / "b.json"})
+    assert doc["raw_sha256"]["judge_a"] == novelty._sha(tmp_path / "a.json")
+
+
+def test_only_canary_errors_that_cross_the_decision_void_a_judge():
+    expected = {"c-filler-40": "no content", "c-copied": "already written", "c-paraphrase": "already written",
+                "c-new": "new"}
+    ok = {"c-filler-40": {"label": "no content"}, "c-copied": {"label": "partly"},
+          "c-paraphrase": {"label": "partly"}, "c-new": {"label": "new"}}
+    assert novelty.canary_failures(expected, ok, ok) == []
+    bad = {**ok, "c-paraphrase": {"label": "new"}, "c-new": {"label": "partly"}, "c-filler-40": {"label": "partly"}}
+    assert novelty.canary_failures(expected, ok, bad) == ["judge_b:c-filler-40", "judge_b:c-paraphrase", "judge_b:c-new"]
+
+
+def test_a_judge_output_with_a_missing_id_or_an_unknown_label_is_invalid(tmp_path):
+    cases, case_map = _mixed(tmp_path)
+    ids = [k for k, v in case_map.items() if v["kind"] == "case"]
+    good = {k: {"label": v.get("expected", "new")} for k, v in case_map.items()}
+    assert novelty.output_problems(case_map, good) == []
+    missing = {k: v for k, v in good.items() if k != ids[0]}
+    assert novelty.output_problems(case_map, missing) == [f"missing id {ids[0]}"]
+    typo = {**good, ids[1]: {"label": "already_written"}}
+    assert novelty.output_problems(case_map, typo) == [f"label 'already_written' for {ids[1]}"]
+    (tmp_path / "case_map.json").write_text(json.dumps(case_map))
+    (tmp_path / "answers.md").write_text(_answers(2))
+    doc = novelty.ingest(tmp_path, good, typo)
+    assert doc["canary_failures"] == [f"judge_b:invalid: label 'already_written' for {ids[1]}"]
+
+
+def test_the_overlap_only_reading_labels_low_overlap_answers_new():
+    r = novelty.Retriever([("d", "surrogate bands set the significance floor of mutual information"),
+                           ("d", "the training window holds every diagnostic computation")])
+    rows = [{"q": 1, "question": "How are bands set?", "answer": "surrogate bands set the significance floor"},
+            {"q": 2, "question": "What did you see?", "answer": "our retail client mislabelled footfall twice"}]
+    assert novelty.overlap_labels(rows, r) == {1: "already written", 2: "new"}
+
+
+def test_a_canary_failure_voids_the_reading(tmp_path):
+    key, pub = tmp_path / "seal.key", tmp_path / "seal.pub"
+    subprocess.run(["openssl", "genpkey", "-algorithm", "RSA", "-out", str(key)], check=True, capture_output=True)
+    subprocess.run(["openssl", "pkey", "-in", str(key), "-pubout", "-out", str(pub)], check=True, capture_output=True)
+    items = [{"q": i, "arm": "gap" if i <= 10 else "covered"} for i in range(1, 21)]
+    (tmp_path / "secret").mkdir()
+    (tmp_path / "secret" / "key.json").write_text(json.dumps({"items": items}))
+    bs.seal(tmp_path / "secret", pub, tmp_path / "sealed")
+    judged = [{"q": i, "answer": "x", "judge_a": {"label": "new" if i <= 10 else "already written"},
+               "judge_b": {"label": "new" if i <= 10 else "already written"}} for i in range(1, 21)]
+    res = novelty.reveal(judged, tmp_path / "sealed", key, tmp_path / "opened", canary_failures=["judge_b:c-new"])
+    assert res["decision"] == "No reading" and res["void"] == ["judge_b:c-new"]
+    assert res["agreed"]["meets"] is True
+
+
+def test_guesses_are_read_only_while_the_locked_answers_are_unchanged(tmp_path):
+    (tmp_path / "questions.md").write_text("# q\n\n## Q1\n\nA?\n")
+    (tmp_path / "answers.md").write_text(_answers(1))
+    novelty.lock(tmp_path)
+    assert novelty.load_guesses(tmp_path) is None
+    (tmp_path / "guesses.json").write_text(json.dumps({"1": "gap"}))
+    assert novelty.load_guesses(tmp_path) == {1: "gap"}
+    (tmp_path / "answers.md").write_text(_answers(1, "Edited."))
+    with pytest.raises(SystemExit, match="changed"):
+        novelty.load_guesses(tmp_path)

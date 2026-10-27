@@ -1,0 +1,18 @@
+{
+ "name": "dependence-forecastability",
+ "title": "D1c dry run",
+ "owner_repo": "github.com/AdamKrysztopa/dependence-forecastability",
+ "domain": "forecastability",
+ "seed": 20261027,
+ "corpus": "../../d1_demonstrator/corpus",
+ "ledgers": {
+  "cheap-26b": "../../d1_demonstrator/runs/cheap-26b",
+  "toptier-26b": "../../d1_demonstrator/runs/toptier-26b"
+ },
+ "prior_items": null,
+ "prior_label": "",
+ "canaries": "fixtures/canaries.json",
+ "canary_mode": "generated",
+ "allow_incomplete_ledgers": true,
+ "allow_incomplete_reason": "Dry run on D1's ledgers, which are incomplete (D1c plan \u00a73.2); never a D1c input."
+}
